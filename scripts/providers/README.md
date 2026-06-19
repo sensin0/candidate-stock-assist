@@ -4,7 +4,7 @@
 
 現在:
 
-- `csv-provider.mjs`: サンプルCSVを読み込む予備プロバイダー
+- `csv-provider.mjs`: 銘柄マスタCSVまたはURLから候補銘柄を取り込むプロバイダー
 - `price-provider.mjs`: 株価更新CSVまたはURLから価格を取り込むプロバイダー
 - `disclosure-provider.mjs`: 適時開示CSVまたはURLからカタリストを検出するプロバイダー
 - `edinet-provider.mjs`: EDINET相当CSVまたはURLから財務・資産データを取り込むプロバイダー

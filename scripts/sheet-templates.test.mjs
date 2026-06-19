@@ -7,6 +7,10 @@ import { parseCsvRecords } from "./csv-utils.mjs";
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const templates = [
+  [
+    "sheet-templates/stock-master.csv",
+    ["code", "name", "price", "shares", "cash", "interestDebt", "netAssets", "bps", "eps", "pbrLow", "pbrHigh", "dataConfidence", "qualitativeDone", "held"],
+  ],
   ["sheet-templates/price-updates.csv", ["code", "price", "asOf"]],
   ["sheet-templates/disclosures.csv", ["code", "publishedAt", "title", "url"]],
   ["sheet-templates/edinet-facts.csv", ["code", "documentType", "periodEnd", "submittedAt", "cash", "bps", "eps"]],

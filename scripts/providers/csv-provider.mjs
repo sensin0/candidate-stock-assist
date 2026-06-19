@@ -40,9 +40,21 @@ export function parseStockCsv(text) {
   });
 }
 
-export async function fetchStocksFromCsv({ inputCsv }) {
+export async function fetchStocksFromCsv({ inputCsv, stockMasterCsvUrl } = {}) {
+  if (stockMasterCsvUrl) {
+    const response = await fetch(stockMasterCsvUrl);
+    if (!response.ok) {
+      throw new Error(`銘柄マスタCSV URLの取得に失敗しました: ${response.status}`);
+    }
+    return {
+      source: stockMasterCsvUrl,
+      fetchedAt: new Date().toISOString(),
+      stocks: parseStockCsv(await response.text()),
+    };
+  }
+
   return {
-    source: "csv",
+    source: inputCsv,
     fetchedAt: new Date().toISOString(),
     stocks: parseStockCsv(fs.readFileSync(inputCsv, "utf8")),
   };

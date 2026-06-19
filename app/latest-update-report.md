@@ -1,7 +1,7 @@
 # データ更新レポート
 
-更新日時: 2026-06-19T23:16:09.198Z
-入力元: csv
+更新日時: 2026-06-19T23:32:21.492Z
+入力元: data/stock-master.csv
 株価入力元: data/price-updates.csv
 株価更新件数: 8
 開示入力元: data/disclosures.csv
@@ -15,7 +15,7 @@ EDINET更新件数: 7
 
 ## データ取得状態
 
-- OK 銘柄マスタ: 取得成功 (csv)
+- OK 銘柄マスタ: 取得成功 (data/stock-master.csv)
 - OK 株価: 取得成功 (data/price-updates.csv)
 - OK 適時開示: 取得成功 (data/disclosures.csv)
 - OK EDINET相当: 取得成功 (data/edinet-facts.csv)

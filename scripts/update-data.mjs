@@ -10,7 +10,7 @@ import { applyWatchlist, fetchWatchlist } from "./providers/watchlist-provider.m
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const appDir = path.join(rootDir, "app");
 const dataDir = path.join(rootDir, "data");
-const inputCsv = path.join(appDir, "sample-data.csv");
+const inputCsv = path.join(dataDir, "stock-master.csv");
 const inputPriceCsv = path.join(dataDir, "price-updates.csv");
 const inputDisclosureCsv = path.join(dataDir, "disclosures.csv");
 const inputEdinetCsv = path.join(dataDir, "edinet-facts.csv");
@@ -78,6 +78,8 @@ function validateStocks(stocks) {
   const warnings = [];
   const seenCodes = new Set();
 
+  if (!stocks.length) warnings.push("銘柄マスタが空です");
+
   for (const stock of stocks) {
     const label = `${stock.code || "コード未設定"} ${stock.name || ""}`.trim();
     if (!stock.code) warnings.push("銘柄コードが未設定の行があります");
@@ -143,12 +145,7 @@ function writeGeneratedData(providerResult, priceResult, disclosureResult, edine
   const disclosureUpdated = applyDisclosures(priceUpdated, disclosureResult.disclosures);
   const stocks = applyWatchlist(disclosureUpdated, watchlistResult.items);
   const providerStatuses = [
-    {
-      label: "銘柄マスタ",
-      ok: true,
-      message: "取得成功",
-      source: providerResult.source,
-    },
+    providerResult.providerStatus,
     priceResult.providerStatus,
     disclosureResult.providerStatus,
     edinetResult.providerStatus,
@@ -249,7 +246,14 @@ function writeReport(payload) {
   fs.writeFileSync(outputReport, lines.join("\n"), "utf8");
 }
 
-const providerResult = await fetchStocksFromCsv({ inputCsv });
+const providerResult = await fetchWithFallback(
+  "銘柄マスタ",
+  () => fetchStocksFromCsv({
+    inputCsv,
+    stockMasterCsvUrl: process.env.STOCK_MASTER_CSV_URL,
+  }),
+  () => fetchStocksFromCsv({ inputCsv: path.join(appDir, "sample-data.csv") }),
+);
 const priceResult = await fetchWithFallback(
   "株価",
   () => fetchPriceUpdates({

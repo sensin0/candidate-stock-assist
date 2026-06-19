@@ -33,6 +33,7 @@ jobs:
         run: npm run morning
         env:
           PRICE_CSV_URL: ${{ secrets.PRICE_CSV_URL }}
+          STOCK_MASTER_CSV_URL: ${{ secrets.STOCK_MASTER_CSV_URL }}
           DISCLOSURE_CSV_URL: ${{ secrets.DISCLOSURE_CSV_URL }}
           EDINET_FACTS_CSV_URL: ${{ secrets.EDINET_FACTS_CSV_URL }}
           WATCHLIST_CSV_URL: ${{ secrets.WATCHLIST_CSV_URL }}
@@ -76,6 +77,7 @@ jobs:
         run: npm run morning
         env:
           PRICE_CSV_URL: ${{ secrets.PRICE_CSV_URL }}
+          STOCK_MASTER_CSV_URL: ${{ secrets.STOCK_MASTER_CSV_URL }}
           DISCLOSURE_CSV_URL: ${{ secrets.DISCLOSURE_CSV_URL }}
           EDINET_FACTS_CSV_URL: ${{ secrets.EDINET_FACTS_CSV_URL }}
           WATCHLIST_CSV_URL: ${{ secrets.WATCHLIST_CSV_URL }}

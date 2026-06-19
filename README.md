@@ -10,6 +10,7 @@
 - チャート上の買いライン、現在株価、目標株価の表示
 - ランキング表示
 - 株価、開示、EDINET相当データの自動更新口
+- 銘柄マスタの外部CSV差し替え
 - データ鮮度チェック
 - 朝レポート生成
 - GitHub Actionsによる毎朝更新
@@ -58,12 +59,14 @@ GitHub Secretsに以下を入れると、外部CSVから更新できます。
 
 ```text
 PRICE_CSV_URL
+STOCK_MASTER_CSV_URL
 DISCLOSURE_CSV_URL
 EDINET_FACTS_CSV_URL
 WATCHLIST_CSV_URL
 ```
 
 未設定の場合は `data/*.csv` を使います。
+銘柄数を増やす場合は、まず `STOCK_MASTER_CSV_URL` に候補銘柄の母集団CSVを登録します。
 
 Googleスプレッドシートを使う場合は、シートをCSVとして公開し、そのURLをSecretsに入れます。
 
@@ -97,7 +100,7 @@ DISCORD_WEBHOOK_URL
 - 朝レポートURL
 
 外部データURLの取得に失敗した場合は、ローカルの予備CSVで更新を継続し、画面、更新レポート、Discord通知に注意を出します。
-監視リストや外部データに銘柄マスタへ存在しないコードが入った場合も、データ品質の注意として表示します。
+銘柄マスタが空の場合や、監視リスト・外部データに銘柄マスタへ存在しないコードが入った場合も、データ品質の注意として表示します。
 
 ## 主なコマンド
 

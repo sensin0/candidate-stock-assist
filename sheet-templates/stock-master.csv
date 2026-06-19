@@ -1,0 +1,4 @@
+code,name,sector,price,shares,treasuryShares,cash,securities,investmentSecurities,interestDebt,netAssets,rentalBook,rentalMarket,bps,eps,pbrLow,pbrAvg,pbrHigh,perLow,perAvg,perHigh,dataConfidence,qualitativeDone,held,risk,catalyst,history
+8841,テーオーシー,不動産,836,88217703,0,8300,4200,18000,7100,100230,57880,184360,1136,42,0.5,0.7,0.95,12,16,22,確認済み,true,false,,不動産含み益,610|650|620|690|720|760|800|836
+6505,東洋電機製造,電機,1180,9735500,420000,8100,600,9800,3200,32100,2100,4700,3400,96,0.32,0.52,0.78,10,18,24,一部手入力,true,true,,業績回復,880|930|900|1010|1080|1120|1160|1180
+3123,サイボー,繊維・不動産,625,12891200,0,2600,300,4200,2200,13200,24640,41120,1024,28,0.55,0.75,1,11,16,22,確認済み,false,false,,含み資産,590|610|600|615|640|630|620|625

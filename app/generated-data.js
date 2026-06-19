@@ -1,14 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-19T23:16:09.198Z",
-  "source": "csv",
+  "generatedAt": "2026-06-19T23:32:21.492Z",
+  "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-19T23:16:09.192Z",
-  "priceFetchedAt": "2026-06-19T23:16:09.194Z",
-  "disclosureFetchedAt": "2026-06-19T23:16:09.195Z",
-  "edinetFetchedAt": "2026-06-19T23:16:09.195Z",
+  "fetchedAt": "2026-06-19T23:32:21.485Z",
+  "priceFetchedAt": "2026-06-19T23:32:21.488Z",
+  "disclosureFetchedAt": "2026-06-19T23:32:21.488Z",
+  "edinetFetchedAt": "2026-06-19T23:32:21.489Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -23,7 +23,7 @@ window.AUTO_STOCK_DATA = {
       "label": "銘柄マスタ",
       "ok": true,
       "message": "取得成功",
-      "source": "csv"
+      "source": "data/stock-master.csv"
     },
     {
       "label": "株価",
