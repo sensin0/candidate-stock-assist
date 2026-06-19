@@ -16,6 +16,8 @@ const requiredFiles = [
   "scripts/update-data.mjs",
   "scripts/build-pages.mjs",
   "scripts/generate-morning-report.mjs",
+  "scripts/csv-utils.mjs",
+  "scripts/csv-utils.test.mjs",
   "data/price-updates.csv",
   "data/disclosures.csv",
   "data/edinet-facts.csv",
@@ -30,6 +32,7 @@ if (missing.length) {
 }
 
 const checks = [
+  ["csv parser", process.execPath, ["scripts/csv-utils.test.mjs"]],
   ["pipeline", process.execPath, ["scripts/pipeline.mjs"]],
   ["pages build", process.execPath, ["scripts/build-pages.mjs"]],
 ];

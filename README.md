@@ -64,6 +64,14 @@ WATCHLIST_CSV_URL
 
 未設定の場合は `data/*.csv` を使います。
 
+Googleスプレッドシートを使う場合は、シートをCSVとして公開し、そのURLをSecretsに入れます。
+
+```text
+File -> Share -> Publish to web -> CSV
+```
+
+メモや開示タイトルにカンマが入っても読み込めるよう、引用符付きCSVに対応しています。
+
 ## Discord通知
 
 GitHub Secretsに以下を入れると、Pages公開後にDiscordへ朝レポート通知を送ります。

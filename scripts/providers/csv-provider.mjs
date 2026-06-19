@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { parseCsvRecords } from "../csv-utils.mjs";
 
 const numberFields = new Set([
   "price",
@@ -22,13 +23,9 @@ const numberFields = new Set([
 ]);
 
 export function parseStockCsv(text) {
-  const rows = text.trim().split(/\r?\n/).filter(Boolean);
-  const headers = rows.shift().split(",").map((value) => value.trim());
-  return rows.map((row) => {
-    const values = row.split(",").map((value) => value.trim());
+  return parseCsvRecords(text).map((row) => {
     const record = {};
-    headers.forEach((header, index) => {
-      const value = values[index] ?? "";
+    Object.entries(row).forEach(([header, value]) => {
       if (header === "history") {
         record[header] = value ? value.split("|").map(Number) : [];
       } else if (header === "qualitativeDone" || header === "held") {

@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { parseCsvRecords } from "../csv-utils.mjs";
 
 const numberFields = new Set([
   "cash",
@@ -13,14 +14,9 @@ const numberFields = new Set([
 ]);
 
 export function parseEdinetFactsCsv(text) {
-  const rows = text.trim().split(/\r?\n/).filter(Boolean);
-  if (!rows.length) return [];
-  const headers = rows.shift().split(",").map((value) => value.trim());
-  return rows.map((row) => {
-    const values = row.split(",").map((value) => value.trim());
+  return parseCsvRecords(text).map((row) => {
     const record = {};
-    headers.forEach((header, index) => {
-      const value = values[index] ?? "";
+    Object.entries(row).forEach(([header, value]) => {
       record[header] = numberFields.has(header) ? Number(value || 0) : value;
     });
     return record;

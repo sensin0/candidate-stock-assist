@@ -1,15 +1,8 @@
 import fs from "node:fs";
+import { parseCsvRecords } from "../csv-utils.mjs";
 
 export function parseWatchlistCsv(text) {
-  const rows = text.trim().split(/\r?\n/).filter(Boolean);
-  if (!rows.length) return [];
-  const headers = rows.shift().split(",").map((value) => value.trim());
-  return rows.map((row) => {
-    const values = row.split(",").map((value) => value.trim());
-    const record = {};
-    headers.forEach((header, index) => {
-      record[header] = values[index] ?? "";
-    });
+  return parseCsvRecords(text).map((record) => {
     return {
       code: record.code,
       status: record.status || "監視",
