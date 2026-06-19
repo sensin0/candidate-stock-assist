@@ -5,6 +5,7 @@ import { fetchStocksFromCsv } from "./providers/csv-provider.mjs";
 import { applyDisclosures, fetchDisclosures } from "./providers/disclosure-provider.mjs";
 import { applyEdinetFacts, fetchEdinetFacts } from "./providers/edinet-provider.mjs";
 import { applyPriceUpdates, fetchPriceUpdates } from "./providers/price-provider.mjs";
+import { applyWatchlist, fetchWatchlist } from "./providers/watchlist-provider.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const appDir = path.join(rootDir, "app");
@@ -13,6 +14,7 @@ const inputCsv = path.join(appDir, "sample-data.csv");
 const inputPriceCsv = path.join(dataDir, "price-updates.csv");
 const inputDisclosureCsv = path.join(dataDir, "disclosures.csv");
 const inputEdinetCsv = path.join(dataDir, "edinet-facts.csv");
+const inputWatchlistCsv = path.join(dataDir, "watchlist.csv");
 const outputJs = path.join(appDir, "generated-data.js");
 const outputReport = path.join(appDir, "latest-update-report.md");
 
@@ -81,10 +83,11 @@ function publicProviderStatus(status) {
   };
 }
 
-function writeGeneratedData(providerResult, priceResult, disclosureResult, edinetResult) {
+function writeGeneratedData(providerResult, priceResult, disclosureResult, edinetResult, watchlistResult) {
   const edinetUpdated = applyEdinetFacts(providerResult.stocks, edinetResult.facts);
   const priceUpdated = applyPriceUpdates(edinetUpdated, priceResult.prices);
-  const stocks = applyDisclosures(priceUpdated, disclosureResult.disclosures);
+  const disclosureUpdated = applyDisclosures(priceUpdated, disclosureResult.disclosures);
+  const stocks = applyWatchlist(disclosureUpdated, watchlistResult.items);
   const providerStatuses = [
     {
       label: "銘柄マスタ",
@@ -95,6 +98,7 @@ function writeGeneratedData(providerResult, priceResult, disclosureResult, edine
     priceResult.providerStatus,
     disclosureResult.providerStatus,
     edinetResult.providerStatus,
+    watchlistResult.providerStatus,
   ].map(publicProviderStatus);
   const payload = {
     generatedAt: new Date().toISOString(),
@@ -102,6 +106,7 @@ function writeGeneratedData(providerResult, priceResult, disclosureResult, edine
     priceSource: publicSource(priceResult.source),
     disclosureSource: publicSource(disclosureResult.source),
     edinetSource: publicSource(edinetResult.source),
+    watchlistSource: publicSource(watchlistResult.source),
     fetchedAt: providerResult.fetchedAt,
     priceFetchedAt: priceResult.fetchedAt,
     disclosureFetchedAt: disclosureResult.fetchedAt,
@@ -110,6 +115,7 @@ function writeGeneratedData(providerResult, priceResult, disclosureResult, edine
     priceUpdates: priceResult.prices.length,
     disclosureUpdates: disclosureResult.disclosures.length,
     edinetUpdates: edinetResult.facts.length,
+    watchlistUpdates: watchlistResult.items.length,
     providerStatuses,
     stocks,
   };
@@ -131,6 +137,8 @@ function writeReport(payload) {
     `開示件数: ${payload.disclosureUpdates}`,
     `EDINET入力元: ${payload.edinetSource}`,
     `EDINET更新件数: ${payload.edinetUpdates}`,
+    `監視リスト入力元: ${payload.watchlistSource}`,
+    `監視リスト件数: ${payload.watchlistUpdates}`,
     `銘柄数: ${payload.stocks.length}`,
     `データ状態: ${payload.dataQuality.ok ? "OK" : "要確認"}`,
     "",
@@ -168,6 +176,12 @@ function writeReport(payload) {
       .filter((stock) => stock.edinet)
       .map((stock) => `- ${stock.code} ${stock.name}: ${stock.edinet.documentType} ${stock.edinet.periodEnd}`),
     "",
+    "## 監視リスト",
+    "",
+    ...payload.stocks
+      .filter((stock) => stock.watchlist)
+      .map((stock) => `- ${stock.code} ${stock.name}: ${stock.watchlist.status} ${stock.watchlist.note}`),
+    "",
   ];
   fs.writeFileSync(outputReport, lines.join("\n"), "utf8");
 }
@@ -197,7 +211,15 @@ const edinetResult = await fetchWithFallback(
   }),
   () => fetchEdinetFacts({ inputEdinetCsv }),
 );
-const payload = writeGeneratedData(providerResult, priceResult, disclosureResult, edinetResult);
+const watchlistResult = await fetchWithFallback(
+  "監視リスト",
+  () => fetchWatchlist({
+    inputWatchlistCsv,
+    watchlistCsvUrl: process.env.WATCHLIST_CSV_URL,
+  }),
+  () => fetchWatchlist({ inputWatchlistCsv }),
+);
+const payload = writeGeneratedData(providerResult, priceResult, disclosureResult, edinetResult, watchlistResult);
 writeReport(payload);
 
 console.log(`generated ${payload.stocks.length} stocks`);

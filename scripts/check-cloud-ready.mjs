@@ -19,6 +19,8 @@ const requiredFiles = [
   "data/price-updates.csv",
   "data/disclosures.csv",
   "data/edinet-facts.csv",
+  "data/watchlist.csv",
+  "scripts/providers/watchlist-provider.mjs",
 ];
 
 const missing = requiredFiles.filter((file) => !fs.existsSync(path.join(rootDir, file)));

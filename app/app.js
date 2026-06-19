@@ -588,15 +588,17 @@ function renderSummary() {
   const sellNow = byAssist("今売り検討", visible).length + byAssist("一部利益確定検討", visible).length;
   const risk = byAssist("リスクで見送り", visible).length;
   const near = byAssist("買い場に近い", visible).length;
+  const watched = visible.filter((stock) => stock.watchlist).length;
   const qualityWarning = window.AUTO_STOCK_DATA?.dataQuality?.ok === false
     ? " データ要確認の項目があります。"
     : "";
   document.getElementById("todaySummary").textContent =
-    `表示中の${visible.length}銘柄では、今買い候補${buyNow}件、今売り検討${sellNow}件、買い場に近い銘柄${near}件、リスク確認${risk}件です。${qualityWarning}`;
+    `表示中の${visible.length}銘柄では、今買い候補${buyNow}件、今売り検討${sellNow}件、買い場に近い銘柄${near}件、監視中${watched}件、リスク確認${risk}件です。${qualityWarning}`;
   document.getElementById("summaryStats").innerHTML = [
     ["今買い", buyNow],
     ["売り検討", sellNow],
     ["買い場近い", near],
+    ["監視中", watched],
     ["リスク", risk],
   ]
     .map(([label, value]) => `<div class="stat"><strong>${value}</strong><span>${label}</span></div>`)
@@ -629,6 +631,7 @@ function renderCandidateCard(stock) {
         <span class="assist-label ${stock.assist.className}">${stock.assist.label}</span>
       </div>
       <p class="reason">${stock.assist.reasons[0] ?? ""}</p>
+      ${renderWatchlistLine(stock)}
       ${renderFreshnessLine(stock)}
       ${renderMiniMeter(stock)}
     </article>
@@ -648,6 +651,7 @@ function markerPosition(stock) {
 
 function rankingFor(type) {
   const copy = [...visibleStocks()];
+  if (type === "watchlist") return copy.filter((s) => s.watchlist).sort((a, b) => b.score - a.score);
   if (type === "buyNow") return copy.filter((s) => s.assist.label === "今買い候補");
   if (type === "nearBuy") return copy.filter((s) => ["買い場に近い", "調査が先"].includes(s.assist.label));
   if (type === "safe") return copy.sort((a, b) => b.nonBusinessAssetRatio - a.nonBusinessAssetRatio);
@@ -676,6 +680,7 @@ function renderRankingRow(stock, index) {
       </div>
       <p class="reason">${topReason(stock)}</p>
       <div class="ranking-meta">
+        ${stock.watchlist ? `<span>${stock.watchlist.status}</span>` : ""}
         <span>スコア ${stock.score}</span>
         <span>上昇余地 ${pct(stock.upside)}</span>
         <span>修正PBR ${times(stock.modifiedPbr)}</span>
@@ -704,6 +709,7 @@ function renderDetail() {
   document.getElementById("detailBadges").innerHTML = [
     stock.held ? "保有中" : "未保有",
     stock.dataConfidence,
+    stock.watchlist ? stock.watchlist.status : "未監視",
     stock.qualitativeDone ? "有報確認済み" : "有報確認待ち",
     stock.edinet?.periodEnd ? `有報 ${stock.edinet.periodEnd}` : "有報未取得",
   ].map((label) => `<span class="badge">${label}</span>`).join("") + renderFreshnessBadge(stock);
@@ -733,6 +739,8 @@ function renderTradeMeter(stock) {
 function renderMetrics(stock) {
   const providerWarnings = window.AUTO_STOCK_DATA?.dataQuality?.providerWarnings ?? [];
   const metrics = [
+    ["監視状態", stock.watchlist?.status || "未監視"],
+    ["監視メモ", stock.watchlist?.note || "なし"],
     ["データ鮮度", stock.dataFreshness?.label || "未確認"],
     ["鮮度メモ", stock.dataFreshness?.warnings?.[0] || "確認済み"],
     ["取得状態", providerWarnings.length ? `${providerWarnings.length}件要確認` : "OK"],
@@ -763,6 +771,11 @@ function renderFreshnessLine(stock) {
   const freshness = stock.dataFreshness;
   if (!freshness || freshness.level === "ok") return "";
   return `<p class="freshness-line">${freshness.label}: ${freshness.warnings[0]}</p>`;
+}
+
+function renderWatchlistLine(stock) {
+  if (!stock.watchlist) return "";
+  return `<p class="watchlist-line">${stock.watchlist.status}: ${stock.watchlist.note || "継続確認"}</p>`;
 }
 
 function renderChart(stock) {
@@ -815,6 +828,7 @@ function renderMorningReport() {
   const sellNow = byAssist("今売り検討", visible).concat(byAssist("一部利益確定検討", visible)).slice(0, 5);
   const near = byAssist("買い場に近い", visible).concat(byAssist("調査が先", visible)).slice(0, 10);
   const risk = byAssist("リスクで見送り", visible).slice(0, 5);
+  const watched = visible.filter((stock) => stock.watchlist).slice(0, 10);
   const disclosures = visible.filter((stock) => stock.disclosures?.length).slice(0, 10);
   const stale = visible.filter((stock) => stock.dataFreshness?.level !== "ok").slice(0, 10);
   const report = [
@@ -824,6 +838,7 @@ function renderMorningReport() {
     "",
     sectionMarkdown("今買い候補", buyNow),
     sectionMarkdown("今売り検討", sellNow),
+    watchlistMarkdown("監視リスト", watched),
     sectionMarkdown("買い場に近い・調査が先", near),
     disclosureMarkdown("カタリスト・開示", disclosures),
     freshnessMarkdown("データ要確認", stale),
@@ -852,6 +867,15 @@ function disclosureMarkdown(title, list) {
     ...list.flatMap((stock) =>
       stock.disclosures.map((item) => `- ${stock.code} ${stock.name}: ${item.title}`)
     ),
+    "",
+  ].join("\n");
+}
+
+function watchlistMarkdown(title, list) {
+  if (!list.length) return `## ${title}\n該当なし\n`;
+  return [
+    `## ${title}`,
+    ...list.map((stock) => `- ${stock.code} ${stock.name}: ${stock.watchlist.status}。${stock.watchlist.note || stock.assist.reasons[0]}`),
     "",
   ].join("\n");
 }

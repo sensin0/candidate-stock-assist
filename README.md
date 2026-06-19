@@ -15,6 +15,7 @@
 - GitHub Actionsによる毎朝更新
 - GitHub Pagesによる画面公開
 - 外部データ取得失敗時の予備データ継続と注意表示
+- 監視銘柄リストの表示と朝レポート反映
 
 ## ローカルで動かす
 
@@ -58,6 +59,7 @@ GitHub Secretsに以下を入れると、外部CSVから更新できます。
 PRICE_CSV_URL
 DISCLOSURE_CSV_URL
 EDINET_FACTS_CSV_URL
+WATCHLIST_CSV_URL
 ```
 
 未設定の場合は `data/*.csv` を使います。
@@ -77,6 +79,7 @@ DISCORD_WEBHOOK_URL
 - データ要確認の件数
 - リスク確認の件数
 - 取得元の注意件数
+- 監視リスト件数
 - 今買い候補の先頭数件
 - アプリURL
 - 朝レポートURL

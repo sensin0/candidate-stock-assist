@@ -35,6 +35,7 @@ jobs:
           PRICE_CSV_URL: ${{ secrets.PRICE_CSV_URL }}
           DISCLOSURE_CSV_URL: ${{ secrets.DISCLOSURE_CSV_URL }}
           EDINET_FACTS_CSV_URL: ${{ secrets.EDINET_FACTS_CSV_URL }}
+          WATCHLIST_CSV_URL: ${{ secrets.WATCHLIST_CSV_URL }}
 
       - name: Build Pages files
         run: npm run pages:build
@@ -77,6 +78,7 @@ jobs:
           PRICE_CSV_URL: ${{ secrets.PRICE_CSV_URL }}
           DISCLOSURE_CSV_URL: ${{ secrets.DISCLOSURE_CSV_URL }}
           EDINET_FACTS_CSV_URL: ${{ secrets.EDINET_FACTS_CSV_URL }}
+          WATCHLIST_CSV_URL: ${{ secrets.WATCHLIST_CSV_URL }}
 
       - name: Notify Discord
         run: npm run notify:discord

@@ -90,6 +90,20 @@ npm run pipeline
 
 株価日付、有報提出日、有報対象期からデータ鮮度を判定し、古いデータや未取得データは画面と朝レポートに `要確認` として表示します。日付が怪しい銘柄は、数値上よく見えても `今買い候補` ではなく `調査が先` 側に倒します。
 
+監視リストも差し替え口を用意しています。標準では `data/watchlist.csv` を読みます。
+
+```csv
+code,status,note
+1897,重点監視,買いラインを下回ったら有報の資産欄を再確認
+```
+
+URL上の監視リストCSVを読む場合:
+
+```powershell
+$env:WATCHLIST_CSV_URL="https://example.com/watchlist.csv"
+npm run pipeline
+```
+
 一気通貫で更新から検証まで流す場合:
 
 ```powershell

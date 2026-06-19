@@ -152,7 +152,7 @@ main {
 
 .summary-stats {
   display: grid;
-  grid-template-columns: repeat(4, minmax(76px, 1fr));
+  grid-template-columns: repeat(5, minmax(72px, 1fr));
   gap: 6px;
   min-width: min(360px, 100%);
 }
@@ -421,6 +421,16 @@ select {
   margin: 8px 0 0;
   color: var(--yellow);
   background: var(--yellow-soft);
+  border-radius: 8px;
+  padding: 7px 9px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.watchlist-line {
+  margin: 8px 0 0;
+  color: var(--blue);
+  background: var(--blue-soft);
   border-radius: 8px;
   padding: 7px 9px;
   font-size: 12px;

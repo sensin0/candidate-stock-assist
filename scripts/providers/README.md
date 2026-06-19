@@ -8,6 +8,7 @@
 - `price-provider.mjs`: 株価更新CSVまたはURLから価格を取り込むプロバイダー
 - `disclosure-provider.mjs`: 適時開示CSVまたはURLからカタリストを検出するプロバイダー
 - `edinet-provider.mjs`: EDINET相当CSVまたはURLから財務・資産データを取り込むプロバイダー
+- `watchlist-provider.mjs`: 監視リストCSVまたはURLから重点監視メモを取り込むプロバイダー
 
 追加予定:
 

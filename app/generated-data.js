@@ -1,13 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-19T12:01:46.186Z",
+  "generatedAt": "2026-06-19T22:59:35.362Z",
   "source": "csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
-  "fetchedAt": "2026-06-19T12:01:46.181Z",
-  "priceFetchedAt": "2026-06-19T12:01:46.183Z",
-  "disclosureFetchedAt": "2026-06-19T12:01:46.184Z",
-  "edinetFetchedAt": "2026-06-19T12:01:46.185Z",
+  "watchlistSource": "data/watchlist.csv",
+  "fetchedAt": "2026-06-19T22:59:35.357Z",
+  "priceFetchedAt": "2026-06-19T22:59:35.359Z",
+  "disclosureFetchedAt": "2026-06-19T22:59:35.360Z",
+  "edinetFetchedAt": "2026-06-19T22:59:35.360Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -16,6 +17,7 @@ window.AUTO_STOCK_DATA = {
   "priceUpdates": 8,
   "disclosureUpdates": 5,
   "edinetUpdates": 7,
+  "watchlistUpdates": 3,
   "providerStatuses": [
     {
       "label": "銘柄マスタ",
@@ -40,6 +42,12 @@ window.AUTO_STOCK_DATA = {
       "ok": true,
       "message": "取得成功",
       "source": "data/edinet-facts.csv"
+    },
+    {
+      "label": "監視リスト",
+      "ok": true,
+      "message": "取得成功",
+      "source": "data/watchlist.csv"
     }
   ],
   "stocks": [
@@ -101,7 +109,11 @@ window.AUTO_STOCK_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "watchlist": {
+        "status": "監視",
+        "note": "不動産含み益と資本政策の進捗を見る"
+      }
     },
     {
       "code": "6505",
@@ -165,7 +177,8 @@ window.AUTO_STOCK_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "watchlist": null
     },
     {
       "code": "3123",
@@ -211,7 +224,8 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/3123"
       },
-      "priceAsOf": "2026-06-19"
+      "priceAsOf": "2026-06-19",
+      "watchlist": null
     },
     {
       "code": "3765",
@@ -271,7 +285,8 @@ window.AUTO_STOCK_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "watchlist": null
     },
     {
       "code": "8802",
@@ -331,7 +346,8 @@ window.AUTO_STOCK_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "watchlist": null
     },
     {
       "code": "2484",
@@ -371,7 +387,8 @@ window.AUTO_STOCK_DATA = {
         135,
         132
       ],
-      "priceAsOf": "2026-06-19"
+      "priceAsOf": "2026-06-19",
+      "watchlist": null
     },
     {
       "code": "1897",
@@ -417,7 +434,11 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/1897"
       },
-      "priceAsOf": "2026-06-19"
+      "priceAsOf": "2026-06-19",
+      "watchlist": {
+        "status": "重点監視",
+        "note": "買いラインを下回ったら有報の資産欄を再確認"
+      }
     },
     {
       "code": "9672",
@@ -477,7 +498,11 @@ window.AUTO_STOCK_DATA = {
             }
           ]
         }
-      ]
+      ],
+      "watchlist": {
+        "status": "保有監視",
+        "note": "目標株価到達後の一部利益確定を検討"
+      }
     }
   ],
   "dataQuality": {

@@ -42,6 +42,7 @@ function firstItems(title, limit = 3) {
 
 const buyCount = countSection("今買い候補");
 const sellCount = countSection("今売り検討");
+const watchCount = countSection("監視リスト");
 const staleCount = countSection("データ要確認");
 const riskCount = countSection("リスク確認");
 const providerWarningCount = dataQuality?.providerWarnings?.length ?? 0;
@@ -51,6 +52,7 @@ const message = [
   "",
   `今買い候補: ${buyCount}件`,
   `今売り検討: ${sellCount}件`,
+  `監視リスト: ${watchCount}件`,
   `データ要確認: ${staleCount}件`,
   `リスク確認: ${riskCount}件`,
   `取得元の注意: ${providerWarningCount}件`,
