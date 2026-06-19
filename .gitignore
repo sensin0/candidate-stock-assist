@@ -1,0 +1,8 @@
+dist/
+node_modules/
+.env
+.env.*
+*.log
+reports/morning-report-*.md
+*_20260618.md
+*仕様.md

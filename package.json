@@ -1,0 +1,17 @@
+{
+  "name": "candidate-stock-assist",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "update": "node scripts/update-data.mjs",
+    "report": "node scripts/generate-morning-report.mjs",
+    "morning": "node scripts/morning-update.mjs",
+    "notify:discord": "node scripts/notify-discord.mjs",
+    "pages:build": "node scripts/build-pages.mjs",
+    "cloud:check": "node scripts/check-cloud-ready.mjs",
+    "test": "node --check app/app.js && node --check scripts/update-data.mjs && node app/smoke-test.mjs",
+    "pipeline": "node scripts/pipeline.mjs",
+    "start": "node scripts/serve.mjs"
+  }
+}

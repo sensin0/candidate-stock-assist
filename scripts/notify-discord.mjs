@@ -1,0 +1,118 @@
+import fs from "node:fs";
+import https from "node:https";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const reportPath = path.join(rootDir, "reports", "latest-morning-report.md");
+const generatedDataPath = path.join(rootDir, "app", "generated-data.js");
+const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
+const siteUrl = process.env.PAGES_URL || "https://sensin0.github.io/candidate-stock-assist/";
+const reportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-morning-report.md`;
+
+if (!webhookUrl) {
+  console.log("DISCORD_WEBHOOK_URL が未設定のため、Discord通知をスキップします");
+  process.exit(0);
+}
+
+if (!fs.existsSync(reportPath)) {
+  console.error("朝レポートが見つかりません");
+  process.exit(1);
+}
+
+const report = fs.readFileSync(reportPath, "utf8");
+const generatedData = fs.existsSync(generatedDataPath) ? fs.readFileSync(generatedDataPath, "utf8") : "";
+const dataQuality = parseGeneratedDataQuality(generatedData);
+
+function countSection(title) {
+  const match = report.match(new RegExp(`## ${title}\\n([\\s\\S]*?)(\\n## |$)`));
+  if (!match || match[1].includes("該当なし")) return 0;
+  return match[1].split("\n").filter((line) => line.startsWith("- ")).length;
+}
+
+function firstItems(title, limit = 3) {
+  const match = report.match(new RegExp(`## ${title}\\n([\\s\\S]*?)(\\n## |$)`));
+  if (!match || match[1].includes("該当なし")) return ["該当なし"];
+  return match[1]
+    .split("\n")
+    .filter((line) => line.startsWith("- "))
+    .slice(0, limit)
+    .map((line) => line.replace(/^- /, ""));
+}
+
+const buyCount = countSection("今買い候補");
+const sellCount = countSection("今売り検討");
+const staleCount = countSection("データ要確認");
+const riskCount = countSection("リスク確認");
+const providerWarningCount = dataQuality?.providerWarnings?.length ?? 0;
+
+const message = [
+  "候補銘柄アシスト 朝レポートを更新しました",
+  "",
+  `今買い候補: ${buyCount}件`,
+  `今売り検討: ${sellCount}件`,
+  `データ要確認: ${staleCount}件`,
+  `リスク確認: ${riskCount}件`,
+  `取得元の注意: ${providerWarningCount}件`,
+  "",
+  "今買い候補",
+  ...firstItems("今買い候補").map((item) => `- ${item}`),
+  ...providerWarningLines(dataQuality),
+  "",
+  siteUrl,
+  reportUrl,
+].join("\n");
+
+const body = JSON.stringify({
+  username: "候補銘柄アシスト",
+  content: message.slice(0, 1900),
+});
+
+const request = https.request(webhookUrl, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+    "content-length": Buffer.byteLength(body),
+  },
+}, (response) => {
+  let responseBody = "";
+  response.on("data", (chunk) => {
+    responseBody += chunk;
+  });
+  response.on("end", () => {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      console.log("Discord通知を送信しました");
+      return;
+    }
+    console.error(`Discord通知に失敗しました: ${response.statusCode} ${responseBody}`);
+    process.exit(1);
+  });
+});
+
+request.on("error", (error) => {
+  console.error(error.message);
+  process.exit(1);
+});
+
+request.write(body);
+request.end();
+
+function parseGeneratedDataQuality(text) {
+  const match = text.match(/window\.AUTO_STOCK_DATA = ([\s\S]*);\s*$/);
+  if (!match) return null;
+  try {
+    return JSON.parse(match[1]).dataQuality ?? null;
+  } catch {
+    return null;
+  }
+}
+
+function providerWarningLines(dataQuality) {
+  const warnings = dataQuality?.providerWarnings ?? [];
+  if (!warnings.length) return [];
+  return [
+    "",
+    "取得元の注意",
+    ...warnings.slice(0, 3).map((warning) => `- ${warning.label}: ${warning.message}`),
+  ];
+}

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>候補銘柄アシスト</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">資産バリュー株アシスト</p>
+        <h1>朝に見る候補銘柄</h1>
+      </div>
+      <div class="header-actions">
+        <button id="autoUpdateButton" type="button" disabled>自動更新データ 確認中</button>
+        <label class="file-button">
+          手動CSV取込
+          <input id="csvInput" type="file" accept=".csv,text/csv" />
+        </label>
+        <button id="templateButton" type="button">予備CSVテンプレート</button>
+        <button id="sampleButton" type="button">サンプルに戻す</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="summary-band" aria-labelledby="todaySummaryTitle">
+        <div>
+          <h2 id="todaySummaryTitle">今日の結論</h2>
+          <p id="todaySummary">データを読み込み中です。</p>
+        </div>
+        <div class="summary-stats" id="summaryStats"></div>
+      </section>
+
+      <section class="toolbar" aria-label="絞り込み">
+        <label>
+          銘柄検索
+          <input id="searchInput" type="search" placeholder="コード・銘柄名・業種で検索" />
+        </label>
+        <label>
+          表示
+          <select id="assistFilter">
+            <option value="all">すべて</option>
+            <option value="今買い候補">今買い候補</option>
+            <option value="買い場に近い">買い場に近い</option>
+            <option value="調査が先">調査が先</option>
+            <option value="今売り検討">今売り検討</option>
+            <option value="一部利益確定検討">一部利益確定検討</option>
+            <option value="リスクで見送り">リスクで見送り</option>
+          </select>
+        </label>
+        <div id="importStatus" class="import-status">自動取得は未接続。現在はサンプルデータを表示中</div>
+      </section>
+
+      <section class="assist-grid" aria-label="売買アシスト">
+        <article class="assist-column" data-section="buyNow">
+          <div class="section-heading">
+            <h2>今買い候補</h2>
+            <span id="buyNowCount">0</span>
+          </div>
+          <div id="buyNowList" class="card-list"></div>
+        </article>
+
+        <article class="assist-column" data-section="nearBuy">
+          <div class="section-heading">
+            <h2>買い場に近い</h2>
+            <span id="nearBuyCount">0</span>
+          </div>
+          <div id="nearBuyList" class="card-list"></div>
+        </article>
+
+        <article class="assist-column" data-section="sellNow">
+          <div class="section-heading">
+            <h2>今売り検討</h2>
+            <span id="sellNowCount">0</span>
+          </div>
+          <div id="sellNowList" class="card-list"></div>
+        </article>
+
+        <article class="assist-column" data-section="risk">
+          <div class="section-heading">
+            <h2>リスクあり</h2>
+            <span id="riskCount">0</span>
+          </div>
+          <div id="riskList" class="card-list"></div>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <aside class="rankings" aria-labelledby="rankingTitle">
+          <div class="section-heading">
+            <h2 id="rankingTitle">ランキング</h2>
+            <select id="rankingSelect" aria-label="ランキング種別">
+              <option value="today">今日見る</option>
+              <option value="buyNow">今買い候補</option>
+              <option value="nearBuy">買い場に近い</option>
+              <option value="safe">安全そう</option>
+              <option value="upside">上昇余地</option>
+              <option value="realEstate">不動産含み益</option>
+              <option value="netCash">ネットキャッシュ</option>
+            </select>
+          </div>
+          <div id="rankingList" class="ranking-list"></div>
+        </aside>
+
+        <section class="detail-panel" aria-labelledby="detailTitle">
+          <div class="detail-header">
+            <div>
+              <p id="detailAssist" class="assist-label">銘柄を選択</p>
+              <h2 id="detailTitle">ランキングから銘柄を選んでください</h2>
+            </div>
+            <div id="detailBadges" class="badge-row"></div>
+          </div>
+
+          <div id="tradeMeter" class="trade-meter"></div>
+          <div id="chart" class="chart" role="img" aria-label="株価チャート"></div>
+
+          <div class="detail-grid">
+            <section>
+              <h3>理由</h3>
+              <ul id="reasonList" class="clean-list"></ul>
+            </section>
+            <section>
+              <h3>次に確認</h3>
+              <ul id="nextActionList" class="clean-list"></ul>
+            </section>
+          </div>
+
+          <details class="advanced-details">
+            <summary>詳しい指標を見る</summary>
+            <div id="metricGrid" class="metric-grid"></div>
+          </details>
+        </section>
+      </section>
+
+      <section class="morning-report" aria-labelledby="reportTitle">
+        <div class="section-heading">
+          <h2 id="reportTitle">朝レポート</h2>
+          <button id="copyReportButton" type="button">Markdownをコピー</button>
+        </div>
+        <textarea id="morningReport" readonly></textarea>
+      </section>
+    </main>
+
+    <footer>
+      <p>この画面は売買推奨ではありません。候補を見つけるための確認アシストです。</p>
+    </footer>
+
+    <script src="./generated-data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
