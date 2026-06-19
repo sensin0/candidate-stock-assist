@@ -1,14 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-19T23:09:33.071Z",
+  "generatedAt": "2026-06-19T23:16:09.198Z",
   "source": "csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-19T23:09:33.062Z",
-  "priceFetchedAt": "2026-06-19T23:09:33.065Z",
-  "disclosureFetchedAt": "2026-06-19T23:09:33.066Z",
-  "edinetFetchedAt": "2026-06-19T23:09:33.067Z",
+  "fetchedAt": "2026-06-19T23:16:09.192Z",
+  "priceFetchedAt": "2026-06-19T23:16:09.194Z",
+  "disclosureFetchedAt": "2026-06-19T23:16:09.195Z",
+  "edinetFetchedAt": "2026-06-19T23:16:09.195Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -508,6 +508,8 @@ window.AUTO_STOCK_DATA = {
   "dataQuality": {
     "ok": false,
     "providerWarnings": [],
+    "validationWarnings": [],
+    "externalReferenceWarnings": [],
     "missingPrice": [],
     "missingEdinet": [
       "2484 出前館"

@@ -783,12 +783,16 @@ function renderTradeMeter(stock) {
 
 function renderMetrics(stock) {
   const providerWarnings = window.AUTO_STOCK_DATA?.dataQuality?.providerWarnings ?? [];
+  const validationWarnings = window.AUTO_STOCK_DATA?.dataQuality?.validationWarnings ?? [];
+  const referenceWarnings = window.AUTO_STOCK_DATA?.dataQuality?.externalReferenceWarnings ?? [];
   const metrics = [
     ["監視状態", stock.watchlist?.status || "未監視"],
     ["監視メモ", stock.watchlist?.note || "なし"],
     ["データ鮮度", stock.dataFreshness?.label || "未確認"],
     ["鮮度メモ", stock.dataFreshness?.warnings?.[0] || "確認済み"],
     ["取得状態", providerWarnings.length ? `${providerWarnings.length}件要確認` : "OK"],
+    ["入力値注意", validationWarnings.length ? `${validationWarnings.length}件` : "なし"],
+    ["参照注意", referenceWarnings.length ? `${referenceWarnings.length}件` : "なし"],
     ["株価日付", stock.priceAsOf || "未確認"],
     ["有報対象期", stock.edinet?.periodEnd || "未取得"],
     ["有報提出日", stock.edinet?.submittedAt || "未取得"],

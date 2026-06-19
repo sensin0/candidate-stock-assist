@@ -46,6 +46,8 @@ const watchCount = countSection("監視リスト");
 const staleCount = countSection("データ要確認");
 const riskCount = countSection("リスク確認");
 const providerWarningCount = dataQuality?.providerWarnings?.length ?? 0;
+const validationWarningCount = dataQuality?.validationWarnings?.length ?? 0;
+const referenceWarningCount = dataQuality?.externalReferenceWarnings?.length ?? 0;
 
 const message = [
   "候補銘柄アシスト 朝レポートを更新しました",
@@ -56,10 +58,14 @@ const message = [
   `データ要確認: ${staleCount}件`,
   `リスク確認: ${riskCount}件`,
   `取得元の注意: ${providerWarningCount}件`,
+  `入力値の注意: ${validationWarningCount}件`,
+  `参照の注意: ${referenceWarningCount}件`,
   "",
   "今買い候補",
   ...firstItems("今買い候補").map((item) => `- ${item}`),
   ...providerWarningLines(dataQuality),
+  ...dataWarningLines("入力値の注意", dataQuality?.validationWarnings),
+  ...dataWarningLines("参照の注意", dataQuality?.externalReferenceWarnings),
   "",
   siteUrl,
   reportUrl,
@@ -116,5 +122,14 @@ function providerWarningLines(dataQuality) {
     "",
     "取得元の注意",
     ...warnings.slice(0, 3).map((warning) => `- ${warning.label}: ${warning.message}`),
+  ];
+}
+
+function dataWarningLines(title, warnings = []) {
+  if (!warnings.length) return [];
+  return [
+    "",
+    title,
+    ...warnings.slice(0, 3).map((warning) => `- ${warning}`),
   ];
 }
