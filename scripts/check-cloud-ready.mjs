@@ -19,6 +19,12 @@ const requiredFiles = [
   "scripts/csv-utils.mjs",
   "scripts/csv-utils.test.mjs",
   "scripts/data-quality.test.mjs",
+  "scripts/sheet-templates.test.mjs",
+  "GOOGLE_SHEETS_SETUP.md",
+  "sheet-templates/price-updates.csv",
+  "sheet-templates/disclosures.csv",
+  "sheet-templates/edinet-facts.csv",
+  "sheet-templates/watchlist.csv",
   "data/price-updates.csv",
   "data/disclosures.csv",
   "data/edinet-facts.csv",
@@ -34,6 +40,7 @@ if (missing.length) {
 
 const checks = [
   ["csv parser", process.execPath, ["scripts/csv-utils.test.mjs"]],
+  ["sheet templates", process.execPath, ["scripts/sheet-templates.test.mjs"]],
   ["data quality", process.execPath, ["scripts/data-quality.test.mjs"]],
   ["pipeline", process.execPath, ["scripts/pipeline.mjs"]],
   ["pages build", process.execPath, ["scripts/build-pages.mjs"]],

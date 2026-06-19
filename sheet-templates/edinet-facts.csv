@@ -1,0 +1,4 @@
+code,documentType,periodEnd,submittedAt,cash,securities,investmentSecurities,interestDebt,netAssets,rentalBook,rentalMarket,bps,eps,sourceUrl
+1897,annual,2026-03-31,2026-06-19,16800,900,6200,500,31200,1200,3900,6500,350,https://example.com/edinet/1897
+8841,annual,2026-03-31,2026-06-19,8500,4300,18200,7000,101000,58000,186000,1145,44,https://example.com/edinet/8841
+9672,annual,2026-03-31,2026-06-19,23000,2100,8600,17800,113500,4280,212000,4070,288,https://example.com/edinet/9672

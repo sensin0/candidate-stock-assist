@@ -73,6 +73,9 @@ File -> Share -> Publish to web -> CSV
 
 メモや開示タイトルにカンマが入っても読み込めるよう、引用符付きCSVに対応しています。
 
+詳しい手順は [GOOGLE_SHEETS_SETUP.md](./GOOGLE_SHEETS_SETUP.md) を見てください。
+テンプレートCSVは `sheet-templates/` にあります。
+
 ## Discord通知
 
 GitHub Secretsに以下を入れると、Pages公開後にDiscordへ朝レポート通知を送ります。
