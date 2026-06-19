@@ -5,4 +5,5 @@ node_modules/
 *.log
 reports/morning-report-*.md
 *_20260618.md
+source-notes*.md
 *仕様.md
