@@ -932,12 +932,14 @@ function renderMorningReport() {
   const disclosures = visible.filter((stock) => stock.disclosures?.length).slice(0, 10);
   const stale = visible.filter((stock) => stock.dataFreshness?.level !== "ok").slice(0, 10);
   const dataOverview = morningDataOverview(visible);
+  const priorities = morningPriorities(visible);
   const report = [
     "# 朝レポート",
     "",
     `今日は今買い候補${buyNow.length}件、今売り検討${sellNow.length}件、買い場に近い銘柄${near.length}件です。`,
     "",
     dataOverview,
+    priorityMarkdown("今日見る優先順位", priorities),
     sectionMarkdown("今買い候補", buyNow),
     sectionMarkdown("今売り検討", sellNow),
     watchlistMarkdown("監視リスト", watched),
@@ -949,6 +951,40 @@ function renderMorningReport() {
     "注意: このレポートは売買推奨ではありません。候補を確認するためのアシストです。",
   ].join("\n");
   document.getElementById("morningReport").value = report;
+}
+
+function morningPriorities(visible) {
+  return [...visible]
+    .map((stock) => ({
+      stock,
+      priority: priorityScore(stock),
+      reason: priorityReason(stock),
+    }))
+    .sort((a, b) => b.priority - a.priority)
+    .slice(0, 7);
+}
+
+function priorityScore(stock) {
+  let priority = stock.score;
+  if (stock.assist.label === "今買い候補") priority += 40;
+  if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") priority += 34;
+  if (stock.assist.label === "買い場に近い" || stock.assist.label === "調査が先") priority += 24;
+  if (stock.watchlist) priority += 12;
+  if (stock.dataFreshness?.level !== "ok") priority += 10;
+  if (stock.disclosures?.length) priority += 8;
+  if (stock.risk) priority += 6;
+  return priority;
+}
+
+function priorityReason(stock) {
+  if (stock.assist.label === "今買い候補") return `買いライン以下。${topReason(stock)}`;
+  if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") {
+    return `売り判断の確認。${stock.assist.reasons[0]}`;
+  }
+  if (stock.watchlist) return `監視中。${stock.watchlist.note || topReason(stock)}`;
+  if (stock.dataFreshness?.level !== "ok") return `データ確認。${stock.dataFreshness.warnings[0]}`;
+  if (stock.disclosures?.length) return `開示あり。${stock.disclosures[0].title}`;
+  return topReason(stock);
 }
 
 function morningDataOverview(visible) {
@@ -979,6 +1015,17 @@ function sectionMarkdown(title, list) {
     `## ${title}`,
     ...list.map((stock) =>
       `- ${stock.code} ${stock.name}: ${stock.assist.label}。${stock.assist.reasons[0]} / 次に確認: ${stock.assist.nextActions[0]}`
+    ),
+    "",
+  ].join("\n");
+}
+
+function priorityMarkdown(title, list) {
+  if (!list.length) return `## ${title}\n該当なし\n`;
+  return [
+    `## ${title}`,
+    ...list.map(({ stock, reason }, index) =>
+      `- ${index + 1}. ${stock.code} ${stock.name}: ${stock.assist.label}。${reason} / 次に確認: ${stock.assist.nextActions[0]}`
     ),
     "",
   ].join("\n");

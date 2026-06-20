@@ -19,6 +19,7 @@ assert.match(result.stdout, /Discord通知プレビュー/);
 assert.match(result.stdout, /対象銘柄数: \d+件/);
 assert.match(result.stdout, /銘柄マスタ:/);
 assert.match(result.stdout, /今買い候補: \d+件/);
+assert.match(result.stdout, /今日見る優先順位/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-morning-report\.md/);
 
 console.log("notify-discord-test ok");
