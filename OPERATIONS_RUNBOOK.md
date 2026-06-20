@@ -68,6 +68,12 @@ npm run notify:preview
 npm run cloud:check
 ```
 
+公開してよいファイルだけか確認:
+
+```powershell
+npm run privacy:check
+```
+
 本番準備度だけ見る:
 
 ```powershell
