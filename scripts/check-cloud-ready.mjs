@@ -20,6 +20,7 @@ const requiredFiles = [
   "scripts/csv-utils.test.mjs",
   "scripts/data-quality.test.mjs",
   "scripts/sheet-templates.test.mjs",
+  "scripts/notify-discord.test.mjs",
   "GOOGLE_SHEETS_SETUP.md",
   "sheet-templates/stock-master.csv",
   "sheet-templates/price-updates.csv",
@@ -44,6 +45,7 @@ const checks = [
   ["csv parser", process.execPath, ["scripts/csv-utils.test.mjs"]],
   ["sheet templates", process.execPath, ["scripts/sheet-templates.test.mjs"]],
   ["data quality", process.execPath, ["scripts/data-quality.test.mjs"]],
+  ["discord notification preview", process.execPath, ["scripts/notify-discord.test.mjs"]],
   ["pipeline", process.execPath, ["scripts/pipeline.mjs"]],
   ["pages build", process.execPath, ["scripts/build-pages.mjs"]],
 ];

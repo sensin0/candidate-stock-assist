@@ -7,10 +7,11 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const reportPath = path.join(rootDir, "reports", "latest-morning-report.md");
 const generatedDataPath = path.join(rootDir, "app", "generated-data.js");
 const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
+const dryRun = process.env.DISCORD_DRY_RUN === "1" || process.argv.includes("--dry-run");
 const siteUrl = process.env.PAGES_URL || "https://sensin0.github.io/candidate-stock-assist/";
 const reportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-morning-report.md`;
 
-if (!webhookUrl) {
+if (!webhookUrl && !dryRun) {
   console.log("DISCORD_WEBHOOK_URL が未設定のため、Discord通知をスキップします");
   process.exit(0);
 }
@@ -82,6 +83,12 @@ const body = JSON.stringify({
   username: "候補銘柄アシスト",
   content: message.slice(0, 1900),
 });
+
+if (dryRun) {
+  console.log("Discord通知プレビュー");
+  console.log(message);
+  process.exit(0);
+}
 
 const request = https.request(webhookUrl, {
   method: "POST",

@@ -8,6 +8,7 @@
     "report": "node scripts/generate-morning-report.mjs",
     "morning": "node scripts/morning-update.mjs",
     "notify:discord": "node scripts/notify-discord.mjs",
+    "notify:preview": "node scripts/notify-discord.mjs --dry-run",
     "pages:build": "node scripts/build-pages.mjs",
     "cloud:check": "node scripts/check-cloud-ready.mjs",
     "test": "node --check app/app.js && node --check scripts/update-data.mjs && node app/smoke-test.mjs",

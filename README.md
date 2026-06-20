@@ -109,6 +109,7 @@ npm run update
 npm run report
 npm run morning
 npm run notify:discord
+npm run notify:preview
 npm run pages:build
 npm run pipeline
 npm run start
