@@ -94,3 +94,5 @@
 ```powershell
 npm run production:check
 ```
+
+日々の運用は [OPERATIONS_RUNBOOK.md](./OPERATIONS_RUNBOOK.md) にまとめています。

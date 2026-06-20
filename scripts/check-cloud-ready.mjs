@@ -10,6 +10,7 @@ const requiredFiles = [
   "README.md",
   "STOCK_MASTER_COLUMNS.md",
   "PRODUCTION_CHECKLIST.md",
+  "OPERATIONS_RUNBOOK.md",
   ".gitignore",
   ".github/workflows/morning-pages.yml",
   "app/index.html",
