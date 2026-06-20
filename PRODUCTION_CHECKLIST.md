@@ -83,6 +83,7 @@
 - `latest-update-report.md` の「次に直すデータ」が0件または内容を把握済み
 - Discord通知に違和感がない
 - GitHub Actionsの朝実行が成功
+- Actionsログの `Production readiness check` で本番準備度を確認済み
 - 画面で買いライン、現在株価、目標株価が自然に読める
 
 ## 今の次アクション

@@ -38,6 +38,15 @@ jobs:
           EDINET_FACTS_CSV_URL: ${{ secrets.EDINET_FACTS_CSV_URL }}
           WATCHLIST_CSV_URL: ${{ secrets.WATCHLIST_CSV_URL }}
 
+      - name: Production readiness check
+        run: npm run production:check
+        env:
+          PRICE_CSV_URL: ${{ secrets.PRICE_CSV_URL }}
+          STOCK_MASTER_CSV_URL: ${{ secrets.STOCK_MASTER_CSV_URL }}
+          DISCLOSURE_CSV_URL: ${{ secrets.DISCLOSURE_CSV_URL }}
+          EDINET_FACTS_CSV_URL: ${{ secrets.EDINET_FACTS_CSV_URL }}
+          WATCHLIST_CSV_URL: ${{ secrets.WATCHLIST_CSV_URL }}
+
       - name: Build Pages files
         run: npm run pages:build
 

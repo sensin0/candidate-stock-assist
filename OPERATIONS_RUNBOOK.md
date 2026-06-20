@@ -71,12 +71,14 @@ npm run production:check
 push時:
 
 - build 成功
+- Production readiness check に本番準備度が表示される
 - deploy 成功
 - notify skipped
 
 手動実行または朝の定期実行:
 
 - build 成功
+- Production readiness check に本番準備度が表示される
 - deploy 成功
 - notify 成功
 - Discord通知が届く
@@ -93,6 +95,7 @@ Discord通知が来ない:
 画面が古い:
 
 - GitHub Actionsの `deploy` が成功しているか見る
+- `Production readiness check` のログで入力元と本番準備度を見る
 - Pages URLを再読み込みする
 - `app/latest-update-report.md` の更新日時を見る
 
