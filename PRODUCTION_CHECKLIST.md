@@ -32,7 +32,7 @@
 
 - Google Sheetsの `stock-master` に候補銘柄を追加
 - `STOCK_MASTER_CSV_URL` をGitHub Secretsに登録
-- `npm run notify:preview` または手動Actionsで件数を確認
+- `npm run production:check` または `npm run notify:preview` で件数を確認
 
 ### 2. 足りない更新データを埋める
 
@@ -88,3 +88,9 @@
 ## 今の次アクション
 
 最優先は、Google Sheetsの `stock-master` を20件以上に増やすことです。ここが増えると、ランキングと朝の優先順位が本番に近づきます。
+
+進捗は以下で確認できます。
+
+```powershell
+npm run production:check
+```
