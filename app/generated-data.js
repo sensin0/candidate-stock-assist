@@ -1,14 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-20T04:44:26.388Z",
+  "generatedAt": "2026-06-20T04:48:40.741Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-20T04:44:26.380Z",
-  "priceFetchedAt": "2026-06-20T04:44:26.383Z",
-  "disclosureFetchedAt": "2026-06-20T04:44:26.384Z",
-  "edinetFetchedAt": "2026-06-20T04:44:26.385Z",
+  "fetchedAt": "2026-06-20T04:48:40.734Z",
+  "priceFetchedAt": "2026-06-20T04:48:40.736Z",
+  "disclosureFetchedAt": "2026-06-20T04:48:40.737Z",
+  "edinetFetchedAt": "2026-06-20T04:48:40.738Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -516,6 +516,9 @@ window.AUTO_STOCK_DATA = {
     ],
     "stale": [
       "2484 出前館"
+    ],
+    "nextFixes": [
+      "EDINET相当CSVに追加: 2484 出前館"
     ],
     "coverage": {
       "price": "8/8",

@@ -660,7 +660,7 @@ function renderDataCheck() {
   const referenceWarnings = quality?.externalReferenceWarnings ?? [];
   const missingPrice = quality?.missingPrice ?? [];
   const missingEdinet = quality?.missingEdinet ?? [];
-  const allWarnings = [
+  const allWarnings = quality?.nextFixes ?? [
     ...providerWarnings.map((item) => `${item.label}: ${item.message}`),
     ...validationWarnings,
     ...referenceWarnings,
@@ -995,6 +995,7 @@ function morningDataOverview(visible) {
   const referenceWarnings = quality?.externalReferenceWarnings ?? [];
   const missingPrice = quality?.missingPrice ?? [];
   const missingEdinet = quality?.missingEdinet ?? [];
+  const nextFixes = quality?.nextFixes ?? [];
   const warningCount =
     providerWarnings.length + validationWarnings.length + referenceWarnings.length + missingPrice.length + missingEdinet.length;
   const stockCountNote = visible.length < 20
@@ -1005,6 +1006,7 @@ function morningDataOverview(visible) {
     `- 対象銘柄数: ${visible.length}件。${stockCountNote}`,
     `- 銘柄マスタ: ${data?.source ?? "サンプル"}`,
     `- データ状態: ${quality?.ok ? "OK" : "要確認"}。注意${warningCount}件`,
+    ...(nextFixes.length ? [`- 次に直す: ${nextFixes[0]}`] : []),
     "",
   ].join("\n");
 }

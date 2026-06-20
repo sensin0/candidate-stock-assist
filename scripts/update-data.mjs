@@ -67,11 +67,28 @@ function buildDataQuality(payload) {
     missingPrice,
     missingEdinet,
     stale,
+    nextFixes: buildNextFixes({
+      providerWarnings,
+      validationWarnings,
+      externalReferenceWarnings,
+      missingPrice,
+      missingEdinet,
+    }),
     coverage: {
       price: `${stocks.length - missingPrice.length}/${stocks.length}`,
       edinet: `${stocks.length - missingEdinet.length}/${stocks.length}`,
     },
   };
+}
+
+function buildNextFixes({ providerWarnings, validationWarnings, externalReferenceWarnings, missingPrice, missingEdinet }) {
+  return [
+    ...providerWarnings.map((item) => `取得元を確認: ${item.label} ${item.message}`),
+    ...validationWarnings.map((item) => `銘柄マスタを修正: ${item}`),
+    ...externalReferenceWarnings.map((item) => `外部CSVのコードを確認: ${item}`),
+    ...missingPrice.map((item) => `株価CSVに追加: ${item}`),
+    ...missingEdinet.map((item) => `EDINET相当CSVに追加: ${item}`),
+  ].slice(0, 12);
 }
 
 function validateStocks(stocks) {
@@ -214,6 +231,12 @@ function writeReport(payload) {
     ...payload.dataQuality.missingEdinet.map((item) => `- EDINET相当未取得: ${item}`),
     ...payload.dataQuality.validationWarnings.map((item) => `- 入力値要確認: ${item}`),
     ...payload.dataQuality.externalReferenceWarnings.map((item) => `- 参照要確認: ${item}`),
+    "",
+    "## 次に直すデータ",
+    "",
+    ...(payload.dataQuality.nextFixes.length
+      ? payload.dataQuality.nextFixes.map((item) => `- ${item}`)
+      : ["- なし"]),
     "",
     "## 次に接続する取得元",
     "",
