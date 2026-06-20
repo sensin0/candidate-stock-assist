@@ -42,3 +42,15 @@ code,name,price,shares,cash,interestDebt,netAssets,bps,eps,pbrLow,pbrHigh,dataCo
 - 金額は百万円、株価・BPS・EPSは円です。
 - 迷う列は空欄より `0` にした方がチェックしやすいです。
 - 自信がない銘柄は `dataConfidence` を `未確認` にします。
+
+## 最小入力から作る
+
+列が多くて入力しづらい時は、`data/stock-master-input.csv` に最低限の列だけ入れてから、以下を実行します。
+
+```powershell
+npm run stock-master:build
+```
+
+`data/stock-master.generated.csv` が作られます。内容を確認してから `stock-master` に貼り付けます。
+
+入力テンプレートは `sheet-templates/stock-master-input.csv` です。

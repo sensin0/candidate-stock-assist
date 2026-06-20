@@ -112,6 +112,7 @@ npm run report
 npm run morning
 npm run notify:discord
 npm run notify:preview
+npm run stock-master:build
 npm run pages:build
 npm run pipeline
 npm run start

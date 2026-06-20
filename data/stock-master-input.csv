@@ -1,0 +1,2 @@
+code,name,sector,price,shares,cash,interestDebt,netAssets,bps,eps,pbrLow,pbrHigh,note
+1234,サンプル銘柄,未分類,1000,10000000,5000,1000,12000,1200,80,0.5,1,入力例
