@@ -18,6 +18,7 @@ assert.equal(result.status, 0, result.stderr);
 assert.match(result.stdout, /Discord通知プレビュー/);
 assert.match(result.stdout, /対象銘柄数: \d+件/);
 assert.match(result.stdout, /銘柄マスタ:/);
+assert.match(result.stdout, /本番準備度: \d+%/);
 assert.match(result.stdout, /今買い候補: \d+件/);
 assert.match(result.stdout, /今日見る優先順位/);
 assert.match(result.stdout, /次に直す: \d+件/);

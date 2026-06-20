@@ -54,6 +54,10 @@ function buildDataQuality(payload) {
     .filter((stock) => stock.dataConfidence === "未確認" || !stock.priceAsOf || !stock.edinet?.periodEnd)
     .map((stock) => `${stock.code} ${stock.name}`);
   const providerWarnings = payload.providerStatuses.filter((status) => !status.ok);
+  const coverage = {
+    price: `${stocks.length - missingPrice.length}/${stocks.length}`,
+    edinet: `${stocks.length - missingEdinet.length}/${stocks.length}`,
+  };
 
   return {
     ok: !providerWarnings.length
@@ -74,10 +78,41 @@ function buildDataQuality(payload) {
       missingPrice,
       missingEdinet,
     }),
-    coverage: {
-      price: `${stocks.length - missingPrice.length}/${stocks.length}`,
-      edinet: `${stocks.length - missingEdinet.length}/${stocks.length}`,
-    },
+    readiness: buildReadiness({
+      stockCount: stocks.length,
+      priceReady: stocks.length - missingPrice.length,
+      edinetReady: stocks.length - missingEdinet.length,
+      providerWarnings,
+      validationWarnings,
+      externalReferenceWarnings,
+    }),
+    coverage,
+  };
+}
+
+function buildReadiness({
+  stockCount,
+  priceReady,
+  edinetReady,
+  providerWarnings,
+  validationWarnings,
+  externalReferenceWarnings,
+}) {
+  const stockScore = Math.min(40, Math.round((stockCount / 50) * 40));
+  const priceScore = stockCount ? Math.round((priceReady / stockCount) * 25) : 0;
+  const edinetScore = stockCount ? Math.round((edinetReady / stockCount) * 25) : 0;
+  const qualityPenalty = Math.min(10, providerWarnings.length * 4 + validationWarnings.length * 2 + externalReferenceWarnings.length * 2);
+  const score = Math.max(0, Math.min(100, stockScore + priceScore + edinetScore + 10 - qualityPenalty));
+  const blockers = [];
+  if (stockCount < 20) blockers.push(`銘柄数を20件以上へ増やす: 現在${stockCount}件`);
+  if (stockCount && priceReady < stockCount) blockers.push(`株価未取得を埋める: ${priceReady}/${stockCount}`);
+  if (stockCount && edinetReady / stockCount < 0.8) blockers.push(`EDINET相当を80%以上へ増やす: ${edinetReady}/${stockCount}`);
+  if (providerWarnings.length) blockers.push("外部データ取得元の注意を解消");
+  if (validationWarnings.length || externalReferenceWarnings.length) blockers.push("入力値または参照コードの注意を解消");
+  return {
+    score,
+    label: score >= 85 ? "本番運用OK" : score >= 65 ? "あと少し" : "準備中",
+    blockers,
   };
 }
 
@@ -216,6 +251,7 @@ function writeReport(payload) {
     `監視リスト件数: ${payload.watchlistUpdates}`,
     `銘柄数: ${payload.stocks.length}`,
     `データ状態: ${payload.dataQuality.ok ? "OK" : "要確認"}`,
+    `本番準備度: ${payload.dataQuality.readiness.score}% ${payload.dataQuality.readiness.label}`,
     "",
     "## データ取得状態",
     "",
@@ -237,6 +273,12 @@ function writeReport(payload) {
     ...(payload.dataQuality.nextFixes.length
       ? payload.dataQuality.nextFixes.map((item) => `- ${item}`)
       : ["- なし"]),
+    "",
+    "## 本番化の残り",
+    "",
+    ...(payload.dataQuality.readiness.blockers.length
+      ? payload.dataQuality.readiness.blockers.map((item) => `- ${item}`)
+      : ["- 本番運用開始の目安を満たしています"]),
     "",
     "## 次に接続する取得元",
     "",

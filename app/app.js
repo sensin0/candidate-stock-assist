@@ -677,8 +677,11 @@ function renderDataCheck() {
       : "まだ少なめです";
   const generatedAt = data?.generatedAt ? new Date(data.generatedAt).toLocaleString("ja-JP") : "未更新";
   const warningPreview = allWarnings.slice(0, 3);
+  const readiness = quality?.readiness ?? { score: 0, label: "準備中", blockers: [] };
+  const readinessTone = readiness.score >= 85 ? "good" : readiness.score >= 65 ? "warn" : "alert";
 
   document.getElementById("dataCheckList").innerHTML = [
+    dataCheckItem("本番度", `${readiness.score}%`, readiness.label, readinessTone),
     dataCheckItem("銘柄数", `${stockCount}件`, countMessage, countTone),
     dataCheckItem("入力元", sourceLabel, source, providerWarnings.length ? "warn" : "good"),
     dataCheckItem("更新日時", generatedAt, quality?.ok ? "データ状態OK" : "確認が必要です", quality?.ok ? "good" : "warn"),
@@ -996,6 +999,7 @@ function morningDataOverview(visible) {
   const missingPrice = quality?.missingPrice ?? [];
   const missingEdinet = quality?.missingEdinet ?? [];
   const nextFixes = quality?.nextFixes ?? [];
+  const readiness = quality?.readiness ?? { score: 0, label: "準備中", blockers: [] };
   const warningCount =
     providerWarnings.length + validationWarnings.length + referenceWarnings.length + missingPrice.length + missingEdinet.length;
   const stockCountNote = visible.length < 20
@@ -1006,6 +1010,8 @@ function morningDataOverview(visible) {
     `- 対象銘柄数: ${visible.length}件。${stockCountNote}`,
     `- 銘柄マスタ: ${data?.source ?? "サンプル"}`,
     `- データ状態: ${quality?.ok ? "OK" : "要確認"}。注意${warningCount}件`,
+    `- 本番準備度: ${readiness.score}% ${readiness.label}`,
+    ...(readiness.blockers?.length ? [`- 本番化の残り: ${readiness.blockers[0]}`] : []),
     ...(nextFixes.length ? [`- 次に直す: ${nextFixes[0]}`] : []),
     "",
   ].join("\n");

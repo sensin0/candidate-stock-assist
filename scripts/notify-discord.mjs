@@ -54,12 +54,14 @@ const stockCount = generatedPayload?.stocks?.length ?? 0;
 const stockCountWarning = stockCount > 0 && stockCount < 20 ? "（少なめ）" : "";
 const dataSource = generatedPayload?.source ?? "不明";
 const nextFixes = dataQuality?.nextFixes ?? [];
+const readiness = dataQuality?.readiness ?? { score: 0, label: "準備中", blockers: [] };
 
 const message = [
   "候補銘柄アシスト 朝レポートを更新しました",
   "",
   `対象銘柄数: ${stockCount}件${stockCountWarning}`,
   `銘柄マスタ: ${dataSource}`,
+  `本番準備度: ${readiness.score}% ${readiness.label}`,
   `今買い候補: ${buyCount}件`,
   `今売り検討: ${sellCount}件`,
   `監視リスト: ${watchCount}件`,
@@ -72,6 +74,7 @@ const message = [
   "",
   "今日見る優先順位",
   ...firstItems("今日見る優先順位", 5).map((item) => `- ${item}`),
+  ...readinessLines(readiness),
   ...nextFixLines(nextFixes),
   "",
   "今買い候補",
@@ -160,6 +163,16 @@ function nextFixLines(nextFixes = []) {
     "",
     "次に直すデータ",
     ...nextFixes.slice(0, 3).map((item) => `- ${item}`),
+  ];
+}
+
+function readinessLines(readiness) {
+  const blockers = readiness?.blockers ?? [];
+  if (!blockers.length) return [];
+  return [
+    "",
+    "本番化の残り",
+    ...blockers.slice(0, 3).map((item) => `- ${item}`),
   ];
 }
 

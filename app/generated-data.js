@@ -1,14 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-20T05:06:01.123Z",
+  "generatedAt": "2026-06-20T10:04:48.300Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-20T05:06:01.113Z",
-  "priceFetchedAt": "2026-06-20T05:06:01.117Z",
-  "disclosureFetchedAt": "2026-06-20T05:06:01.118Z",
-  "edinetFetchedAt": "2026-06-20T05:06:01.119Z",
+  "fetchedAt": "2026-06-20T10:04:48.289Z",
+  "priceFetchedAt": "2026-06-20T10:04:48.294Z",
+  "disclosureFetchedAt": "2026-06-20T10:04:48.294Z",
+  "edinetFetchedAt": "2026-06-20T10:04:48.295Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -520,6 +520,13 @@ window.AUTO_STOCK_DATA = {
     "nextFixes": [
       "EDINET相当CSVに追加: 2484 出前館"
     ],
+    "readiness": {
+      "score": 63,
+      "label": "準備中",
+      "blockers": [
+        "銘柄数を20件以上へ増やす: 現在8件"
+      ]
+    },
     "coverage": {
       "price": "8/8",
       "edinet": "7/8"
