@@ -85,6 +85,8 @@ npm run manual:confirm -- 6505
 npm run manual:confirm -- 6505 --write
 ```
 
+`--write` を付けると、`data/stock-master.csv` を更新し、画面用データと朝レポートも再生成します。
+
 ## GitHub Actions
 
 push時:

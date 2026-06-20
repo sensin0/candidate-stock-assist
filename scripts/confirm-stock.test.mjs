@@ -18,7 +18,7 @@ try {
   assert.match(preview.stdout, /まだCSVは変更していません/);
   assert.equal(fs.readFileSync(stockMasterPath, "utf8"), original, "プレビューでCSVが変わっています");
 
-  const write = spawnSync(process.execPath, ["scripts/confirm-stock.mjs", "6505", "--write"], {
+  const write = spawnSync(process.execPath, ["scripts/confirm-stock.mjs", "6505", "--write", "--skip-refresh"], {
     cwd: rootDir,
     encoding: "utf8",
   });

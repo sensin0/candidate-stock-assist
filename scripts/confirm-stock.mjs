@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { parseCsvRows } from "./csv-utils.mjs";
 
@@ -7,6 +8,7 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const stockMasterPath = path.join(rootDir, "data", "stock-master.csv");
 const code = process.argv.find((arg) => /^\d{4}$/.test(arg));
 const write = process.argv.includes("--write");
+const skipRefresh = process.argv.includes("--skip-refresh");
 
 if (!code) {
   console.error("銘柄コードを指定してください。例: npm run manual:confirm -- 6505");
@@ -62,6 +64,11 @@ if (remainingManualRows.length) {
   const next = remainingManualRows[0];
   console.log(`次に確認: ${next[codeIndex]} ${next[nameIndex] || ""}`.trim());
 }
+if (!skipRefresh) {
+  runStep("更新データ再生成", ["scripts/update-data.mjs"]);
+  runStep("朝レポート再生成", ["scripts/generate-morning-report.mjs"]);
+  console.log("更新データと朝レポートを再生成しました");
+}
 console.log("次に npm run production:check で本番準備度を確認してください");
 
 function stringifyCsvRows(rowsToWrite) {
@@ -72,4 +79,13 @@ function csvCell(value) {
   const textValue = String(value ?? "");
   if (!/[",\n\r]/.test(textValue)) return textValue;
   return `"${textValue.replaceAll("\"", "\"\"")}"`;
+}
+
+function runStep(label, args) {
+  const result = spawnSync(process.execPath, args, { cwd: rootDir, encoding: "utf8" });
+  if (result.status !== 0) {
+    console.error(`${label}に失敗しました`);
+    console.error(result.stderr || result.stdout);
+    process.exit(result.status ?? 1);
+  }
 }
