@@ -66,7 +66,8 @@ WATCHLIST_CSV_URL
 ```
 
 未設定の場合は `data/*.csv` を使います。
-銘柄数を増やす場合は、まず `STOCK_MASTER_CSV_URL` に候補銘柄の母集団CSVを登録します。
+銘柄数を増やす場合は、まず `data/stock-master.csv` を20件以上にします。
+Google Sheetsで運用したい場合は、`STOCK_MASTER_CSV_URL` に候補銘柄の母集団CSVを登録します。
 
 Googleスプレッドシートを使う場合は、シートをCSVとして公開し、そのURLをSecretsに入れます。
 

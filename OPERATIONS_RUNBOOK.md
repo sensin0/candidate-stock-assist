@@ -18,7 +18,7 @@ Discord通知で見る順番:
 
 ## 銘柄を増やす
 
-最優先は `stock-master` を20件以上にすることです。
+本番開始ラインは `stock-master` 20件以上です。さらに安定させる場合は50件以上を目安にします。
 
 少ない列から作る場合:
 
@@ -31,8 +31,8 @@ npm run stock-master:build
 1. `data/stock-master-input.csv` またはGoogle Sheetsの下書きに候補を書く
 2. `npm run stock-master:build` で `data/stock-master.generated.csv` を作る
 3. 内容を確認する
-4. Google Sheetsの `stock-master` に貼る
-5. 公開CSV URLを `STOCK_MASTER_CSV_URL` に設定する
+4. `data/stock-master.csv` に反映する
+5. Google Sheetsで運用する場合は、公開CSV URLを `STOCK_MASTER_CSV_URL` に設定する
 6. `npm run production:check` で件数と準備度を見る
 
 ## 足りないデータを埋める
@@ -102,7 +102,7 @@ Discord通知が来ない:
 候補が少ない:
 
 - `stock-master` を増やす
-- `STOCK_MASTER_CSV_URL` が設定済みか見る
+- Google Sheets運用の場合は `STOCK_MASTER_CSV_URL` が設定済みか見る
 - Discord通知の `対象銘柄数` を確認する
 
 データ要確認が多い:

@@ -1,6 +1,6 @@
 # 本番化チェックリスト
 
-現在の完成度は、MVPとしては約8割です。画面、朝レポート、Discord通知、GitHub Actions、Pages公開、CSV差し替え口は動いています。
+現在の完成度は、本番開始ラインです。画面、朝レポート、Discord通知、GitHub Actions、Pages公開、CSV差し替え口は動いています。
 
 ## 完了済み
 
@@ -19,19 +19,19 @@
 - 売買ラインをチャート表示
 - ランキング表示
 
-## 残りの主工程
+## 残りの拡張工程
 
-### 1. 銘柄マスタを増やす
+### 1. 銘柄マスタをさらに増やす
 
 目標:
 
-- 最低20件
-- 実用目安50件以上
+- 本番開始ライン20件以上
+- 実用拡張目安50件以上
 
 作業:
 
-- Google Sheetsの `stock-master` に候補銘柄を追加
-- `STOCK_MASTER_CSV_URL` をGitHub Secretsに登録
+- `data/stock-master.csv` またはGoogle Sheetsの `stock-master` に候補銘柄を追加
+- Google Sheets運用にする場合は `STOCK_MASTER_CSV_URL` をGitHub Secretsに登録
 - `npm run production:check` または `npm run notify:preview` で件数を確認
 
 ### 2. 足りない更新データを埋める
@@ -88,7 +88,7 @@
 
 ## 今の次アクション
 
-最優先は、Google Sheetsの `stock-master` を20件以上に増やすことです。ここが増えると、ランキングと朝の優先順位が本番に近づきます。
+次の拡張は、Google Sheets運用への切り替えと、`stock-master` を50件以上に増やすことです。ここが増えると、ランキングと朝の優先順位がさらに安定します。
 
 進捗は以下で確認できます。
 

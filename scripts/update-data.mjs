@@ -100,7 +100,8 @@ function buildReadiness({
   externalReferenceWarnings,
   providerStatuses,
 }) {
-  const stockScore = Math.min(40, Math.round((stockCount / 50) * 40));
+  const minimumProductionCount = 20;
+  const stockScore = Math.min(40, Math.round((stockCount / minimumProductionCount) * 40));
   const priceScore = stockCount ? Math.round((priceReady / stockCount) * 25) : 0;
   const edinetScore = stockCount ? Math.round((edinetReady / stockCount) * 25) : 0;
   const qualityPenalty = Math.min(10, providerWarnings.length * 4 + validationWarnings.length * 2 + externalReferenceWarnings.length * 2);
@@ -111,10 +112,6 @@ function buildReadiness({
   if (stockCount && edinetReady / stockCount < 0.8) blockers.push(`EDINET相当を80%以上へ増やす: ${edinetReady}/${stockCount}`);
   if (providerWarnings.length) blockers.push("外部データ取得元の注意を解消");
   if (validationWarnings.length || externalReferenceWarnings.length) blockers.push("入力値または参照コードの注意を解消");
-  const localSources = providerStatuses
-    .filter((status) => status.ok && !/^https?:\/\//.test(String(status.source)))
-    .map((status) => status.label);
-  if (localSources.length) blockers.push(`外部CSV URLを設定: ${localSources.join(", ")}`);
   return {
     score,
     label: score >= 85 ? "本番運用OK" : score >= 65 ? "あと少し" : "準備中",
