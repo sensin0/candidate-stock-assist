@@ -4,9 +4,10 @@
 
 ## 1. スプレッドシートを作る
 
-Googleスプレッドシートで新規ファイルを作り、以下の5シートを用意します。
+Googleスプレッドシートで新規ファイルを作り、以下の6シートを用意します。
 
 ```text
+listed-universe
 stock-master
 price-updates
 disclosures
@@ -18,6 +19,16 @@ watchlist
 銘柄マスタの列の意味は [STOCK_MASTER_COLUMNS.md](./STOCK_MASTER_COLUMNS.md) にまとめています。
 
 ## 2. 各シートの役割
+
+`listed-universe`
+
+```text
+code,name,market,sector
+```
+
+- 日本株全体に近づけるための母集団です。
+- まず上場銘柄一覧をここに入れ、`stock-master` に候補化する銘柄を増やします。
+- 件数と候補化率は `npm run universe:check` で確認します。
 
 `stock-master`
 

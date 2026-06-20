@@ -116,6 +116,7 @@ npm run notify:discord
 npm run notify:preview
 npm run manual:check
 npm run manual:confirm -- 6505
+npm run universe:check
 npm run stock-master:build
 npm run production:check
 npm run pages:build

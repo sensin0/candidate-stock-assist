@@ -20,6 +20,13 @@ Discord通知で見る順番:
 ## 銘柄を増やす
 
 本番開始ラインは `stock-master` 20件以上です。さらに安定させる場合は50件以上を目安にします。
+日本株全体に近づける場合は、まず `data/listed-universe.csv` に上場銘柄一覧を入れます。
+
+母集団の件数と候補化率を見る:
+
+```powershell
+npm run universe:check
+```
 
 少ない列から作る場合:
 
