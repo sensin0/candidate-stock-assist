@@ -53,6 +53,7 @@ const referenceWarningCount = dataQuality?.externalReferenceWarnings?.length ?? 
 const stockCount = generatedPayload?.stocks?.length ?? 0;
 const stockCountWarning = stockCount > 0 && stockCount < 20 ? "（少なめ）" : "";
 const dataSource = generatedPayload?.source ?? "不明";
+const nextFixes = dataQuality?.nextFixes ?? [];
 
 const message = [
   "候補銘柄アシスト 朝レポートを更新しました",
@@ -67,9 +68,11 @@ const message = [
   `取得元の注意: ${providerWarningCount}件`,
   `入力値の注意: ${validationWarningCount}件`,
   `参照の注意: ${referenceWarningCount}件`,
+  `次に直す: ${nextFixes.length}件`,
   "",
   "今日見る優先順位",
   ...firstItems("今日見る優先順位", 5).map((item) => `- ${item}`),
+  ...nextFixLines(nextFixes),
   "",
   "今買い候補",
   ...firstItems("今買い候補").map((item) => `- ${item}`),
@@ -148,6 +151,15 @@ function dataWarningLines(title, warnings = []) {
     "",
     title,
     ...warnings.slice(0, 3).map((warning) => `- ${warning}`),
+  ];
+}
+
+function nextFixLines(nextFixes = []) {
+  if (!nextFixes.length) return [];
+  return [
+    "",
+    "次に直すデータ",
+    ...nextFixes.slice(0, 3).map((item) => `- ${item}`),
   ];
 }
 
