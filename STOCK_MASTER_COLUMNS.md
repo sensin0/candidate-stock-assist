@@ -52,6 +52,7 @@ npm run stock-master:build
 ```
 
 `data/stock-master.generated.csv` が作られます。内容を確認してから `stock-master` に貼り付けます。
+生成時に、20件まであと何件か、50件まであと何件かも表示されます。
 
 入力テンプレートは `sheet-templates/stock-master-input.csv` です。
 

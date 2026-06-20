@@ -28,6 +28,8 @@ try {
     encoding: "utf8",
   });
   assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /本番準備目安:/);
+  assert.match(result.stdout, /20件まで:/);
   const rows = parseStockCsv(fs.readFileSync(generatedPath, "utf8"));
   assert.equal(rows.length, 1);
   assert.equal(rows[0].code, "9998");
