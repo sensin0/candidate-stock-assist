@@ -27,6 +27,7 @@ console.log(`対象銘柄数: ${payload.stocks.length}件`);
 console.log(`株価カバレッジ: ${quality.coverage.price}`);
 console.log(`EDINET相当カバレッジ: ${quality.coverage.edinet}`);
 console.log(`次に直すデータ: ${quality.nextFixes.length}件`);
+console.log(`一部手入力: ${(quality.manualInputs ?? []).length}件`);
 
 if (readiness.blockers.length) {
   console.log("");

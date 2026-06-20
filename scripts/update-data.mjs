@@ -53,6 +53,9 @@ function buildDataQuality(payload) {
   const stale = stocks
     .filter((stock) => stock.dataConfidence === "未確認" || !stock.priceAsOf || !stock.edinet?.periodEnd)
     .map((stock) => `${stock.code} ${stock.name}`);
+  const manualInputs = stocks
+    .filter((stock) => stock.dataConfidence === "一部手入力")
+    .map((stock) => `${stock.code} ${stock.name}`);
   const providerWarnings = payload.providerStatuses.filter((status) => !status.ok);
   const coverage = {
     price: `${stocks.length - missingPrice.length}/${stocks.length}`,
@@ -70,6 +73,7 @@ function buildDataQuality(payload) {
     externalReferenceWarnings,
     missingPrice,
     missingEdinet,
+    manualInputs,
     stale,
     nextFixes: buildNextFixes({
       providerWarnings,
@@ -255,6 +259,7 @@ function writeReport(payload) {
     `銘柄数: ${payload.stocks.length}`,
     `データ状態: ${payload.dataQuality.ok ? "OK" : "要確認"}`,
     `本番準備度: ${payload.dataQuality.readiness.score}% ${payload.dataQuality.readiness.label}`,
+    `一部手入力: ${payload.dataQuality.manualInputs.length}件`,
     "",
     "## データ取得状態",
     "",
@@ -270,6 +275,7 @@ function writeReport(payload) {
     ...payload.dataQuality.missingEdinet.map((item) => `- EDINET相当未取得: ${item}`),
     ...payload.dataQuality.validationWarnings.map((item) => `- 入力値要確認: ${item}`),
     ...payload.dataQuality.externalReferenceWarnings.map((item) => `- 参照要確認: ${item}`),
+    ...payload.dataQuality.manualInputs.map((item) => `- 一部手入力: ${item}`),
     "",
     "## 次に直すデータ",
     "",

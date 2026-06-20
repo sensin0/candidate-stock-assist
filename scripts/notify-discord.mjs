@@ -55,6 +55,7 @@ const stockCountWarning = stockCount > 0 && stockCount < 20 ? "（少なめ）" 
 const dataSource = generatedPayload?.source ?? "不明";
 const nextFixes = dataQuality?.nextFixes ?? [];
 const readiness = dataQuality?.readiness ?? { score: 0, label: "準備中", blockers: [] };
+const manualInputCount = dataQuality?.manualInputs?.length ?? 0;
 
 const message = [
   "候補銘柄アシスト 朝レポートを更新しました",
@@ -71,6 +72,7 @@ const message = [
   `入力値の注意: ${validationWarningCount}件`,
   `参照の注意: ${referenceWarningCount}件`,
   `次に直す: ${nextFixes.length}件`,
+  `一部手入力: ${manualInputCount}件`,
   ...readinessLines(readiness),
   ...nextFixLines(nextFixes),
   "",
