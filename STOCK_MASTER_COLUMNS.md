@@ -54,3 +54,5 @@ npm run stock-master:build
 `data/stock-master.generated.csv` が作られます。内容を確認してから `stock-master` に貼り付けます。
 
 入力テンプレートは `sheet-templates/stock-master-input.csv` です。
+
+最小入力テンプレートには、割安候補、保有中、要注意の3パターンを入れています。実際に使う時は、サンプル行を消して候補銘柄に置き換えます。
