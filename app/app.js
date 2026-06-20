@@ -607,6 +607,7 @@ function normalizeCsvRow(row) {
 
 function render() {
   renderSummary();
+  renderDataCheck();
   renderAssistColumns();
   renderRanking();
   renderDetail();
@@ -648,6 +649,56 @@ function renderSummary() {
   ]
     .map(([label, value]) => `<div class="stat"><strong>${value}</strong><span>${label}</span></div>`)
     .join("");
+}
+
+function renderDataCheck() {
+  const data = window.AUTO_STOCK_DATA;
+  const quality = data?.dataQuality;
+  const stockCount = stocks.length;
+  const providerWarnings = quality?.providerWarnings ?? [];
+  const validationWarnings = quality?.validationWarnings ?? [];
+  const referenceWarnings = quality?.externalReferenceWarnings ?? [];
+  const missingPrice = quality?.missingPrice ?? [];
+  const missingEdinet = quality?.missingEdinet ?? [];
+  const allWarnings = [
+    ...providerWarnings.map((item) => `${item.label}: ${item.message}`),
+    ...validationWarnings,
+    ...referenceWarnings,
+    ...missingPrice.map((item) => `株価未取得: ${item}`),
+    ...missingEdinet.map((item) => `有報データ未取得: ${item}`),
+  ];
+  const source = data?.source ?? "サンプル";
+  const sourceLabel = source.includes("stock-master") ? "銘柄マスタ" : source;
+  const countTone = stockCount >= 50 ? "good" : stockCount >= 20 ? "warn" : "alert";
+  const countMessage = stockCount >= 50
+    ? "候補数は十分あります"
+    : stockCount >= 20
+      ? "候補数は増やせます"
+      : "まだ少なめです";
+  const generatedAt = data?.generatedAt ? new Date(data.generatedAt).toLocaleString("ja-JP") : "未更新";
+  const warningPreview = allWarnings.slice(0, 3);
+
+  document.getElementById("dataCheckList").innerHTML = [
+    dataCheckItem("銘柄数", `${stockCount}件`, countMessage, countTone),
+    dataCheckItem("入力元", sourceLabel, source, providerWarnings.length ? "warn" : "good"),
+    dataCheckItem("更新日時", generatedAt, quality?.ok ? "データ状態OK" : "確認が必要です", quality?.ok ? "good" : "warn"),
+    dataCheckItem(
+      "注意",
+      `${allWarnings.length}件`,
+      warningPreview.length ? warningPreview.join(" / ") : "大きな注意はありません",
+      allWarnings.length ? "alert" : "good",
+    ),
+  ].join("");
+}
+
+function dataCheckItem(label, value, note, tone) {
+  return `
+    <div class="data-check-item data-check-${tone}">
+      <span>${label}</span>
+      <strong>${value}</strong>
+      <p>${note}</p>
+    </div>
+  `;
 }
 
 function renderAssistColumns() {
