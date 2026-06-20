@@ -73,6 +73,18 @@ npm run production:check
 npm run manual:check
 ```
 
+確認済みに変える前のプレビュー:
+
+```powershell
+npm run manual:confirm -- 6505
+```
+
+確認済みに変える:
+
+```powershell
+npm run manual:confirm -- 6505 --write
+```
+
 ## GitHub Actions
 
 push時:
@@ -121,5 +133,5 @@ Discord通知が来ない:
 
 - `npm run manual:check` で確認する順番を見る
 - 画面の表示を `一部手入力` に切り替えて対象銘柄だけ見る
-- 実運用しながら、EDINETや株価元データで確認できた銘柄から `dataConfidence` を `確認済み` に変える
+- EDINETや株価元データで確認できた銘柄は `npm run manual:confirm -- 銘柄コード --write` で `確認済み` に変える
 - 本番準備度100%でも、一部手入力は「あとで正式確認するリスト」として見る
