@@ -54,7 +54,15 @@ if (!write) {
 row[confidenceIndex] = "確認済み";
 fs.writeFileSync(stockMasterPath, stringifyCsvRows(rows), "utf8");
 console.log("data/stock-master.csv を更新しました");
-console.log("次に npm run production:check で件数を確認してください");
+const remainingManualRows = rows
+  .slice(1)
+  .filter((candidate) => candidate[confidenceIndex] === "一部手入力");
+console.log(`一部手入力の残り: ${remainingManualRows.length}件`);
+if (remainingManualRows.length) {
+  const next = remainingManualRows[0];
+  console.log(`次に確認: ${next[codeIndex]} ${next[nameIndex] || ""}`.trim());
+}
+console.log("次に npm run production:check で本番準備度を確認してください");
 
 function stringifyCsvRows(rowsToWrite) {
   return `${rowsToWrite.map((rowToWrite) => rowToWrite.map(csvCell).join(",")).join("\n")}\n`;
