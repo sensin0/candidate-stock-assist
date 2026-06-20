@@ -8,6 +8,7 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const requiredFiles = [
   "package.json",
   "README.md",
+  "STOCK_MASTER_COLUMNS.md",
   ".gitignore",
   ".github/workflows/morning-pages.yml",
   "app/index.html",
@@ -18,6 +19,7 @@ const requiredFiles = [
   "scripts/generate-morning-report.mjs",
   "scripts/csv-utils.mjs",
   "scripts/csv-utils.test.mjs",
+  "scripts/stock-master.test.mjs",
   "scripts/data-quality.test.mjs",
   "scripts/sheet-templates.test.mjs",
   "scripts/notify-discord.test.mjs",
@@ -43,6 +45,7 @@ if (missing.length) {
 
 const checks = [
   ["csv parser", process.execPath, ["scripts/csv-utils.test.mjs"]],
+  ["stock master", process.execPath, ["scripts/stock-master.test.mjs"]],
   ["sheet templates", process.execPath, ["scripts/sheet-templates.test.mjs"]],
   ["data quality", process.execPath, ["scripts/data-quality.test.mjs"]],
   ["discord notification preview", process.execPath, ["scripts/notify-discord.test.mjs"]],

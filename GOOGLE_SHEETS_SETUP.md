@@ -15,6 +15,7 @@ watchlist
 ```
 
 `sheet-templates/` のCSVをそれぞれ貼り付けます。
+銘柄マスタの列の意味は [STOCK_MASTER_COLUMNS.md](./STOCK_MASTER_COLUMNS.md) にまとめています。
 
 ## 2. 各シートの役割
 

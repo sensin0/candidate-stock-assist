@@ -1,5 +1,22 @@
 import fs from "node:fs";
-import { parseCsvRecords } from "../csv-utils.mjs";
+import { parseCsvRecords, parseCsvRows } from "../csv-utils.mjs";
+
+export const requiredStockHeaders = [
+  "code",
+  "name",
+  "price",
+  "shares",
+  "cash",
+  "interestDebt",
+  "netAssets",
+  "bps",
+  "eps",
+  "pbrLow",
+  "pbrHigh",
+  "dataConfidence",
+  "qualitativeDone",
+  "held",
+];
 
 const numberFields = new Set([
   "price",
@@ -23,6 +40,7 @@ const numberFields = new Set([
 ]);
 
 export function parseStockCsv(text) {
+  validateStockCsvHeaders(text);
   return parseCsvRecords(text).map((row) => {
     const record = {};
     Object.entries(row).forEach(([header, value]) => {
@@ -38,6 +56,15 @@ export function parseStockCsv(text) {
     });
     return record;
   });
+}
+
+export function validateStockCsvHeaders(text) {
+  const rows = parseCsvRows(text);
+  const headers = rows[0]?.map((value) => value.trim()) ?? [];
+  const missing = requiredStockHeaders.filter((header) => !headers.includes(header));
+  if (missing.length) {
+    throw new Error(`銘柄マスタCSVの必須列が足りません: ${missing.join(", ")}`);
+  }
 }
 
 export async function fetchStocksFromCsv({ inputCsv, stockMasterCsvUrl } = {}) {
