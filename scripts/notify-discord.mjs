@@ -22,7 +22,8 @@ if (!fs.existsSync(reportPath)) {
 
 const report = fs.readFileSync(reportPath, "utf8");
 const generatedData = fs.existsSync(generatedDataPath) ? fs.readFileSync(generatedDataPath, "utf8") : "";
-const dataQuality = parseGeneratedDataQuality(generatedData);
+const generatedPayload = parseGeneratedData(generatedData);
+const dataQuality = generatedPayload?.dataQuality ?? null;
 
 function countSection(title) {
   const match = report.match(new RegExp(`## ${title}\\n([\\s\\S]*?)(\\n## |$)`));
@@ -48,10 +49,15 @@ const riskCount = countSection("リスク確認");
 const providerWarningCount = dataQuality?.providerWarnings?.length ?? 0;
 const validationWarningCount = dataQuality?.validationWarnings?.length ?? 0;
 const referenceWarningCount = dataQuality?.externalReferenceWarnings?.length ?? 0;
+const stockCount = generatedPayload?.stocks?.length ?? 0;
+const stockCountWarning = stockCount > 0 && stockCount < 20 ? "（少なめ）" : "";
+const dataSource = generatedPayload?.source ?? "不明";
 
 const message = [
   "候補銘柄アシスト 朝レポートを更新しました",
   "",
+  `対象銘柄数: ${stockCount}件${stockCountWarning}`,
+  `銘柄マスタ: ${dataSource}`,
   `今買い候補: ${buyCount}件`,
   `今売り検討: ${sellCount}件`,
   `監視リスト: ${watchCount}件`,
@@ -64,6 +70,7 @@ const message = [
   "今買い候補",
   ...firstItems("今買い候補").map((item) => `- ${item}`),
   ...providerWarningLines(dataQuality),
+  ...stockUniverseWarningLines(stockCount),
   ...dataWarningLines("入力値の注意", dataQuality?.validationWarnings),
   ...dataWarningLines("参照の注意", dataQuality?.externalReferenceWarnings),
   "",
@@ -105,11 +112,11 @@ request.on("error", (error) => {
 request.write(body);
 request.end();
 
-function parseGeneratedDataQuality(text) {
+function parseGeneratedData(text) {
   const match = text.match(/window\.AUTO_STOCK_DATA = ([\s\S]*);\s*$/);
   if (!match) return null;
   try {
-    return JSON.parse(match[1]).dataQuality ?? null;
+    return JSON.parse(match[1]);
   } catch {
     return null;
   }
@@ -131,5 +138,14 @@ function dataWarningLines(title, warnings = []) {
     "",
     title,
     ...warnings.slice(0, 3).map((warning) => `- ${warning}`),
+  ];
+}
+
+function stockUniverseWarningLines(stockCount) {
+  if (!stockCount || stockCount >= 20) return [];
+  return [
+    "",
+    "銘柄数の注意",
+    `- 対象銘柄が${stockCount}件です。stock-masterを増やすとランキングの精度が上がります。`,
   ];
 }

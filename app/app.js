@@ -931,11 +931,13 @@ function renderMorningReport() {
   const watched = visible.filter((stock) => stock.watchlist).slice(0, 10);
   const disclosures = visible.filter((stock) => stock.disclosures?.length).slice(0, 10);
   const stale = visible.filter((stock) => stock.dataFreshness?.level !== "ok").slice(0, 10);
+  const dataOverview = morningDataOverview(visible);
   const report = [
     "# 朝レポート",
     "",
     `今日は今買い候補${buyNow.length}件、今売り検討${sellNow.length}件、買い場に近い銘柄${near.length}件です。`,
     "",
+    dataOverview,
     sectionMarkdown("今買い候補", buyNow),
     sectionMarkdown("今売り検討", sellNow),
     watchlistMarkdown("監視リスト", watched),
@@ -947,6 +949,28 @@ function renderMorningReport() {
     "注意: このレポートは売買推奨ではありません。候補を確認するためのアシストです。",
   ].join("\n");
   document.getElementById("morningReport").value = report;
+}
+
+function morningDataOverview(visible) {
+  const data = window.AUTO_STOCK_DATA;
+  const quality = data?.dataQuality;
+  const providerWarnings = quality?.providerWarnings ?? [];
+  const validationWarnings = quality?.validationWarnings ?? [];
+  const referenceWarnings = quality?.externalReferenceWarnings ?? [];
+  const missingPrice = quality?.missingPrice ?? [];
+  const missingEdinet = quality?.missingEdinet ?? [];
+  const warningCount =
+    providerWarnings.length + validationWarnings.length + referenceWarnings.length + missingPrice.length + missingEdinet.length;
+  const stockCountNote = visible.length < 20
+    ? "候補銘柄が少なめです。stock-masterを増やすとランキングの精度が上がります。"
+    : "候補銘柄数は十分あります。";
+  return [
+    "## データ確認",
+    `- 対象銘柄数: ${visible.length}件。${stockCountNote}`,
+    `- 銘柄マスタ: ${data?.source ?? "サンプル"}`,
+    `- データ状態: ${quality?.ok ? "OK" : "要確認"}。注意${warningCount}件`,
+    "",
+  ].join("\n");
 }
 
 function sectionMarkdown(title, list) {
