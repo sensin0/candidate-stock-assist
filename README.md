@@ -79,6 +79,7 @@ File -> Share -> Publish to web -> CSV
 詳しい手順は [GOOGLE_SHEETS_SETUP.md](./GOOGLE_SHEETS_SETUP.md) を見てください。
 テンプレートCSVは `sheet-templates/` にあります。
 銘柄マスタの列の意味は [STOCK_MASTER_COLUMNS.md](./STOCK_MASTER_COLUMNS.md) を見てください。
+本番化までの残り工程は [PRODUCTION_CHECKLIST.md](./PRODUCTION_CHECKLIST.md) を見てください。
 
 ## Discord通知
 

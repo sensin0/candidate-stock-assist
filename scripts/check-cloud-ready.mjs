@@ -9,6 +9,7 @@ const requiredFiles = [
   "package.json",
   "README.md",
   "STOCK_MASTER_COLUMNS.md",
+  "PRODUCTION_CHECKLIST.md",
   ".gitignore",
   ".github/workflows/morning-pages.yml",
   "app/index.html",
