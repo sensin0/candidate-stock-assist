@@ -67,6 +67,12 @@ npm run cloud:check
 npm run production:check
 ```
 
+一部手入力だけ見る:
+
+```powershell
+npm run manual:check
+```
+
 ## GitHub Actions
 
 push時:
@@ -113,5 +119,7 @@ Discord通知が来ない:
 
 一部手入力が多い:
 
+- `npm run manual:check` で確認する順番を見る
+- 画面の表示を `一部手入力` に切り替えて対象銘柄だけ見る
 - 実運用しながら、EDINETや株価元データで確認できた銘柄から `dataConfidence` を `確認済み` に変える
 - 本番準備度100%でも、一部手入力は「あとで正式確認するリスト」として見る

@@ -114,6 +114,7 @@ npm run report
 npm run morning
 npm run notify:discord
 npm run notify:preview
+npm run manual:check
 npm run stock-master:build
 npm run production:check
 npm run pages:build

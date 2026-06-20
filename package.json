@@ -9,6 +9,7 @@
     "morning": "node scripts/morning-update.mjs",
     "notify:discord": "node scripts/notify-discord.mjs",
     "notify:preview": "node scripts/notify-discord.mjs --dry-run",
+    "manual:check": "node scripts/manual-input-check.mjs",
     "stock-master:build": "node scripts/build-stock-master-from-input.mjs",
     "production:check": "node scripts/production-check.mjs",
     "pages:build": "node scripts/build-pages.mjs",

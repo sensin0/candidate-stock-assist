@@ -619,7 +619,9 @@ function visibleStocks() {
   return stocks.filter((stock) => {
     const text = `${stock.code} ${stock.name} ${stock.sector}`.toLowerCase();
     const searchOk = !q || text.includes(q);
-    const assistOk = assistFilter === "all" || stock.assist.label === assistFilter;
+    const assistOk = assistFilter === "all"
+      || stock.assist.label === assistFilter
+      || (assistFilter === "manual" && stock.dataConfidence === "一部手入力");
     return searchOk && assistOk;
   });
 }
