@@ -21,6 +21,7 @@
     "backtest:research": "node scripts/research-price-backtest.mjs",
     "backtest:universe": "node scripts/research-universe-price-backtest.mjs",
     "multibagger:research": "node scripts/analyze-multibagger-candidates.mjs",
+    "promotion:research": "node scripts/build-promotion-candidates.mjs",
     "research:data": "node scripts/build-research-data.mjs",
     "research:morning": "node scripts/research-morning.mjs",
     "stock-master:build": "node scripts/build-stock-master-from-input.mjs",

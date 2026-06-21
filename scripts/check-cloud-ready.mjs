@@ -22,6 +22,7 @@ const requiredFiles = [
   "scripts/backtest-timing.mjs",
   "scripts/research-universe-price-backtest.mjs",
   "scripts/analyze-multibagger-candidates.mjs",
+  "scripts/build-promotion-candidates.mjs",
   "scripts/build-research-data.mjs",
   "scripts/research-morning.mjs",
   "scripts/build-stock-master-from-input.mjs",
@@ -64,8 +65,10 @@ const requiredFiles = [
   "sheet-templates/backtest-results.csv",
   "data/universe-price-backtest.csv",
   "data/multibagger-candidates.csv",
+  "data/promotion-candidates.csv",
   "reports/latest-universe-price-backtest.md",
   "reports/latest-multibagger-candidates.md",
+  "reports/latest-promotion-candidates.md",
 ];
 
 const missing = requiredFiles.filter((file) => !fs.existsSync(path.join(rootDir, file)));
@@ -83,6 +86,7 @@ const checks = [
   ["listed universe", process.execPath, ["scripts/universe-check.mjs"]],
   ["universe screening", process.execPath, ["scripts/universe-screen.mjs"]],
   ["backtest timing", process.execPath, ["scripts/backtest-timing.mjs"]],
+  ["promotion candidates syntax", process.execPath, ["--check", "scripts/build-promotion-candidates.mjs"]],
   ["research data syntax", process.execPath, ["--check", "scripts/build-research-data.mjs"]],
   ["morning research syntax", process.execPath, ["--check", "scripts/research-morning.mjs"]],
   ["sheet templates", process.execPath, ["scripts/sheet-templates.test.mjs"]],

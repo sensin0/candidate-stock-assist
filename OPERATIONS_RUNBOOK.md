@@ -96,6 +96,14 @@ GitHub Actionsの朝実行でも同じ処理が走ります。外部の株価取
 npm run research:data
 ```
 
+通常候補に入れる前の財務確認リストを作る:
+
+```powershell
+npm run promotion:research
+```
+
+結果は `reports/latest-promotion-candidates.md` と `data/promotion-candidates.csv` に出ます。ここで上位の銘柄からBPS、EPS、現金、有利子負債、発行株数を確認して、通常候補へ入れます。
+
 少ない列から作る場合:
 
 ```powershell

@@ -6,12 +6,14 @@ import { fileURLToPath } from "node:url";
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const reportPath = path.join(rootDir, "reports", "latest-morning-report.md");
 const multibaggerReportPath = path.join(rootDir, "reports", "latest-multibagger-candidates.md");
+const promotionReportPath = path.join(rootDir, "reports", "latest-promotion-candidates.md");
 const generatedDataPath = path.join(rootDir, "app", "generated-data.js");
 const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
 const dryRun = process.env.DISCORD_DRY_RUN === "1" || process.argv.includes("--dry-run");
 const siteUrl = process.env.PAGES_URL || "https://sensin0.github.io/candidate-stock-assist/";
 const reportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-morning-report.md`;
 const multibaggerReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-multibagger-candidates.md`;
+const promotionReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-promotion-candidates.md`;
 
 if (!webhookUrl && !dryRun) {
   console.log("DISCORD_WEBHOOK_URL が未設定のため、Discord通知をスキップします");
@@ -25,6 +27,7 @@ if (!fs.existsSync(reportPath)) {
 
 const report = fs.readFileSync(reportPath, "utf8");
 const multibaggerReport = fs.existsSync(multibaggerReportPath) ? fs.readFileSync(multibaggerReportPath, "utf8") : "";
+const promotionReport = fs.existsSync(promotionReportPath) ? fs.readFileSync(promotionReportPath, "utf8") : "";
 const generatedData = fs.existsSync(generatedDataPath) ? fs.readFileSync(generatedDataPath, "utf8") : "";
 const generatedPayload = parseGeneratedData(generatedData);
 const dataQuality = generatedPayload?.dataQuality ?? null;
@@ -91,6 +94,9 @@ const message = [
   "",
   "2倍監視候補",
   ...firstReportItems(multibaggerReport, "2倍監視候補", 2).map((item) => `- ${item}`),
+  "",
+  "通常候補への昇格確認",
+  ...firstReportItems(promotionReport, "優先して財務確認", 2).map((item) => `- ${item}`),
   ...providerWarningLines(dataQuality),
   ...stockUniverseWarningLines(stockCount),
   ...dataWarningLines("入力値の注意", dataQuality?.validationWarnings),
@@ -99,6 +105,7 @@ const message = [
   siteUrl,
   reportUrl,
   multibaggerReportUrl,
+  promotionReportUrl,
 ].join("\n");
 
 const body = JSON.stringify({
