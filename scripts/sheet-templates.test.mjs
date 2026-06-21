@@ -16,6 +16,7 @@ const templates = [
   ["sheet-templates/edinet-facts.csv", ["code", "documentType", "periodEnd", "submittedAt", "cash", "bps", "eps"]],
   ["sheet-templates/watchlist.csv", ["code", "status", "note"]],
   ["sheet-templates/listed-universe.csv", ["code", "name", "market", "sector"]],
+  ["sheet-templates/universe-metrics.csv", ["code", "price", "bps", "eps", "cash", "interestDebt", "shares", "asOf"]],
 ];
 
 for (const [file, requiredHeaders] of templates) {

@@ -120,6 +120,8 @@ npm run privacy:check
 npm run privacy:report
 npm run universe:check
 npm run universe:update
+npm run universe:metrics
+npm run universe:screen
 npm run stock-master:build
 npm run production:check
 npm run pages:build

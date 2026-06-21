@@ -38,6 +38,18 @@ npm run universe:update
 
 全体母集団から買い候補を出すには、母集団に加えて株価、BPS/EPS、現金、有利子負債、投資有価証券、不動産時価などの更新データが必要です。
 
+いま判定できる銘柄だけで一次スクリーニングを見る:
+
+```powershell
+npm run universe:screen
+```
+
+既存の `stock-master` から一次スクリーニング用メトリクスを作る:
+
+```powershell
+npm run universe:metrics
+```
+
 少ない列から作る場合:
 
 ```powershell

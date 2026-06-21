@@ -15,6 +15,8 @@
     "privacy:report": "node scripts/privacy-report.mjs",
     "universe:check": "node scripts/universe-check.mjs",
     "universe:update": "node scripts/update-listed-universe.mjs",
+    "universe:metrics": "node scripts/build-universe-metrics.mjs",
+    "universe:screen": "node scripts/universe-screen.mjs",
     "stock-master:build": "node scripts/build-stock-master-from-input.mjs",
     "production:check": "node scripts/production-check.mjs",
     "pages:build": "node scripts/build-pages.mjs",
