@@ -67,6 +67,12 @@ vm.runInContext(
     ?? byAssist("リスクで見送り")[0]?.code
     ?? selectedCode;
   renderDetail();
+  document.getElementById("rankingSelect").value = "researchUniverse";
+  renderRanking();
+  const researchRanking = document.getElementById("rankingList").innerHTML;
+  document.getElementById("rankingSelect").value = "researchMultibagger";
+  renderRanking();
+  const multibaggerRanking = document.getElementById("rankingList").innerHTML;
   globalThis.__result = {
     buyNow: byAssist("今買い候補").length,
     sellNow: byAssist("今売り検討").length + byAssist("一部利益確定検討").length,
@@ -76,6 +82,8 @@ vm.runInContext(
     chart: document.getElementById("chart").innerHTML,
     buyTimingAlert: document.getElementById("buyTimingAlert").innerHTML,
     researchOverview: document.getElementById("researchOverview").innerHTML,
+    researchRanking,
+    multibaggerRanking,
     summaryTitle: document.getElementById("todaySummaryTitle").textContent,
     timingPanel: document.getElementById("timingPanel").innerHTML
   };`,
@@ -100,6 +108,12 @@ if (!result.timingPanel.includes("バックテスト売買タイミング")) {
 }
 if (!result.researchOverview.includes("日本株全体") || !result.researchOverview.includes("2倍監視")) {
   failures.push("広域バックテスト候補が生成されていません");
+}
+if (!result.researchRanking.includes("広域候補")) {
+  failures.push("ランキングに広域候補が生成されていません");
+}
+if (!result.multibaggerRanking.includes("2倍監視")) {
+  failures.push("ランキングに2倍監視が生成されていません");
 }
 if (result.buyNow > 0 && !result.buyTimingAlert.includes("買いタイミング点灯中")) {
   failures.push("買いタイミング表示が生成されていません");

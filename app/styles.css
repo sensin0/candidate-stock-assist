@@ -450,12 +450,21 @@ main {
   cursor: pointer;
 }
 
+.research-ranking-row {
+  cursor: default;
+}
+
 .candidate-card:hover,
 .ranking-row:hover,
 .candidate-card.active,
 .ranking-row.active {
   border-color: #9cb0a5;
   background: #fbfdfb;
+}
+
+.research-ranking-row:hover {
+  border-color: var(--line);
+  background: #fff;
 }
 
 .card-top,

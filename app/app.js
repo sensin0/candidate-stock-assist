@@ -874,6 +874,8 @@ function markerPosition(stock) {
 }
 
 function rankingFor(type) {
+  if (type === "researchUniverse") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.universeTop ?? []);
+  if (type === "researchMultibagger") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.multibaggerWatch ?? []);
   const copy = [...visibleStocks()];
   if (type === "watchlist") return copy.filter((s) => s.watchlist).sort((a, b) => b.score - a.score);
   if (type === "buyNow") return copy.filter((s) => s.assist.label === "今買い候補");
@@ -889,8 +891,51 @@ function rankingFor(type) {
 function renderRanking() {
   const type = document.getElementById("rankingSelect").value;
   const list = rankingFor(type).slice(0, 20);
+  if (type === "researchUniverse" || type === "researchMultibagger") {
+    document.getElementById("rankingList").innerHTML =
+      list.map((item, index) => renderResearchRankingRow(item, index, type)).join("") || `<p class="reason">該当なし</p>`;
+    return;
+  }
   document.getElementById("rankingList").innerHTML =
     list.map((stock, index) => renderRankingRow(stock, index)).join("") || `<p class="reason">該当なし</p>`;
+}
+
+function filteredResearchItems(items) {
+  const q = searchQuery.trim().toLowerCase();
+  return items
+    .filter((item) => {
+      const text = `${item.code} ${item.name} ${item.sector} ${item.market}`.toLowerCase();
+      return !q || text.includes(q);
+    })
+    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+}
+
+function renderResearchRankingRow(item, index, type) {
+  const label = type === "researchMultibagger" ? "2倍監視" : "広域候補";
+  const comment = item.comment || signalComment(item);
+  const caution = item.caution ? `<p class="freshness-line">${escapeHtml(item.caution)}</p>` : "";
+  return `
+    <article class="ranking-row research-ranking-row">
+      <div class="ranking-top">
+        <div>
+          <strong>${index + 1}. ${escapeHtml(item.name)}</strong>
+          <div class="stock-code">${escapeHtml(item.code)} / ${escapeHtml(item.sector || "未分類")}</div>
+        </div>
+        <span class="assist-label label-near">${label}</span>
+      </div>
+      <p class="reason">${escapeHtml(comment)}</p>
+      ${caution}
+      <div class="ranking-meta">
+        <span>${escapeHtml(item.market || "市場不明")}</span>
+        <span>${escapeHtml(item.signal || "待ち")}</span>
+        <span>${escapeHtml(item.strategy || "価格検証")}</span>
+        <span>点数 ${Math.round((item.score ?? 0) * 10) / 10}</span>
+        <span>平均 ${pct(item.averageReturn ?? 0)}</span>
+        <span>勝率 ${pct(item.winRate ?? 0)}</span>
+        <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
+      </div>
+    </article>
+  `;
 }
 
 function renderRankingRow(stock, index) {
