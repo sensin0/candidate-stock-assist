@@ -125,6 +125,7 @@ npm run universe:screen
 npm run backtest
 npm run backtest:research
 npm run backtest:universe
+npm run multibagger:research
 npm run stock-master:build
 npm run production:check
 npm run pages:build

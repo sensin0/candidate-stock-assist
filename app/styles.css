@@ -659,6 +659,32 @@ select {
   margin-top: 22px;
 }
 
+.research-links {
+  margin-top: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.research-grid a {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  color: var(--ink);
+  background: #fbfcfb;
+  text-decoration: none;
+  font-weight: 700;
+}
+
 .morning-report textarea {
   width: 100%;
   min-height: 300px;
@@ -699,6 +725,7 @@ footer {
   .detail-grid,
   .metric-grid,
   .timing-actions,
+  .research-grid,
   .summary-stats,
   .data-check-list,
   .toolbar {
