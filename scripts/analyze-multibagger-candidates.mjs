@@ -38,9 +38,9 @@ const avoid = rows
   .sort((a, b) => b.periodReturn - a.periodReturn);
 
 const outputRows = [
-  ...doubled.slice(0, 100).map((row) => ({ group: "過去1年2倍以上", ...row })),
-  ...watchCandidates.slice(0, 100).map((row) => ({ group: "2倍監視候補", ...row })),
-  ...avoid.slice(0, 50).map((row) => ({ group: "上がったが慎重", ...row })),
+  ...doubled.slice(0, 100).map((row) => withComment({ group: "過去1年2倍以上", ...row })),
+  ...watchCandidates.slice(0, 100).map((row) => withComment({ group: "2倍監視候補", ...row })),
+  ...avoid.slice(0, 50).map((row) => withComment({ group: "上がったが慎重", ...row })),
 ];
 
 fs.writeFileSync(reportPath, renderReport(), "utf8");
@@ -86,8 +86,53 @@ function renderReport() {
 function formatRows(items) {
   if (!items.length) return ["- なし"];
   return items.map((row, index) =>
-    `- ${index + 1}. ${row.code} ${row.name}: 期間騰落${round(row.periodReturn)}% / ${row.bestStrategy} / ${row.judgement} / 平均${round(row.averageReturn)}% / 勝率${round(row.winRate)}% / 最大下落${round(row.maxDrawdown)}% / ${row.latestSignal}`
+    `- ${index + 1}. ${row.code} ${row.name}: 期間騰落${round(row.periodReturn)}% / ${row.bestStrategy} / ${row.judgement} / 平均${round(row.averageReturn)}% / 勝率${round(row.winRate)}% / 最大下落${round(row.maxDrawdown)}% / ${row.latestSignal}。${candidateComment(row)}`
   );
+}
+
+function withComment(row) {
+  return {
+    ...row,
+    comment: candidateComment(row),
+    nextCheck: nextCheck(row),
+    caution: caution(row),
+  };
+}
+
+function candidateComment(row) {
+  if (row.group === "上がったが慎重" || row.judgement === "見送り寄り") {
+    return `値動きは大きいですが、${caution(row)}。買い候補ではなく監視・除外判断を優先します`;
+  }
+  if (row.periodReturn >= 100 && row.latestSignal === "高値圏") {
+    return `すでに大きく上がっています。勢いはありますが高値圏なので、押し目か出来高継続を待つ候補です`;
+  }
+  if (row.latestSignal === "上昇中押し目") {
+    return `上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します`;
+  }
+  if (row.latestSignal === "安値反転候補") {
+    return `安値圏から反転し始めた候補です。赤字・下方修正・信用需給が重くないか確認します`;
+  }
+  if (row.bestStrategy === "高値更新") {
+    return `高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します`;
+  }
+  return `価格バックテストは良好です。財務、材料、流動性を確認してから候補化します`;
+}
+
+function nextCheck(row) {
+  if (row.latestSignal === "高値圏") return "押し目、出来高継続、決算材料";
+  if (row.latestSignal === "上昇中押し目") return "決算成長、出来高、直近高値";
+  if (row.latestSignal === "安値反転候補") return "赤字有無、下方修正、信用需給";
+  if (row.bestStrategy === "高値更新") return "出来高、材料、過熱感";
+  return "財務、材料、流動性";
+}
+
+function caution(row) {
+  if (row.maxDrawdown <= -18) return "最大下落が深い";
+  if (row.winRate < 50) return "勝率が低い";
+  if (row.averageReturn < 0) return "平均リターンがマイナス";
+  if (row.trades < 2) return "検証回数が少ない";
+  if (row.periodReturn >= 100 && row.latestSignal === "高値圏") return "高値掴みリスクが高い";
+  return "価格だけでは判断材料が足りない";
 }
 
 function toCsv(records) {
@@ -106,6 +151,9 @@ function toCsv(records) {
     "latestSignal",
     "priceScore",
     "judgement",
+    "comment",
+    "nextCheck",
+    "caution",
   ];
   return [
     headers.join(","),
