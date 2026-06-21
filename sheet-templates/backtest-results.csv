@@ -1,0 +1,2 @@
+code,bestStrategyId,bestStrategyLabel,timingLabel,buyTiming,sellTiming,confidence,sampleCount,trades,winRate,averageReturn,maxDrawdown,bestScore
+8841,value-line,買いライン到達で買い,買い候補,買いライン到達 (568円以下),目標の90%付近 (972円目安),参考,8,1,100,12.3,-4.5,48.1

@@ -66,7 +66,8 @@ vm.runInContext(
     risk: byAssist("リスクで見送り").length,
     watched: stocks.filter((stock) => stock.watchlist).length,
     report: document.getElementById("morningReport").value,
-    chart: document.getElementById("chart").innerHTML
+    chart: document.getElementById("chart").innerHTML,
+    timingPanel: document.getElementById("timingPanel").innerHTML
   };`,
   sandbox,
   { filename: "app.js" },
@@ -83,6 +84,9 @@ if (!result.report.includes("# 朝レポート")) failures.push("朝レポート
 if (!result.report.includes("## 監視リスト")) failures.push("朝レポートに監視リストがありません");
 if (!result.chart.includes("ここで買い候補") && !result.chart.includes("ここから売り検討")) {
   failures.push("チャートの売買アシスト吹き出しが生成されていません");
+}
+if (!result.timingPanel.includes("バックテスト売買タイミング")) {
+  failures.push("バックテスト売買タイミングが生成されていません");
 }
 
 if (failures.length) {

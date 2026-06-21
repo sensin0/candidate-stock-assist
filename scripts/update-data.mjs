@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { fetchStocksFromCsv } from "./providers/csv-provider.mjs";
+import { applyBacktestResults, fetchBacktestResults } from "./providers/backtest-provider.mjs";
 import { applyDisclosures, fetchDisclosures } from "./providers/disclosure-provider.mjs";
 import { applyEdinetFacts, fetchEdinetFacts } from "./providers/edinet-provider.mjs";
 import { applyPriceUpdates, fetchPriceUpdates } from "./providers/price-provider.mjs";
@@ -15,6 +16,7 @@ const inputPriceCsv = path.join(dataDir, "price-updates.csv");
 const inputDisclosureCsv = path.join(dataDir, "disclosures.csv");
 const inputEdinetCsv = path.join(dataDir, "edinet-facts.csv");
 const inputWatchlistCsv = path.join(dataDir, "watchlist.csv");
+const inputBacktestCsv = path.join(dataDir, "backtest-results.csv");
 const outputJs = path.join(appDir, "generated-data.js");
 const outputReport = path.join(appDir, "latest-update-report.md");
 
@@ -71,6 +73,7 @@ function buildDataQuality(payload) {
     providerWarnings,
     validationWarnings,
     externalReferenceWarnings,
+    missingBacktest: stocks.filter((stock) => !stock.backtest).map((stock) => `${stock.code} ${stock.name}`),
     missingPrice,
     missingEdinet,
     manualInputs,
@@ -198,11 +201,12 @@ function publicProviderStatus(status) {
   };
 }
 
-function writeGeneratedData(providerResult, priceResult, disclosureResult, edinetResult, watchlistResult) {
+function writeGeneratedData(providerResult, priceResult, disclosureResult, edinetResult, watchlistResult, backtestResult) {
   const edinetUpdated = applyEdinetFacts(providerResult.stocks, edinetResult.facts);
   const priceUpdated = applyPriceUpdates(edinetUpdated, priceResult.prices);
   const disclosureUpdated = applyDisclosures(priceUpdated, disclosureResult.disclosures);
-  const stocks = applyWatchlist(disclosureUpdated, watchlistResult.items);
+  const watchlistUpdated = applyWatchlist(disclosureUpdated, watchlistResult.items);
+  const stocks = applyBacktestResults(watchlistUpdated, backtestResult.results);
   const providerStatuses = [
     providerResult.providerStatus,
     priceResult.providerStatus,
@@ -226,6 +230,7 @@ function writeGeneratedData(providerResult, priceResult, disclosureResult, edine
     disclosureUpdates: disclosureResult.disclosures.length,
     edinetUpdates: edinetResult.facts.length,
     watchlistUpdates: watchlistResult.items.length,
+    backtestUpdates: backtestResult.results.length,
     providerStatuses,
     rawInputs: {
       priceUpdates: priceResult.prices,
@@ -256,6 +261,7 @@ function writeReport(payload) {
     `EDINET更新件数: ${payload.edinetUpdates}`,
     `監視リスト入力元: ${payload.watchlistSource}`,
     `監視リスト件数: ${payload.watchlistUpdates}`,
+    `バックテスト件数: ${payload.backtestUpdates}`,
     `銘柄数: ${payload.stocks.length}`,
     `データ状態: ${payload.dataQuality.ok ? "OK" : "要確認"}`,
     `本番準備度: ${payload.dataQuality.readiness.score}% ${payload.dataQuality.readiness.label}`,
@@ -271,6 +277,7 @@ function writeReport(payload) {
     "",
     `- 株価: ${payload.dataQuality.coverage.price}`,
     `- EDINET相当: ${payload.dataQuality.coverage.edinet}`,
+    `- バックテスト: ${payload.stocks.length - payload.dataQuality.missingBacktest.length}/${payload.stocks.length}`,
     ...payload.dataQuality.missingPrice.map((item) => `- 株価未取得: ${item}`),
     ...payload.dataQuality.missingEdinet.map((item) => `- EDINET相当未取得: ${item}`),
     ...payload.dataQuality.validationWarnings.map((item) => `- 入力値要確認: ${item}`),
@@ -360,7 +367,8 @@ const watchlistResult = await fetchWithFallback(
   }),
   () => fetchWatchlist({ inputWatchlistCsv }),
 );
-const payload = writeGeneratedData(providerResult, priceResult, disclosureResult, edinetResult, watchlistResult);
+const backtestResult = await fetchBacktestResults({ inputBacktestCsv });
+const payload = writeGeneratedData(providerResult, priceResult, disclosureResult, edinetResult, watchlistResult, backtestResult);
 writeReport(payload);
 
 console.log(`generated ${payload.stocks.length} stocks`);

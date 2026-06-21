@@ -503,6 +503,75 @@ select {
   line-height: 1.4;
 }
 
+.timing-panel {
+  margin-bottom: 12px;
+}
+
+.timing-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: #fbfcfb;
+  display: grid;
+  gap: 12px;
+}
+
+.timing-card h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.timing-good {
+  border-color: #b9d8c7;
+  background: #f2faf5;
+}
+
+.timing-warn {
+  border-color: #ead38f;
+  background: #fff9e8;
+}
+
+.timing-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.timing-actions div {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 10px;
+  min-width: 0;
+}
+
+.timing-actions span,
+.timing-stats span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.timing-actions strong {
+  display: block;
+  margin-top: 4px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.timing-stats {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.timing-stats span {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--line);
+  padding: 5px 8px;
+  font-weight: 700;
+}
+
 .trade-meter {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -629,6 +698,7 @@ footer {
   .assist-grid,
   .detail-grid,
   .metric-grid,
+  .timing-actions,
   .summary-stats,
   .data-check-list,
   .toolbar {

@@ -382,6 +382,26 @@ function calculate(stock) {
     realEstateGainRatio,
     score,
     dataFreshness,
+    backtest: normalizeBacktest(stock.backtest, { ...stock, buyLine, targetPrice }),
+  };
+}
+
+function normalizeBacktest(backtest, stock) {
+  if (backtest) return backtest;
+  const sampleCount = stock.history?.length ?? 0;
+  return {
+    bestStrategyId: "value-line",
+    bestStrategyLabel: "買いライン到達で買い",
+    timingLabel: sampleCount >= 4 ? "参考" : "未検証",
+    buyTiming: `買いライン到達 (${yen(stock.buyLine)}以下)`,
+    sellTiming: `目標の90%付近 (${yen(stock.targetPrice * 0.9)}目安)`,
+    confidence: sampleCount >= 4 ? "参考" : "未検証",
+    sampleCount,
+    trades: 0,
+    winRate: 0,
+    averageReturn: 0,
+    maxDrawdown: 0,
+    bestScore: 0,
   };
 }
 
@@ -767,6 +787,7 @@ function rankingFor(type) {
   if (type === "upside") return copy.sort((a, b) => b.upside - a.upside);
   if (type === "realEstate") return copy.sort((a, b) => b.realEstateGainRatio - a.realEstateGainRatio);
   if (type === "netCash") return copy.sort((a, b) => b.netCashRatio - a.netCashRatio);
+  if (type === "backtest") return copy.sort((a, b) => (b.backtest?.bestScore ?? 0) - (a.backtest?.bestScore ?? 0));
   return copy.sort((a, b) => b.score - a.score);
 }
 
@@ -793,6 +814,7 @@ function renderRankingRow(stock, index) {
         <span>スコア ${stock.score}</span>
         <span>上昇余地 ${pct(stock.upside)}</span>
         <span>修正PBR ${times(stock.modifiedPbr)}</span>
+        <span>検証 ${stock.backtest?.confidence ?? "未検証"}</span>
         <span>${stock.dataFreshness.label}</span>
       </div>
       ${renderMiniMeter(stock)}
@@ -822,11 +844,36 @@ function renderDetail() {
     stock.qualitativeDone ? "有報確認済み" : "有報確認待ち",
     stock.edinet?.periodEnd ? `有報 ${stock.edinet.periodEnd}` : "有報未取得",
   ].map((label) => `<span class="badge">${label}</span>`).join("") + renderFreshnessBadge(stock);
+  document.getElementById("timingPanel").innerHTML = renderTimingPanel(stock);
   document.getElementById("tradeMeter").innerHTML = renderTradeMeter(stock);
   document.getElementById("chart").innerHTML = renderChart(stock);
   document.getElementById("reasonList").innerHTML = stock.assist.reasons.map((r) => `<li>${r}</li>`).join("");
   document.getElementById("nextActionList").innerHTML = stock.assist.nextActions.map((a) => `<li>${a}</li>`).join("");
   document.getElementById("metricGrid").innerHTML = renderMetrics(stock);
+}
+
+function renderTimingPanel(stock) {
+  const backtest = stock.backtest ?? {};
+  const tone = backtest.confidence === "高め" ? "good" : backtest.confidence === "中" ? "warn" : "neutral";
+  return `
+    <section class="timing-card timing-${tone}" aria-label="バックテスト売買タイミング">
+      <div>
+        <p class="eyebrow">バックテスト売買タイミング</p>
+        <h3>${backtest.timingLabel ?? "未検証"}</h3>
+      </div>
+      <div class="timing-actions">
+        <div><span>買い</span><strong>${backtest.buyTiming ?? "データ待ち"}</strong></div>
+        <div><span>売り</span><strong>${backtest.sellTiming ?? "データ待ち"}</strong></div>
+      </div>
+      <div class="timing-stats">
+        <span>精度 ${backtest.confidence ?? "未検証"}</span>
+        <span>勝率 ${pct(backtest.winRate ?? 0)}</span>
+        <span>平均 ${pct(backtest.averageReturn ?? 0)}</span>
+        <span>最大下落 ${pct(backtest.maxDrawdown ?? 0)}</span>
+        <span>検証 ${backtest.trades ?? 0}回/${backtest.sampleCount ?? 0}点</span>
+      </div>
+    </section>
+  `;
 }
 
 function renderTradeMeter(stock) {
@@ -860,6 +907,11 @@ function renderMetrics(stock) {
     ["株価日付", stock.priceAsOf || "未確認"],
     ["有報対象期", stock.edinet?.periodEnd || "未取得"],
     ["有報提出日", stock.edinet?.submittedAt || "未取得"],
+    ["検証タイミング", stock.backtest?.bestStrategyLabel || "未検証"],
+    ["検証信頼度", stock.backtest?.confidence || "未検証"],
+    ["検証勝率", pct(stock.backtest?.winRate ?? 0)],
+    ["検証平均リターン", pct(stock.backtest?.averageReturn ?? 0)],
+    ["検証最大下落", pct(stock.backtest?.maxDrawdown ?? 0)],
     ["直近カタリスト", stock.catalyst || "なし"],
     ["開示件数", `${stock.disclosures?.length ?? 0}件`],
     ["実質時価総額", oku(stock.marketCap)],
@@ -913,6 +965,7 @@ function renderChart(stock) {
       ? "ここで買い候補"
       : stock.assist.label;
   const calloutColor = stock.assist.className.includes("sell") ? "#c44536" : stock.assist.className.includes("buy") ? "#1f8a55" : "#246a9f";
+  const timingText = stock.backtest?.buyTiming ? `検証: ${stock.backtest.buyTiming}` : "";
 
   return `
     <svg viewBox="0 0 ${width} ${height}" aria-label="${stock.name}の株価チャート">
@@ -931,6 +984,7 @@ function renderChart(stock) {
       <text x="${pad.left}" y="${buyY - 8}" font-size="12" fill="#1f8a55">買いライン ${yen(stock.buyLine)}</text>
       <text x="${pad.left}" y="${targetY - 8}" font-size="12" fill="#c44536">目標株価 ${yen(stock.targetPrice)}</text>
       <text x="${currentX - 42}" y="${currentY + 24}" font-size="12" fill="#1d2522">現在 ${yen(stock.price)}</text>
+      <text x="${pad.left}" y="${height - 12}" font-size="12" fill="#65706b">${timingText}</text>
     </svg>
   `;
 }
@@ -1034,7 +1088,7 @@ function sectionMarkdown(title, list) {
   return [
     `## ${title}`,
     ...list.map((stock) =>
-      `- ${stock.code} ${stock.name}: ${stock.assist.label}。${stock.assist.reasons[0]} / 次に確認: ${stock.assist.nextActions[0]}`
+      `- ${stock.code} ${stock.name}: ${stock.assist.label}。${stock.assist.reasons[0]} / 買い目安: ${stock.backtest?.buyTiming ?? "未検証"} / 売り目安: ${stock.backtest?.sellTiming ?? "未検証"}`
     ),
     "",
   ].join("\n");

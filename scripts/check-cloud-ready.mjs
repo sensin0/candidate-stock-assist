@@ -17,6 +17,8 @@ const requiredFiles = [
   "app/app.js",
   "app/styles.css",
   "scripts/update-data.mjs",
+  "scripts/backtest-core.mjs",
+  "scripts/backtest-timing.mjs",
   "scripts/build-stock-master-from-input.mjs",
   "scripts/production-check.mjs",
   "scripts/build-pages.mjs",
@@ -52,6 +54,9 @@ const requiredFiles = [
   "data/edinet-facts.csv",
   "data/watchlist.csv",
   "scripts/providers/watchlist-provider.mjs",
+  "scripts/providers/backtest-provider.mjs",
+  "data/backtest-results.csv",
+  "sheet-templates/backtest-results.csv",
 ];
 
 const missing = requiredFiles.filter((file) => !fs.existsSync(path.join(rootDir, file)));
@@ -68,6 +73,7 @@ const checks = [
   ["privacy guard", process.execPath, ["scripts/privacy-check.mjs"]],
   ["listed universe", process.execPath, ["scripts/universe-check.mjs"]],
   ["universe screening", process.execPath, ["scripts/universe-screen.mjs"]],
+  ["backtest timing", process.execPath, ["scripts/backtest-timing.mjs"]],
   ["sheet templates", process.execPath, ["scripts/sheet-templates.test.mjs"]],
   ["data quality", process.execPath, ["scripts/data-quality.test.mjs"]],
   ["discord notification preview", process.execPath, ["scripts/notify-discord.test.mjs"]],

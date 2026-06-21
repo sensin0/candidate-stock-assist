@@ -17,6 +17,7 @@ const templates = [
   ["sheet-templates/watchlist.csv", ["code", "status", "note"]],
   ["sheet-templates/listed-universe.csv", ["code", "name", "market", "sector"]],
   ["sheet-templates/universe-metrics.csv", ["code", "price", "bps", "eps", "cash", "interestDebt", "shares", "asOf"]],
+  ["sheet-templates/backtest-results.csv", ["code", "bestStrategyId", "timingLabel", "buyTiming", "sellTiming", "confidence"]],
 ];
 
 for (const [file, requiredHeaders] of templates) {

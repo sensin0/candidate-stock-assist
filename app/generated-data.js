@@ -1,14 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-21T06:01:15.967Z",
+  "generatedAt": "2026-06-21T06:12:38.590Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-21T06:01:15.957Z",
-  "priceFetchedAt": "2026-06-21T06:01:15.962Z",
-  "disclosureFetchedAt": "2026-06-21T06:01:15.963Z",
-  "edinetFetchedAt": "2026-06-21T06:01:15.964Z",
+  "fetchedAt": "2026-06-21T06:12:38.575Z",
+  "priceFetchedAt": "2026-06-21T06:12:38.580Z",
+  "disclosureFetchedAt": "2026-06-21T06:12:38.581Z",
+  "edinetFetchedAt": "2026-06-21T06:12:38.582Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -18,6 +18,7 @@ window.AUTO_STOCK_DATA = {
   "disclosureUpdates": 5,
   "edinetUpdates": 20,
   "watchlistUpdates": 3,
+  "backtestUpdates": 20,
   "providerStatuses": [
     {
       "label": "銘柄マスタ",
@@ -113,6 +114,21 @@ window.AUTO_STOCK_DATA = {
       "watchlist": {
         "status": "監視",
         "note": "不動産含み益と資本政策の進捗を見る"
+      },
+      "backtest": {
+        "code": "8841",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (504円以下)",
+        "sellTiming": "目標の90%付近 (971円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 0,
+        "winRate": 0,
+        "averageReturn": 0,
+        "maxDrawdown": 0,
+        "bestScore": -100
       }
     },
     {
@@ -178,7 +194,22 @@ window.AUTO_STOCK_DATA = {
           ]
         }
       ],
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "6505",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (960円以下)",
+        "sellTiming": "目標の90%付近 (2,387円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 26.9,
+        "maxDrawdown": -3.2,
+        "bestScore": 72.7
+      }
     },
     {
       "code": "3123",
@@ -225,7 +256,22 @@ window.AUTO_STOCK_DATA = {
         "sourceUrl": "https://example.com/edinet/3123"
       },
       "priceAsOf": "2026-06-19",
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "3123",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (308円以下)",
+        "sellTiming": "目標の90%付近 (922円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 0,
+        "winRate": 0,
+        "averageReturn": 0,
+        "maxDrawdown": 0,
+        "bestScore": -100
+      }
     },
     {
       "code": "3765",
@@ -286,7 +332,22 @@ window.AUTO_STOCK_DATA = {
           ]
         }
       ],
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "3765",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (2,100円以下)",
+        "sellTiming": "目標の90%付近 (3,292円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 0,
+        "winRate": 0,
+        "averageReturn": 0,
+        "maxDrawdown": 0,
+        "bestScore": -100
+      }
     },
     {
       "code": "8802",
@@ -347,7 +408,22 @@ window.AUTO_STOCK_DATA = {
           ]
         }
       ],
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "8802",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (3,036円以下)",
+        "sellTiming": "目標の90%付近 (4,658円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 34.9,
+        "maxDrawdown": 0,
+        "bestScore": 84.9
+      }
     },
     {
       "code": "2484",
@@ -394,7 +470,22 @@ window.AUTO_STOCK_DATA = {
         "sourceUrl": "https://example.com/edinet/2484"
       },
       "priceAsOf": "2026-06-19",
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "2484",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "買い場待ち",
+        "buyTiming": "買いライン+5%以内 (138円以下)",
+        "sellTiming": "目標の85%付近 (288円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 1,
+        "winRate": 0,
+        "averageReturn": -2.2,
+        "maxDrawdown": -2.2,
+        "bestScore": -1.3
+      }
     },
     {
       "code": "1897",
@@ -444,6 +535,21 @@ window.AUTO_STOCK_DATA = {
       "watchlist": {
         "status": "重点監視",
         "note": "買いラインを下回ったら有報の資産欄を再確認"
+      },
+      "backtest": {
+        "code": "1897",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "買い候補",
+        "buyTiming": "買いライン到達 (3,120円以下)",
+        "sellTiming": "目標の90%付近 (6,930円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 1,
+        "winRate": 0,
+        "averageReturn": -8.1,
+        "maxDrawdown": -8.1,
+        "bestScore": -13.1
       }
     },
     {
@@ -508,6 +614,21 @@ window.AUTO_STOCK_DATA = {
       "watchlist": {
         "status": "保有監視",
         "note": "目標株価到達後の一部利益確定を検討"
+      },
+      "backtest": {
+        "code": "9672",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "売り検討",
+        "buyTiming": "買いライン到達 (3,417円以下)",
+        "sellTiming": "目標の90%付近 (5,040円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 0,
+        "winRate": 0,
+        "averageReturn": 0,
+        "maxDrawdown": 0,
+        "bestScore": -100
       }
     },
     {
@@ -554,7 +675,22 @@ window.AUTO_STOCK_DATA = {
         "sourceUrl": "https://example.com/edinet/8830"
       },
       "priceAsOf": "2026-06-19",
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "8830",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (3,600円以下)",
+        "sellTiming": "目標の90%付近 (6,480円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 0,
+        "winRate": 0,
+        "averageReturn": 0,
+        "maxDrawdown": 0,
+        "bestScore": -100
+      }
     },
     {
       "code": "8801",
@@ -600,7 +736,22 @@ window.AUTO_STOCK_DATA = {
         "sourceUrl": "https://example.com/edinet/8801"
       },
       "priceAsOf": "2026-06-19",
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "8801",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (944円以下)",
+        "sellTiming": "目標の90%付近 (1,967円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 0,
+        "winRate": 0,
+        "averageReturn": 0,
+        "maxDrawdown": 0,
+        "bestScore": -100
+      }
     },
     {
       "code": "9830",
@@ -646,7 +797,22 @@ window.AUTO_STOCK_DATA = {
         "sourceUrl": "https://example.com/edinet/9830"
       },
       "priceAsOf": "2026-06-19",
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "9830",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (1,560円以下)",
+        "sellTiming": "目標の90%付近 (2,815円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 0,
+        "winRate": 0,
+        "averageReturn": 0,
+        "maxDrawdown": 0,
+        "bestScore": -100
+      }
     },
     {
       "code": "3471",
@@ -692,7 +858,22 @@ window.AUTO_STOCK_DATA = {
         "sourceUrl": "https://example.com/edinet/3471"
       },
       "priceAsOf": "2026-06-19",
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "3471",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (270,000円以下)",
+        "sellTiming": "目標の90%付近 (410,625円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 0,
+        "winRate": 0,
+        "averageReturn": 0,
+        "maxDrawdown": 0,
+        "bestScore": -100
+      }
     },
     {
       "code": "8018",
@@ -738,7 +919,22 @@ window.AUTO_STOCK_DATA = {
         "sourceUrl": "https://example.com/edinet/8018"
       },
       "priceAsOf": "2026-06-19",
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "8018",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (671円以下)",
+        "sellTiming": "目標の85%付近 (1,102円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 28.1,
+        "maxDrawdown": 0,
+        "bestScore": 76.8
+      }
     },
     {
       "code": "6513",
@@ -784,7 +980,22 @@ window.AUTO_STOCK_DATA = {
         "sourceUrl": "https://example.com/edinet/6513"
       },
       "priceAsOf": "2026-06-19",
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "6513",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "買い候補",
+        "buyTiming": "買いライン到達 (1,260円以下)",
+        "sellTiming": "目標の90%付近 (4,032円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 23.1,
+        "maxDrawdown": 0,
+        "bestScore": 70.7
+      }
     },
     {
       "code": "1443",
@@ -830,7 +1041,22 @@ window.AUTO_STOCK_DATA = {
         "sourceUrl": "https://example.com/edinet/1443"
       },
       "priceAsOf": "2026-06-19",
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "1443",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "買い場待ち",
+        "buyTiming": "買いライン到達 (203円以下)",
+        "sellTiming": "目標の90%付近 (459円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 9.4,
+        "maxDrawdown": -2.1,
+        "bestScore": 52.6
+      }
     },
     {
       "code": "9409",
@@ -876,7 +1102,22 @@ window.AUTO_STOCK_DATA = {
         "sourceUrl": "https://example.com/edinet/9409"
       },
       "priceAsOf": "2026-06-19",
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "9409",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (1,600円以下)",
+        "sellTiming": "目標の90%付近 (3,175円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 0,
+        "winRate": 0,
+        "averageReturn": 0,
+        "maxDrawdown": 0,
+        "bestScore": -100
+      }
     },
     {
       "code": "9402",
@@ -922,7 +1163,22 @@ window.AUTO_STOCK_DATA = {
         "sourceUrl": "https://example.com/edinet/9402"
       },
       "priceAsOf": "2026-06-19",
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "9402",
+        "bestStrategyId": "turnaround",
+        "bestStrategyLabel": "下げ止まり反転で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+10%以内で反転確認 (655円以下)",
+        "sellTiming": "目標の90%付近 (1,708円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 23.8,
+        "maxDrawdown": 0,
+        "bestScore": 71.6
+      }
     },
     {
       "code": "9324",
@@ -968,7 +1224,22 @@ window.AUTO_STOCK_DATA = {
         "sourceUrl": "https://example.com/edinet/9324"
       },
       "priceAsOf": "2026-06-19",
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "9324",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (840円以下)",
+        "sellTiming": "目標の90%付近 (2,325円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 0,
+        "winRate": 0,
+        "averageReturn": 0,
+        "maxDrawdown": 0,
+        "bestScore": -100
+      }
     },
     {
       "code": "8818",
@@ -1014,7 +1285,22 @@ window.AUTO_STOCK_DATA = {
         "sourceUrl": "https://example.com/edinet/8818"
       },
       "priceAsOf": "2026-06-19",
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "8818",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (990円以下)",
+        "sellTiming": "目標の90%付近 (2,351円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 0,
+        "winRate": 0,
+        "averageReturn": 0,
+        "maxDrawdown": 0,
+        "bestScore": -100
+      }
     },
     {
       "code": "3892",
@@ -1060,7 +1346,22 @@ window.AUTO_STOCK_DATA = {
         "sourceUrl": "https://example.com/edinet/3892"
       },
       "priceAsOf": "2026-06-19",
-      "watchlist": null
+      "watchlist": null,
+      "backtest": {
+        "code": "3892",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (1,085円以下)",
+        "sellTiming": "目標の90%付近 (2,232円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 32.7,
+        "maxDrawdown": 0,
+        "bestScore": 82.2
+      }
     }
   ],
   "dataQuality": {
@@ -1068,6 +1369,7 @@ window.AUTO_STOCK_DATA = {
     "providerWarnings": [],
     "validationWarnings": [],
     "externalReferenceWarnings": [],
+    "missingBacktest": [],
     "missingPrice": [],
     "missingEdinet": [],
     "manualInputs": [

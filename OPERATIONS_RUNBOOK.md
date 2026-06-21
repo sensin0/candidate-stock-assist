@@ -50,6 +50,14 @@ npm run universe:screen
 npm run universe:metrics
 ```
 
+売買タイミングをバックテストする:
+
+```powershell
+npm run backtest
+```
+
+バックテストは `history` の価格推移から、買いライン到達、5%以内で早めに買い、下げ止まり反転の3パターンを比較します。履歴が短い銘柄は画面で `参考` と表示します。
+
 少ない列から作る場合:
 
 ```powershell
