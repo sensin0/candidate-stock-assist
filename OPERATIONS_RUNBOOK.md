@@ -74,6 +74,12 @@ npm run cloud:check
 npm run privacy:check
 ```
 
+GitHubに上がるMarkdownとローカルだけの無視ファイルを見る:
+
+```powershell
+npm run privacy:report
+```
+
 本番準備度だけ見る:
 
 ```powershell

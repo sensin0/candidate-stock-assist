@@ -1,0 +1,34 @@
+import { spawnSync } from "node:child_process";
+
+const publicMarkdown = gitLines(["ls-files"])
+  .filter((file) => file.endsWith(".md"))
+  .sort();
+const ignoredFiles = gitLines(["status", "--short", "--ignored"])
+  .filter((line) => line.startsWith("!! "))
+  .map((line) => line.slice(3))
+  .sort();
+const privateLookingIgnored = ignoredFiles.filter((file) =>
+  /source|private|book-notes|raw|ocr|仕様|_\d{8}\.md/i.test(file)
+);
+
+console.log("公開ファイル確認");
+console.log("");
+console.log("GitHubに上がるMarkdown");
+publicMarkdown.forEach((file) => console.log(`- ${file}`));
+console.log("");
+console.log(`ローカルだけの無視ファイル: ${ignoredFiles.length}件`);
+if (privateLookingIgnored.length) {
+  console.log("");
+  console.log("非公開メモ候補");
+  privateLookingIgnored.forEach((file) => console.log(`- ${file}`));
+}
+console.log("");
+console.log("判定: 上のMarkdown以外はGitHub上の本文MDとして公開されません");
+
+function gitLines(args) {
+  const result = spawnSync("git", args, { encoding: "utf8" });
+  if (result.status !== 0) {
+    throw new Error(result.stderr || result.stdout);
+  }
+  return result.stdout.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+}
