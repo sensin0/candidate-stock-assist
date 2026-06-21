@@ -119,6 +119,7 @@ npm run manual:confirm -- 6505
 npm run privacy:check
 npm run privacy:report
 npm run universe:check
+npm run universe:update
 npm run stock-master:build
 npm run production:check
 npm run pages:build

@@ -28,6 +28,14 @@ Discord通知で見る順番:
 npm run universe:check
 ```
 
+JPXの上場銘柄一覧から母集団を更新する:
+
+```powershell
+npm run universe:update
+```
+
+全体母集団から買い候補を出すには、母集団に加えて株価、BPS/EPS、現金、有利子負債、投資有価証券、不動産時価などの更新データが必要です。
+
 少ない列から作る場合:
 
 ```powershell
