@@ -235,6 +235,7 @@ const fallbackStocks = [
 
 let stocks = [];
 let selectedCode = null;
+let selectedResearch = null;
 let searchQuery = "";
 let assistFilter = "all";
 
@@ -914,8 +915,9 @@ function renderResearchRankingRow(item, index, type) {
   const label = type === "researchMultibagger" ? "2倍監視" : "広域候補";
   const comment = item.comment || signalComment(item);
   const caution = item.caution ? `<p class="freshness-line">${escapeHtml(item.caution)}</p>` : "";
+  const isActive = selectedResearch?.type === type && selectedResearch?.code === item.code;
   return `
-    <article class="ranking-row research-ranking-row">
+    <article class="ranking-row research-ranking-row ${isActive ? "active" : ""}" data-research-type="${type}" data-research-code="${escapeHtml(item.code)}">
       <div class="ranking-top">
         <div>
           <strong>${index + 1}. ${escapeHtml(item.name)}</strong>
@@ -971,6 +973,12 @@ function topReason(stock) {
 }
 
 function renderDetail() {
+  const researchItem = selectedResearch ? findResearchItem(selectedResearch.type, selectedResearch.code) : null;
+  if (researchItem) {
+    renderResearchDetail(researchItem, selectedResearch.type);
+    return;
+  }
+
   const visible = visibleStocks();
   const stock = visible.find((item) => item.code === selectedCode) ?? visible[0] ?? stocks[0];
   if (!stock) return;
@@ -992,6 +1000,145 @@ function renderDetail() {
   document.getElementById("reasonList").innerHTML = stock.assist.reasons.map((r) => `<li>${r}</li>`).join("");
   document.getElementById("nextActionList").innerHTML = stock.assist.nextActions.map((a) => `<li>${a}</li>`).join("");
   document.getElementById("metricGrid").innerHTML = renderMetrics(stock);
+}
+
+function findResearchItem(type, code) {
+  const items = type === "researchMultibagger"
+    ? window.AUTO_RESEARCH_DATA?.multibaggerWatch ?? []
+    : window.AUTO_RESEARCH_DATA?.universeTop ?? [];
+  return items.find((item) => item.code === code) ?? null;
+}
+
+function renderResearchDetail(item, type) {
+  const label = type === "researchMultibagger" ? "2倍監視" : "広域候補";
+  const comment = item.comment || signalComment(item);
+  document.getElementById("detailAssist").textContent = label;
+  document.getElementById("detailAssist").className = "assist-label label-near";
+  document.getElementById("detailTitle").textContent = `${item.name} (${item.code})`;
+  document.getElementById("detailBadges").innerHTML = [
+    "日本株全体調査",
+    item.judgement || "価格検証",
+    item.signal || "待ち",
+    item.market || "市場不明",
+  ].map((badge) => `<span class="badge">${escapeHtml(badge)}</span>`).join("");
+  document.getElementById("buyTimingAlert").innerHTML = "";
+  document.getElementById("timingPanel").innerHTML = renderResearchTimingPanel(item, label);
+  document.getElementById("tradeMeter").innerHTML = renderResearchMeter(item);
+  document.getElementById("chart").innerHTML = renderResearchChart(item);
+  document.getElementById("reasonList").innerHTML = [
+    comment,
+    `価格検証の平均は${pct(item.averageReturn ?? 0)}、勝率は${pct(item.winRate ?? 0)}です`,
+    item.caution || "価格だけの一次候補なので、財務と開示の確認が必要です",
+  ].map((reason) => `<li>${escapeHtml(reason)}</li>`).join("");
+  document.getElementById("nextActionList").innerHTML = researchNextActions(item)
+    .map((action) => `<li>${escapeHtml(action)}</li>`)
+    .join("");
+  document.getElementById("metricGrid").innerHTML = renderResearchMetrics(item);
+}
+
+function renderResearchTimingPanel(item, label) {
+  const tone = item.judgement === "良さそう" && (item.maxDrawdown ?? 0) > -15 ? "good" : "warn";
+  return `
+    <section class="timing-card timing-${tone}" aria-label="広域バックテスト確認">
+      <div>
+        <p class="eyebrow">${label}</p>
+        <h3>${escapeHtml(item.signal || "待ち")}</h3>
+      </div>
+      <div class="timing-actions">
+        <div><span>今の扱い</span><strong>${escapeHtml(researchActionLabel(item))}</strong></div>
+        <div><span>次に確認</span><strong>${escapeHtml(researchNextActions(item)[0])}</strong></div>
+      </div>
+      <div class="timing-stats">
+        <span>点数 ${Math.round((item.score ?? 0) * 10) / 10}</span>
+        <span>勝率 ${pct(item.winRate ?? 0)}</span>
+        <span>平均 ${pct(item.averageReturn ?? 0)}</span>
+        <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
+        <span>検証 ${item.trades ?? 0}回</span>
+      </div>
+    </section>
+  `;
+}
+
+function renderResearchMeter(item) {
+  const scorePos = Math.max(0, Math.min(98, (item.score ?? 0) / 1.5));
+  return `
+    <div class="card-top">
+      <strong>${escapeHtml(researchActionLabel(item))}</strong>
+      <span>点数 ${Math.round((item.score ?? 0) * 10) / 10}</span>
+    </div>
+    <div class="meter-track"><span class="meter-marker" style="left:${scorePos}%"></span></div>
+    <div class="meter-labels">
+      <span>見送り</span>
+      <span>監視</span>
+      <span>優先確認</span>
+    </div>
+  `;
+}
+
+function renderResearchChart(item) {
+  const width = 880;
+  const height = 260;
+  const metrics = [
+    ["点数", Math.min(100, (item.score ?? 0) / 1.5), "#246a9f"],
+    ["勝率", Math.max(0, Math.min(100, item.winRate ?? 0)), "#1f8a55"],
+    ["平均", Math.max(0, Math.min(100, (item.averageReturn ?? 0) * 2)), "#1f8a55"],
+    ["下落浅さ", Math.max(0, Math.min(100, 100 + (item.maxDrawdown ?? 0) * 4)), "#b98513"],
+  ];
+  const bars = metrics.map(([label, value, color], index) => {
+    const x = 100 + index * 185;
+    const barHeight = (value / 100) * 140;
+    const y = 180 - barHeight;
+    return `
+      <rect x="${x}" y="${y}" width="88" height="${barHeight}" rx="8" fill="${color}" opacity="0.82" />
+      <text x="${x + 44}" y="205" text-anchor="middle" font-size="13" fill="#65706b">${label}</text>
+      <text x="${x + 44}" y="${Math.max(32, y - 10)}" text-anchor="middle" font-size="13" font-weight="700" fill="#1d2522">${Math.round(value)}%</text>
+    `;
+  }).join("");
+  return `
+    <svg viewBox="0 0 ${width} ${height}" aria-label="${escapeHtml(item.name)}の広域調査チャート">
+      <rect x="32" y="24" width="${width - 64}" height="196" rx="10" fill="#ffffff" />
+      <line x1="70" x2="${width - 70}" y1="180" y2="180" stroke="#dfe5df" />
+      ${bars}
+      <text x="52" y="42" font-size="13" fill="#65706b">価格バックテストの見え方</text>
+      <text x="52" y="64" font-size="18" font-weight="700" fill="#1d2522">${escapeHtml(researchActionLabel(item))}</text>
+    </svg>
+  `;
+}
+
+function renderResearchMetrics(item) {
+  const metrics = [
+    ["市場", item.market || "市場不明"],
+    ["業種", item.sector || "未分類"],
+    ["判定", item.judgement || "未判定"],
+    ["最新シグナル", item.signal || "待ち"],
+    ["検証戦略", item.strategy || "価格検証"],
+    ["期間騰落", pct(item.periodReturn ?? 0)],
+    ["点数", `${Math.round((item.score ?? 0) * 10) / 10}点`],
+    ["勝率", pct(item.winRate ?? 0)],
+    ["平均リターン", pct(item.averageReturn ?? 0)],
+    ["最大下落", pct(item.maxDrawdown ?? 0)],
+    ["検証回数", `${item.trades ?? 0}回`],
+    ["注意", item.caution || "財務と開示を確認"],
+  ];
+  return metrics.map(([label, value]) => `<div class="metric"><span>${label}</span><strong>${escapeHtml(value)}</strong></div>`).join("");
+}
+
+function researchActionLabel(item) {
+  if (item.signal === "上昇中押し目" && item.judgement === "良さそう") return "優先監視。押し目と出来高を確認";
+  if (item.signal === "高値圏") return "飛びつき注意。押し目待ち";
+  if ((item.maxDrawdown ?? 0) <= -15) return "下落リスク確認が先";
+  if ((item.winRate ?? 0) >= 80 && (item.averageReturn ?? 0) >= 20) return "監視候補。材料確認";
+  return "まず監視。財務確認が先";
+}
+
+function researchNextActions(item) {
+  if (item.nextCheck) return String(item.nextCheck).split(/[、,]/).map((value) => value.trim()).filter(Boolean).slice(0, 4);
+  return [
+    "直近決算で売上と利益の伸びを確認",
+    "出来高が増えているか確認",
+    "高値掴みにならない価格位置か確認",
+    "有報と開示で材料を確認",
+  ];
 }
 
 function isBuyTiming(stock) {
@@ -1308,9 +1455,20 @@ function freshnessMarkdown(title, list) {
 
 function setupEvents() {
   document.body.addEventListener("click", (event) => {
+    const researchCard = event.target.closest("[data-research-code]");
+    if (researchCard) {
+      selectedResearch = {
+        type: researchCard.dataset.researchType,
+        code: researchCard.dataset.researchCode,
+      };
+      render();
+      return;
+    }
+
     const card = event.target.closest("[data-code]");
     if (!card) return;
     selectedCode = card.dataset.code;
+    selectedResearch = null;
     render();
   });
   document.getElementById("rankingSelect").addEventListener("change", renderRanking);

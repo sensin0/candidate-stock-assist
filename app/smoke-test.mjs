@@ -67,25 +67,34 @@ vm.runInContext(
     ?? byAssist("リスクで見送り")[0]?.code
     ?? selectedCode;
   renderDetail();
+  const normalChart = document.getElementById("chart").innerHTML;
+  const normalTimingPanel = document.getElementById("timingPanel").innerHTML;
+  const normalBuyTimingAlert = document.getElementById("buyTimingAlert").innerHTML;
   document.getElementById("rankingSelect").value = "researchUniverse";
   renderRanking();
   const researchRanking = document.getElementById("rankingList").innerHTML;
   document.getElementById("rankingSelect").value = "researchMultibagger";
   renderRanking();
   const multibaggerRanking = document.getElementById("rankingList").innerHTML;
+  selectedResearch = { type: "researchUniverse", code: window.AUTO_RESEARCH_DATA.universeTop[0].code };
+  renderDetail();
+  const researchDetailTitle = document.getElementById("detailTitle").textContent;
+  const researchDetailChart = document.getElementById("chart").innerHTML;
   globalThis.__result = {
     buyNow: byAssist("今買い候補").length,
     sellNow: byAssist("今売り検討").length + byAssist("一部利益確定検討").length,
     risk: byAssist("リスクで見送り").length + byAssist("検証弱く見送り").length,
     watched: stocks.filter((stock) => stock.watchlist).length,
     report: document.getElementById("morningReport").value,
-    chart: document.getElementById("chart").innerHTML,
-    buyTimingAlert: document.getElementById("buyTimingAlert").innerHTML,
+    chart: normalChart,
+    buyTimingAlert: normalBuyTimingAlert,
     researchOverview: document.getElementById("researchOverview").innerHTML,
     researchRanking,
     multibaggerRanking,
+    researchDetailTitle,
+    researchDetailChart,
     summaryTitle: document.getElementById("todaySummaryTitle").textContent,
-    timingPanel: document.getElementById("timingPanel").innerHTML
+    timingPanel: normalTimingPanel
   };`,
   sandbox,
   { filename: "app.js" },
@@ -114,6 +123,9 @@ if (!result.researchRanking.includes("広域候補")) {
 }
 if (!result.multibaggerRanking.includes("2倍監視")) {
   failures.push("ランキングに2倍監視が生成されていません");
+}
+if (!result.researchDetailTitle || !result.researchDetailChart.includes("価格バックテストの見え方")) {
+  failures.push("広域候補の詳細が生成されていません");
 }
 if (result.buyNow > 0 && !result.buyTimingAlert.includes("買いタイミング点灯中")) {
   failures.push("買いタイミング表示が生成されていません");
