@@ -126,6 +126,7 @@ npm run backtest
 npm run backtest:research
 npm run backtest:universe
 npm run multibagger:research
+npm run research:data
 npm run research:morning
 npm run stock-master:build
 npm run production:check

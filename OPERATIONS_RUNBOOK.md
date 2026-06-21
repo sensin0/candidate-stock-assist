@@ -90,6 +90,12 @@ npm run research:morning
 
 GitHub Actionsの朝実行でも同じ処理が走ります。外部の株価取得に失敗した場合は、公開と通知を止めずに既存レポートを使います。
 
+画面に出す広域候補だけを作り直す:
+
+```powershell
+npm run research:data
+```
+
 少ない列から作る場合:
 
 ```powershell

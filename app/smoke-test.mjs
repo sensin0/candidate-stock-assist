@@ -53,10 +53,14 @@ sandbox.window = sandbox;
 vm.createContext(sandbox);
 
 const generatedData = fs.readFileSync(new URL("./generated-data.js", import.meta.url), "utf8");
+const generatedResearch = fs.existsSync(new URL("./generated-research.js", import.meta.url))
+  ? fs.readFileSync(new URL("./generated-research.js", import.meta.url), "utf8")
+  : "";
 const code = fs.readFileSync(new URL("./app.js", import.meta.url), "utf8");
 
 vm.runInContext(
   `${generatedData}
+  ${generatedResearch}
   ${code}
   selectedCode = byAssist("今買い候補")[0]?.code
     ?? byAssist("検証弱く見送り")[0]?.code
@@ -71,6 +75,7 @@ vm.runInContext(
     report: document.getElementById("morningReport").value,
     chart: document.getElementById("chart").innerHTML,
     buyTimingAlert: document.getElementById("buyTimingAlert").innerHTML,
+    researchOverview: document.getElementById("researchOverview").innerHTML,
     summaryTitle: document.getElementById("todaySummaryTitle").textContent,
     timingPanel: document.getElementById("timingPanel").innerHTML
   };`,
@@ -92,6 +97,9 @@ if (!result.chart.includes("ここで買い候補") && !result.chart.includes("�
 }
 if (!result.timingPanel.includes("バックテスト売買タイミング")) {
   failures.push("バックテスト売買タイミングが生成されていません");
+}
+if (!result.researchOverview.includes("日本株全体") || !result.researchOverview.includes("2倍監視")) {
+  failures.push("広域バックテスト候補が生成されていません");
 }
 if (result.buyNow > 0 && !result.buyTimingAlert.includes("買いタイミング点灯中")) {
   failures.push("買いタイミング表示が生成されていません");

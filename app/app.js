@@ -653,6 +653,7 @@ function normalizeCsvRow(row) {
 function render() {
   renderSummary();
   renderDataCheck();
+  renderResearchOverview();
   renderAssistColumns();
   renderRanking();
   renderDetail();
@@ -761,6 +762,71 @@ function dataCheckItem(label, value, note, tone) {
       <p>${note}</p>
     </div>
   `;
+}
+
+function renderResearchOverview() {
+  const element = document.getElementById("researchOverview");
+  if (!element) return;
+  const research = window.AUTO_RESEARCH_DATA;
+  if (!research) {
+    element.innerHTML = `<p class="reason">調査データを生成すると、日本株全体からの注目候補がここに出ます。</p>`;
+    return;
+  }
+
+  const universeCards = (research.universeTop ?? []).slice(0, 4).map((item, index) =>
+    renderResearchCard(item, index, "全体候補", "research-card-blue"),
+  );
+  const multibaggerCards = (research.multibaggerWatch ?? []).slice(0, 4).map((item, index) =>
+    renderResearchCard(item, index, "2倍監視", "research-card-green"),
+  );
+
+  element.innerHTML = [
+    `<div class="research-summary-card">
+      <span>日本株全体</span>
+      <strong>${research.universe?.success ?? 0}/${research.universe?.total ?? 0}件</strong>
+      <p>価格バックテストで「良さそう」${research.universe?.good ?? 0}件、見送り寄り${research.universe?.avoid ?? 0}件です。</p>
+    </div>`,
+    ...universeCards,
+    ...multibaggerCards,
+  ].join("");
+}
+
+function renderResearchCard(item, index, label, className) {
+  const caution = item.caution ? `<p class="research-caution">${escapeHtml(item.caution)}</p>` : "";
+  const comment = item.comment || signalComment(item);
+  return `
+    <article class="research-card ${className}">
+      <div class="research-card-top">
+        <span>${label}</span>
+        <strong>${index + 1}</strong>
+      </div>
+      <h3>${escapeHtml(item.name)} (${escapeHtml(item.code)})</h3>
+      <p>${escapeHtml(comment)}</p>
+      ${caution}
+      <div class="research-meta">
+        <span>${escapeHtml(item.signal || "待ち")}</span>
+        <span>平均 ${pct(item.averageReturn ?? 0)}</span>
+        <span>勝率 ${pct(item.winRate ?? 0)}</span>
+        <span>下落 ${pct(item.maxDrawdown ?? 0)}</span>
+      </div>
+    </article>
+  `;
+}
+
+function signalComment(item) {
+  if (item.signal === "上昇中押し目") return "上昇トレンド中の押し目候補です。決算成長と出来高を確認します。";
+  if (item.signal === "高値圏") return "すでに上がっています。飛びつかず押し目や出来高継続を確認します。";
+  if (item.strategy === "高値更新") return "高値更新型です。勢いはありますが、材料と過熱感を確認します。";
+  return "価格だけの一次候補です。財務と開示を確認してから判断します。";
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll("\"", "&quot;")
+    .replaceAll("'", "&#39;");
 }
 
 function renderAssistColumns() {
