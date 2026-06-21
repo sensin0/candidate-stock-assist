@@ -347,6 +347,7 @@ function calculate(stock) {
   const targetPrice = Math.max(pbrTarget, perTarget, buyLine * 1.5);
   const upside = (targetPrice / stock.price - 1) * 100;
   const buyRatio = stock.price / buyLine;
+  const backtest = normalizeBacktest(stock.backtest, { ...stock, buyLine, targetPrice });
   const netCashRatio = netCash / marketCap;
   const nonBusinessAssetRatio = nonBusinessAssets / marketCap;
   const intrinsicValueRatio = intrinsicValue / marketCap;
@@ -359,6 +360,7 @@ function calculate(stock) {
     modifiedPbr,
     upside,
     buyRatio,
+    backtest,
     stock,
   });
 
@@ -382,7 +384,7 @@ function calculate(stock) {
     realEstateGainRatio,
     score,
     dataFreshness,
-    backtest: normalizeBacktest(stock.backtest, { ...stock, buyLine, targetPrice }),
+    backtest,
   };
 }
 
@@ -412,10 +414,22 @@ function scoreStock(v) {
   score += v.modifiedPbr <= 0.5 ? 16 : v.modifiedPbr <= 0.8 ? 10 : v.modifiedPbr <= 1 ? 5 : 0;
   score += v.buyRatio <= 1 ? 18 : v.buyRatio <= 1.05 ? 14 : v.buyRatio <= 1.15 ? 8 : 0;
   score += v.upside >= 50 ? 12 : v.upside >= 30 ? 8 : v.upside >= 15 ? 4 : 0;
+  score += isGoodBacktest(v.backtest) ? 8 : 0;
+  score -= isBadBacktest(v.backtest) ? 28 : 0;
   score += v.stock.qualitativeDone ? 8 : 0;
   score += v.stock.catalyst ? 6 : 0;
   score -= v.stock.risk ? 14 : 0;
   return Math.max(0, Math.min(100, Math.round(score)));
+}
+
+function isBadBacktest(backtest) {
+  if (!backtest || backtest.trades < 1) return false;
+  return backtest.averageReturn < 0 || backtest.winRate < 50 || backtest.maxDrawdown <= -15;
+}
+
+function isGoodBacktest(backtest) {
+  if (!backtest || backtest.trades < 1) return false;
+  return backtest.averageReturn > 0 && backtest.winRate >= 60 && backtest.maxDrawdown > -15;
 }
 
 function assistFor(stock) {
@@ -446,6 +460,14 @@ function assistFor(stock) {
     ], ["売却ではなく一部調整も検討", "他候補の安全域を確認"]);
   }
 
+  if (!stock.held && isBadBacktest(stock.backtest)) {
+    return makeAssist("検証弱く見送り", "label-risk", [
+      `バックテスト平均が${pct(stock.backtest.averageReturn)}です`,
+      `勝率${pct(stock.backtest.winRate)}、最大下落${pct(stock.backtest.maxDrawdown)}です`,
+      "割安でもタイミングの相性が悪い可能性があります",
+    ], ["過去価格を増やして再検証", "決算悪化や需給を確認"]);
+  }
+
   if (!confirmed || !stock.qualitativeDone || !freshEnough) {
     if (stock.buyRatio <= 1.05 && stock.upside >= 50) {
       return makeAssist("調査が先", "label-research", [
@@ -460,7 +482,9 @@ function assistFor(stock) {
     return makeAssist("今買い候補", "label-buy", [
       "買いラインを下回っています",
       `目標株価まで${pct(stock.upside)}の余地があります`,
-      `非事業資産倍率が${times(stock.nonBusinessAssetRatio)}あります`,
+      isGoodBacktest(stock.backtest)
+        ? `検証平均リターンが${pct(stock.backtest.averageReturn)}です`
+        : `非事業資産倍率が${times(stock.nonBusinessAssetRatio)}あります`,
     ], ["有報の資産欄を再確認", "直近決算の悪化要因を確認"]);
   }
 
@@ -468,6 +492,7 @@ function assistFor(stock) {
     return makeAssist("買い場に近い", "label-near", [
       "買い目安にかなり近いです",
       `目標株価まで${pct(stock.upside)}の余地があります`,
+      isGoodBacktest(stock.backtest) ? `検証勝率は${pct(stock.backtest.winRate)}です` : "バックテストは参考扱いです",
     ], ["有報確認が完了しているか確認", "買いラインの根拠を確認"]);
   }
 
@@ -654,7 +679,7 @@ function renderSummary() {
   const visible = visibleStocks();
   const buyNow = byAssist("今買い候補", visible).length;
   const sellNow = byAssist("今売り検討", visible).length + byAssist("一部利益確定検討", visible).length;
-  const risk = byAssist("リスクで見送り", visible).length;
+  const risk = byAssist("リスクで見送り", visible).length + byAssist("検証弱く見送り", visible).length;
   const near = byAssist("買い場に近い", visible).length;
   const watched = visible.filter((stock) => stock.watchlist).length;
   const qualityWarning = window.AUTO_STOCK_DATA?.dataQuality?.ok === false
@@ -740,7 +765,7 @@ function renderAssistColumns() {
     buyNow: byAssist("今買い候補", visible),
     nearBuy: byAssist("買い場に近い", visible).concat(byAssist("調査が先", visible)),
     sellNow: byAssist("今売り検討", visible).concat(byAssist("一部利益確定検討", visible)),
-    risk: byAssist("リスクで見送り", visible),
+    risk: byAssist("リスクで見送り", visible).concat(byAssist("検証弱く見送り", visible)),
   };
   Object.entries(sections).forEach(([key, list]) => {
     document.getElementById(`${key}Count`).textContent = list.length;
@@ -823,6 +848,7 @@ function renderRankingRow(stock, index) {
 }
 
 function topReason(stock) {
+  if (stock.assist.label === "検証弱く見送り") return stock.assist.reasons[0];
   if (stock.assist.reasons[0]) return stock.assist.reasons[0];
   if (stock.nonBusinessAssetRatio >= 1) return "非事業資産が時価総額を上回っています";
   if (stock.netCashRatio >= 0.7) return "ネットキャッシュが厚い銘柄です";
@@ -964,7 +990,9 @@ function renderChart(stock) {
     : stock.assist.label === "今買い候補"
       ? "ここで買い候補"
       : stock.assist.label;
-  const calloutColor = stock.assist.className.includes("sell") ? "#c44536" : stock.assist.className.includes("buy") ? "#1f8a55" : "#246a9f";
+  const calloutColor = stock.assist.className.includes("sell") || stock.assist.className.includes("risk")
+    ? "#c44536"
+    : stock.assist.className.includes("buy") ? "#1f8a55" : "#246a9f";
   const timingText = stock.backtest?.buyTiming ? `検証: ${stock.backtest.buyTiming}` : "";
 
   return `
@@ -995,6 +1023,7 @@ function renderMorningReport() {
   const sellNow = byAssist("今売り検討", visible).concat(byAssist("一部利益確定検討", visible)).slice(0, 5);
   const near = byAssist("買い場に近い", visible).concat(byAssist("調査が先", visible)).slice(0, 10);
   const risk = byAssist("リスクで見送り", visible).slice(0, 5);
+  const backtestWeak = byAssist("検証弱く見送り", visible).slice(0, 5);
   const watched = visible.filter((stock) => stock.watchlist).slice(0, 10);
   const disclosures = visible.filter((stock) => stock.disclosures?.length).slice(0, 10);
   const stale = visible.filter((stock) => stock.dataFreshness?.level !== "ok").slice(0, 10);
@@ -1003,7 +1032,7 @@ function renderMorningReport() {
   const report = [
     "# 朝レポート",
     "",
-    `今日は今買い候補${buyNow.length}件、今売り検討${sellNow.length}件、買い場に近い銘柄${near.length}件です。`,
+    `今日は今買い候補${buyNow.length}件、今売り検討${sellNow.length}件、買い場に近い銘柄${near.length}件、検証弱く見送り${backtestWeak.length}件です。`,
     "",
     dataOverview,
     priorityMarkdown("今日見る優先順位", priorities),
@@ -1014,6 +1043,7 @@ function renderMorningReport() {
     disclosureMarkdown("カタリスト・開示", disclosures),
     freshnessMarkdown("データ要確認", stale),
     sectionMarkdown("リスク確認", risk),
+    sectionMarkdown("検証弱く見送り", backtestWeak),
     "",
     "注意: このレポートは売買推奨ではありません。候補を確認するためのアシストです。",
   ].join("\n");
@@ -1036,6 +1066,7 @@ function priorityScore(stock) {
   if (stock.assist.label === "今買い候補") priority += 40;
   if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") priority += 34;
   if (stock.assist.label === "買い場に近い" || stock.assist.label === "調査が先") priority += 24;
+  if (stock.assist.label === "検証弱く見送り") priority -= 40;
   if (stock.watchlist) priority += 12;
   if (stock.dataFreshness?.level !== "ok") priority += 10;
   if (stock.disclosures?.length) priority += 8;
@@ -1045,6 +1076,7 @@ function priorityScore(stock) {
 
 function priorityReason(stock) {
   if (stock.assist.label === "今買い候補") return `買いライン以下。${topReason(stock)}`;
+  if (stock.assist.label === "検証弱く見送り") return `見送り優先。${stock.assist.reasons[0]}`;
   if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") {
     return `売り判断の確認。${stock.assist.reasons[0]}`;
   }
