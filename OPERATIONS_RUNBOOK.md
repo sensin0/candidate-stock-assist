@@ -28,6 +28,8 @@ Discord通知で見る順番:
 npm run universe:check
 ```
 
+`市場別` と `候補化が薄い主な業種` を見て、次にどの市場・業種から `stock-master` へ追加するか決めます。
+
 JPXの上場銘柄一覧から母集団を更新する:
 
 ```powershell

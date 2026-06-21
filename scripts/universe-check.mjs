@@ -32,6 +32,22 @@ console.log(`候補未登録: ${missingInStockMaster.length}件`);
 console.log(`母集団にない候補: ${absentFromUniverse.length}件`);
 console.log(`重複コード: ${duplicates.length}件`);
 
+console.log("");
+console.log("市場別");
+summarize(universe, "market", stockCodes).forEach((item) => {
+  console.log(`- ${item.label}: ${item.total}件 / 候補化 ${item.covered}件`);
+});
+
+console.log("");
+console.log("候補化が薄い主な業種");
+summarize(universe, "sector", stockCodes)
+  .filter((item) => item.total >= 40)
+  .sort((a, b) => a.coverage - b.coverage || b.total - a.total)
+  .slice(0, 8)
+  .forEach((item) => {
+    console.log(`- ${item.label}: ${item.total}件 / 候補化 ${item.covered}件`);
+  });
+
 if (missingInStockMaster.length) {
   console.log("");
   console.log("次に候補化する銘柄");
@@ -51,4 +67,21 @@ if (duplicates.length) {
   console.log("");
   console.log(`重複コード: ${[...new Set(duplicates)].join(", ")}`);
   process.exit(1);
+}
+
+function summarize(items, field, coveredCodes) {
+  const groups = new Map();
+  for (const item of items) {
+    const label = item[field] || "Unknown";
+    const group = groups.get(label) ?? { label, total: 0, covered: 0 };
+    group.total += 1;
+    if (coveredCodes.has(item.code)) group.covered += 1;
+    groups.set(label, group);
+  }
+  return [...groups.values()]
+    .map((group) => ({
+      ...group,
+      coverage: group.total ? group.covered / group.total : 0,
+    }))
+    .sort((a, b) => b.total - a.total || a.label.localeCompare(b.label, "ja"));
 }
