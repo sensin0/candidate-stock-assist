@@ -18,6 +18,7 @@
     "universe:metrics": "node scripts/build-universe-metrics.mjs",
     "universe:screen": "node scripts/universe-screen.mjs",
     "backtest": "node scripts/backtest-timing.mjs",
+    "backtest:research": "node scripts/research-price-backtest.mjs",
     "stock-master:build": "node scripts/build-stock-master-from-input.mjs",
     "production:check": "node scripts/production-check.mjs",
     "pages:build": "node scripts/build-pages.mjs",

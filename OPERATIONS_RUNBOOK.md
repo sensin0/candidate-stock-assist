@@ -58,6 +58,14 @@ npm run backtest
 
 バックテストは `history` の価格推移から、買いライン到達、5%以内で早めに買い、下げ止まり反転の3パターンを比較します。履歴が短い銘柄は画面で `参考` と表示します。
 
+実価格で半年・1年・2年をまとめて調べる:
+
+```powershell
+npm run backtest:research
+```
+
+結果は `reports/latest-price-backtest.md` と `data/price-backtest-results.csv` に出ます。
+
 少ない列から作る場合:
 
 ```powershell
