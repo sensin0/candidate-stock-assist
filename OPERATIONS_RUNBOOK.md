@@ -66,6 +66,14 @@ npm run backtest:research
 
 結果は `reports/latest-price-backtest.md` と `data/price-backtest-results.csv` に出ます。
 
+日本株母集団から価格だけで広く一次候補を探す:
+
+```powershell
+npm run backtest:universe
+```
+
+初期設定では母集団の先頭1000件を調べます。対象件数を変える場合は `UNIVERSE_BACKTEST_LIMIT=3000` のように指定します。結果は `reports/latest-universe-price-backtest.md` と `data/universe-price-backtest.csv` に出ます。
+
 少ない列から作る場合:
 
 ```powershell
