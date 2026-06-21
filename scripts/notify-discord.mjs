@@ -5,11 +5,13 @@ import { fileURLToPath } from "node:url";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const reportPath = path.join(rootDir, "reports", "latest-morning-report.md");
+const multibaggerReportPath = path.join(rootDir, "reports", "latest-multibagger-candidates.md");
 const generatedDataPath = path.join(rootDir, "app", "generated-data.js");
 const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
 const dryRun = process.env.DISCORD_DRY_RUN === "1" || process.argv.includes("--dry-run");
 const siteUrl = process.env.PAGES_URL || "https://sensin0.github.io/candidate-stock-assist/";
 const reportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-morning-report.md`;
+const multibaggerReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-multibagger-candidates.md`;
 
 if (!webhookUrl && !dryRun) {
   console.log("DISCORD_WEBHOOK_URL が未設定のため、Discord通知をスキップします");
@@ -22,6 +24,7 @@ if (!fs.existsSync(reportPath)) {
 }
 
 const report = fs.readFileSync(reportPath, "utf8");
+const multibaggerReport = fs.existsSync(multibaggerReportPath) ? fs.readFileSync(multibaggerReportPath, "utf8") : "";
 const generatedData = fs.existsSync(generatedDataPath) ? fs.readFileSync(generatedDataPath, "utf8") : "";
 const generatedPayload = parseGeneratedData(generatedData);
 const dataQuality = generatedPayload?.dataQuality ?? null;
@@ -33,7 +36,11 @@ function countSection(title) {
 }
 
 function firstItems(title, limit = 3) {
-  const match = report.match(new RegExp(`## ${title}\\n([\\s\\S]*?)(\\n## |$)`));
+  return firstReportItems(report, title, limit);
+}
+
+function firstReportItems(text, title, limit = 3) {
+  const match = text.match(new RegExp(`## ${title}\\n([\\s\\S]*?)(\\n## |$)`));
   if (!match || match[1].includes("該当なし")) return ["該当なし"];
   return match[1]
     .split("\n")
@@ -81,6 +88,9 @@ const message = [
   "",
   "今買い候補",
   ...firstItems("今買い候補").map((item) => `- ${item}`),
+  "",
+  "2倍監視候補",
+  ...firstReportItems(multibaggerReport, "2倍監視候補", 2).map((item) => `- ${item}`),
   ...providerWarningLines(dataQuality),
   ...stockUniverseWarningLines(stockCount),
   ...dataWarningLines("入力値の注意", dataQuality?.validationWarnings),
@@ -88,6 +98,7 @@ const message = [
   "",
   siteUrl,
   reportUrl,
+  multibaggerReportUrl,
 ].join("\n");
 
 const body = JSON.stringify({

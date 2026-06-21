@@ -47,6 +47,9 @@ jobs:
           EDINET_FACTS_CSV_URL: ${{ secrets.EDINET_FACTS_CSV_URL }}
           WATCHLIST_CSV_URL: ${{ secrets.WATCHLIST_CSV_URL }}
 
+      - name: Research reports
+        run: npm run research:morning
+
       - name: Build Pages files
         run: npm run pages:build
 
@@ -90,6 +93,9 @@ jobs:
           DISCLOSURE_CSV_URL: ${{ secrets.DISCLOSURE_CSV_URL }}
           EDINET_FACTS_CSV_URL: ${{ secrets.EDINET_FACTS_CSV_URL }}
           WATCHLIST_CSV_URL: ${{ secrets.WATCHLIST_CSV_URL }}
+
+      - name: Prepare research reports
+        run: npm run research:morning
 
       - name: Notify Discord
         run: npm run notify:discord

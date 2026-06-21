@@ -82,6 +82,14 @@ npm run multibagger:research
 
 結果は `reports/latest-multibagger-candidates.md` と `data/multibagger-candidates.csv` に出ます。価格だけで選んだ候補なので、買う前に財務と開示の確認が必要です。
 
+朝の公開前に広い調査レポートをまとめて更新する:
+
+```powershell
+npm run research:morning
+```
+
+GitHub Actionsの朝実行でも同じ処理が走ります。外部の株価取得に失敗した場合は、公開と通知を止めずに既存レポートを使います。
+
 少ない列から作る場合:
 
 ```powershell

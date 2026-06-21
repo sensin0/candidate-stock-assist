@@ -19,6 +19,9 @@ const requiredFiles = [
   "scripts/update-data.mjs",
   "scripts/backtest-core.mjs",
   "scripts/backtest-timing.mjs",
+  "scripts/research-universe-price-backtest.mjs",
+  "scripts/analyze-multibagger-candidates.mjs",
+  "scripts/research-morning.mjs",
   "scripts/build-stock-master-from-input.mjs",
   "scripts/production-check.mjs",
   "scripts/build-pages.mjs",
@@ -57,6 +60,10 @@ const requiredFiles = [
   "scripts/providers/backtest-provider.mjs",
   "data/backtest-results.csv",
   "sheet-templates/backtest-results.csv",
+  "data/universe-price-backtest.csv",
+  "data/multibagger-candidates.csv",
+  "reports/latest-universe-price-backtest.md",
+  "reports/latest-multibagger-candidates.md",
 ];
 
 const missing = requiredFiles.filter((file) => !fs.existsSync(path.join(rootDir, file)));
@@ -74,6 +81,7 @@ const checks = [
   ["listed universe", process.execPath, ["scripts/universe-check.mjs"]],
   ["universe screening", process.execPath, ["scripts/universe-screen.mjs"]],
   ["backtest timing", process.execPath, ["scripts/backtest-timing.mjs"]],
+  ["morning research syntax", process.execPath, ["--check", "scripts/research-morning.mjs"]],
   ["sheet templates", process.execPath, ["scripts/sheet-templates.test.mjs"]],
   ["data quality", process.execPath, ["scripts/data-quality.test.mjs"]],
   ["discord notification preview", process.execPath, ["scripts/notify-discord.test.mjs"]],
