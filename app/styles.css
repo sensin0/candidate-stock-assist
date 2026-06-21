@@ -151,6 +151,15 @@ main {
   margin-bottom: 2px;
 }
 
+.summary-buy-active {
+  border-color: #9ed3b8;
+  background: #effaf4;
+}
+
+.summary-buy-active h2 {
+  color: var(--green);
+}
+
 .summary-stats {
   display: grid;
   grid-template-columns: repeat(5, minmax(72px, 1fr));
@@ -501,6 +510,44 @@ select {
   padding: 7px 9px;
   font-size: 12px;
   line-height: 1.4;
+}
+
+.buy-timing-alert {
+  border: 2px solid var(--green);
+  border-radius: 8px;
+  background: #f0fbf5;
+  padding: 14px;
+  margin-bottom: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.buy-timing-alert h3 {
+  margin: 0 0 6px;
+  color: var(--green);
+  font-size: 22px;
+}
+
+.buy-timing-alert p {
+  margin-bottom: 0;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.buy-timing-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.buy-timing-values span {
+  border: 1px solid #b9d8c7;
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--green);
+  padding: 6px 9px;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .timing-panel {

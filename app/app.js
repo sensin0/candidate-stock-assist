@@ -685,8 +685,12 @@ function renderSummary() {
   const qualityWarning = window.AUTO_STOCK_DATA?.dataQuality?.ok === false
     ? " データ要確認の項目があります。"
     : "";
+  document.getElementById("summaryBand").className = `summary-band${buyNow ? " summary-buy-active" : ""}`;
+  document.getElementById("todaySummaryTitle").textContent = buyNow ? "買いタイミング点灯中" : "今日の結論";
   document.getElementById("todaySummary").textContent =
-    `表示中の${visible.length}銘柄では、今買い候補${buyNow}件、今売り検討${sellNow}件、買い場に近い銘柄${near}件、監視中${watched}件、リスク確認${risk}件です。${qualityWarning}`;
+    buyNow
+      ? `今買い候補が${buyNow}件あります。銘柄詳細の緑の表示を確認してください。条件から外れたらこの表示は消えます。${qualityWarning}`
+      : `表示中の${visible.length}銘柄では、今買い候補${buyNow}件、今売り検討${sellNow}件、買い場に近い銘柄${near}件、監視中${watched}件、リスク確認${risk}件です。${qualityWarning}`;
   document.getElementById("summaryStats").innerHTML = [
     ["今買い", buyNow],
     ["売り検討", sellNow],
@@ -870,12 +874,37 @@ function renderDetail() {
     stock.qualitativeDone ? "有報確認済み" : "有報確認待ち",
     stock.edinet?.periodEnd ? `有報 ${stock.edinet.periodEnd}` : "有報未取得",
   ].map((label) => `<span class="badge">${label}</span>`).join("") + renderFreshnessBadge(stock);
+  document.getElementById("buyTimingAlert").innerHTML = renderBuyTimingAlert(stock);
   document.getElementById("timingPanel").innerHTML = renderTimingPanel(stock);
   document.getElementById("tradeMeter").innerHTML = renderTradeMeter(stock);
   document.getElementById("chart").innerHTML = renderChart(stock);
   document.getElementById("reasonList").innerHTML = stock.assist.reasons.map((r) => `<li>${r}</li>`).join("");
   document.getElementById("nextActionList").innerHTML = stock.assist.nextActions.map((a) => `<li>${a}</li>`).join("");
   document.getElementById("metricGrid").innerHTML = renderMetrics(stock);
+}
+
+function isBuyTiming(stock) {
+  return stock.assist.label === "今買い候補";
+}
+
+function renderBuyTimingAlert(stock) {
+  if (!isBuyTiming(stock)) return "";
+  const backtest = stock.backtest ?? {};
+  return `
+    <section class="buy-timing-alert" aria-label="買いタイミング">
+      <div>
+        <p class="eyebrow">買いタイミング点灯中</p>
+        <h3>今は買い候補です</h3>
+        <p>${stock.assist.reasons[0] ?? "買いライン付近です"}。条件から外れたらこの表示は消えます。</p>
+      </div>
+      <div class="buy-timing-values">
+        <span>現在 ${yen(stock.price)}</span>
+        <span>買いライン ${yen(stock.buyLine)}</span>
+        <span>上昇余地 ${pct(stock.upside)}</span>
+        <span>検証 ${backtest.confidence ?? "未検証"}</span>
+      </div>
+    </section>
+  `;
 }
 
 function renderTimingPanel(stock) {
