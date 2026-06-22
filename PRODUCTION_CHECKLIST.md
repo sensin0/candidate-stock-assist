@@ -18,6 +18,7 @@
 - 朝に見る優先順位
 - 売買ラインをチャート表示
 - ランキング表示
+- 日本株全体バックテストから通常候補追加プレビューを作成
 
 ## 残りの拡張工程
 
@@ -31,6 +32,7 @@
 作業:
 
 - `data/stock-master.csv` またはGoogle Sheetsの `stock-master` に候補銘柄を追加
+- `npm run stock-master:preview-expanded` で確認前候補を見て、財務確認後に通常候補へ昇格
 - Google Sheets運用にする場合は `STOCK_MASTER_CSV_URL` をGitHub Secretsに登録
 - `npm run production:check` または `npm run notify:preview` で件数を確認
 

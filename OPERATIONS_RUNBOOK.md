@@ -112,6 +112,14 @@ npm run stock-master:draft
 
 結果は `data/stock-master-input-draft.csv` と `reports/latest-stock-master-draft.md` に出ます。株価は取得値、財務は確認前の仮置きなので、通常候補に反映する前に有報と決算で確認します。
 
+既存の通常候補に下書きを足した確認用プレビューを見る:
+
+```powershell
+npm run stock-master:preview-expanded
+```
+
+結果は `data/stock-master-expanded-preview.csv` と `reports/latest-stock-master-expanded-preview.md` に出ます。これは通常候補を増やした場合の見え方を確認するためのもので、財務確認前の銘柄は `推定` として扱います。
+
 少ない列から作る場合:
 
 ```powershell
@@ -226,6 +234,7 @@ Discord通知が来ない:
 候補が少ない:
 
 - `stock-master` を増やす
+- `stock-master:preview-expanded` で追加候補を確認する
 - Google Sheets運用の場合は `STOCK_MASTER_CSV_URL` が設定済みか見る
 - Discord通知の `対象銘柄数` を確認する
 

@@ -26,6 +26,7 @@
     "research:morning": "node scripts/research-morning.mjs",
     "stock-master:build": "node scripts/build-stock-master-from-input.mjs",
     "stock-master:draft": "node scripts/build-stock-master-draft-from-promotions.mjs",
+    "stock-master:preview-expanded": "node scripts/build-stock-master-expanded-preview.mjs",
     "production:check": "node scripts/production-check.mjs",
     "pages:build": "node scripts/build-pages.mjs",
     "cloud:check": "node scripts/check-cloud-ready.mjs",

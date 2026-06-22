@@ -8,6 +8,7 @@ const steps = [
   ["2倍候補調査", "scripts/analyze-multibagger-candidates.mjs"],
   ["通常候補への昇格候補抽出", "scripts/build-promotion-candidates.mjs"],
   ["通常候補入力下書き生成", "scripts/build-stock-master-draft-from-promotions.mjs"],
+  ["通常候補追加プレビュー生成", "scripts/build-stock-master-expanded-preview.mjs"],
   ["画面用調査データ生成", "scripts/build-research-data.mjs"],
 ];
 

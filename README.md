@@ -67,6 +67,7 @@ WATCHLIST_CSV_URL
 
 未設定の場合は `data/*.csv` を使います。
 銘柄数を増やす場合は、まず `data/stock-master.csv` を20件以上にします。
+全体調査から拾った候補は `data/stock-master-expanded-preview.csv` に確認用として出します。ここは財務確認前なので、通常候補へ反映する前に有報と決算で確認します。
 Google Sheetsで運用したい場合は、`STOCK_MASTER_CSV_URL` に候補銘柄の母集団CSVを登録します。
 
 Googleスプレッドシートを使う場合は、シートをCSVとして公開し、そのURLをSecretsに入れます。
@@ -130,6 +131,7 @@ npm run promotion:research
 npm run research:data
 npm run research:morning
 npm run stock-master:draft
+npm run stock-master:preview-expanded
 npm run stock-master:build
 npm run production:check
 npm run pages:build
