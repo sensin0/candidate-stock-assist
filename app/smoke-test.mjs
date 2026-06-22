@@ -61,12 +61,16 @@ const generatedResearch = fs.existsSync(new URL("./generated-research.js", impor
 const generatedExpansion = fs.existsSync(new URL("./generated-expansion-preview.js", import.meta.url))
   ? fs.readFileSync(new URL("./generated-expansion-preview.js", import.meta.url), "utf8")
   : "";
+const generatedPromotionReadiness = fs.existsSync(new URL("./generated-promotion-readiness.js", import.meta.url))
+  ? fs.readFileSync(new URL("./generated-promotion-readiness.js", import.meta.url), "utf8")
+  : "";
 const code = fs.readFileSync(new URL("./app.js", import.meta.url), "utf8");
 
 vm.runInContext(
   `${generatedData}
   ${generatedResearch}
   ${generatedExpansion}
+  ${generatedPromotionReadiness}
   ${code}
   selectedCode = byAssist("今買い候補")[0]?.code
     ?? byAssist("検証弱く見送り")[0]?.code
@@ -79,6 +83,7 @@ vm.runInContext(
   const normalLifecycle = document.getElementById("lifecycleAssist").innerHTML;
   const normalTimingPanel = document.getElementById("timingPanel").innerHTML;
   const normalBuyTimingAlert = document.getElementById("buyTimingAlert").innerHTML;
+  const dataCheckList = document.getElementById("dataCheckList").innerHTML;
   document.getElementById("rankingSelect").value = "researchUniverse";
   renderRanking();
   const researchRanking = document.getElementById("rankingList").innerHTML;
@@ -112,6 +117,7 @@ vm.runInContext(
     mobileLynchPreview,
     lifecycle: normalLifecycle,
     buyTimingAlert: normalBuyTimingAlert,
+    dataCheckList,
     researchOverview: document.getElementById("researchOverview").innerHTML,
     researchRanking,
     researchTimingRanking,
@@ -139,6 +145,7 @@ if (result.risk < 1) failures.push("リスク確認が1件以上必要です");
 if (result.watched < 1) failures.push("監視リストが1件以上必要です");
 if (!result.report.includes("# 朝レポート")) failures.push("朝レポートが生成されていません");
 if (!result.report.includes("## 監視リスト")) failures.push("朝レポートに監視リストがありません");
+if (!result.dataCheckList.includes("昇格準備")) failures.push("データ確認に昇格準備がありません");
 if (!result.chart.includes("ここで買い候補") && !result.chart.includes("ここから売り検討") && !result.chart.includes("見送り")) {
   failures.push("チャートの売買アシスト吹き出しが生成されていません");
 }

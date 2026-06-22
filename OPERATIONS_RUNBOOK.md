@@ -104,6 +104,14 @@ npm run promotion:research
 
 結果は `reports/latest-promotion-candidates.md` と `data/promotion-candidates.csv` に出ます。ここで上位の銘柄からBPS、EPS、現金、有利子負債、発行株数を確認して、通常候補へ入れます。
 
+昇格候補の中で、どれから財務確認するかを見る:
+
+```powershell
+npm run promotion:readiness
+```
+
+結果は `reports/latest-promotion-readiness.md` と `data/promotion-readiness.csv` に出ます。`最優先で財務確認` の上位から確認します。
+
 昇格候補から通常候補入力の下書きを作る:
 
 ```powershell

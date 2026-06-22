@@ -17,6 +17,7 @@ const allowedMarkdown = new Set([
   "reports/latest-multibagger-candidates.md",
   "reports/latest-price-backtest.md",
   "reports/latest-promotion-candidates.md",
+  "reports/latest-promotion-readiness.md",
   "reports/latest-stock-master-expanded-preview.md",
   "reports/latest-stock-master-draft.md",
   "reports/latest-universe-price-backtest.md",

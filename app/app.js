@@ -713,10 +713,12 @@ function renderDataCheck() {
   const data = window.AUTO_STOCK_DATA;
   const research = window.AUTO_RESEARCH_DATA;
   const expansion = window.AUTO_EXPANSION_PREVIEW;
+  const readinessData = window.AUTO_PROMOTION_READINESS;
   const quality = data?.dataQuality;
   const stockCount = stocks.length;
   const previewAddCount = expansion?.previewAddCount ?? expansion?.items?.length ?? 0;
   const expandedCount = expansion?.expandedCount ?? stockCount + previewAddCount;
+  const priorityReadyCount = readinessData?.priorityCount ?? 0;
   const universeCount = research?.universe?.success ?? 0;
   const universeTotal = research?.universe?.total ?? 0;
   const providerWarnings = quality?.providerWarnings ?? [];
@@ -754,6 +756,12 @@ function renderDataCheck() {
       `${previewAddCount}件`,
       previewAddCount ? `財務確認後の候補数イメージは${expandedCount}件です` : "追加候補はまだありません",
       previewAddCount ? "warn" : "alert",
+    ),
+    dataCheckItem(
+      "昇格準備",
+      `${priorityReadyCount}件`,
+      priorityReadyCount ? "最優先で財務確認する候補があります" : "昇格準備データ待ちです",
+      priorityReadyCount ? "warn" : "alert",
     ),
     dataCheckItem(
       "日本株全体",

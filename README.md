@@ -128,6 +128,7 @@ npm run backtest:research
 npm run backtest:universe
 npm run multibagger:research
 npm run promotion:research
+npm run promotion:readiness
 npm run research:data
 npm run research:morning
 npm run stock-master:draft

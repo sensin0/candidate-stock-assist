@@ -7,6 +7,7 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const reportPath = path.join(rootDir, "reports", "latest-morning-report.md");
 const multibaggerReportPath = path.join(rootDir, "reports", "latest-multibagger-candidates.md");
 const promotionReportPath = path.join(rootDir, "reports", "latest-promotion-candidates.md");
+const readinessReportPath = path.join(rootDir, "reports", "latest-promotion-readiness.md");
 const draftReportPath = path.join(rootDir, "reports", "latest-stock-master-draft.md");
 const expandedPreviewReportPath = path.join(rootDir, "reports", "latest-stock-master-expanded-preview.md");
 const generatedDataPath = path.join(rootDir, "app", "generated-data.js");
@@ -17,6 +18,7 @@ const siteUrl = process.env.PAGES_URL || "https://sensin0.github.io/candidate-st
 const reportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-morning-report.md`;
 const multibaggerReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-multibagger-candidates.md`;
 const promotionReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-promotion-candidates.md`;
+const readinessReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-promotion-readiness.md`;
 const draftReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-stock-master-draft.md`;
 const expandedPreviewReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-stock-master-expanded-preview.md`;
 
@@ -33,6 +35,7 @@ if (!fs.existsSync(reportPath)) {
 const report = fs.readFileSync(reportPath, "utf8");
 const multibaggerReport = fs.existsSync(multibaggerReportPath) ? fs.readFileSync(multibaggerReportPath, "utf8") : "";
 const promotionReport = fs.existsSync(promotionReportPath) ? fs.readFileSync(promotionReportPath, "utf8") : "";
+const readinessReport = fs.existsSync(readinessReportPath) ? fs.readFileSync(readinessReportPath, "utf8") : "";
 const draftReport = fs.existsSync(draftReportPath) ? fs.readFileSync(draftReportPath, "utf8") : "";
 const expandedPreviewReport = fs.existsSync(expandedPreviewReportPath) ? fs.readFileSync(expandedPreviewReportPath, "utf8") : "";
 const generatedData = fs.existsSync(generatedDataPath) ? fs.readFileSync(generatedDataPath, "utf8") : "";
@@ -109,6 +112,9 @@ const message = [
   "通常候補への昇格確認",
   ...firstReportItems(promotionReport, "優先して財務確認", 2).map((item) => `- ${item}`),
   "",
+  "昇格準備チェック",
+  ...firstReportItems(readinessReport, "最優先で財務確認", 2).map((item) => `- ${item}`),
+  "",
   "通常候補入力下書き",
   ...firstReportItems(draftReport, "上位下書き", 2).map((item) => `- ${item}`),
   "",
@@ -123,6 +129,7 @@ const message = [
   reportUrl,
   multibaggerReportUrl,
   promotionReportUrl,
+  readinessReportUrl,
   draftReportUrl,
   expandedPreviewReportUrl,
 ].join("\n");
