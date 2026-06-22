@@ -548,6 +548,10 @@ main {
   padding: 18px;
 }
 
+.mobile-lynch-preview {
+  display: none;
+}
+
 select {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -996,5 +1000,20 @@ footer {
 
   .import-status {
     margin-left: 0;
+  }
+
+  .mobile-lynch-preview {
+    display: block;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+
+  .mobile-lynch-preview .section-heading {
+    margin-bottom: 10px;
+  }
+
+  .detail-panel > #lynchChart {
+    display: none;
   }
 }

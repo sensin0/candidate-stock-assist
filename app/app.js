@@ -910,6 +910,20 @@ function renderRanking() {
     list.map((stock, index) => renderRankingRow(stock, index)).join("") || `<p class="reason">該当なし</p>`;
 }
 
+function renderMobileLynchPreview(content, title) {
+  const element = document.getElementById("mobileLynchPreview");
+  if (!element) return;
+  element.innerHTML = `
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">選択中</p>
+        <h3>${escapeHtml(title)}</h3>
+      </div>
+    </div>
+    <div class="chart" role="img" aria-label="選択中銘柄のリンチ・チャート">${content}</div>
+  `;
+}
+
 function filteredExpansionItems(items) {
   const q = searchQuery.trim().toLowerCase();
   return items
@@ -1046,7 +1060,9 @@ function renderDetail() {
   document.getElementById("lifecycleAssist").innerHTML = renderLifecycleAssist(stock);
   document.getElementById("tradeMeter").innerHTML = renderTradeMeter(stock);
   document.getElementById("chart").innerHTML = renderChart(stock);
-  document.getElementById("lynchChart").innerHTML = renderLynchChart(stock);
+  const lynchChart = renderLynchChart(stock);
+  document.getElementById("lynchChart").innerHTML = lynchChart;
+  renderMobileLynchPreview(lynchChart, `${stock.name}のリンチ・チャート`);
   document.getElementById("reasonList").innerHTML = stock.assist.reasons.map((r) => `<li>${r}</li>`).join("");
   document.getElementById("nextActionList").innerHTML = stock.assist.nextActions.map((a) => `<li>${a}</li>`).join("");
   document.getElementById("metricGrid").innerHTML = renderMetrics(stock);
@@ -1077,7 +1093,9 @@ function renderExpansionDetail(item) {
   document.getElementById("lifecycleAssist").innerHTML = renderExpansionLifecycleAssist(item);
   document.getElementById("tradeMeter").innerHTML = renderExpansionMeter(item);
   document.getElementById("chart").innerHTML = renderExpansionChart(item);
-  document.getElementById("lynchChart").innerHTML = renderExpansionLynchPlaceholder(item);
+  const lynchChart = renderExpansionLynchPlaceholder(item);
+  document.getElementById("lynchChart").innerHTML = lynchChart;
+  renderMobileLynchPreview(lynchChart, `${item.name}のリンチ・チャート`);
   document.getElementById("reasonList").innerHTML = [
     "日本株全体スクリーニングから通常候補への追加候補に入っています",
     "まだ買い候補ではなく、BPS、EPS、現金、有利子負債、発行株数の確認が先です",
@@ -1111,7 +1129,9 @@ function renderResearchDetail(item, type) {
   document.getElementById("lifecycleAssist").innerHTML = renderResearchLifecycleAssist(item);
   document.getElementById("tradeMeter").innerHTML = renderResearchMeter(item);
   document.getElementById("chart").innerHTML = renderResearchChart(item);
-  document.getElementById("lynchChart").innerHTML = renderResearchLynchPlaceholder(item);
+  const lynchChart = renderResearchLynchPlaceholder(item);
+  document.getElementById("lynchChart").innerHTML = lynchChart;
+  renderMobileLynchPreview(lynchChart, `${item.name}のリンチ・チャート`);
   document.getElementById("reasonList").innerHTML = [
     comment,
     `価格検証の平均は${pct(item.averageReturn ?? 0)}、勝率は${pct(item.winRate ?? 0)}です`,
@@ -1843,6 +1863,7 @@ function setupEvents() {
         code: researchCard.dataset.researchCode,
       };
       render();
+      scrollMobileLynchPreviewIntoView();
       return;
     }
 
@@ -1851,6 +1872,7 @@ function setupEvents() {
     selectedCode = card.dataset.code;
     selectedResearch = null;
     render();
+    scrollMobileLynchPreviewIntoView();
   });
   document.getElementById("rankingSelect").addEventListener("change", renderRanking);
   document.getElementById("sampleButton").addEventListener("click", loadSample);
@@ -1889,6 +1911,13 @@ function setupEvents() {
       event.target.value = "";
     }
   });
+}
+
+function scrollMobileLynchPreviewIntoView() {
+  if (!window.matchMedia("(max-width: 760px)").matches) return;
+  const element = document.getElementById("mobileLynchPreview");
+  if (!element) return;
+  element.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 function setImportStatus(message, isError = false) {

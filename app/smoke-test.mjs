@@ -17,6 +17,7 @@ function makeElement(id = "") {
     closest() {
       return null;
     },
+    scrollIntoView() {},
   };
 }
 
@@ -46,6 +47,7 @@ const sandbox = {
   },
   setTimeout,
   console,
+  matchMedia: () => ({ matches: false }),
 };
 
 sandbox.window = sandbox;
@@ -73,6 +75,7 @@ vm.runInContext(
   renderDetail();
   const normalChart = document.getElementById("chart").innerHTML;
   const normalLynchChart = document.getElementById("lynchChart").innerHTML;
+  const mobileLynchPreview = document.getElementById("mobileLynchPreview").innerHTML;
   const normalLifecycle = document.getElementById("lifecycleAssist").innerHTML;
   const normalTimingPanel = document.getElementById("timingPanel").innerHTML;
   const normalBuyTimingAlert = document.getElementById("buyTimingAlert").innerHTML;
@@ -106,6 +109,7 @@ vm.runInContext(
     report: document.getElementById("morningReport").value,
     chart: normalChart,
     lynchChart: normalLynchChart,
+    mobileLynchPreview,
     lifecycle: normalLifecycle,
     buyTimingAlert: normalBuyTimingAlert,
     researchOverview: document.getElementById("researchOverview").innerHTML,
@@ -146,6 +150,9 @@ if (!result.lifecycle.includes("買いから売りまで")) {
 }
 if (!result.lynchChart.includes("リンチ・チャート")) {
   failures.push("リンチ・チャートが生成されていません");
+}
+if (!result.mobileLynchPreview.includes("選択中") || !result.mobileLynchPreview.includes("リンチ・チャート")) {
+  failures.push("モバイル用リンチ・チャートプレビューが生成されていません");
 }
 if (!result.researchOverview.includes("日本株全体") || !result.researchOverview.includes("2倍監視")) {
   failures.push("広域バックテスト候補が生成されていません");
