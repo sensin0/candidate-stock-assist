@@ -877,6 +877,7 @@ function markerPosition(stock) {
 }
 
 function rankingFor(type) {
+  if (type === "expansionPreview") return filteredExpansionItems(window.AUTO_EXPANSION_PREVIEW?.items ?? []);
   if (type === "researchTiming") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.timingBuys ?? []);
   if (type === "researchUniverse") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.universeAll ?? window.AUTO_RESEARCH_DATA?.universeTop ?? []);
   if (type === "researchMultibagger") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.multibaggerWatch ?? []);
@@ -895,6 +896,11 @@ function rankingFor(type) {
 function renderRanking() {
   const type = document.getElementById("rankingSelect").value;
   const list = rankingFor(type).slice(0, 20);
+  if (type === "expansionPreview") {
+    document.getElementById("rankingList").innerHTML =
+      list.map((item, index) => renderExpansionRankingRow(item, index)).join("") || `<p class="reason">該当なし</p>`;
+    return;
+  }
   if (type === "researchUniverse" || type === "researchMultibagger" || type === "researchTiming") {
     document.getElementById("rankingList").innerHTML =
       list.map((item, index) => renderResearchRankingRow(item, index, type)).join("") || `<p class="reason">該当なし</p>`;
@@ -902,6 +908,16 @@ function renderRanking() {
   }
   document.getElementById("rankingList").innerHTML =
     list.map((stock, index) => renderRankingRow(stock, index)).join("") || `<p class="reason">該当なし</p>`;
+}
+
+function filteredExpansionItems(items) {
+  const q = searchQuery.trim().toLowerCase();
+  return items
+    .filter((item) => {
+      const text = `${item.code} ${item.name} ${item.sector}`.toLowerCase();
+      return !q || text.includes(q);
+    })
+    .sort((a, b) => a.rank - b.rank);
 }
 
 function filteredResearchItems(items) {
@@ -912,6 +928,29 @@ function filteredResearchItems(items) {
       return !q || text.includes(q);
     })
     .sort((a, b) => (b.qualityRank ?? b.timingRank ?? b.score ?? 0) - (a.qualityRank ?? a.timingRank ?? a.score ?? 0));
+}
+
+function renderExpansionRankingRow(item, index) {
+  const isActive = selectedResearch?.type === "expansionPreview" && selectedResearch?.code === item.code;
+  return `
+    <article class="ranking-row research-ranking-row ${isActive ? "active" : ""}" data-research-type="expansionPreview" data-research-code="${escapeHtml(item.code)}">
+      <div class="ranking-top">
+        <div>
+          <strong>${index + 1}. ${escapeHtml(item.name)}</strong>
+          <div class="stock-code">${escapeHtml(item.code)} / ${escapeHtml(item.sector || "未分類")}</div>
+        </div>
+        <span class="assist-label label-research">確認前</span>
+      </div>
+      <p class="reason">通常候補へ入れる前の追加候補です。株価は取得済み、財務は確認前です。</p>
+      <div class="ranking-meta">
+        <span>${escapeHtml(item.dataConfidence || "推定")}</span>
+        <span>株価 ${yen(item.price)}</span>
+        <span>BPS確認 ${yen(item.bps)}</span>
+        <span>EPS確認 ${Math.round((item.eps ?? 0) * 10) / 10}</span>
+        <span>財務確認前</span>
+      </div>
+    </article>
+  `;
 }
 
 function renderResearchRankingRow(item, index, type) {
@@ -980,7 +1019,11 @@ function topReason(stock) {
 function renderDetail() {
   const researchItem = selectedResearch ? findResearchItem(selectedResearch.type, selectedResearch.code) : null;
   if (researchItem) {
-    renderResearchDetail(researchItem, selectedResearch.type);
+    if (selectedResearch.type === "expansionPreview") {
+      renderExpansionDetail(researchItem);
+    } else {
+      renderResearchDetail(researchItem, selectedResearch.type);
+    }
     return;
   }
 
@@ -1010,10 +1053,43 @@ function renderDetail() {
 }
 
 function findResearchItem(type, code) {
+  if (type === "expansionPreview") {
+    return (window.AUTO_EXPANSION_PREVIEW?.items ?? []).find((item) => item.code === code) ?? null;
+  }
   const items = type === "researchMultibagger"
     ? window.AUTO_RESEARCH_DATA?.multibaggerWatch ?? []
     : window.AUTO_RESEARCH_DATA?.universeTop ?? [];
   return items.find((item) => item.code === code) ?? null;
+}
+
+function renderExpansionDetail(item) {
+  document.getElementById("detailAssist").textContent = "追加候補確認";
+  document.getElementById("detailAssist").className = "assist-label label-research";
+  document.getElementById("detailTitle").textContent = `${item.name} (${item.code})`;
+  document.getElementById("detailBadges").innerHTML = [
+    "通常候補前",
+    item.dataConfidence || "推定",
+    "財務確認前",
+    item.sector || "未分類",
+  ].map((badge) => `<span class="badge">${escapeHtml(badge)}</span>`).join("");
+  document.getElementById("buyTimingAlert").innerHTML = "";
+  document.getElementById("timingPanel").innerHTML = renderExpansionTimingPanel(item);
+  document.getElementById("lifecycleAssist").innerHTML = renderExpansionLifecycleAssist(item);
+  document.getElementById("tradeMeter").innerHTML = renderExpansionMeter(item);
+  document.getElementById("chart").innerHTML = renderExpansionChart(item);
+  document.getElementById("lynchChart").innerHTML = renderExpansionLynchPlaceholder(item);
+  document.getElementById("reasonList").innerHTML = [
+    "日本株全体スクリーニングから通常候補への追加候補に入っています",
+    "まだ買い候補ではなく、BPS、EPS、現金、有利子負債、発行株数の確認が先です",
+    item.catalyst || "価格と財務を確認してから昇格判断します",
+  ].map((reason) => `<li>${escapeHtml(reason)}</li>`).join("");
+  document.getElementById("nextActionList").innerHTML = [
+    "有報と決算短信でBPSとEPSを確認",
+    "現金、有利子負債、発行株数を確認",
+    "急騰直後ではないか、出来高が続いているか確認",
+    "確認できたら通常候補マスタへ昇格",
+  ].map((action) => `<li>${escapeHtml(action)}</li>`).join("");
+  document.getElementById("metricGrid").innerHTML = renderExpansionMetrics(item);
 }
 
 function renderResearchDetail(item, type) {
@@ -1045,6 +1121,27 @@ function renderResearchDetail(item, type) {
     .map((action) => `<li>${escapeHtml(action)}</li>`)
     .join("");
   document.getElementById("metricGrid").innerHTML = renderResearchMetrics(item);
+}
+
+function renderExpansionTimingPanel(item) {
+  return `
+    <section class="timing-card timing-warn" aria-label="追加候補確認">
+      <div>
+        <p class="eyebrow">追加候補確認</p>
+        <h3>買う前に財務確認</h3>
+      </div>
+      <div class="timing-actions">
+        <div><span>今の扱い</span><strong>通常候補前の確認リスト</strong></div>
+        <div><span>次に確認</span><strong>BPS・EPS・現金・負債</strong></div>
+      </div>
+      <div class="timing-stats">
+        <span>株価 ${yen(item.price)}</span>
+        <span>推定BPS ${yen(item.bps)}</span>
+        <span>推定EPS ${Math.round((item.eps ?? 0) * 10) / 10}</span>
+        <span>確認前</span>
+      </div>
+    </section>
+  `;
 }
 
 function renderResearchTimingPanel(item, label) {
@@ -1309,6 +1406,34 @@ function renderResearchLifecycleAssist(item) {
   `;
 }
 
+function renderExpansionLifecycleAssist(item) {
+  return `
+    <section class="lifecycle-assist" aria-label="追加候補の確認手順">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">通常候補へ入れる前</p>
+          <h3>昇格までの順番</h3>
+        </div>
+        <span>確認前</span>
+      </div>
+      <div class="lifecycle-grid">
+        ${[
+          ["価格", `株価は${yen(item.price)}です。まず高値掴みでないか見ます。`, "チャート位置と出来高を確認"],
+          ["財務", "BPS、EPS、現金、有利子負債、発行株数を有報で確認します。", "ここが未確認なら買い候補にしません"],
+          ["価値", "確認済みBPSとPER/PBRレンジで買いラインと売り目安を作ります。", "リンチ・チャートは確認後に本表示"],
+          ["昇格", "財務と材料が揃ったら通常候補へ入れます。", "朝ランキングの対象に昇格"],
+        ].map(([title, message, check], index) => `
+          <article class="lifecycle-step ${index === 1 ? "lifecycle-active tone-risk" : ""}">
+            <strong>${index + 1}. ${escapeHtml(title)}</strong>
+            <p>${escapeHtml(message)}</p>
+            <small>${escapeHtml(check)}</small>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
 function renderTradeMeter(stock) {
   const pos = markerPosition(stock);
   return `
@@ -1323,6 +1448,72 @@ function renderTradeMeter(stock) {
       <span>目標 ${yen(stock.targetPrice)}</span>
     </div>
   `;
+}
+
+function renderExpansionMeter(item) {
+  return `
+    <div class="card-top">
+      <strong>財務確認前</strong>
+      <span>${yen(item.price)}</span>
+    </div>
+    <div class="meter-track"><span class="meter-marker" style="left:50%"></span></div>
+    <div class="meter-labels">
+      <span>確認前</span>
+      <span>現在 ${yen(item.price)}</span>
+      <span>昇格後に売買ライン作成</span>
+    </div>
+  `;
+}
+
+function renderExpansionChart(item) {
+  const history = item.history?.length ? item.history : [item.price * 0.9, item.price * 0.95, item.price];
+  const width = 880;
+  const height = 260;
+  const min = Math.min(...history) * 0.96;
+  const max = Math.max(...history) * 1.06;
+  const points = history.map((price, index) => {
+    const x = 56 + (index / Math.max(1, history.length - 1)) * (width - 112);
+    const y = height - 48 - ((price - min) / Math.max(1, max - min)) * 160;
+    return `${x},${y}`;
+  }).join(" ");
+  return `
+    <svg viewBox="0 0 ${width} ${height}" aria-label="${escapeHtml(item.name)}の追加候補チャート">
+      <rect x="32" y="24" width="${width - 64}" height="196" rx="10" fill="#ffffff" />
+      <line x1="56" x2="${width - 56}" y1="188" y2="188" stroke="#dfe5df" />
+      <polyline points="${points}" fill="none" stroke="#246a9f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="${56 + (width - 112)}" cy="${height - 48 - ((history.at(-1) - min) / Math.max(1, max - min)) * 160}" r="6" fill="#246a9f" />
+      <text x="52" y="48" font-size="13" fill="#65706b">追加候補の価格推移</text>
+      <text x="52" y="72" font-size="18" font-weight="700" fill="#1d2522">買い判断は財務確認後</text>
+      <text x="${width - 52}" y="72" text-anchor="end" font-size="18" font-weight="700" fill="#246a9f">${yen(item.price)}</text>
+    </svg>
+  `;
+}
+
+function renderExpansionLynchPlaceholder(item) {
+  return `
+    <div class="chart-empty">
+      <strong>リンチ・チャートは財務確認後</strong>
+      <p>${escapeHtml(item.name)}は追加候補です。EPSとPERレンジを確認すると、買いラインと売り目安をチャート上に表示できます。</p>
+    </div>
+  `;
+}
+
+function renderExpansionMetrics(item) {
+  const metrics = [
+    ["状態", "通常候補へ入れる前"],
+    ["データ信頼度", item.dataConfidence || "推定"],
+    ["業種", item.sector || "未分類"],
+    ["株価", yen(item.price)],
+    ["推定BPS", yen(item.bps)],
+    ["推定EPS", Math.round((item.eps ?? 0) * 10) / 10],
+    ["推定PBR低め", times(item.pbrLow ?? 0)],
+    ["推定PBR平均", times(item.pbrAvg ?? 0)],
+    ["推定PBR高め", times(item.pbrHigh ?? 0)],
+    ["推定PER平均", times(item.perAvg ?? 0)],
+    ["注意", item.risk || "財務確認前"],
+    ["メモ", item.catalyst || "通常候補への追加候補"],
+  ];
+  return metrics.map(([label, value]) => `<div class="metric"><span>${label}</span><strong>${escapeHtml(value)}</strong></div>`).join("");
 }
 
 function renderMetrics(stock) {

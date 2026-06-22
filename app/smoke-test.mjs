@@ -56,11 +56,15 @@ const generatedData = fs.readFileSync(new URL("./generated-data.js", import.meta
 const generatedResearch = fs.existsSync(new URL("./generated-research.js", import.meta.url))
   ? fs.readFileSync(new URL("./generated-research.js", import.meta.url), "utf8")
   : "";
+const generatedExpansion = fs.existsSync(new URL("./generated-expansion-preview.js", import.meta.url))
+  ? fs.readFileSync(new URL("./generated-expansion-preview.js", import.meta.url), "utf8")
+  : "";
 const code = fs.readFileSync(new URL("./app.js", import.meta.url), "utf8");
 
 vm.runInContext(
   `${generatedData}
   ${generatedResearch}
+  ${generatedExpansion}
   ${code}
   selectedCode = byAssist("今買い候補")[0]?.code
     ?? byAssist("検証弱く見送り")[0]?.code
@@ -81,11 +85,19 @@ vm.runInContext(
   document.getElementById("rankingSelect").value = "researchMultibagger";
   renderRanking();
   const multibaggerRanking = document.getElementById("rankingList").innerHTML;
+  document.getElementById("rankingSelect").value = "expansionPreview";
+  renderRanking();
+  const expansionRanking = document.getElementById("rankingList").innerHTML;
   selectedResearch = { type: "researchUniverse", code: window.AUTO_RESEARCH_DATA.universeTop[0].code };
   renderDetail();
   const researchDetailTitle = document.getElementById("detailTitle").textContent;
   const researchDetailChart = document.getElementById("chart").innerHTML;
   const researchLynchChart = document.getElementById("lynchChart").innerHTML;
+  selectedResearch = { type: "expansionPreview", code: window.AUTO_EXPANSION_PREVIEW.items[0].code };
+  renderDetail();
+  const expansionDetailTitle = document.getElementById("detailTitle").textContent;
+  const expansionDetailChart = document.getElementById("chart").innerHTML;
+  const expansionLynchChart = document.getElementById("lynchChart").innerHTML;
   globalThis.__result = {
     buyNow: byAssist("今買い候補").length,
     sellNow: byAssist("今売り検討").length + byAssist("一部利益確定検討").length,
@@ -100,9 +112,13 @@ vm.runInContext(
     researchRanking,
     researchTimingRanking,
     multibaggerRanking,
+    expansionRanking,
     researchDetailTitle,
     researchDetailChart,
     researchLynchChart,
+    expansionDetailTitle,
+    expansionDetailChart,
+    expansionLynchChart,
     summaryTitle: document.getElementById("todaySummaryTitle").textContent,
     timingPanel: normalTimingPanel
   };`,
@@ -143,11 +159,20 @@ if (!result.researchTimingRanking.includes("上昇タイミング")) {
 if (!result.multibaggerRanking.includes("2倍監視")) {
   failures.push("ランキングに2倍監視が生成されていません");
 }
+if (!result.expansionRanking.includes("確認前")) {
+  failures.push("ランキングに追加候補確認が生成されていません");
+}
 if (!result.researchDetailTitle || !result.researchDetailChart.includes("価格バックテストの見え方")) {
   failures.push("広域候補の詳細が生成されていません");
 }
 if (!result.researchLynchChart.includes("財務確認後に表示")) {
   failures.push("広域候補のリンチ・チャート案内が生成されていません");
+}
+if (!result.expansionDetailTitle || !result.expansionDetailChart.includes("買い判断は財務確認後")) {
+  failures.push("追加候補確認の詳細が生成されていません");
+}
+if (!result.expansionLynchChart.includes("リンチ・チャートは財務確認後")) {
+  failures.push("追加候補確認のリンチ・チャート案内が生成されていません");
 }
 if (result.buyNow > 0 && !result.buyTimingAlert.includes("買いタイミング点灯中")) {
   failures.push("買いタイミング表示が生成されていません");

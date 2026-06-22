@@ -17,6 +17,7 @@ const requiredFiles = [
   "app/app.js",
   "app/styles.css",
   "app/generated-research.js",
+  "app/generated-expansion-preview.js",
   "scripts/update-data.mjs",
   "scripts/backtest-core.mjs",
   "scripts/backtest-timing.mjs",

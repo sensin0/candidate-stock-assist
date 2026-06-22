@@ -7,10 +7,12 @@ import { parseCsvRecords } from "./csv-utils.mjs";
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const previewPath = path.join(rootDir, "data", "stock-master-expanded-preview.csv");
 const reportPath = path.join(rootDir, "reports", "latest-stock-master-expanded-preview.md");
+const appDataPath = path.join(rootDir, "app", "generated-expansion-preview.js");
 const masterPath = path.join(rootDir, "data", "stock-master.csv");
 
 assert.ok(fs.existsSync(previewPath), "stock-master-expanded-preview.csv がありません");
 assert.ok(fs.existsSync(reportPath), "latest-stock-master-expanded-preview.md がありません");
+assert.ok(fs.existsSync(appDataPath), "generated-expansion-preview.js がありません");
 
 const previewRows = parseCsvRecords(fs.readFileSync(previewPath, "utf8"));
 const masterRows = parseCsvRecords(fs.readFileSync(masterPath, "utf8"));
@@ -20,6 +22,10 @@ assert.ok(previewRows.length >= 50, "プレビュー後の候補数は50件以�
 
 const addedRows = previewRows.filter((row) => row.dataConfidence === "推定");
 assert.ok(addedRows.length >= 20, "推定の追加候補が20件以上必要です");
+
+const appData = fs.readFileSync(appDataPath, "utf8");
+assert.match(appData, /AUTO_EXPANSION_PREVIEW/, "画面用の追加候補データがありません");
+assert.match(appData, /財務確認前/, "画面用データに財務確認前の注意がありません");
 
 for (const row of addedRows.slice(0, 10)) {
   assert.match(row.code, /^[0-9A-Z]{4}$/);

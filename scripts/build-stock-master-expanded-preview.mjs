@@ -11,6 +11,7 @@ const stockMasterPath = path.join(dataDir, "stock-master.csv");
 const draftPath = path.join(dataDir, "stock-master-input-draft.csv");
 const outputPath = path.join(dataDir, "stock-master-expanded-preview.csv");
 const reportPath = path.join(reportsDir, "latest-stock-master-expanded-preview.md");
+const appOutputPath = path.join(rootDir, "app", "generated-expansion-preview.js");
 const limit = Number(process.env.STOCK_MASTER_EXPAND_LIMIT || 50);
 
 const stockHeaders = [
@@ -58,9 +59,11 @@ const csv = [
 
 parseStockCsv(csv);
 fs.writeFileSync(outputPath, `${csv}\n`, "utf8");
+writeAppData(masterRows, draftRows);
 writeReport(masterRows, draftRows);
 
 console.log(`通常候補追加プレビューを生成しました: ${path.relative(rootDir, outputPath)}`);
+console.log(`画面用追加候補データを生成しました: ${path.relative(rootDir, appOutputPath)}`);
 console.log(`確認レポートを生成しました: ${path.relative(rootDir, reportPath)}`);
 console.log(`現在候補 ${masterRows.length}件 + 追加プレビュー ${draftRows.length}件 = ${rows.length}件`);
 
@@ -139,6 +142,38 @@ function writeReport(masterRows, draftRows) {
   fs.writeFileSync(reportPath, `${lines.join("\n")}\n`, "utf8");
 }
 
+function writeAppData(masterRows, draftRows) {
+  const payload = {
+    generatedAt: new Date().toISOString(),
+    source: "data/stock-master-expanded-preview.csv",
+    currentCount: masterRows.length,
+    previewAddCount: draftRows.length,
+    expandedCount: masterRows.length + draftRows.length,
+    items: draftRows.map((row, index) => ({
+      rank: index + 1,
+      code: row.code,
+      name: row.name,
+      sector: row.sector,
+      price: number(row.price),
+      bps: number(row.bps),
+      eps: number(row.eps),
+      pbrLow: number(row.pbrLow),
+      pbrAvg: number(row.pbrAvg),
+      pbrHigh: number(row.pbrHigh),
+      perAvg: number(row.perAvg),
+      dataConfidence: row.dataConfidence,
+      qualitativeDone: row.qualitativeDone === "true",
+      risk: row.risk,
+      catalyst: row.catalyst,
+      history: String(row.history || "")
+        .split("|")
+        .map((value) => Number(value))
+        .filter((value) => Number.isFinite(value) && value > 0),
+    })),
+  };
+  fs.writeFileSync(appOutputPath, `window.AUTO_EXPANSION_PREVIEW = ${JSON.stringify(payload, null, 2)};\n`, "utf8");
+}
+
 function makeHistory(priceText) {
   const price = Number(priceText || 0);
   if (!Number.isFinite(price) || price <= 0) return "";
@@ -147,6 +182,11 @@ function makeHistory(priceText) {
 
 function round2(value) {
   return Math.round(value * 100) / 100;
+}
+
+function number(value) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : 0;
 }
 
 function escapeCsv(value) {
