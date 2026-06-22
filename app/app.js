@@ -995,8 +995,10 @@ function renderDetail() {
   ].map((label) => `<span class="badge">${label}</span>`).join("") + renderFreshnessBadge(stock);
   document.getElementById("buyTimingAlert").innerHTML = renderBuyTimingAlert(stock);
   document.getElementById("timingPanel").innerHTML = renderTimingPanel(stock);
+  document.getElementById("lifecycleAssist").innerHTML = renderLifecycleAssist(stock);
   document.getElementById("tradeMeter").innerHTML = renderTradeMeter(stock);
   document.getElementById("chart").innerHTML = renderChart(stock);
+  document.getElementById("lynchChart").innerHTML = renderLynchChart(stock);
   document.getElementById("reasonList").innerHTML = stock.assist.reasons.map((r) => `<li>${r}</li>`).join("");
   document.getElementById("nextActionList").innerHTML = stock.assist.nextActions.map((a) => `<li>${a}</li>`).join("");
   document.getElementById("metricGrid").innerHTML = renderMetrics(stock);
@@ -1023,8 +1025,10 @@ function renderResearchDetail(item, type) {
   ].map((badge) => `<span class="badge">${escapeHtml(badge)}</span>`).join("");
   document.getElementById("buyTimingAlert").innerHTML = "";
   document.getElementById("timingPanel").innerHTML = renderResearchTimingPanel(item, label);
+  document.getElementById("lifecycleAssist").innerHTML = renderResearchLifecycleAssist(item);
   document.getElementById("tradeMeter").innerHTML = renderResearchMeter(item);
   document.getElementById("chart").innerHTML = renderResearchChart(item);
+  document.getElementById("lynchChart").innerHTML = renderResearchLynchPlaceholder(item);
   document.getElementById("reasonList").innerHTML = [
     comment,
     `価格検証の平均は${pct(item.averageReturn ?? 0)}、勝率は${pct(item.winRate ?? 0)}です`,
@@ -1189,6 +1193,111 @@ function renderTimingPanel(stock) {
   `;
 }
 
+function renderLifecycleAssist(stock) {
+  const stages = lifecycleStages(stock);
+  return `
+    <section class="lifecycle-assist" aria-label="買いから売りまでのアシスト">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">買いから売りまで</p>
+          <h3>この銘柄の進め方</h3>
+        </div>
+        <span>${escapeHtml(lifecycleHeadline(stock))}</span>
+      </div>
+      <div class="lifecycle-grid">
+        ${stages.map((stage, index) => `
+          <article class="lifecycle-step ${stage.active ? "lifecycle-active" : ""} ${stage.tone}">
+            <strong>${index + 1}. ${stage.title}</strong>
+            <p>${stage.message}</p>
+            <small>${stage.check}</small>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function lifecycleHeadline(stock) {
+  if (["今売り検討", "一部利益確定検討"].includes(stock.assist.label)) return "売り判断";
+  if (stock.assist.label === "今買い候補") return "買い判断";
+  if (stock.held) return "保有確認";
+  if (["リスクで見送り", "検証弱く見送り"].includes(stock.assist.label)) return "見送り優先";
+  return "監視継続";
+}
+
+function lifecycleStages(stock) {
+  const buyActive = ["今買い候補", "買い場に近い", "調査が先"].includes(stock.assist.label);
+  const holdActive = stock.held && !["今売り検討", "一部利益確定検討"].includes(stock.assist.label);
+  const sellActive = ["今売り検討", "一部利益確定検討"].includes(stock.assist.label);
+  const avoidActive = ["リスクで見送り", "検証弱く見送り"].includes(stock.assist.label);
+  return [
+    {
+      title: "買う前",
+      active: buyActive,
+      tone: buyActive ? "tone-buy" : "",
+      message: buyActive
+        ? `${stock.assist.label}です。買いライン、上昇余地、検証結果を確認します。`
+        : `買いラインは${yen(stock.buyLine)}、現在は${yen(stock.price)}です。`,
+      check: stock.qualitativeDone ? "有報確認済み" : "有報・決算確認が先",
+    },
+    {
+      title: "買った後",
+      active: holdActive,
+      tone: holdActive ? "tone-hold" : "",
+      message: stock.held
+        ? "保有中です。目標株価までの距離と悪材料の有無を見ます。"
+        : "買った後は、目標株価・決算悪化・買い増し条件を先に決めます。",
+      check: `目標 ${yen(stock.targetPrice)} / 上昇余地 ${pct(stock.upside)}`,
+    },
+    {
+      title: "売る時",
+      active: sellActive,
+      tone: sellActive ? "tone-sell" : "",
+      message: sellActive
+        ? "売り検討ゾーンです。一括売りか一部利益確定かを確認します。"
+        : "目標到達、決算悪化、資産価値の低下で売り判断します。",
+      check: stock.backtest?.sellTiming ?? `目標の90%付近 ${yen(stock.targetPrice * 0.9)}`,
+    },
+    {
+      title: "見送る時",
+      active: avoidActive,
+      tone: avoidActive ? "tone-risk" : "",
+      message: avoidActive
+        ? "今は買わない判断を優先します。理由が消えるまで待ちます。"
+        : "赤字拡大、検証悪化、データ未確認なら無理に買いません。",
+      check: stock.risk || stock.assist.reasons[0] || "見送り条件を確認",
+    },
+  ];
+}
+
+function renderResearchLifecycleAssist(item) {
+  return `
+    <section class="lifecycle-assist" aria-label="広域候補の確認手順">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">通常候補に入れる前</p>
+          <h3>確認の順番</h3>
+        </div>
+        <span>一次調査</span>
+      </div>
+      <div class="lifecycle-grid">
+        ${[
+          ["価格", `${item.signal || "待ち"}。価格の形は候補です。`, `平均 ${pct(item.averageReturn ?? 0)} / 勝率 ${pct(item.winRate ?? 0)}`],
+          ["財務", "BPS、EPS、現金、有利子負債、発行株数を確認します。", "ここが埋まるまで通常買い候補にはしません"],
+          ["材料", "決算成長、開示、出来高、過熱感を確認します。", item.nextCheck || "材料と流動性を確認"],
+          ["昇格", "財務と材料が揃ったら通常候補に追加します。", item.caution || "価格だけでは判断しません"],
+        ].map(([title, message, check], index) => `
+          <article class="lifecycle-step ${index === 0 ? "lifecycle-active tone-hold" : ""}">
+            <strong>${index + 1}. ${escapeHtml(title)}</strong>
+            <p>${escapeHtml(message)}</p>
+            <small>${escapeHtml(check)}</small>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
 function renderTradeMeter(stock) {
   const pos = markerPosition(stock);
   return `
@@ -1301,6 +1410,76 @@ function renderChart(stock) {
       <text x="${currentX - 42}" y="${currentY + 24}" font-size="12" fill="#1d2522">現在 ${yen(stock.price)}</text>
       <text x="${pad.left}" y="${height - 12}" font-size="12" fill="#65706b">${timingText}</text>
     </svg>
+  `;
+}
+
+function renderLynchChart(stock) {
+  const eps = Number(stock.eps || 0);
+  if (!Number.isFinite(eps) || eps <= 0) {
+    return `
+      <div class="chart-empty">
+        <p class="eyebrow">リンチ・チャート</p>
+        <h3>EPSが確認できるまで待ち</h3>
+        <p>赤字またはEPS未確認のため、利益目安線は表示していません。先に直近決算とEPSを確認します。</p>
+      </div>
+    `;
+  }
+
+  const width = 880;
+  const height = 330;
+  const pad = { left: 58, right: 34, top: 34, bottom: 56 };
+  const perLow = Number(stock.perLow || 0) > 0 ? Number(stock.perLow) : Math.max(1, Number(stock.pbrLow || 0) * 20);
+  const perAvg = Number(stock.perAvg || 0) > 0 ? Number(stock.perAvg) : Math.max(perLow, (perLow + Number(stock.perHigh || perLow * 1.6)) / 2);
+  const perHigh = Number(stock.perHigh || 0) > 0 ? Number(stock.perHigh) : Math.max(perAvg * 1.35, perAvg + 4);
+  const lowLine = eps * perLow;
+  const fairLine = eps * perAvg;
+  const highLine = eps * perHigh;
+  const values = [...stock.history, stock.price, lowLine, fairLine, highLine];
+  const min = Math.max(1, Math.min(...values) * 0.82);
+  const max = Math.max(...values) * 1.12;
+  const x = (index) => pad.left + (index / Math.max(1, stock.history.length - 1)) * (width - pad.left - pad.right);
+  const y = (value) => pad.top + (1 - (value - min) / (max - min)) * (height - pad.top - pad.bottom);
+  const pricePoints = stock.history.map((value, index) => `${x(index)},${y(value)}`).join(" ");
+  const line = (value, color, label) => `
+    <line x1="${pad.left}" x2="${width - pad.right}" y1="${y(value)}" y2="${y(value)}" stroke="${color}" stroke-width="2" stroke-dasharray="6 6" />
+    <text x="${pad.left}" y="${y(value) - 8}" font-size="12" fill="${color}">${label} ${yen(value)}</text>
+  `;
+  const currentPer = stock.price / eps;
+  const position = stock.price <= lowLine
+    ? "利益目安では割安ゾーン"
+    : stock.price <= fairLine
+      ? "利益目安では中立ゾーン"
+      : stock.price <= highLine
+        ? "利益目安では高め"
+        : "利益目安ではかなり高め";
+  const calloutColor = stock.price <= fairLine ? "#1f8a55" : stock.price <= highLine ? "#b98513" : "#c44536";
+
+  return `
+    <svg viewBox="0 0 ${width} ${height}" aria-label="${stock.name}のリンチ・チャート">
+      <rect x="${pad.left}" y="${pad.top}" width="${width - pad.left - pad.right}" height="${height - pad.top - pad.bottom}" fill="#ffffff" />
+      <text x="${pad.left}" y="22" font-size="13" fill="#65706b">リンチ・チャート: 株価とEPS×PER目安</text>
+      ${line(lowLine, "#1f8a55", `割安目安 PER${Math.round(perLow * 10) / 10}`)}
+      ${line(fairLine, "#246a9f", `標準目安 PER${Math.round(perAvg * 10) / 10}`)}
+      ${line(highLine, "#c44536", `高値目安 PER${Math.round(perHigh * 10) / 10}`)}
+      <polyline points="${pricePoints}" fill="none" stroke="#1d2522" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="${x(stock.history.length - 1)}" cy="${y(stock.price)}" r="7" fill="${calloutColor}" />
+      <g transform="translate(${Math.min(x(stock.history.length - 1) + 18, width - 270)}, ${Math.max(48, y(stock.price) - 48)})">
+        <rect width="244" height="54" rx="8" fill="#ffffff" stroke="${calloutColor}" />
+        <text x="12" y="22" class="callout" fill="${calloutColor}">${position}</text>
+        <text x="12" y="40" font-size="12" fill="#65706b">現在PER ${Math.round(currentPer * 10) / 10}倍 / EPS ${Math.round(eps * 10) / 10}</text>
+      </g>
+      <text x="${pad.left}" y="${height - 16}" font-size="12" fill="#65706b">株価が利益目安線より下なら割安寄り、上なら期待先行寄りとして確認します。</text>
+    </svg>
+  `;
+}
+
+function renderResearchLynchPlaceholder(item) {
+  return `
+    <div class="chart-empty">
+      <p class="eyebrow">リンチ・チャート</p>
+      <h3>${escapeHtml(item.name)}は財務確認後に表示</h3>
+      <p>広域候補はまだEPSやPER目安を通常候補データとして確認していません。昇格候補レポートで財務を埋めると、リンチ・チャートで見られます。</p>
+    </div>
   `;
 }
 
