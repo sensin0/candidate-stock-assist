@@ -7,6 +7,7 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const reportPath = path.join(rootDir, "reports", "latest-morning-report.md");
 const multibaggerReportPath = path.join(rootDir, "reports", "latest-multibagger-candidates.md");
 const promotionReportPath = path.join(rootDir, "reports", "latest-promotion-candidates.md");
+const draftReportPath = path.join(rootDir, "reports", "latest-stock-master-draft.md");
 const generatedDataPath = path.join(rootDir, "app", "generated-data.js");
 const generatedResearchPath = path.join(rootDir, "app", "generated-research.js");
 const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
@@ -15,6 +16,7 @@ const siteUrl = process.env.PAGES_URL || "https://sensin0.github.io/candidate-st
 const reportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-morning-report.md`;
 const multibaggerReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-multibagger-candidates.md`;
 const promotionReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-promotion-candidates.md`;
+const draftReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-stock-master-draft.md`;
 
 if (!webhookUrl && !dryRun) {
   console.log("DISCORD_WEBHOOK_URL が未設定のため、Discord通知をスキップします");
@@ -29,6 +31,7 @@ if (!fs.existsSync(reportPath)) {
 const report = fs.readFileSync(reportPath, "utf8");
 const multibaggerReport = fs.existsSync(multibaggerReportPath) ? fs.readFileSync(multibaggerReportPath, "utf8") : "";
 const promotionReport = fs.existsSync(promotionReportPath) ? fs.readFileSync(promotionReportPath, "utf8") : "";
+const draftReport = fs.existsSync(draftReportPath) ? fs.readFileSync(draftReportPath, "utf8") : "";
 const generatedData = fs.existsSync(generatedDataPath) ? fs.readFileSync(generatedDataPath, "utf8") : "";
 const generatedResearch = fs.existsSync(generatedResearchPath) ? fs.readFileSync(generatedResearchPath, "utf8") : "";
 const generatedPayload = parseGeneratedData(generatedData);
@@ -102,6 +105,9 @@ const message = [
   "",
   "通常候補への昇格確認",
   ...firstReportItems(promotionReport, "優先して財務確認", 2).map((item) => `- ${item}`),
+  "",
+  "通常候補入力下書き",
+  ...firstReportItems(draftReport, "上位下書き", 2).map((item) => `- ${item}`),
   ...providerWarningLines(dataQuality),
   ...stockUniverseWarningLines(stockCount),
   ...dataWarningLines("入力値の注意", dataQuality?.validationWarnings),
@@ -111,6 +117,7 @@ const message = [
   reportUrl,
   multibaggerReportUrl,
   promotionReportUrl,
+  draftReportUrl,
 ].join("\n");
 
 const body = JSON.stringify({

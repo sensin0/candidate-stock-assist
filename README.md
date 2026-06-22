@@ -129,6 +129,7 @@ npm run multibagger:research
 npm run promotion:research
 npm run research:data
 npm run research:morning
+npm run stock-master:draft
 npm run stock-master:build
 npm run production:check
 npm run pages:build

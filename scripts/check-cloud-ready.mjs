@@ -24,6 +24,7 @@ const requiredFiles = [
   "scripts/analyze-multibagger-candidates.mjs",
   "scripts/build-promotion-candidates.mjs",
   "scripts/build-research-data.mjs",
+  "scripts/build-stock-master-draft-from-promotions.mjs",
   "scripts/research-morning.mjs",
   "scripts/build-stock-master-from-input.mjs",
   "scripts/production-check.mjs",
@@ -32,6 +33,7 @@ const requiredFiles = [
   "scripts/csv-utils.mjs",
   "scripts/csv-utils.test.mjs",
   "scripts/stock-master.test.mjs",
+  "scripts/stock-master-draft.test.mjs",
   "scripts/build-stock-master-from-input.test.mjs",
   "scripts/confirm-stock.mjs",
   "scripts/confirm-stock.test.mjs",
@@ -66,9 +68,11 @@ const requiredFiles = [
   "data/universe-price-backtest.csv",
   "data/multibagger-candidates.csv",
   "data/promotion-candidates.csv",
+  "data/stock-master-input-draft.csv",
   "reports/latest-universe-price-backtest.md",
   "reports/latest-multibagger-candidates.md",
   "reports/latest-promotion-candidates.md",
+  "reports/latest-stock-master-draft.md",
 ];
 
 const missing = requiredFiles.filter((file) => !fs.existsSync(path.join(rootDir, file)));
@@ -80,6 +84,7 @@ if (missing.length) {
 const checks = [
   ["csv parser", process.execPath, ["scripts/csv-utils.test.mjs"]],
   ["stock master", process.execPath, ["scripts/stock-master.test.mjs"]],
+  ["stock master draft", process.execPath, ["scripts/stock-master-draft.test.mjs"]],
   ["stock master builder", process.execPath, ["scripts/build-stock-master-from-input.test.mjs"]],
   ["manual confirm helper", process.execPath, ["scripts/confirm-stock.test.mjs"]],
   ["privacy guard", process.execPath, ["scripts/privacy-check.mjs"]],
@@ -88,6 +93,7 @@ const checks = [
   ["backtest timing", process.execPath, ["scripts/backtest-timing.mjs"]],
   ["promotion candidates syntax", process.execPath, ["--check", "scripts/build-promotion-candidates.mjs"]],
   ["research data syntax", process.execPath, ["--check", "scripts/build-research-data.mjs"]],
+  ["stock master draft syntax", process.execPath, ["--check", "scripts/build-stock-master-draft-from-promotions.mjs"]],
   ["morning research syntax", process.execPath, ["--check", "scripts/research-morning.mjs"]],
   ["sheet templates", process.execPath, ["scripts/sheet-templates.test.mjs"]],
   ["data quality", process.execPath, ["scripts/data-quality.test.mjs"]],

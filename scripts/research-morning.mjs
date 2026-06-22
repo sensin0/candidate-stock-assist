@@ -7,6 +7,7 @@ const steps = [
   ["日本株価格バックテスト", "scripts/research-universe-price-backtest.mjs"],
   ["2倍候補調査", "scripts/analyze-multibagger-candidates.mjs"],
   ["通常候補への昇格候補抽出", "scripts/build-promotion-candidates.mjs"],
+  ["通常候補入力下書き生成", "scripts/build-stock-master-draft-from-promotions.mjs"],
   ["画面用調査データ生成", "scripts/build-research-data.mjs"],
 ];
 

@@ -104,6 +104,14 @@ npm run promotion:research
 
 結果は `reports/latest-promotion-candidates.md` と `data/promotion-candidates.csv` に出ます。ここで上位の銘柄からBPS、EPS、現金、有利子負債、発行株数を確認して、通常候補へ入れます。
 
+昇格候補から通常候補入力の下書きを作る:
+
+```powershell
+npm run stock-master:draft
+```
+
+結果は `data/stock-master-input-draft.csv` と `reports/latest-stock-master-draft.md` に出ます。株価は取得値、財務は確認前の仮置きなので、通常候補に反映する前に有報と決算で確認します。
+
 少ない列から作る場合:
 
 ```powershell
