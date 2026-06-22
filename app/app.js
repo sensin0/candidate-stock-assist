@@ -679,6 +679,9 @@ function byAssist(label, source = visibleStocks()) {
 
 function renderSummary() {
   const visible = visibleStocks();
+  const expansion = window.AUTO_EXPANSION_PREVIEW;
+  const previewAddCount = expansion?.previewAddCount ?? expansion?.items?.length ?? 0;
+  const expandedCount = expansion?.expandedCount ?? visible.length + previewAddCount;
   const buyNow = byAssist("今買い候補", visible).length;
   const sellNow = byAssist("今売り検討", visible).length + byAssist("一部利益確定検討", visible).length;
   const risk = byAssist("リスクで見送り", visible).length + byAssist("検証弱く見送り", visible).length;
@@ -692,8 +695,10 @@ function renderSummary() {
   document.getElementById("todaySummary").textContent =
     buyNow
       ? `今買い候補が${buyNow}件あります。銘柄詳細の緑の表示を確認してください。条件から外れたらこの表示は消えます。${qualityWarning}`
-      : `表示中の${visible.length}銘柄では、今買い候補${buyNow}件、今売り検討${sellNow}件、買い場に近い銘柄${near}件、監視中${watched}件、リスク確認${risk}件です。${qualityWarning}`;
+      : `通常候補${visible.length}件、追加候補確認${previewAddCount}件、確認後イメージ${expandedCount}件です。今買い候補${buyNow}件、今売り検討${sellNow}件、買い場に近い銘柄${near}件、監視中${watched}件、リスク確認${risk}件です。${qualityWarning}`;
   document.getElementById("summaryStats").innerHTML = [
+    ["通常候補", visible.length],
+    ["追加確認", previewAddCount],
     ["今買い", buyNow],
     ["売り検討", sellNow],
     ["買い場近い", near],
@@ -706,8 +711,14 @@ function renderSummary() {
 
 function renderDataCheck() {
   const data = window.AUTO_STOCK_DATA;
+  const research = window.AUTO_RESEARCH_DATA;
+  const expansion = window.AUTO_EXPANSION_PREVIEW;
   const quality = data?.dataQuality;
   const stockCount = stocks.length;
+  const previewAddCount = expansion?.previewAddCount ?? expansion?.items?.length ?? 0;
+  const expandedCount = expansion?.expandedCount ?? stockCount + previewAddCount;
+  const universeCount = research?.universe?.success ?? 0;
+  const universeTotal = research?.universe?.total ?? 0;
   const providerWarnings = quality?.providerWarnings ?? [];
   const validationWarnings = quality?.validationWarnings ?? [];
   const referenceWarnings = quality?.externalReferenceWarnings ?? [];
@@ -737,7 +748,19 @@ function renderDataCheck() {
 
   document.getElementById("dataCheckList").innerHTML = [
     dataCheckItem("本番度", `${readiness.score}%`, readiness.label, readinessTone),
-    dataCheckItem("銘柄数", `${stockCount}件`, countMessage, countTone),
+    dataCheckItem("通常候補", `${stockCount}件`, countMessage, countTone),
+    dataCheckItem(
+      "追加候補",
+      `${previewAddCount}件`,
+      previewAddCount ? `財務確認後の候補数イメージは${expandedCount}件です` : "追加候補はまだありません",
+      previewAddCount ? "warn" : "alert",
+    ),
+    dataCheckItem(
+      "日本株全体",
+      universeCount ? `${universeCount}/${universeTotal}件` : "準備中",
+      universeCount ? "価格検証済み。通常候補へ入れる前に財務確認します" : "広域調査データ待ちです",
+      universeCount ? "good" : "warn",
+    ),
     dataCheckItem("入力元", sourceLabel, source, providerWarnings.length ? "warn" : "good"),
     dataCheckItem("更新日時", generatedAt, quality?.ok ? "データ状態OK" : "確認が必要です", quality?.ok ? "good" : "warn"),
     dataCheckItem(
@@ -1803,6 +1826,8 @@ function priorityReason(stock) {
 
 function morningDataOverview(visible) {
   const data = window.AUTO_STOCK_DATA;
+  const research = window.AUTO_RESEARCH_DATA;
+  const expansion = window.AUTO_EXPANSION_PREVIEW;
   const quality = data?.dataQuality;
   const providerWarnings = quality?.providerWarnings ?? [];
   const validationWarnings = quality?.validationWarnings ?? [];
@@ -1812,6 +1837,10 @@ function morningDataOverview(visible) {
   const nextFixes = quality?.nextFixes ?? [];
   const manualInputs = quality?.manualInputs ?? [];
   const readiness = quality?.readiness ?? { score: 0, label: "準備中", blockers: [] };
+  const previewAddCount = expansion?.previewAddCount ?? expansion?.items?.length ?? 0;
+  const expandedCount = expansion?.expandedCount ?? visible.length + previewAddCount;
+  const universeCount = research?.universe?.success ?? 0;
+  const universeTotal = research?.universe?.total ?? 0;
   const warningCount =
     providerWarnings.length + validationWarnings.length + referenceWarnings.length + missingPrice.length + missingEdinet.length;
   const stockCountNote = visible.length < 20
@@ -1819,7 +1848,9 @@ function morningDataOverview(visible) {
     : "候補銘柄数は十分あります。";
   return [
     "## データ確認",
-    `- 対象銘柄数: ${visible.length}件。${stockCountNote}`,
+    `- 通常候補: ${visible.length}件。${stockCountNote}`,
+    `- 追加候補確認: ${previewAddCount}件。財務確認後の候補数イメージは${expandedCount}件`,
+    `- 日本株全体の価格検証: ${universeCount || "準備中"}${universeTotal ? `/${universeTotal}件` : ""}`,
     `- 銘柄マスタ: ${data?.source ?? "サンプル"}`,
     `- データ状態: ${quality?.ok ? "OK" : "要確認"}。注意${warningCount}件`,
     `- 本番準備度: ${readiness.score}% ${readiness.label}`,

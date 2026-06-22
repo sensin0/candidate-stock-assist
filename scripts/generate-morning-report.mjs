@@ -7,6 +7,8 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const appDir = path.join(rootDir, "app");
 const reportsDir = path.join(rootDir, "reports");
 const generatedDataPath = path.join(appDir, "generated-data.js");
+const generatedResearchPath = path.join(appDir, "generated-research.js");
+const generatedExpansionPath = path.join(appDir, "generated-expansion-preview.js");
 const appJsPath = path.join(appDir, "app.js");
 
 const elements = new Map();
@@ -22,6 +24,7 @@ function makeElement(id = "") {
     dataset: {},
     addEventListener() {},
     select() {},
+    scrollIntoView() {},
     closest() {
       return null;
     },
@@ -54,6 +57,7 @@ const sandbox = {
   },
   setTimeout,
   console,
+  matchMedia: () => ({ matches: false }),
 };
 
 sandbox.window = sandbox;
@@ -61,6 +65,8 @@ vm.createContext(sandbox);
 
 const code = [
   fs.readFileSync(generatedDataPath, "utf8"),
+  fs.existsSync(generatedResearchPath) ? fs.readFileSync(generatedResearchPath, "utf8") : "",
+  fs.existsSync(generatedExpansionPath) ? fs.readFileSync(generatedExpansionPath, "utf8") : "",
   fs.readFileSync(appJsPath, "utf8"),
   "globalThis.__report = document.getElementById('morningReport').value;",
 ].join("\n");
