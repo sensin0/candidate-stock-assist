@@ -119,7 +119,7 @@ const message = [
   ...firstReportItems(readinessReport, "最優先で財務確認", 2).map((item) => `- ${item}`),
   "",
   "未発掘候補",
-  ...firstReportItems(hiddenGemsReport, "上位候補", 2).map((item) => `- ${item}`),
+  ...firstReportItems(hiddenGemsReport, "今すぐ財務確認", 2).map((item) => `- ${item}`),
   "",
   "通常候補入力下書き",
   ...firstReportItems(draftReport, "上位下書き", 2).map((item) => `- ${item}`),

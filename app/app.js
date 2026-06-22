@@ -1027,6 +1027,7 @@ function renderHiddenGemRankingRow(item, index) {
       </div>
       <p class="reason">${escapeHtml(item.reason || "既存候補外から見つけた候補です")}</p>
       <div class="ranking-meta">
+        <span>${escapeHtml(item.assistAction || item.timingAction || "監視")}</span>
         <span>${escapeHtml(item.status || "監視")}</span>
         <span>${escapeHtml(item.signal || "待ち")}</span>
         <span>点 ${Math.round((item.hiddenScore ?? 0) * 10) / 10}</span>
@@ -1199,7 +1200,7 @@ function renderResearchDetail(item, type) {
     item.signal || "待ち",
     item.market || "市場不明",
   ].map((badge) => `<span class="badge">${escapeHtml(badge)}</span>`).join("");
-  document.getElementById("buyTimingAlert").innerHTML = "";
+  document.getElementById("buyTimingAlert").innerHTML = type === "hiddenGems" ? renderHiddenGemAssistAlert(item) : "";
   document.getElementById("timingPanel").innerHTML = renderResearchTimingPanel(item, label);
   document.getElementById("lifecycleAssist").innerHTML = renderResearchLifecycleAssist(item);
   document.getElementById("tradeMeter").innerHTML = renderResearchMeter(item);
@@ -1216,6 +1217,36 @@ function renderResearchDetail(item, type) {
     .map((action) => `<li>${escapeHtml(action)}</li>`)
     .join("");
   document.getElementById("metricGrid").innerHTML = renderResearchMetrics(item);
+}
+
+function renderHiddenGemAssistAlert(item) {
+  const action = item.assistAction || item.timingAction || item.status || "監視";
+  if (!["今すぐ財務確認", "高値なので待つ", "買わない寄り"].includes(action)) return "";
+  const headline = action === "今すぐ財務確認"
+    ? "価格上はすぐ確認する候補です"
+    : action === "高値なので待つ"
+      ? "今は飛びつかず押し目待ちです"
+      : "今は買わない寄りです";
+  const message = action === "今すぐ財務確認"
+    ? "買い判断の前に、BPS・EPS・現金・有利子負債・直近決算を確認します。条件から外れたらこの表示は消えます。"
+    : action === "高値なので待つ"
+      ? "勢いはありますが、高値圏や急騰後の可能性があります。押し目と出来高継続を待ちます。"
+      : "下落リスクや勝率に不安があります。候補入りより除外判断を優先します。";
+  return `
+    <section class="buy-timing-alert" aria-label="未発掘候補アシスト">
+      <div>
+        <p class="eyebrow">未発掘候補アシスト</p>
+        <h3>${headline}</h3>
+        <p>${message}</p>
+      </div>
+      <div class="buy-timing-values">
+        <span>${escapeHtml(action)}</span>
+        <span>点 ${Math.round((item.hiddenScore ?? item.score ?? 0) * 10) / 10}</span>
+        <span>勝率 ${pct(item.winRate ?? 0)}</span>
+        <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
+      </div>
+    </section>
+  `;
 }
 
 function renderExpansionTimingPanel(item) {

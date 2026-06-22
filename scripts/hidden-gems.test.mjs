@@ -24,12 +24,15 @@ assert.ok(rows.length >= 20, "未発掘候補は20件以上必要です");
 for (const row of rows.slice(0, 20)) {
   assert.match(row.code, /^[0-9A-Z]{4}$/);
   assert.ok(Number(row.hiddenScore) >= 70, `${row.code}: 未発掘点が低すぎます`);
+  assert.ok(row.assistAction, `${row.code}: アシスト表示がありません`);
   assert.ok(!promotionCodes.has(row.code), `${row.code}: 既存昇格候補と重複しています`);
   assert.ok(!stockCodes.has(row.code), `${row.code}: 通常候補と重複しています`);
 }
 
 const report = fs.readFileSync(reportPath, "utf8");
 assert.match(report, /未発掘候補/);
+assert.match(report, /今すぐ財務確認/);
+assert.ok(rows.some((row) => row.assistAction === "今すぐ財務確認"), "今すぐ財務確認の候補が必要です");
 assert.match(report, /上位候補/);
 
 console.log("hidden-gems-test ok");
