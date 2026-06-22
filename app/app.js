@@ -783,9 +783,9 @@ function renderResearchOverview() {
 
   element.innerHTML = [
     `<div class="research-summary-card">
-      <span>日本株全体</span>
+      <span>日本株全体が対象</span>
       <strong>${research.universe?.success ?? 0}/${research.universe?.total ?? 0}件</strong>
-      <p>価格バックテストで「良さそう」${research.universe?.good ?? 0}件、見送り寄り${research.universe?.avoid ?? 0}件です。</p>
+      <p>価格バックテストで「良さそう」${research.universe?.good ?? 0}件、上昇タイミング候補${research.universe?.buyTiming ?? 0}件、見送り寄り${research.universe?.avoid ?? 0}件です。</p>
     </div>`,
     ...universeCards,
     ...multibaggerCards,
@@ -805,6 +805,7 @@ function renderResearchCard(item, index, label, className) {
       <p>${escapeHtml(comment)}</p>
       ${caution}
       <div class="research-meta">
+        <span>${escapeHtml(item.timingAction || "監視")}</span>
         <span>${escapeHtml(item.signal || "待ち")}</span>
         <span>平均 ${pct(item.averageReturn ?? 0)}</span>
         <span>勝率 ${pct(item.winRate ?? 0)}</span>
@@ -875,7 +876,8 @@ function markerPosition(stock) {
 }
 
 function rankingFor(type) {
-  if (type === "researchUniverse") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.universeTop ?? []);
+  if (type === "researchTiming") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.timingBuys ?? []);
+  if (type === "researchUniverse") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.universeAll ?? window.AUTO_RESEARCH_DATA?.universeTop ?? []);
   if (type === "researchMultibagger") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.multibaggerWatch ?? []);
   const copy = [...visibleStocks()];
   if (type === "watchlist") return copy.filter((s) => s.watchlist).sort((a, b) => b.score - a.score);
@@ -892,7 +894,7 @@ function rankingFor(type) {
 function renderRanking() {
   const type = document.getElementById("rankingSelect").value;
   const list = rankingFor(type).slice(0, 20);
-  if (type === "researchUniverse" || type === "researchMultibagger") {
+  if (type === "researchUniverse" || type === "researchMultibagger" || type === "researchTiming") {
     document.getElementById("rankingList").innerHTML =
       list.map((item, index) => renderResearchRankingRow(item, index, type)).join("") || `<p class="reason">該当なし</p>`;
     return;
@@ -912,7 +914,7 @@ function filteredResearchItems(items) {
 }
 
 function renderResearchRankingRow(item, index, type) {
-  const label = type === "researchMultibagger" ? "2倍監視" : "広域候補";
+  const label = type === "researchMultibagger" ? "2倍監視" : type === "researchTiming" ? "上昇タイミング" : "広域候補";
   const comment = item.comment || signalComment(item);
   const caution = item.caution ? `<p class="freshness-line">${escapeHtml(item.caution)}</p>` : "";
   const isActive = selectedResearch?.type === type && selectedResearch?.code === item.code;
@@ -931,6 +933,7 @@ function renderResearchRankingRow(item, index, type) {
         <span>${escapeHtml(item.market || "市場不明")}</span>
         <span>${escapeHtml(item.signal || "待ち")}</span>
         <span>${escapeHtml(item.strategy || "価格検証")}</span>
+        <span>${escapeHtml(item.timingAction || "監視")}</span>
         <span>点数 ${Math.round((item.score ?? 0) * 10) / 10}</span>
         <span>平均 ${pct(item.averageReturn ?? 0)}</span>
         <span>勝率 ${pct(item.winRate ?? 0)}</span>
@@ -1020,6 +1023,7 @@ function renderResearchDetail(item, type) {
   document.getElementById("detailBadges").innerHTML = [
     "日本株全体調査",
     item.judgement || "価格検証",
+    item.timingAction || "監視",
     item.signal || "待ち",
     item.market || "市場不明",
   ].map((badge) => `<span class="badge">${escapeHtml(badge)}</span>`).join("");
@@ -1046,7 +1050,7 @@ function renderResearchTimingPanel(item, label) {
     <section class="timing-card timing-${tone}" aria-label="広域バックテスト確認">
       <div>
         <p class="eyebrow">${label}</p>
-        <h3>${escapeHtml(item.signal || "待ち")}</h3>
+        <h3>${escapeHtml(item.timingAction || item.signal || "待ち")}</h3>
       </div>
       <div class="timing-actions">
         <div><span>今の扱い</span><strong>${escapeHtml(researchActionLabel(item))}</strong></div>
@@ -1128,6 +1132,7 @@ function renderResearchMetrics(item) {
 }
 
 function researchActionLabel(item) {
+  if (item.timingAction) return item.timingAction;
   if (item.signal === "上昇中押し目" && item.judgement === "良さそう") return "優先監視。押し目と出来高を確認";
   if (item.signal === "高値圏") return "飛びつき注意。押し目待ち";
   if ((item.maxDrawdown ?? 0) <= -15) return "下落リスク確認が先";

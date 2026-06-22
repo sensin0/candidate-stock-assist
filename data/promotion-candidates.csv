@@ -49,3 +49,103 @@ priority,code,name,source,market,sector,action,signal,strategy,score,winRate,ave
 131.5,6643,"Togami Electric Mfg.Co.,Ltd.",2倍監視,Standard Market(Domestic),Electric Appliances,監視しながら財務確認,待ち,高値更新,89,100,15.8,-2.1,50.2,高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します,出来高、材料、過熱感,価格だけでは判断材料が足りない
 131.1,7781,"HIRAYAMA HOLDINGS Co.,Ltd.",2倍監視,Standard Market(Domestic),Precision Instruments,監視しながら財務確認,待ち,高値更新,87.5,100,15.7,-0.7,44.6,高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します,出来高、材料、過熱感,価格だけでは判断材料が足りない
 130.9,3908,Collabos Corporation,2倍監視,Standard Market(Domestic),Information & Communication,監視しながら財務確認,待ち,安値反転,87.5,100,16.1,-1.4,1.6,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
+130.3,1814,"DAISUE CONSTRUCTION CO.,LTD.",2倍監視,Prime Market (Domestic),Construction,監視しながら財務確認,安値反転候補,高値更新,91,100,15.5,-5.8,49.9,安値圏から反転し始めた候補です。赤字・下方修正・信用需給が重くないか確認します,赤字有無、下方修正、信用需給,価格だけでは判断材料が足りない
+130,6364,AIRMAN CORPORATION,2倍監視,Prime Market (Domestic),Machinery,監視しながら財務確認,待ち,安値反転,87.1,100,16.5,-2.5,3.9,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
+129.9,4125,SANWAYUKA INDUSTRY CORPORATION,2倍監視,Standard Market(Domestic),Chemicals,監視しながら財務確認,待ち,上昇中押し目,86.8,100,15.8,-1.4,102.8,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
+128.2,5233,TAIHEIYO CEMENT CORPORATION,2倍監視,Prime Market (Domestic),Glass and Ceramics Products,監視しながら財務確認,待ち,安値反転,85.8,100,15.6,-2,15.9,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
+127.8,155A,"Information Strategy and Technology Co.,Ltd.",2倍監視,Growth Market(Domestic),Information & Communication,監視しながら財務確認,待ち,高値更新,85.4,100,15.2,-1.6,71.1,高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します,出来高、材料、過熱感,価格だけでは判断材料が足りない
+127.5,7818,"TRANSACTION CO.,Ltd.",2倍監視,Prime Market (Domestic),Other Products,監視しながら財務確認,待ち,安値反転,85.4,100,15.7,-2.5,5.8,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
+127.3,5458,TAKASAGO TEKKO K.K.,2倍監視,Standard Market(Domestic),Iron and Steel,監視しながら財務確認,待ち,安値反転,85.2,100,15.5,-2.3,39,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
+127,4341,SEIRYO ELECTRIC CORPORATION,2倍監視,Standard Market(Domestic),Services,監視しながら財務確認,待ち,安値反転,84.9,100,15.1,-1.9,9.1,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
+126.3,9104,"Mitsui O.S.K.Lines,Ltd.",2倍監視,Prime Market (Domestic),Marine Transportation,監視しながら財務確認,待ち,高値更新,85.2,100,17.6,-5.9,7.4,高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します,出来高、材料、過熱感,価格だけでは判断材料が足りない
+126.2,543A,ARCHION Corporation,2倍監視,Prime Market (Domestic),Transportation Equipment,監視しながら財務確認,待ち,上昇中押し目,84.6,100,15.6,-3,-35.7,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
+125.6,5290,Vertex Corporation,2倍監視,Standard Market(Domestic),Glass and Ceramics Products,監視しながら財務確認,待ち,高値更新,84.1,100,15.3,-2.9,19.6,高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します,出来高、材料、過熱感,価格だけでは判断材料が足りない
+125,4570,"Immuno-Biological Laboratories Co.,Ltd.",2倍監視,Growth Market(Domestic),Pharmaceutical,監視しながら財務確認,待ち,高値更新,87.8,83.3,17.6,-7.1,86.2,高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します,出来高、材料、過熱感,価格だけでは判断材料が足りない
+124.9,7426,Yamadai Corporation,2倍監視,Standard Market(Domestic),Wholesale Trade,監視しながら財務確認,待ち,安値反転,83.8,100,15.6,-3.7,-46.3,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
+124.6,3093,"Treasure Factory Co.,LTD.",2倍監視,Prime Market (Domestic),Retail Trade,監視しながら財務確認,待ち,安値反転,83.8,100,16.5,-5.1,13.2,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
+123.5,1447,"SAAF Holdings Co.,Ltd.",2倍監視,Growth Market(Domestic),Construction,監視しながら財務確認,待ち,高値更新,82.8,100,15,-3.5,8.4,高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します,出来高、材料、過熱感,価格だけでは判断材料が足りない
+121.3,1968,"TAIHEI DENGYO KAISHA,LTD.",2倍監視,Prime Market (Domestic),Construction,監視しながら財務確認,待ち,高値更新,81.5,100,15.1,-4.7,54.6,高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します,出来高、材料、過熱感,価格だけでは判断材料が足りない
+120.4,8338,"Tsukuba Bank,Ltd.",広域候補,Prime Market (Domestic),Banks,優先して財務確認,上昇中押し目,高値更新,82.2,100,13.6,-2.5,172.5,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+118.4,7189,"Nishi-Nippon Financial Holdings,Inc.",広域候補,Prime Market (Domestic),Banks,優先して財務確認,上昇中押し目,高値更新,79.6,100,13.2,-1.4,89,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+118.1,6058,VECTOR INC.,広域候補,Prime Market (Domestic),Services,押し目待ちで財務確認,高値圏,安値反転,90.2,100,26.6,0,80.7,すでに大きく上がっているため押し目待ち,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+117.9,2730,EDION Corporation,広域候補,Prime Market (Domestic),Retail Trade,優先して財務確認,上昇中押し目,安値反転,77.4,100,14.9,-1.1,19.3,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+116.8,7719,TOKYO KOKI CO.LTD.,2倍監視,Standard Market(Domestic),Precision Instruments,監視しながら財務確認,待ち,上昇中押し目,82.1,80,16.1,-7.7,68.7,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
+113.5,4040,"NANKAI CHEMICAL COMPANY,LIMITED",広域候補,Standard Market(Domestic),Chemicals,優先して財務確認,上昇中押し目,上昇中押し目,74.3,100,13,-0.6,14.2,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+113.1,4082,"DAIICHI KIGENSO KAGAKU-KOGYO CO.,LTD",2倍監視,Prime Market (Domestic),Chemicals,監視しながら財務確認,待ち,高値更新,80,80,16.7,-10.4,222,高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します,出来高、材料、過熱感,価格だけでは判断材料が足りない
+113,4078,"Sakai Chemical Industry Co.,Ltd.",広域候補,Prime Market (Domestic),Chemicals,優先して財務確認,上昇中押し目,上昇中押し目,75.6,100,14.5,-4.6,81.7,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+112.6,3964,AUCNET INC.,広域候補,Prime Market (Domestic),Information & Communication,優先して財務確認,上昇中押し目,上昇中押し目,75.4,100,14.7,-5,79,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+112.4,6217,TSUDAKOMA Corp.,2倍監視,Standard Market(Domestic),Machinery,監視しながら財務確認,待ち,高値更新,79.8,83.3,15.7,-10.7,204.9,高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します,出来高、材料、過熱感,価格だけでは判断材料が足りない
+110.5,6380,"ORIENTAL CHAIN MFG. CO.,LTD.",広域候補,Standard Market(Domestic),Machinery,優先して財務確認,上昇中押し目,上昇中押し目,73.9,100,13.8,-4.8,152,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+110.5,7446,"TOHOKU CHEMICAL Co.,LTD.",広域候補,Standard Market(Domestic),Wholesale Trade,優先して財務確認,上昇中押し目,上昇中押し目,72.5,100,13.1,-2.2,21.9,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+109.3,5706,"Mitsui Kinzoku Company,Limited",広域候補,Prime Market (Domestic),Nonferrous Metals,優先して財務確認,上昇中押し目,上昇中押し目,72.8,100,12.5,-3.5,871.7,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+109.1,6203,"Howa Machinery,Ltd.",広域候補,Standard Market(Domestic),Machinery,優先して財務確認,上昇中押し目,上昇中押し目,72.1,100,10,0,49.6,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+107.7,5463,Maruichi Steel Tube Ltd.,広域候補,Prime Market (Domestic),Iron and Steel,優先して財務確認,上昇中押し目,上昇中押し目,70.4,100,11.4,-1.2,38.7,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+106.2,6518,"SANSO ELECTRIC CO.,LTD.",広域候補,Standard Market(Domestic),Electric Appliances,優先して財務確認,上昇中押し目,上昇中押し目,70.8,100,11.8,-4,161.2,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+106.1,4093,"Toho Acetylene Co.,Ltd.",広域候補,Standard Market(Domestic),Chemicals,優先して財務確認,上昇中押し目,安値反転,69.4,100,11.3,-1.8,16.1,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+105.9,7826,"FURUYA METAL CO.,LTD.",広域候補,Prime Market (Domestic),Other Products,優先して財務確認,上昇中押し目,上昇中押し目,70.6,100,11.7,-4,249.3,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+105,9903,"KANSEKI CO.,LTD",広域候補,Standard Market(Domestic),Retail Trade,優先して財務確認,上昇中押し目,安値反転,68.5,100,10.5,-1.2,22.2,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+104.9,6954,FANUC CORPORATION,広域候補,Prime Market (Domestic),Electric Appliances,優先して財務確認,上昇中押し目,上昇中押し目,69.4,100,9.5,-1.3,100.6,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+104.8,5016,JX Advanced Metals Corporation,広域候補,Prime Market (Domestic),Nonferrous Metals,優先して財務確認,上昇中押し目,上昇中押し目,69.9,100,11.7,-4.6,535.5,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+104.7,5974,"CHUGOKUKOGYO CO.,LTD.",広域候補,Standard Market(Domestic),Metal Products,監視しながら財務確認,待ち,高値更新,73.5,100,14.7,0,57.5,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+104.2,1720,"TOKYU CONSTRUCTION CO., LTD.",広域候補,Prime Market (Domestic),Construction,監視しながら財務確認,安値反転候補,高値更新,75.3,100,12.2,-0.1,25.4,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+104.2,6918,AVAL DATA CORPORATION,広域候補,Standard Market(Domestic),Electric Appliances,優先して財務確認,上昇中押し目,上昇中押し目,69.2,100,10.4,-2.9,66.3,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+103.1,2208,BOURBON CORPORATION,広域候補,Standard Market(Domestic),Foods,優先して財務確認,上昇中押し目,高値更新,67.2,100,9.9,-1.3,13.3,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+102.9,9701,"Tokyo Kaikan Co.,Ltd.",広域候補,Standard Market(Domestic),Services,監視しながら財務確認,安値反転候補,高値更新,74.6,100,12.5,-1.2,10.2,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+102.8,6724,SEIKO EPSON CORPORATION,広域候補,Prime Market (Domestic),Electric Appliances,優先して財務確認,上昇中押し目,安値反転,67.5,100,11.7,-4.1,51,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+102.6,1938,"NIPPON RIETEC CO.,LTD.",広域候補,Prime Market (Domestic),Construction,優先して財務確認,上昇中押し目,高値更新,68.7,100,12.2,-6.3,69.8,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+102.5,6387,SAMCO INC.,広域候補,Prime Market (Domestic),Machinery,優先して財務確認,上昇中押し目,上昇中押し目,67.3,100,11.5,-3.9,445.7,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+102,8147,TOMITA CO.LTD.,広域候補,Standard Market(Domestic),Wholesale Trade,監視しながら財務確認,安値反転候補,上昇中押し目,73.9,100,12.1,-1,2,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+101.7,5832,"Chugin Financial Group,Inc.",広域候補,Prime Market (Domestic),Banks,優先して財務確認,上昇中押し目,高値更新,67.4,100,9.1,-2.4,72.1,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+101.6,1934,YURTEC CORPORATION,広域候補,Prime Market (Domestic),Construction,監視しながら財務確認,安値反転候補,上昇中押し目,73.5,100,11.2,0,24.1,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+101.5,6093,"Escrow Agent Japan,Inc.",広域候補,Standard Market(Domestic),Services,監視しながら財務確認,安値反転候補,高値更新,74.2,100,14,-4.1,14.6,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+101,5830,"Iyogin Holdings,Inc.",広域候補,Prime Market (Domestic),Banks,監視しながら財務確認,待ち,高値更新,71.2,100,14.4,-1.4,102.1,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+101,4367,"KOEI CHEMICAL COMPANY,LIMITED",広域候補,Standard Market(Domestic),Chemicals,優先して財務確認,上昇中押し目,安値反転,66.4,100,11.6,-4.8,17,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+100.9,2418,TSUKADA GLOBAL HOLDINGS Inc.,広域候補,Standard Market(Domestic),Services,監視しながら財務確認,安値反転候補,安値反転,73.3,100,12.1,-1.6,2.9,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+99.1,3673,"Broadleaf Co.,Ltd.",広域候補,Prime Market (Domestic),Information & Communication,監視しながら財務確認,待ち,高値更新,68.7,100,13.8,0,7.4,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+98.9,9722,FUJITA KANKO INC.,広域候補,Prime Market (Domestic),Services,監視しながら財務確認,安値反転候補,上昇中押し目,71.7,100,10.7,-0.6,-9.8,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+98.7,3086,"J.FRONT RETAILING Co.,Ltd.",広域候補,Prime Market (Domestic),Retail Trade,監視しながら財務確認,待ち,安値反転,68.4,100,13.7,0,24.7,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+98,5983,IWABUCHI CORPORATION,広域候補,Standard Market(Domestic),Metal Products,優先して財務確認,上昇中押し目,上昇中押し目,64.9,100,8.1,-2.8,106.9,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+97.8,3566,"UNIFORM NEXT CO.,LTD.",広域候補,Growth Market(Domestic),Retail Trade,優先して財務確認,上昇中押し目,上昇中押し目,64.4,100,11.2,-5.8,52,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+97.5,7261,Mazda Motor Corporation,広域候補,Prime Market (Domestic),Transportation Equipment,監視しながら財務確認,待ち,上昇中押し目,67.6,100,13.4,-0.2,31,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+97.3,5252,"Nihon Knowledge Co,Ltd.",広域候補,Growth Market(Domestic),Information & Communication,監視しながら財務確認,待ち,高値更新,69,100,14.6,-3.5,59.5,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+96.9,7456,"MATSUDA SANGYO Co.,Ltd.",広域候補,Prime Market (Domestic),Wholesale Trade,監視しながら財務確認,待ち,高値更新,69.9,100,14.3,-4.8,87.4,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+96.9,4347,Broadmedia Corporation,広域候補,Standard Market(Domestic),Services,監視しながら財務確認,待ち,上昇中押し目,67.1,100,13.1,0,-9.8,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+96.9,4109,STELLA CHEMIFA CORPORATION,広域候補,Prime Market (Domestic),Chemicals,優先して財務確認,上昇中押し目,高値更新,65.3,75,10.7,-1.9,85.6,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+96.7,9543,"SHIZUOKA GAS CO.,LTD.",広域候補,Prime Market (Domestic),Electric Power and Gas,監視しながら財務確認,安値反転候補,高値更新,70.9,100,12.6,-4.4,16.2,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+96.2,6928,"ENOMOTO Co.,Ltd.",広域候補,Standard Market(Domestic),Electric Appliances,優先して財務確認,上昇中押し目,高値更新,66.1,80,10.3,-4.5,150.5,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+96.1,6866,HIOKI E.E.CORPORATION,広域候補,Prime Market (Domestic),Electric Appliances,監視しながら財務確認,待ち,上昇中押し目,67.7,100,12.3,-0.8,127.6,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+96.1,3030,"HUB CO.,LTD.",広域候補,Standard Market(Domestic),Retail Trade,監視しながら財務確認,待ち,高値更新,66.6,100,12.8,0,17.7,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+96,2915,"KENKO Mayonnaise Co.,Ltd.",広域候補,Prime Market (Domestic),Foods,監視しながら財務確認,安値反転候補,安値反転,69.7,100,9.7,-0.6,6.5,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+96,7192,Mortgage Service Japan Limited,広域候補,Standard Market(Domestic),Other Financing Business,監視しながら財務確認,待ち,高値更新,67.9,100,13.7,-2.8,32.5,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+96,4425,Kudan Inc.,広域候補,Growth Market(Domestic),Information & Communication,監視しながら財務確認,待ち,上昇中押し目,66.8,100,13.7,-1.4,61.9,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+96,8912,Area Quest Inc.,広域候補,Standard Market(Domestic),Real Estate,監視しながら財務確認,待ち,安値反転,66.6,100,13.2,-0.6,-5,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+95.9,9537,"HOKURIKU GAS CO.,LTD.",広域候補,Standard Market(Domestic),Electric Power and Gas,監視しながら財務確認,待ち,高値更新,66.9,100,14.2,-2.2,14.3,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+95.7,5484,"Tohoku Steel Co.,Ltd.",広域候補,Standard Market(Domestic),Iron and Steel,押し目待ちで財務確認,高値圏,高値更新,75.7,100,18.2,-0.5,123.9,すでに大きく上がっているため押し目待ち,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+95.7,2341,"ARBEIT-TIMES CO.,LTD.",広域候補,Standard Market(Domestic),Services,監視しながら財務確認,安値反転候補,上昇中押し目,70.6,100,9.3,-1.6,8,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+95.7,9506,"Tohoku Electric Power Company,Incorporated",広域候補,Prime Market (Domestic),Electric Power and Gas,監視しながら財務確認,安値反転候補,安値反転,69.5,100,9.5,-0.4,5.1,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+95.4,1950,"NIPPON DENSETSU KOGYO CO.,LTD.",広域候補,Prime Market (Domestic),Construction,監視しながら財務確認,待ち,高値更新,68.1,100,10.9,-0.6,84.1,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+95,5261,"RESOL HOLDINGS Co.,Ltd.",広域候補,Prime Market (Domestic),Services,監視しながら財務確認,待ち,高値更新,67.6,100,14.4,-4.4,45.8,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+95,8609,OKASAN SECURITIES GROUP INC.,広域候補,Prime Market (Domestic),Securities and Commodities Futures,監視しながら財務確認,待ち,高値更新,66.1,100,13.4,-1.4,38.7,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+95,4385,"Mercari,Inc.",広域候補,Prime Market (Domestic),Information & Communication,監視しながら財務確認,待ち,上昇中押し目,65.8,100,12.4,0,48.8,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+94.8,7819,SHOBIDO Corporation,広域候補,Standard Market(Domestic),Other Products,監視しながら財務確認,安値反転候補,安値反転,68.9,100,9.1,-0.4,32.1,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+94.5,9888,"UEX,LTD.",広域候補,Standard Market(Domestic),Wholesale Trade,押し目待ちで財務確認,高値圏,安値反転,74.7,100,21.6,-4.5,27.1,すでに大きく上がっているため押し目待ち,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+94.5,7570,"HASHIMOTO SOGYO HOLDINGS CO.,LTD.",広域候補,Standard Market(Domestic),Wholesale Trade,監視しながら財務確認,待ち,安値反転,65.8,100,13.4,-1.7,9.5,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+94.2,8616,"Tokai Tokyo Financial Holdings,Inc.",広域候補,Prime Market (Domestic),Securities and Commodities Futures,監視しながら財務確認,待ち,高値更新,65.5,100,13.3,-1.6,52.9,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+94.1,5802,"Sumitomo Electric Industries,Ltd.",広域候補,Prime Market (Domestic),Nonferrous Metals,監視しながら財務確認,待ち,上昇中押し目,67.5,100,11.7,-2.4,353.7,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+94.1,8392,"THE OITA BANK,LTD.",広域候補,Prime Market (Domestic),Banks,監視しながら財務確認,待ち,上昇中押し目,66.2,100,11.5,-0.6,206.4,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+94.1,6239,NAGAOKA INTERNATIONAL CORPORATION,広域候補,Standard Market(Domestic),Machinery,監視しながら財務確認,待ち,安値反転,65.5,100,13.3,-1.7,0.8,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+94,4538,"Fuso Pharmaceutical Industries,Ltd.",広域候補,Prime Market (Domestic),Pharmaceutical,監視しながら財務確認,安値反転候補,安値反転,68.3,100,8.6,0,-3.6,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+93.8,2612,KADOYA SESAME MILLS INCORPORATED,広域候補,Standard Market(Domestic),Foods,監視しながら財務確認,待ち,高値更新,65.1,100,12.6,-0.8,40.1,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+93.8,6977,"JAPAN RESISTOR MFG. CO.,LTD.",広域候補,Standard Market(Domestic),Electric Appliances,優先して財務確認,上昇中押し目,上昇中押し目,65,80,11.3,-7.2,44.5,上昇トレンド中の押し目候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+93.6,8891,"AMG HOLDINGS CO.,LTD.",広域候補,Standard Market(Domestic),Real Estate,監視しながら財務確認,待ち,安値反転,65.2,100,13.1,-1.7,-10.8,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+93.3,7201,"NISSAN MOTOR CO.,LTD.",広域候補,Prime Market (Domestic),Transportation Equipment,監視しながら財務確認,待ち,上昇中押し目,65,100,13.1,-1.9,-8.8,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+93.2,7634,"HOSHIIRYO-SANKI CO.,LTD.",広域候補,Standard Market(Domestic),Wholesale Trade,監視しながら財務確認,安値反転候補,安値反転,67.9,100,9.2,-1.2,9.4,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+93.2,6863,NIRECO CORPORATION,広域候補,Standard Market(Domestic),Electric Appliances,監視しながら財務確認,待ち,高値更新,64.8,100,12.7,-1.3,40.8,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+93.2,8117,CENTRAL AUTOMOTIVE PRODUCTS LTD.,広域候補,Standard Market(Domestic),Wholesale Trade,監視しながら財務確認,待ち,安値反転,64.8,100,12.8,-1.4,14,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+93.2,7318,"SERENDIP HOLDINGS Co.,Ltd.",広域候補,Growth Market(Domestic),Transportation Equipment,監視しながら財務確認,待ち,上昇中押し目,64.6,100,11.8,0,233,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+92.6,9031,"Nishi-Nippon Railroad Co.,Ltd.",広域候補,Prime Market (Domestic),Land Transportation,監視しながら財務確認,待ち,高値更新,64.4,100,12.8,-1.7,31.5,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+92.5,7294,YOROZU CORPORATION,広域候補,Prime Market (Domestic),Transportation Equipment,監視しながら財務確認,安値反転候補,上昇中押し目,68,100,11.3,-4.6,-2.5,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+92.5,8708,"AIZAWA SECURITIES GROUP CO.,LTD.",広域候補,Prime Market (Domestic),Securities and Commodities Futures,監視しながら財務確認,安値反転候補,安値反転,67.2,100,8.1,0,14.9,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+92.3,2897,"NISSIN FOODS HOLDINGS CO.,LTD.",広域候補,Prime Market (Domestic),Foods,監視しながら財務確認,安値反転候補,安値反転,67.3,100,8.8,-1.1,-9.3,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+91.8,5187,"CREATE MEDIC CO.,LTD.",広域候補,Standard Market(Domestic),Precision Instruments,監視しながら財務確認,安値反転候補,安値反転,66.8,100,8.3,-0.6,15.3,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
+91.6,6989,"HOKURIKU ELECTRIC INDUSTRY CO.,LTD.",広域候補,Standard Market(Domestic),Electric Appliances,監視しながら財務確認,待ち,高値更新,63.5,100,11.2,0,-1.2,高値更新型の候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補

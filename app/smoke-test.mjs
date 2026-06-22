@@ -75,6 +75,9 @@ vm.runInContext(
   document.getElementById("rankingSelect").value = "researchUniverse";
   renderRanking();
   const researchRanking = document.getElementById("rankingList").innerHTML;
+  document.getElementById("rankingSelect").value = "researchTiming";
+  renderRanking();
+  const researchTimingRanking = document.getElementById("rankingList").innerHTML;
   document.getElementById("rankingSelect").value = "researchMultibagger";
   renderRanking();
   const multibaggerRanking = document.getElementById("rankingList").innerHTML;
@@ -95,6 +98,7 @@ vm.runInContext(
     buyTimingAlert: normalBuyTimingAlert,
     researchOverview: document.getElementById("researchOverview").innerHTML,
     researchRanking,
+    researchTimingRanking,
     multibaggerRanking,
     researchDetailTitle,
     researchDetailChart,
@@ -132,6 +136,9 @@ if (!result.researchOverview.includes("日本株全体") || !result.researchOver
 }
 if (!result.researchRanking.includes("広域候補")) {
   failures.push("ランキングに広域候補が生成されていません");
+}
+if (!result.researchTimingRanking.includes("上昇タイミング")) {
+  failures.push("ランキングに上昇タイミング候補が生成されていません");
 }
 if (!result.multibaggerRanking.includes("2倍監視")) {
   failures.push("ランキングに2倍監視が生成されていません");

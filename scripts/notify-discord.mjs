@@ -8,6 +8,7 @@ const reportPath = path.join(rootDir, "reports", "latest-morning-report.md");
 const multibaggerReportPath = path.join(rootDir, "reports", "latest-multibagger-candidates.md");
 const promotionReportPath = path.join(rootDir, "reports", "latest-promotion-candidates.md");
 const generatedDataPath = path.join(rootDir, "app", "generated-data.js");
+const generatedResearchPath = path.join(rootDir, "app", "generated-research.js");
 const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
 const dryRun = process.env.DISCORD_DRY_RUN === "1" || process.argv.includes("--dry-run");
 const siteUrl = process.env.PAGES_URL || "https://sensin0.github.io/candidate-stock-assist/";
@@ -29,7 +30,9 @@ const report = fs.readFileSync(reportPath, "utf8");
 const multibaggerReport = fs.existsSync(multibaggerReportPath) ? fs.readFileSync(multibaggerReportPath, "utf8") : "";
 const promotionReport = fs.existsSync(promotionReportPath) ? fs.readFileSync(promotionReportPath, "utf8") : "";
 const generatedData = fs.existsSync(generatedDataPath) ? fs.readFileSync(generatedDataPath, "utf8") : "";
+const generatedResearch = fs.existsSync(generatedResearchPath) ? fs.readFileSync(generatedResearchPath, "utf8") : "";
 const generatedPayload = parseGeneratedData(generatedData);
+const researchPayload = parseGeneratedData(generatedResearch, "AUTO_RESEARCH_DATA");
 const dataQuality = generatedPayload?.dataQuality ?? null;
 
 function countSection(title) {
@@ -61,6 +64,7 @@ const providerWarningCount = dataQuality?.providerWarnings?.length ?? 0;
 const validationWarningCount = dataQuality?.validationWarnings?.length ?? 0;
 const referenceWarningCount = dataQuality?.externalReferenceWarnings?.length ?? 0;
 const stockCount = generatedPayload?.stocks?.length ?? 0;
+const universe = researchPayload?.universe ?? null;
 const stockCountWarning = stockCount > 0 && stockCount < 20 ? "（少なめ）" : "";
 const dataSource = generatedPayload?.source ?? "不明";
 const nextFixes = dataQuality?.nextFixes ?? [];
@@ -71,6 +75,7 @@ const message = [
   "候補銘柄アシスト 朝レポートを更新しました",
   "",
   `対象銘柄数: ${stockCount}件${stockCountWarning}`,
+  universe ? `日本株全体: ${universe.success}/${universe.total}件取得 / 上昇タイミング候補 ${universe.buyTiming ?? 0}件` : "日本株全体: 調査データ待ち",
   `銘柄マスタ: ${dataSource}`,
   `本番準備度: ${readiness.score}% ${readiness.label}`,
   `今買い候補: ${buyCount}件`,
@@ -148,8 +153,8 @@ request.on("error", (error) => {
 request.write(body);
 request.end();
 
-function parseGeneratedData(text) {
-  const match = text.match(/window\.AUTO_STOCK_DATA = ([\s\S]*);\s*$/);
+function parseGeneratedData(text, name = "AUTO_STOCK_DATA") {
+  const match = text.match(new RegExp(`window\\.${name} = ([\\s\\S]*);\\s*$`));
   if (!match) return null;
   try {
     return JSON.parse(match[1]);

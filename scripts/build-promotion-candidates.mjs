@@ -64,7 +64,7 @@ for (const row of multibaggerRows) {
 const rows = [...candidates.values()]
   .map((row) => ({ ...row, priority: priority(row), action: actionLabel(row) }))
   .sort((a, b) => b.priority - a.priority)
-  .slice(0, 50);
+  .slice(0, 150);
 
 fs.mkdirSync(reportsDir, { recursive: true });
 writeCsv(outputCsvPath, rows);
@@ -152,6 +152,7 @@ function writeReport(filePath, rows) {
     "このリストは買い推奨ではありません。通常候補へ入れる前に、BPS、EPS、現金、有利子負債、発行株数、有報、直近決算を確認します。",
     "",
     `候補数: ${rows.length}件`,
+    `通常候補登録済み: ${existingCodes.size}件`,
     "",
     "## 優先して財務確認",
     "",
