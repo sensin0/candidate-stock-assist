@@ -8,6 +8,7 @@ const reportPath = path.join(rootDir, "reports", "latest-morning-report.md");
 const multibaggerReportPath = path.join(rootDir, "reports", "latest-multibagger-candidates.md");
 const promotionReportPath = path.join(rootDir, "reports", "latest-promotion-candidates.md");
 const readinessReportPath = path.join(rootDir, "reports", "latest-promotion-readiness.md");
+const hiddenGemsReportPath = path.join(rootDir, "reports", "latest-hidden-gems.md");
 const draftReportPath = path.join(rootDir, "reports", "latest-stock-master-draft.md");
 const expandedPreviewReportPath = path.join(rootDir, "reports", "latest-stock-master-expanded-preview.md");
 const generatedDataPath = path.join(rootDir, "app", "generated-data.js");
@@ -19,6 +20,7 @@ const reportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-morning-report.m
 const multibaggerReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-multibagger-candidates.md`;
 const promotionReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-promotion-candidates.md`;
 const readinessReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-promotion-readiness.md`;
+const hiddenGemsReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-hidden-gems.md`;
 const draftReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-stock-master-draft.md`;
 const expandedPreviewReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-stock-master-expanded-preview.md`;
 
@@ -36,6 +38,7 @@ const report = fs.readFileSync(reportPath, "utf8");
 const multibaggerReport = fs.existsSync(multibaggerReportPath) ? fs.readFileSync(multibaggerReportPath, "utf8") : "";
 const promotionReport = fs.existsSync(promotionReportPath) ? fs.readFileSync(promotionReportPath, "utf8") : "";
 const readinessReport = fs.existsSync(readinessReportPath) ? fs.readFileSync(readinessReportPath, "utf8") : "";
+const hiddenGemsReport = fs.existsSync(hiddenGemsReportPath) ? fs.readFileSync(hiddenGemsReportPath, "utf8") : "";
 const draftReport = fs.existsSync(draftReportPath) ? fs.readFileSync(draftReportPath, "utf8") : "";
 const expandedPreviewReport = fs.existsSync(expandedPreviewReportPath) ? fs.readFileSync(expandedPreviewReportPath, "utf8") : "";
 const generatedData = fs.existsSync(generatedDataPath) ? fs.readFileSync(generatedDataPath, "utf8") : "";
@@ -115,6 +118,9 @@ const message = [
   "昇格準備チェック",
   ...firstReportItems(readinessReport, "最優先で財務確認", 2).map((item) => `- ${item}`),
   "",
+  "未発掘候補",
+  ...firstReportItems(hiddenGemsReport, "上位候補", 2).map((item) => `- ${item}`),
+  "",
   "通常候補入力下書き",
   ...firstReportItems(draftReport, "上位下書き", 2).map((item) => `- ${item}`),
   "",
@@ -130,6 +136,7 @@ const message = [
   multibaggerReportUrl,
   promotionReportUrl,
   readinessReportUrl,
+  hiddenGemsReportUrl,
   draftReportUrl,
   expandedPreviewReportUrl,
 ].join("\n");

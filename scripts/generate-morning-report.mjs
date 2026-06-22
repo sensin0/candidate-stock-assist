@@ -10,6 +10,7 @@ const generatedDataPath = path.join(appDir, "generated-data.js");
 const generatedResearchPath = path.join(appDir, "generated-research.js");
 const generatedExpansionPath = path.join(appDir, "generated-expansion-preview.js");
 const generatedPromotionReadinessPath = path.join(appDir, "generated-promotion-readiness.js");
+const generatedHiddenGemsPath = path.join(appDir, "generated-hidden-gems.js");
 const appJsPath = path.join(appDir, "app.js");
 
 const elements = new Map();
@@ -69,6 +70,7 @@ const code = [
   fs.existsSync(generatedResearchPath) ? fs.readFileSync(generatedResearchPath, "utf8") : "",
   fs.existsSync(generatedExpansionPath) ? fs.readFileSync(generatedExpansionPath, "utf8") : "",
   fs.existsSync(generatedPromotionReadinessPath) ? fs.readFileSync(generatedPromotionReadinessPath, "utf8") : "",
+  fs.existsSync(generatedHiddenGemsPath) ? fs.readFileSync(generatedHiddenGemsPath, "utf8") : "",
   fs.readFileSync(appJsPath, "utf8"),
   "globalThis.__report = document.getElementById('morningReport').value;",
 ].join("\n");

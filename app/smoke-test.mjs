@@ -64,6 +64,9 @@ const generatedExpansion = fs.existsSync(new URL("./generated-expansion-preview.
 const generatedPromotionReadiness = fs.existsSync(new URL("./generated-promotion-readiness.js", import.meta.url))
   ? fs.readFileSync(new URL("./generated-promotion-readiness.js", import.meta.url), "utf8")
   : "";
+const generatedHiddenGems = fs.existsSync(new URL("./generated-hidden-gems.js", import.meta.url))
+  ? fs.readFileSync(new URL("./generated-hidden-gems.js", import.meta.url), "utf8")
+  : "";
 const code = fs.readFileSync(new URL("./app.js", import.meta.url), "utf8");
 
 vm.runInContext(
@@ -71,6 +74,7 @@ vm.runInContext(
   ${generatedResearch}
   ${generatedExpansion}
   ${generatedPromotionReadiness}
+  ${generatedHiddenGems}
   ${code}
   selectedCode = byAssist("今買い候補")[0]?.code
     ?? byAssist("検証弱く見送り")[0]?.code
@@ -96,6 +100,9 @@ vm.runInContext(
   document.getElementById("rankingSelect").value = "expansionPreview";
   renderRanking();
   const expansionRanking = document.getElementById("rankingList").innerHTML;
+  document.getElementById("rankingSelect").value = "hiddenGems";
+  renderRanking();
+  const hiddenGemsRanking = document.getElementById("rankingList").innerHTML;
   selectedResearch = { type: "researchUniverse", code: window.AUTO_RESEARCH_DATA.universeTop[0].code };
   renderDetail();
   const researchDetailTitle = document.getElementById("detailTitle").textContent;
@@ -123,6 +130,7 @@ vm.runInContext(
     researchTimingRanking,
     multibaggerRanking,
     expansionRanking,
+    hiddenGemsRanking,
     researchDetailTitle,
     researchDetailChart,
     researchLynchChart,
@@ -175,6 +183,9 @@ if (!result.multibaggerRanking.includes("2倍監視")) {
 }
 if (!result.expansionRanking.includes("確認前")) {
   failures.push("ランキングに追加候補確認が生成されていません");
+}
+if (!result.hiddenGemsRanking.includes("未発掘")) {
+  failures.push("ランキングに未発掘候補が生成されていません");
 }
 if (!result.researchDetailTitle || !result.researchDetailChart.includes("価格バックテストの見え方")) {
   failures.push("広域候補の詳細が生成されていません");

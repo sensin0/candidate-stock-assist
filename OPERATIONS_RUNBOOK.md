@@ -112,6 +112,14 @@ npm run promotion:readiness
 
 結果は `reports/latest-promotion-readiness.md` と `data/promotion-readiness.csv` に出ます。`最優先で財務確認` の上位から確認します。
 
+既存候補に入っていない未発掘候補を見る:
+
+```powershell
+npm run hidden:gems
+```
+
+結果は `reports/latest-hidden-gems.md` と `data/hidden-gems.csv` に出ます。通常候補と既存の昇格候補を除外した、日本株全体からの次の候補です。
+
 昇格候補から通常候補入力の下書きを作る:
 
 ```powershell

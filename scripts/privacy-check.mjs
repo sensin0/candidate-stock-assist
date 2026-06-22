@@ -13,6 +13,7 @@ const allowedMarkdown = new Set([
   "STOCK_MASTER_COLUMNS.md",
   "app/README.md",
   "app/latest-update-report.md",
+  "reports/latest-hidden-gems.md",
   "reports/latest-morning-report.md",
   "reports/latest-multibagger-candidates.md",
   "reports/latest-price-backtest.md",

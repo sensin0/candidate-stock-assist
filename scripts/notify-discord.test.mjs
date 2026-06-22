@@ -24,12 +24,14 @@ assert.match(result.stdout, /今日見る優先順位/);
 assert.match(result.stdout, /2倍監視候補/);
 assert.match(result.stdout, /通常候補への昇格確認/);
 assert.match(result.stdout, /昇格準備チェック/);
+assert.match(result.stdout, /未発掘候補/);
 assert.match(result.stdout, /通常候補入力下書き/);
 assert.match(result.stdout, /次に直す: \d+件/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-morning-report\.md/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-multibagger-candidates\.md/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-promotion-candidates\.md/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-promotion-readiness\.md/);
+assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-hidden-gems\.md/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-stock-master-draft\.md/);
 
 console.log("notify-discord-test ok");

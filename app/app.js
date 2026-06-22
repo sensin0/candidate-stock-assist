@@ -909,6 +909,7 @@ function markerPosition(stock) {
 
 function rankingFor(type) {
   if (type === "expansionPreview") return filteredExpansionItems(window.AUTO_EXPANSION_PREVIEW?.items ?? []);
+  if (type === "hiddenGems") return filteredHiddenGemItems(window.AUTO_HIDDEN_GEMS?.top ?? []);
   if (type === "researchTiming") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.timingBuys ?? []);
   if (type === "researchUniverse") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.universeAll ?? window.AUTO_RESEARCH_DATA?.universeTop ?? []);
   if (type === "researchMultibagger") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.multibaggerWatch ?? []);
@@ -930,6 +931,11 @@ function renderRanking() {
   if (type === "expansionPreview") {
     document.getElementById("rankingList").innerHTML =
       list.map((item, index) => renderExpansionRankingRow(item, index)).join("") || `<p class="reason">該当なし</p>`;
+    return;
+  }
+  if (type === "hiddenGems") {
+    document.getElementById("rankingList").innerHTML =
+      list.map((item, index) => renderHiddenGemRankingRow(item, index)).join("") || `<p class="reason">該当なし</p>`;
     return;
   }
   if (type === "researchUniverse" || type === "researchMultibagger" || type === "researchTiming") {
@@ -965,6 +971,16 @@ function filteredExpansionItems(items) {
     .sort((a, b) => a.rank - b.rank);
 }
 
+function filteredHiddenGemItems(items) {
+  const q = searchQuery.trim().toLowerCase();
+  return items
+    .filter((item) => {
+      const text = `${item.code} ${item.name} ${item.sector} ${item.market}`.toLowerCase();
+      return !q || text.includes(q);
+    })
+    .sort((a, b) => (b.hiddenScore ?? 0) - (a.hiddenScore ?? 0));
+}
+
 function filteredResearchItems(items) {
   const q = searchQuery.trim().toLowerCase();
   return items
@@ -993,6 +1009,31 @@ function renderExpansionRankingRow(item, index) {
         <span>BPS確認 ${yen(item.bps)}</span>
         <span>EPS確認 ${Math.round((item.eps ?? 0) * 10) / 10}</span>
         <span>財務確認前</span>
+      </div>
+    </article>
+  `;
+}
+
+function renderHiddenGemRankingRow(item, index) {
+  const isActive = selectedResearch?.type === "hiddenGems" && selectedResearch?.code === item.code;
+  return `
+    <article class="ranking-row research-ranking-row ${isActive ? "active" : ""}" data-research-type="hiddenGems" data-research-code="${escapeHtml(item.code)}">
+      <div class="ranking-top">
+        <div>
+          <strong>${index + 1}. ${escapeHtml(item.name)}</strong>
+          <div class="stock-code">${escapeHtml(item.code)} / ${escapeHtml(item.sector || "未分類")}</div>
+        </div>
+        <span class="assist-label label-research">未発掘</span>
+      </div>
+      <p class="reason">${escapeHtml(item.reason || "既存候補外から見つけた候補です")}</p>
+      <div class="ranking-meta">
+        <span>${escapeHtml(item.status || "監視")}</span>
+        <span>${escapeHtml(item.signal || "待ち")}</span>
+        <span>点 ${Math.round((item.hiddenScore ?? 0) * 10) / 10}</span>
+        <span>平均 ${pct(item.averageReturn ?? 0)}</span>
+        <span>勝率 ${pct(item.winRate ?? 0)}</span>
+        <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
+        <span>${escapeHtml(item.caution || "注意なし")}</span>
       </div>
     </article>
   `;
@@ -1103,6 +1144,9 @@ function findResearchItem(type, code) {
   if (type === "expansionPreview") {
     return (window.AUTO_EXPANSION_PREVIEW?.items ?? []).find((item) => item.code === code) ?? null;
   }
+  if (type === "hiddenGems") {
+    return (window.AUTO_HIDDEN_GEMS?.top ?? []).find((item) => item.code === code) ?? null;
+  }
   const items = type === "researchMultibagger"
     ? window.AUTO_RESEARCH_DATA?.multibaggerWatch ?? []
     : window.AUTO_RESEARCH_DATA?.universeTop ?? [];
@@ -1142,7 +1186,7 @@ function renderExpansionDetail(item) {
 }
 
 function renderResearchDetail(item, type) {
-  const label = type === "researchMultibagger" ? "2倍監視" : "広域候補";
+  const label = type === "researchMultibagger" ? "2倍監視" : type === "hiddenGems" ? "未発掘候補" : "広域候補";
   const comment = item.comment || signalComment(item);
   document.getElementById("detailAssist").textContent = label;
   document.getElementById("detailAssist").className = "assist-label label-near";
@@ -1150,7 +1194,7 @@ function renderResearchDetail(item, type) {
   document.getElementById("detailBadges").innerHTML = [
     "日本株全体調査",
     item.judgement || "価格検証",
-    item.timingAction || "監視",
+    item.timingAction || item.status || "監視",
     item.qualityNote || "利益と下落耐性",
     item.signal || "待ち",
     item.market || "市場不明",
@@ -1201,7 +1245,7 @@ function renderResearchTimingPanel(item, label) {
     <section class="timing-card timing-${tone}" aria-label="広域バックテスト確認">
       <div>
         <p class="eyebrow">${label}</p>
-        <h3>${escapeHtml(item.timingAction || item.signal || "待ち")}</h3>
+        <h3>${escapeHtml(item.timingAction || item.status || item.signal || "待ち")}</h3>
       </div>
       <div class="timing-actions">
         <div><span>今の扱い</span><strong>${escapeHtml(researchActionLabel(item))}</strong></div>

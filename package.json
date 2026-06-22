@@ -23,6 +23,7 @@
     "multibagger:research": "node scripts/analyze-multibagger-candidates.mjs",
     "promotion:research": "node scripts/build-promotion-candidates.mjs",
     "promotion:readiness": "node scripts/build-promotion-readiness.mjs",
+    "hidden:gems": "node scripts/build-hidden-gems.mjs",
     "research:data": "node scripts/build-research-data.mjs",
     "research:morning": "node scripts/research-morning.mjs",
     "stock-master:build": "node scripts/build-stock-master-from-input.mjs",
