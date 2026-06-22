@@ -1649,22 +1649,27 @@ function renderLynchChart(stock) {
 
   const width = 880;
   const height = 330;
-  const pad = { left: 58, right: 34, top: 34, bottom: 56 };
+  const pad = { left: 62, right: 36, top: 38, bottom: 58 };
   const perLow = Number(stock.perLow || 0) > 0 ? Number(stock.perLow) : Math.max(1, Number(stock.pbrLow || 0) * 20);
   const perAvg = Number(stock.perAvg || 0) > 0 ? Number(stock.perAvg) : Math.max(perLow, (perLow + Number(stock.perHigh || perLow * 1.6)) / 2);
   const perHigh = Number(stock.perHigh || 0) > 0 ? Number(stock.perHigh) : Math.max(perAvg * 1.35, perAvg + 4);
-  const lowLine = eps * perLow;
-  const fairLine = eps * perAvg;
-  const highLine = eps * perHigh;
-  const values = [...stock.history, stock.price, lowLine, fairLine, highLine];
+  const epsSeries = estimatedEpsSeries(stock.history.length, eps);
+  const lowSeries = epsSeries.map((value) => value * perLow);
+  const fairSeries = epsSeries.map((value) => value * perAvg);
+  const highSeries = epsSeries.map((value) => value * perHigh);
+  const lowLine = lowSeries.at(-1);
+  const fairLine = fairSeries.at(-1);
+  const highLine = highSeries.at(-1);
+  const values = [...stock.history, ...lowSeries, ...fairSeries, ...highSeries, stock.price];
   const min = Math.max(1, Math.min(...values) * 0.82);
   const max = Math.max(...values) * 1.12;
   const x = (index) => pad.left + (index / Math.max(1, stock.history.length - 1)) * (width - pad.left - pad.right);
   const y = (value) => pad.top + (1 - (value - min) / (max - min)) * (height - pad.top - pad.bottom);
   const pricePoints = stock.history.map((value, index) => `${x(index)},${y(value)}`).join(" ");
-  const line = (value, color, label) => `
-    <line x1="${pad.left}" x2="${width - pad.right}" y1="${y(value)}" y2="${y(value)}" stroke="${color}" stroke-width="2" stroke-dasharray="6 6" />
-    <text x="${pad.left}" y="${y(value) - 8}" font-size="12" fill="${color}">${label} ${yen(value)}</text>
+  const seriesPoints = (series) => series.map((value, index) => `${x(index)},${y(value)}`).join(" ");
+  const valueLine = (series, color, label, dash = "") => `
+    <polyline points="${seriesPoints(series)}" fill="none" stroke="${color}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" ${dash ? `stroke-dasharray="${dash}"` : ""} />
+    <text x="${width - pad.right - 186}" y="${y(series.at(-1)) - 7}" font-size="12" fill="${color}">${label} ${yen(series.at(-1))}</text>
   `;
   const currentPer = stock.price / eps;
   const position = stock.price <= lowLine
@@ -1679,10 +1684,13 @@ function renderLynchChart(stock) {
   return `
     <svg viewBox="0 0 ${width} ${height}" aria-label="${stock.name}のリンチ・チャート">
       <rect x="${pad.left}" y="${pad.top}" width="${width - pad.left - pad.right}" height="${height - pad.top - pad.bottom}" fill="#ffffff" />
-      <text x="${pad.left}" y="22" font-size="13" fill="#65706b">リンチ・チャート: 株価とEPS×PER目安</text>
-      ${line(lowLine, "#1f8a55", `割安目安 PER${Math.round(perLow * 10) / 10}`)}
-      ${line(fairLine, "#246a9f", `標準目安 PER${Math.round(perAvg * 10) / 10}`)}
-      ${line(highLine, "#c44536", `高値目安 PER${Math.round(perHigh * 10) / 10}`)}
+      <line x1="${pad.left}" x2="${width - pad.right}" y1="${y(min * 1.08)}" y2="${y(min * 1.08)}" stroke="#edf1ed" />
+      <line x1="${pad.left}" x2="${width - pad.right}" y1="${y((min + max) / 2)}" y2="${y((min + max) / 2)}" stroke="#edf1ed" />
+      <line x1="${pad.left}" x2="${width - pad.right}" y1="${y(max * 0.92)}" y2="${y(max * 0.92)}" stroke="#edf1ed" />
+      <text x="${pad.left}" y="22" font-size="13" fill="#65706b">リンチ・チャート: 株価とEPS×PER推定ライン</text>
+      ${valueLine(highSeries, "#c44536", `高値 PER${Math.round(perHigh * 10) / 10}`, "8 6")}
+      ${valueLine(fairSeries, "#246a9f", `標準 PER${Math.round(perAvg * 10) / 10}`)}
+      ${valueLine(lowSeries, "#1f8a55", `割安 PER${Math.round(perLow * 10) / 10}`, "5 5")}
       <polyline points="${pricePoints}" fill="none" stroke="#1d2522" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
       <circle cx="${x(stock.history.length - 1)}" cy="${y(stock.price)}" r="7" fill="${calloutColor}" />
       <g transform="translate(${Math.min(x(stock.history.length - 1) + 18, width - 270)}, ${Math.max(48, y(stock.price) - 48)})">
@@ -1690,9 +1698,28 @@ function renderLynchChart(stock) {
         <text x="12" y="22" class="callout" fill="${calloutColor}">${position}</text>
         <text x="12" y="40" font-size="12" fill="#65706b">現在PER ${Math.round(currentPer * 10) / 10}倍 / EPS ${Math.round(eps * 10) / 10}</text>
       </g>
-      <text x="${pad.left}" y="${height - 16}" font-size="12" fill="#65706b">株価が利益目安線より下なら割安寄り、上なら期待先行寄りとして確認します。</text>
+      <g transform="translate(${pad.left}, ${height - 36})">
+        <line x1="0" x2="24" y1="0" y2="0" stroke="#1d2522" stroke-width="4" />
+        <text x="32" y="4" font-size="12" fill="#65706b">株価</text>
+        <line x1="88" x2="112" y1="0" y2="0" stroke="#246a9f" stroke-width="2.4" />
+        <text x="120" y="4" font-size="12" fill="#65706b">標準価値</text>
+        <line x1="202" x2="226" y1="0" y2="0" stroke="#1f8a55" stroke-width="2.4" stroke-dasharray="5 5" />
+        <text x="234" y="4" font-size="12" fill="#65706b">割安目安</text>
+        <line x1="326" x2="350" y1="0" y2="0" stroke="#c44536" stroke-width="2.4" stroke-dasharray="8 6" />
+        <text x="358" y="4" font-size="12" fill="#65706b">高値目安</text>
+      </g>
+      <text x="${pad.left}" y="${height - 14}" font-size="12" fill="#65706b">価値ラインは現在EPSからの推定です。実際のEPS推移は決算確認後に更新します。</text>
     </svg>
   `;
+}
+
+function estimatedEpsSeries(length, currentEps) {
+  if (length <= 1) return [currentEps];
+  const startRate = 0.88;
+  return Array.from({ length }, (_, index) => {
+    const progress = index / (length - 1);
+    return currentEps * (startRate + (1 - startRate) * progress);
+  });
 }
 
 function renderResearchLynchPlaceholder(item) {
