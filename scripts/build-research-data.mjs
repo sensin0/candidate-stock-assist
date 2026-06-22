@@ -17,7 +17,7 @@ const universeSuccess = universeRows.filter((row) => !row.error).length;
 const universeAll = universeRows
   .filter((row) => !row.error)
   .map(mapUniverseRow)
-  .sort((a, b) => b.timingRank - a.timingRank || b.score - a.score);
+  .sort((a, b) => b.qualityRank - a.qualityRank || b.timingRank - a.timingRank || b.score - a.score);
 const universeTop = universeAll.filter((row) => row.judgement === "良さそう").slice(0, 100);
 const timingBuys = universeAll.filter((row) => row.timingAction === "初回買い候補" || row.timingAction === "押し目買い候補").slice(0, 80);
 
@@ -92,6 +92,8 @@ function mapUniverseRow(row) {
     trades: number(row.trades),
     timingAction: timingAction(row),
     timingRank: timingRank(row),
+    qualityRank: qualityRank(row),
+    qualityNote: qualityNote(row),
   };
 }
 
@@ -121,4 +123,44 @@ function timingRank(row) {
   if (action === "追いかけ注意") rank -= 18;
   if (action === "買わない") rank -= 45;
   return Math.round(rank * 10) / 10;
+}
+
+function qualityRank(row) {
+  const trades = number(row.trades);
+  const winRate = number(row.winRate);
+  const averageReturn = number(row.averageReturn);
+  const maxDrawdown = number(row.maxDrawdown);
+  const periodReturn = number(row.periodReturn);
+  let rank = number(row.priceScore);
+
+  rank += averageReturn * 1.1;
+  rank += winRate * 0.22;
+  rank += Math.max(-35, maxDrawdown) * 1.4;
+  rank += Math.min(18, trades * 3);
+
+  if (trades < 2) rank -= 18;
+  if (trades >= 4) rank += 10;
+  if (winRate < 60) rank -= 35;
+  if (averageReturn < 8) rank -= 24;
+  if (maxDrawdown <= -15) rank -= 34;
+  if (row.judgement === "見送り寄り") rank -= 60;
+  if (row.latestSignal === "高値圏") rank -= 22;
+  if (periodReturn > 180) rank -= 20;
+  if (periodReturn < -60) rank -= 12;
+  if (["押し目買い候補", "初回買い候補"].includes(timingAction(row))) rank += 22;
+
+  return Math.round(rank * 10) / 10;
+}
+
+function qualityNote(row) {
+  const notes = [];
+  const trades = number(row.trades);
+  const maxDrawdown = number(row.maxDrawdown);
+  const periodReturn = number(row.periodReturn);
+  if (trades < 2) notes.push("検証回数少なめ");
+  if (maxDrawdown <= -15) notes.push("下落深め");
+  if (row.latestSignal === "高値圏") notes.push("高値圏");
+  if (periodReturn > 180) notes.push("急騰後");
+  if (!notes.length) return "利益と下落耐性を確認";
+  return notes.join(" / ");
 }

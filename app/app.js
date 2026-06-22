@@ -810,6 +810,7 @@ function renderResearchCard(item, index, label, className) {
         <span>平均 ${pct(item.averageReturn ?? 0)}</span>
         <span>勝率 ${pct(item.winRate ?? 0)}</span>
         <span>下落 ${pct(item.maxDrawdown ?? 0)}</span>
+        <span>品質 ${Math.round((item.qualityRank ?? item.timingRank ?? item.score ?? 0) * 10) / 10}</span>
       </div>
     </article>
   `;
@@ -910,7 +911,7 @@ function filteredResearchItems(items) {
       const text = `${item.code} ${item.name} ${item.sector} ${item.market}`.toLowerCase();
       return !q || text.includes(q);
     })
-    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+    .sort((a, b) => (b.qualityRank ?? b.timingRank ?? b.score ?? 0) - (a.qualityRank ?? a.timingRank ?? a.score ?? 0));
 }
 
 function renderResearchRankingRow(item, index, type) {
@@ -934,7 +935,8 @@ function renderResearchRankingRow(item, index, type) {
         <span>${escapeHtml(item.signal || "待ち")}</span>
         <span>${escapeHtml(item.strategy || "価格検証")}</span>
         <span>${escapeHtml(item.timingAction || "監視")}</span>
-        <span>点数 ${Math.round((item.score ?? 0) * 10) / 10}</span>
+        <span>品質 ${Math.round((item.qualityRank ?? item.timingRank ?? item.score ?? 0) * 10) / 10}</span>
+        <span>${escapeHtml(item.qualityNote || "利益と下落耐性")}</span>
         <span>平均 ${pct(item.averageReturn ?? 0)}</span>
         <span>勝率 ${pct(item.winRate ?? 0)}</span>
         <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
@@ -1024,6 +1026,7 @@ function renderResearchDetail(item, type) {
     "日本株全体調査",
     item.judgement || "価格検証",
     item.timingAction || "監視",
+    item.qualityNote || "利益と下落耐性",
     item.signal || "待ち",
     item.market || "市場不明",
   ].map((badge) => `<span class="badge">${escapeHtml(badge)}</span>`).join("");
@@ -1058,6 +1061,7 @@ function renderResearchTimingPanel(item, label) {
       </div>
       <div class="timing-stats">
         <span>点数 ${Math.round((item.score ?? 0) * 10) / 10}</span>
+        <span>品質 ${Math.round((item.qualityRank ?? item.timingRank ?? item.score ?? 0) * 10) / 10}</span>
         <span>勝率 ${pct(item.winRate ?? 0)}</span>
         <span>平均 ${pct(item.averageReturn ?? 0)}</span>
         <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
@@ -1122,6 +1126,8 @@ function renderResearchMetrics(item) {
     ["検証戦略", item.strategy || "価格検証"],
     ["期間騰落", pct(item.periodReturn ?? 0)],
     ["点数", `${Math.round((item.score ?? 0) * 10) / 10}点`],
+    ["品質ランク", `${Math.round((item.qualityRank ?? item.timingRank ?? item.score ?? 0) * 10) / 10}点`],
+    ["負けにくさメモ", item.qualityNote || "利益と下落耐性を確認"],
     ["勝率", pct(item.winRate ?? 0)],
     ["平均リターン", pct(item.averageReturn ?? 0)],
     ["最大下落", pct(item.maxDrawdown ?? 0)],
