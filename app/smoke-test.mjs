@@ -73,6 +73,9 @@ const generatedHiddenGemsDraft = fs.existsSync(new URL("./generated-hidden-gems-
 const generatedFinancialConfirmation = fs.existsSync(new URL("./generated-financial-confirmation.js", import.meta.url))
   ? fs.readFileSync(new URL("./generated-financial-confirmation.js", import.meta.url), "utf8")
   : "";
+const generatedFinancialScreening = fs.existsSync(new URL("./generated-financial-screening.js", import.meta.url))
+  ? fs.readFileSync(new URL("./generated-financial-screening.js", import.meta.url), "utf8")
+  : "";
 const code = fs.readFileSync(new URL("./app.js", import.meta.url), "utf8");
 
 vm.runInContext(
@@ -83,6 +86,7 @@ vm.runInContext(
   ${generatedHiddenGems}
   ${generatedHiddenGemsDraft}
   ${generatedFinancialConfirmation}
+  ${generatedFinancialScreening}
   ${code}
   selectedCode = byAssist("今買い候補")[0]?.code
     ?? byAssist("検証弱く見送り")[0]?.code
@@ -123,6 +127,9 @@ vm.runInContext(
   document.getElementById("rankingSelect").value = "financialConfirmation";
   renderRanking();
   const financialConfirmationRanking = document.getElementById("rankingList").innerHTML;
+  document.getElementById("rankingSelect").value = "financialScreening";
+  renderRanking();
+  const financialScreeningRanking = document.getElementById("rankingList").innerHTML;
   const hiddenGemActionItem = window.AUTO_HIDDEN_GEMS.top.find((item) => item.assistAction === "今すぐ財務確認");
   if (hiddenGemActionItem) {
     selectedResearch = { type: "hiddenGems", code: hiddenGemActionItem.code };
@@ -144,6 +151,11 @@ vm.runInContext(
     renderDetail();
   }
   const financialConfirmationDetail = document.getElementById("buyTimingAlert").innerHTML + document.getElementById("chart").innerHTML;
+  if (window.AUTO_FINANCIAL_SCREENING?.top?.[0]) {
+    selectedResearch = { type: "financialScreening", code: window.AUTO_FINANCIAL_SCREENING.top[0].code };
+    renderDetail();
+  }
+  const financialScreeningDetail = document.getElementById("buyTimingAlert").innerHTML + document.getElementById("chart").innerHTML;
   globalThis.__result = {
     buyNow: byAssist("今買い候補").length,
     sellNow: byAssist("今売り検討").length + byAssist("一部利益確定検討").length,
@@ -168,6 +180,8 @@ vm.runInContext(
     hiddenGemsDraftRanking,
     financialConfirmationRanking,
     financialConfirmationDetail,
+    financialScreeningRanking,
+    financialScreeningDetail,
     hiddenGemDetailAlert,
     researchDetailTitle,
     researchDetailChart,
@@ -238,8 +252,14 @@ if (!result.hiddenGemsDraftRanking.includes("下書き")) {
 if (!result.financialConfirmationRanking.includes("財務確認")) {
   failures.push("ランキングに財務確認キューが生成されていません");
 }
+if (!result.financialScreeningRanking.includes("昇格確認優先")) {
+  failures.push("ランキングに財務優先確認が生成されていません");
+}
 if (!result.financialConfirmationDetail.includes("確認完了まで買わない") && !result.financialConfirmationDetail.includes("財務確認アシスト")) {
   failures.push("財務確認キューの詳細が生成されていません");
+}
+if (!result.financialScreeningDetail.includes("財務スクリーニング")) {
+  failures.push("財務優先確認の詳細が生成されていません");
 }
 if (!result.hiddenGemDetailAlert.includes("未発掘候補アシスト")) {
   failures.push("未発掘候補の上部アシストが生成されていません");

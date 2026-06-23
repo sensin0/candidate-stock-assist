@@ -912,6 +912,7 @@ function rankingFor(type) {
   if (type === "expansionPreview") return filteredExpansionItems(window.AUTO_EXPANSION_PREVIEW?.items ?? []);
   if (type === "hiddenGemsDraft") return filteredExpansionItems(window.AUTO_HIDDEN_GEMS_DRAFT?.items ?? []);
   if (type === "financialConfirmation") return filteredFinancialConfirmationItems(window.AUTO_FINANCIAL_CONFIRMATION?.top ?? []);
+  if (type === "financialScreening") return filteredFinancialScreeningItems(window.AUTO_FINANCIAL_SCREENING?.top ?? []);
   if (type === "hiddenGems") return filteredHiddenGemItems(window.AUTO_HIDDEN_GEMS?.top ?? []);
   if (type === "researchTiming") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.timingBuys ?? []);
   if (type === "researchUniverse") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.universeAll ?? window.AUTO_RESEARCH_DATA?.universeTop ?? []);
@@ -949,6 +950,11 @@ function renderRanking() {
   if (type === "financialConfirmation") {
     document.getElementById("rankingList").innerHTML =
       list.map((item, index) => renderFinancialConfirmationRankingRow(item, index)).join("") || `<p class="reason">該当なし</p>`;
+    return;
+  }
+  if (type === "financialScreening") {
+    document.getElementById("rankingList").innerHTML =
+      list.map((item, index) => renderFinancialScreeningRankingRow(item, index)).join("") || `<p class="reason">該当なし</p>`;
     return;
   }
   if (type === "hiddenGems") {
@@ -1139,6 +1145,16 @@ function filteredFinancialConfirmationItems(items) {
     .sort((a, b) => (b.confirmationScore ?? 0) - (a.confirmationScore ?? 0));
 }
 
+function filteredFinancialScreeningItems(items) {
+  const q = searchQuery.trim().toLowerCase();
+  return items
+    .filter((item) => {
+      const text = `${item.code} ${item.name} ${item.sector} ${item.status}`.toLowerCase();
+      return !q || text.includes(q);
+    })
+    .sort((a, b) => (b.screenScore ?? 0) - (a.screenScore ?? 0));
+}
+
 function filteredResearchItems(items) {
   const q = searchQuery.trim().toLowerCase();
   return items
@@ -1309,6 +1325,31 @@ function renderFinancialConfirmationRankingRow(item, index) {
   `;
 }
 
+function renderFinancialScreeningRankingRow(item, index) {
+  const isActive = selectedResearch?.type === "financialScreening" && selectedResearch?.code === item.code;
+  const labelClass = item.status === "昇格確認優先" ? "label-near" : item.status === "見送り寄り" ? "label-risk" : "label-research";
+  return `
+    <article class="ranking-row research-ranking-row ${isActive ? "active" : ""}" data-research-type="financialScreening" data-research-code="${escapeHtml(item.code)}">
+      <div class="ranking-top">
+        <div>
+          <strong>${index + 1}. ${escapeHtml(item.name)}</strong>
+          <div class="stock-code">${escapeHtml(item.code)} / ${escapeHtml(item.sector || "未分類")}</div>
+        </div>
+        <span class="assist-label ${labelClass}">${escapeHtml(item.status || "確認")}</span>
+      </div>
+      <p class="reason">${escapeHtml(item.action || "財務確認を進めます")}</p>
+      <div class="ranking-meta">
+        <span>点 ${Math.round((item.screenScore ?? 0) * 10) / 10}</span>
+        <span>PBR ${times(item.pbr ?? 0)}</span>
+        <span>PER ${(item.per ?? 0) ? times(item.per) : "-"}</span>
+        <span>ネット現金 ${percentPoint(item.netCashRatio ?? 0)}</span>
+        <span>${escapeHtml(item.cautions || "注意なし")}</span>
+      </div>
+    </article>
+    ${isActive ? renderInlineMobileLynchPreview(renderFinancialScreeningPlaceholder(item), `${item.name}の財務スクリーニング`) : ""}
+  `;
+}
+
 function renderResearchRankingRow(item, index, type) {
   const label = type === "researchMultibagger" ? "2倍監視" : type === "researchTiming" ? "上昇タイミング" : "広域候補";
   const comment = item.comment || signalComment(item);
@@ -1425,6 +1466,9 @@ function findResearchItem(type, code) {
   if (type === "financialConfirmation") {
     return (window.AUTO_FINANCIAL_CONFIRMATION?.top ?? []).find((item) => item.code === code) ?? null;
   }
+  if (type === "financialScreening") {
+    return (window.AUTO_FINANCIAL_SCREENING?.top ?? []).find((item) => item.code === code) ?? null;
+  }
   const items = type === "researchMultibagger"
     ? window.AUTO_RESEARCH_DATA?.multibaggerWatch ?? []
     : type === "researchTiming"
@@ -1468,6 +1512,10 @@ function renderExpansionDetail(item) {
 function renderResearchDetail(item, type) {
   if (type === "financialConfirmation") {
     renderFinancialConfirmationDetail(item);
+    return;
+  }
+  if (type === "financialScreening") {
+    renderFinancialScreeningDetail(item);
     return;
   }
   const label = type === "researchMultibagger" ? "2倍監視" : type === "hiddenGems" ? "未発掘候補" : "広域候補";
@@ -1550,6 +1598,90 @@ function renderFinancialConfirmationAlert(item) {
       </div>
     </section>
   `;
+}
+
+function renderFinancialScreeningDetail(item) {
+  const labelClass = item.status === "昇格確認優先" ? "label-near" : item.status === "見送り寄り" ? "label-risk" : "label-research";
+  document.getElementById("detailAssist").textContent = "財務優先確認";
+  document.getElementById("detailAssist").className = `assist-label ${labelClass}`;
+  document.getElementById("detailTitle").textContent = `${item.name} (${item.code})`;
+  document.getElementById("detailBadges").innerHTML = [
+    item.status || "確認",
+    `点 ${Math.round((item.screenScore ?? 0) * 10) / 10}`,
+    item.sector || "未分類",
+    item.sourceUrl ? "IRBANK確認元あり" : "確認元待ち",
+  ].map((badge) => `<span class="badge">${escapeHtml(badge)}</span>`).join("");
+  document.getElementById("buyTimingAlert").innerHTML = renderFinancialScreeningAlert(item);
+  document.getElementById("timingPanel").innerHTML = "";
+  document.getElementById("lifecycleAssist").innerHTML = "";
+  document.getElementById("tradeMeter").innerHTML = "";
+  document.getElementById("chart").innerHTML = renderFinancialScreeningPlaceholder(item);
+  const lynchChart = renderFinancialScreeningPlaceholder(item);
+  document.getElementById("lynchChart").innerHTML = lynchChart;
+  renderMobileLynchPreview(lynchChart, `${item.name}の財務スクリーニング`);
+  document.getElementById("reasonList").innerHTML = [
+    item.reasons || "確認材料が不足しています",
+    item.cautions ? `注意: ${item.cautions}` : "大きな注意はありません",
+  ].map((reason) => `<li>${escapeHtml(reason)}</li>`).join("");
+  document.getElementById("nextActionList").innerHTML = [
+    item.action || "決算短信と有報を確認",
+    "BPS、EPS、現金、有利子負債、発行株数を原資料で確認",
+    "問題なければワークシートのconfirmedとqualitativeDoneをtrue",
+  ].map((action) => `<li>${escapeHtml(action)}</li>`).join("");
+  document.getElementById("metricGrid").innerHTML = renderFinancialScreeningMetrics(item);
+}
+
+function renderFinancialScreeningAlert(item) {
+  const headline = item.status === "昇格確認優先"
+    ? "通常候補へ進める前の最優先確認"
+    : item.status === "見送り寄り"
+      ? "通常候補へ入れない方向で確認"
+      : item.status === "入力待ち"
+        ? "不足データを先に埋める"
+        : "慎重に確認";
+  return `
+    <section class="buy-timing-alert" aria-label="財務スクリーニング">
+      <div>
+        <p class="eyebrow">財務スクリーニング</p>
+        <h3>${headline}</h3>
+        <p>${escapeHtml(item.action || "原資料確認が先です。")}</p>
+      </div>
+      <div class="buy-timing-values">
+        <span>点 ${Math.round((item.screenScore ?? 0) * 10) / 10}</span>
+        <span>PBR ${times(item.pbr ?? 0)}</span>
+        <span>PER ${(item.per ?? 0) ? times(item.per) : "-"}</span>
+      </div>
+    </section>
+  `;
+}
+
+function renderFinancialScreeningPlaceholder(item) {
+  return `
+    <div class="chart-empty">
+      <p class="eyebrow">財務優先確認</p>
+      <h3>${escapeHtml(item.status || "確認")} / 点${Math.round((item.screenScore ?? 0) * 10) / 10}</h3>
+      <p>${escapeHtml(item.reasons || "確認材料を整理しています")}</p>
+      <p>${escapeHtml(item.cautions || "大きな注意なし")}</p>
+    </div>
+  `;
+}
+
+function renderFinancialScreeningMetrics(item) {
+  const metrics = [
+    ["点数", `${Math.round((item.screenScore ?? 0) * 10) / 10}点`],
+    ["判定", item.status || "確認"],
+    ["PBR", times(item.pbr ?? 0)],
+    ["PER", (item.per ?? 0) ? times(item.per) : "-"],
+    ["ネット現金比率", percentPoint(item.netCashRatio ?? 0)],
+    ["有利子負債比率", percentPoint(item.debtAssetRatio ?? 0)],
+    ["時価総額", oku(item.marketCap ?? 0)],
+    ["次", item.action || "原資料確認"],
+  ];
+  return metrics.map(([label, value]) => `<div class="metric"><span>${label}</span><strong>${escapeHtml(value)}</strong></div>`).join("");
+}
+
+function percentPoint(value) {
+  return `${Math.round(Number(value || 0) * 10) / 10}%`;
 }
 
 function renderFinancialConfirmationPlaceholder(item) {

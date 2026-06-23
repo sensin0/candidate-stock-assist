@@ -22,6 +22,7 @@ const requiredFiles = [
   "app/generated-hidden-gems.js",
   "app/generated-hidden-gems-draft.js",
   "app/generated-financial-confirmation.js",
+  "app/generated-financial-screening.js",
   "scripts/update-data.mjs",
   "scripts/backtest-core.mjs",
   "scripts/backtest-timing.mjs",

@@ -6,14 +6,17 @@ import { parseCsvRecords } from "./csv-utils.mjs";
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dataDir = path.join(rootDir, "data");
 const reportsDir = path.join(rootDir, "reports");
+const appDir = path.join(rootDir, "app");
 const worklistPath = path.join(dataDir, "financial-confirmation-worklist.csv");
 const outputCsvPath = path.join(dataDir, "financial-worklist-screened.csv");
 const outputReportPath = path.join(reportsDir, "latest-financial-worklist-screening.md");
+const outputJsPath = path.join(appDir, "generated-financial-screening.js");
 
 const rows = readCsv(worklistPath).map(screenRow).sort((a, b) => b.screenScore - a.screenScore);
 
 fs.writeFileSync(outputCsvPath, toCsv(rows), "utf8");
 writeReport(rows);
+writeAppData(rows);
 
 console.log(`財務確認候補をスクリーニングしました: ${rows.length}件`);
 console.log(path.relative(rootDir, outputReportPath));
@@ -150,6 +153,18 @@ function writeReport(items) {
     ...groups.flatMap((group) => section(group, items.filter((item) => item.status === group))),
   ];
   fs.writeFileSync(outputReportPath, `${lines.join("\n")}\n`, "utf8");
+}
+
+function writeAppData(items) {
+  const payload = {
+    generatedAt: new Date().toISOString(),
+    source: "data/financial-worklist-screened.csv",
+    total: items.length,
+    priorityCount: items.filter((item) => item.status === "昇格確認優先").length,
+    cautionCount: items.filter((item) => item.status === "見送り寄り").length,
+    top: items.slice(0, 80),
+  };
+  fs.writeFileSync(outputJsPath, `window.AUTO_FINANCIAL_SCREENING = ${JSON.stringify(payload, null, 2)};\n`, "utf8");
 }
 
 function section(title, items) {
