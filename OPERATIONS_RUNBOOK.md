@@ -120,6 +120,14 @@ npm run hidden:gems
 
 結果は `reports/latest-hidden-gems.md` と `data/hidden-gems.csv` に出ます。通常候補と既存の昇格候補を除外した、日本株全体からの次の候補です。
 
+未発掘候補から通常候補入力の下書きを作る:
+
+```powershell
+npm run hidden:gems:draft
+```
+
+結果は `data/stock-master-hidden-gems-draft.csv` と `reports/latest-hidden-gems-stock-master-draft.md` に出ます。`今すぐ財務確認` だけを対象にし、通常候補へ入れる前の確認リストとして使います。
+
 昇格候補から通常候補入力の下書きを作る:
 
 ```powershell

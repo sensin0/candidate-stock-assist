@@ -11,6 +11,7 @@ const steps = [
   ["通常候補追加プレビュー生成", "scripts/build-stock-master-expanded-preview.mjs"],
   ["通常候補への昇格準備チェック生成", "scripts/build-promotion-readiness.mjs"],
   ["未発掘候補生成", "scripts/build-hidden-gems.mjs"],
+  ["未発掘から通常候補入力下書き生成", "scripts/build-stock-master-draft-from-hidden-gems.mjs"],
   ["画面用調査データ生成", "scripts/build-research-data.mjs"],
 ];
 

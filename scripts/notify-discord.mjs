@@ -9,6 +9,7 @@ const multibaggerReportPath = path.join(rootDir, "reports", "latest-multibagger-
 const promotionReportPath = path.join(rootDir, "reports", "latest-promotion-candidates.md");
 const readinessReportPath = path.join(rootDir, "reports", "latest-promotion-readiness.md");
 const hiddenGemsReportPath = path.join(rootDir, "reports", "latest-hidden-gems.md");
+const hiddenGemsDraftReportPath = path.join(rootDir, "reports", "latest-hidden-gems-stock-master-draft.md");
 const draftReportPath = path.join(rootDir, "reports", "latest-stock-master-draft.md");
 const expandedPreviewReportPath = path.join(rootDir, "reports", "latest-stock-master-expanded-preview.md");
 const generatedDataPath = path.join(rootDir, "app", "generated-data.js");
@@ -21,6 +22,7 @@ const multibaggerReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-multi
 const promotionReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-promotion-candidates.md`;
 const readinessReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-promotion-readiness.md`;
 const hiddenGemsReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-hidden-gems.md`;
+const hiddenGemsDraftReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-hidden-gems-stock-master-draft.md`;
 const draftReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-stock-master-draft.md`;
 const expandedPreviewReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-stock-master-expanded-preview.md`;
 
@@ -39,6 +41,7 @@ const multibaggerReport = fs.existsSync(multibaggerReportPath) ? fs.readFileSync
 const promotionReport = fs.existsSync(promotionReportPath) ? fs.readFileSync(promotionReportPath, "utf8") : "";
 const readinessReport = fs.existsSync(readinessReportPath) ? fs.readFileSync(readinessReportPath, "utf8") : "";
 const hiddenGemsReport = fs.existsSync(hiddenGemsReportPath) ? fs.readFileSync(hiddenGemsReportPath, "utf8") : "";
+const hiddenGemsDraftReport = fs.existsSync(hiddenGemsDraftReportPath) ? fs.readFileSync(hiddenGemsDraftReportPath, "utf8") : "";
 const draftReport = fs.existsSync(draftReportPath) ? fs.readFileSync(draftReportPath, "utf8") : "";
 const expandedPreviewReport = fs.existsSync(expandedPreviewReportPath) ? fs.readFileSync(expandedPreviewReportPath, "utf8") : "";
 const generatedData = fs.existsSync(generatedDataPath) ? fs.readFileSync(generatedDataPath, "utf8") : "";
@@ -104,28 +107,31 @@ const message = [
   ...nextFixLines(nextFixes),
   "",
   "今日見る優先順位",
-  ...firstItems("今日見る優先順位", 3).map((item) => `- ${item}`),
+  ...firstItems("今日見る優先順位", 3).map((item) => `- ${clipItem(item)}`),
   "",
   "今買い候補",
-  ...firstItems("今買い候補").map((item) => `- ${item}`),
+  ...firstItems("今買い候補").map((item) => `- ${clipItem(item)}`),
   "",
   "2倍監視候補",
-  ...firstReportItems(multibaggerReport, "2倍監視候補", 2).map((item) => `- ${item}`),
+  ...firstReportItems(multibaggerReport, "2倍監視候補", 2).map((item) => `- ${clipItem(item)}`),
   "",
   "通常候補への昇格確認",
-  ...firstReportItems(promotionReport, "優先して財務確認", 2).map((item) => `- ${item}`),
+  ...firstReportItems(promotionReport, "優先して財務確認", 2).map((item) => `- ${clipItem(item)}`),
   "",
   "昇格準備チェック",
-  ...firstReportItems(readinessReport, "最優先で財務確認", 2).map((item) => `- ${item}`),
+  ...firstReportItems(readinessReport, "最優先で財務確認", 2).map((item) => `- ${clipItem(item)}`),
   "",
   "未発掘候補",
-  ...firstReportItems(hiddenGemsReport, "今すぐ財務確認", 2).map((item) => `- ${item}`),
+  ...firstReportItems(hiddenGemsReport, "今すぐ財務確認", 2).map((item) => `- ${clipItem(item)}`),
+  "",
+  "未発掘から通常候補入力下書き",
+  ...firstReportItems(hiddenGemsDraftReport, "入力下書き", 2).map((item) => `- ${clipItem(item)}`),
   "",
   "通常候補入力下書き",
-  ...firstReportItems(draftReport, "上位下書き", 2).map((item) => `- ${item}`),
+  ...firstReportItems(draftReport, "上位下書き", 2).map((item) => `- ${clipItem(item)}`),
   "",
   "通常候補追加プレビュー",
-  ...firstReportItems(expandedPreviewReport, "追加候補", 2).map((item) => `- ${item}`),
+  ...firstReportItems(expandedPreviewReport, "追加候補", 2).map((item) => `- ${clipItem(item)}`),
   ...providerWarningLines(dataQuality),
   ...stockUniverseWarningLines(stockCount),
   ...dataWarningLines("入力値の注意", dataQuality?.validationWarnings),
@@ -137,6 +143,7 @@ const message = [
   promotionReportUrl,
   readinessReportUrl,
   hiddenGemsReportUrl,
+  hiddenGemsDraftReportUrl,
   draftReportUrl,
   expandedPreviewReportUrl,
 ].join("\n");
@@ -189,6 +196,12 @@ function parseGeneratedData(text, name = "AUTO_STOCK_DATA") {
   } catch {
     return null;
   }
+}
+
+function clipItem(item, max = 165) {
+  const text = String(item ?? "");
+  if (text.length <= max) return text;
+  return `${text.slice(0, max - 1)}…`;
 }
 
 function providerWarningLines(dataQuality) {

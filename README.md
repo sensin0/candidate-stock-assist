@@ -130,6 +130,7 @@ npm run multibagger:research
 npm run promotion:research
 npm run promotion:readiness
 npm run hidden:gems
+npm run hidden:gems:draft
 npm run research:data
 npm run research:morning
 npm run stock-master:draft
