@@ -1,9 +1,9 @@
 window.AUTO_EXPANSION_PREVIEW = {
-  "generatedAt": "2026-06-23T23:05:11.222Z",
+  "generatedAt": "2026-06-23T23:15:48.617Z",
   "source": "data/stock-master-expanded-preview.csv",
-  "currentCount": 24,
+  "currentCount": 30,
   "previewAddCount": 50,
-  "expandedCount": 74,
+  "expandedCount": 80,
   "items": [
     {
       "rank": 1,
@@ -250,33 +250,6 @@ window.AUTO_EXPANSION_PREVIEW = {
     },
     {
       "rank": 10,
-      "code": "7901",
-      "name": "MATSUMOTO INC.",
-      "sector": "Other Products",
-      "price": 770,
-      "bps": 770,
-      "eps": 42.8,
-      "pbrLow": 0.75,
-      "pbrAvg": 1.27,
-      "pbrHigh": 1.8,
-      "perAvg": 17.99,
-      "dataConfidence": "推定",
-      "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
-      "catalyst": "推定下書き。監視しながら財務確認。高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
-      "history": [
-        776,
-        817,
-        775,
-        789,
-        791,
-        788,
-        782,
-        770
-      ]
-    },
-    {
-      "rank": 11,
       "code": "7694",
       "name": "itsumo.inc.",
       "sector": "Retail Trade",
@@ -303,7 +276,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 12,
+      "rank": 11,
       "code": "9941",
       "name": "TAIYO BUSSAN KAISHA,LTD.",
       "sector": "Wholesale Trade",
@@ -330,7 +303,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 13,
+      "rank": 12,
       "code": "7069",
       "name": "CyberBuzz,Inc.",
       "sector": "Services",
@@ -357,7 +330,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 14,
+      "rank": 13,
       "code": "194A",
       "name": "WOLVES HAND Co.,Ltd.",
       "sector": "Services",
@@ -384,7 +357,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 15,
+      "rank": 14,
       "code": "5010",
       "name": "NIPPON SEIRO CO.,LTD.",
       "sector": "Oil and Coal Products",
@@ -411,7 +384,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 16,
+      "rank": 15,
       "code": "5016",
       "name": "JX Advanced Metals Corporation",
       "sector": "Nonferrous Metals",
@@ -438,7 +411,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 17,
+      "rank": 16,
       "code": "6522",
       "name": "Asterisk Inc.",
       "sector": "Electric Appliances",
@@ -465,7 +438,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 18,
+      "rank": 17,
       "code": "7477",
       "name": "MURAKI CORPORATION",
       "sector": "Wholesale Trade",
@@ -492,7 +465,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 19,
+      "rank": 18,
       "code": "3664",
       "name": "WIZE INC.",
       "sector": "Information & Communication",
@@ -519,7 +492,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 20,
+      "rank": 19,
       "code": "2195",
       "name": "AMITA HOLDINGS CO.,LTD.",
       "sector": "Services",
@@ -546,7 +519,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 21,
+      "rank": 20,
       "code": "5587",
       "name": "Inbound Platform Corp.",
       "sector": "Information & Communication",
@@ -573,7 +546,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 22,
+      "rank": 21,
       "code": "9322",
       "name": "KAWANISHI WAREHOUSE CO.,LTD.",
       "sector": "Warehousing and Harbor Transportation Service",
@@ -600,7 +573,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 23,
+      "rank": 22,
       "code": "9888",
       "name": "UEX,LTD.",
       "sector": "Wholesale Trade",
@@ -627,34 +600,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 24,
-      "code": "6870",
-      "name": "Fenwal Controls of Japan,Ltd.",
-      "sector": "Electric Appliances",
-      "price": 2493,
-      "bps": 2493,
-      "eps": 138.5,
-      "pbrLow": 0.75,
-      "pbrAvg": 1.27,
-      "pbrHigh": 1.8,
-      "perAvg": 18,
-      "dataConfidence": "推定",
-      "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
-      "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
-      "history": [
-        2388,
-        2398,
-        2450,
-        2498,
-        2466,
-        2463,
-        2525,
-        2493
-      ]
-    },
-    {
-      "rank": 25,
+      "rank": 23,
       "code": "3934",
       "name": "BENEFIT JAPAN Co.,LTD.",
       "sector": "Information & Communication",
@@ -681,7 +627,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 26,
+      "rank": 24,
       "code": "2332",
       "name": "Quest Co.,Ltd.",
       "sector": "Information & Communication",
@@ -708,88 +654,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 27,
-      "code": "5939",
-      "name": "OTANI KOGYO CO.,LTD.",
-      "sector": "Metal Products",
-      "price": 5000,
-      "bps": 5000,
-      "eps": 277.8,
-      "pbrLow": 0.75,
-      "pbrAvg": 1.27,
-      "pbrHigh": 1.8,
-      "perAvg": 18,
-      "dataConfidence": "推定",
-      "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
-      "catalyst": "推定下書き。監視しながら財務確認。安値圏から反転し始めた候補です。赤字・下方修正・信用需給が重くないか確認します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
-      "history": [
-        4900,
-        5020,
-        5000,
-        4960,
-        4995,
-        4975,
-        5040,
-        5000
-      ]
-    },
-    {
-      "rank": 28,
-      "code": "7885",
-      "name": "TAKANO Co.,Ltd.",
-      "sector": "Other Products",
-      "price": 1013,
-      "bps": 1013,
-      "eps": 56.3,
-      "pbrLow": 0.75,
-      "pbrAvg": 1.27,
-      "pbrHigh": 1.8,
-      "perAvg": 17.99,
-      "dataConfidence": "推定",
-      "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
-      "catalyst": "推定下書き。監視しながら財務確認。高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
-      "history": [
-        1023,
-        1055,
-        1044,
-        1035,
-        1057,
-        1058,
-        1025,
-        1013
-      ]
-    },
-    {
-      "rank": 29,
-      "code": "2303",
-      "name": "Dawn Corporation",
-      "sector": "Information & Communication",
-      "price": 1237,
-      "bps": 1237,
-      "eps": 68.7,
-      "pbrLow": 0.75,
-      "pbrAvg": 1.27,
-      "pbrHigh": 1.8,
-      "perAvg": 18.01,
-      "dataConfidence": "推定",
-      "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
-      "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
-      "history": [
-        1225,
-        1228,
-        1216,
-        1223,
-        1234,
-        1205,
-        1254,
-        1237
-      ]
-    },
-    {
-      "rank": 30,
+      "rank": 25,
       "code": "6310",
       "name": "ISEKI & CO.,LTD.",
       "sector": "Machinery",
@@ -816,7 +681,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 31,
+      "rank": 26,
       "code": "281A",
       "name": "Informetis Co.,Ltd.",
       "sector": "Information & Communication",
@@ -843,7 +708,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 32,
+      "rank": 27,
       "code": "4651",
       "name": "SANIX HOLDINGS INCORPORATED",
       "sector": "Services",
@@ -870,7 +735,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 33,
+      "rank": 28,
       "code": "5232",
       "name": "Sumitomo Osaka Cement Co.,Ltd.",
       "sector": "Glass and Ceramics Products",
@@ -897,7 +762,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 34,
+      "rank": 29,
       "code": "7734",
       "name": "RIKEN KEIKI CO.,LTD.",
       "sector": "Precision Instruments",
@@ -924,7 +789,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 35,
+      "rank": 30,
       "code": "4256",
       "name": "CYND Co.,Ltd.",
       "sector": "Information & Communication",
@@ -951,34 +816,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 36,
-      "code": "5363",
-      "name": "TYK CORPORATION",
-      "sector": "Glass and Ceramics Products",
-      "price": 684,
-      "bps": 684,
-      "eps": 38,
-      "pbrLow": 0.75,
-      "pbrAvg": 1.27,
-      "pbrHigh": 1.8,
-      "perAvg": 18,
-      "dataConfidence": "推定",
-      "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
-      "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
-      "history": [
-        690,
-        698,
-        696,
-        703,
-        703,
-        690,
-        699,
-        684
-      ]
-    },
-    {
-      "rank": 37,
+      "rank": 31,
       "code": "4351",
       "name": "YAMADA SERVICER SYNTHETIC OFFICE",
       "sector": "Other Financing Business",
@@ -1005,7 +843,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 38,
+      "rank": 32,
       "code": "7513",
       "name": "Kojima Co.,Ltd.",
       "sector": "Retail Trade",
@@ -1032,7 +870,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 39,
+      "rank": 33,
       "code": "4310",
       "name": "Dream Incubator Inc.",
       "sector": "Services",
@@ -1059,7 +897,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 40,
+      "rank": 34,
       "code": "3908",
       "name": "Collabos Corporation",
       "sector": "Information & Communication",
@@ -1086,7 +924,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 41,
+      "rank": 35,
       "code": "1515",
       "name": "Nittetsu Mining Co.,Ltd.",
       "sector": "Mining",
@@ -1113,7 +951,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 42,
+      "rank": 36,
       "code": "6648",
       "name": "KAWADEN CORPORATION",
       "sector": "Electric Appliances",
@@ -1140,7 +978,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 43,
+      "rank": 37,
       "code": "4679",
       "name": "TAYA Co.,Ltd.",
       "sector": "Services",
@@ -1167,7 +1005,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 44,
+      "rank": 38,
       "code": "6643",
       "name": "Togami Electric Mfg.Co.,Ltd.",
       "sector": "Electric Appliances",
@@ -1194,7 +1032,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 45,
+      "rank": 39,
       "code": "7781",
       "name": "HIRAYAMA HOLDINGS Co.,Ltd.",
       "sector": "Precision Instruments",
@@ -1221,7 +1059,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 46,
+      "rank": 40,
       "code": "9010",
       "name": "FUJI KYUKO CO.,LTD.",
       "sector": "Land Transportation",
@@ -1248,7 +1086,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 47,
+      "rank": 41,
       "code": "6859",
       "name": "ESPEC CORP.",
       "sector": "Electric Appliances",
@@ -1275,7 +1113,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 48,
+      "rank": 42,
       "code": "4238",
       "name": "Miraial Co.,Ltd.",
       "sector": "Chemicals",
@@ -1302,7 +1140,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 49,
+      "rank": 43,
       "code": "5233",
       "name": "TAIHEIYO CEMENT CORPORATION",
       "sector": "Glass and Ceramics Products",
@@ -1329,7 +1167,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 50,
+      "rank": 44,
       "code": "155A",
       "name": "Information Strategy and Technology Co.,Ltd.",
       "sector": "Information & Communication",
@@ -1353,6 +1191,168 @@ window.AUTO_EXPANSION_PREVIEW = {
         883,
         914,
         896
+      ]
+    },
+    {
+      "rank": 45,
+      "code": "4341",
+      "name": "SEIRYO ELECTRIC CORPORATION",
+      "sector": "Services",
+      "price": 864,
+      "bps": 864,
+      "eps": 48,
+      "pbrLow": 0.75,
+      "pbrAvg": 1.27,
+      "pbrHigh": 1.8,
+      "perAvg": 18,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
+      "history": [
+        835,
+        870,
+        833,
+        843,
+        833,
+        860,
+        862,
+        864
+      ]
+    },
+    {
+      "rank": 46,
+      "code": "6125",
+      "name": "OKAMOTO MACHINE TOOL WORKS,LTD.",
+      "sector": "Machinery",
+      "price": 5680,
+      "bps": 5680,
+      "eps": 315.6,
+      "pbrLow": 0.75,
+      "pbrAvg": 1.27,
+      "pbrHigh": 1.8,
+      "perAvg": 18,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
+      "history": [
+        4875,
+        5280,
+        5180,
+        5190,
+        5260,
+        5360,
+        5840,
+        5680
+      ]
+    },
+    {
+      "rank": 47,
+      "code": "6999",
+      "name": "KOA CORPORATION",
+      "sector": "Electric Appliances",
+      "price": 2908,
+      "bps": 2908,
+      "eps": 161.6,
+      "pbrLow": 0.75,
+      "pbrAvg": 1.27,
+      "pbrHigh": 1.8,
+      "perAvg": 18,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
+      "history": [
+        2515,
+        2730,
+        2774,
+        2929,
+        2907,
+        2930,
+        3070,
+        2908
+      ]
+    },
+    {
+      "rank": 48,
+      "code": "9104",
+      "name": "Mitsui O.S.K.Lines,Ltd.",
+      "sector": "Marine Transportation",
+      "price": 5328,
+      "bps": 5328,
+      "eps": 296,
+      "pbrLow": 0.75,
+      "pbrAvg": 1.27,
+      "pbrHigh": 1.8,
+      "perAvg": 18,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "catalyst": "推定下書き。監視しながら財務確認。高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
+      "history": [
+        5765,
+        5686,
+        5559,
+        5438,
+        5362,
+        5264,
+        5293,
+        5328
+      ]
+    },
+    {
+      "rank": 49,
+      "code": "543A",
+      "name": "ARCHION Corporation",
+      "sector": "Transportation Equipment",
+      "price": 285,
+      "bps": 285,
+      "eps": 15.8,
+      "pbrLow": 0.75,
+      "pbrAvg": 1.27,
+      "pbrHigh": 1.8,
+      "perAvg": 18.04,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
+      "history": [
+        284,
+        299,
+        298,
+        298,
+        300,
+        292,
+        298,
+        285
+      ]
+    },
+    {
+      "rank": 50,
+      "code": "9983",
+      "name": "FAST RETAILING CO.,LTD.",
+      "sector": "Retail Trade",
+      "price": 82170,
+      "bps": 82170,
+      "eps": 4565,
+      "pbrLow": 0.75,
+      "pbrAvg": 1.27,
+      "pbrHigh": 1.8,
+      "perAvg": 18,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
+      "history": [
+        80530,
+        81080,
+        81950,
+        82900,
+        84100,
+        83100,
+        81530,
+        82170
       ]
     }
   ]

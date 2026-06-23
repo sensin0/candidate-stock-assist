@@ -19,7 +19,7 @@ const outputPreviewPath = path.join(dataDir, "stock-master-promoted.csv");
 const outputReportPath = path.join(reportsDir, "latest-promoted-candidates.md");
 const writeToMaster = process.argv.includes("--write");
 const limit = Number(process.env.PROMOTE_CONFIRMED_LIMIT || 10);
-const autoScreenedLimit = Number(process.env.PROMOTE_SCREENED_LIMIT || 4);
+const autoScreenedLimit = Number(process.env.PROMOTE_SCREENED_LIMIT || 6);
 
 const stockHeaders = [
   "code",

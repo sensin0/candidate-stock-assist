@@ -1,5 +1,5 @@
 window.AUTO_FINANCIAL_CONFIRMATION = {
-  "generatedAt": "2026-06-23T23:05:11.990Z",
+  "generatedAt": "2026-06-23T23:15:49.279Z",
   "source": "data/financial-confirmation-queue.csv",
   "total": 61,
   "priorityCount": 41,
@@ -198,22 +198,6 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
     },
     {
       "source": "昇格候補",
-      "code": "7901",
-      "name": "MATSUMOTO INC.",
-      "sector": "Other Products",
-      "price": 770,
-      "confirmationScore": 196.7,
-      "status": "最優先で財務確認",
-      "action": "通常候補へ入れる前の財務確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "なし",
-      "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
-      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
-      "buyGuard": "確認完了まで買わない",
-      "rank": 13
-    },
-    {
-      "source": "昇格候補",
       "code": "7694",
       "name": "itsumo.inc.",
       "sector": "Retail Trade",
@@ -226,7 +210,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 14
+      "rank": 13
     },
     {
       "source": "昇格候補",
@@ -242,7 +226,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 15
+      "rank": 14
     },
     {
       "source": "昇格候補",
@@ -258,7 +242,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 16
+      "rank": 15
     },
     {
       "source": "昇格候補",
@@ -274,7 +258,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 17
+      "rank": 16
     },
     {
       "source": "昇格候補",
@@ -290,23 +274,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 18
-    },
-    {
-      "source": "昇格候補",
-      "code": "7885",
-      "name": "TAKANO Co.,Ltd.",
-      "sector": "Other Products",
-      "price": 1013,
-      "confirmationScore": 182.5,
-      "status": "最優先で財務確認",
-      "action": "通常候補へ入れる前の財務確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "なし",
-      "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
-      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
-      "buyGuard": "確認完了まで買わない",
-      "rank": 19
+      "rank": 17
     },
     {
       "source": "昇格候補",
@@ -322,7 +290,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 20
+      "rank": 18
     },
     {
       "source": "昇格候補",
@@ -338,7 +306,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 21
+      "rank": 19
     },
     {
       "source": "昇格候補",
@@ -354,7 +322,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 22
+      "rank": 20
     },
     {
       "source": "昇格候補",
@@ -370,23 +338,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "安値圏から反転し始めた候補です。赤字・下方修正・信用需給が重くないか確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 23
-    },
-    {
-      "source": "昇格候補",
-      "code": "6870",
-      "name": "Fenwal Controls of Japan,Ltd.",
-      "sector": "Electric Appliances",
-      "price": 2493,
-      "confirmationScore": 172.5,
-      "status": "最優先で財務確認",
-      "action": "通常候補へ入れる前の財務確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "なし",
-      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
-      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
-      "buyGuard": "確認完了まで買わない",
-      "rank": 24
+      "rank": 21
     },
     {
       "source": "昇格候補",
@@ -402,7 +354,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 25
+      "rank": 22
     },
     {
       "source": "昇格候補",
@@ -418,23 +370,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 26
-    },
-    {
-      "source": "昇格候補",
-      "code": "5939",
-      "name": "OTANI KOGYO CO.,LTD.",
-      "sector": "Metal Products",
-      "price": 5000,
-      "confirmationScore": 170.9,
-      "status": "最優先で財務確認",
-      "action": "通常候補へ入れる前の財務確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "なし",
-      "note": "安値圏から反転し始めた候補です。赤字・下方修正・信用需給が重くないか確認します",
-      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
-      "buyGuard": "確認完了まで買わない",
-      "rank": 27
+      "rank": 23
     },
     {
       "source": "昇格候補",
@@ -450,23 +386,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します",
       "nextStep": "材料、過熱感、下落理由を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 28
-    },
-    {
-      "source": "昇格候補",
-      "code": "2303",
-      "name": "Dawn Corporation",
-      "sector": "Information & Communication",
-      "price": 1237,
-      "confirmationScore": 168.6,
-      "status": "最優先で財務確認",
-      "action": "通常候補へ入れる前の財務確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "なし",
-      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
-      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
-      "buyGuard": "確認完了まで買わない",
-      "rank": 29
+      "rank": 24
     },
     {
       "source": "昇格候補",
@@ -482,7 +402,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 30
+      "rank": 25
     },
     {
       "source": "昇格候補",
@@ -498,7 +418,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 31
+      "rank": 26
     },
     {
       "source": "昇格候補",
@@ -514,7 +434,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 32
+      "rank": 27
     },
     {
       "source": "昇格候補",
@@ -530,7 +450,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 33
+      "rank": 28
     },
     {
       "source": "昇格候補",
@@ -546,23 +466,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 34
-    },
-    {
-      "source": "昇格候補",
-      "code": "5363",
-      "name": "TYK CORPORATION",
-      "sector": "Glass and Ceramics Products",
-      "price": 684,
-      "confirmationScore": 165.7,
-      "status": "最優先で財務確認",
-      "action": "通常候補へ入れる前の財務確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "なし",
-      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
-      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
-      "buyGuard": "確認完了まで買わない",
-      "rank": 35
+      "rank": 29
     },
     {
       "source": "昇格候補",
@@ -578,7 +482,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 36
+      "rank": 30
     },
     {
       "source": "昇格候補",
@@ -594,7 +498,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 37
+      "rank": 31
     },
     {
       "source": "昇格候補",
@@ -610,7 +514,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 38
+      "rank": 32
     },
     {
       "source": "昇格候補",
@@ -619,6 +523,102 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "sector": "Information & Communication",
       "price": 316,
       "confirmationScore": 164.3,
+      "status": "最優先で財務確認",
+      "action": "通常候補へ入れる前の財務確認",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "blockers": "なし",
+      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
+      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
+      "buyGuard": "確認完了まで買わない",
+      "rank": 33
+    },
+    {
+      "source": "昇格候補",
+      "code": "1515",
+      "name": "Nittetsu Mining Co.,Ltd.",
+      "sector": "Mining",
+      "price": 2484,
+      "confirmationScore": 164.1,
+      "status": "最優先で財務確認",
+      "action": "通常候補へ入れる前の財務確認",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "blockers": "なし",
+      "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
+      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
+      "buyGuard": "確認完了まで買わない",
+      "rank": 34
+    },
+    {
+      "source": "昇格候補",
+      "code": "6648",
+      "name": "KAWADEN CORPORATION",
+      "sector": "Electric Appliances",
+      "price": 1819,
+      "confirmationScore": 163.9,
+      "status": "最優先で財務確認",
+      "action": "通常候補へ入れる前の財務確認",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "blockers": "なし",
+      "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
+      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
+      "buyGuard": "確認完了まで買わない",
+      "rank": 35
+    },
+    {
+      "source": "昇格候補",
+      "code": "4679",
+      "name": "TAYA Co.,Ltd.",
+      "sector": "Services",
+      "price": 247,
+      "confirmationScore": 163.8,
+      "status": "最優先で財務確認",
+      "action": "通常候補へ入れる前の財務確認",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "blockers": "なし",
+      "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
+      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
+      "buyGuard": "確認完了まで買わない",
+      "rank": 36
+    },
+    {
+      "source": "昇格候補",
+      "code": "6643",
+      "name": "Togami Electric Mfg.Co.,Ltd.",
+      "sector": "Electric Appliances",
+      "price": 5220,
+      "confirmationScore": 163.5,
+      "status": "最優先で財務確認",
+      "action": "通常候補へ入れる前の財務確認",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "blockers": "なし",
+      "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
+      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
+      "buyGuard": "確認完了まで買わない",
+      "rank": 37
+    },
+    {
+      "source": "昇格候補",
+      "code": "7781",
+      "name": "HIRAYAMA HOLDINGS Co.,Ltd.",
+      "sector": "Precision Instruments",
+      "price": 1536,
+      "confirmationScore": 163.1,
+      "status": "最優先で財務確認",
+      "action": "通常候補へ入れる前の財務確認",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "blockers": "なし",
+      "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
+      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
+      "buyGuard": "確認完了まで買わない",
+      "rank": 38
+    },
+    {
+      "source": "昇格候補",
+      "code": "9010",
+      "name": "FUJI KYUKO CO.,LTD.",
+      "sector": "Land Transportation",
+      "price": 2493,
+      "confirmationScore": 163,
       "status": "最優先で財務確認",
       "action": "通常候補へ入れる前の財務確認",
       "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",

@@ -8,7 +8,7 @@ const dataDir = path.join(rootDir, "data");
 const reportsDir = path.join(rootDir, "reports");
 const worklistPath = path.join(dataDir, "financial-confirmation-worklist.csv");
 const outputReportPath = path.join(reportsDir, "latest-financial-worklist-enrichment.md");
-const limit = Number(process.env.FINANCIAL_ENRICH_LIMIT || 12);
+const limit = Number(process.env.FINANCIAL_ENRICH_LIMIT || 30);
 const concurrency = Number(process.env.FINANCIAL_ENRICH_CONCURRENCY || 3);
 
 const rows = readCsv(worklistPath);

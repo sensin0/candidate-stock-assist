@@ -1,9 +1,24 @@
 rank,code,name,sector,status,screenScore,price,marketCap,pbr,per,netCash,netCashRatio,debtAssetRatio,sourceUrl,action,reasons,cautions
+23,2332,"Quest Co.,Ltd.",Information & Communication,昇格確認優先,78,1719,8813.36,1.18,10.3,3057.48,34.69,0,https://irbank.net/2332/results,決算短信と有報を見て、問題なければconfirmed候補,PER 10.3倍 / ネットキャッシュあり 34.69% / 有利子負債は軽め,大きな注意なし
+18,5232,"Sumitomo Osaka Cement Co.,Ltd.",Glass and Ceramics Products,慎重確認,62,5995,192560.17,0.97,19,-69833,-36.27,43.66,https://irbank.net/5232/results,負債、利益の継続性、材料の一過性を確認,PBR 0.97倍で確認余地,大きな注意なし
+21,9322,"KAWANISHI WAREHOUSE CO.,LTD.",Warehousing and Harbor Transportation Service,慎重確認,62,2258,20061.9,0.78,26.7,-3599.35,-17.94,36.18,https://irbank.net/9322/results,負債、利益の継続性、材料の一過性を確認,PBR 0.78倍で確認余地,大きな注意なし
 3,4410,"HARIMA CHEMICALS GROUP,INC.",Chemicals,慎重確認,58,1072,26512.08,0.64,9.83,-31597,-119.18,91.01,https://irbank.net/4410/results,負債、利益の継続性、材料の一過性を確認,PBR 0.64倍で割安寄り / PER 9.83倍で利益面は軽い,ネット有利子負債が重い -119.18% / 有利子負債がやや重い
 7,7477,MURAKI CORPORATION,Wholesale Trade,見送り寄り,56,1950,2768.25,1,42.01,1517.18,54.81,0,https://irbank.net/7477/results,通常候補へ入れない方向で確認,ネットキャッシュが時価総額の54.81%相当 / 有利子負債は軽め,PER 42.01倍で高い
 11,7878,"Kohsai Co.,Ltd.",Other Products,見送り寄り,56,1238,1631.22,1.05,7.13,-633.2,-38.82,73.69,https://irbank.net/7878/results,通常候補へ入れない方向で確認,PER 7.13倍で利益面は軽い,有利子負債がやや重い
+30,4351,YAMADA SERVICER SYNTHETIC OFFICE,Other Financing Business,見送り寄り,50,946,4229.92,1.26,28.18,192,4.54,35.24,https://irbank.net/4351/results,通常候補へ入れない方向で確認,確認材料が不足,大きな注意なし
+25,6310,"ISEKI & CO.,LTD.",Machinery,見送り寄り,48,1787,42260.44,0.54,13.48,-42155,-99.75,70.12,https://irbank.net/6310/results,通常候補へ入れない方向で確認,PBR 0.54倍で割安寄り / PER 13.48倍,ネット有利子負債が重い -99.75% / 有利子負債がやや重い
 8,6058,VECTOR INC.,Services,見送り寄り,46,1565,94256.31,3.47,13.35,14680,15.57,27.98,https://irbank.net/6058/results,通常候補へ入れない方向で確認,PER 13.35倍 / ネットキャッシュあり 15.57%,PBR 3.47倍で割安感が薄い
+20,5587,Inbound Platform Corp.,Information & Communication,見送り寄り,46,732,2254.33,1.58,10.7,665.94,29.54,17.9,https://irbank.net/5587/results,通常候補へ入れない方向で確認,PER 10.7倍 / ネットキャッシュあり 29.54%,PBR 1.58倍で割安感が薄い
+15,5010,"NIPPON SEIRO CO.,LTD.",Oil and Coal Products,見送り寄り,44,231,4347.35,0.68,5.7,-12873,-296.11,244.61,https://irbank.net/5010/results,通常候補へ入れない方向で確認,PBR 0.68倍で割安寄り / PER 5.7倍で利益面は軽い,ネット有利子負債が重い -296.11% / 有利子負債が純資産を上回る
+17,9888,"UEX,LTD.",Wholesale Trade,見送り寄り,38,986,10884.47,0.57,16.3,-6781.08,-62.3,72.83,https://irbank.net/9888/results,通常候補へ入れない方向で確認,PBR 0.57倍で割安寄り,ネット有利子負債が重い -62.3% / 有利子負債がやや重い
+22,3934,"BENEFIT JAPAN Co.,LTD.",Information & Communication,見送り寄り,36,2269,13428.77,1.54,11.73,1457.16,10.85,23.29,https://irbank.net/3934/results,通常候補へ入れない方向で確認,PER 11.73倍,PBR 1.54倍で割安感が薄い
+29,4256,"CYND Co.,Ltd.",Information & Communication,見送り寄り,36,939,5695.36,1.63,30.3,1442.88,25.33,22.12,https://irbank.net/4256/results,通常候補へ入れない方向で確認,ネットキャッシュあり 25.33%,PBR 1.63倍で割安感が薄い
+28,7734,"RIKEN KEIKI CO.,LTD.",Precision Instruments,見送り寄り,34,3595,163420.92,1.91,17.02,22571.81,13.81,2.15,https://irbank.net/7734/results,通常候補へ入れない方向で確認,有利子負債は軽め,PBR 1.91倍で割安感が薄い
 1,4378,CINC Corp.,Information & Communication,見送り寄り,32,551,1558.98,1.48,408.15,831.11,53.31,1.58,https://irbank.net/4378/results,通常候補へ入れない方向で確認,ネットキャッシュが時価総額の53.31%相当 / 有利子負債は軽め,PBR 1.48倍で割安感が薄い / PER 408.15倍で高い
+13,7694,itsumo.inc.,Retail Trade,見送り寄り,22,420,2507.55,0.99,13.28,-2878.89,-114.81,150.02,https://irbank.net/7694/results,通常候補へ入れない方向で確認,PBR 0.99倍で確認余地 / PER 13.28倍,ネット有利子負債が重い -114.81% / 有利子負債が純資産を上回る
+14,194A,"WOLVES HAND Co.,Ltd.",Services,見送り寄り,22,1227,7498.69,2.76,11.03,-1633.07,-21.78,93.11,https://irbank.net/194A/results,通常候補へ入れない方向で確認,PER 11.03倍,PBR 2.76倍で割安感が薄い / 有利子負債がやや重い
+19,2195,"AMITA HOLDINGS CO.,LTD.",Services,見送り寄り,22,330,5926.31,1.97,15.96,450.8,7.61,88.86,https://irbank.net/2195/results,通常候補へ入れない方向で確認,PER 15.96倍,PBR 1.97倍で割安感が薄い / 有利子負債がやや重い
+27,4651,SANIX HOLDINGS INCORPORATED,Services,見送り寄り,22,221,10565.68,0.96,10.54,-7006,-66.31,105.2,https://irbank.net/4651/results,通常候補へ入れない方向で確認,PBR 0.96倍で確認余地 / PER 10.54倍,ネット有利子負債が重い -66.31% / 有利子負債が純資産を上回る
 10,7256,"KASAI KOGYO CO.,LTD.",Transportation Equipment,見送り寄り,20,467,28948.99,1.08,4.52,-47351,-163.57,264.66,https://irbank.net/7256/results,通常候補へ入れない方向で確認,PER 4.52倍で利益面は軽い,ネット有利子負債が重い -163.57% / 有利子負債が純資産を上回る
 5,7069,"CyberBuzz,Inc.",Services,見送り寄り,8,1254,4320.56,5.74,13.88,60.95,1.41,161.6,https://irbank.net/7069/results,通常候補へ入れない方向で確認,PER 13.88倍,PBR 5.74倍で割安感が薄い / 有利子負債が純資産を上回る
 6,6522,Asterisk Inc.,Electric Appliances,見送り寄り,2,1076,8485.61,4.91,129.02,210.58,2.48,41.73,https://irbank.net/6522/results,通常候補へ入れない方向で確認,確認材料が不足,PBR 4.91倍で割安感が薄い / PER 129.02倍で高い
@@ -11,21 +26,6 @@ rank,code,name,sector,status,screenScore,price,marketCap,pbr,per,netCash,netCash
 2,5989,"H-ONE CO.,LTD.",Metal Products,入力待ち,0,1469,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
 4,9941,"TAIYO BUSSAN KAISHA,LTD.",Wholesale Trade,見送り寄り,0,1195,2123.71,2.14,12.69,-5641.87,-265.66,594.9,https://irbank.net/9941/results,通常候補へ入れない方向で確認,PER 12.69倍,PBR 2.14倍で割安感が薄い / ネット有利子負債が重い -265.66% / 有利子負債が純資産を上回る
 12,6696,TRaaS On Product Inc.,Electric Appliances,見送り寄り,0,246,1353.68,3.86,0,127.58,9.42,43.22,https://irbank.net/6696/results,通常候補へ入れない方向で確認,確認材料が不足,PBR 3.86倍で割安感が薄い / EPSが赤字または未確認
-13,7901,MATSUMOTO INC.,Other Products,入力待ち,0,770,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-14,7694,itsumo.inc.,Retail Trade,入力待ち,0,420,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-15,194A,"WOLVES HAND Co.,Ltd.",Services,入力待ち,0,1227,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-16,5010,"NIPPON SEIRO CO.,LTD.",Oil and Coal Products,入力待ち,0,231,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-17,3664,WIZE INC.,Information & Communication,入力待ち,0,22,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-18,9888,"UEX,LTD.",Wholesale Trade,入力待ち,0,986,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-19,7885,"TAKANO Co.,Ltd.",Other Products,入力待ち,0,1013,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-20,5232,"Sumitomo Osaka Cement Co.,Ltd.",Glass and Ceramics Products,入力待ち,0,5995,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-21,2195,"AMITA HOLDINGS CO.,LTD.",Services,入力待ち,0,330,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-22,5587,Inbound Platform Corp.,Information & Communication,入力待ち,0,732,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-23,9322,"KAWANISHI WAREHOUSE CO.,LTD.",Warehousing and Harbor Transportation Service,入力待ち,0,2258,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-24,6870,"Fenwal Controls of Japan,Ltd.",Electric Appliances,入力待ち,0,2493,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-25,3934,"BENEFIT JAPAN Co.,LTD.",Information & Communication,入力待ち,0,2269,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-26,2332,"Quest Co.,Ltd.",Information & Communication,入力待ち,0,1719,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-27,5939,"OTANI KOGYO CO.,LTD.",Metal Products,入力待ち,0,5000,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-28,5016,JX Advanced Metals Corporation,Nonferrous Metals,入力待ち,0,4733,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-29,2303,Dawn Corporation,Information & Communication,入力待ち,0,1237,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
-30,6310,"ISEKI & CO.,LTD.",Machinery,入力待ち,0,1787,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
+16,3664,WIZE INC.,Information & Communication,見送り寄り,0,22,2339.87,1.66,0,-149.7,-6.4,85.97,https://irbank.net/3664/results,通常候補へ入れない方向で確認,確認材料が不足,PBR 1.66倍で割安感が薄い / EPSが赤字または未確認 / 有利子負債がやや重い
+24,5016,JX Advanced Metals Corporation,Nonferrous Metals,入力待ち,0,4733,0,0,0,0,0,0,,不足項目を埋める,確認材料が不足,未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認
+26,281A,"Informetis Co.,Ltd.",Information & Communication,見送り寄り,0,637,2255.86,3.85,0,-435.69,-19.31,145.68,https://irbank.net/281A/results,通常候補へ入れない方向で確認,確認材料が不足,PBR 3.85倍で割安感が薄い / EPSが赤字または未確認 / 有利子負債が純資産を上回る
