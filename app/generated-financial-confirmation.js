@@ -1,5 +1,5 @@
 window.AUTO_FINANCIAL_CONFIRMATION = {
-  "generatedAt": "2026-06-23T06:57:52.963Z",
+  "generatedAt": "2026-06-23T23:05:11.990Z",
   "source": "data/financial-confirmation-queue.csv",
   "total": 61,
   "priorityCount": 41,
@@ -22,38 +22,6 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
     },
     {
       "source": "昇格候補",
-      "code": "6276",
-      "name": "SiriusVision CO.,LTD.",
-      "sector": "Electric Appliances",
-      "price": 300,
-      "confirmationScore": 293.9,
-      "status": "最優先で財務確認",
-      "action": "通常候補へ入れる前の財務確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "なし",
-      "note": "上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します",
-      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
-      "buyGuard": "確認完了まで買わない",
-      "rank": 2
-    },
-    {
-      "source": "昇格候補",
-      "code": "7567",
-      "name": "SAKAE ELECTRONICS CORPORATION",
-      "sector": "Wholesale Trade",
-      "price": 547,
-      "confirmationScore": 270.4,
-      "status": "最優先で財務確認",
-      "action": "通常候補へ入れる前の財務確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "なし",
-      "note": "上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します",
-      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
-      "buyGuard": "確認完了まで買わない",
-      "rank": 3
-    },
-    {
-      "source": "昇格候補",
       "code": "5989",
       "name": "H-ONE CO.,LTD.",
       "sector": "Metal Products",
@@ -66,7 +34,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 4
+      "rank": 2
     },
     {
       "source": "昇格候補",
@@ -82,7 +50,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 5
+      "rank": 3
     },
     {
       "source": "昇格候補",
@@ -98,7 +66,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 6
+      "rank": 4
     },
     {
       "source": "昇格候補",
@@ -114,7 +82,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 7
+      "rank": 5
     },
     {
       "source": "昇格候補",
@@ -130,23 +98,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 8
-    },
-    {
-      "source": "昇格候補",
-      "code": "7435",
-      "name": "NADEX CO.,LTD.",
-      "sector": "Wholesale Trade",
-      "price": 1240,
-      "confirmationScore": 240.3,
-      "status": "最優先で財務確認",
-      "action": "通常候補へ入れる前の財務確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "なし",
-      "note": "上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します",
-      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
-      "buyGuard": "確認完了まで買わない",
-      "rank": 9
+      "rank": 6
     },
     {
       "source": "昇格候補",
@@ -162,23 +114,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 10
-    },
-    {
-      "source": "昇格候補",
-      "code": "1514",
-      "name": "Sumiseki Holdings,Inc.",
-      "sector": "Mining",
-      "price": 532,
-      "confirmationScore": 212.6,
-      "status": "最優先で財務確認",
-      "action": "通常候補へ入れる前の財務確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "なし",
-      "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
-      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
-      "buyGuard": "確認完了まで買わない",
-      "rank": 11
+      "rank": 7
     },
     {
       "source": "昇格候補",
@@ -194,7 +130,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 12
+      "rank": 8
     },
     {
       "source": "昇格候補",
@@ -210,7 +146,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します",
       "nextStep": "材料、過熱感、下落理由を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 13
+      "rank": 9
     },
     {
       "source": "昇格候補",
@@ -226,7 +162,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します",
       "nextStep": "材料、過熱感、下落理由を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 14
+      "rank": 10
     },
     {
       "source": "昇格候補",
@@ -242,7 +178,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 15
+      "rank": 11
     },
     {
       "source": "昇格候補",
@@ -258,7 +194,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 16
+      "rank": 12
     },
     {
       "source": "昇格候補",
@@ -274,7 +210,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 17
+      "rank": 13
     },
     {
       "source": "昇格候補",
@@ -290,7 +226,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 18
+      "rank": 14
     },
     {
       "source": "昇格候補",
@@ -306,7 +242,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 19
+      "rank": 15
     },
     {
       "source": "昇格候補",
@@ -322,7 +258,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 20
+      "rank": 16
     },
     {
       "source": "昇格候補",
@@ -338,7 +274,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 21
+      "rank": 17
     },
     {
       "source": "昇格候補",
@@ -354,7 +290,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 22
+      "rank": 18
     },
     {
       "source": "昇格候補",
@@ -370,7 +306,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 23
+      "rank": 19
     },
     {
       "source": "昇格候補",
@@ -386,7 +322,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 24
+      "rank": 20
     },
     {
       "source": "昇格候補",
@@ -402,7 +338,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 25
+      "rank": 21
     },
     {
       "source": "昇格候補",
@@ -418,7 +354,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 26
+      "rank": 22
     },
     {
       "source": "昇格候補",
@@ -434,7 +370,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "安値圏から反転し始めた候補です。赤字・下方修正・信用需給が重くないか確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 27
+      "rank": 23
     },
     {
       "source": "昇格候補",
@@ -450,7 +386,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 28
+      "rank": 24
     },
     {
       "source": "昇格候補",
@@ -466,7 +402,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 29
+      "rank": 25
     },
     {
       "source": "昇格候補",
@@ -482,7 +418,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 30
+      "rank": 26
     },
     {
       "source": "昇格候補",
@@ -498,7 +434,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "安値圏から反転し始めた候補です。赤字・下方修正・信用需給が重くないか確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 31
+      "rank": 27
     },
     {
       "source": "昇格候補",
@@ -514,7 +450,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します",
       "nextStep": "材料、過熱感、下落理由を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 32
+      "rank": 28
     },
     {
       "source": "昇格候補",
@@ -530,7 +466,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 33
+      "rank": 29
     },
     {
       "source": "昇格候補",
@@ -546,7 +482,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 34
+      "rank": 30
     },
     {
       "source": "昇格候補",
@@ -562,7 +498,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 35
+      "rank": 31
     },
     {
       "source": "昇格候補",
@@ -578,7 +514,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 36
+      "rank": 32
     },
     {
       "source": "昇格候補",
@@ -594,7 +530,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 37
+      "rank": 33
     },
     {
       "source": "昇格候補",
@@ -610,7 +546,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 38
+      "rank": 34
     },
     {
       "source": "昇格候補",
@@ -619,6 +555,70 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "sector": "Glass and Ceramics Products",
       "price": 684,
       "confirmationScore": 165.7,
+      "status": "最優先で財務確認",
+      "action": "通常候補へ入れる前の財務確認",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "blockers": "なし",
+      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
+      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
+      "buyGuard": "確認完了まで買わない",
+      "rank": 35
+    },
+    {
+      "source": "昇格候補",
+      "code": "4351",
+      "name": "YAMADA SERVICER SYNTHETIC OFFICE",
+      "sector": "Other Financing Business",
+      "price": 946,
+      "confirmationScore": 165,
+      "status": "最優先で財務確認",
+      "action": "通常候補へ入れる前の財務確認",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "blockers": "なし",
+      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
+      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
+      "buyGuard": "確認完了まで買わない",
+      "rank": 36
+    },
+    {
+      "source": "昇格候補",
+      "code": "7513",
+      "name": "Kojima Co.,Ltd.",
+      "sector": "Retail Trade",
+      "price": 1272,
+      "confirmationScore": 165,
+      "status": "最優先で財務確認",
+      "action": "通常候補へ入れる前の財務確認",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "blockers": "なし",
+      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
+      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
+      "buyGuard": "確認完了まで買わない",
+      "rank": 37
+    },
+    {
+      "source": "昇格候補",
+      "code": "4310",
+      "name": "Dream Incubator Inc.",
+      "sector": "Services",
+      "price": 2585,
+      "confirmationScore": 164.5,
+      "status": "最優先で財務確認",
+      "action": "通常候補へ入れる前の財務確認",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "blockers": "なし",
+      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
+      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
+      "buyGuard": "確認完了まで買わない",
+      "rank": 38
+    },
+    {
+      "source": "昇格候補",
+      "code": "3908",
+      "name": "Collabos Corporation",
+      "sector": "Information & Communication",
+      "price": 316,
+      "confirmationScore": 164.3,
       "status": "最優先で財務確認",
       "action": "通常候補へ入れる前の財務確認",
       "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",

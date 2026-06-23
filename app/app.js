@@ -435,7 +435,7 @@ function isGoodBacktest(backtest) {
 
 function assistFor(stock) {
   const seriousRisk = Boolean(stock.risk);
-  const confirmed = stock.dataConfidence === "確認済み" || stock.dataConfidence === "一部手入力";
+  const confirmed = isConfirmedEnough(stock);
   const freshEnough = stock.dataFreshness?.level === "ok";
 
   if (seriousRisk) {
@@ -1437,7 +1437,7 @@ function renderDetail() {
     stock.held ? "保有中" : "未保有",
     stock.dataConfidence,
     stock.watchlist ? stock.watchlist.status : "未監視",
-    stock.qualitativeDone ? "有報確認済み" : "有報確認待ち",
+    qualitativeStatusLabel(stock),
     stock.edinet?.periodEnd ? `有報 ${stock.edinet.periodEnd}` : "有報未取得",
   ].map((label) => `<span class="badge">${label}</span>`).join("") + renderFreshnessBadge(stock);
   document.getElementById("buyTimingAlert").innerHTML = renderBuyTimingAlert(stock);
@@ -1451,6 +1451,17 @@ function renderDetail() {
   document.getElementById("reasonList").innerHTML = stock.assist.reasons.map((r) => `<li>${r}</li>`).join("");
   document.getElementById("nextActionList").innerHTML = stock.assist.nextActions.map((a) => `<li>${a}</li>`).join("");
   document.getElementById("metricGrid").innerHTML = renderMetrics(stock);
+}
+
+function isConfirmedEnough(stock) {
+  return stock.dataConfidence === "確認済み"
+    || stock.dataConfidence === "一部手入力"
+    || stock.dataConfidence === "自動財務確認";
+}
+
+function qualitativeStatusLabel(stock) {
+  if (stock.dataConfidence === "自動財務確認") return "財務自動確認";
+  return stock.qualitativeDone ? "有報確認済み" : "有報確認待ち";
 }
 
 function findResearchItem(type, code) {

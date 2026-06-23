@@ -1,5 +1,5 @@
 window.AUTO_HIDDEN_GEMS_DRAFT = {
-  "generatedAt": "2026-06-23T06:57:52.805Z",
+  "generatedAt": "2026-06-23T23:05:11.911Z",
   "source": "data/stock-master-hidden-gems-draft.csv",
   "total": 5,
   "items": [

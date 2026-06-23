@@ -12,11 +12,14 @@ const stockMasterPath = path.join(dataDir, "stock-master.csv");
 const promotionDraftPath = path.join(dataDir, "stock-master-input-draft.csv");
 const hiddenDraftPath = path.join(dataDir, "stock-master-hidden-gems-draft.csv");
 const confirmedInputPath = path.join(dataDir, "financial-confirmed-input.csv");
+const worklistPath = path.join(dataDir, "financial-confirmation-worklist.csv");
+const screenedPath = path.join(dataDir, "financial-worklist-screened.csv");
 const edinetFactsPath = path.join(dataDir, "edinet-facts.csv");
 const outputPreviewPath = path.join(dataDir, "stock-master-promoted.csv");
 const outputReportPath = path.join(reportsDir, "latest-promoted-candidates.md");
 const writeToMaster = process.argv.includes("--write");
 const limit = Number(process.env.PROMOTE_CONFIRMED_LIMIT || 10);
+const autoScreenedLimit = Number(process.env.PROMOTE_SCREENED_LIMIT || 4);
 
 const stockHeaders = [
   "code",
@@ -55,10 +58,16 @@ const draftByCode = new Map([
   ...readCsv(hiddenDraftPath).map((row) => [row.code, row]),
 ]);
 const confirmedInputRows = readCsv(confirmedInputPath);
+const worklistByCode = new Map(readCsv(worklistPath).map((row) => [row.code, row]));
+const screenedRows = readCsv(screenedPath);
 const factsByCode = new Map(readEdinetFacts().map((row) => [row.code, row]));
 
 const candidates = [
   ...confirmedInputRows.map((row) => promoteFromConfirmedInput(row)),
+  ...screenedRows
+    .filter((row) => row.status === "昇格確認優先" && number(row.screenScore) >= 80)
+    .slice(0, autoScreenedLimit)
+    .map((row) => promoteFromScreened(row, worklistByCode.get(row.code))),
   ...[...draftByCode.values()]
     .filter((row) => factsByCode.has(row.code))
     .map((row) => promoteFromDraftAndFact(row, factsByCode.get(row.code))),
@@ -86,6 +95,38 @@ function promoteFromConfirmedInput(row) {
     qualitativeDone: "true",
     catalyst: normalized.catalyst || row.note || "財務確認済み",
   };
+}
+
+function promoteFromScreened(screened, worklistRow = {}) {
+  const row = normalizeStockRow({
+    code: screened.code,
+    name: screened.name,
+    sector: screened.sector,
+    price: screened.price,
+    shares: worklistRow.checkedShares,
+    treasuryShares: worklistRow.checkedTreasuryShares,
+    cash: worklistRow.checkedCash,
+    securities: worklistRow.checkedSecurities,
+    investmentSecurities: worklistRow.checkedInvestmentSecurities,
+    interestDebt: worklistRow.checkedInterestDebt,
+    netAssets: worklistRow.checkedNetAssets,
+    rentalBook: worklistRow.checkedRentalBook,
+    rentalMarket: worklistRow.checkedRentalMarket,
+    bps: worklistRow.checkedBps,
+    eps: worklistRow.checkedEps,
+    pbrLow: worklistRow.checkedPbrLow || "0.64",
+    pbrAvg: worklistRow.checkedPbrAvg || midpoint(worklistRow.checkedPbrLow, worklistRow.checkedPbrHigh),
+    pbrHigh: worklistRow.checkedPbrHigh || "1.53",
+    perLow: worklistRow.checkedPerLow || "10",
+    perAvg: worklistRow.checkedPerAvg || "16",
+    perHigh: worklistRow.checkedPerHigh || "24",
+    dataConfidence: "自動財務確認",
+    qualitativeDone: "true",
+    held: "false",
+    catalyst: `自動財務確認: ${screened.reasons || "財務スクリーニング上位"}`,
+    history: worklistRow.history,
+  });
+  return row;
 }
 
 function normalizeConfirmedInput(row) {
@@ -166,12 +207,13 @@ function normalizeStockRow(row) {
 }
 
 function isConfirmed(row) {
+  const confirmedConfidence = row.dataConfidence === "確認済み" || row.dataConfidence === "自動財務確認";
   return row.code
     && row.name
     && number(row.price) > 0
     && number(row.shares) > 0
     && number(row.bps) > 0
-    && row.dataConfidence === "確認済み"
+    && confirmedConfidence
     && String(row.qualitativeDone) === "true";
 }
 
@@ -207,9 +249,9 @@ function writeReport(rows, wroteMaster) {
     "",
     "## 昇格条件",
     "",
-    "- 確認済み入力、またはEDINET相当データがある",
+    "- 確認済み入力、財務スクリーニング上位、またはEDINET相当データがある",
     "- BPS、EPS、現金、有利子負債、発行株数が入っている",
-    "- `dataConfidence` が `確認済み`",
+    "- `dataConfidence` が `確認済み` または `自動財務確認`",
     "- `qualitativeDone` が `true`",
   ];
   fs.writeFileSync(outputReportPath, `${lines.join("\n")}\n`, "utf8");

@@ -252,7 +252,11 @@ if (!result.hiddenGemsDraftRanking.includes("下書き")) {
 if (!result.financialConfirmationRanking.includes("財務確認")) {
   failures.push("ランキングに財務確認キューが生成されていません");
 }
-if (!result.financialScreeningRanking.includes("昇格確認優先")) {
+if (
+  !result.financialScreeningRanking.includes("昇格確認優先")
+  && !result.financialScreeningRanking.includes("慎重確認")
+  && !result.financialScreeningRanking.includes("見送り寄り")
+) {
   failures.push("ランキングに財務優先確認が生成されていません");
 }
 if (!result.financialConfirmationDetail.includes("確認完了まで買わない") && !result.financialConfirmationDetail.includes("財務確認アシスト")) {

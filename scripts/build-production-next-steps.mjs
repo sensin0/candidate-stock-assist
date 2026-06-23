@@ -27,6 +27,7 @@ const universeCoverage = universe.length ? pct(universeMetrics.length / universe
 const pendingFinancial = financialQueue.filter((row) => row.status === "最優先で財務確認").length;
 const worklistReady = worklist.filter((row) => row.confirmed === "true" && row.qualitativeDone === "true").length;
 const confirmedInputReady = confirmedInput.filter((row) => row.dataConfidence === "確認済み" || row.confirmed === "true").length;
+const autoFinancialConfirmed = stockMaster.filter((row) => row.dataConfidence === "自動財務確認").length;
 const promotedNewCount = Math.max(0, promoted.length - stockMaster.length);
 const successfulBacktests = researchBacktest.filter((row) => !row.error).length;
 const goodBacktests = researchBacktest.filter((row) => row.judgement === "良さそう").length;
@@ -55,9 +56,9 @@ function buildTasks() {
     }),
     task({
       title: "確認済み候補の通常候補昇格",
-      status: confirmedInputReady || worklistReady || promotedNewCount ? "確認中" : "要対応",
-      reason: `確認済み入力 ${confirmedInputReady}件 / ワークシート確認済み ${worklistReady}件 / 昇格プレビュー追加 ${promotedNewCount}件です。`,
-      next: "確認済みになったものを financial-confirmed-input.csv に入れて npm run financial:promote",
+      status: confirmedInputReady || worklistReady || promotedNewCount || autoFinancialConfirmed ? "確認中" : "要対応",
+      reason: `確認済み入力 ${confirmedInputReady}件 / 自動財務確認 ${autoFinancialConfirmed}件 / ワークシート確認済み ${worklistReady}件 / 昇格プレビュー追加 ${promotedNewCount}件です。`,
+      next: autoFinancialConfirmed ? "自動財務確認銘柄の決算短信と有報を後追い確認" : "確認済みになったものを financial-confirmed-input.csv に入れて npm run financial:promote",
     }),
     task({
       title: "日本株全体の探索範囲",
@@ -100,6 +101,7 @@ function writeReport(tasks) {
     "",
     `残作業: ${openTasks.length}件`,
     `通常候補: ${stockMaster.length}件`,
+    `自動財務確認: ${autoFinancialConfirmed}件`,
     `日本株財務メトリクス: ${universeMetrics.length}/${universe.length}件`,
     `確認済み財務メトリクス: ${confirmedMetricCount}件`,
     `確認前推定: ${estimatedMetricCount}件`,

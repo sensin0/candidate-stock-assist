@@ -1,6 +1,6 @@
 # データ更新レポート
 
-更新日時: 2026-06-22T09:30:34.128Z
+更新日時: 2026-06-23T23:07:28.366Z
 入力元: data/stock-master.csv
 株価入力元: data/price-updates.csv
 株価更新件数: 20
@@ -10,10 +10,10 @@ EDINET入力元: data/edinet-facts.csv
 EDINET更新件数: 20
 監視リスト入力元: data/watchlist.csv
 監視リスト件数: 3
-バックテスト件数: 20
-銘柄数: 20
-データ状態: OK
-本番準備度: 100% 本番運用OK
+バックテスト件数: 24
+銘柄数: 24
+データ状態: 要確認
+本番準備度: 92% 本番運用OK
 一部手入力: 14件
 
 ## データ取得状態
@@ -26,9 +26,17 @@ EDINET更新件数: 20
 
 ## データカバレッジ
 
-- 株価: 20/20
-- EDINET相当: 20/20
-- バックテスト: 20/20
+- 株価: 20/24
+- EDINET相当: 20/24
+- バックテスト: 24/24
+- 株価未取得: 6276 SiriusVision CO.,LTD.
+- 株価未取得: 7435 NADEX CO.,LTD.
+- 株価未取得: 7567 SAKAE ELECTRONICS CORPORATION
+- 株価未取得: 1514 Sumiseki Holdings,Inc.
+- EDINET相当未取得: 6276 SiriusVision CO.,LTD.
+- EDINET相当未取得: 7435 NADEX CO.,LTD.
+- EDINET相当未取得: 7567 SAKAE ELECTRONICS CORPORATION
+- EDINET相当未取得: 1514 Sumiseki Holdings,Inc.
 - 一部手入力: 6505 東洋電機製造
 - 一部手入力: 9672 東京都競馬
 - 一部手入力: 8830 住友不動産
@@ -46,11 +54,18 @@ EDINET更新件数: 20
 
 ## 次に直すデータ
 
-- なし
+- 株価CSVに追加: 6276 SiriusVision CO.,LTD.
+- 株価CSVに追加: 7435 NADEX CO.,LTD.
+- 株価CSVに追加: 7567 SAKAE ELECTRONICS CORPORATION
+- 株価CSVに追加: 1514 Sumiseki Holdings,Inc.
+- EDINET相当CSVに追加: 6276 SiriusVision CO.,LTD.
+- EDINET相当CSVに追加: 7435 NADEX CO.,LTD.
+- EDINET相当CSVに追加: 7567 SAKAE ELECTRONICS CORPORATION
+- EDINET相当CSVに追加: 1514 Sumiseki Holdings,Inc.
 
 ## 本番化の残り
 
-- 本番運用開始の目安を満たしています
+- 株価未取得を埋める: 20/24
 
 ## 次に接続する取得元
 
@@ -80,6 +95,10 @@ EDINET更新件数: 20
 - 9324 安田倉庫
 - 8818 京阪神ビルディング
 - 3892 岡山製紙
+- 6276 SiriusVision CO.,LTD.
+- 7435 NADEX CO.,LTD.
+- 7567 SAKAE ELECTRONICS CORPORATION
+- 1514 Sumiseki Holdings,Inc.
 
 ## 開示
 
