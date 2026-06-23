@@ -908,6 +908,7 @@ function markerPosition(stock) {
 }
 
 function rankingFor(type) {
+  if (type === "today") return todayRankingItems();
   if (type === "expansionPreview") return filteredExpansionItems(window.AUTO_EXPANSION_PREVIEW?.items ?? []);
   if (type === "hiddenGemsDraft") return filteredExpansionItems(window.AUTO_HIDDEN_GEMS_DRAFT?.items ?? []);
   if (type === "financialConfirmation") return filteredFinancialConfirmationItems(window.AUTO_FINANCIAL_CONFIRMATION?.top ?? []);
@@ -930,6 +931,11 @@ function rankingFor(type) {
 function renderRanking() {
   const type = document.getElementById("rankingSelect").value;
   const list = rankingFor(type).slice(0, rankingLimitFor(type));
+  if (type === "today") {
+    document.getElementById("rankingList").innerHTML =
+      list.map((item, index) => renderTodayRankingRow(item, index)).join("") || `<p class="reason">該当なし</p>`;
+    return;
+  }
   if (type === "expansionPreview") {
     document.getElementById("rankingList").innerHTML =
       list.map((item, index) => renderExpansionRankingRow(item, index)).join("") || `<p class="reason">該当なし</p>`;
@@ -960,9 +966,112 @@ function renderRanking() {
 }
 
 function rankingLimitFor(type) {
+  if (type === "today") return 80;
   if (["researchUniverse", "researchTiming", "researchMultibagger", "hiddenGems"].includes(type)) return 100;
   if (type === "hiddenGemsDraft" || type === "expansionPreview") return 80;
   return 40;
+}
+
+function todayRankingItems() {
+  const stockItems = visibleStocks().map((stock) => ({
+    kind: "stock",
+    code: stock.code,
+    sourceType: "today",
+    sortScore: todayStockScore(stock),
+    reason: todayStockReason(stock),
+    item: stock,
+  }));
+  const knownStockCodes = new Set(stockItems.map((entry) => entry.code));
+  const researchItems = [
+    ...filteredResearchItems(window.AUTO_RESEARCH_DATA?.timingBuys ?? [])
+      .slice(0, 80)
+      .map((item) => todayResearchItem(item, "researchTiming", "上昇タイミング", 12)),
+    ...filteredHiddenGemItems(window.AUTO_HIDDEN_GEMS?.top ?? [])
+      .slice(0, 80)
+      .map((item) => todayHiddenGemItem(item)),
+    ...filteredResearchItems(window.AUTO_RESEARCH_DATA?.multibaggerWatch ?? [])
+      .slice(0, 60)
+      .map((item) => todayResearchItem(item, "researchMultibagger", "2倍監視", 4)),
+    ...filteredFinancialConfirmationItems(window.AUTO_FINANCIAL_CONFIRMATION?.top ?? [])
+      .slice(0, 40)
+      .map((item) => todayFinancialItem(item)),
+  ].filter((entry) => !knownStockCodes.has(entry.code));
+
+  const byCode = new Map();
+  for (const entry of [...stockItems, ...researchItems]) {
+    const current = byCode.get(entry.code);
+    if (!current || entry.sortScore > current.sortScore) byCode.set(entry.code, entry);
+  }
+  return [...byCode.values()].sort((a, b) => b.sortScore - a.sortScore);
+}
+
+function todayStockScore(stock) {
+  let score = stock.score;
+  if (stock.assist.label === "今買い候補") score += 46;
+  if (stock.assist.label === "買い場に近い") score += 30;
+  if (stock.assist.label === "調査が先") score += 22;
+  if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") score += 18;
+  if (stock.watchlist) score += 10;
+  if (isGoodBacktest(stock.backtest)) score += 8;
+  if (stock.dataFreshness?.level !== "ok") score -= 12;
+  if (stock.assist.label === "検証弱く見送り") score -= 55;
+  if (stock.assist.label === "リスクで見送り") score -= 65;
+  return Math.round(score * 10) / 10;
+}
+
+function todayStockReason(stock) {
+  if (stock.assist.label === "今買い候補") return "買いタイミング優先";
+  if (stock.assist.label === "買い場に近い" || stock.assist.label === "調査が先") return "買い場接近";
+  if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") return "売り判断の確認";
+  if (stock.watchlist) return "監視中";
+  return "通常候補";
+}
+
+function todayResearchItem(item, sourceType, label, bonus) {
+  const score = (item.qualityRank ?? item.timingRank ?? item.score ?? 0)
+    + (item.timingAction === "押し目買い候補" ? 26 : 0)
+    + (item.timingAction === "初回買い候補" ? 22 : 0)
+    + (item.timingAction === "買わない" ? -80 : 0)
+    + (item.signal === "高値圏" ? -18 : 0)
+    + bonus;
+  return {
+    kind: "research",
+    code: item.code,
+    sourceType,
+    label,
+    sortScore: Math.round(score * 10) / 10,
+    reason: item.timingAction || item.signal || label,
+    item,
+  };
+}
+
+function todayHiddenGemItem(item) {
+  const score = (item.hiddenScore ?? item.qualityRank ?? item.score ?? 0)
+    + (item.assistAction === "今すぐ財務確認" ? 22 : 0)
+    + (item.signal === "上昇中押し目" ? 10 : 0)
+    + (item.caution ? -8 : 0);
+  return {
+    kind: "hiddenGems",
+    code: item.code,
+    sourceType: "hiddenGems",
+    label: "未発掘",
+    sortScore: Math.round(score * 10) / 10,
+    reason: item.assistAction || item.status || "未発掘候補",
+    item,
+  };
+}
+
+function todayFinancialItem(item) {
+  const score = Math.min(105, (item.confirmationScore ?? 0) * 0.55) + 8;
+  return {
+    kind: "financialConfirmation",
+    code: item.code,
+    sourceType: "financialConfirmation",
+    label: "財務確認",
+    sortScore: Math.round(score * 10) / 10,
+    reason: item.status || "買う前に確認",
+    item,
+  };
 }
 
 function renderMobileLynchPreview(content, title) {
@@ -1023,6 +1132,66 @@ function filteredResearchItems(items) {
       return !q || text.includes(q);
     })
     .sort((a, b) => (b.qualityRank ?? b.timingRank ?? b.score ?? 0) - (a.qualityRank ?? a.timingRank ?? a.score ?? 0));
+}
+
+function renderTodayRankingRow(entry, index) {
+  if (entry.kind === "stock") {
+    const stock = entry.item;
+    return `
+      <article class="ranking-row ${stock.code === selectedCode ? "active" : ""}" data-code="${stock.code}">
+        <div class="ranking-top">
+          <div>
+            <strong>${index + 1}. ${stock.name}</strong>
+            <div class="stock-code">${stock.code} / ${entry.reason}</div>
+          </div>
+          <span class="assist-label ${stock.assist.className}">${stock.assist.label}</span>
+        </div>
+        <p class="reason">${topReason(stock)}</p>
+        <div class="ranking-meta">
+          <span>総合 ${Math.round(entry.sortScore * 10) / 10}</span>
+          <span>通常候補</span>
+          <span>スコア ${stock.score}</span>
+          <span>上昇余地 ${pct(stock.upside)}</span>
+          <span>${stock.dataFreshness.label}</span>
+        </div>
+        ${renderMiniMeter(stock)}
+      </article>
+      ${stock.code === selectedCode ? renderInlineMobileLynchPreview(renderLynchChart(stock), `${stock.name}のリンチ・チャート`) : ""}
+    `;
+  }
+
+  const item = entry.item;
+  const type = entry.sourceType;
+  const isActive = selectedResearch?.type === type && selectedResearch?.code === item.code;
+  const labelClass = type === "financialConfirmation" ? "label-risk" : type === "hiddenGems" ? "label-research" : "label-near";
+  const detailText = type === "financialConfirmation"
+    ? (item.buyGuard || item.nextStep || "買う前に財務確認")
+    : (item.comment || item.reason || signalComment(item));
+  const lynch = type === "financialConfirmation"
+    ? renderFinancialConfirmationPlaceholder(item)
+    : renderResearchLynchPlaceholder(item);
+
+  return `
+    <article class="ranking-row research-ranking-row ${isActive ? "active" : ""}" data-research-type="${type}" data-research-code="${escapeHtml(item.code)}">
+      <div class="ranking-top">
+        <div>
+          <strong>${index + 1}. ${escapeHtml(item.name)}</strong>
+          <div class="stock-code">${escapeHtml(item.code)} / ${escapeHtml(item.sector || "未分類")} / ${escapeHtml(entry.reason)}</div>
+        </div>
+        <span class="assist-label ${labelClass}">${escapeHtml(entry.label)}</span>
+      </div>
+      <p class="reason">${escapeHtml(detailText)}</p>
+      <div class="ranking-meta">
+        <span>総合 ${Math.round(entry.sortScore * 10) / 10}</span>
+        <span>${escapeHtml(item.market || item.source || "広域調査")}</span>
+        <span>${escapeHtml(item.signal || item.status || "確認")}</span>
+        <span>平均 ${pct(item.averageReturn ?? 0)}</span>
+        <span>勝率 ${pct(item.winRate ?? 0)}</span>
+        <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
+      </div>
+    </article>
+    ${isActive ? renderInlineMobileLynchPreview(lynch, `${item.name}の確認`) : ""}
+  `;
 }
 
 function renderExpansionRankingRow(item, index) {

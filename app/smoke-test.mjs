@@ -97,6 +97,9 @@ vm.runInContext(
   const normalTimingPanel = document.getElementById("timingPanel").innerHTML;
   const normalBuyTimingAlert = document.getElementById("buyTimingAlert").innerHTML;
   const dataCheckList = document.getElementById("dataCheckList").innerHTML;
+  document.getElementById("rankingSelect").value = "today";
+  renderRanking();
+  const todayRanking = document.getElementById("rankingList").innerHTML;
   document.getElementById("rankingSelect").value = "researchUniverse";
   renderRanking();
   const researchRanking = document.getElementById("rankingList").innerHTML;
@@ -151,6 +154,7 @@ vm.runInContext(
     lifecycle: normalLifecycle,
     buyTimingAlert: normalBuyTimingAlert,
     dataCheckList,
+    todayRanking,
     researchOverview: document.getElementById("researchOverview").innerHTML,
     researchRanking,
     researchTimingRanking,
@@ -185,6 +189,9 @@ if (!result.report.includes("# 朝レポート")) failures.push("朝レポート
 if (!result.report.includes("## 監視リスト")) failures.push("朝レポートに監視リストがありません");
 if (!result.report.includes("## 未発掘・今すぐ財務確認")) failures.push("朝レポートに未発掘候補がありません");
 if (!result.dataCheckList.includes("昇格準備")) failures.push("データ確認に昇格準備がありません");
+if (!result.todayRanking.includes("総合") || !result.todayRanking.includes("上昇タイミング")) {
+  failures.push("総合おすすめランキングに広域候補が混ざっていません");
+}
 if (!result.chart.includes("ここで買い候補") && !result.chart.includes("ここから売り検討") && !result.chart.includes("見送り")) {
   failures.push("チャートの売買アシスト吹き出しが生成されていません");
 }

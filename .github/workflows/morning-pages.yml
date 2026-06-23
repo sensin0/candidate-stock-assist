@@ -50,6 +50,9 @@ jobs:
       - name: Research reports
         run: npm run research:morning
 
+      - name: Refresh morning report after research
+        run: npm run report
+
       - name: Build Pages files
         run: npm run pages:build
 
@@ -87,7 +90,7 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Prepare report
+      - name: Prepare data
         run: npm run morning
         env:
           PRICE_CSV_URL: ${{ secrets.PRICE_CSV_URL }}
@@ -98,6 +101,9 @@ jobs:
 
       - name: Prepare research reports
         run: npm run research:morning
+
+      - name: Refresh report after research
+        run: npm run report
 
       - name: Wait until 7:10 JST
         if: github.event_name == 'schedule'
