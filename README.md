@@ -132,6 +132,7 @@ npm run promotion:readiness
 npm run hidden:gems
 npm run hidden:gems:draft
 npm run financial:queue
+npm run financial:promote
 npm run research:data
 npm run research:morning
 npm run stock-master:draft
@@ -150,3 +151,4 @@ npm run start
 - 数値条件が良くても、データ未確認なら `今買い候補` ではなく `調査が先` に倒します。
 - 元資料や非公開メモは公開リポジトリに入れません。
 - 財務確認キューは `reports/latest-financial-confirmation.md` と `data/financial-confirmation-queue.csv` に出ます。ここに出た銘柄は確認完了まで買わない前提です。
+- 確認済みの財務データは `data/financial-confirmed-input.csv` に入れます。`npm run financial:promote` で通常候補への昇格プレビューを作り、確認後に `node scripts/promote-confirmed-candidates.mjs --write` で反映します。

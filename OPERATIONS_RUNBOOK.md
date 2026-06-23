@@ -137,6 +137,28 @@ npm run financial:queue
 
 結果は `data/financial-confirmation-queue.csv` と `reports/latest-financial-confirmation.md` とアプリ内の財務確認ランキングに出ます。昇格候補、未発掘下書き、通常候補の確認待ちをまとめ、確認完了まで買わない前提で扱います。
 
+確認済みになった銘柄を通常候補へ昇格する:
+
+```powershell
+npm run financial:promote
+```
+
+結果は `data/stock-master-promoted.csv` と `reports/latest-promoted-candidates.md` に出ます。確認して問題なければ、次で `data/stock-master.csv` に反映します。
+
+```powershell
+node scripts/promote-confirmed-candidates.mjs --write
+```
+
+確認済みとして扱う条件は、`data/financial-confirmed-input.csv` に確認済みデータを入れるか、EDINET相当データがあることです。確認前推定だけでは通常候補へ入れません。
+
+日本株全体の財務データ範囲を見る:
+
+```powershell
+npm run universe:metrics
+```
+
+結果は `data/universe-metrics.csv` と `reports/latest-universe-financial-coverage.md` に出ます。確認済みと確認前推定を分けて表示します。
+
 昇格候補から通常候補入力の下書きを作る:
 
 ```powershell

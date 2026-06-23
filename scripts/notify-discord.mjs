@@ -11,6 +11,8 @@ const readinessReportPath = path.join(rootDir, "reports", "latest-promotion-read
 const hiddenGemsReportPath = path.join(rootDir, "reports", "latest-hidden-gems.md");
 const hiddenGemsDraftReportPath = path.join(rootDir, "reports", "latest-hidden-gems-stock-master-draft.md");
 const financialConfirmationReportPath = path.join(rootDir, "reports", "latest-financial-confirmation.md");
+const promotedReportPath = path.join(rootDir, "reports", "latest-promoted-candidates.md");
+const financialCoverageReportPath = path.join(rootDir, "reports", "latest-universe-financial-coverage.md");
 const draftReportPath = path.join(rootDir, "reports", "latest-stock-master-draft.md");
 const expandedPreviewReportPath = path.join(rootDir, "reports", "latest-stock-master-expanded-preview.md");
 const generatedDataPath = path.join(rootDir, "app", "generated-data.js");
@@ -25,6 +27,8 @@ const readinessReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-promoti
 const hiddenGemsReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-hidden-gems.md`;
 const hiddenGemsDraftReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-hidden-gems-stock-master-draft.md`;
 const financialConfirmationReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-financial-confirmation.md`;
+const promotedReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-promoted-candidates.md`;
+const financialCoverageReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-universe-financial-coverage.md`;
 const draftReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-stock-master-draft.md`;
 const expandedPreviewReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-stock-master-expanded-preview.md`;
 
@@ -45,6 +49,8 @@ const readinessReport = fs.existsSync(readinessReportPath) ? fs.readFileSync(rea
 const hiddenGemsReport = fs.existsSync(hiddenGemsReportPath) ? fs.readFileSync(hiddenGemsReportPath, "utf8") : "";
 const hiddenGemsDraftReport = fs.existsSync(hiddenGemsDraftReportPath) ? fs.readFileSync(hiddenGemsDraftReportPath, "utf8") : "";
 const financialConfirmationReport = fs.existsSync(financialConfirmationReportPath) ? fs.readFileSync(financialConfirmationReportPath, "utf8") : "";
+const promotedReport = fs.existsSync(promotedReportPath) ? fs.readFileSync(promotedReportPath, "utf8") : "";
+const financialCoverageReport = fs.existsSync(financialCoverageReportPath) ? fs.readFileSync(financialCoverageReportPath, "utf8") : "";
 const draftReport = fs.existsSync(draftReportPath) ? fs.readFileSync(draftReportPath, "utf8") : "";
 const expandedPreviewReport = fs.existsSync(expandedPreviewReportPath) ? fs.readFileSync(expandedPreviewReportPath, "utf8") : "";
 const generatedData = fs.existsSync(generatedDataPath) ? fs.readFileSync(generatedDataPath, "utf8") : "";
@@ -127,6 +133,12 @@ const message = [
   "財務確認キュー",
   ...firstReportItems(financialConfirmationReport, "最優先で財務確認", 2).map((item) => `- ${clipItem(item)}`),
   "",
+  "確認済み昇格",
+  ...firstReportItems(promotedReport, "昇格対象", 2).map((item) => `- ${clipItem(item)}`),
+  "",
+  "財務データ範囲",
+  ...firstReportItems(financialCoverageReport, "確認前推定の内訳", 3).map((item) => `- ${clipItem(item)}`),
+  "",
   "未発掘候補",
   ...firstReportItems(hiddenGemsReport, "今すぐ財務確認", 2).map((item) => `- ${clipItem(item)}`),
   "",
@@ -149,6 +161,8 @@ const message = [
   promotionReportUrl,
   readinessReportUrl,
   financialConfirmationReportUrl,
+  promotedReportUrl,
+  financialCoverageReportUrl,
   hiddenGemsReportUrl,
   hiddenGemsDraftReportUrl,
   draftReportUrl,

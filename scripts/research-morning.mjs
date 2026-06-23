@@ -5,6 +5,7 @@ process.env.UNIVERSE_BACKTEST_CONCURRENCY ??= "8";
 
 const steps = [
   ["日本株価格バックテスト", "scripts/research-universe-price-backtest.mjs"],
+  ["日本株財務メトリクス範囲更新", "scripts/build-universe-metrics.mjs"],
   ["2倍候補調査", "scripts/analyze-multibagger-candidates.mjs"],
   ["通常候補への昇格候補抽出", "scripts/build-promotion-candidates.mjs"],
   ["通常候補入力下書き生成", "scripts/build-stock-master-draft-from-promotions.mjs"],
@@ -13,6 +14,7 @@ const steps = [
   ["未発掘候補生成", "scripts/build-hidden-gems.mjs"],
   ["未発掘から通常候補入力下書き生成", "scripts/build-stock-master-draft-from-hidden-gems.mjs"],
   ["財務確認キュー生成", "scripts/build-financial-confirmation-queue.mjs"],
+  ["確認済み候補の昇格プレビュー生成", "scripts/promote-confirmed-candidates.mjs"],
   ["画面用調査データ生成", "scripts/build-research-data.mjs"],
 ];
 
