@@ -18,12 +18,12 @@ const universeAll = universeRows
   .filter((row) => !row.error)
   .map(mapUniverseRow)
   .sort((a, b) => b.qualityRank - a.qualityRank || b.timingRank - a.timingRank || b.score - a.score);
-const universeTop = universeAll.filter((row) => row.judgement === "良さそう").slice(0, 100);
-const timingBuys = universeAll.filter((row) => row.timingAction === "初回買い候補" || row.timingAction === "押し目買い候補").slice(0, 80);
+const universeTop = universeAll.filter((row) => row.judgement === "良さそう").slice(0, 300);
+const timingBuys = universeAll.filter((row) => row.timingAction === "初回買い候補" || row.timingAction === "押し目買い候補").slice(0, 200);
 
 const multibaggerWatch = multibaggerRows
   .filter((row) => row.group === "2倍監視候補")
-  .slice(0, 80)
+  .slice(0, 150)
   .map((row) => ({
     code: row.code,
     name: row.name,

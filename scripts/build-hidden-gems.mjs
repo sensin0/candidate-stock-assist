@@ -22,7 +22,7 @@ const rows = universeRows
   .map(toHiddenGem)
   .filter((row) => row.hiddenScore >= 70)
   .sort((a, b) => b.hiddenScore - a.hiddenScore)
-  .slice(0, 120);
+  .slice(0, 200);
 
 writeCsv(rows);
 writeReport(rows);
@@ -226,7 +226,7 @@ function writeAppData(rows) {
     source: "data/hidden-gems.csv",
     total: rows.length,
     priorityCount: rows.filter((row) => row.status === "未発掘の財務確認候補").length,
-    top: rows.slice(0, 80),
+    top: rows.slice(0, 160),
   };
   fs.writeFileSync(outputJsPath, `window.AUTO_HIDDEN_GEMS = ${JSON.stringify(payload, null, 2)};\n`, "utf8");
 }

@@ -928,7 +928,7 @@ function rankingFor(type) {
 
 function renderRanking() {
   const type = document.getElementById("rankingSelect").value;
-  const list = rankingFor(type).slice(0, 20);
+  const list = rankingFor(type).slice(0, rankingLimitFor(type));
   if (type === "expansionPreview") {
     document.getElementById("rankingList").innerHTML =
       list.map((item, index) => renderExpansionRankingRow(item, index)).join("") || `<p class="reason">該当なし</p>`;
@@ -953,10 +953,21 @@ function renderRanking() {
     list.map((stock, index) => renderRankingRow(stock, index)).join("") || `<p class="reason">該当なし</p>`;
 }
 
+function rankingLimitFor(type) {
+  if (["researchUniverse", "researchTiming", "researchMultibagger", "hiddenGems"].includes(type)) return 100;
+  if (type === "hiddenGemsDraft" || type === "expansionPreview") return 80;
+  return 40;
+}
+
 function renderMobileLynchPreview(content, title) {
   const element = document.getElementById("mobileLynchPreview");
   if (!element) return;
-  element.innerHTML = `
+  element.innerHTML = "";
+}
+
+function renderInlineMobileLynchPreview(content, title) {
+  return `
+    <div class="inline-mobile-lynch-preview" aria-live="polite">
     <div class="section-heading">
       <div>
         <p class="eyebrow">選択中</p>
@@ -964,6 +975,7 @@ function renderMobileLynchPreview(content, title) {
       </div>
     </div>
     <div class="chart" role="img" aria-label="選択中銘柄のリンチ・チャート">${content}</div>
+    </div>
   `;
 }
 
@@ -1017,6 +1029,7 @@ function renderExpansionRankingRow(item, index) {
         <span>財務確認前</span>
       </div>
     </article>
+    ${isActive ? renderInlineMobileLynchPreview(renderExpansionLynchPlaceholder(item), `${item.name}のリンチ・チャート`) : ""}
   `;
 }
 
@@ -1041,6 +1054,7 @@ function renderHiddenGemDraftRankingRow(item, index) {
         <span>財務確認前</span>
       </div>
     </article>
+    ${isActive ? renderInlineMobileLynchPreview(renderExpansionLynchPlaceholder(item), `${item.name}のリンチ・チャート`) : ""}
   `;
 }
 
@@ -1067,6 +1081,7 @@ function renderHiddenGemRankingRow(item, index) {
         <span>${escapeHtml(item.caution || "注意なし")}</span>
       </div>
     </article>
+    ${isActive ? renderInlineMobileLynchPreview(renderResearchLynchPlaceholder(item), `${item.name}のリンチ・チャート`) : ""}
   `;
 }
 
@@ -1098,6 +1113,7 @@ function renderResearchRankingRow(item, index, type) {
         <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
       </div>
     </article>
+    ${isActive ? renderInlineMobileLynchPreview(renderResearchLynchPlaceholder(item), `${item.name}のリンチ・チャート`) : ""}
   `;
 }
 
@@ -1122,6 +1138,7 @@ function renderRankingRow(stock, index) {
       </div>
       ${renderMiniMeter(stock)}
     </article>
+    ${stock.code === selectedCode ? renderInlineMobileLynchPreview(renderLynchChart(stock), `${stock.name}のリンチ・チャート`) : ""}
   `;
 }
 
@@ -1183,7 +1200,9 @@ function findResearchItem(type, code) {
   }
   const items = type === "researchMultibagger"
     ? window.AUTO_RESEARCH_DATA?.multibaggerWatch ?? []
-    : window.AUTO_RESEARCH_DATA?.universeTop ?? [];
+    : type === "researchTiming"
+      ? window.AUTO_RESEARCH_DATA?.timingBuys ?? []
+      : window.AUTO_RESEARCH_DATA?.universeAll ?? window.AUTO_RESEARCH_DATA?.universeTop ?? [];
   return items.find((item) => item.code === code) ?? null;
 }
 
@@ -2055,7 +2074,6 @@ function setupEvents() {
         code: researchCard.dataset.researchCode,
       };
       render();
-      scrollMobileLynchPreviewIntoView();
       return;
     }
 
@@ -2064,7 +2082,6 @@ function setupEvents() {
     selectedCode = card.dataset.code;
     selectedResearch = null;
     render();
-    scrollMobileLynchPreviewIntoView();
   });
   document.getElementById("rankingSelect").addEventListener("change", renderRanking);
   document.getElementById("sampleButton").addEventListener("click", loadSample);
@@ -2103,13 +2120,6 @@ function setupEvents() {
       event.target.value = "";
     }
   });
-}
-
-function scrollMobileLynchPreviewIntoView() {
-  if (!window.matchMedia("(max-width: 760px)").matches) return;
-  const element = document.getElementById("mobileLynchPreview");
-  if (!element) return;
-  element.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 function setImportStatus(message, isError = false) {
