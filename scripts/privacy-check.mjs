@@ -17,6 +17,7 @@ const allowedMarkdown = new Set([
   "reports/latest-hidden-gems-stock-master-draft.md",
   "reports/latest-financial-confirmation.md",
   "reports/latest-financial-confirmation-worklist.md",
+  "reports/latest-financial-confirmed-input.md",
   "reports/latest-promoted-candidates.md",
   "reports/latest-universe-financial-coverage.md",
   "reports/latest-production-next-steps.md",

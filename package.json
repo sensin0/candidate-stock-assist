@@ -27,6 +27,7 @@
     "hidden:gems:draft": "node scripts/build-stock-master-draft-from-hidden-gems.mjs",
     "financial:queue": "node scripts/build-financial-confirmation-queue.mjs",
     "financial:worklist": "node scripts/build-financial-confirmation-worklist.mjs",
+    "financial:apply-worklist": "node scripts/apply-financial-worklist.mjs",
     "financial:promote": "node scripts/promote-confirmed-candidates.mjs",
     "research:data": "node scripts/build-research-data.mjs",
     "research:morning": "node scripts/research-morning.mjs",

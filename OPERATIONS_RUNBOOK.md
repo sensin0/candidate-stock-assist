@@ -145,6 +145,14 @@ npm run financial:worklist
 
 結果は `data/financial-confirmation-worklist.csv` と `reports/latest-financial-confirmation-worklist.md` に出ます。`checked...` 列に確認済みの値を入れ、`confirmed` と `qualitativeDone` を `true` にしたものを `data/financial-confirmed-input.csv` へ移すと昇格対象になります。
 
+財務確認ワークシートで確認済みにした行を反映する:
+
+```powershell
+npm run financial:apply-worklist
+```
+
+結果は `data/financial-confirmed-input.csv` と `reports/latest-financial-confirmed-input.md` に出ます。入力不足の行は反映されないので、BPS、EPS、現金、有利子負債、発行株数を埋めてから使います。
+
 確認済みになった銘柄を通常候補へ昇格する:
 
 ```powershell
