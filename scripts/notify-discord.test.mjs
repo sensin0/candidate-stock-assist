@@ -28,6 +28,7 @@ assert.match(result.stdout, /財務確認キュー/);
 assert.match(result.stdout, /財務確認ワークシート/);
 assert.match(result.stdout, /確認済み昇格/);
 assert.match(result.stdout, /財務データ範囲/);
+assert.match(result.stdout, /本番化残作業/);
 assert.match(result.stdout, /未発掘候補/);
 assert.match(result.stdout, /未発掘から通常候補入力下書き/);
 assert.match(result.stdout, /通常候補入力下書き/);
@@ -40,6 +41,7 @@ assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/rep
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-financial-confirmation-worklist\.md/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-promoted-candidates\.md/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-universe-financial-coverage\.md/);
+assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-production-next-steps\.md/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-hidden-gems\.md/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-hidden-gems-stock-master-draft\.md/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-stock-master-draft\.md/);

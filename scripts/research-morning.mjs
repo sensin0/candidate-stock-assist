@@ -17,6 +17,7 @@ const steps = [
   ["財務確認ワークシート生成", "scripts/build-financial-confirmation-worklist.mjs"],
   ["確認済み候補の昇格プレビュー生成", "scripts/promote-confirmed-candidates.mjs"],
   ["画面用調査データ生成", "scripts/build-research-data.mjs"],
+  ["本番化残作業レポート生成", "scripts/build-production-next-steps.mjs"],
 ];
 
 for (const [label, script] of steps) {

@@ -140,6 +140,7 @@ npm run stock-master:draft
 npm run stock-master:preview-expanded
 npm run stock-master:build
 npm run production:check
+npm run production:next
 npm run pages:build
 npm run pipeline
 npm run start

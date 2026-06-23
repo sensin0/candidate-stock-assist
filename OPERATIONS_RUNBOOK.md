@@ -241,6 +241,14 @@ npm run privacy:report
 npm run production:check
 ```
 
+残作業をレポートで見る:
+
+```powershell
+npm run production:next
+```
+
+結果は `reports/latest-production-next-steps.md` に出ます。財務確認、通常候補昇格、日本株カバー、通知確認の残りをまとめて見ます。
+
 一部手入力だけ見る:
 
 ```powershell
