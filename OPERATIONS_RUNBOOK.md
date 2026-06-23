@@ -129,6 +129,14 @@ npm run hidden:gems:draft
 
 結果は `data/stock-master-hidden-gems-draft.csv` と `reports/latest-hidden-gems-stock-master-draft.md` に出ます。`今すぐ財務確認` だけを対象にし、通常候補へ入れる前の確認リストとして使います。
 
+財務確認が必要な銘柄をまとめて見る:
+
+```powershell
+npm run financial:queue
+```
+
+結果は `data/financial-confirmation-queue.csv` と `reports/latest-financial-confirmation.md` とアプリ内の財務確認ランキングに出ます。昇格候補、未発掘下書き、通常候補の確認待ちをまとめ、確認完了まで買わない前提で扱います。
+
 昇格候補から通常候補入力の下書きを作る:
 
 ```powershell

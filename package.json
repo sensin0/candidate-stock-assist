@@ -25,6 +25,7 @@
     "promotion:readiness": "node scripts/build-promotion-readiness.mjs",
     "hidden:gems": "node scripts/build-hidden-gems.mjs",
     "hidden:gems:draft": "node scripts/build-stock-master-draft-from-hidden-gems.mjs",
+    "financial:queue": "node scripts/build-financial-confirmation-queue.mjs",
     "research:data": "node scripts/build-research-data.mjs",
     "research:morning": "node scripts/research-morning.mjs",
     "stock-master:build": "node scripts/build-stock-master-from-input.mjs",

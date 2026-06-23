@@ -910,6 +910,7 @@ function markerPosition(stock) {
 function rankingFor(type) {
   if (type === "expansionPreview") return filteredExpansionItems(window.AUTO_EXPANSION_PREVIEW?.items ?? []);
   if (type === "hiddenGemsDraft") return filteredExpansionItems(window.AUTO_HIDDEN_GEMS_DRAFT?.items ?? []);
+  if (type === "financialConfirmation") return filteredFinancialConfirmationItems(window.AUTO_FINANCIAL_CONFIRMATION?.top ?? []);
   if (type === "hiddenGems") return filteredHiddenGemItems(window.AUTO_HIDDEN_GEMS?.top ?? []);
   if (type === "researchTiming") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.timingBuys ?? []);
   if (type === "researchUniverse") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.universeAll ?? window.AUTO_RESEARCH_DATA?.universeTop ?? []);
@@ -937,6 +938,11 @@ function renderRanking() {
   if (type === "hiddenGemsDraft") {
     document.getElementById("rankingList").innerHTML =
       list.map((item, index) => renderHiddenGemDraftRankingRow(item, index)).join("") || `<p class="reason">該当なし</p>`;
+    return;
+  }
+  if (type === "financialConfirmation") {
+    document.getElementById("rankingList").innerHTML =
+      list.map((item, index) => renderFinancialConfirmationRankingRow(item, index)).join("") || `<p class="reason">該当なし</p>`;
     return;
   }
   if (type === "hiddenGems") {
@@ -997,6 +1003,16 @@ function filteredHiddenGemItems(items) {
       return !q || text.includes(q);
     })
     .sort((a, b) => (b.hiddenScore ?? 0) - (a.hiddenScore ?? 0));
+}
+
+function filteredFinancialConfirmationItems(items) {
+  const q = searchQuery.trim().toLowerCase();
+  return items
+    .filter((item) => {
+      const text = `${item.code} ${item.name} ${item.sector} ${item.source} ${item.status}`.toLowerCase();
+      return !q || text.includes(q);
+    })
+    .sort((a, b) => (b.confirmationScore ?? 0) - (a.confirmationScore ?? 0));
 }
 
 function filteredResearchItems(items) {
@@ -1082,6 +1098,30 @@ function renderHiddenGemRankingRow(item, index) {
       </div>
     </article>
     ${isActive ? renderInlineMobileLynchPreview(renderResearchLynchPlaceholder(item), `${item.name}のリンチ・チャート`) : ""}
+  `;
+}
+
+function renderFinancialConfirmationRankingRow(item, index) {
+  const isActive = selectedResearch?.type === "financialConfirmation" && selectedResearch?.code === item.code;
+  return `
+    <article class="ranking-row research-ranking-row ${isActive ? "active" : ""}" data-research-type="financialConfirmation" data-research-code="${escapeHtml(item.code)}">
+      <div class="ranking-top">
+        <div>
+          <strong>${index + 1}. ${escapeHtml(item.name)}</strong>
+          <div class="stock-code">${escapeHtml(item.code)} / ${escapeHtml(item.sector || "未分類")}</div>
+        </div>
+        <span class="assist-label label-risk">財務確認</span>
+      </div>
+      <p class="reason">${escapeHtml(item.buyGuard || "確認完了まで買わない")}。${escapeHtml(item.nextStep || "財務確認が先です")}</p>
+      <div class="ranking-meta">
+        <span>${escapeHtml(item.source || "確認元")}</span>
+        <span>${escapeHtml(item.status || "確認")}</span>
+        <span>点 ${Math.round((item.confirmationScore ?? 0) * 10) / 10}</span>
+        <span>株価 ${yen(item.price)}</span>
+        <span>${escapeHtml(item.blockers || "注意なし")}</span>
+      </div>
+    </article>
+    ${isActive ? renderInlineMobileLynchPreview(renderFinancialConfirmationPlaceholder(item), `${item.name}の財務確認`) : ""}
   `;
 }
 
@@ -1198,6 +1238,9 @@ function findResearchItem(type, code) {
   if (type === "hiddenGems") {
     return (window.AUTO_HIDDEN_GEMS?.top ?? []).find((item) => item.code === code) ?? null;
   }
+  if (type === "financialConfirmation") {
+    return (window.AUTO_FINANCIAL_CONFIRMATION?.top ?? []).find((item) => item.code === code) ?? null;
+  }
   const items = type === "researchMultibagger"
     ? window.AUTO_RESEARCH_DATA?.multibaggerWatch ?? []
     : type === "researchTiming"
@@ -1239,6 +1282,10 @@ function renderExpansionDetail(item) {
 }
 
 function renderResearchDetail(item, type) {
+  if (type === "financialConfirmation") {
+    renderFinancialConfirmationDetail(item);
+    return;
+  }
   const label = type === "researchMultibagger" ? "2倍監視" : type === "hiddenGems" ? "未発掘候補" : "広域候補";
   const comment = item.comment || signalComment(item);
   document.getElementById("detailAssist").textContent = label;
@@ -1269,6 +1316,80 @@ function renderResearchDetail(item, type) {
     .map((action) => `<li>${escapeHtml(action)}</li>`)
     .join("");
   document.getElementById("metricGrid").innerHTML = renderResearchMetrics(item);
+}
+
+function renderFinancialConfirmationDetail(item) {
+  document.getElementById("detailAssist").textContent = "財務確認";
+  document.getElementById("detailAssist").className = "assist-label label-risk";
+  document.getElementById("detailTitle").textContent = `${item.name} (${item.code})`;
+  document.getElementById("detailBadges").innerHTML = [
+    item.source || "確認元",
+    item.status || "確認",
+    item.buyGuard || "確認完了まで買わない",
+    item.sector || "未分類",
+  ].map((badge) => `<span class="badge">${escapeHtml(badge)}</span>`).join("");
+  document.getElementById("buyTimingAlert").innerHTML = renderFinancialConfirmationAlert(item);
+  document.getElementById("timingPanel").innerHTML = "";
+  document.getElementById("lifecycleAssist").innerHTML = "";
+  document.getElementById("tradeMeter").innerHTML = "";
+  document.getElementById("chart").innerHTML = renderFinancialConfirmationPlaceholder(item);
+  const lynchChart = renderFinancialConfirmationPlaceholder(item);
+  document.getElementById("lynchChart").innerHTML = lynchChart;
+  renderMobileLynchPreview(lynchChart, `${item.name}の財務確認`);
+  document.getElementById("reasonList").innerHTML = [
+    item.buyGuard || "確認完了まで買わない",
+    item.note || "財務確認が必要です",
+    `注意: ${item.blockers || "なし"}`,
+  ].map((reason) => `<li>${escapeHtml(reason)}</li>`).join("");
+  document.getElementById("nextActionList").innerHTML = String(item.checklist || "BPS、EPS、現金、有利子負債、発行株数、直近決算")
+    .split(/[、,]/)
+    .map((action) => action.trim())
+    .filter(Boolean)
+    .map((action) => `<li>${escapeHtml(action)}</li>`)
+    .join("");
+  document.getElementById("metricGrid").innerHTML = renderFinancialConfirmationMetrics(item);
+}
+
+function renderFinancialConfirmationAlert(item) {
+  return `
+    <section class="buy-timing-alert" aria-label="財務確認アシスト">
+      <div>
+        <p class="eyebrow">財務確認アシスト</p>
+        <h3>確認完了まで買わない</h3>
+        <p>${escapeHtml(item.nextStep || "BPS、EPS、現金、有利子負債、発行株数、直近決算を確認します。")}</p>
+      </div>
+      <div class="buy-timing-values">
+        <span>${escapeHtml(item.source || "確認元")}</span>
+        <span>点 ${Math.round((item.confirmationScore ?? 0) * 10) / 10}</span>
+        <span>株価 ${yen(item.price)}</span>
+        <span>${escapeHtml(item.blockers || "注意なし")}</span>
+      </div>
+    </section>
+  `;
+}
+
+function renderFinancialConfirmationPlaceholder(item) {
+  return `
+    <div class="chart-empty">
+      <p class="eyebrow">財務確認</p>
+      <h3>${escapeHtml(item.name)}は確認完了まで買わない</h3>
+      <p>${escapeHtml(item.nextStep || "有報と決算短信で仮置きを実数へ置き換えます。")}</p>
+    </div>
+  `;
+}
+
+function renderFinancialConfirmationMetrics(item) {
+  const metrics = [
+    ["確認元", item.source || "不明"],
+    ["状態", item.status || "確認"],
+    ["点数", `${Math.round((item.confirmationScore ?? 0) * 10) / 10}点`],
+    ["株価", yen(item.price)],
+    ["買いガード", item.buyGuard || "確認完了まで買わない"],
+    ["注意", item.blockers || "なし"],
+    ["次にやること", item.nextStep || "財務確認"],
+    ["確認項目", item.checklist || "BPS、EPS、現金、有利子負債、発行株数、直近決算"],
+  ];
+  return metrics.map(([label, value]) => `<div class="metric"><span>${label}</span><strong>${escapeHtml(value)}</strong></div>`).join("");
 }
 
 function renderHiddenGemAssistAlert(item) {
@@ -1905,6 +2026,7 @@ function renderMorningReport() {
   const hiddenGems = (window.AUTO_HIDDEN_GEMS?.top ?? [])
     .filter((item) => item.assistAction === "今すぐ財務確認")
     .slice(0, 5);
+  const financialConfirmation = (window.AUTO_FINANCIAL_CONFIRMATION?.top ?? []).slice(0, 5);
   const report = [
     "# 朝レポート",
     "",
@@ -1912,6 +2034,7 @@ function renderMorningReport() {
     "",
     dataOverview,
     priorityMarkdown("今日見る優先順位", priorities),
+    financialConfirmationMarkdown("財務確認キュー", financialConfirmation),
     hiddenGemMarkdown("未発掘・今すぐ財務確認", hiddenGems),
     sectionMarkdown("今買い候補", buyNow),
     sectionMarkdown("今売り検討", sellNow),
@@ -1968,6 +2091,7 @@ function morningDataOverview(visible) {
   const research = window.AUTO_RESEARCH_DATA;
   const expansion = window.AUTO_EXPANSION_PREVIEW;
   const hidden = window.AUTO_HIDDEN_GEMS;
+  const financial = window.AUTO_FINANCIAL_CONFIRMATION;
   const quality = data?.dataQuality;
   const providerWarnings = quality?.providerWarnings ?? [];
   const validationWarnings = quality?.validationWarnings ?? [];
@@ -1992,6 +2116,7 @@ function morningDataOverview(visible) {
     `- 通常候補: ${visible.length}件。${stockCountNote}`,
     `- 追加候補確認: ${previewAddCount}件。財務確認後の候補数イメージは${expandedCount}件`,
     `- 未発掘候補: ${hidden?.total ?? 0}件。今すぐ財務確認 ${hiddenPriorityCount}件`,
+    `- 財務確認キュー: ${financial?.total ?? 0}件。最優先 ${financial?.priorityCount ?? 0}件`,
     `- 日本株全体の価格検証: ${universeCount || "準備中"}${universeTotal ? `/${universeTotal}件` : ""}`,
     `- 銘柄マスタ: ${data?.source ?? "サンプル"}`,
     `- データ状態: ${quality?.ok ? "OK" : "要確認"}。注意${warningCount}件`,
@@ -1999,6 +2124,17 @@ function morningDataOverview(visible) {
     `- 一部手入力: ${manualInputs.length}件${manualInputs.length ? `。${manualInputs.slice(0, 3).join(" / ")} から確認` : ""}`,
     ...(readiness.blockers?.length ? [`- 本番化の残り: ${readiness.blockers[0]}`] : []),
     ...(nextFixes.length ? [`- 次に直す: ${nextFixes[0]}`] : []),
+    "",
+  ].join("\n");
+}
+
+function financialConfirmationMarkdown(title, list) {
+  if (!list.length) return `## ${title}\n該当なし\n`;
+  return [
+    `## ${title}`,
+    ...list.map((item, index) =>
+      `- ${index + 1}. ${item.code} ${item.name}: ${item.source || "確認"} / ${item.status || "財務確認"}。${item.buyGuard || "確認完了まで買わない"} / 注意: ${item.blockers || "なし"} / 次: ${item.nextStep || "BPS、EPS、現金、負債、発行株数を確認"}`
+    ),
     "",
   ].join("\n");
 }
