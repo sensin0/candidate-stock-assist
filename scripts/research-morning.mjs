@@ -14,6 +14,7 @@ const steps = [
   ["未発掘候補生成", "scripts/build-hidden-gems.mjs"],
   ["未発掘から通常候補入力下書き生成", "scripts/build-stock-master-draft-from-hidden-gems.mjs"],
   ["財務確認キュー生成", "scripts/build-financial-confirmation-queue.mjs"],
+  ["財務確認ワークシート生成", "scripts/build-financial-confirmation-worklist.mjs"],
   ["確認済み候補の昇格プレビュー生成", "scripts/promote-confirmed-candidates.mjs"],
   ["画面用調査データ生成", "scripts/build-research-data.mjs"],
 ];

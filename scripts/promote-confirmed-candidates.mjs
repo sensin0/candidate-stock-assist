@@ -79,12 +79,36 @@ console.log(`${writeToMaster ? "通常候補へ反映" : "昇格プレビュー�
 console.log(`${path.relative(rootDir, writeToMaster ? stockMasterPath : outputPreviewPath)}`);
 
 function promoteFromConfirmedInput(row) {
-  const normalized = normalizeStockRow(row);
+  const normalized = normalizeStockRow(normalizeConfirmedInput(row));
   return {
     ...normalized,
     dataConfidence: "確認済み",
     qualitativeDone: "true",
     catalyst: normalized.catalyst || row.note || "財務確認済み",
+  };
+}
+
+function normalizeConfirmedInput(row) {
+  return {
+    ...row,
+    shares: row.shares || row.checkedShares,
+    treasuryShares: row.treasuryShares || row.checkedTreasuryShares,
+    cash: row.cash || row.checkedCash,
+    securities: row.securities || row.checkedSecurities,
+    investmentSecurities: row.investmentSecurities || row.checkedInvestmentSecurities,
+    interestDebt: row.interestDebt || row.checkedInterestDebt,
+    netAssets: row.netAssets || row.checkedNetAssets,
+    rentalBook: row.rentalBook || row.checkedRentalBook,
+    rentalMarket: row.rentalMarket || row.checkedRentalMarket,
+    bps: row.bps || row.checkedBps,
+    eps: row.eps || row.checkedEps,
+    pbrLow: row.pbrLow || row.checkedPbrLow,
+    pbrAvg: row.pbrAvg || row.checkedPbrAvg,
+    pbrHigh: row.pbrHigh || row.checkedPbrHigh,
+    perLow: row.perLow || row.checkedPerLow,
+    perAvg: row.perAvg || row.checkedPerAvg,
+    perHigh: row.perHigh || row.checkedPerHigh,
+    dataConfidence: row.confirmed === "true" ? "確認済み" : row.dataConfidence,
   };
 }
 

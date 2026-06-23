@@ -137,6 +137,14 @@ npm run financial:queue
 
 結果は `data/financial-confirmation-queue.csv` と `reports/latest-financial-confirmation.md` とアプリ内の財務確認ランキングに出ます。昇格候補、未発掘下書き、通常候補の確認待ちをまとめ、確認完了まで買わない前提で扱います。
 
+財務確認キュー上位を入力作業表にする:
+
+```powershell
+npm run financial:worklist
+```
+
+結果は `data/financial-confirmation-worklist.csv` と `reports/latest-financial-confirmation-worklist.md` に出ます。`checked...` 列に確認済みの値を入れ、`confirmed` と `qualitativeDone` を `true` にしたものを `data/financial-confirmed-input.csv` へ移すと昇格対象になります。
+
 確認済みになった銘柄を通常候補へ昇格する:
 
 ```powershell
