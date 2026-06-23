@@ -966,10 +966,7 @@ function renderRanking() {
 }
 
 function rankingLimitFor(type) {
-  if (type === "today") return 80;
-  if (["researchUniverse", "researchTiming", "researchMultibagger", "hiddenGems"].includes(type)) return 100;
-  if (type === "hiddenGemsDraft" || type === "expansionPreview") return 80;
-  return 40;
+  return 10;
 }
 
 function todayRankingItems() {
@@ -977,6 +974,7 @@ function todayRankingItems() {
     kind: "stock",
     code: stock.code,
     sourceType: "today",
+    priority: todayStockPriority(stock),
     sortScore: todayStockScore(stock),
     reason: todayStockReason(stock),
     item: stock,
@@ -1000,9 +998,23 @@ function todayRankingItems() {
   const byCode = new Map();
   for (const entry of [...stockItems, ...researchItems]) {
     const current = byCode.get(entry.code);
-    if (!current || entry.sortScore > current.sortScore) byCode.set(entry.code, entry);
+    if (!current || entry.priority > current.priority || (entry.priority === current.priority && entry.sortScore > current.sortScore)) {
+      byCode.set(entry.code, entry);
+    }
   }
-  return [...byCode.values()].sort((a, b) => b.sortScore - a.sortScore);
+  return [...byCode.values()].sort((a, b) => b.priority - a.priority || b.sortScore - a.sortScore);
+}
+
+function todayStockPriority(stock) {
+  if (stock.assist.label === "今買い候補") return 100;
+  if (stock.assist.label === "買い場に近い") return 90;
+  if (stock.assist.label === "調査が先") return 82;
+  if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") return 72;
+  if (stock.assist.label === "保有継続候補") return 62;
+  if (stock.assist.label === "まだ待つ") return 52;
+  if (stock.assist.label === "検証弱く見送り") return 22;
+  if (stock.assist.label === "リスクで見送り") return 12;
+  return 50;
 }
 
 function todayStockScore(stock) {
@@ -1039,6 +1051,7 @@ function todayResearchItem(item, sourceType, label, bonus) {
     code: item.code,
     sourceType,
     label,
+    priority: sourceType === "researchTiming" ? 44 : 36,
     sortScore: Math.round(score * 10) / 10,
     reason: item.timingAction || item.signal || label,
     item,
@@ -1055,6 +1068,7 @@ function todayHiddenGemItem(item) {
     code: item.code,
     sourceType: "hiddenGems",
     label: "未発掘",
+    priority: 34,
     sortScore: Math.round(score * 10) / 10,
     reason: item.assistAction || item.status || "未発掘候補",
     item,
@@ -1068,6 +1082,7 @@ function todayFinancialItem(item) {
     code: item.code,
     sourceType: "financialConfirmation",
     label: "財務確認",
+    priority: 30,
     sortScore: Math.round(score * 10) / 10,
     reason: item.status || "買う前に確認",
     item,

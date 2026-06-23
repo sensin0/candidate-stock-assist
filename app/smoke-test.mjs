@@ -100,6 +100,8 @@ vm.runInContext(
   document.getElementById("rankingSelect").value = "today";
   renderRanking();
   const todayRanking = document.getElementById("rankingList").innerHTML;
+  const todayRankingRows = todayRanking.match(/class="ranking-row/g)?.length ?? 0;
+  const todayRankingTop = rankingFor("today")[0];
   document.getElementById("rankingSelect").value = "researchUniverse";
   renderRanking();
   const researchRanking = document.getElementById("rankingList").innerHTML;
@@ -155,6 +157,8 @@ vm.runInContext(
     buyTimingAlert: normalBuyTimingAlert,
     dataCheckList,
     todayRanking,
+    todayRankingRows,
+    todayRankingTopLabel: todayRankingTop?.item?.assist?.label ?? todayRankingTop?.label ?? "",
     researchOverview: document.getElementById("researchOverview").innerHTML,
     researchRanking,
     researchTimingRanking,
@@ -189,8 +193,11 @@ if (!result.report.includes("# 朝レポート")) failures.push("朝レポート
 if (!result.report.includes("## 監視リスト")) failures.push("朝レポートに監視リストがありません");
 if (!result.report.includes("## 未発掘・今すぐ財務確認")) failures.push("朝レポートに未発掘候補がありません");
 if (!result.dataCheckList.includes("昇格準備")) failures.push("データ確認に昇格準備がありません");
-if (!result.todayRanking.includes("総合") || !result.todayRanking.includes("上昇タイミング")) {
-  failures.push("総合おすすめランキングに広域候補が混ざっていません");
+if (!result.todayRanking.includes("総合") || result.todayRankingRows > 10) {
+  failures.push("総合おすすめランキングが10件以内で生成されていません");
+}
+if (result.buyNow > 0 && result.todayRankingTopLabel !== "今買い候補") {
+  failures.push("今買い候補が総合おすすめの上位に出ていません");
 }
 if (!result.chart.includes("ここで買い候補") && !result.chart.includes("ここから売り検討") && !result.chart.includes("見送り")) {
   failures.push("チャートの売買アシスト吹き出しが生成されていません");
