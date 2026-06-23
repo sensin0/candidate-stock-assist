@@ -909,6 +909,7 @@ function markerPosition(stock) {
 
 function rankingFor(type) {
   if (type === "expansionPreview") return filteredExpansionItems(window.AUTO_EXPANSION_PREVIEW?.items ?? []);
+  if (type === "hiddenGemsDraft") return filteredExpansionItems(window.AUTO_HIDDEN_GEMS_DRAFT?.items ?? []);
   if (type === "hiddenGems") return filteredHiddenGemItems(window.AUTO_HIDDEN_GEMS?.top ?? []);
   if (type === "researchTiming") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.timingBuys ?? []);
   if (type === "researchUniverse") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.universeAll ?? window.AUTO_RESEARCH_DATA?.universeTop ?? []);
@@ -931,6 +932,11 @@ function renderRanking() {
   if (type === "expansionPreview") {
     document.getElementById("rankingList").innerHTML =
       list.map((item, index) => renderExpansionRankingRow(item, index)).join("") || `<p class="reason">該当なし</p>`;
+    return;
+  }
+  if (type === "hiddenGemsDraft") {
+    document.getElementById("rankingList").innerHTML =
+      list.map((item, index) => renderHiddenGemDraftRankingRow(item, index)).join("") || `<p class="reason">該当なし</p>`;
     return;
   }
   if (type === "hiddenGems") {
@@ -1008,6 +1014,30 @@ function renderExpansionRankingRow(item, index) {
         <span>株価 ${yen(item.price)}</span>
         <span>BPS確認 ${yen(item.bps)}</span>
         <span>EPS確認 ${Math.round((item.eps ?? 0) * 10) / 10}</span>
+        <span>財務確認前</span>
+      </div>
+    </article>
+  `;
+}
+
+function renderHiddenGemDraftRankingRow(item, index) {
+  const isActive = selectedResearch?.type === "hiddenGemsDraft" && selectedResearch?.code === item.code;
+  return `
+    <article class="ranking-row research-ranking-row ${isActive ? "active" : ""}" data-research-type="hiddenGemsDraft" data-research-code="${escapeHtml(item.code)}">
+      <div class="ranking-top">
+        <div>
+          <strong>${index + 1}. ${escapeHtml(item.name)}</strong>
+          <div class="stock-code">${escapeHtml(item.code)} / ${escapeHtml(item.sector || "未分類")}</div>
+        </div>
+        <span class="assist-label label-research">下書き</span>
+      </div>
+      <p class="reason">${escapeHtml(item.note || "未発掘候補から通常候補へ入れる前の確認下書きです")}</p>
+      <div class="ranking-meta">
+        <span>株価 ${yen(item.price)}</span>
+        <span>未発掘点 ${Math.round((item.hiddenScore ?? 0) * 10) / 10}</span>
+        <span>勝率 ${pct(item.winRate ?? 0)}</span>
+        <span>平均 ${pct(item.averageReturn ?? 0)}</span>
+        <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
         <span>財務確認前</span>
       </div>
     </article>
@@ -1106,7 +1136,7 @@ function topReason(stock) {
 function renderDetail() {
   const researchItem = selectedResearch ? findResearchItem(selectedResearch.type, selectedResearch.code) : null;
   if (researchItem) {
-    if (selectedResearch.type === "expansionPreview") {
+    if (selectedResearch.type === "expansionPreview" || selectedResearch.type === "hiddenGemsDraft") {
       renderExpansionDetail(researchItem);
     } else {
       renderResearchDetail(researchItem, selectedResearch.type);
@@ -1144,6 +1174,9 @@ function renderDetail() {
 function findResearchItem(type, code) {
   if (type === "expansionPreview") {
     return (window.AUTO_EXPANSION_PREVIEW?.items ?? []).find((item) => item.code === code) ?? null;
+  }
+  if (type === "hiddenGemsDraft") {
+    return (window.AUTO_HIDDEN_GEMS_DRAFT?.items ?? []).find((item) => item.code === code) ?? null;
   }
   if (type === "hiddenGems") {
     return (window.AUTO_HIDDEN_GEMS?.top ?? []).find((item) => item.code === code) ?? null;

@@ -20,6 +20,7 @@ const requiredFiles = [
   "app/generated-expansion-preview.js",
   "app/generated-promotion-readiness.js",
   "app/generated-hidden-gems.js",
+  "app/generated-hidden-gems-draft.js",
   "scripts/update-data.mjs",
   "scripts/backtest-core.mjs",
   "scripts/backtest-timing.mjs",

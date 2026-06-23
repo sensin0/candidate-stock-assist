@@ -6,10 +6,12 @@ import { parseCsvRecords } from "./csv-utils.mjs";
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dataDir = path.join(rootDir, "data");
 const reportsDir = path.join(rootDir, "reports");
+const appDir = path.join(rootDir, "app");
 const hiddenGemsPath = path.join(dataDir, "hidden-gems.csv");
 const stockMasterPath = path.join(dataDir, "stock-master.csv");
 const outputInputPath = path.join(dataDir, "stock-master-hidden-gems-draft.csv");
 const outputReportPath = path.join(reportsDir, "latest-hidden-gems-stock-master-draft.md");
+const outputJsPath = path.join(appDir, "generated-hidden-gems-draft.js");
 const limit = Number(process.env.HIDDEN_GEMS_DRAFT_LIMIT || 20);
 const concurrency = Number(process.env.HIDDEN_GEMS_DRAFT_CONCURRENCY || 6);
 
@@ -37,9 +39,11 @@ const rows = quotes
 
 writeDraftInput(rows);
 writeReport(rows, quotes);
+writeAppData(rows);
 
 console.log(`未発掘から通常候補入力下書きCSVを生成しました: ${path.relative(rootDir, outputInputPath)}`);
 console.log(`未発掘から通常候補入力下書きレポートを生成しました: ${path.relative(rootDir, outputReportPath)}`);
+console.log(`未発掘から通常候補入力下書き画面データを生成しました: ${path.relative(rootDir, outputJsPath)}`);
 console.log(`未発掘下書き候補: ${rows.length}/${targets.length}件`);
 
 function toDraftInputRow(row) {
@@ -84,6 +88,16 @@ function writeDraftInput(rows) {
     ...rows.map((row) => headers.map((header) => escapeCsv(row[header] ?? "")).join(",")),
   ].join("\n");
   fs.writeFileSync(outputInputPath, `${csv}\n`, "utf8");
+}
+
+function writeAppData(rows) {
+  const payload = {
+    generatedAt: new Date().toISOString(),
+    source: "data/stock-master-hidden-gems-draft.csv",
+    total: rows.length,
+    items: rows,
+  };
+  fs.writeFileSync(outputJsPath, `window.AUTO_HIDDEN_GEMS_DRAFT = ${JSON.stringify(payload, null, 2)};\n`, "utf8");
 }
 
 function writeReport(rows, allQuotes) {

@@ -67,6 +67,9 @@ const generatedPromotionReadiness = fs.existsSync(new URL("./generated-promotion
 const generatedHiddenGems = fs.existsSync(new URL("./generated-hidden-gems.js", import.meta.url))
   ? fs.readFileSync(new URL("./generated-hidden-gems.js", import.meta.url), "utf8")
   : "";
+const generatedHiddenGemsDraft = fs.existsSync(new URL("./generated-hidden-gems-draft.js", import.meta.url))
+  ? fs.readFileSync(new URL("./generated-hidden-gems-draft.js", import.meta.url), "utf8")
+  : "";
 const code = fs.readFileSync(new URL("./app.js", import.meta.url), "utf8");
 
 vm.runInContext(
@@ -75,6 +78,7 @@ vm.runInContext(
   ${generatedExpansion}
   ${generatedPromotionReadiness}
   ${generatedHiddenGems}
+  ${generatedHiddenGemsDraft}
   ${code}
   selectedCode = byAssist("今買い候補")[0]?.code
     ?? byAssist("検証弱く見送り")[0]?.code
@@ -103,6 +107,9 @@ vm.runInContext(
   document.getElementById("rankingSelect").value = "hiddenGems";
   renderRanking();
   const hiddenGemsRanking = document.getElementById("rankingList").innerHTML;
+  document.getElementById("rankingSelect").value = "hiddenGemsDraft";
+  renderRanking();
+  const hiddenGemsDraftRanking = document.getElementById("rankingList").innerHTML;
   const hiddenGemActionItem = window.AUTO_HIDDEN_GEMS.top.find((item) => item.assistAction === "今すぐ財務確認");
   if (hiddenGemActionItem) {
     selectedResearch = { type: "hiddenGems", code: hiddenGemActionItem.code };
@@ -137,6 +144,7 @@ vm.runInContext(
     multibaggerRanking,
     expansionRanking,
     hiddenGemsRanking,
+    hiddenGemsDraftRanking,
     hiddenGemDetailAlert,
     researchDetailTitle,
     researchDetailChart,
@@ -194,6 +202,9 @@ if (!result.expansionRanking.includes("確認前")) {
 }
 if (!result.hiddenGemsRanking.includes("未発掘")) {
   failures.push("ランキングに未発掘候補が生成されていません");
+}
+if (!result.hiddenGemsDraftRanking.includes("下書き")) {
+  failures.push("ランキングに未発掘下書きが生成されていません");
 }
 if (!result.hiddenGemDetailAlert.includes("未発掘候補アシスト")) {
   failures.push("未発掘候補の上部アシストが生成されていません");
