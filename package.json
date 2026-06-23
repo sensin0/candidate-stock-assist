@@ -28,6 +28,7 @@
     "financial:queue": "node scripts/build-financial-confirmation-queue.mjs",
     "financial:worklist": "node scripts/build-financial-confirmation-worklist.mjs",
     "financial:enrich": "node scripts/enrich-financial-worklist.mjs",
+    "financial:screen": "node scripts/screen-financial-worklist.mjs",
     "financial:apply-worklist": "node scripts/apply-financial-worklist.mjs",
     "financial:promote": "node scripts/promote-confirmed-candidates.mjs",
     "research:data": "node scripts/build-research-data.mjs",
