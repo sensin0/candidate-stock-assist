@@ -1850,6 +1850,9 @@ function renderMorningReport() {
   const stale = visible.filter((stock) => stock.dataFreshness?.level !== "ok").slice(0, 10);
   const dataOverview = morningDataOverview(visible);
   const priorities = morningPriorities(visible);
+  const hiddenGems = (window.AUTO_HIDDEN_GEMS?.top ?? [])
+    .filter((item) => item.assistAction === "今すぐ財務確認")
+    .slice(0, 5);
   const report = [
     "# 朝レポート",
     "",
@@ -1857,6 +1860,7 @@ function renderMorningReport() {
     "",
     dataOverview,
     priorityMarkdown("今日見る優先順位", priorities),
+    hiddenGemMarkdown("未発掘・今すぐ財務確認", hiddenGems),
     sectionMarkdown("今買い候補", buyNow),
     sectionMarkdown("今売り検討", sellNow),
     watchlistMarkdown("監視リスト", watched),
@@ -1911,6 +1915,7 @@ function morningDataOverview(visible) {
   const data = window.AUTO_STOCK_DATA;
   const research = window.AUTO_RESEARCH_DATA;
   const expansion = window.AUTO_EXPANSION_PREVIEW;
+  const hidden = window.AUTO_HIDDEN_GEMS;
   const quality = data?.dataQuality;
   const providerWarnings = quality?.providerWarnings ?? [];
   const validationWarnings = quality?.validationWarnings ?? [];
@@ -1922,6 +1927,7 @@ function morningDataOverview(visible) {
   const readiness = quality?.readiness ?? { score: 0, label: "準備中", blockers: [] };
   const previewAddCount = expansion?.previewAddCount ?? expansion?.items?.length ?? 0;
   const expandedCount = expansion?.expandedCount ?? visible.length + previewAddCount;
+  const hiddenPriorityCount = hidden?.top?.filter((item) => item.assistAction === "今すぐ財務確認").length ?? 0;
   const universeCount = research?.universe?.success ?? 0;
   const universeTotal = research?.universe?.total ?? 0;
   const warningCount =
@@ -1933,6 +1939,7 @@ function morningDataOverview(visible) {
     "## データ確認",
     `- 通常候補: ${visible.length}件。${stockCountNote}`,
     `- 追加候補確認: ${previewAddCount}件。財務確認後の候補数イメージは${expandedCount}件`,
+    `- 未発掘候補: ${hidden?.total ?? 0}件。今すぐ財務確認 ${hiddenPriorityCount}件`,
     `- 日本株全体の価格検証: ${universeCount || "準備中"}${universeTotal ? `/${universeTotal}件` : ""}`,
     `- 銘柄マスタ: ${data?.source ?? "サンプル"}`,
     `- データ状態: ${quality?.ok ? "OK" : "要確認"}。注意${warningCount}件`,
@@ -1940,6 +1947,17 @@ function morningDataOverview(visible) {
     `- 一部手入力: ${manualInputs.length}件${manualInputs.length ? `。${manualInputs.slice(0, 3).join(" / ")} から確認` : ""}`,
     ...(readiness.blockers?.length ? [`- 本番化の残り: ${readiness.blockers[0]}`] : []),
     ...(nextFixes.length ? [`- 次に直す: ${nextFixes[0]}`] : []),
+    "",
+  ].join("\n");
+}
+
+function hiddenGemMarkdown(title, list) {
+  if (!list.length) return `## ${title}\n該当なし\n`;
+  return [
+    `## ${title}`,
+    ...list.map((item, index) =>
+      `- ${index + 1}. ${item.code} ${item.name}: ${item.assistAction}。${item.comment || item.reason || "財務確認が先です"} / 勝率 ${pct(item.winRate ?? 0)} / 平均 ${pct(item.averageReturn ?? 0)} / 最大下落 ${pct(item.maxDrawdown ?? 0)} / 次に確認: ${item.nextCheck || "財務、材料、出来高"}`
+    ),
     "",
   ].join("\n");
 }

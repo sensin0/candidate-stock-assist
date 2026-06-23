@@ -103,6 +103,12 @@ vm.runInContext(
   document.getElementById("rankingSelect").value = "hiddenGems";
   renderRanking();
   const hiddenGemsRanking = document.getElementById("rankingList").innerHTML;
+  const hiddenGemActionItem = window.AUTO_HIDDEN_GEMS.top.find((item) => item.assistAction === "今すぐ財務確認");
+  if (hiddenGemActionItem) {
+    selectedResearch = { type: "hiddenGems", code: hiddenGemActionItem.code };
+    renderDetail();
+  }
+  const hiddenGemDetailAlert = document.getElementById("buyTimingAlert").innerHTML;
   selectedResearch = { type: "researchUniverse", code: window.AUTO_RESEARCH_DATA.universeTop[0].code };
   renderDetail();
   const researchDetailTitle = document.getElementById("detailTitle").textContent;
@@ -131,6 +137,7 @@ vm.runInContext(
     multibaggerRanking,
     expansionRanking,
     hiddenGemsRanking,
+    hiddenGemDetailAlert,
     researchDetailTitle,
     researchDetailChart,
     researchLynchChart,
@@ -153,6 +160,7 @@ if (result.risk < 1) failures.push("リスク確認が1件以上必要です");
 if (result.watched < 1) failures.push("監視リストが1件以上必要です");
 if (!result.report.includes("# 朝レポート")) failures.push("朝レポートが生成されていません");
 if (!result.report.includes("## 監視リスト")) failures.push("朝レポートに監視リストがありません");
+if (!result.report.includes("## 未発掘・今すぐ財務確認")) failures.push("朝レポートに未発掘候補がありません");
 if (!result.dataCheckList.includes("昇格準備")) failures.push("データ確認に昇格準備がありません");
 if (!result.chart.includes("ここで買い候補") && !result.chart.includes("ここから売り検討") && !result.chart.includes("見送り")) {
   failures.push("チャートの売買アシスト吹き出しが生成されていません");
@@ -186,6 +194,9 @@ if (!result.expansionRanking.includes("確認前")) {
 }
 if (!result.hiddenGemsRanking.includes("未発掘")) {
   failures.push("ランキングに未発掘候補が生成されていません");
+}
+if (!result.hiddenGemDetailAlert.includes("未発掘候補アシスト")) {
+  failures.push("未発掘候補の上部アシストが生成されていません");
 }
 if (!result.researchDetailTitle || !result.researchDetailChart.includes("価格バックテストの見え方")) {
   failures.push("広域候補の詳細が生成されていません");
