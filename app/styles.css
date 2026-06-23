@@ -645,6 +645,28 @@ select {
   gap: 12px;
 }
 
+.confirmation-alert {
+  border: 2px solid var(--yellow);
+  border-radius: 8px;
+  background: var(--yellow-soft);
+  padding: 14px;
+  margin-bottom: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.confirmation-alert h3 {
+  margin: 0 0 6px;
+  color: #7a5c00;
+  font-size: 22px;
+}
+
+.confirmation-alert p {
+  margin-bottom: 0;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
 .buy-timing-alert h3 {
   margin: 0 0 6px;
   color: var(--green);

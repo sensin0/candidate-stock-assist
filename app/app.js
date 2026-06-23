@@ -479,6 +479,14 @@ function assistFor(stock) {
     }
   }
 
+  if (isAutoFinancial(stock) && stock.buyRatio <= 1.05 && stock.upside >= 50) {
+    return makeAssist("調査が先", "label-research", [
+      "数値上は買い場に近いです",
+      "財務は自動確認なので後追い確認が必要です",
+      "決算短信と有報を見てから判断してください",
+    ], ["決算短信の利益と資産を確認", "有報の現金と有利子負債を確認"]);
+  }
+
   if (stock.buyRatio <= 1 && stock.upside >= 50 && stock.score >= 70 && stock.qualitativeDone && freshEnough) {
     return makeAssist("今買い候補", "label-buy", [
       "買いラインを下回っています",
@@ -687,6 +695,7 @@ function renderSummary() {
   const risk = byAssist("リスクで見送り", visible).length + byAssist("検証弱く見送り", visible).length;
   const near = byAssist("買い場に近い", visible).length;
   const watched = visible.filter((stock) => stock.watchlist).length;
+  const autoFinancial = visible.filter(isAutoFinancial).length;
   const qualityWarning = window.AUTO_STOCK_DATA?.dataQuality?.ok === false
     ? " データ要確認の項目があります。"
     : "";
@@ -695,13 +704,14 @@ function renderSummary() {
   document.getElementById("todaySummary").textContent =
     buyNow
       ? `今買い候補が${buyNow}件あります。銘柄詳細の緑の表示を確認してください。条件から外れたらこの表示は消えます。${qualityWarning}`
-      : `通常候補${visible.length}件、追加候補確認${previewAddCount}件、確認後イメージ${expandedCount}件です。今買い候補${buyNow}件、今売り検討${sellNow}件、買い場に近い銘柄${near}件、監視中${watched}件、リスク確認${risk}件です。${qualityWarning}`;
+      : `通常候補${visible.length}件、追加候補確認${previewAddCount}件、確認後イメージ${expandedCount}件です。今買い候補${buyNow}件、今売り検討${sellNow}件、買い場に近い銘柄${near}件、自動財務確認${autoFinancial}件、リスク確認${risk}件です。${qualityWarning}`;
   document.getElementById("summaryStats").innerHTML = [
     ["通常候補", visible.length],
     ["追加確認", previewAddCount],
     ["今買い", buyNow],
     ["売り検討", sellNow],
     ["買い場近い", near],
+    ["自動財務", autoFinancial],
     ["監視中", watched],
     ["リスク", risk],
   ]
@@ -747,6 +757,7 @@ function renderDataCheck() {
   const manualPreview = manualInputs.slice(0, 3);
   const readiness = quality?.readiness ?? { score: 0, label: "準備中", blockers: [] };
   const readinessTone = readiness.score >= 85 ? "good" : readiness.score >= 65 ? "warn" : "alert";
+  const autoFinancialCount = stocks.filter(isAutoFinancial).length;
 
   document.getElementById("dataCheckList").innerHTML = [
     dataCheckItem("本番度", `${readiness.score}%`, readiness.label, readinessTone),
@@ -762,6 +773,12 @@ function renderDataCheck() {
       `${priorityReadyCount}件`,
       priorityReadyCount ? "最優先で財務確認する候補があります" : "昇格準備データ待ちです",
       priorityReadyCount ? "warn" : "alert",
+    ),
+    dataCheckItem(
+      "自動財務",
+      `${autoFinancialCount}件`,
+      autoFinancialCount ? "買う前に決算短信と有報を後追い確認します" : "自動財務確認の候補はありません",
+      autoFinancialCount ? "warn" : "good",
     ),
     dataCheckItem(
       "日本株全体",
@@ -1440,7 +1457,7 @@ function renderDetail() {
     qualitativeStatusLabel(stock),
     stock.edinet?.periodEnd ? `有報 ${stock.edinet.periodEnd}` : "有報未取得",
   ].map((label) => `<span class="badge">${label}</span>`).join("") + renderFreshnessBadge(stock);
-  document.getElementById("buyTimingAlert").innerHTML = renderBuyTimingAlert(stock);
+  document.getElementById("buyTimingAlert").innerHTML = renderAutoFinancialAlert(stock) + renderBuyTimingAlert(stock);
   document.getElementById("timingPanel").innerHTML = renderTimingPanel(stock);
   document.getElementById("lifecycleAssist").innerHTML = renderLifecycleAssist(stock);
   document.getElementById("tradeMeter").innerHTML = renderTradeMeter(stock);
@@ -1457,6 +1474,10 @@ function isConfirmedEnough(stock) {
   return stock.dataConfidence === "確認済み"
     || stock.dataConfidence === "一部手入力"
     || stock.dataConfidence === "自動財務確認";
+}
+
+function isAutoFinancial(stock) {
+  return stock.dataConfidence === "自動財務確認";
 }
 
 function qualitativeStatusLabel(stock) {
@@ -1903,6 +1924,24 @@ function renderBuyTimingAlert(stock) {
   `;
 }
 
+function renderAutoFinancialAlert(stock) {
+  if (!isAutoFinancial(stock)) return "";
+  return `
+    <section class="confirmation-alert" aria-label="自動財務確認の注意">
+      <div>
+        <p class="eyebrow">後追い確認が必要</p>
+        <h3>買う前に決算短信と有報を確認</h3>
+        <p>財務データは自動取得で候補化しています。現金、有利子負債、BPS、EPS、直近決算に大きなズレや悪化がないか確認してから判断します。</p>
+      </div>
+      <div class="buy-timing-values">
+        <span>自動財務確認</span>
+        <span>買いライン ${yen(stock.buyLine)}</span>
+        <span>検証 ${stock.backtest?.confidence ?? "未検証"}</span>
+      </div>
+    </section>
+  `;
+}
+
 function renderTimingPanel(stock) {
   const backtest = stock.backtest ?? {};
   const tone = backtest.confidence === "高め" ? "good" : backtest.confidence === "中" ? "warn" : "neutral";
@@ -1972,7 +2011,7 @@ function lifecycleStages(stock) {
       message: buyActive
         ? `${stock.assist.label}です。買いライン、上昇余地、検証結果を確認します。`
         : `買いラインは${yen(stock.buyLine)}、現在は${yen(stock.price)}です。`,
-      check: stock.qualitativeDone ? "有報確認済み" : "有報・決算確認が先",
+      check: isAutoFinancial(stock) ? "決算短信と有報の後追い確認が先" : stock.qualitativeDone ? "有報確認済み" : "有報・決算確認が先",
     },
     {
       title: "買った後",
