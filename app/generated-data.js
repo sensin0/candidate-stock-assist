@@ -1,14 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-23T23:16:29.469Z",
+  "generatedAt": "2026-06-23T23:22:48.700Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-23T23:16:29.456Z",
-  "priceFetchedAt": "2026-06-23T23:16:29.462Z",
-  "disclosureFetchedAt": "2026-06-23T23:16:29.463Z",
-  "edinetFetchedAt": "2026-06-23T23:16:29.464Z",
+  "fetchedAt": "2026-06-23T23:22:48.689Z",
+  "priceFetchedAt": "2026-06-23T23:22:48.693Z",
+  "disclosureFetchedAt": "2026-06-23T23:22:48.694Z",
+  "edinetFetchedAt": "2026-06-23T23:22:48.695Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -18,7 +18,7 @@ window.AUTO_STOCK_DATA = {
   "disclosureUpdates": 5,
   "edinetUpdates": 20,
   "watchlistUpdates": 3,
-  "backtestUpdates": 30,
+  "backtestUpdates": 29,
   "providerStatuses": [
     {
       "label": "銘柄マスタ",
@@ -1848,60 +1848,6 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": 0,
         "bestScore": -100
       }
-    },
-    {
-      "code": "5363",
-      "name": "TYK CORPORATION",
-      "sector": "Glass and Ceramics Products",
-      "price": 684,
-      "shares": 50874995,
-      "treasuryShares": 0,
-      "cash": 14323.39,
-      "securities": 0,
-      "investmentSecurities": 0,
-      "interestDebt": 3366.71,
-      "netAssets": 54015,
-      "rentalBook": 0,
-      "rentalMarket": 0,
-      "bps": 1061.72,
-      "eps": 101.95,
-      "pbrLow": 0.75,
-      "pbrAvg": 1.27,
-      "pbrHigh": 1.8,
-      "perLow": 10,
-      "perAvg": 16,
-      "perHigh": 24,
-      "dataConfidence": "自動財務確認",
-      "qualitativeDone": true,
-      "held": false,
-      "risk": "",
-      "catalyst": "自動財務確認: PBR 0.64倍で割安寄り / PER 6.71倍で利益面は軽い / ネットキャッシュあり 31.49%",
-      "history": [
-        690,
-        698,
-        696,
-        703,
-        703,
-        690,
-        699,
-        684
-      ],
-      "watchlist": null,
-      "backtest": {
-        "code": "5363",
-        "bestStrategyId": "value-line",
-        "bestStrategyLabel": "買いライン到達で買い",
-        "timingLabel": "買い候補",
-        "buyTiming": "買いライン到達 (796円以下)",
-        "sellTiming": "目標の90%付近 (2,202円目安)",
-        "confidence": "参考",
-        "sampleCount": 8,
-        "trades": 1,
-        "winRate": 0,
-        "averageReturn": -2,
-        "maxDrawdown": -2,
-        "bestScore": -1
-      }
     }
   ],
   "dataQuality": {
@@ -1919,8 +1865,7 @@ window.AUTO_STOCK_DATA = {
       "7901 MATSUMOTO INC.",
       "6870 Fenwal Controls of Japan,Ltd.",
       "5939 OTANI KOGYO CO.,LTD.",
-      "2303 Dawn Corporation",
-      "5363 TYK CORPORATION"
+      "2303 Dawn Corporation"
     ],
     "missingEdinet": [
       "6276 SiriusVision CO.,LTD.",
@@ -1931,8 +1876,7 @@ window.AUTO_STOCK_DATA = {
       "7901 MATSUMOTO INC.",
       "6870 Fenwal Controls of Japan,Ltd.",
       "5939 OTANI KOGYO CO.,LTD.",
-      "2303 Dawn Corporation",
-      "5363 TYK CORPORATION"
+      "2303 Dawn Corporation"
     ],
     "manualInputs": [
       "6505 東洋電機製造",
@@ -1959,8 +1903,7 @@ window.AUTO_STOCK_DATA = {
       "7901 MATSUMOTO INC.",
       "6870 Fenwal Controls of Japan,Ltd.",
       "5939 OTANI KOGYO CO.,LTD.",
-      "2303 Dawn Corporation",
-      "5363 TYK CORPORATION"
+      "2303 Dawn Corporation"
     ],
     "nextFixes": [
       "株価CSVに追加: 6276 SiriusVision CO.,LTD.",
@@ -1972,21 +1915,21 @@ window.AUTO_STOCK_DATA = {
       "株価CSVに追加: 6870 Fenwal Controls of Japan,Ltd.",
       "株価CSVに追加: 5939 OTANI KOGYO CO.,LTD.",
       "株価CSVに追加: 2303 Dawn Corporation",
-      "株価CSVに追加: 5363 TYK CORPORATION",
       "EDINET相当CSVに追加: 6276 SiriusVision CO.,LTD.",
-      "EDINET相当CSVに追加: 7435 NADEX CO.,LTD."
+      "EDINET相当CSVに追加: 7435 NADEX CO.,LTD.",
+      "EDINET相当CSVに追加: 7567 SAKAE ELECTRONICS CORPORATION"
     ],
     "readiness": {
       "score": 84,
       "label": "あと少し",
       "blockers": [
-        "株価未取得を埋める: 20/30",
-        "EDINET相当を80%以上へ増やす: 20/30"
+        "株価未取得を埋める: 20/29",
+        "EDINET相当を80%以上へ増やす: 20/29"
       ]
     },
     "coverage": {
-      "price": "20/30",
-      "edinet": "20/30"
+      "price": "20/29",
+      "edinet": "20/29"
     }
   }
 };

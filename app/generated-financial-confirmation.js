@@ -1,5 +1,5 @@
 window.AUTO_FINANCIAL_CONFIRMATION = {
-  "generatedAt": "2026-06-23T23:15:49.279Z",
+  "generatedAt": "2026-06-23T23:22:21.875Z",
   "source": "data/financial-confirmation-queue.csv",
   "total": 61,
   "priorityCount": 41,
@@ -470,6 +470,22 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
     },
     {
       "source": "昇格候補",
+      "code": "5363",
+      "name": "TYK CORPORATION",
+      "sector": "Glass and Ceramics Products",
+      "price": 684,
+      "confirmationScore": 165.7,
+      "status": "最優先で財務確認",
+      "action": "通常候補へ入れる前の財務確認",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "blockers": "なし",
+      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
+      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
+      "buyGuard": "確認完了まで買わない",
+      "rank": 30
+    },
+    {
+      "source": "昇格候補",
       "code": "4351",
       "name": "YAMADA SERVICER SYNTHETIC OFFICE",
       "sector": "Other Financing Business",
@@ -482,7 +498,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 30
+      "rank": 31
     },
     {
       "source": "昇格候補",
@@ -498,7 +514,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 31
+      "rank": 32
     },
     {
       "source": "昇格候補",
@@ -514,7 +530,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 32
+      "rank": 33
     },
     {
       "source": "昇格候補",
@@ -530,7 +546,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 33
+      "rank": 34
     },
     {
       "source": "昇格候補",
@@ -546,7 +562,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 34
+      "rank": 35
     },
     {
       "source": "昇格候補",
@@ -562,7 +578,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 35
+      "rank": 36
     },
     {
       "source": "昇格候補",
@@ -578,7 +594,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 36
+      "rank": 37
     },
     {
       "source": "昇格候補",
@@ -594,7 +610,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 37
+      "rank": 38
     },
     {
       "source": "昇格候補",
@@ -608,22 +624,6 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
       "blockers": "なし",
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
-      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
-      "buyGuard": "確認完了まで買わない",
-      "rank": 38
-    },
-    {
-      "source": "昇格候補",
-      "code": "9010",
-      "name": "FUJI KYUKO CO.,LTD.",
-      "sector": "Land Transportation",
-      "price": 2493,
-      "confirmationScore": 163,
-      "status": "最優先で財務確認",
-      "action": "通常候補へ入れる前の財務確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "なし",
-      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
       "rank": 39

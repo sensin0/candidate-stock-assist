@@ -1,9 +1,9 @@
 window.AUTO_EXPANSION_PREVIEW = {
-  "generatedAt": "2026-06-23T23:15:48.617Z",
+  "generatedAt": "2026-06-23T23:22:21.247Z",
   "source": "data/stock-master-expanded-preview.csv",
-  "currentCount": 30,
+  "currentCount": 29,
   "previewAddCount": 50,
-  "expandedCount": 80,
+  "expandedCount": 79,
   "items": [
     {
       "rank": 1,
@@ -817,6 +817,33 @@ window.AUTO_EXPANSION_PREVIEW = {
     },
     {
       "rank": 31,
+      "code": "5363",
+      "name": "TYK CORPORATION",
+      "sector": "Glass and Ceramics Products",
+      "price": 684,
+      "bps": 684,
+      "eps": 38,
+      "pbrLow": 0.75,
+      "pbrAvg": 1.27,
+      "pbrHigh": 1.8,
+      "perAvg": 18,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
+      "history": [
+        690,
+        698,
+        696,
+        703,
+        703,
+        690,
+        699,
+        684
+      ]
+    },
+    {
+      "rank": 32,
       "code": "4351",
       "name": "YAMADA SERVICER SYNTHETIC OFFICE",
       "sector": "Other Financing Business",
@@ -843,7 +870,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 32,
+      "rank": 33,
       "code": "7513",
       "name": "Kojima Co.,Ltd.",
       "sector": "Retail Trade",
@@ -870,7 +897,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 33,
+      "rank": 34,
       "code": "4310",
       "name": "Dream Incubator Inc.",
       "sector": "Services",
@@ -897,7 +924,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 34,
+      "rank": 35,
       "code": "3908",
       "name": "Collabos Corporation",
       "sector": "Information & Communication",
@@ -924,7 +951,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 35,
+      "rank": 36,
       "code": "1515",
       "name": "Nittetsu Mining Co.,Ltd.",
       "sector": "Mining",
@@ -951,7 +978,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 36,
+      "rank": 37,
       "code": "6648",
       "name": "KAWADEN CORPORATION",
       "sector": "Electric Appliances",
@@ -978,7 +1005,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 37,
+      "rank": 38,
       "code": "4679",
       "name": "TAYA Co.,Ltd.",
       "sector": "Services",
@@ -1005,7 +1032,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 38,
+      "rank": 39,
       "code": "6643",
       "name": "Togami Electric Mfg.Co.,Ltd.",
       "sector": "Electric Appliances",
@@ -1032,7 +1059,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 39,
+      "rank": 40,
       "code": "7781",
       "name": "HIRAYAMA HOLDINGS Co.,Ltd.",
       "sector": "Precision Instruments",
@@ -1059,7 +1086,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 40,
+      "rank": 41,
       "code": "9010",
       "name": "FUJI KYUKO CO.,LTD.",
       "sector": "Land Transportation",
@@ -1086,7 +1113,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 41,
+      "rank": 42,
       "code": "6859",
       "name": "ESPEC CORP.",
       "sector": "Electric Appliances",
@@ -1113,7 +1140,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 42,
+      "rank": 43,
       "code": "4238",
       "name": "Miraial Co.,Ltd.",
       "sector": "Chemicals",
@@ -1140,7 +1167,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 43,
+      "rank": 44,
       "code": "5233",
       "name": "TAIHEIYO CEMENT CORPORATION",
       "sector": "Glass and Ceramics Products",
@@ -1167,7 +1194,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 44,
+      "rank": 45,
       "code": "155A",
       "name": "Information Strategy and Technology Co.,Ltd.",
       "sector": "Information & Communication",
@@ -1194,7 +1221,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 45,
+      "rank": 46,
       "code": "4341",
       "name": "SEIRYO ELECTRIC CORPORATION",
       "sector": "Services",
@@ -1221,7 +1248,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 46,
+      "rank": 47,
       "code": "6125",
       "name": "OKAMOTO MACHINE TOOL WORKS,LTD.",
       "sector": "Machinery",
@@ -1248,7 +1275,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 47,
+      "rank": 48,
       "code": "6999",
       "name": "KOA CORPORATION",
       "sector": "Electric Appliances",
@@ -1275,7 +1302,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 48,
+      "rank": 49,
       "code": "9104",
       "name": "Mitsui O.S.K.Lines,Ltd.",
       "sector": "Marine Transportation",
@@ -1302,7 +1329,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 49,
+      "rank": 50,
       "code": "543A",
       "name": "ARCHION Corporation",
       "sector": "Transportation Equipment",
@@ -1326,33 +1353,6 @@ window.AUTO_EXPANSION_PREVIEW = {
         292,
         298,
         285
-      ]
-    },
-    {
-      "rank": 50,
-      "code": "9983",
-      "name": "FAST RETAILING CO.,LTD.",
-      "sector": "Retail Trade",
-      "price": 82170,
-      "bps": 82170,
-      "eps": 4565,
-      "pbrLow": 0.75,
-      "pbrAvg": 1.27,
-      "pbrHigh": 1.8,
-      "perAvg": 18,
-      "dataConfidence": "推定",
-      "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
-      "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
-      "history": [
-        80530,
-        81080,
-        81950,
-        82900,
-        84100,
-        83100,
-        81530,
-        82170
       ]
     }
   ]

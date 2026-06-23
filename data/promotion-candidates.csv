@@ -29,6 +29,7 @@ priority,code,name,source,market,sector,action,signal,strategy,score,winRate,ave
 135,5232,"Sumitomo Osaka Cement Co.,Ltd.",2倍監視,Prime Market (Domestic),Glass and Ceramics Products,監視しながら財務確認,待ち,安値反転,91.2,100,20.6,-5.9,58.9,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
 134.5,7734,"RIKEN KEIKI CO.,LTD.",2倍監視,Prime Market (Domestic),Precision Instruments,監視しながら財務確認,待ち,安値反転,89.7,100,16.4,0,24.4,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
 134.3,4256,"CYND Co.,Ltd.",2倍監視,Growth Market(Domestic),Information & Communication,監視しながら財務確認,待ち,高値更新,89.7,100,16.5,-0.3,-6.4,高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します,出来高、材料、過熱感,価格だけでは判断材料が足りない
+133.7,5363,TYK CORPORATION,2倍監視,Standard Market(Domestic),Glass and Ceramics Products,監視しながら財務確認,待ち,安値反転,89.3,100,16.4,-0.4,23.2,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
 133,4351,YAMADA SERVICER SYNTHETIC OFFICE,2倍監視,Standard Market(Domestic),Other Financing Business,監視しながら財務確認,待ち,安値反転,89.6,100,19.2,-4.9,5.2,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
 133,7513,"Kojima Co.,Ltd.",2倍監視,Prime Market (Domestic),Retail Trade,監視しながら財務確認,待ち,安値反転,89,100,17.2,-1.9,18.5,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
 132.5,4310,Dream Incubator Inc.,2倍監視,Prime Market (Domestic),Services,監視しながら財務確認,待ち,安値反転,88.4,100,15.9,-0.3,4.4,価格バックテストは良好です。財務、材料、流動性を確認してから候補化します,財務、材料、流動性,価格だけでは判断材料が足りない
@@ -148,4 +149,3 @@ priority,code,name,source,market,sector,action,signal,strategy,score,winRate,ave
 92.2,4538,"Fuso Pharmaceutical Industries,Ltd.",広域候補,Prime Market (Domestic),Pharmaceutical,監視しながら財務確認,安値反転候補,安値反転,67,100,8,0,-4.3,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
 92,9310,Japan Transcity Corporation,広域候補,Prime Market (Domestic),Warehousing and Harbor Transportation Service,監視しながら財務確認,安値反転候補,安値反転,67.3,100,9.6,-2.4,12.1,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
 92,8147,TOMITA CO.LTD.,広域候補,Standard Market(Domestic),Wholesale Trade,監視しながら財務確認,待ち,上昇中押し目,63.9,100,12.1,-1,1.7,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補
-91.9,8708,"AIZAWA SECURITIES GROUP CO.,LTD.",広域候補,Prime Market (Domestic),Securities and Commodities Futures,監視しながら財務確認,安値反転候補,安値反転,66.8,100,7.9,0,13.4,価格バックテスト上位候補,BPS、EPS、現金、有利子負債、発行株数,価格だけの一次候補

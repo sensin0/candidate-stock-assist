@@ -1,10 +1,29 @@
 window.AUTO_FINANCIAL_SCREENING = {
-  "generatedAt": "2026-06-23T23:15:51.724Z",
+  "generatedAt": "2026-06-23T23:22:23.013Z",
   "source": "data/financial-worklist-screened.csv",
   "total": 30,
-  "priorityCount": 1,
-  "cautionCount": 24,
+  "priorityCount": 2,
+  "cautionCount": 23,
   "top": [
+    {
+      "rank": "30",
+      "code": "5363",
+      "name": "TYK CORPORATION",
+      "sector": "Glass and Ceramics Products",
+      "status": "昇格確認優先",
+      "screenScore": 100,
+      "price": 684,
+      "marketCap": 34798.5,
+      "pbr": 0.64,
+      "per": 6.71,
+      "netCash": 10956.68,
+      "netCashRatio": 31.49,
+      "debtAssetRatio": 6.23,
+      "sourceUrl": "https://irbank.net/5363/results",
+      "action": "決算短信と有報を見て、問題なければconfirmed候補",
+      "reasons": "PBR 0.64倍で割安寄り / PER 6.71倍で利益面は軽い / ネットキャッシュあり 31.49%",
+      "cautions": "大きな注意なし"
+    },
     {
       "rank": "23",
       "code": "2332",
@@ -118,25 +137,6 @@ window.AUTO_FINANCIAL_SCREENING = {
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PER 7.13倍で利益面は軽い",
       "cautions": "有利子負債がやや重い"
-    },
-    {
-      "rank": "30",
-      "code": "4351",
-      "name": "YAMADA SERVICER SYNTHETIC OFFICE",
-      "sector": "Other Financing Business",
-      "status": "見送り寄り",
-      "screenScore": 50,
-      "price": 946,
-      "marketCap": 4229.92,
-      "pbr": 1.26,
-      "per": 28.18,
-      "netCash": 192,
-      "netCashRatio": 4.54,
-      "debtAssetRatio": 35.24,
-      "sourceUrl": "https://irbank.net/4351/results",
-      "action": "通常候補へ入れない方向で確認",
-      "reasons": "確認材料が不足",
-      "cautions": "大きな注意なし"
     },
     {
       "rank": "25",

@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { parseCsvRecords } from "./csv-utils.mjs";
 import { parseStockCsv } from "./providers/csv-provider.mjs";
 import { parseEdinetFactsCsv } from "./providers/edinet-provider.mjs";
+import { backtestStock } from "./backtest-core.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dataDir = path.join(rootDir, "data");
@@ -66,6 +67,7 @@ const candidates = [
   ...confirmedInputRows.map((row) => promoteFromConfirmedInput(row)),
   ...screenedRows
     .filter((row) => row.status === "昇格確認優先" && number(row.screenScore) >= 80)
+    .filter((row) => acceptableAutoTiming(row, worklistByCode.get(row.code)))
     .slice(0, autoScreenedLimit)
     .map((row) => promoteFromScreened(row, worklistByCode.get(row.code))),
   ...[...draftByCode.values()]
@@ -127,6 +129,18 @@ function promoteFromScreened(screened, worklistRow = {}) {
     history: worklistRow.history,
   });
   return row;
+}
+
+function acceptableAutoTiming(screened, worklistRow = {}) {
+  const candidate = promoteFromScreened(screened, worklistRow);
+  const result = backtestStock({
+    ...candidate,
+    qualitativeDone: true,
+    held: false,
+    history: String(candidate.history || "").split("|").map(Number).filter((value) => Number.isFinite(value)),
+  });
+  if (result.trades < 1) return true;
+  return result.averageReturn > 0 && result.winRate >= 50 && result.maxDrawdown > -12;
 }
 
 function normalizeConfirmedInput(row) {

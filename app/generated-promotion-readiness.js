@@ -1,5 +1,5 @@
 window.AUTO_PROMOTION_READINESS = {
-  "generatedAt": "2026-06-23T23:15:48.695Z",
+  "generatedAt": "2026-06-23T23:22:21.337Z",
   "source": "data/promotion-readiness.csv",
   "total": 50,
   "priorityCount": 7,
@@ -636,8 +636,29 @@ window.AUTO_PROMOTION_READINESS = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します"
     },
     {
-      "readinessScore": 157,
+      "readinessScore": 157.7,
       "rank": 31,
+      "code": "5363",
+      "name": "TYK CORPORATION",
+      "market": "Standard Market(Domestic)",
+      "sector": "Glass and Ceramics Products",
+      "status": "監視しながら財務確認",
+      "action": "監視しながら財務確認",
+      "signal": "待ち",
+      "priority": 133.7,
+      "winRate": 100,
+      "averageReturn": 16.4,
+      "maxDrawdown": -0.4,
+      "periodReturn": 23.2,
+      "price": 684,
+      "nextCheck": "財務、材料、流動性",
+      "blockers": "なし",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します"
+    },
+    {
+      "readinessScore": 157,
+      "rank": 32,
       "code": "4351",
       "name": "YAMADA SERVICER SYNTHETIC OFFICE",
       "market": "Standard Market(Domestic)",
@@ -658,7 +679,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 157,
-      "rank": 32,
+      "rank": 33,
       "code": "7513",
       "name": "Kojima Co.,Ltd.",
       "market": "Prime Market (Domestic)",
@@ -679,7 +700,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 156.5,
-      "rank": 33,
+      "rank": 34,
       "code": "4310",
       "name": "Dream Incubator Inc.",
       "market": "Prime Market (Domestic)",
@@ -700,7 +721,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 156.3,
-      "rank": 34,
+      "rank": 35,
       "code": "3908",
       "name": "Collabos Corporation",
       "market": "Standard Market(Domestic)",
@@ -721,7 +742,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 156.1,
-      "rank": 35,
+      "rank": 36,
       "code": "1515",
       "name": "Nittetsu Mining Co.,Ltd.",
       "market": "Prime Market (Domestic)",
@@ -742,7 +763,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 155.9,
-      "rank": 36,
+      "rank": 37,
       "code": "6648",
       "name": "KAWADEN CORPORATION",
       "market": "Standard Market(Domestic)",
@@ -763,7 +784,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 155.8,
-      "rank": 37,
+      "rank": 38,
       "code": "4679",
       "name": "TAYA Co.,Ltd.",
       "market": "Standard Market(Domestic)",
@@ -784,7 +805,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 155.5,
-      "rank": 38,
+      "rank": 39,
       "code": "6643",
       "name": "Togami Electric Mfg.Co.,Ltd.",
       "market": "Standard Market(Domestic)",
@@ -805,7 +826,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 155.1,
-      "rank": 39,
+      "rank": 40,
       "code": "7781",
       "name": "HIRAYAMA HOLDINGS Co.,Ltd.",
       "market": "Standard Market(Domestic)",
@@ -823,27 +844,6 @@ window.AUTO_PROMOTION_READINESS = {
       "blockers": "なし",
       "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します"
-    },
-    {
-      "readinessScore": 155,
-      "rank": 40,
-      "code": "9010",
-      "name": "FUJI KYUKO CO.,LTD.",
-      "market": "Prime Market (Domestic)",
-      "sector": "Land Transportation",
-      "status": "監視しながら財務確認",
-      "action": "監視しながら財務確認",
-      "signal": "待ち",
-      "priority": 131,
-      "winRate": 100,
-      "averageReturn": 16.1,
-      "maxDrawdown": -1.4,
-      "periodReturn": 23.5,
-      "price": 2493,
-      "nextCheck": "財務、材料、流動性",
-      "blockers": "なし",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します"
     }
   ]
 };

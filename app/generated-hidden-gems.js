@@ -1,5 +1,5 @@
 window.AUTO_HIDDEN_GEMS = {
-  "generatedAt": "2026-06-23T23:15:48.800Z",
+  "generatedAt": "2026-06-23T23:22:21.444Z",
   "source": "data/hidden-gems.csv",
   "total": 200,
   "priorityCount": 27,

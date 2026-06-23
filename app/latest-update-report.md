@@ -1,6 +1,6 @@
 # データ更新レポート
 
-更新日時: 2026-06-23T23:16:29.469Z
+更新日時: 2026-06-23T23:22:48.700Z
 入力元: data/stock-master.csv
 株価入力元: data/price-updates.csv
 株価更新件数: 20
@@ -10,8 +10,8 @@ EDINET入力元: data/edinet-facts.csv
 EDINET更新件数: 20
 監視リスト入力元: data/watchlist.csv
 監視リスト件数: 3
-バックテスト件数: 30
-銘柄数: 30
+バックテスト件数: 29
+銘柄数: 29
 データ状態: 要確認
 本番準備度: 84% あと少し
 一部手入力: 14件
@@ -26,9 +26,9 @@ EDINET更新件数: 20
 
 ## データカバレッジ
 
-- 株価: 20/30
-- EDINET相当: 20/30
-- バックテスト: 30/30
+- 株価: 20/29
+- EDINET相当: 20/29
+- バックテスト: 29/29
 - 株価未取得: 6276 SiriusVision CO.,LTD.
 - 株価未取得: 7435 NADEX CO.,LTD.
 - 株価未取得: 7567 SAKAE ELECTRONICS CORPORATION
@@ -38,7 +38,6 @@ EDINET更新件数: 20
 - 株価未取得: 6870 Fenwal Controls of Japan,Ltd.
 - 株価未取得: 5939 OTANI KOGYO CO.,LTD.
 - 株価未取得: 2303 Dawn Corporation
-- 株価未取得: 5363 TYK CORPORATION
 - EDINET相当未取得: 6276 SiriusVision CO.,LTD.
 - EDINET相当未取得: 7435 NADEX CO.,LTD.
 - EDINET相当未取得: 7567 SAKAE ELECTRONICS CORPORATION
@@ -48,7 +47,6 @@ EDINET更新件数: 20
 - EDINET相当未取得: 6870 Fenwal Controls of Japan,Ltd.
 - EDINET相当未取得: 5939 OTANI KOGYO CO.,LTD.
 - EDINET相当未取得: 2303 Dawn Corporation
-- EDINET相当未取得: 5363 TYK CORPORATION
 - 一部手入力: 6505 東洋電機製造
 - 一部手入力: 9672 東京都競馬
 - 一部手入力: 8830 住友不動産
@@ -75,14 +73,14 @@ EDINET更新件数: 20
 - 株価CSVに追加: 6870 Fenwal Controls of Japan,Ltd.
 - 株価CSVに追加: 5939 OTANI KOGYO CO.,LTD.
 - 株価CSVに追加: 2303 Dawn Corporation
-- 株価CSVに追加: 5363 TYK CORPORATION
 - EDINET相当CSVに追加: 6276 SiriusVision CO.,LTD.
 - EDINET相当CSVに追加: 7435 NADEX CO.,LTD.
+- EDINET相当CSVに追加: 7567 SAKAE ELECTRONICS CORPORATION
 
 ## 本番化の残り
 
-- 株価未取得を埋める: 20/30
-- EDINET相当を80%以上へ増やす: 20/30
+- 株価未取得を埋める: 20/29
+- EDINET相当を80%以上へ増やす: 20/29
 
 ## 次に接続する取得元
 
@@ -121,7 +119,6 @@ EDINET更新件数: 20
 - 6870 Fenwal Controls of Japan,Ltd.
 - 5939 OTANI KOGYO CO.,LTD.
 - 2303 Dawn Corporation
-- 5363 TYK CORPORATION
 
 ## 開示
 
