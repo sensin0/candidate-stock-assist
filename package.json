@@ -31,6 +31,7 @@
     "financial:screen": "node scripts/screen-financial-worklist.mjs",
     "financial:apply-worklist": "node scripts/apply-financial-worklist.mjs",
     "financial:promote": "node scripts/promote-confirmed-candidates.mjs",
+    "financial:auto-followup": "node scripts/build-auto-financial-followup.mjs",
     "research:data": "node scripts/build-research-data.mjs",
     "research:morning": "node scripts/research-morning.mjs",
     "stock-master:build": "node scripts/build-stock-master-from-input.mjs",

@@ -23,6 +23,8 @@ assert.match(result.stdout, /今買い候補: \d+件/);
 assert.match(result.stdout, /自動財務確認: \d+件/);
 assert.match(result.stdout, /今日見る優先順位/);
 assert.match(result.stdout, /自動財務確認・後追い確認/);
+assert.match(result.stdout, /自動財務確認の優先確認/);
+assert.match(result.stdout, /自動財務確認の後回し/);
 assert.match(result.stdout, /2倍監視候補/);
 assert.match(result.stdout, /通常候補への昇格確認/);
 assert.match(result.stdout, /昇格準備チェック/);
@@ -44,6 +46,7 @@ assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/rep
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-financial-confirmation-worklist\.md/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-financial-confirmed-input\.md/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-promoted-candidates\.md/);
+assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-auto-financial-followup\.md/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-universe-financial-coverage\.md/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-production-next-steps\.md/);
 assert.match(result.stdout, /https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-hidden-gems\.md/);

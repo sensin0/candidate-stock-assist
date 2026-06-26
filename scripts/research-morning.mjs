@@ -19,6 +19,7 @@ const steps = [
   ["財務確認候補スクリーニング", "scripts/screen-financial-worklist.mjs"],
   ["財務確認ワークシート反映", "scripts/apply-financial-worklist.mjs"],
   ["確認済み候補の昇格プレビュー生成", "scripts/promote-confirmed-candidates.mjs"],
+  ["自動財務確認の後追い確認レポート生成", "scripts/build-auto-financial-followup.mjs"],
   ["画面用調査データ生成", "scripts/build-research-data.mjs"],
   ["本番化残作業レポート生成", "scripts/build-production-next-steps.mjs"],
 ];
