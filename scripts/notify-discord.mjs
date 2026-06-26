@@ -97,6 +97,7 @@ const providerWarningCount = dataQuality?.providerWarnings?.length ?? 0;
 const validationWarningCount = dataQuality?.validationWarnings?.length ?? 0;
 const referenceWarningCount = dataQuality?.externalReferenceWarnings?.length ?? 0;
 const stockCount = generatedPayload?.stocks?.length ?? 0;
+const autoFinancialStocks = (generatedPayload?.stocks ?? []).filter((stock) => stock.dataConfidence === "自動財務確認");
 const universe = researchPayload?.universe ?? null;
 const stockCountWarning = stockCount > 0 && stockCount < 20 ? "（少なめ）" : "";
 const dataSource = generatedPayload?.source ?? "不明";
@@ -112,6 +113,7 @@ const message = [
   `銘柄マスタ: ${dataSource}`,
   `本番準備度: ${readiness.score}% ${readiness.label}`,
   `今買い候補: ${buyCount}件`,
+  `自動財務確認: ${autoFinancialStocks.length}件（買う前に後追い確認）`,
   `今売り検討: ${sellCount}件`,
   `監視リスト: ${watchCount}件`,
   `データ要確認: ${staleCount}件`,
@@ -129,6 +131,9 @@ const message = [
   "",
   "今買い候補",
   ...firstItems("今買い候補").map((item) => `- ${clipItem(item)}`),
+  "",
+  "自動財務確認・後追い確認",
+  ...firstItems("自動財務確認・後追い確認", 3).map((item) => `- ${clipItem(item)}`),
   "",
   "2倍監視候補",
   ...firstReportItems(multibaggerReport, "2倍監視候補", 2).map((item) => `- ${clipItem(item)}`),

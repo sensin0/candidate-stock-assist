@@ -2387,6 +2387,7 @@ function renderMorningReport() {
   const watched = visible.filter((stock) => stock.watchlist).slice(0, 10);
   const disclosures = visible.filter((stock) => stock.disclosures?.length).slice(0, 10);
   const stale = visible.filter((stock) => stock.dataFreshness?.level !== "ok").slice(0, 10);
+  const autoFinancial = visible.filter(isAutoFinancial).slice(0, 10);
   const dataOverview = morningDataOverview(visible);
   const priorities = morningPriorities(visible);
   const hiddenGems = (window.AUTO_HIDDEN_GEMS?.top ?? [])
@@ -2396,7 +2397,7 @@ function renderMorningReport() {
   const report = [
     "# 朝レポート",
     "",
-    `今日は今買い候補${buyNow.length}件、今売り検討${sellNow.length}件、買い場に近い銘柄${near.length}件、検証弱く見送り${backtestWeak.length}件です。`,
+    `今日は今買い候補${buyNow.length}件、今売り検討${sellNow.length}件、買い場に近い銘柄${near.length}件、自動財務確認${autoFinancial.length}件、検証弱く見送り${backtestWeak.length}件です。`,
     "",
     dataOverview,
     priorityMarkdown("今日見る優先順位", priorities),
@@ -2406,6 +2407,7 @@ function renderMorningReport() {
     sectionMarkdown("今売り検討", sellNow),
     watchlistMarkdown("監視リスト", watched),
     sectionMarkdown("買い場に近い・調査が先", near),
+    autoFinancialMarkdown("自動財務確認・後追い確認", autoFinancial),
     disclosureMarkdown("カタリスト・開示", disclosures),
     freshnessMarkdown("データ要確認", stale),
     sectionMarkdown("リスク確認", risk),
@@ -2466,6 +2468,7 @@ function morningDataOverview(visible) {
   const missingEdinet = quality?.missingEdinet ?? [];
   const nextFixes = quality?.nextFixes ?? [];
   const manualInputs = quality?.manualInputs ?? [];
+  const autoFinancialCount = visible.filter(isAutoFinancial).length;
   const readiness = quality?.readiness ?? { score: 0, label: "準備中", blockers: [] };
   const previewAddCount = expansion?.previewAddCount ?? expansion?.items?.length ?? 0;
   const expandedCount = expansion?.expandedCount ?? visible.length + previewAddCount;
@@ -2483,6 +2486,7 @@ function morningDataOverview(visible) {
     `- 追加候補確認: ${previewAddCount}件。財務確認後の候補数イメージは${expandedCount}件`,
     `- 未発掘候補: ${hidden?.total ?? 0}件。今すぐ財務確認 ${hiddenPriorityCount}件`,
     `- 財務確認キュー: ${financial?.total ?? 0}件。最優先 ${financial?.priorityCount ?? 0}件`,
+    `- 自動財務確認: ${autoFinancialCount}件。買う前に決算短信と有報を後追い確認`,
     `- 日本株全体の価格検証: ${universeCount || "準備中"}${universeTotal ? `/${universeTotal}件` : ""}`,
     `- 銘柄マスタ: ${data?.source ?? "サンプル"}`,
     `- データ状態: ${quality?.ok ? "OK" : "要確認"}。注意${warningCount}件`,
@@ -2490,6 +2494,17 @@ function morningDataOverview(visible) {
     `- 一部手入力: ${manualInputs.length}件${manualInputs.length ? `。${manualInputs.slice(0, 3).join(" / ")} から確認` : ""}`,
     ...(readiness.blockers?.length ? [`- 本番化の残り: ${readiness.blockers[0]}`] : []),
     ...(nextFixes.length ? [`- 次に直す: ${nextFixes[0]}`] : []),
+    "",
+  ].join("\n");
+}
+
+function autoFinancialMarkdown(title, list) {
+  if (!list.length) return `## ${title}\n該当なし\n`;
+  return [
+    `## ${title}`,
+    ...list.map((stock) =>
+      `- ${stock.code} ${stock.name}: ${stock.assist.label}。${stock.assist.reasons[1] || "後追い確認が必要です"} / 確認: 決算短信、有報、現金、有利子負債、BPS、EPS / 買い目安: ${stock.backtest?.buyTiming ?? "未検証"}`
+    ),
     "",
   ].join("\n");
 }
