@@ -1004,6 +1004,7 @@ function rankingLimitFor(type) {
 }
 
 function todayRankingItems() {
+  const hasSearch = searchQuery.trim().length > 0;
   const stockItems = visibleStocks().map((stock) => ({
     kind: "stock",
     code: stock.code,
@@ -1024,6 +1025,9 @@ function todayRankingItems() {
     ...filteredResearchItems(window.AUTO_RESEARCH_DATA?.multibaggerWatch ?? [])
       .slice(0, 60)
       .map((item) => todayResearchItem(item, "researchMultibagger", "2倍監視", 4)),
+    ...(hasSearch ? filteredResearchItems(window.AUTO_RESEARCH_DATA?.universeAll ?? window.AUTO_RESEARCH_DATA?.universeTop ?? [])
+      .slice(0, 80)
+      .map((item) => todayResearchItem(item, "researchUniverse", "広域候補", 0)) : []),
     ...filteredFinancialConfirmationItems(window.AUTO_FINANCIAL_CONFIRMATION?.top ?? [])
       .slice(0, 40)
       .map((item) => todayFinancialItem(item)),
@@ -2618,8 +2622,8 @@ function setupEvents() {
     render();
   });
   document.getElementById("rankingSelect").addEventListener("change", renderRanking);
-  document.getElementById("sampleButton").addEventListener("click", loadSample);
-  document.getElementById("templateButton").addEventListener("click", downloadCsvTemplate);
+  document.getElementById("sampleButton")?.addEventListener("click", loadSample);
+  document.getElementById("templateButton")?.addEventListener("click", downloadCsvTemplate);
   document.getElementById("searchInput").addEventListener("input", (event) => {
     searchQuery = event.target.value;
     render();
@@ -2638,7 +2642,7 @@ function setupEvents() {
       document.getElementById("morningReport").select();
     }
   });
-  document.getElementById("csvInput").addEventListener("change", async (event) => {
+  document.getElementById("csvInput")?.addEventListener("change", async (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
     try {
