@@ -151,7 +151,7 @@ npm run start
 
 - 自動売買はしません。
 - データが古い銘柄は `要確認` として表示します。
-- 数値条件が良くても、データ未確認なら `今買い候補` ではなく `調査が先` に倒します。
+- 数値条件が良くても、財務未確認なら `財務確認待ち`、株価が古ければ `データ更新待ち` に倒します。
 - 元資料や非公開メモは公開リポジトリに入れません。
 - 財務確認キューは `reports/latest-financial-confirmation.md` と `data/financial-confirmation-queue.csv` に出ます。ここに出た銘柄は確認完了まで買わない前提です。
 - 財務確認ワークシートは `reports/latest-financial-confirmation-worklist.md` と `data/financial-confirmation-worklist.csv` に出ます。確認済みの値を埋めるための作業表です。

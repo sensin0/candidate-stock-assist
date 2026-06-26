@@ -471,16 +471,23 @@ function assistFor(stock) {
 
   if (!confirmed || !stock.qualitativeDone || !freshEnough) {
     if (stock.buyRatio <= 1.05 && stock.upside >= 50) {
-      return makeAssist("調査が先", "label-research", [
-        "数値上は買い場に近いです",
-        stock.dataFreshness?.warnings[0] ?? "データ確認が必要です",
-        "データ確認後に判断してください",
+      if (!freshEnough) {
+        return makeAssist("データ更新待ち", "label-research", [
+          "買い場に近いですが株価データが古いです",
+          stock.dataFreshness?.warnings[0] ?? "データ確認が必要です",
+          "最新株価に更新してから判断してください",
+        ], ["最新株価を確認", "更新後に買いラインを再判定"]);
+      }
+      return makeAssist("財務確認待ち", "label-research", [
+        "買い場に近いですが財務確認が未完了です",
+        "確認前なので買い候補には上げません",
+        "有報と決算短信を見てから判断してください",
       ], ["有価証券報告書を確認", "不動産と政策保有株を確認"]);
     }
   }
 
   if (isAutoFinancial(stock) && stock.buyRatio <= 1.05 && stock.upside >= 50) {
-    return makeAssist("調査が先", "label-research", [
+    return makeAssist("財務確認待ち", "label-research", [
       "数値上は買い場に近いです",
       "財務は自動確認なので後追い確認が必要です",
       "決算短信と有報を見てから判断してください",
@@ -685,6 +692,10 @@ function byAssist(label, source = visibleStocks()) {
   return source.filter((stock) => stock.assist.label === label);
 }
 
+function isNearOrPending(label) {
+  return ["買い場に近い", "財務確認待ち", "データ更新待ち"].includes(label);
+}
+
 function renderSummary() {
   const visible = visibleStocks();
   const expansion = window.AUTO_EXPANSION_PREVIEW;
@@ -884,7 +895,7 @@ function renderAssistColumns() {
   const visible = visibleStocks();
   const sections = {
     buyNow: byAssist("今買い候補", visible),
-    nearBuy: byAssist("買い場に近い", visible).concat(byAssist("調査が先", visible)),
+    nearBuy: visible.filter((stock) => isNearOrPending(stock.assist.label)),
     sellNow: byAssist("今売り検討", visible).concat(byAssist("一部利益確定検討", visible)),
     risk: byAssist("リスクで見送り", visible).concat(byAssist("検証弱く見送り", visible)),
   };
@@ -937,7 +948,7 @@ function rankingFor(type) {
   const copy = [...visibleStocks()];
   if (type === "watchlist") return copy.filter((s) => s.watchlist).sort((a, b) => b.score - a.score);
   if (type === "buyNow") return copy.filter((s) => s.assist.label === "今買い候補");
-  if (type === "nearBuy") return copy.filter((s) => ["買い場に近い", "調査が先"].includes(s.assist.label));
+  if (type === "nearBuy") return copy.filter((s) => isNearOrPending(s.assist.label));
   if (type === "safe") return copy.sort((a, b) => b.nonBusinessAssetRatio - a.nonBusinessAssetRatio);
   if (type === "upside") return copy.sort((a, b) => b.upside - a.upside);
   if (type === "realEstate") return copy.sort((a, b) => b.realEstateGainRatio - a.realEstateGainRatio);
@@ -1031,7 +1042,8 @@ function todayRankingItems() {
 function todayStockPriority(stock) {
   if (stock.assist.label === "今買い候補") return 100;
   if (stock.assist.label === "買い場に近い") return 90;
-  if (stock.assist.label === "調査が先") return 82;
+  if (stock.assist.label === "財務確認待ち") return 76;
+  if (stock.assist.label === "データ更新待ち") return 68;
   if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") return 72;
   if (stock.assist.label === "保有継続候補") return 62;
   if (stock.assist.label === "まだ待つ") return 52;
@@ -1044,7 +1056,8 @@ function todayStockScore(stock) {
   let score = stock.score;
   if (stock.assist.label === "今買い候補") score += 46;
   if (stock.assist.label === "買い場に近い") score += 30;
-  if (stock.assist.label === "調査が先") score += 22;
+  if (stock.assist.label === "財務確認待ち") score += 16;
+  if (stock.assist.label === "データ更新待ち") score += 8;
   if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") score += 18;
   if (stock.watchlist) score += 10;
   if (isGoodBacktest(stock.backtest)) score += 8;
@@ -1056,7 +1069,9 @@ function todayStockScore(stock) {
 
 function todayStockReason(stock) {
   if (stock.assist.label === "今買い候補") return "買いタイミング優先";
-  if (stock.assist.label === "買い場に近い" || stock.assist.label === "調査が先") return "買い場接近";
+  if (stock.assist.label === "買い場に近い") return "買い場接近";
+  if (stock.assist.label === "財務確認待ち") return "財務確認待ち";
+  if (stock.assist.label === "データ更新待ち") return "データ更新待ち";
   if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") return "売り判断の確認";
   if (stock.watchlist) return "監視中";
   return "通常候補";
@@ -1999,7 +2014,7 @@ function lifecycleHeadline(stock) {
 }
 
 function lifecycleStages(stock) {
-  const buyActive = ["今買い候補", "買い場に近い", "調査が先"].includes(stock.assist.label);
+  const buyActive = ["今買い候補", "買い場に近い", "財務確認待ち", "データ更新待ち"].includes(stock.assist.label);
   const holdActive = stock.held && !["今売り検討", "一部利益確定検討"].includes(stock.assist.label);
   const sellActive = ["今売り検討", "一部利益確定検討"].includes(stock.assist.label);
   const avoidActive = ["リスクで見送り", "検証弱く見送り"].includes(stock.assist.label);
@@ -2381,7 +2396,7 @@ function renderMorningReport() {
   const visible = visibleStocks();
   const buyNow = byAssist("今買い候補", visible).slice(0, 5);
   const sellNow = byAssist("今売り検討", visible).concat(byAssist("一部利益確定検討", visible)).slice(0, 5);
-  const near = byAssist("買い場に近い", visible).concat(byAssist("調査が先", visible)).slice(0, 10);
+  const near = visible.filter((stock) => isNearOrPending(stock.assist.label)).slice(0, 10);
   const risk = byAssist("リスクで見送り", visible).slice(0, 5);
   const backtestWeak = byAssist("検証弱く見送り", visible).slice(0, 5);
   const watched = visible.filter((stock) => stock.watchlist).slice(0, 10);
@@ -2397,7 +2412,7 @@ function renderMorningReport() {
   const report = [
     "# 朝レポート",
     "",
-    `今日は今買い候補${buyNow.length}件、今売り検討${sellNow.length}件、買い場に近い銘柄${near.length}件、自動財務確認${autoFinancial.length}件、検証弱く見送り${backtestWeak.length}件です。`,
+    `今日は今買い候補${buyNow.length}件、今売り検討${sellNow.length}件、買い場に近い・確認待ち${near.length}件、自動財務確認${autoFinancial.length}件、検証弱く見送り${backtestWeak.length}件です。`,
     "",
     dataOverview,
     priorityMarkdown("今日見る優先順位", priorities),
@@ -2406,7 +2421,7 @@ function renderMorningReport() {
     sectionMarkdown("今買い候補", buyNow),
     sectionMarkdown("今売り検討", sellNow),
     watchlistMarkdown("監視リスト", watched),
-    sectionMarkdown("買い場に近い・調査が先", near),
+    sectionMarkdown("買い場に近い・確認待ち", near),
     autoFinancialMarkdown("自動財務確認・後追い確認", autoFinancial),
     disclosureMarkdown("カタリスト・開示", disclosures),
     freshnessMarkdown("データ要確認", stale),
@@ -2433,7 +2448,9 @@ function priorityScore(stock) {
   let priority = stock.score;
   if (stock.assist.label === "今買い候補") priority += 40;
   if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") priority += 34;
-  if (stock.assist.label === "買い場に近い" || stock.assist.label === "調査が先") priority += 24;
+  if (stock.assist.label === "買い場に近い") priority += 24;
+  if (stock.assist.label === "財務確認待ち") priority += 18;
+  if (stock.assist.label === "データ更新待ち") priority += 12;
   if (stock.assist.label === "検証弱く見送り") priority -= 40;
   if (stock.watchlist) priority += 12;
   if (stock.dataFreshness?.level !== "ok") priority += 10;
