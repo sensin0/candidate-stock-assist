@@ -23,7 +23,7 @@ for (const entry of fs.readdirSync(appDir, { withFileTypes: true })) {
 }
 fs.writeFileSync(
   path.join(distDir, "index.html"),
-  '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=./app/"><title>候補銘柄アシスト</title></head><body><a href="./app/">候補銘柄アシストを開く</a></body></html>\n',
+  rootIndexHtml(),
   "utf8",
 );
 
@@ -38,3 +38,18 @@ if (fs.existsSync(reportsDir)) {
 fs.writeFileSync(path.join(distDir, ".nojekyll"), "", "utf8");
 
 console.log(`Pages用ファイルを生成しました: ${distDir}`);
+
+function rootIndexHtml() {
+  return fs.readFileSync(path.join(appDir, "index.html"), "utf8")
+    .replaceAll('href="./styles.css"', 'href="./app/styles.css"')
+    .replaceAll('src="./generated-data.js"', 'src="./app/generated-data.js"')
+    .replaceAll('src="./generated-research.js"', 'src="./app/generated-research.js"')
+    .replaceAll('src="./generated-expansion-preview.js"', 'src="./app/generated-expansion-preview.js"')
+    .replaceAll('src="./generated-promotion-readiness.js"', 'src="./app/generated-promotion-readiness.js"')
+    .replaceAll('src="./generated-hidden-gems.js"', 'src="./app/generated-hidden-gems.js"')
+    .replaceAll('src="./generated-hidden-gems-draft.js"', 'src="./app/generated-hidden-gems-draft.js"')
+    .replaceAll('src="./generated-financial-confirmation.js"', 'src="./app/generated-financial-confirmation.js"')
+    .replaceAll('src="./generated-financial-screening.js"', 'src="./app/generated-financial-screening.js"')
+    .replaceAll('src="./app.js"', 'src="./app/app.js"')
+    .replaceAll('href="../reports/', 'href="./reports/');
+}

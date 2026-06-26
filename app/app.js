@@ -2626,6 +2626,9 @@ function setupEvents() {
   document.getElementById("templateButton")?.addEventListener("click", downloadCsvTemplate);
   document.getElementById("searchInput").addEventListener("input", (event) => {
     searchQuery = event.target.value;
+    if (searchQuery.trim()) {
+      document.getElementById("rankingSelect").value = "today";
+    }
     render();
   });
   document.getElementById("assistFilter").addEventListener("change", (event) => {

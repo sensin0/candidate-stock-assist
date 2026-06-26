@@ -8,7 +8,7 @@ const outputPath = path.join(rootDir, "data", "listed-universe.csv");
 const tmpDir = path.join(rootDir, "tmp");
 const downloadPath = path.join(tmpDir, "jpx-listed-issues.xls");
 const sourceUrl = process.env.JPX_LISTED_ISSUES_URL
-  || "https://www.jpx.co.jp/english/markets/statistics-equities/misc/tvdivq0000001vg2-att/data_e.xls";
+  || "https://www.jpx.co.jp/markets/statistics-equities/misc/tvdivq0000001vg2-att/data_j.xls";
 const pythonConverter = String.raw`
 import csv
 import re
@@ -20,15 +20,15 @@ df = pd.read_excel(input_path, dtype=str).fillna("")
 
 items = []
 for _, row in df.iterrows():
-    code = str(row.get("Local Code", "")).strip()
-    name = str(row.get("Name (English)", "")).strip()
-    market = str(row.get("Section/Products", "")).strip()
-    sector = str(row.get("33 Sector(name)", "")).strip()
+    code = str(row.get("コード", row.get("Local Code", ""))).strip()
+    name = str(row.get("銘柄名", row.get("Name (English)", ""))).strip()
+    market = str(row.get("市場・商品区分", row.get("Section/Products", ""))).strip()
+    sector = str(row.get("33業種区分", row.get("33 Sector(name)", ""))).strip()
     if not re.fullmatch(r"[0-9A-Z]{4}", code, re.I):
         continue
-    if "Domestic" not in market:
+    if "内国株式" not in market and "Domestic" not in market:
         continue
-    if re.search(r"ETF|ETN|REIT|Infrastructure|Venture Fund", market, re.I):
+    if re.search(r"ETF|ETN|REIT|Infrastructure|Venture Fund|インフラ|ベンチャー", market, re.I):
         continue
     items.append({"code": code, "name": name, "market": market, "sector": sector})
 

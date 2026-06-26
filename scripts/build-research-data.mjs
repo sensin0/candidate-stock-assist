@@ -7,10 +7,12 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const dataDir = path.join(rootDir, "data");
 const appDir = path.join(rootDir, "app");
 const universeCsv = path.join(dataDir, "universe-price-backtest.csv");
+const listedUniverseCsv = path.join(dataDir, "listed-universe.csv");
 const multibaggerCsv = path.join(dataDir, "multibagger-candidates.csv");
 const outputJs = path.join(appDir, "generated-research.js");
 
 const universeRows = readCsv(universeCsv);
+const listedUniverseByCode = new Map(readCsv(listedUniverseCsv).map((row) => [row.code, row]));
 const multibaggerRows = readCsv(multibaggerCsv);
 
 const universeSuccess = universeRows.filter((row) => !row.error).length;
@@ -76,11 +78,13 @@ function number(value) {
 }
 
 function mapUniverseRow(row) {
+  const listed = listedUniverseByCode.get(row.code);
   return {
     code: row.code,
-    name: row.name,
-    market: row.market,
-    sector: row.sector,
+    name: listed?.name || row.name,
+    market: listed?.market || row.market,
+    sector: listed?.sector || row.sector,
+    sourceName: row.name,
     judgement: row.judgement,
     signal: row.latestSignal,
     strategy: row.bestStrategy,
