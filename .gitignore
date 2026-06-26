@@ -4,6 +4,7 @@ node_modules/
 .env.*
 *.log
 tmp/
+.notification-state/
 reports/morning-report-*.md
 data/stock-master.generated.csv
 *_20260618.md

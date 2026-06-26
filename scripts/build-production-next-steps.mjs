@@ -82,10 +82,10 @@ function buildTasks() {
       next: "勝率、平均利益、最大下落、確認済み財務をランキングに反映し続ける",
     }),
     task({
-      title: "朝7:10通知の本番確認",
+      title: "新規今買い通知の本番確認",
       status: "確認中",
-      reason: "push時は通知しない設計で、scheduleまたは手動実行時にDiscordへ送ります。",
-      next: "次回scheduleまたはRun workflowでDiscord到着時刻を確認",
+      reason: "7:10の定期チェックで、前回になかった今買い候補が出た時だけDiscordへ送ります。",
+      next: "次回scheduleまたはRun workflowで、新規今買い候補がない日は通知されないことを確認",
     }),
   ];
 }

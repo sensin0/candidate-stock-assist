@@ -9,6 +9,7 @@
     "morning": "node scripts/morning-update.mjs",
     "notify:discord": "node scripts/notify-discord.mjs",
     "notify:preview": "node scripts/notify-discord.mjs --dry-run",
+    "notify:check-buy": "node scripts/check-new-buy-candidates.mjs",
     "manual:check": "node scripts/manual-input-check.mjs",
     "manual:confirm": "node scripts/confirm-stock.mjs",
     "privacy:check": "node scripts/privacy-check.mjs",

@@ -12,6 +12,6 @@ const report = fs.readFileSync(reportPath, "utf8");
 assert.match(report, /# 本番化 残作業/);
 assert.match(report, /財務確認キュー:/);
 assert.match(report, /日本株財務メトリクス:/);
-assert.match(report, /朝7:10通知/);
+assert.match(report, /新規今買い通知/);
 
 console.log("production-next-steps-test ok");
