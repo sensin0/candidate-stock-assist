@@ -1,14 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-26T11:55:10.388Z",
+  "generatedAt": "2026-06-26T13:12:06.807Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-26T11:55:10.376Z",
-  "priceFetchedAt": "2026-06-26T11:55:10.382Z",
-  "disclosureFetchedAt": "2026-06-26T11:55:10.382Z",
-  "edinetFetchedAt": "2026-06-26T11:55:10.383Z",
+  "fetchedAt": "2026-06-26T13:12:06.794Z",
+  "priceFetchedAt": "2026-06-26T13:12:06.800Z",
+  "disclosureFetchedAt": "2026-06-26T13:12:06.801Z",
+  "edinetFetchedAt": "2026-06-26T13:12:06.802Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -18,7 +18,7 @@ window.AUTO_STOCK_DATA = {
   "disclosureUpdates": 5,
   "edinetUpdates": 20,
   "watchlistUpdates": 3,
-  "backtestUpdates": 29,
+  "backtestUpdates": 31,
   "providerStatuses": [
     {
       "label": "銘柄マスタ",
@@ -1848,6 +1848,114 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": 0,
         "bestScore": -100
       }
+    },
+    {
+      "code": "2332",
+      "name": "Quest Co.,Ltd.",
+      "sector": "Information & Communication",
+      "price": 1719,
+      "shares": 5127026,
+      "treasuryShares": 0,
+      "cash": 3057.48,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 0,
+      "netAssets": 7458.49,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 1454.74,
+      "eps": 166.96,
+      "pbrLow": 0.75,
+      "pbrAvg": 1.27,
+      "pbrHigh": 1.8,
+      "perLow": 10,
+      "perAvg": 16,
+      "perHigh": 24,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "自動財務確認: PER 10.3倍 / ネットキャッシュあり 34.69% / 有利子負債は軽め",
+      "history": [
+        1657,
+        1709,
+        1688,
+        1731,
+        1751,
+        1760,
+        1851,
+        1719
+      ],
+      "watchlist": null,
+      "backtest": {
+        "code": "2332",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (1,091円以下)",
+        "sellTiming": "目標の90%付近 (3,606円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 0,
+        "winRate": 0,
+        "averageReturn": 0,
+        "maxDrawdown": 0,
+        "bestScore": -100
+      }
+    },
+    {
+      "code": "3908",
+      "name": "コラボス",
+      "sector": "情報・通信業",
+      "price": 319,
+      "shares": 4669262,
+      "treasuryShares": 0,
+      "cash": 1286.03,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 60,
+      "netAssets": 1367.3,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 292.83,
+      "eps": 10.74,
+      "pbrLow": 0.75,
+      "pbrAvg": 1.27,
+      "pbrHigh": 1.8,
+      "perLow": 10,
+      "perAvg": 16,
+      "perHigh": 24,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "自動財務確認: ネットキャッシュが時価総額の82.31%相当 / 有利子負債は軽め",
+      "history": [
+        305,
+        305,
+        313,
+        320,
+        316,
+        319,
+        319,
+        319
+      ],
+      "watchlist": null,
+      "backtest": {
+        "code": "3908",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン到達 (107円以下)",
+        "sellTiming": "目標の90%付近 (474円目安)",
+        "confidence": "参考",
+        "sampleCount": 8,
+        "trades": 0,
+        "winRate": 0,
+        "averageReturn": 0,
+        "maxDrawdown": 0,
+        "bestScore": -100
+      }
     }
   ],
   "dataQuality": {
@@ -1865,7 +1973,9 @@ window.AUTO_STOCK_DATA = {
       "7901 MATSUMOTO INC.",
       "6870 Fenwal Controls of Japan,Ltd.",
       "5939 OTANI KOGYO CO.,LTD.",
-      "2303 Dawn Corporation"
+      "2303 Dawn Corporation",
+      "2332 Quest Co.,Ltd.",
+      "3908 コラボス"
     ],
     "missingEdinet": [
       "6276 SiriusVision CO.,LTD.",
@@ -1876,7 +1986,9 @@ window.AUTO_STOCK_DATA = {
       "7901 MATSUMOTO INC.",
       "6870 Fenwal Controls of Japan,Ltd.",
       "5939 OTANI KOGYO CO.,LTD.",
-      "2303 Dawn Corporation"
+      "2303 Dawn Corporation",
+      "2332 Quest Co.,Ltd.",
+      "3908 コラボス"
     ],
     "manualInputs": [
       "6505 東洋電機製造",
@@ -1903,7 +2015,9 @@ window.AUTO_STOCK_DATA = {
       "7901 MATSUMOTO INC.",
       "6870 Fenwal Controls of Japan,Ltd.",
       "5939 OTANI KOGYO CO.,LTD.",
-      "2303 Dawn Corporation"
+      "2303 Dawn Corporation",
+      "2332 Quest Co.,Ltd.",
+      "3908 コラボス"
     ],
     "nextFixes": [
       "株価CSVに追加: 6276 SiriusVision CO.,LTD.",
@@ -1915,21 +2029,21 @@ window.AUTO_STOCK_DATA = {
       "株価CSVに追加: 6870 Fenwal Controls of Japan,Ltd.",
       "株価CSVに追加: 5939 OTANI KOGYO CO.,LTD.",
       "株価CSVに追加: 2303 Dawn Corporation",
-      "EDINET相当CSVに追加: 6276 SiriusVision CO.,LTD.",
-      "EDINET相当CSVに追加: 7435 NADEX CO.,LTD.",
-      "EDINET相当CSVに追加: 7567 SAKAE ELECTRONICS CORPORATION"
+      "株価CSVに追加: 2332 Quest Co.,Ltd.",
+      "株価CSVに追加: 3908 コラボス",
+      "EDINET相当CSVに追加: 6276 SiriusVision CO.,LTD."
     ],
     "readiness": {
-      "score": 84,
+      "score": 82,
       "label": "あと少し",
       "blockers": [
-        "株価未取得を埋める: 20/29",
-        "EDINET相当を80%以上へ増やす: 20/29"
+        "株価未取得を埋める: 20/31",
+        "EDINET相当を80%以上へ増やす: 20/31"
       ]
     },
     "coverage": {
-      "price": "20/29",
-      "edinet": "20/29"
+      "price": "20/31",
+      "edinet": "20/31"
     }
   }
 };

@@ -21,6 +21,7 @@ const outputReportPath = path.join(reportsDir, "latest-promoted-candidates.md");
 const writeToMaster = process.argv.includes("--write");
 const limit = Number(process.env.PROMOTE_CONFIRMED_LIMIT || 10);
 const autoScreenedLimit = Number(process.env.PROMOTE_SCREENED_LIMIT || 6);
+const autoScreenedThreshold = Number(process.env.PROMOTE_SCREENED_THRESHOLD || 78);
 
 const stockHeaders = [
   "code",
@@ -66,7 +67,7 @@ const factsByCode = new Map(readEdinetFacts().map((row) => [row.code, row]));
 const candidates = [
   ...confirmedInputRows.map((row) => promoteFromConfirmedInput(row)),
   ...screenedRows
-    .filter((row) => row.status === "昇格確認優先" && number(row.screenScore) >= 80)
+    .filter((row) => row.status === "昇格確認優先" && number(row.screenScore) >= autoScreenedThreshold)
     .filter((row) => acceptableAutoTiming(row, worklistByCode.get(row.code)))
     .slice(0, autoScreenedLimit)
     .map((row) => promoteFromScreened(row, worklistByCode.get(row.code))),
