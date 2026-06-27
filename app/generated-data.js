@@ -1,24 +1,24 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-27T06:58:01.501Z",
+  "generatedAt": "2026-06-27T07:04:06.482Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-27T06:58:01.453Z",
-  "priceFetchedAt": "2026-06-27T06:58:01.461Z",
-  "disclosureFetchedAt": "2026-06-27T06:58:01.463Z",
-  "edinetFetchedAt": "2026-06-27T06:58:01.465Z",
+  "fetchedAt": "2026-06-27T07:04:06.414Z",
+  "priceFetchedAt": "2026-06-27T07:04:06.422Z",
+  "disclosureFetchedAt": "2026-06-27T07:04:06.425Z",
+  "edinetFetchedAt": "2026-06-27T07:04:06.427Z",
   "nextSources": [
     "price-api",
     "edinet-api",
     "tdnet"
   ],
-  "priceUpdates": 31,
+  "priceUpdates": 36,
   "disclosureUpdates": 5,
   "edinetUpdates": 20,
   "watchlistUpdates": 3,
-  "backtestUpdates": 31,
+  "backtestUpdates": 36,
   "autoPromotionUpdates": 5,
   "providerStatuses": [
     {
@@ -2057,7 +2057,7 @@ window.AUTO_STOCK_DATA = {
       "name": "ハマイ",
       "sector": "機械",
       "price": 1334,
-      "priceAsOf": "2026-06-27",
+      "priceAsOf": "2026-06-26",
       "shares": 6590637,
       "treasuryShares": 0,
       "cash": 4297.32,
@@ -2087,15 +2087,37 @@ window.AUTO_STOCK_DATA = {
         1307,
         1334
       ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-06-27",
+        "sourceUrl": ""
+      },
       "watchlist": null,
-      "backtest": null
+      "backtest": {
+        "code": "6497",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (1,253円以下)",
+        "sellTiming": "目標の85%付近 (2,315円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
     },
     {
       "code": "4247",
       "name": "ポバール興業",
       "sector": "化学",
       "price": 1260,
-      "priceAsOf": "2026-06-27",
+      "priceAsOf": "2026-06-26",
       "shares": 2641213,
       "treasuryShares": 0,
       "cash": 1161.25,
@@ -2125,15 +2147,37 @@ window.AUTO_STOCK_DATA = {
         1235,
         1260
       ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-06-27",
+        "sourceUrl": ""
+      },
       "watchlist": null,
-      "backtest": null
+      "backtest": {
+        "code": "4247",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (1,201円以下)",
+        "sellTiming": "目標の85%付近 (2,042円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
     },
     {
       "code": "5388",
       "name": "クニミネ工業",
       "sector": "ガラス・土石製品",
       "price": 1251,
-      "priceAsOf": "2026-06-27",
+      "priceAsOf": "2026-06-26",
       "shares": 12655507,
       "treasuryShares": 0,
       "cash": 9107.4,
@@ -2163,15 +2207,37 @@ window.AUTO_STOCK_DATA = {
         1226,
         1251
       ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-06-27",
+        "sourceUrl": ""
+      },
       "watchlist": null,
-      "backtest": null
+      "backtest": {
+        "code": "5388",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (1,171円以下)",
+        "sellTiming": "目標の85%付近 (1,896円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.6,
+        "maxDrawdown": 0,
+        "bestScore": 52.1,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
     },
     {
       "code": "6518",
       "name": "三相電機",
       "sector": "電気機器",
       "price": 1951,
-      "priceAsOf": "2026-06-27",
+      "priceAsOf": "2026-06-26",
       "shares": 4577347,
       "treasuryShares": 0,
       "cash": 3350.03,
@@ -2201,15 +2267,37 @@ window.AUTO_STOCK_DATA = {
         1912,
         1951
       ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-06-27",
+        "sourceUrl": ""
+      },
       "watchlist": null,
-      "backtest": null
+      "backtest": {
+        "code": "6518",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (1,851円以下)",
+        "sellTiming": "目標の85%付近 (2,996円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.6,
+        "maxDrawdown": 0,
+        "bestScore": 52.1,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
     },
     {
       "code": "2915",
       "name": "ケンコーマヨネーズ",
       "sector": "食料品",
       "price": 2024,
-      "priceAsOf": "2026-06-27",
+      "priceAsOf": "2026-06-26",
       "shares": 14397753,
       "treasuryShares": 0,
       "cash": 13487,
@@ -2239,8 +2327,30 @@ window.AUTO_STOCK_DATA = {
         1984,
         2024
       ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-06-27",
+        "sourceUrl": ""
+      },
       "watchlist": null,
-      "backtest": null
+      "backtest": {
+        "code": "2915",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (1,910円以下)",
+        "sellTiming": "目標の85%付近 (3,092円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52.1,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
     }
   ],
   "dataQuality": {
@@ -2248,13 +2358,7 @@ window.AUTO_STOCK_DATA = {
     "providerWarnings": [],
     "validationWarnings": [],
     "externalReferenceWarnings": [],
-    "missingBacktest": [
-      "6497 ハマイ",
-      "4247 ポバール興業",
-      "5388 クニミネ工業",
-      "6518 三相電機",
-      "2915 ケンコーマヨネーズ"
-    ],
+    "missingBacktest": [],
     "missingPrice": [],
     "stalePrice": [
       "9402 中部日本放送: 株価が8日前"
@@ -2270,12 +2374,7 @@ window.AUTO_STOCK_DATA = {
       "5939 OTANI KOGYO CO.,LTD.",
       "2303 Dawn Corporation",
       "2332 Quest Co.,Ltd.",
-      "3908 コラボス",
-      "6497 ハマイ",
-      "4247 ポバール興業",
-      "5388 クニミネ工業",
-      "6518 三相電機",
-      "2915 ケンコーマヨネーズ"
+      "3908 コラボス"
     ],
     "manualInputs": [
       "6505 東洋電機製造",
@@ -2304,12 +2403,7 @@ window.AUTO_STOCK_DATA = {
       "5939 OTANI KOGYO CO.,LTD.",
       "2303 Dawn Corporation",
       "2332 Quest Co.,Ltd.",
-      "3908 コラボス",
-      "6497 ハマイ",
-      "4247 ポバール興業",
-      "5388 クニミネ工業",
-      "6518 三相電機",
-      "2915 ケンコーマヨネーズ"
+      "3908 コラボス"
     ],
     "nextFixes": [
       "最新株価を確認: 9402 中部日本放送: 株価が8日前",
@@ -2326,17 +2420,17 @@ window.AUTO_STOCK_DATA = {
       "EDINET相当CSVに追加: 3908 コラボス"
     ],
     "readiness": {
-      "score": 88,
+      "score": 91,
       "label": "本番運用OK",
       "blockers": [
         "最新株価を更新: 35/36",
-        "EDINET相当を80%以上へ増やす: 20/36"
+        "EDINET相当を80%以上へ増やす: 25/36"
       ]
     },
     "coverage": {
       "price": "36/36",
       "freshPrice": "35/36",
-      "edinet": "20/36"
+      "edinet": "25/36"
     }
   }
 };

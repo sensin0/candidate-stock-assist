@@ -2,18 +2,20 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCsvRecords } from "./csv-utils.mjs";
-import { parseStockCsv } from "./providers/csv-provider.mjs";
+import { readRuntimeStocks } from "./runtime-stock-source.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dataDir = path.join(rootDir, "data");
 const reportsDir = path.join(rootDir, "reports");
 const stockMasterPath = path.join(dataDir, "stock-master.csv");
+const autoPromotionDraftPath = path.join(dataDir, "stock-master-universe-promotion-draft.csv");
+const universeMetricsPath = path.join(dataDir, "universe-metrics.csv");
 const priceUpdatesPath = path.join(dataDir, "price-updates.csv");
 const outputReportPath = path.join(reportsDir, "latest-price-refresh.md");
 const concurrency = Number(process.env.PRICE_REFRESH_CONCURRENCY || 6);
 const limit = Number(process.env.PRICE_REFRESH_LIMIT || 0);
 
-const stocks = parseStockCsv(fs.readFileSync(stockMasterPath, "utf8"))
+const stocks = readRuntimeStocks({ stockMasterPath, autoPromotionDraftPath, universeMetricsPath })
   .filter((stock) => /^\d{4}$/.test(stock.code));
 const targets = limit > 0 ? stocks.slice(0, limit) : stocks;
 const existingRows = readCsv(priceUpdatesPath);

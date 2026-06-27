@@ -2,14 +2,16 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { backtestStock } from "./backtest-core.mjs";
-import { parseStockCsv } from "./providers/csv-provider.mjs";
+import { readRuntimeStocks } from "./runtime-stock-source.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const stockMasterPath = path.join(rootDir, "data", "stock-master.csv");
+const autoPromotionDraftPath = path.join(rootDir, "data", "stock-master-universe-promotion-draft.csv");
+const universeMetricsPath = path.join(rootDir, "data", "universe-metrics.csv");
 const financialScreenedPath = path.join(rootDir, "data", "financial-worklist-screened.csv");
 const outputPath = path.join(rootDir, "data", "backtest-results.csv");
 
-const stocks = parseStockCsv(fs.readFileSync(stockMasterPath, "utf8"));
+const stocks = readRuntimeStocks({ stockMasterPath, autoPromotionDraftPath, universeMetricsPath });
 const financialScreening = loadFinancialScreening();
 const rows = stocks.map((stock) => {
   const result = backtestStock(stock);

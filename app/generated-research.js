@@ -1,5 +1,5 @@
 window.AUTO_RESEARCH_DATA = {
-  "generatedAt": "2026-06-27T06:58:01.854Z",
+  "generatedAt": "2026-06-27T07:04:06.789Z",
   "source": "data/universe-price-backtest.csv + data/multibagger-candidates.csv",
   "universe": {
     "total": 3728,

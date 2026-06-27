@@ -15,6 +15,8 @@ const steps = [
   ["日本株全体チェック状態生成", "scripts/build-universe-check-status.mjs"],
   ["全体自動買い候補予備軍生成", "scripts/build-universe-buy-candidates.mjs"],
   ["全体自動買い候補の昇格判定", "scripts/review-universe-buy-candidates.mjs"],
+  ["自動昇格候補を含めた株価更新", "scripts/refresh-price-updates.mjs"],
+  ["自動昇格候補を含めたバックテスト", "scripts/backtest-timing.mjs"],
   ["自動昇格候補を通常候補データへ反映", "scripts/update-data.mjs"],
   ["2倍候補調査", "scripts/analyze-multibagger-candidates.mjs"],
   ["通常候補への昇格候補抽出", "scripts/build-promotion-candidates.mjs"],

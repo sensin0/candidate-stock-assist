@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { parseCsvRecords } from "./csv-utils.mjs";
+import { readAutoPromotionStocks } from "./runtime-stock-source.mjs";
 import { fetchStocksFromCsv } from "./providers/csv-provider.mjs";
 import { applyBacktestResults, fetchBacktestResults } from "./providers/backtest-provider.mjs";
 import { applyDisclosures, fetchDisclosures } from "./providers/disclosure-provider.mjs";
@@ -19,6 +19,7 @@ const inputEdinetCsv = path.join(dataDir, "edinet-facts.csv");
 const inputWatchlistCsv = path.join(dataDir, "watchlist.csv");
 const inputBacktestCsv = path.join(dataDir, "backtest-results.csv");
 const autoPromotionDraftCsv = path.join(dataDir, "stock-master-universe-promotion-draft.csv");
+const universeMetricsCsv = path.join(dataDir, "universe-metrics.csv");
 const outputJs = path.join(appDir, "generated-data.js");
 const outputReport = path.join(appDir, "latest-update-report.md");
 const msPerDay = 24 * 60 * 60 * 1000;
@@ -236,7 +237,7 @@ function publicProviderStatus(status) {
 }
 
 function writeGeneratedData(providerResult, priceResult, disclosureResult, edinetResult, watchlistResult, backtestResult) {
-  const autoPromotionRows = readAutoPromotionRows(providerResult.stocks);
+  const autoPromotionRows = readAutoPromotionStocks(providerResult.stocks, autoPromotionDraftCsv, universeMetricsCsv);
   const masterStocks = mergeAutoPromotionRows(providerResult.stocks, autoPromotionRows);
   const edinetUpdated = applyEdinetFacts(masterStocks, edinetResult.facts);
   const priceUpdated = applyPriceUpdates(edinetUpdated, priceResult.prices);
@@ -284,76 +285,9 @@ function writeGeneratedData(providerResult, priceResult, disclosureResult, edine
   return payload;
 }
 
-function readAutoPromotionRows(existingStocks) {
-  if (!fs.existsSync(autoPromotionDraftCsv)) return [];
-  const existingCodes = new Set(existingStocks.map((stock) => String(stock.code)));
-  return parseCsvRecords(fs.readFileSync(autoPromotionDraftCsv, "utf8"))
-    .filter((row) => row.code && !existingCodes.has(String(row.code)))
-    .map(toAutoPromotedStock)
-    .filter((stock) => stock.code && stock.price > 0 && stock.shares > 0 && stock.bps > 0);
-}
-
 function mergeAutoPromotionRows(stocks, promotedRows) {
   if (!promotedRows.length) return stocks;
   return [...stocks, ...promotedRows];
-}
-
-function toAutoPromotedStock(row) {
-  const pbrLow = number(row.pbrLow) || 0.64;
-  const pbrHigh = number(row.pbrHigh) || 1.53;
-  return {
-    code: String(row.code),
-    name: row.name,
-    sector: row.sector || "未分類",
-    price: number(row.price),
-    priceAsOf: todayInJapan(),
-    shares: number(row.shares),
-    treasuryShares: 0,
-    cash: number(row.cash),
-    securities: 0,
-    investmentSecurities: 0,
-    interestDebt: number(row.interestDebt),
-    netAssets: number(row.netAssets),
-    rentalBook: 0,
-    rentalMarket: 0,
-    bps: number(row.bps),
-    eps: number(row.eps),
-    pbrLow,
-    pbrAvg: round((pbrLow + pbrHigh) / 2),
-    pbrHigh,
-    perLow: 0,
-    perAvg: row.eps && number(row.eps) > 0 ? round(number(row.price) / number(row.eps)) : 0,
-    perHigh: 0,
-    dataConfidence: "自動財務確認",
-    qualitativeDone: true,
-    held: false,
-    risk: "",
-    catalyst: row.note || "全体自動判定から通常候補へ自動昇格",
-    history: String(row.history || "")
-      .split("|")
-      .map((value) => Number(value))
-      .filter((value) => Number.isFinite(value) && value > 0),
-  };
-}
-
-function number(value) {
-  const parsed = Number(value);
-  return Number.isFinite(parsed) ? parsed : 0;
-}
-
-function round(value) {
-  return Math.round(Number(value || 0) * 100) / 100;
-}
-
-function todayInJapan() {
-  const parts = new Intl.DateTimeFormat("ja-JP", {
-    timeZone: "Asia/Tokyo",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).formatToParts(new Date());
-  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
-  return `${values.year}-${values.month}-${values.day}`;
 }
 
 function writeReport(payload) {

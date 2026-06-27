@@ -21,6 +21,7 @@ const autoFinancialFollowup = readCsv(path.join(dataDir, "auto-financial-followu
 const researchBacktest = readCsv(path.join(dataDir, "universe-price-backtest.csv"));
 const priceRefreshQueue = readCsv(path.join(dataDir, "price-refresh-queue.csv"));
 const generatedData = readGeneratedData();
+const runtimeStocks = generatedData?.stocks ?? stockMaster;
 const pagesStatus = await checkPages(pagesUrl);
 
 const confirmedMetricCount = universeMetrics.filter((row) => row.asOf === "confirmed").length;
@@ -30,10 +31,10 @@ const universeCoverage = universe.length ? pct(universeMetrics.length / universe
 const pendingFinancial = financialQueue.filter((row) => row.status === "最優先で財務確認").length;
 const worklistReady = worklist.filter((row) => row.confirmed === "true" && row.qualitativeDone === "true").length;
 const confirmedInputReady = confirmedInput.filter((row) => row.dataConfidence === "確認済み" || row.confirmed === "true").length;
-const autoFinancialConfirmed = stockMaster.filter((row) => row.dataConfidence === "自動財務確認").length;
+const autoFinancialConfirmed = runtimeStocks.filter((row) => row.dataConfidence === "自動財務確認").length;
 const autoFinancialPriority = autoFinancialFollowup.filter((row) => row.action === "決算短信と有報を先に確認" || row.action === "財務確認を進める").length;
 const autoFinancialWait = autoFinancialFollowup.filter((row) => row.action === "買いは後回し" || row.action === "価格履歴を先に増やす").length;
-const promotedNewCount = Math.max(0, promoted.length - stockMaster.length);
+const promotedNewCount = Number(generatedData?.autoPromotionUpdates ?? 0) || Math.max(0, runtimeStocks.length - stockMaster.length);
 const successfulBacktests = researchBacktest.filter((row) => !row.error).length;
 const goodBacktests = researchBacktest.filter((row) => row.judgement === "良さそう").length;
 const urgentPriceRefresh = priceRefreshQueue.filter((row) => row.reason?.includes("買い場に近い") || row.reason?.includes("売り判断に影響")).length;
@@ -117,7 +118,8 @@ function writeReport(tasks) {
     `生成日時: ${new Date().toISOString()}`,
     "",
     `残作業: ${openTasks.length}件`,
-    `通常候補: ${stockMaster.length}件`,
+    `通常候補: ${runtimeStocks.length}件`,
+    `うち自動昇格反映: ${promotedNewCount}件`,
     `自動財務確認: ${autoFinancialConfirmed}件`,
     `日本株財務メトリクス: ${universeMetrics.length}/${universe.length}件`,
     `確認済み財務メトリクス: ${confirmedMetricCount}件`,
