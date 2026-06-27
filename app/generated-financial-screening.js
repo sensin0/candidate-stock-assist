@@ -1,12 +1,12 @@
 window.AUTO_FINANCIAL_SCREENING = {
-  "generatedAt": "2026-06-27T01:07:08.669Z",
+  "generatedAt": "2026-06-27T01:43:57.640Z",
   "source": "data/financial-worklist-screened.csv",
-  "total": 63,
+  "total": 62,
   "priorityCount": 10,
-  "cautionCount": 39,
+  "cautionCount": 38,
   "top": [
     {
-      "rank": "28",
+      "rank": "26",
       "code": "5363",
       "name": "東京窯業",
       "sector": "ガラス・土石製品",
@@ -63,7 +63,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "大きな注意なし"
     },
     {
-      "rank": "57",
+      "rank": "56",
       "code": "8018",
       "name": "三共生興",
       "sector": "卸売",
@@ -82,7 +82,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "大きな注意なし"
     },
     {
-      "rank": "59",
+      "rank": "58",
       "code": "9409",
       "name": "テレビ朝日HD",
       "sector": "情報通信",
@@ -101,7 +101,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "大きな注意なし"
     },
     {
-      "rank": "60",
+      "rank": "59",
       "code": "9402",
       "name": "中部日本放送",
       "sector": "情報通信",
@@ -120,7 +120,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "大きな注意なし"
     },
     {
-      "rank": "63",
+      "rank": "62",
       "code": "3892",
       "name": "岡山製紙",
       "sector": "紙・パルプ",
@@ -136,6 +136,25 @@ window.AUTO_FINANCIAL_SCREENING = {
       "sourceUrl": "https://irbank.net/3892/results",
       "action": "決算短信と有報を見て、問題なければconfirmed候補",
       "reasons": "PBR 0.43倍で割安寄り / PER 9.16倍で利益面は軽い / ネットキャッシュが時価総額の79.44%相当",
+      "cautions": "大きな注意なし"
+    },
+    {
+      "rank": "35",
+      "code": "7781",
+      "name": "平山ホールディングス",
+      "sector": "精密機器",
+      "status": "昇格確認優先",
+      "screenScore": 92,
+      "price": 778.5,
+      "marketCap": 5349.54,
+      "pbr": 1.07,
+      "per": 6.76,
+      "netCash": 4816.26,
+      "netCashRatio": 90.03,
+      "debtAssetRatio": 24.71,
+      "sourceUrl": "https://irbank.net/7781/results",
+      "action": "決算短信と有報を見て、問題なければconfirmed候補",
+      "reasons": "PER 6.76倍で利益面は軽い / ネットキャッシュが時価総額の90.03%相当",
       "cautions": "大きな注意なし"
     },
     {
@@ -177,26 +196,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "大きな注意なし"
     },
     {
-      "rank": "27",
-      "code": "3908",
-      "name": "コラボス",
-      "sector": "情報・通信業",
-      "status": "昇格確認優先",
-      "screenScore": 80,
-      "price": 319,
-      "marketCap": 1489.49,
-      "pbr": 1.09,
-      "per": 29.7,
-      "netCash": 1226.03,
-      "netCashRatio": 82.31,
-      "debtAssetRatio": 4.39,
-      "sourceUrl": "https://irbank.net/3908/results",
-      "action": "決算短信と有報を見て、問題なければconfirmed候補",
-      "reasons": "ネットキャッシュが時価総額の82.31%相当 / 有利子負債は軽め",
-      "cautions": "大きな注意なし"
-    },
-    {
-      "rank": "48",
+      "rank": "47",
       "code": "1443",
       "name": "技研HD",
       "sector": "建設",
@@ -215,7 +215,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "ネット有利子負債が重い -42.92%"
     },
     {
-      "rank": "49",
+      "rank": "48",
       "code": "6505",
       "name": "東洋電機製造",
       "sector": "電機",
@@ -234,7 +234,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "ネット有利子負債が重い -47.59%"
     },
     {
-      "rank": "50",
+      "rank": "49",
       "code": "3123",
       "name": "サイボー",
       "sector": "繊維・不動産",
@@ -253,7 +253,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "ネット有利子負債が重い -97.7%"
     },
     {
-      "rank": "55",
+      "rank": "54",
       "code": "9830",
       "name": "トラスコ中山",
       "sector": "卸売",
@@ -272,7 +272,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "大きな注意なし"
     },
     {
-      "rank": "51",
+      "rank": "50",
       "code": "2484",
       "name": "出前館",
       "sector": "サービス",
@@ -291,26 +291,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "EPSが赤字または未確認"
     },
     {
-      "rank": "7",
-      "code": "7477",
-      "name": "ムラキ",
-      "sector": "卸売業",
-      "status": "慎重確認",
-      "screenScore": 68,
-      "price": 1911,
-      "marketCap": 2712.89,
-      "pbr": 0.98,
-      "per": 41.17,
-      "netCash": 1517.18,
-      "netCashRatio": 55.92,
-      "debtAssetRatio": 0,
-      "sourceUrl": "https://irbank.net/7477/results",
-      "action": "負債、利益の継続性、材料の一過性を確認",
-      "reasons": "PBR 0.98倍で確認余地 / ネットキャッシュが時価総額の55.92%相当 / 有利子負債は軽め",
-      "cautions": "PER 41.17倍で高い"
-    },
-    {
-      "rank": "30",
+      "rank": "28",
       "code": "7513",
       "name": "コジマ",
       "sector": "小売業",
@@ -329,7 +310,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "大きな注意なし"
     },
     {
-      "rank": "32",
+      "rank": "31",
       "code": "6648",
       "name": "かわでん",
       "sector": "電気機器",
@@ -348,7 +329,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 1.42倍で割安感が薄い"
     },
     {
-      "rank": "19",
+      "rank": "18",
       "code": "9322",
       "name": "川西倉庫",
       "sector": "倉庫・運輸関連業",
@@ -367,7 +348,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "大きな注意なし"
     },
     {
-      "rank": "31",
+      "rank": "29",
       "code": "1515",
       "name": "日鉄鉱業",
       "sector": "鉱業",
@@ -405,7 +386,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "ネット有利子負債が重い -122.03% / 有利子負債がやや重い"
     },
     {
-      "rank": "61",
+      "rank": "60",
       "code": "9324",
       "name": "安田倉庫",
       "sector": "倉庫",
@@ -424,7 +405,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "ネット有利子負債が重い -121.21% / 有利子負債がやや重い"
     },
     {
-      "rank": "10",
+      "rank": "8",
       "code": "7878",
       "name": "光・彩",
       "sector": "その他製品",
@@ -462,7 +443,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 1.52倍で割安感が薄い"
     },
     {
-      "rank": "17",
+      "rank": "15",
       "code": "5232",
       "name": "住友大阪セメント",
       "sector": "ガラス・土石製品",
@@ -481,7 +462,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "大きな注意なし"
     },
     {
-      "rank": "29",
+      "rank": "27",
       "code": "4351",
       "name": "山田再生系債権回収総合事務所",
       "sector": "その他金融業",
@@ -500,7 +481,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "大きな注意なし"
     },
     {
-      "rank": "58",
+      "rank": "57",
       "code": "6513",
       "name": "オリジン",
       "sector": "電機",
@@ -519,7 +500,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PER 67.26倍で高い"
     },
     {
-      "rank": "21",
+      "rank": "20",
       "code": "6310",
       "name": "井関農機",
       "sector": "機械",
@@ -538,7 +519,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "ネット有利子負債が重い -100.71% / 有利子負債がやや重い"
     },
     {
-      "rank": "18",
+      "rank": "16",
       "code": "5587",
       "name": "インバウンドプラットフォーム",
       "sector": "情報・通信業",
@@ -557,26 +538,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 1.61倍で割安感が薄い"
     },
     {
-      "rank": "35",
-      "code": "7781",
-      "name": "平山ホールディングス",
-      "sector": "精密機器",
-      "status": "見送り寄り",
-      "screenScore": 46,
-      "price": 1557,
-      "marketCap": 10699.09,
-      "pbr": 2.14,
-      "per": 13.51,
-      "netCash": 4816.26,
-      "netCashRatio": 45.02,
-      "debtAssetRatio": 24.71,
-      "sourceUrl": "https://irbank.net/7781/results",
-      "action": "通常候補へ入れない方向で確認",
-      "reasons": "PER 13.51倍 / ネットキャッシュあり 45.02%",
-      "cautions": "PBR 2.14倍で割安感が薄い"
-    },
-    {
-      "rank": "13",
+      "rank": "11",
       "code": "5010",
       "name": "日本精蝋",
       "sector": "石油・石炭製品",
@@ -614,7 +576,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 1.87倍で割安感が薄い"
     },
     {
-      "rank": "16",
+      "rank": "14",
       "code": "9888",
       "name": "ＵＥＸ",
       "sector": "卸売業",
@@ -652,7 +614,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 1.49倍で割安感が薄い"
     },
     {
-      "rank": "26",
+      "rank": "25",
       "code": "4256",
       "name": "サインド",
       "sector": "情報・通信業",
@@ -671,7 +633,26 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 1.59倍で割安感が薄い"
     },
     {
-      "rank": "47",
+      "rank": "32",
+      "code": "7245",
+      "name": "大同メタル工業",
+      "sector": "輸送用機器",
+      "status": "見送り寄り",
+      "screenScore": 36,
+      "price": 1691,
+      "marketCap": 88262.48,
+      "pbr": 0.97,
+      "per": 15.85,
+      "netCash": -38216,
+      "netCashRatio": -43.3,
+      "debtAssetRatio": 70.55,
+      "sourceUrl": "https://irbank.net/7245/results",
+      "action": "通常候補へ入れない方向で確認",
+      "reasons": "PBR 0.97倍で確認余地 / PER 15.85倍",
+      "cautions": "ネット有利子負債が重い -43.3% / 有利子負債がやや重い"
+    },
+    {
+      "rank": "46",
       "code": "3941",
       "name": "レンゴー",
       "sector": "パルプ・紙",
@@ -690,7 +671,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "ネット有利子負債が重い -95.87% / 有利子負債がやや重い"
     },
     {
-      "rank": "52",
+      "rank": "51",
       "code": "9672",
       "name": "東京都競馬",
       "sector": "不動産・レジャー",
@@ -709,7 +690,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 1.6倍で割安感が薄い"
     },
     {
-      "rank": "24",
+      "rank": "23",
       "code": "4570",
       "name": "免疫生物研究所",
       "sector": "医薬品",
@@ -728,7 +709,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 4.9倍で割安感が薄い"
     },
     {
-      "rank": "25",
+      "rank": "24",
       "code": "7734",
       "name": "理研計器",
       "sector": "精密機器",
@@ -747,7 +728,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 1.94倍で割安感が薄い"
     },
     {
-      "rank": "42",
+      "rank": "43",
       "code": "6516",
       "name": "山洋電気",
       "sector": "電気機器",
@@ -785,7 +766,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 1.44倍で割安感が薄い / PER 398.52倍で高い"
     },
     {
-      "rank": "9",
+      "rank": "7",
       "code": "7256",
       "name": "河西工業",
       "sector": "輸送用機器",
@@ -804,7 +785,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "ネット有利子負債が重い -187.68% / 有利子負債が純資産を上回る"
     },
     {
-      "rank": "20",
+      "rank": "19",
       "code": "5016",
       "name": "ＪＸ金属",
       "sector": "非鉄金属",
@@ -823,7 +804,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 5.8倍で割安感が薄い"
     },
     {
-      "rank": "43",
+      "rank": "42",
       "code": "4182",
       "name": "三菱瓦斯化学",
       "sector": "化学",
@@ -843,25 +824,6 @@ window.AUTO_FINANCIAL_SCREENING = {
     },
     {
       "rank": "44",
-      "code": "7726",
-      "name": "黒田精工",
-      "sector": "機械",
-      "status": "見送り寄り",
-      "screenScore": 26,
-      "price": 1445,
-      "marketCap": 8200.47,
-      "pbr": 0.71,
-      "per": 24.49,
-      "netCash": -5054.87,
-      "netCashRatio": -61.64,
-      "debtAssetRatio": 72.38,
-      "sourceUrl": "https://irbank.net/7726/results",
-      "action": "通常候補へ入れない方向で確認",
-      "reasons": "PBR 0.71倍で確認余地",
-      "cautions": "ネット有利子負債が重い -61.64% / 有利子負債がやや重い"
-    },
-    {
-      "rank": "45",
       "code": "6315",
       "name": "ＴＯＷＡ",
       "sector": "機械",
@@ -880,7 +842,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 3.37倍で割安感が薄い"
     },
     {
-      "rank": "12",
+      "rank": "10",
       "code": "7694",
       "name": "いつも",
       "sector": "小売業",
@@ -899,7 +861,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "ネット有利子負債が重い -116.71% / 有利子負債が純資産を上回る"
     },
     {
-      "rank": "23",
+      "rank": "22",
       "code": "4651",
       "name": "サニックスホールディングス",
       "sector": "サービス業",
@@ -918,7 +880,26 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "ネット有利子負債が重い -64.56% / 有利子負債が純資産を上回る"
     },
     {
-      "rank": "46",
+      "rank": "30",
+      "code": "7069",
+      "name": "サイバー・バズ",
+      "sector": "サービス業",
+      "status": "見送り寄り",
+      "screenScore": 18,
+      "price": 639.5,
+      "marketCap": 2203.35,
+      "pbr": 2.93,
+      "per": 7.08,
+      "netCash": 60.95,
+      "netCashRatio": 2.77,
+      "debtAssetRatio": 161.6,
+      "sourceUrl": "https://irbank.net/7069/results",
+      "action": "通常候補へ入れない方向で確認",
+      "reasons": "PER 7.08倍で利益面は軽い",
+      "cautions": "PBR 2.93倍で割安感が薄い / 有利子負債が純資産を上回る"
+    },
+    {
+      "rank": "45",
       "code": "6861",
       "name": "キーエンス",
       "sector": "電気機器",
@@ -937,7 +918,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 5.39倍で割安感が薄い / PER 42倍で高い"
     },
     {
-      "rank": "54",
+      "rank": "53",
       "code": "8801",
       "name": "三井不動産",
       "sector": "不動産",
@@ -957,25 +938,6 @@ window.AUTO_FINANCIAL_SCREENING = {
     },
     {
       "rank": "5",
-      "code": "7069",
-      "name": "サイバー・バズ",
-      "sector": "サービス業",
-      "status": "見送り寄り",
-      "screenScore": 8,
-      "price": 1279,
-      "marketCap": 4406.69,
-      "pbr": 5.86,
-      "per": 14.16,
-      "netCash": 60.95,
-      "netCashRatio": 1.38,
-      "debtAssetRatio": 161.6,
-      "sourceUrl": "https://irbank.net/7069/results",
-      "action": "通常候補へ入れない方向で確認",
-      "reasons": "PER 14.16倍",
-      "cautions": "PBR 5.86倍で割安感が薄い / 有利子負債が純資産を上回る"
-    },
-    {
-      "rank": "6",
       "code": "6522",
       "name": "アスタリスク",
       "sector": "電気機器",
@@ -994,7 +956,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 4.65倍で割安感が薄い / PER 122.3倍で高い"
     },
     {
-      "rank": "8",
+      "rank": "6",
       "code": "4392",
       "name": "ＦＩＧ",
       "sector": "情報・通信業",
@@ -1070,7 +1032,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 2.27倍で割安感が薄い / ネット有利子負債が重い -249.97% / 有利子負債が純資産を上回る"
     },
     {
-      "rank": "11",
+      "rank": "9",
       "code": "6696",
       "name": "トラース・オン・プロダクト",
       "sector": "電気機器",
@@ -1089,7 +1051,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 3.79倍で割安感が薄い / EPSが赤字または未確認"
     },
     {
-      "rank": "14",
+      "rank": "12",
       "code": "5989",
       "name": "エイチワン",
       "sector": "金属製品",
@@ -1108,7 +1070,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認"
     },
     {
-      "rank": "15",
+      "rank": "13",
       "code": "3664",
       "name": "ＷＩＺＥ",
       "sector": "情報・通信業",
@@ -1127,7 +1089,26 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 1.58倍で割安感が薄い / EPSが赤字または未確認 / 有利子負債がやや重い"
     },
     {
-      "rank": "22",
+      "rank": "17",
+      "code": "6326",
+      "name": "クボタ",
+      "sector": "機械",
+      "status": "入力待ち",
+      "screenScore": 0,
+      "price": 2751.5,
+      "marketCap": 0,
+      "pbr": 0,
+      "per": 0,
+      "netCash": 0,
+      "netCashRatio": 0,
+      "debtAssetRatio": 0,
+      "sourceUrl": "",
+      "action": "不足項目を埋める",
+      "reasons": "確認材料が不足",
+      "cautions": "未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認"
+    },
+    {
+      "rank": "21",
       "code": "281A",
       "name": "インフォメティス",
       "sector": "情報・通信業",
@@ -1146,7 +1127,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 4.09倍で割安感が薄い / EPSが赤字または未確認 / 有利子負債が純資産を上回る"
     },
     {
-      "rank": "53",
+      "rank": "52",
       "code": "8830",
       "name": "住友不動産",
       "sector": "不動産",
@@ -1165,7 +1146,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "PBR 2.32倍で割安感が薄い / ネット有利子負債が重い -65.34% / 有利子負債が純資産を上回る"
     },
     {
-      "rank": "56",
+      "rank": "55",
       "code": "3471",
       "name": "三井不動産ロジスティクスパーク投資法人",
       "sector": "REIT",
@@ -1184,7 +1165,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "cautions": "未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認"
     },
     {
-      "rank": "62",
+      "rank": "61",
       "code": "8818",
       "name": "京阪神ビルディング",
       "sector": "不動産",

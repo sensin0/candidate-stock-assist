@@ -8,6 +8,7 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const stockMasterPath = path.join(rootDir, "data", "stock-master.csv");
 const draftPath = path.join(rootDir, "data", "stock-master-input-draft.csv");
 const hiddenDraftPath = path.join(rootDir, "data", "stock-master-hidden-gems-draft.csv");
+const listedPath = path.join(rootDir, "data", "listed-universe.csv");
 const universeBacktestPath = path.join(rootDir, "data", "universe-price-backtest.csv");
 const universeFinancialFactsPath = path.join(rootDir, "data", "universe-financial-facts.csv");
 const outputPath = path.join(rootDir, "data", "universe-metrics.csv");
@@ -15,6 +16,7 @@ const outputReportPath = path.join(rootDir, "reports", "latest-universe-financia
 const estimateLimit = Number(process.env.UNIVERSE_METRICS_ESTIMATE_LIMIT || 3728);
 
 const stocks = parseStockCsv(fs.readFileSync(stockMasterPath, "utf8"));
+const listed = readCsv(listedPath);
 const rows = [];
 const seen = new Set();
 
@@ -48,10 +50,15 @@ const backtestRows = readCsv(universeBacktestPath)
 
 for (const row of backtestRows) addRow(metricFromPriceBacktest(row));
 
+for (const row of listed) addRow(metricUnavailable(row));
+
 fs.writeFileSync(outputPath, toCsv(rows), "utf8");
 writeReport(rows);
-console.log(`universe-metrics を生成しました: ${rows.length}件`);
-console.log(`確認済み: ${rows.filter((row) => row.asOf === "confirmed").length}件 / 確認前推定: ${rows.filter((row) => row.asOf !== "confirmed").length}件`);
+const listedCodesForLog = new Set(listed.map((row) => row.code));
+const listedRowsForLog = rows.filter((row) => listedCodesForLog.has(row.code));
+const estimatedRowsForLog = listedRowsForLog.filter((row) => row.asOf !== "confirmed" && !row.asOf?.startsWith("irbank:") && row.asOf !== "unavailable");
+console.log(`universe-metrics を生成しました: 日本株母集団 ${listedRowsForLog.length}/${listed.length}件`);
+console.log(`確認済み: ${listedRowsForLog.filter((row) => row.asOf === "confirmed").length}件 / IRBANK自動取得: ${listedRowsForLog.filter((row) => row.asOf?.startsWith("irbank:")).length}件 / 推定: ${estimatedRowsForLog.length}件 / 自動除外: ${listedRowsForLog.filter((row) => row.asOf === "unavailable").length}件`);
 
 function addRow(row) {
   if (!row?.code || seen.has(row.code)) return;
@@ -121,22 +128,47 @@ function metricFromPriceBacktest(row) {
   };
 }
 
+function metricUnavailable(row) {
+  return {
+    code: row.code,
+    price: 0,
+    bps: 0,
+    eps: 0,
+    cash: 0,
+    securities: 0,
+    investmentSecurities: 0,
+    interestDebt: 0,
+    netAssets: 0,
+    rentalBook: 0,
+    rentalMarket: 0,
+    shares: 0,
+    treasuryShares: 0,
+    asOf: "unavailable",
+  };
+}
+
 function writeReport(items) {
   fs.mkdirSync(path.dirname(outputReportPath), { recursive: true });
-  const confirmed = items.filter((row) => row.asOf === "confirmed");
-  const fetched = items.filter((row) => row.asOf?.startsWith("irbank:"));
-  const estimated = items.filter((row) => row.asOf !== "confirmed" && !row.asOf?.startsWith("irbank:"));
+  const listedCodes = new Set(listed.map((row) => row.code));
+  const listedItems = items.filter((row) => listedCodes.has(row.code));
+  const outsideUniverse = items.filter((row) => !listedCodes.has(row.code));
+  const confirmed = listedItems.filter((row) => row.asOf === "confirmed");
+  const fetched = listedItems.filter((row) => row.asOf?.startsWith("irbank:"));
+  const unavailable = listedItems.filter((row) => row.asOf === "unavailable");
+  const estimated = listedItems.filter((row) => row.asOf !== "confirmed" && !row.asOf?.startsWith("irbank:") && row.asOf !== "unavailable");
   const lines = [
     "# 日本株 財務データ範囲",
     "",
     `生成日時: ${new Date().toISOString()}`,
     "",
-    `財務メトリクス対象: ${items.length}件`,
+    `財務メトリクス対象: ${listedItems.length}/${listed.length}件`,
+    `母集団外の通常候補など: ${outsideUniverse.length}件`,
     `確認済み: ${confirmed.length}件`,
     `IRBANK自動取得: ${fetched.length}件`,
     `確認前推定: ${estimated.length}件`,
+    `取得不可で自動除外: ${unavailable.length}件`,
     "",
-    "確認前推定は探索用です。通常候補へ昇格するには、確認済み入力またはEDINET相当データが必要です。",
+    "確認前推定は探索用です。通常候補へ昇格するには、確認済み入力またはEDINET相当データが必要です。取得不可は買い候補に出さず、自動除外として扱います。",
     "",
     "## 確認前推定の内訳",
     "",

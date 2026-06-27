@@ -1,7 +1,7 @@
 window.AUTO_HIDDEN_GEMS_DRAFT = {
-  "generatedAt": "2026-06-27T01:07:47.060Z",
+  "generatedAt": "2026-06-27T01:43:55.217Z",
   "source": "data/stock-master-hidden-gems-draft.csv",
-  "total": 7,
+  "total": 6,
   "items": [
     {
       "code": "4462",
@@ -25,27 +25,6 @@ window.AUTO_HIDDEN_GEMS_DRAFT = {
       "history": "3645|3685|3730|3815|3510|3485|3495|3390"
     },
     {
-      "code": "6516",
-      "name": "山洋電気",
-      "sector": "電気機器",
-      "price": 6910,
-      "shares": 10000000,
-      "cash": 20323,
-      "interestDebt": 8129,
-      "netAssets": 81290,
-      "bps": 8129,
-      "eps": 383.9,
-      "pbrLow": 0.64,
-      "pbrHigh": 1.53,
-      "note": "未発掘下書き。今すぐ財務確認。価格上は上昇中の押し目に近いです。買う前に財務と材料をすぐ確認します。確認前: BPS/EPS/現金/有利子負債/発行株数/直近決算",
-      "asOf": "2026-06-26",
-      "hiddenScore": "140.7",
-      "winRate": "80",
-      "averageReturn": "9.3",
-      "maxDrawdown": "-7.7",
-      "history": "6780|6760|6820|7030|7090|7010|7130|6910"
-    },
-    {
       "code": "4182",
       "name": "三菱瓦斯化学",
       "sector": "化学",
@@ -67,25 +46,25 @@ window.AUTO_HIDDEN_GEMS_DRAFT = {
       "history": "5116|5358|5424|5665|5344|5231|5273|5099"
     },
     {
-      "code": "7726",
-      "name": "黒田精工",
-      "sector": "機械",
-      "price": 1445,
+      "code": "6516",
+      "name": "山洋電気",
+      "sector": "電気機器",
+      "price": 6910,
       "shares": 10000000,
-      "cash": 4250,
-      "interestDebt": 1700,
-      "netAssets": 17000,
-      "bps": 1700,
-      "eps": 90.3,
+      "cash": 20323,
+      "interestDebt": 8129,
+      "netAssets": 81290,
+      "bps": 8129,
+      "eps": 383.9,
       "pbrLow": 0.64,
       "pbrHigh": 1.53,
       "note": "未発掘下書き。今すぐ財務確認。価格上は上昇中の押し目に近いです。買う前に財務と材料をすぐ確認します。確認前: BPS/EPS/現金/有利子負債/発行株数/直近決算",
       "asOf": "2026-06-26",
-      "hiddenScore": "139.3",
-      "winRate": "75",
-      "averageReturn": "8.6",
-      "maxDrawdown": "-4.3",
-      "history": "1473|1444|1575|1547|1519|1436|1527|1445"
+      "hiddenScore": "138.2",
+      "winRate": "80",
+      "averageReturn": "8.5",
+      "maxDrawdown": "-7.7",
+      "history": "6780|6760|6820|7030|7090|7010|7130|6910"
     },
     {
       "code": "6315",

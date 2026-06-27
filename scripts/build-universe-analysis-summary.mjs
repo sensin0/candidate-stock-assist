@@ -13,6 +13,7 @@ const priceBacktest = readCsv("universe-price-backtest.csv");
 const hiddenGems = readCsv("hidden-gems.csv");
 const promotionCandidates = readCsv("promotion-candidates.csv");
 const universeMetrics = readCsv("universe-metrics.csv");
+const universeCheckStatus = readCsv("universe-check-status.csv");
 const stockMaster = readCsv("stock-master.csv");
 
 const success = priceBacktest.filter((row) => !row.error);
@@ -24,9 +25,14 @@ const noEntry = success.filter((row) => row.judgement === "未約定");
 const timingNow = success.filter((row) => row.latestSignal === "上昇中押し目");
 const reboundWatch = success.filter((row) => row.latestSignal === "安値反転候補");
 const highZone = success.filter((row) => row.latestSignal === "高値圏");
-const confirmedMetrics = universeMetrics.filter((row) => row.asOf === "confirmed");
-const irbankMetrics = universeMetrics.filter((row) => row.asOf?.startsWith("irbank:"));
-const estimatedMetrics = universeMetrics.filter((row) => row.asOf !== "confirmed" && !row.asOf?.startsWith("irbank:"));
+const listedCodes = new Set(listed.map((row) => row.code));
+const listedMetrics = universeMetrics.filter((row) => listedCodes.has(row.code));
+const outsideUniverseMetrics = universeMetrics.filter((row) => !listedCodes.has(row.code));
+const confirmedMetrics = listedMetrics.filter((row) => row.asOf === "confirmed");
+const irbankMetrics = listedMetrics.filter((row) => row.asOf?.startsWith("irbank:"));
+const unavailableMetrics = listedMetrics.filter((row) => row.asOf === "unavailable");
+const estimatedMetrics = listedMetrics.filter((row) => row.asOf !== "confirmed" && !row.asOf?.startsWith("irbank:") && row.asOf !== "unavailable");
+const checkedStatus = universeCheckStatus.filter((row) => row.status && row.status !== "未チェック");
 
 const lines = [
   "# 日本株全体分析サマリー",
@@ -71,10 +77,13 @@ const lines = [
   "",
   "## 財務データの状態",
   "",
-  `- 財務メトリクス対象: ${universeMetrics.length}/${listed.length}件`,
+  `- 財務メトリクス対象: ${listedMetrics.length}/${listed.length}件`,
+  `- 自動チェック済み: ${checkedStatus.length || listedMetrics.length}/${listed.length}件`,
+  `- 母集団外の通常候補など: ${outsideUniverseMetrics.length}件`,
   `- 確認済み財務メトリクス: ${confirmedMetrics.length}件`,
   `- IRBANK自動取得財務メトリクス: ${irbankMetrics.length}件`,
   `- 確認前推定: ${estimatedMetrics.length}件`,
+  `- 取得不可で自動除外: ${unavailableMetrics.length}件`,
   "",
   "## 価格検証で良さそう上位",
   "",

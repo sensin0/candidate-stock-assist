@@ -1,14 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-27T01:22:03.633Z",
+  "generatedAt": "2026-06-27T01:44:44.818Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-27T01:22:03.615Z",
-  "priceFetchedAt": "2026-06-27T01:22:03.622Z",
-  "disclosureFetchedAt": "2026-06-27T01:22:03.623Z",
-  "edinetFetchedAt": "2026-06-27T01:22:03.625Z",
+  "fetchedAt": "2026-06-27T01:44:44.801Z",
+  "priceFetchedAt": "2026-06-27T01:44:44.808Z",
+  "disclosureFetchedAt": "2026-06-27T01:44:44.810Z",
+  "edinetFetchedAt": "2026-06-27T01:44:44.812Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -2047,8 +2047,8 @@ window.AUTO_STOCK_DATA = {
         "averageReturn": 0,
         "maxDrawdown": 0,
         "bestScore": -100,
-        "financialScreeningStatus": "昇格確認優先",
-        "financialScreeningCautions": "大きな注意なし"
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     }
   ],

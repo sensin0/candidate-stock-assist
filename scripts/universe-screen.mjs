@@ -6,9 +6,12 @@ import { parseCsvRecords } from "./csv-utils.mjs";
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const universePath = path.join(rootDir, "data", "listed-universe.csv");
 const metricsPath = path.join(rootDir, "data", "universe-metrics.csv");
+const checkStatusPath = path.join(rootDir, "data", "universe-check-status.csv");
 
 const universe = parseCsvRecords(fs.readFileSync(universePath, "utf8"));
 const metrics = parseCsvRecords(fs.readFileSync(metricsPath, "utf8"));
+const checkStatus = fs.existsSync(checkStatusPath) ? parseCsvRecords(fs.readFileSync(checkStatusPath, "utf8")) : [];
+const checked = checkStatus.filter((row) => row.status && row.status !== "未チェック");
 const universeByCode = new Map(universe.map((item) => [item.code, item]));
 const ranked = metrics
   .map((row) => scoreCandidate(row, universeByCode.get(row.code)))
@@ -17,8 +20,9 @@ const ranked = metrics
 
 console.log("日本株一次スクリーニング");
 console.log(`母集団: ${universe.length}件`);
+console.log(`自動チェック済み: ${checked.length || metrics.length}/${universe.length}件`);
 console.log(`判定可能: ${ranked.length}件`);
-console.log(`未判定: ${Math.max(0, universe.length - ranked.length)}件`);
+console.log(`投資点数なし: ${Math.max(0, universe.length - ranked.length)}件`);
 console.log("");
 console.log("上位候補");
 ranked.slice(0, 10).forEach((item, index) => {

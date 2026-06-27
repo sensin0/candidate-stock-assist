@@ -12,6 +12,7 @@ const steps = [
   ["日本株価格バックテスト", "scripts/research-universe-price-backtest.mjs"],
   ["日本株全体財務データ取得", "scripts/refresh-universe-financial-facts.mjs"],
   ["日本株財務メトリクス範囲更新", "scripts/build-universe-metrics.mjs"],
+  ["日本株全体チェック状態生成", "scripts/build-universe-check-status.mjs"],
   ["2倍候補調査", "scripts/analyze-multibagger-candidates.mjs"],
   ["通常候補への昇格候補抽出", "scripts/build-promotion-candidates.mjs"],
   ["通常候補入力下書き生成", "scripts/build-stock-master-draft-from-promotions.mjs"],
