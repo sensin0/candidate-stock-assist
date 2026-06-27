@@ -1,14 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-27T12:04:01.869Z",
+  "generatedAt": "2026-06-27T12:08:17.554Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-27T12:04:01.832Z",
-  "priceFetchedAt": "2026-06-27T12:04:01.840Z",
-  "disclosureFetchedAt": "2026-06-27T12:04:01.842Z",
-  "edinetFetchedAt": "2026-06-27T12:04:01.843Z",
+  "fetchedAt": "2026-06-27T12:08:17.522Z",
+  "priceFetchedAt": "2026-06-27T12:08:17.530Z",
+  "disclosureFetchedAt": "2026-06-27T12:08:17.532Z",
+  "edinetFetchedAt": "2026-06-27T12:08:17.533Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -1158,7 +1158,7 @@ window.AUTO_STOCK_DATA = {
       "code": "9402",
       "name": "中部日本放送",
       "sector": "情報通信",
-      "price": 780,
+      "price": 1220,
       "shares": 26850877,
       "treasuryShares": 0,
       "cash": 17000,
@@ -1186,7 +1186,8 @@ window.AUTO_STOCK_DATA = {
         718,
         741,
         757,
-        780
+        780,
+        1220
       ],
       "edinet": {
         "documentType": "annual",
@@ -1194,7 +1195,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/9402"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "9402",
@@ -2496,15 +2497,13 @@ window.AUTO_STOCK_DATA = {
     }
   ],
   "dataQuality": {
-    "ok": false,
+    "ok": true,
     "providerWarnings": [],
     "validationWarnings": [],
     "externalReferenceWarnings": [],
     "missingBacktest": [],
     "missingPrice": [],
-    "stalePrice": [
-      "9402 中部日本放送: 株価が8日前"
-    ],
+    "stalePrice": [],
     "missingEdinet": [],
     "manualInputs": [
       "6505 東洋電機製造",
@@ -2519,19 +2518,15 @@ window.AUTO_STOCK_DATA = {
       "8818 京阪神ビルディング"
     ],
     "stale": [],
-    "nextFixes": [
-      "最新株価を確認: 9402 中部日本放送: 株価が8日前"
-    ],
+    "nextFixes": [],
     "readiness": {
-      "score": 99,
+      "score": 100,
       "label": "本番運用OK",
-      "blockers": [
-        "最新株価を更新: 34/35"
-      ]
+      "blockers": []
     },
     "coverage": {
       "price": "35/35",
-      "freshPrice": "34/35",
+      "freshPrice": "35/35",
       "edinet": "35/35"
     }
   }

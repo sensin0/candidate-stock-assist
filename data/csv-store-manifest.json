@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-27T12:04:02.380Z",
+  "generatedAt": "2026-06-27T12:08:18.094Z",
   "totalFiles": 31,
-  "totalRows": 19830,
-  "totalBytes": 3141215,
+  "totalRows": 19829,
+  "totalBytes": 3141029,
   "problems": [],
   "files": [
     {
@@ -351,8 +351,8 @@
     },
     {
       "name": "price-refresh-queue.csv",
-      "bytes": 290,
-      "rows": 1,
+      "bytes": 103,
+      "rows": 0,
       "columns": 13,
       "headers": [
         "rank",
@@ -375,7 +375,7 @@
     },
     {
       "name": "price-updates.csv",
-      "bytes": 742,
+      "bytes": 743,
       "rows": 35,
       "columns": 3,
       "headers": [

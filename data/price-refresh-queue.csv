@@ -1,2 +1,1 @@
 rank,priority,code,name,price,priceAsOf,priceAge,buyLine,targetPrice,buyRatio,upside,reason,nextAction
-1,92,9402,中部日本放送,780,2026-06-19,8,850,4467.6,0.92,472.77,株価が8日前 / 買い場に近い / ネット現金厚め,最新株価を確認して price-updates.csv に追加

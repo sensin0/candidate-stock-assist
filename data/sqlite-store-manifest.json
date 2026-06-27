@@ -1,9 +1,9 @@
 ﻿{
-  "generatedAt": "2026-06-27T12:04:03.311945+00:00",
+  "generatedAt": "2026-06-27T12:08:19.207117+00:00",
   "database": "data/candidate-stock-assist.sqlite",
   "databaseBytes": 4333568,
   "tables": 31,
-  "rows": 19830,
+  "rows": 19829,
   "integrity": "ok",
   "imported": [
     {
@@ -93,16 +93,16 @@
     {
       "table": "price_refresh_queue",
       "csv": "price-refresh-queue.csv",
-      "rows": 1,
+      "rows": 0,
       "columns": 13,
-      "bytes": 290
+      "bytes": 103
     },
     {
       "table": "price_updates",
       "csv": "price-updates.csv",
       "rows": 35,
       "columns": 3,
-      "bytes": 742
+      "bytes": 743
     },
     {
       "table": "promotion_candidates",

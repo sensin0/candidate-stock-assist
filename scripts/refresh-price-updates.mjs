@@ -62,6 +62,11 @@ async function fetchLatestClose(code) {
     });
     if (result) return { ...result, code };
   }
+  const quotePage = await fetchLatestCloseFromYahooQuotePage(code).catch((error) => {
+    errors.push(`quote-page: ${error.message}`);
+    return null;
+  });
+  if (quotePage) return { ...quotePage, code };
   throw new Error(errors.join(" / ") || "最新株価なし");
 }
 
@@ -92,6 +97,23 @@ async function fetchLatestCloseWithSymbol(symbol) {
   const latest = prices.at(-1);
   if (!latest) throw new Error("最新株価なし");
   return { ok: true, close: round(latest.close), date: latest.date };
+}
+
+async function fetchLatestCloseFromYahooQuotePage(code) {
+  const url = `https://finance.yahoo.co.jp/quote/${code}.N`;
+  const response = await fetch(url, {
+    headers: { "User-Agent": "Mozilla/5.0" },
+    signal: AbortSignal.timeout(12_000),
+  });
+  if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+  const html = await response.text();
+  const priceMatch = html.match(/StyledNumber__value[^>]*>([\d,]+(?:\.\d+)?)<\/span>[\s\S]{0,1600}<time>(\d{1,2})\/(\d{1,2})<\/time>/);
+  if (!priceMatch) throw new Error("HTMLから株価を取得できません");
+  return {
+    ok: true,
+    close: round(priceMatch[1].replaceAll(",", "")),
+    date: dateFromMonthDay(Number(priceMatch[2]), Number(priceMatch[3])),
+  };
 }
 
 function readCsv(filePath) {
@@ -167,4 +189,11 @@ function yen(value) {
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function dateFromMonthDay(month, day) {
+  const now = new Date();
+  let year = now.getFullYear();
+  if (month > now.getMonth() + 1) year -= 1;
+  return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 }
