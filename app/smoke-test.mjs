@@ -224,6 +224,9 @@ if (!result.lifecycle.includes("買いから売りまで")) {
 if (!result.lynchChart.includes("リンチ・チャート")) {
   failures.push("リンチ・チャートが生成されていません");
 }
+if (!/\d{4}\/\d{2}/.test(result.lynchChart)) {
+  failures.push("リンチ・チャートに日付ラベルがありません");
+}
 if (!result.inlineLynchPreview.includes("inline-mobile-lynch-preview") || !result.inlineLynchPreview.includes("リンチ・チャート")) {
   failures.push("選択銘柄直下のリンチ・チャートプレビューが生成されていません");
 }

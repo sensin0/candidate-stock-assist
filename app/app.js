@@ -2358,8 +2358,8 @@ function renderLynchChart(stock) {
   }
 
   const width = 880;
-  const height = 330;
-  const pad = { left: 62, right: 36, top: 38, bottom: 58 };
+  const height = 360;
+  const pad = { left: 62, right: 36, top: 38, bottom: 86 };
   const perLow = Number(stock.perLow || 0) > 0 ? Number(stock.perLow) : Math.max(1, Number(stock.pbrLow || 0) * 20);
   const perAvg = Number(stock.perAvg || 0) > 0 ? Number(stock.perAvg) : Math.max(perLow, (perLow + Number(stock.perHigh || perLow * 1.6)) / 2);
   const perHigh = Number(stock.perHigh || 0) > 0 ? Number(stock.perHigh) : Math.max(perAvg * 1.35, perAvg + 4);
@@ -2376,6 +2376,11 @@ function renderLynchChart(stock) {
   const x = (index) => pad.left + (index / Math.max(1, stock.history.length - 1)) * (width - pad.left - pad.right);
   const y = (value) => pad.top + (1 - (value - min) / (max - min)) * (height - pad.top - pad.bottom);
   const pricePoints = stock.history.map((value, index) => `${x(index)},${y(value)}`).join(" ");
+  const historyDates = estimatedHistoryDates(stock);
+  const dateTicks = lynchDateTicks(historyDates).map((tick) => `
+    <line x1="${x(tick.index)}" x2="${x(tick.index)}" y1="${height - pad.bottom}" y2="${height - pad.bottom + 6}" stroke="#b9c1bc" />
+    <text x="${x(tick.index)}" y="${height - pad.bottom + 22}" text-anchor="${tick.anchor}" font-size="11" fill="#65706b">${tick.label}</text>
+  `).join("");
   const seriesPoints = (series) => series.map((value, index) => `${x(index)},${y(value)}`).join(" ");
   const valueLine = (series, color, label, dash = "") => `
     <polyline points="${seriesPoints(series)}" fill="none" stroke="${color}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" ${dash ? `stroke-dasharray="${dash}"` : ""} />
@@ -2403,12 +2408,14 @@ function renderLynchChart(stock) {
       ${valueLine(lowSeries, "#1f8a55", `割安 PER${Math.round(perLow * 10) / 10}`, "5 5")}
       <polyline points="${pricePoints}" fill="none" stroke="#1d2522" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
       <circle cx="${x(stock.history.length - 1)}" cy="${y(stock.price)}" r="7" fill="${calloutColor}" />
+      <line x1="${pad.left}" x2="${width - pad.right}" y1="${height - pad.bottom}" y2="${height - pad.bottom}" stroke="#d9dfdb" />
+      ${dateTicks}
       <g transform="translate(${Math.min(x(stock.history.length - 1) + 18, width - 270)}, ${Math.max(48, y(stock.price) - 48)})">
         <rect width="244" height="54" rx="8" fill="#ffffff" stroke="${calloutColor}" />
         <text x="12" y="22" class="callout" fill="${calloutColor}">${position}</text>
         <text x="12" y="40" font-size="12" fill="#65706b">現在PER ${Math.round(currentPer * 10) / 10}倍 / EPS ${Math.round(eps * 10) / 10}</text>
       </g>
-      <g transform="translate(${pad.left}, ${height - 36})">
+      <g transform="translate(${pad.left}, ${height - 34})">
         <line x1="0" x2="24" y1="0" y2="0" stroke="#1d2522" stroke-width="4" />
         <text x="32" y="4" font-size="12" fill="#65706b">株価</text>
         <line x1="88" x2="112" y1="0" y2="0" stroke="#246a9f" stroke-width="2.4" />
@@ -2421,6 +2428,44 @@ function renderLynchChart(stock) {
       <text x="${pad.left}" y="${height - 14}" font-size="12" fill="#65706b">価値ラインは現在EPSからの推定です。実際のEPS推移は決算確認後に更新します。</text>
     </svg>
   `;
+}
+
+function estimatedHistoryDates(stock) {
+  const length = Math.max(1, stock.history?.length ?? 1);
+  const endDate = parseDateOnly(stock.priceAsOf)
+    ?? parseDateOnly(window.AUTO_STOCK_DATA?.priceFetchedAt)
+    ?? parseDateOnly(window.AUTO_STOCK_DATA?.generatedAt)
+    ?? new Date();
+  return Array.from({ length }, (_, index) => addMonths(endDate, index - (length - 1)));
+}
+
+function lynchDateTicks(dates) {
+  const lastIndex = Math.max(0, dates.length - 1);
+  const indexes = [...new Set([0, Math.floor(lastIndex / 2), lastIndex])];
+  return indexes.map((index) => ({
+    index,
+    label: formatChartDate(dates[index]),
+    anchor: index === 0 ? "start" : index === lastIndex ? "end" : "middle",
+  }));
+}
+
+function parseDateOnly(value) {
+  if (!value) return null;
+  const match = String(value).match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!match) return null;
+  const date = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+function addMonths(date, months) {
+  const next = new Date(date);
+  next.setMonth(next.getMonth() + months);
+  return next;
+}
+
+function formatChartDate(date) {
+  if (!date || Number.isNaN(date.getTime())) return "";
+  return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, "0")}`;
 }
 
 function estimatedEpsSeries(length, currentEps) {
