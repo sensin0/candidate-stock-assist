@@ -1107,7 +1107,6 @@ function todayRankingItems() {
     reason: todayStockReason(stock),
     item: stock,
   }));
-  const knownStockCodes = new Set(stockItems.map((entry) => entry.code));
   const researchItems = [
     ...filteredResearchItems(window.AUTO_RESEARCH_DATA?.autoBuyCandidates ?? [])
       .slice(0, 40)
@@ -1127,7 +1126,7 @@ function todayRankingItems() {
     ...filteredFinancialConfirmationItems(window.AUTO_FINANCIAL_CONFIRMATION?.top ?? [])
       .slice(0, 40)
       .map((item) => todayFinancialItem(item)),
-  ].filter((entry) => !knownStockCodes.has(entry.code));
+  ];
 
   const byCode = new Map();
   for (const entry of [...stockItems, ...researchItems]) {
@@ -1143,10 +1142,10 @@ function todayStockPriority(stock) {
   if (stock.assist.label === "今買い候補") return 100;
   if (stock.assist.label === "買い場に近い") return 90;
   if (stock.assist.label === "財務確認待ち") return 76;
-  if (stock.assist.label === "データ更新待ち") return 68;
+  if (stock.assist.label === "データ更新待ち") return 54;
   if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") return 72;
-  if (stock.assist.label === "保有継続候補") return 62;
-  if (stock.assist.label === "まだ待つ") return 52;
+  if (stock.assist.label === "保有継続候補") return 48;
+  if (stock.assist.label === "まだ待つ") return 36;
   if (stock.assist.label === "財務慎重確認") return 42;
   if (stock.assist.label === "検証弱く見送り") return 22;
   if (stock.assist.label === "財務で見送り") return 18;
@@ -1162,12 +1161,28 @@ function todayStockScore(stock) {
   if (stock.assist.label === "データ更新待ち") score += 8;
   if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") score += 18;
   if (stock.watchlist) score += 10;
-  if (isGoodBacktest(stock.backtest)) score += 8;
+  score += backtestQualityScore(stock.backtest);
   if (stock.dataFreshness?.level !== "ok") score -= 12;
   if (stock.assist.label === "財務慎重確認") score -= 32;
   if (stock.assist.label === "検証弱く見送り") score -= 55;
   if (stock.assist.label === "財務で見送り") score -= 60;
   if (stock.assist.label === "リスクで見送り") score -= 65;
+  return Math.round(score * 10) / 10;
+}
+
+function backtestQualityScore(backtest) {
+  if (!backtest || Number(backtest.trades || 0) < 1) return -10;
+  const trades = Number(backtest.trades || 0);
+  const winRate = Number(backtest.winRate || 0);
+  const averageReturn = Number(backtest.averageReturn || 0);
+  const maxDrawdown = Number(backtest.maxDrawdown || 0);
+  let score = 0;
+  score += Math.min(10, trades * 3);
+  score += Math.max(-18, Math.min(18, (winRate - 50) * 0.45));
+  score += Math.max(-22, Math.min(24, averageReturn * 1.5));
+  score += Math.max(-20, Math.min(8, maxDrawdown * 0.7 + 10));
+  if (isGoodBacktest(backtest)) score += 10;
+  if (isBadBacktest(backtest)) score -= 32;
   return Math.round(score * 10) / 10;
 }
 
@@ -1184,35 +1199,53 @@ function todayStockReason(stock) {
 }
 
 function todayResearchItem(item, sourceType, label, bonus) {
+  const backtestScore =
+    (Number(item.trades ?? item.backtestTrades ?? 0) >= 1 ? 6 : -8)
+    + Math.max(-14, Math.min(18, Number(item.averageReturn ?? item.backtestAverageReturn ?? 0) * 1.3))
+    + Math.max(-12, Math.min(14, (Number(item.winRate ?? item.backtestWinRate ?? 0) - 50) * 0.35))
+    + Math.max(-12, Math.min(6, Number(item.maxDrawdown ?? item.backtestMaxDrawdown ?? 0) * 0.5 + 7));
   const score = (item.qualityRank ?? item.timingRank ?? item.score ?? 0)
     + (item.timingAction === "押し目買い候補" ? 26 : 0)
     + (item.timingAction === "初回買い候補" ? 22 : 0)
     + (item.timingAction === "買わない" ? -80 : 0)
     + (item.signal === "高値圏" ? -18 : 0)
+    + backtestScore
     + bonus;
   return {
     kind: "research",
     code: item.code,
     sourceType,
     label,
-    priority: sourceType === "autoBuyCandidates" ? 48 : sourceType === "researchTiming" ? 40 : 34,
+    priority: researchPriority(item, sourceType),
     sortScore: Math.round(score * 10) / 10,
     reason: item.timingAction || item.signal || label,
     item,
   };
 }
 
+function researchPriority(item, sourceType) {
+  if (sourceType === "autoBuyCandidates") return 74;
+  if (sourceType === "researchTiming") {
+    return ["押し目買い候補", "初回買い候補"].includes(item.timingAction) ? 70 : 48;
+  }
+  if (sourceType === "researchMultibagger") return 42;
+  return 32;
+}
+
 function todayHiddenGemItem(item) {
   const score = (item.hiddenScore ?? item.qualityRank ?? item.score ?? 0)
     + (item.assistAction === "今すぐ財務確認" ? 22 : 0)
     + (item.signal === "上昇中押し目" ? 10 : 0)
+    + Math.max(-14, Math.min(18, Number(item.averageReturn ?? 0) * 1.3))
+    + Math.max(-12, Math.min(14, (Number(item.winRate ?? 0) - 50) * 0.35))
+    + Math.max(-12, Math.min(6, Number(item.maxDrawdown ?? 0) * 0.5 + 7))
     + (item.caution ? -8 : 0);
   return {
     kind: "hiddenGems",
     code: item.code,
     sourceType: "hiddenGems",
     label: "未発掘",
-    priority: 34,
+    priority: item.assistAction === "今すぐ財務確認" ? 72 : 38,
     sortScore: Math.round(score * 10) / 10,
     reason: item.assistAction || item.status || "未発掘候補",
     item,
@@ -1220,13 +1253,18 @@ function todayHiddenGemItem(item) {
 }
 
 function todayFinancialItem(item) {
-  const score = Math.min(105, (item.confirmationScore ?? 0) * 0.55) + 8;
+  const backtestScore =
+    (Number(item.backtestTrades ?? 0) >= 1 ? 6 : -8)
+    + Math.max(-14, Math.min(18, Number(item.backtestAverageReturn ?? 0) * 1.3))
+    + Math.max(-12, Math.min(14, (Number(item.backtestWinRate ?? 0) - 50) * 0.35))
+    + Math.max(-12, Math.min(6, Number(item.backtestMaxDrawdown ?? 0) * 0.5 + 7));
+  const score = Math.min(105, (item.confirmationScore ?? 0) * 0.55) + 8 + backtestScore;
   return {
     kind: "financialConfirmation",
     code: item.code,
     sourceType: "financialConfirmation",
     label: "財務確認",
-    priority: 30,
+    priority: (item.status || "").includes("最優先") ? 68 : 62,
     sortScore: Math.round(score * 10) / 10,
     reason: item.status || "買う前に確認",
     item,
@@ -2658,14 +2696,14 @@ function renderMorningReport() {
 }
 
 function morningPriorities(visible) {
-  return [...visible]
-    .map((stock) => ({
-      stock,
-      priority: priorityScore(stock),
-      reason: priorityReason(stock),
-    }))
-    .sort((a, b) => b.priority - a.priority)
-    .slice(0, 7);
+  return todayRankingItems()
+    .slice(0, 7)
+    .map((entry) => ({
+      entry,
+      stock: entry.kind === "stock" ? entry.item : null,
+      priority: entry.priority,
+      reason: entry.kind === "stock" ? priorityReason(entry.item) : researchPriorityReason(entry),
+    }));
 }
 
 function priorityScore(stock) {
@@ -2697,6 +2735,32 @@ function priorityReason(stock) {
   if (stock.dataFreshness?.level !== "ok") return `データ確認。${stock.dataFreshness.warnings[0]}`;
   if (stock.disclosures?.length) return `開示あり。${stock.disclosures[0].title}`;
   return topReason(stock);
+}
+
+function researchPriorityReason(entry) {
+  const item = entry.item;
+  if (entry.sourceType === "hiddenGems") {
+    return `${item.assistAction || "財務確認"}。勝率${pct(item.winRate ?? 0)}、平均${pct(item.averageReturn ?? 0)}です`;
+  }
+  if (entry.sourceType === "financialConfirmation") {
+    return `${item.status || "財務確認"}。確認完了まで買わない`;
+  }
+  if (entry.sourceType === "autoBuyCandidates") {
+    return `${item.status || "自動買い候補予備軍"}。通常候補へ昇格して原資料確認`;
+  }
+  if (entry.sourceType === "researchTiming") {
+    return `${item.timingAction || "上昇タイミング"}。勝率${pct(item.winRate ?? 0)}、平均${pct(item.averageReturn ?? 0)}です`;
+  }
+  return `${entry.label}。買う前に財務と材料を確認`;
+}
+
+function researchNextAction(entry) {
+  const item = entry.item;
+  if (entry.sourceType === "hiddenGems") return item.nextCheck || "BPS、EPS、現金、有利子負債、直近決算";
+  if (entry.sourceType === "financialConfirmation") return item.nextStep || "BPS、EPS、現金、負債、発行株数を確認";
+  if (entry.sourceType === "autoBuyCandidates") return item.action || "有報・決算短信・負債・利益継続性を確認";
+  if (entry.sourceType === "researchTiming") return "財務、材料、出来高を確認";
+  return "財務、材料、出来高を確認";
 }
 
 function morningDataOverview(visible) {
@@ -2805,9 +2869,13 @@ function priorityMarkdown(title, list) {
   if (!list.length) return `## ${title}\n該当なし\n`;
   return [
     `## ${title}`,
-    ...list.map(({ stock, reason }, index) =>
-      `- ${index + 1}. ${stock.code} ${stock.name}: ${stock.assist.label}。${reason} / 次に確認: ${stock.assist.nextActions[0]}`
-    ),
+    ...list.map(({ entry, stock, reason }, index) => {
+      if (stock) {
+        return `- ${index + 1}. ${stock.code} ${stock.name}: ${stock.assist.label}。${reason} / 次に確認: ${stock.assist.nextActions[0]}`;
+      }
+      const item = entry.item;
+      return `- ${index + 1}. ${item.code} ${item.name}: ${entry.label}。${reason} / 次に確認: ${researchNextAction(entry)}`;
+    }),
     "",
   ].join("\n");
 }
