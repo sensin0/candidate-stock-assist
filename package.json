@@ -15,6 +15,7 @@
     "manual:confirm": "node scripts/confirm-stock.mjs",
     "privacy:check": "node scripts/privacy-check.mjs",
     "privacy:report": "node scripts/privacy-report.mjs",
+    "csv:audit": "node scripts/audit-csv-store.mjs",
     "universe:check": "node scripts/universe-check.mjs",
     "universe:financial": "node scripts/refresh-universe-financial-facts.mjs",
     "universe:update": "node scripts/update-listed-universe.mjs",

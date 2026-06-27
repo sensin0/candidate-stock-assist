@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { backtestStock } from "./backtest-core.mjs";
-import { readRuntimeStocks } from "./runtime-stock-source.mjs";
+import { readRuntimeStocks } from "./runtime-stock-data.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const stockMasterPath = path.join(rootDir, "data", "stock-master.csv");

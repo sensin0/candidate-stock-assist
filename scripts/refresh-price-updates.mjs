@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCsvRecords } from "./csv-utils.mjs";
-import { readRuntimeStocks } from "./runtime-stock-source.mjs";
+import { readRuntimeStocks } from "./runtime-stock-data.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dataDir = path.join(rootDir, "data");

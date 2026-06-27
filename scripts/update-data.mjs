@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { readAutoPromotionStocks } from "./runtime-stock-source.mjs";
+import { readAutoPromotionStocks } from "./runtime-stock-data.mjs";
 import { fetchStocksFromCsv } from "./providers/csv-provider.mjs";
 import { applyBacktestResults, fetchBacktestResults } from "./providers/backtest-provider.mjs";
 import { applyDisclosures, fetchDisclosures } from "./providers/disclosure-provider.mjs";

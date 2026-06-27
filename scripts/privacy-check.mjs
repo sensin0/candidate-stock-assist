@@ -22,6 +22,7 @@ const allowedMarkdown = new Set([
   "reports/latest-financial-confirmed-input.md",
   "reports/latest-promoted-candidates.md",
   "reports/latest-auto-financial-followup.md",
+  "reports/latest-csv-store-audit.md",
   "reports/latest-universe-analysis-summary.md",
   "reports/latest-universe-financial-facts.md",
   "reports/latest-universe-financial-coverage.md",

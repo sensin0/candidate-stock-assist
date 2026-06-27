@@ -25,7 +25,8 @@ const requiredFiles = [
   "app/generated-financial-screening.js",
   "scripts/build-auto-financial-followup.mjs",
   "scripts/update-data.mjs",
-  "scripts/runtime-stock-source.mjs",
+  "scripts/audit-csv-store.mjs",
+  "scripts/runtime-stock-data.mjs",
   "scripts/backtest-core.mjs",
   "scripts/backtest-timing.mjs",
   "scripts/research-universe-price-backtest.mjs",
@@ -120,6 +121,7 @@ const requiredFiles = [
   "data/auto-financial-followup.csv",
   "data/stock-master-input-draft.csv",
   "data/stock-master-expanded-preview.csv",
+  "data/csv-store-manifest.json",
   "reports/latest-universe-price-backtest.md",
   "reports/latest-multibagger-candidates.md",
   "reports/latest-promotion-candidates.md",
@@ -140,6 +142,7 @@ const requiredFiles = [
   "reports/latest-production-next-steps.md",
   "reports/latest-stock-master-draft.md",
   "reports/latest-stock-master-expanded-preview.md",
+  "reports/latest-csv-store-audit.md",
 ];
 
 const missing = requiredFiles.filter((file) => !fs.existsSync(path.join(rootDir, file)));
@@ -166,7 +169,8 @@ const checks = [
   ["stock master builder", process.execPath, ["scripts/build-stock-master-from-input.test.mjs"]],
   ["manual confirm helper", process.execPath, ["scripts/confirm-stock.test.mjs"]],
   ["privacy guard", process.execPath, ["scripts/privacy-check.mjs"]],
-  ["runtime stock source syntax", process.execPath, ["--check", "scripts/runtime-stock-source.mjs"]],
+  ["csv store audit", process.execPath, ["scripts/audit-csv-store.mjs"]],
+  ["runtime stock data syntax", process.execPath, ["--check", "scripts/runtime-stock-data.mjs"]],
   ["listed universe", process.execPath, ["scripts/universe-check.mjs"]],
   ["universe screening", process.execPath, ["scripts/universe-screen.mjs"]],
   ["universe buy candidates syntax", process.execPath, ["--check", "scripts/build-universe-buy-candidates.mjs"]],
