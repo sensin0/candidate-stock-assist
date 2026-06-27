@@ -1,14 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-27T12:08:17.554Z",
+  "generatedAt": "2026-06-27T12:18:04.118Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-27T12:08:17.522Z",
-  "priceFetchedAt": "2026-06-27T12:08:17.530Z",
-  "disclosureFetchedAt": "2026-06-27T12:08:17.532Z",
-  "edinetFetchedAt": "2026-06-27T12:08:17.533Z",
+  "fetchedAt": "2026-06-27T12:18:04.077Z",
+  "priceFetchedAt": "2026-06-27T12:18:04.085Z",
+  "disclosureFetchedAt": "2026-06-27T12:18:04.088Z",
+  "edinetFetchedAt": "2026-06-27T12:18:04.090Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -890,7 +890,7 @@ window.AUTO_STOCK_DATA = {
         "code": "3471",
         "bestStrategyId": "value-line",
         "bestStrategyLabel": "買いライン到達で買い",
-        "timingLabel": "待つ",
+        "timingLabel": "財務で見送り",
         "buyTiming": "買いライン到達 (270,000円以下)",
         "sellTiming": "目標の90%付近 (410,625円目安)",
         "confidence": "参考",
@@ -900,8 +900,8 @@ window.AUTO_STOCK_DATA = {
         "averageReturn": 0,
         "maxDrawdown": 0,
         "bestScore": -100,
-        "financialScreeningStatus": "入力待ち",
-        "financialScreeningCautions": "未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認"
+        "financialScreeningStatus": "見送り寄り",
+        "financialScreeningCautions": "ネット有利子負債が重い -44.36%"
       }
     },
     {

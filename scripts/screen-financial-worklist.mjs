@@ -33,6 +33,7 @@ function screenRow(row) {
   const netCashRatio = marketCap > 0 ? netCash / marketCap : 0;
   const debtAssetRatio = number(row.checkedNetAssets) > 0 ? number(row.checkedInterestDebt) / number(row.checkedNetAssets) : 0;
   const missing = missingFields(row);
+  const estimatedOnly = row.status === "推定下書き・要確認";
   const reasons = [];
   const cautions = [];
   let score = 50;
@@ -88,6 +89,11 @@ function screenRow(row) {
     cautions.push("有利子負債がやや重い");
   }
 
+  if (estimatedOnly) {
+    score = Math.min(score, 57);
+    cautions.push("推定下書きの補完値なので自動昇格しない");
+  }
+
   const status = statusFor(score, missing);
   return {
     rank: row.priorityRank,
@@ -104,7 +110,7 @@ function screenRow(row) {
     netCashRatio: round(netCashRatio * 100),
     debtAssetRatio: round(debtAssetRatio * 100),
     sourceUrl: row.sourceUrl,
-    action: actionFor(status),
+    action: estimatedOnly ? "原資料確認まで通常候補へ自動昇格しない" : actionFor(status),
     reasons: reasons.slice(0, 3).join(" / ") || "確認材料が不足",
     cautions: cautions.slice(0, 3).join(" / ") || "大きな注意なし",
   };

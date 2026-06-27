@@ -1,9 +1,9 @@
 # CSVストア監査
 
-生成日時: 2026-06-27T12:08:18.094Z
+生成日時: 2026-06-27T12:18:04.668Z
 
 CSVファイル: 31件
-総行数: 19,829行
+総行数: 19,831行
 総サイズ: 3.14MB
 問題: 0件
 
@@ -27,13 +27,13 @@ CSVファイル: 31件
 ## 全CSV
 
 - auto-financial-followup.csv: 19行 / 21列 / 10.41KB
-- backtest-results.csv: 35行 / 15列 / 6.68KB
+- backtest-results.csv: 35行 / 15列 / 6.62KB
 - disclosures.csv: 5行 / 4列 / 664B
 - edinet-facts.csv: 20行 / 14列 / 2.42KB
 - financial-confirmation-queue.csv: 58行 / 14列 / 23.97KB
-- financial-confirmation-worklist.csv: 58行 / 37列 / 28.91KB
+- financial-confirmation-worklist.csv: 58行 / 37列 / 28.89KB
 - financial-confirmed-input.csv: 0行 / 27列 / 240B
-- financial-worklist-screened.csv: 58行 / 17列 / 15.98KB
+- financial-worklist-screened.csv: 58行 / 17列 / 16.08KB
 - hidden-gems.csv: 200行 / 24列 / 79.14KB
 - listed-universe.csv: 3,728行 / 4列 / 281.38KB
 - multibagger-candidates.csv: 217行 / 17列 / 76.13KB
@@ -46,7 +46,7 @@ CSVファイル: 31件
 - stock-master-hidden-gems-draft.csv: 6行 / 14列 / 2.15KB
 - stock-master-input-draft.csv: 50行 / 14列 / 17.48KB
 - stock-master-input.csv: 3行 / 13列 / 459B
-- stock-master-promoted.csv: 33行 / 27列 / 8.65KB
+- stock-master-promoted.csv: 35行 / 27列 / 9.18KB
 - stock-master-universe-promotion-draft.csv: 0行 / 14列 / 95B
 - stock-master.csv: 35行 / 27列 / 9.18KB
 - stock-master.generated.csv: 3行 / 27列 / 810B

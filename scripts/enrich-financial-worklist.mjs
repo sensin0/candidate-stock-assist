@@ -7,18 +7,20 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const dataDir = path.join(rootDir, "data");
 const reportsDir = path.join(rootDir, "reports");
 const worklistPath = path.join(dataDir, "financial-confirmation-worklist.csv");
+const metricsPath = path.join(dataDir, "universe-metrics.csv");
 const outputReportPath = path.join(reportsDir, "latest-financial-worklist-enrichment.md");
-const limit = Number(process.env.FINANCIAL_ENRICH_LIMIT || 30);
+const limit = Number(process.env.FINANCIAL_ENRICH_LIMIT || 120);
 const concurrency = Number(process.env.FINANCIAL_ENRICH_CONCURRENCY || 3);
 
 const rows = readCsv(worklistPath);
+const metricsByCode = new Map(readCsv(metricsPath).map((row) => [row.code, row]));
 const targets = rows
   .filter((row) => row.confirmed !== "true")
   .filter((row) => missingCoreFields(row))
   .slice(0, limit);
 
 const enriched = await mapLimit(targets, concurrency, async (row) => {
-  const result = await fetchIrbankMetrics(row.code).catch((error) => ({ ok: false, error: error.message }));
+  const result = await fetchIrbankMetrics(row.code).catch((error) => fallbackMetrics(row, error));
   return { row, result };
 });
 
@@ -38,23 +40,60 @@ function missingCoreFields(row) {
 
 function applySuggestion(row, result) {
   if (!result?.ok) return row;
+  const status = result.confidence === "estimated"
+    ? "推定下書き・要確認"
+    : row.status === "入力待ち"
+      ? "自動入力・要確認"
+      : row.status;
   return {
     ...row,
-    status: row.status === "入力待ち" ? "自動入力・要確認" : row.status,
+    status,
     checkedShares: row.checkedShares || result.shares,
     checkedTreasuryShares: row.checkedTreasuryShares || "0",
     checkedCash: row.checkedCash || result.cash,
-    checkedSecurities: row.checkedSecurities || "0",
-    checkedInvestmentSecurities: row.checkedInvestmentSecurities || "0",
+    checkedSecurities: row.checkedSecurities || result.securities || "0",
+    checkedInvestmentSecurities: row.checkedInvestmentSecurities || result.investmentSecurities || "0",
     checkedInterestDebt: row.checkedInterestDebt || result.interestDebt,
     checkedNetAssets: row.checkedNetAssets || result.netAssets,
-    checkedRentalBook: row.checkedRentalBook || "0",
-    checkedRentalMarket: row.checkedRentalMarket || "0",
+    checkedRentalBook: row.checkedRentalBook || result.rentalBook || "0",
+    checkedRentalMarket: row.checkedRentalMarket || result.rentalMarket || "0",
     checkedBps: row.checkedBps || result.bps,
     checkedEps: row.checkedEps || result.eps,
     sourceUrl: row.sourceUrl || result.sourceUrl,
-    memo: `${row.memo || "財務確認"} / IRBANK自動入力: ${result.period}。確認後にconfirmedとqualitativeDoneをtrue`,
+    memo: `${row.memo || "財務確認"} / ${result.label}: ${result.period}。確認後にconfirmedとqualitativeDoneをtrue`,
   };
+}
+
+function fallbackMetrics(row, error) {
+  const metric = metricsByCode.get(row.code);
+  if (!metric || !hasCoreMetric(metric)) return { ok: false, error: error.message };
+  const confidence = metric.asOf === "confirmed" ? "confirmed" : "estimated";
+  return {
+    ok: true,
+    confidence,
+    label: confidence === "confirmed" ? "確認済みメトリクス補完" : `推定メトリクス補完(${metric.asOf || "unknown"})`,
+    period: metric.asOf || "fallback",
+    sourceUrl: row.sourceUrl || "",
+    shares: metric.shares,
+    bps: metric.bps,
+    eps: metric.eps,
+    netAssets: metric.netAssets,
+    interestDebt: metric.interestDebt,
+    cash: metric.cash,
+    securities: metric.securities || 0,
+    investmentSecurities: metric.investmentSecurities || 0,
+    rentalBook: metric.rentalBook || 0,
+    rentalMarket: metric.rentalMarket || 0,
+  };
+}
+
+function hasCoreMetric(row) {
+  return number(row.shares) > 0
+    && number(row.cash) >= 0
+    && number(row.interestDebt) >= 0
+    && number(row.netAssets) > 0
+    && number(row.bps) > 0
+    && row.eps !== "";
 }
 
 async function fetchIrbankMetrics(code) {
@@ -150,8 +189,8 @@ function writeReport(items) {
     "",
     `生成日時: ${new Date().toISOString()}`,
     "",
-    "IRBANKの公開ページから、BPS、EPS、純資産、有利子負債、現金等をワークシートに仮入力しました。",
-    "これは確認補助であり、通常候補へ昇格するには内容を見て `confirmed` と `qualitativeDone` を `true` にする必要があります。",
+    "IRBANKの公開ページ、確認済みメトリクス、推定下書きから、BPS、EPS、純資産、有利子負債、現金等をワークシートに仮入力しました。",
+    "これは確認補助です。推定下書きだけの補完値は自動昇格せず、通常候補へ昇格するには内容を見て `confirmed` と `qualitativeDone` を `true` にする必要があります。",
     "",
     `対象: ${items.length}件`,
     `自動入力成功: ${items.filter((item) => item.result.ok).length}件`,
@@ -166,7 +205,7 @@ function writeReport(items) {
 function reportLine(item, index) {
   const { row, result } = item;
   if (!result.ok) return `- ${index + 1}. ${row.code} ${row.name}: 取得失敗 / ${result.error}`;
-  return `- ${index + 1}. ${row.code} ${row.name}: ${result.period} / BPS ${result.bps} / EPS ${result.eps} / 純資産 ${result.netAssets}百万円 / 現金等 ${result.cash}百万円 / 有利子負債 ${result.interestDebt}百万円`;
+  return `- ${index + 1}. ${row.code} ${row.name}: ${result.label || "IRBANK自動入力"} ${result.period} / BPS ${result.bps} / EPS ${result.eps} / 純資産 ${result.netAssets}百万円 / 現金等 ${result.cash}百万円 / 有利子負債 ${result.interestDebt}百万円`;
 }
 
 function readCsv(filePath) {
@@ -225,4 +264,9 @@ function escapeCsv(value) {
 
 function round(value) {
   return Math.round(Number(value || 0) * 100) / 100;
+}
+
+function number(value) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : 0;
 }

@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-27T12:08:18.094Z",
+  "generatedAt": "2026-06-27T12:18:04.668Z",
   "totalFiles": 31,
-  "totalRows": 19829,
-  "totalBytes": 3141029,
+  "totalRows": 19831,
+  "totalBytes": 3141591,
   "problems": [],
   "files": [
     {
@@ -39,7 +39,7 @@
     },
     {
       "name": "backtest-results.csv",
-      "bytes": 6678,
+      "bytes": 6624,
       "rows": 35,
       "columns": 15,
       "headers": [
@@ -130,7 +130,7 @@
     },
     {
       "name": "financial-confirmation-worklist.csv",
-      "bytes": 28906,
+      "bytes": 28890,
       "rows": 58,
       "columns": 37,
       "headers": [
@@ -216,7 +216,7 @@
     },
     {
       "name": "financial-worklist-screened.csv",
-      "bytes": 15978,
+      "bytes": 16080,
       "rows": 58,
       "columns": 17,
       "headers": [
@@ -559,8 +559,8 @@
     },
     {
       "name": "stock-master-promoted.csv",
-      "bytes": 8654,
-      "rows": 33,
+      "bytes": 9184,
+      "rows": 35,
       "columns": 27,
       "headers": [
         "code",

@@ -77,7 +77,7 @@ const candidates = [
 ]
   .filter(Boolean)
   .filter((row) => isConfirmed(row))
-  .filter((row) => !existingByCode.has(row.code) || existingByCode.get(row.code).dataConfidence !== "確認済み")
+  .filter((row) => !isAlreadyPromoted(existingByCode.get(row.code)))
   .slice(0, limit);
 
 const merged = mergeRows(existing, candidates);
@@ -230,6 +230,10 @@ function isConfirmed(row) {
     && number(row.bps) > 0
     && confirmedConfidence
     && String(row.qualitativeDone) === "true";
+}
+
+function isAlreadyPromoted(row) {
+  return row && ["確認済み", "自動財務確認"].includes(row.dataConfidence);
 }
 
 function mergeRows(baseRows, promotedRows) {

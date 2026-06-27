@@ -1195,7 +1195,7 @@ function todayResearchItem(item, sourceType, label, bonus) {
     code: item.code,
     sourceType,
     label,
-    priority: sourceType === "autoBuyCandidates" ? 88 : sourceType === "researchTiming" ? 44 : 36,
+    priority: sourceType === "autoBuyCandidates" ? 48 : sourceType === "researchTiming" ? 40 : 34,
     sortScore: Math.round(score * 10) / 10,
     reason: item.timingAction || item.signal || label,
     item,
@@ -2464,7 +2464,7 @@ function renderChart(stock) {
         <text x="12" y="20" class="callout" fill="${calloutColor}">${assistText}</text>
         <text x="12" y="38" font-size="12" fill="#65706b">${stock.assist.reasons[0] ?? ""}</text>
       </g>
-      <text x="${pad.left}" y="${buyY - 8}" font-size="12" fill="#1f8a55">買いライン ${yen(stock.buyLine)}</text>
+      <text x="${pad.left}" y="${buyY - 8}" font-size="12" fill="#1f8a55">ここで買い候補 ${yen(stock.buyLine)}</text>
       <text x="${pad.left}" y="${targetY - 8}" font-size="12" fill="#c44536">目標株価 ${yen(stock.targetPrice)}</text>
       <text x="${currentX - 42}" y="${currentY + 24}" font-size="12" fill="#1d2522">現在 ${yen(stock.price)}</text>
       <text x="${pad.left}" y="${height - 12}" font-size="12" fill="#65706b">${timingText}</text>

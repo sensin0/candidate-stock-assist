@@ -1,9 +1,9 @@
 ﻿{
-  "generatedAt": "2026-06-27T12:08:19.207117+00:00",
+  "generatedAt": "2026-06-27T12:18:05.692899+00:00",
   "database": "data/candidate-stock-assist.sqlite",
   "databaseBytes": 4333568,
   "tables": 31,
-  "rows": 19829,
+  "rows": 19831,
   "integrity": "ok",
   "imported": [
     {
@@ -18,7 +18,7 @@
       "csv": "backtest-results.csv",
       "rows": 35,
       "columns": 15,
-      "bytes": 6678
+      "bytes": 6624
     },
     {
       "table": "disclosures",
@@ -46,7 +46,7 @@
       "csv": "financial-confirmation-worklist.csv",
       "rows": 58,
       "columns": 37,
-      "bytes": 28906
+      "bytes": 28890
     },
     {
       "table": "financial_confirmed_input",
@@ -60,7 +60,7 @@
       "csv": "financial-worklist-screened.csv",
       "rows": 58,
       "columns": 17,
-      "bytes": 15978
+      "bytes": 16080
     },
     {
       "table": "hidden_gems",
@@ -149,9 +149,9 @@
     {
       "table": "stock_master_promoted",
       "csv": "stock-master-promoted.csv",
-      "rows": 33,
+      "rows": 35,
       "columns": 27,
-      "bytes": 8654
+      "bytes": 9184
     },
     {
       "table": "stock_master_universe_promotion_draft",

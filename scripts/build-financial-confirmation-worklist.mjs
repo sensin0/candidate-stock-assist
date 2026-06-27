@@ -11,7 +11,7 @@ const promotionDraftPath = path.join(dataDir, "stock-master-input-draft.csv");
 const hiddenDraftPath = path.join(dataDir, "stock-master-hidden-gems-draft.csv");
 const outputCsvPath = path.join(dataDir, "financial-confirmation-worklist.csv");
 const outputReportPath = path.join(reportsDir, "latest-financial-confirmation-worklist.md");
-const limit = Number(process.env.FINANCIAL_WORKLIST_LIMIT || 30);
+const limit = Number(process.env.FINANCIAL_WORKLIST_LIMIT || 120);
 
 const queue = readCsv(queuePath).slice(0, limit);
 const draftByCode = new Map([
