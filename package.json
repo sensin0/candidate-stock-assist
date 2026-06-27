@@ -21,6 +21,7 @@
     "universe:metrics": "node scripts/build-universe-metrics.mjs",
     "universe:status": "node scripts/build-universe-check-status.mjs",
     "universe:buy-candidates": "node scripts/build-universe-buy-candidates.mjs",
+    "universe:buy-review": "node scripts/review-universe-buy-candidates.mjs",
     "universe:screen": "node scripts/universe-screen.mjs",
     "universe:summary": "node scripts/build-universe-analysis-summary.mjs",
     "backtest": "node scripts/backtest-timing.mjs",

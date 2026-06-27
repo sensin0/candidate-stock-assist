@@ -1455,6 +1455,7 @@ function renderResearchRankingRow(item, index, type) {
         : "広域候補";
   const comment = item.comment || signalComment(item);
   const caution = item.caution ? `<p class="freshness-line">${escapeHtml(item.caution)}</p>` : "";
+  const review = type === "autoBuyCandidates" && item.reviewStatus ? `<p class="freshness-line">昇格判定: ${escapeHtml(item.reviewStatus)}${item.reviewReasons ? ` / ${escapeHtml(item.reviewReasons)}` : ""}</p>` : "";
   const isActive = selectedResearch?.type === type && selectedResearch?.code === item.code;
   const labelClass = type === "autoBuyCandidates" ? "label-research" : "label-near";
   return `
@@ -1467,10 +1468,12 @@ function renderResearchRankingRow(item, index, type) {
         <span class="assist-label ${labelClass}">${label}</span>
       </div>
       <p class="reason">${escapeHtml(comment)}</p>
+      ${review}
       ${caution}
       <div class="ranking-meta">
         <span>${escapeHtml(item.market || "市場不明")}</span>
         ${type === "autoBuyCandidates" ? `<span>${escapeHtml(item.normalCandidate || "通常候補前")}</span>` : ""}
+        ${type === "autoBuyCandidates" && item.reviewStatus ? `<span>${escapeHtml(item.reviewStatus)}</span>` : ""}
         <span>${escapeHtml(item.signal || "待ち")}</span>
         <span>${escapeHtml(item.strategy || "価格検証")}</span>
         <span>${escapeHtml(item.timingAction || "監視")}</span>
@@ -1710,14 +1713,14 @@ function renderAutoBuyCandidateAlert(item) {
     <section class="buy-timing-alert" aria-label="自動買い候補予備軍">
       <div>
         <p class="eyebrow">全体自動判定</p>
-        <h3>正式今買い前の予備軍</h3>
+        <h3>${escapeHtml(item.reviewStatus || "正式今買い前の予備軍")}</h3>
         <p>${escapeHtml(item.action || "通常候補へ昇格する前に有報と決算短信を確認します。")}</p>
       </div>
       <div class="buy-timing-values">
         <span>点 ${Math.round((item.autoBuyScore ?? item.qualityRank ?? 0) * 10) / 10}</span>
         <span>買い比率 ${times(item.buyRatio ?? 0)}</span>
         <span>上昇余地 ${pct(item.upside ?? 0)}</span>
-        <span>${escapeHtml(item.normalCandidate || "通常候補前")}</span>
+        <span>${escapeHtml(item.reviewStatus || item.normalCandidate || "通常候補前")}</span>
       </div>
     </section>
   `;
@@ -1984,6 +1987,9 @@ function renderResearchMetrics(item) {
     ["最新シグナル", item.signal || "待ち"],
     ["検証戦略", item.strategy || "価格検証"],
     ["通常候補扱い", item.normalCandidate || "通常候補前"],
+    ["昇格判定", item.reviewStatus || "未判定"],
+    ["昇格理由", item.reviewReasons || "-"],
+    ["確認注意", item.reviewCautions || item.caution || "財務と開示を確認"],
     ["買いライン", item.buyLine ? yen(item.buyLine) : "確認後"],
     ["目標株価", item.targetPrice ? yen(item.targetPrice) : "確認後"],
     ["買い比率", item.buyRatio ? times(item.buyRatio) : "-"],
@@ -2005,6 +2011,9 @@ function renderResearchMetrics(item) {
 }
 
 function researchActionLabel(item) {
+  if (item.reviewStatus === "通常候補へ昇格OK") return "通常候補へ昇格OK";
+  if (item.reviewStatus === "今回は見送り") return "今回は見送り";
+  if (item.reviewStatus === "追加確認") return "追加確認";
   if (item.status === "自動買い候補予備軍") return "正式今買い前の予備軍";
   if (item.status === "財務注意つき予備軍") return "財務注意つき予備軍";
   if (item.timingAction) return item.timingAction;
@@ -2016,6 +2025,7 @@ function researchActionLabel(item) {
 }
 
 function researchNextActions(item) {
+  if (item.reviewNextAction) return [item.reviewNextAction, "有報でBPSと純資産を確認", "直近決算で利益継続性を確認", "出来高と急騰リスクを確認"];
   if (item.action) return [item.action, "有報でBPSと純資産を確認", "直近決算で利益継続性を確認", "出来高と急騰リスクを確認"];
   if (item.nextCheck) return String(item.nextCheck).split(/[、,]/).map((value) => value.trim()).filter(Boolean).slice(0, 4);
   return [

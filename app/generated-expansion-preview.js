@@ -1,5 +1,5 @@
 window.AUTO_EXPANSION_PREVIEW = {
-  "generatedAt": "2026-06-27T02:01:53.603Z",
+  "generatedAt": "2026-06-27T06:43:54.901Z",
   "source": "data/stock-master-expanded-preview.csv",
   "currentCount": 31,
   "previewAddCount": 50,
@@ -7,6 +7,126 @@ window.AUTO_EXPANSION_PREVIEW = {
   "items": [
     {
       "rank": 1,
+      "code": "6497",
+      "name": "ハマイ",
+      "sector": "機械",
+      "price": 1334,
+      "bps": 2594.13,
+      "eps": 146.23,
+      "pbrLow": 0.46,
+      "pbrAvg": 0.76,
+      "pbrHigh": 1.05,
+      "perAvg": 9.12,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.51倍 / 低PER 9.12倍 / ネット現金厚め 48.88% / 買いライン以下 0.76倍 / 上昇余地大 133.36% / 価格検証良好 勝率100%/平均10.6%。買い表示前に原資料確認",
+      "history": [
+        1201,
+        1241,
+        1267,
+        1307,
+        1334
+      ]
+    },
+    {
+      "rank": 2,
+      "code": "4247",
+      "name": "ポバール興業",
+      "sector": "化学",
+      "price": 1260,
+      "bps": 2288.07,
+      "eps": 116.91,
+      "pbrLow": 0.5,
+      "pbrAvg": 0.78,
+      "pbrHigh": 1.05,
+      "perAvg": 10.78,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.55倍 / ネット現金厚め 28.28% / 買いライン以下 0.9倍 / 上昇余地大 117.91% / 価格検証良好 勝率100%/平均9%。買い表示前に原資料確認",
+      "history": [
+        1134,
+        1172,
+        1197,
+        1235,
+        1260
+      ]
+    },
+    {
+      "rank": 3,
+      "code": "5388",
+      "name": "クニミネ工業",
+      "sector": "ガラス・土石製品",
+      "price": 1251,
+      "bps": 1828.69,
+      "eps": 110.85,
+      "pbrLow": 0.61,
+      "pbrAvg": 0.92,
+      "pbrHigh": 1.22,
+      "perAvg": 11.29,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.68倍 / ネット現金厚め 57.53% / 価格検証良好 勝率100%/平均8.4%。買い表示前に原資料確認",
+      "history": [
+        1126,
+        1163,
+        1188,
+        1226,
+        1251
+      ]
+    },
+    {
+      "rank": 4,
+      "code": "6518",
+      "name": "三相電機",
+      "sector": "電気機器",
+      "price": 1951,
+      "bps": 2753.94,
+      "eps": 185.7,
+      "pbrLow": 0.64,
+      "pbrAvg": 0.96,
+      "pbrHigh": 1.28,
+      "perAvg": 10.51,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "catalyst": "全体自動判定から昇格OK。ネット現金厚め 21.27% / 買いライン以下 0.89倍 / 価格検証良好 勝率100%/平均11.9%。買い表示前に原資料確認",
+      "history": [
+        1756,
+        1814,
+        1853,
+        1912,
+        1951
+      ]
+    },
+    {
+      "rank": 5,
+      "code": "2915",
+      "name": "ケンコーマヨネーズ",
+      "sector": "食料品",
+      "price": 2024,
+      "bps": 2886.77,
+      "eps": 197.25,
+      "pbrLow": 0.63,
+      "pbrAvg": 0.95,
+      "pbrHigh": 1.26,
+      "perAvg": 10.26,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.7倍 / ネット現金厚め 34.98% / 買いライン以下 0.88倍 / 価格検証良好 勝率100%/平均11.5%。買い表示前に原資料確認",
+      "history": [
+        1822,
+        1882,
+        1923,
+        1984,
+        2024
+      ]
+    },
+    {
+      "rank": 6,
       "code": "4378",
       "name": "ＣＩＮＣ",
       "sector": "情報・通信業",
@@ -33,7 +153,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 2,
+      "rank": 7,
       "code": "8338",
       "name": "筑波銀行",
       "sector": "銀行業",
@@ -60,34 +180,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 3,
-      "code": "6497",
-      "name": "ハマイ",
-      "sector": "機械",
-      "price": 1334,
-      "bps": 1334,
-      "eps": 83.4,
-      "pbrLow": 0.75,
-      "pbrAvg": 1.27,
-      "pbrHigh": 1.8,
-      "perAvg": 16,
-      "dataConfidence": "推定",
-      "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
-      "catalyst": "推定下書き。最優先で通常候補前確認。上昇中押し目。買いライン以下で、上昇余地と価格検証は条件内です。財務確認: BPS/EPS/現金/有利子負債/発行株数",
-      "history": [
-        1359,
-        1346,
-        1357,
-        1377,
-        1376,
-        1348,
-        1346,
-        1334
-      ]
-    },
-    {
-      "rank": 4,
+      "rank": 8,
       "code": "9506",
       "name": "東北電力",
       "sector": "電気・ガス業",
@@ -114,7 +207,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 5,
+      "rank": 9,
       "code": "4392",
       "name": "ＦＩＧ",
       "sector": "情報・通信業",
@@ -141,7 +234,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 6,
+      "rank": 10,
       "code": "6993",
       "name": "大黒屋ホールディングス",
       "sector": "小売業",
@@ -168,7 +261,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 7,
+      "rank": 11,
       "code": "6771",
       "name": "池上通信機",
       "sector": "電気機器",
@@ -195,7 +288,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 8,
+      "rank": 12,
       "code": "7256",
       "name": "河西工業",
       "sector": "輸送用機器",
@@ -222,34 +315,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 9,
-      "code": "6518",
-      "name": "三相電機",
-      "sector": "電気機器",
-      "price": 1951,
-      "bps": 1951,
-      "eps": 121.9,
-      "pbrLow": 0.75,
-      "pbrAvg": 1.27,
-      "pbrHigh": 1.8,
-      "perAvg": 16,
-      "dataConfidence": "推定",
-      "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
-      "catalyst": "推定下書き。最優先で通常候補前確認。上昇中押し目。買いライン以下で、上昇余地と価格検証は条件内です。財務確認: BPS/EPS/現金/有利子負債/発行株数",
-      "history": [
-        2060,
-        2055,
-        2134,
-        2065,
-        2022,
-        2034,
-        2079,
-        1951
-      ]
-    },
-    {
-      "rank": 10,
+      "rank": 13,
       "code": "3934",
       "name": "ベネフィットジャパン",
       "sector": "情報・通信業",
@@ -276,7 +342,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 11,
+      "rank": 14,
       "code": "7878",
       "name": "光・彩",
       "sector": "その他製品",
@@ -303,7 +369,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 12,
+      "rank": 15,
       "code": "6696",
       "name": "トラース・オン・プロダクト",
       "sector": "電気機器",
@@ -330,7 +396,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 13,
+      "rank": 16,
       "code": "4410",
       "name": "ハリマ化成グループ",
       "sector": "化学",
@@ -357,7 +423,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 14,
+      "rank": 17,
       "code": "7694",
       "name": "いつも",
       "sector": "小売業",
@@ -384,7 +450,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 15,
+      "rank": 18,
       "code": "9941",
       "name": "太洋物産",
       "sector": "卸売業",
@@ -411,61 +477,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 16,
-      "code": "4247",
-      "name": "ポバール興業",
-      "sector": "化学",
-      "price": 1260,
-      "bps": 1260,
-      "eps": 70,
-      "pbrLow": 0.75,
-      "pbrAvg": 1.27,
-      "pbrHigh": 1.8,
-      "perAvg": 18,
-      "dataConfidence": "推定",
-      "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
-      "catalyst": "推定下書き。最優先で通常候補前確認。安値反転候補。買いライン以下で、上昇余地と価格検証は条件内です。財務確認: BPS/EPS/現金/有利子負債/発行株数",
-      "history": [
-        1265,
-        1278,
-        1300,
-        1290,
-        1267,
-        1252,
-        1255,
-        1260
-      ]
-    },
-    {
-      "rank": 17,
-      "code": "5388",
-      "name": "クニミネ工業",
-      "sector": "ガラス・土石製品",
-      "price": 1251,
-      "bps": 1251,
-      "eps": 69.5,
-      "pbrLow": 0.75,
-      "pbrAvg": 1.27,
-      "pbrHigh": 1.8,
-      "perAvg": 18,
-      "dataConfidence": "推定",
-      "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
-      "catalyst": "推定下書き。最優先で通常候補前確認。安値反転候補。買いライン以下で、上昇余地と価格検証は条件内です。財務確認: BPS/EPS/現金/有利子負債/発行株数",
-      "history": [
-        1227,
-        1222,
-        1248,
-        1236,
-        1242,
-        1255,
-        1255,
-        1251
-      ]
-    },
-    {
-      "rank": 18,
+      "rank": 19,
       "code": "9543",
       "name": "静岡ガス",
       "sector": "電気・ガス業",
@@ -492,7 +504,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 19,
+      "rank": 20,
       "code": "5010",
       "name": "日本精蝋",
       "sector": "石油・石炭製品",
@@ -519,7 +531,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 20,
+      "rank": 21,
       "code": "5989",
       "name": "エイチワン",
       "sector": "金属製品",
@@ -543,33 +555,6 @@ window.AUTO_EXPANSION_PREVIEW = {
         1448,
         1467,
         1464
-      ]
-    },
-    {
-      "rank": 21,
-      "code": "2915",
-      "name": "ケンコーマヨネーズ",
-      "sector": "食料品",
-      "price": 2024,
-      "bps": 2024,
-      "eps": 112.4,
-      "pbrLow": 0.75,
-      "pbrAvg": 1.27,
-      "pbrHigh": 1.8,
-      "perAvg": 18.01,
-      "dataConfidence": "推定",
-      "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
-      "catalyst": "推定下書き。最優先で通常候補前確認。安値反転候補。買いライン以下で、上昇余地と価格検証は条件内です。財務確認: BPS/EPS/現金/有利子負債/発行株数",
-      "history": [
-        1938,
-        1957,
-        1955,
-        1964,
-        1977,
-        1977,
-        2010,
-        2024
       ]
     },
     {

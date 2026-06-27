@@ -9,6 +9,7 @@ const dataDir = path.join(rootDir, "data");
 const reportsDir = path.join(rootDir, "reports");
 const stockMasterPath = path.join(dataDir, "stock-master.csv");
 const draftPath = path.join(dataDir, "stock-master-input-draft.csv");
+const universePromotionDraftPath = path.join(dataDir, "stock-master-universe-promotion-draft.csv");
 const outputPath = path.join(dataDir, "stock-master-expanded-preview.csv");
 const reportPath = path.join(reportsDir, "latest-stock-master-expanded-preview.md");
 const appOutputPath = path.join(rootDir, "app", "generated-expansion-preview.js");
@@ -46,7 +47,10 @@ const stockHeaders = [
 
 const masterRows = parseCsvRecords(fs.readFileSync(stockMasterPath, "utf8"));
 const existingCodes = new Set(masterRows.map((row) => row.code));
-const draftRows = parseCsvRecords(fs.readFileSync(draftPath, "utf8"))
+const draftRows = uniqueByCode([
+  ...readCsv(universePromotionDraftPath),
+  ...readCsv(draftPath),
+])
   .filter((row) => row.code && !existingCodes.has(row.code))
   .slice(0, limit)
   .map(toPreviewStockRow);
@@ -73,6 +77,20 @@ function normalizeMasterRow(row) {
     normalized[header] = row[header] ?? "";
   }
   return normalized;
+}
+
+function readCsv(filePath) {
+  if (!fs.existsSync(filePath)) return [];
+  return parseCsvRecords(fs.readFileSync(filePath, "utf8"));
+}
+
+function uniqueByCode(rows) {
+  const seen = new Set();
+  return rows.filter((row) => {
+    if (!row.code || seen.has(row.code)) return false;
+    seen.add(row.code);
+    return true;
+  });
 }
 
 function toPreviewStockRow(row) {
