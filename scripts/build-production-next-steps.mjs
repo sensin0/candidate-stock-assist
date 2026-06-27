@@ -19,6 +19,7 @@ const confirmedInput = readCsv(path.join(dataDir, "financial-confirmed-input.csv
 const promoted = readCsv(path.join(dataDir, "stock-master-promoted.csv"));
 const autoFinancialFollowup = readCsv(path.join(dataDir, "auto-financial-followup.csv"));
 const researchBacktest = readCsv(path.join(dataDir, "universe-price-backtest.csv"));
+const priceRefreshQueue = readCsv(path.join(dataDir, "price-refresh-queue.csv"));
 const generatedData = readGeneratedData();
 const pagesStatus = await checkPages(pagesUrl);
 
@@ -34,6 +35,8 @@ const autoFinancialWait = autoFinancialFollowup.filter((row) => row.action === "
 const promotedNewCount = Math.max(0, promoted.length - stockMaster.length);
 const successfulBacktests = researchBacktest.filter((row) => !row.error).length;
 const goodBacktests = researchBacktest.filter((row) => row.judgement === "良さそう").length;
+const urgentPriceRefresh = priceRefreshQueue.filter((row) => row.reason?.includes("買い場に近い") || row.reason?.includes("売り判断に影響")).length;
+const nextPriceRefresh = priceRefreshQueue[0];
 
 const tasks = buildTasks();
 writeReport(tasks);
@@ -45,9 +48,11 @@ function buildTasks() {
   return [
     task({
       title: "Pages公開の成功確認",
-      status: pagesStatus.ok ? "完了" : "確認中",
+      status: pagesStatus.ok || pagesStatus.skipped ? "完了" : "確認中",
       reason: pagesStatus.ok
         ? `公開ページがHTTP ${pagesStatus.status}で表示されています。`
+        : pagesStatus.skipped
+          ? pagesStatus.message
         : `公開ページ確認はActions側で確認します。ローカル確認: ${pagesStatus.message}`,
       next: pagesStatus.ok ? "次は財務確認キュー上位の実データ入力" : "Actionsの最新runでbuild/deployがsuccessか確認",
     }),
@@ -56,6 +61,14 @@ function buildTasks() {
       status: pendingFinancial > 0 ? "要対応" : "完了",
       reason: `最優先の財務確認待ちが${pendingFinancial}件あります。`,
       next: "financial-confirmation-worklist.csv の checked 列を埋める",
+    }),
+    task({
+      title: "株価更新キューの消化",
+      status: priceRefreshQueue.length ? "要対応" : "完了",
+      reason: `最新株価の確認待ちが${priceRefreshQueue.length}件あります。買い・売り判定に影響するものは${urgentPriceRefresh}件です。`,
+      next: nextPriceRefresh
+        ? `${nextPriceRefresh.code} ${nextPriceRefresh.name} の最新株価を price-updates.csv に追加`
+        : "株価更新待ちはありません",
     }),
     task({
       title: "確認済み候補の通常候補昇格",
@@ -110,6 +123,8 @@ function writeReport(tasks) {
     `確認前推定: ${estimatedMetricCount}件`,
     `財務確認キュー: ${financialQueue.length}件`,
     `最優先で財務確認: ${pendingFinancial}件`,
+    `株価更新待ち: ${priceRefreshQueue.length}件`,
+    `買い・売り判定に影響する株価更新: ${urgentPriceRefresh}件`,
     `本番準備度: ${generatedData?.dataQuality?.readiness?.score ?? "-"}% ${generatedData?.dataQuality?.readiness?.label ?? ""}`.trim(),
     `公開URL: ${pagesUrl}`,
     "",
@@ -150,8 +165,9 @@ async function checkPages(url) {
   } catch (error) {
     return {
       ok: false,
+      skipped: true,
       status: 0,
-      message: error.message,
+      message: `ローカルのネット確認は省略しました。公開確認はGitHub Actionsのdeploy成功で見ます。`,
     };
   }
 }

@@ -19,6 +19,7 @@ const inputWatchlistCsv = path.join(dataDir, "watchlist.csv");
 const inputBacktestCsv = path.join(dataDir, "backtest-results.csv");
 const outputJs = path.join(appDir, "generated-data.js");
 const outputReport = path.join(appDir, "latest-update-report.md");
+const msPerDay = 24 * 60 * 60 * 1000;
 
 async function fetchWithFallback(label, primaryFetch, fallbackFetch) {
   try {
@@ -49,6 +50,10 @@ async function fetchWithFallback(label, primaryFetch, fallbackFetch) {
 function buildDataQuality(payload) {
   const stocks = payload.stocks;
   const missingPrice = stocks.filter((stock) => !stock.priceAsOf).map((stock) => `${stock.code} ${stock.name}`);
+  const stalePrice = stocks
+    .filter((stock) => stock.priceAsOf && daysSince(stock.priceAsOf) > 5)
+    .sort((a, b) => priceRefreshPriority(b) - priceRefreshPriority(a))
+    .map((stock) => `${stock.code} ${stock.name}: 株価が${daysSince(stock.priceAsOf)}日前`);
   const missingEdinet = stocks.filter((stock) => !stock.edinet?.periodEnd).map((stock) => `${stock.code} ${stock.name}`);
   const validationWarnings = validateStocks(stocks);
   const externalReferenceWarnings = validateExternalReferences(payload);
@@ -61,12 +66,14 @@ function buildDataQuality(payload) {
   const providerWarnings = payload.providerStatuses.filter((status) => !status.ok);
   const coverage = {
     price: `${stocks.length - missingPrice.length}/${stocks.length}`,
+    freshPrice: `${stocks.length - missingPrice.length - stalePrice.length}/${stocks.length}`,
     edinet: `${stocks.length - missingEdinet.length}/${stocks.length}`,
   };
 
   return {
     ok: !providerWarnings.length
       && !missingPrice.length
+      && !stalePrice.length
       && !missingEdinet.length
       && !validationWarnings.length
       && !externalReferenceWarnings.length,
@@ -75,6 +82,7 @@ function buildDataQuality(payload) {
     externalReferenceWarnings,
     missingBacktest: stocks.filter((stock) => !stock.backtest).map((stock) => `${stock.code} ${stock.name}`),
     missingPrice,
+    stalePrice,
     missingEdinet,
     manualInputs,
     stale,
@@ -83,11 +91,13 @@ function buildDataQuality(payload) {
       validationWarnings,
       externalReferenceWarnings,
       missingPrice,
+      stalePrice,
       missingEdinet,
     }),
     readiness: buildReadiness({
       stockCount: stocks.length,
       priceReady: stocks.length - missingPrice.length,
+      freshPriceReady: stocks.length - missingPrice.length - stalePrice.length,
       edinetReady: stocks.length - missingEdinet.length,
       providerWarnings,
       validationWarnings,
@@ -101,6 +111,7 @@ function buildDataQuality(payload) {
 function buildReadiness({
   stockCount,
   priceReady,
+  freshPriceReady,
   edinetReady,
   providerWarnings,
   validationWarnings,
@@ -109,12 +120,13 @@ function buildReadiness({
 }) {
   const minimumProductionCount = 20;
   const stockScore = Math.min(40, Math.round((stockCount / minimumProductionCount) * 40));
-  const priceScore = stockCount ? Math.round((priceReady / stockCount) * 25) : 0;
+  const priceScore = stockCount ? Math.round((freshPriceReady / stockCount) * 25) : 0;
   const edinetScore = stockCount ? Math.round((edinetReady / stockCount) * 25) : 0;
   const qualityPenalty = Math.min(10, providerWarnings.length * 4 + validationWarnings.length * 2 + externalReferenceWarnings.length * 2);
   const score = Math.max(0, Math.min(100, stockScore + priceScore + edinetScore + 10 - qualityPenalty));
   const blockers = [];
   if (stockCount < 20) blockers.push(`銘柄数を20件以上へ増やす: 現在${stockCount}件`);
+  if (stockCount && freshPriceReady < stockCount) blockers.push(`最新株価を更新: ${freshPriceReady}/${stockCount}`);
   if (stockCount && priceReady < stockCount) blockers.push(`株価未取得を埋める: ${priceReady}/${stockCount}`);
   if (stockCount && edinetReady / stockCount < 0.8) blockers.push(`EDINET相当を80%以上へ増やす: ${edinetReady}/${stockCount}`);
   if (providerWarnings.length) blockers.push("外部データ取得元の注意を解消");
@@ -126,14 +138,34 @@ function buildReadiness({
   };
 }
 
-function buildNextFixes({ providerWarnings, validationWarnings, externalReferenceWarnings, missingPrice, missingEdinet }) {
+function buildNextFixes({ providerWarnings, validationWarnings, externalReferenceWarnings, missingPrice, stalePrice, missingEdinet }) {
   return [
     ...providerWarnings.map((item) => `取得元を確認: ${item.label} ${item.message}`),
     ...validationWarnings.map((item) => `銘柄マスタを修正: ${item}`),
     ...externalReferenceWarnings.map((item) => `外部CSVのコードを確認: ${item}`),
+    ...stalePrice.map((item) => `最新株価を確認: ${item}`),
     ...missingPrice.map((item) => `株価CSVに追加: ${item}`),
     ...missingEdinet.map((item) => `EDINET相当CSVに追加: ${item}`),
   ].slice(0, 12);
+}
+
+function priceRefreshPriority(stock) {
+  let priority = 0;
+  if (stock.backtest?.timingLabel === "買い候補") priority += 40;
+  if (stock.backtest?.timingLabel === "買い場待ち") priority += 25;
+  if (stock.held) priority += 20;
+  if (stock.backtest && Number(stock.backtest.averageReturn || 0) > 0 && Number(stock.backtest.winRate || 0) >= 60) priority += 12;
+  priority += Math.min(10, daysSince(stock.priceAsOf));
+  return priority;
+}
+
+function daysSince(dateText) {
+  if (!dateText) return Infinity;
+  const date = new Date(`${dateText}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return Infinity;
+  const today = new Date();
+  const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  return Math.floor((todayOnly - date) / msPerDay);
 }
 
 function validateStocks(stocks) {

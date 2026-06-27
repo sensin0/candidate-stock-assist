@@ -19,6 +19,7 @@
     "universe:metrics": "node scripts/build-universe-metrics.mjs",
     "universe:screen": "node scripts/universe-screen.mjs",
     "backtest": "node scripts/backtest-timing.mjs",
+    "price:queue": "node scripts/build-price-refresh-queue.mjs",
     "backtest:research": "node scripts/research-price-backtest.mjs",
     "backtest:universe": "node scripts/research-universe-price-backtest.mjs",
     "multibagger:research": "node scripts/analyze-multibagger-candidates.mjs",

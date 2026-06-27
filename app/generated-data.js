@@ -1,14 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-26T13:12:06.807Z",
+  "generatedAt": "2026-06-27T00:17:14.457Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-26T13:12:06.794Z",
-  "priceFetchedAt": "2026-06-26T13:12:06.800Z",
-  "disclosureFetchedAt": "2026-06-26T13:12:06.801Z",
-  "edinetFetchedAt": "2026-06-26T13:12:06.802Z",
+  "fetchedAt": "2026-06-27T00:17:14.445Z",
+  "priceFetchedAt": "2026-06-27T00:17:14.451Z",
+  "disclosureFetchedAt": "2026-06-27T00:17:14.451Z",
+  "edinetFetchedAt": "2026-06-27T00:17:14.452Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -1977,6 +1977,28 @@ window.AUTO_STOCK_DATA = {
       "2332 Quest Co.,Ltd.",
       "3908 コラボス"
     ],
+    "stalePrice": [
+      "6513 オリジン: 株価が8日前",
+      "1897 金下建設: 株価が8日前",
+      "1443 技研HD: 株価が8日前",
+      "6505 東洋電機製造: 株価が8日前",
+      "8802 三菱地所: 株価が8日前",
+      "2484 出前館: 株価が8日前",
+      "9672 東京都競馬: 株価が8日前",
+      "8018 三共生興: 株価が8日前",
+      "9402 中部日本放送: 株価が8日前",
+      "3892 岡山製紙: 株価が8日前",
+      "8841 テーオーシー: 株価が8日前",
+      "3123 サイボー: 株価が8日前",
+      "3765 ガンホー: 株価が8日前",
+      "8830 住友不動産: 株価が8日前",
+      "8801 三井不動産: 株価が8日前",
+      "9830 トラスコ中山: 株価が8日前",
+      "3471 三井不動産ロジスティクスパーク投資法人: 株価が8日前",
+      "9409 テレビ朝日HD: 株価が8日前",
+      "9324 安田倉庫: 株価が8日前",
+      "8818 京阪神ビルディング: 株価が8日前"
+    ],
     "missingEdinet": [
       "6276 SiriusVision CO.,LTD.",
       "7435 NADEX CO.,LTD.",
@@ -2020,29 +2042,31 @@ window.AUTO_STOCK_DATA = {
       "3908 コラボス"
     ],
     "nextFixes": [
-      "株価CSVに追加: 6276 SiriusVision CO.,LTD.",
-      "株価CSVに追加: 7435 NADEX CO.,LTD.",
-      "株価CSVに追加: 7567 SAKAE ELECTRONICS CORPORATION",
-      "株価CSVに追加: 1514 Sumiseki Holdings,Inc.",
-      "株価CSVに追加: 7885 TAKANO Co.,Ltd.",
-      "株価CSVに追加: 7901 MATSUMOTO INC.",
-      "株価CSVに追加: 6870 Fenwal Controls of Japan,Ltd.",
-      "株価CSVに追加: 5939 OTANI KOGYO CO.,LTD.",
-      "株価CSVに追加: 2303 Dawn Corporation",
-      "株価CSVに追加: 2332 Quest Co.,Ltd.",
-      "株価CSVに追加: 3908 コラボス",
-      "EDINET相当CSVに追加: 6276 SiriusVision CO.,LTD."
+      "最新株価を確認: 6513 オリジン: 株価が8日前",
+      "最新株価を確認: 1897 金下建設: 株価が8日前",
+      "最新株価を確認: 1443 技研HD: 株価が8日前",
+      "最新株価を確認: 6505 東洋電機製造: 株価が8日前",
+      "最新株価を確認: 8802 三菱地所: 株価が8日前",
+      "最新株価を確認: 2484 出前館: 株価が8日前",
+      "最新株価を確認: 9672 東京都競馬: 株価が8日前",
+      "最新株価を確認: 8018 三共生興: 株価が8日前",
+      "最新株価を確認: 9402 中部日本放送: 株価が8日前",
+      "最新株価を確認: 3892 岡山製紙: 株価が8日前",
+      "最新株価を確認: 8841 テーオーシー: 株価が8日前",
+      "最新株価を確認: 3123 サイボー: 株価が8日前"
     ],
     "readiness": {
-      "score": 82,
+      "score": 66,
       "label": "あと少し",
       "blockers": [
+        "最新株価を更新: 0/31",
         "株価未取得を埋める: 20/31",
         "EDINET相当を80%以上へ増やす: 20/31"
       ]
     },
     "coverage": {
       "price": "20/31",
+      "freshPrice": "0/31",
       "edinet": "20/31"
     }
   }

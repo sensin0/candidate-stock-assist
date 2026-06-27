@@ -3,6 +3,7 @@ import { spawnSync } from "node:child_process";
 const steps = [
   ["バックテスト更新", "node", ["scripts/backtest-timing.mjs"]],
   ["データ更新", "node", ["scripts/update-data.mjs"]],
+  ["株価更新キュー生成", "node", ["scripts/build-price-refresh-queue.mjs"]],
   ["画面ロジック構文チェック", "node", ["--check", "app/app.js"]],
   ["更新ジョブ構文チェック", "node", ["--check", "scripts/update-data.mjs"]],
   ["画面スモークテスト", "node", ["app/smoke-test.mjs"]],
