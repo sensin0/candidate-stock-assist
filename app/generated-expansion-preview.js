@@ -1,5 +1,5 @@
 window.AUTO_EXPANSION_PREVIEW = {
-  "generatedAt": "2026-06-27T12:28:35.368Z",
+  "generatedAt": "2026-06-27T23:46:17.674Z",
   "source": "data/stock-master-expanded-preview.csv",
   "currentCount": 35,
   "previewAddCount": 48,

@@ -1,14 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-27T12:28:35.495Z",
+  "generatedAt": "2026-06-27T23:46:17.806Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-27T12:28:35.463Z",
-  "priceFetchedAt": "2026-06-27T12:28:35.470Z",
-  "disclosureFetchedAt": "2026-06-27T12:28:35.472Z",
-  "edinetFetchedAt": "2026-06-27T12:28:35.473Z",
+  "fetchedAt": "2026-06-27T23:46:17.772Z",
+  "priceFetchedAt": "2026-06-27T23:46:17.780Z",
+  "disclosureFetchedAt": "2026-06-27T23:46:17.781Z",
+  "edinetFetchedAt": "2026-06-27T23:46:17.783Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -213,7 +213,7 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": -3.2,
         "bestScore": 72.7,
         "financialScreeningStatus": "慎重確認",
-        "financialScreeningCautions": "ネット有利子負債が重い -47.59%"
+        "financialScreeningCautions": "ネット有利子負債が重い -47.59% / 価格検証は売買回数0回なので参考扱い"
       }
     },
     {
@@ -277,7 +277,7 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": 0,
         "bestScore": -100,
         "financialScreeningStatus": "慎重確認",
-        "financialScreeningCautions": "ネット有利子負債が重い -97.7%"
+        "financialScreeningCautions": "ネット有利子負債が重い -97.7% / 価格検証は売買回数0回なので参考扱い"
       }
     },
     {
@@ -497,7 +497,7 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": -2.2,
         "bestScore": -1.3,
         "financialScreeningStatus": "慎重確認",
-        "financialScreeningCautions": "EPSが赤字または未確認"
+        "financialScreeningCautions": "EPSが赤字または未確認 / 価格検証は売買回数0回なので参考扱い"
       }
     },
     {
@@ -645,7 +645,7 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": 0,
         "bestScore": -100,
         "financialScreeningStatus": "見送り寄り",
-        "financialScreeningCautions": "PBR 1.6倍で割安感が薄い"
+        "financialScreeningCautions": "PBR 1.6倍で割安感が薄い / 価格検証は売買回数0回なので参考扱い"
       }
     },
     {
@@ -773,7 +773,7 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": 0,
         "bestScore": -100,
         "financialScreeningStatus": "見送り寄り",
-        "financialScreeningCautions": "ネット有利子負債が重い -91.2% / 有利子負債が純資産を上回る"
+        "financialScreeningCautions": "ネット有利子負債が重い -91.2% / 有利子負債が純資産を上回る / 価格検証は売買回数0回なので参考扱い"
       }
     },
     {
@@ -837,7 +837,7 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": 0,
         "bestScore": -100,
         "financialScreeningStatus": "慎重確認",
-        "financialScreeningCautions": "大きな注意なし"
+        "financialScreeningCautions": "価格検証は売買回数0回なので参考扱い"
       }
     },
     {
@@ -901,7 +901,7 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": 0,
         "bestScore": -100,
         "financialScreeningStatus": "見送り寄り",
-        "financialScreeningCautions": "ネット有利子負債が重い -44.36%"
+        "financialScreeningCautions": "ネット有利子負債が重い -44.36% / 価格検証は売買回数0回なので参考扱い"
       }
     },
     {
@@ -1026,7 +1026,7 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": 0,
         "bestScore": 70.7,
         "financialScreeningStatus": "見送り寄り",
-        "financialScreeningCautions": "PER 67.26倍で高い"
+        "financialScreeningCautions": "PER 67.26倍で高い / 価格検証は売買回数0回なので参考扱い"
       }
     },
     {
@@ -1090,7 +1090,7 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": -2.1,
         "bestScore": 52.6,
         "financialScreeningStatus": "慎重確認",
-        "financialScreeningCautions": "ネット有利子負債が重い -42.92%"
+        "financialScreeningCautions": "ネット有利子負債が重い -42.92% / 価格検証は売買回数0回なので参考扱い"
       }
     },
     {
@@ -1276,7 +1276,7 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": 0,
         "bestScore": -100,
         "financialScreeningStatus": "慎重確認",
-        "financialScreeningCautions": "ネット有利子負債が重い -121.21% / 有利子負債がやや重い"
+        "financialScreeningCautions": "ネット有利子負債が重い -121.21% / 有利子負債がやや重い / 価格検証は売買回数0回なので参考扱い"
       }
     },
     {
@@ -1340,7 +1340,7 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": 0,
         "bestScore": -100,
         "financialScreeningStatus": "見送り寄り",
-        "financialScreeningCautions": "ネット有利子負債が重い -80.66% / 有利子負債が純資産を上回る"
+        "financialScreeningCautions": "ネット有利子負債が重い -80.66% / 有利子負債が純資産を上回る / 価格検証は売買回数0回なので参考扱い"
       }
     },
     {
@@ -2420,7 +2420,7 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": 0,
         "bestScore": -100,
         "financialScreeningStatus": "昇格確認優先",
-        "financialScreeningCautions": "大きな注意なし"
+        "financialScreeningCautions": "価格検証は売買回数0回なので参考扱い"
       }
     },
     {
@@ -2492,7 +2492,7 @@ window.AUTO_STOCK_DATA = {
         "maxDrawdown": 0,
         "bestScore": -100,
         "financialScreeningStatus": "昇格確認優先",
-        "financialScreeningCautions": "大きな注意なし"
+        "financialScreeningCautions": "価格検証は売買回数0回なので参考扱い"
       }
     }
   ],

@@ -1,48 +1,10 @@
 window.AUTO_FINANCIAL_SCREENING = {
-  "generatedAt": "2026-06-27T12:14:46.077Z",
+  "generatedAt": "2026-06-27T23:44:02.477Z",
   "source": "data/financial-worklist-screened.csv",
   "total": 58,
-  "priorityCount": 4,
-  "cautionCount": 43,
+  "priorityCount": 2,
+  "cautionCount": 46,
   "top": [
-    {
-      "rank": "26",
-      "code": "5363",
-      "name": "東京窯業",
-      "sector": "ガラス・土石製品",
-      "status": "昇格確認優先",
-      "screenScore": 100,
-      "price": 674,
-      "marketCap": 34289.83,
-      "pbr": 0.63,
-      "per": 6.61,
-      "netCash": 10956.68,
-      "netCashRatio": 31.95,
-      "debtAssetRatio": 6.23,
-      "sourceUrl": "https://irbank.net/5363/results",
-      "action": "決算短信と有報を見て、問題なければconfirmed候補",
-      "reasons": "PBR 0.63倍で割安寄り / PER 6.61倍で利益面は軽い / ネットキャッシュあり 31.95%",
-      "cautions": "大きな注意なし"
-    },
-    {
-      "rank": "36",
-      "code": "5458",
-      "name": "高砂鐵工",
-      "sector": "鉄鋼",
-      "status": "昇格確認優先",
-      "screenScore": 100,
-      "price": 1240,
-      "marketCap": 3723.39,
-      "pbr": 0.73,
-      "per": 8.37,
-      "netCash": 2261,
-      "netCashRatio": 60.72,
-      "debtAssetRatio": 0,
-      "sourceUrl": "https://irbank.net/5458/results",
-      "action": "決算短信と有報を見て、問題なければconfirmed候補",
-      "reasons": "PBR 0.73倍で確認余地 / PER 8.37倍で利益面は軽い / ネットキャッシュが時価総額の60.72%相当",
-      "cautions": "大きな注意なし"
-    },
     {
       "rank": "35",
       "code": "1814",
@@ -58,9 +20,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 24.35,
       "debtAssetRatio": 10.92,
       "sourceUrl": "https://irbank.net/1814/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "決算短信と有報を見て、問題なければconfirmed候補",
       "reasons": "PER 8.53倍で利益面は軽い / ネットキャッシュあり 24.35% / 有利子負債は軽め",
-      "cautions": "大きな注意なし"
+      "cautions": "価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "37",
@@ -77,9 +43,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 7.46,
       "debtAssetRatio": 16.28,
       "sourceUrl": "https://irbank.net/4341/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "決算短信と有報を見て、問題なければconfirmed候補",
       "reasons": "PBR 0.53倍で割安寄り / PER 14.03倍",
-      "cautions": "大きな注意なし"
+      "cautions": "価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "47",
@@ -96,9 +66,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -42.92,
       "debtAssetRatio": 22.11,
       "sourceUrl": "https://irbank.net/1443/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "負債、利益の継続性、材料の一過性を確認",
       "reasons": "PBR 0.26倍で割安寄り / PER 5.33倍で利益面は軽い",
-      "cautions": "ネット有利子負債が重い -42.92%"
+      "cautions": "ネット有利子負債が重い -42.92% / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "48",
@@ -115,9 +89,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -47.59,
       "debtAssetRatio": 33.62,
       "sourceUrl": "https://irbank.net/6505/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "負債、利益の継続性、材料の一過性を確認",
       "reasons": "PBR 0.34倍で割安寄り / PER 4.73倍で利益面は軽い",
-      "cautions": "ネット有利子負債が重い -47.59%"
+      "cautions": "ネット有利子負債が重い -47.59% / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "49",
@@ -134,9 +112,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -97.7,
       "debtAssetRatio": 55.3,
       "sourceUrl": "https://irbank.net/3123/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "負債、利益の継続性、材料の一過性を確認",
       "reasons": "PBR 0.41倍で割安寄り / PER 8.09倍で利益面は軽い",
-      "cautions": "ネット有利子負債が重い -97.7%"
+      "cautions": "ネット有利子負債が重い -97.7% / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "54",
@@ -153,9 +135,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -20.02,
       "debtAssetRatio": 42.95,
       "sourceUrl": "https://irbank.net/9830/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "負債、利益の継続性、材料の一過性を確認",
       "reasons": "PBR 0.87倍で確認余地 / PER 11.34倍",
-      "cautions": "大きな注意なし"
+      "cautions": "価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "50",
@@ -172,9 +158,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 168.72,
       "debtAssetRatio": 0,
       "sourceUrl": "https://irbank.net/2484/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "負債、利益の継続性、材料の一過性を確認",
       "reasons": "PBR 0.59倍で割安寄り / ネットキャッシュが時価総額の168.72%相当 / 有利子負債は軽め",
-      "cautions": "EPSが赤字または未確認"
+      "cautions": "EPSが赤字または未確認 / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "28",
@@ -191,9 +181,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 17.54,
       "debtAssetRatio": 13.53,
       "sourceUrl": "https://irbank.net/7513/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "負債、利益の継続性、材料の一過性を確認",
       "reasons": "ネットキャッシュあり 17.54% / 有利子負債は軽め",
-      "cautions": "大きな注意なし"
+      "cautions": "価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "31",
@@ -210,9 +204,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 33.98,
       "debtAssetRatio": 4.94,
       "sourceUrl": "https://irbank.net/6648/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "負債、利益の継続性、材料の一過性を確認",
       "reasons": "PER 9.84倍で利益面は軽い / ネットキャッシュあり 33.98% / 有利子負債は軽め",
-      "cautions": "PBR 1.42倍で割安感が薄い"
+      "cautions": "PBR 1.42倍で割安感が薄い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "18",
@@ -229,9 +227,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -17.78,
       "debtAssetRatio": 36.18,
       "sourceUrl": "https://irbank.net/9322/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "負債、利益の継続性、材料の一過性を確認",
       "reasons": "PBR 0.79倍で確認余地",
-      "cautions": "大きな注意なし"
+      "cautions": "価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "29",
@@ -248,28 +250,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -9.95,
       "debtAssetRatio": 37.17,
       "sourceUrl": "https://irbank.net/1515/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "負債、利益の継続性、材料の一過性を確認",
       "reasons": "PER 14.98倍",
-      "cautions": "大きな注意なし"
-    },
-    {
-      "rank": "2",
-      "code": "4410",
-      "name": "ハリマ化成グループ",
-      "sector": "化学",
-      "status": "慎重確認",
-      "screenScore": 58,
-      "price": 1047,
-      "marketCap": 25893.8,
-      "pbr": 0.62,
-      "per": 9.6,
-      "netCash": -31597,
-      "netCashRatio": -122.03,
-      "debtAssetRatio": 91.01,
-      "sourceUrl": "https://irbank.net/4410/results",
-      "action": "負債、利益の継続性、材料の一過性を確認",
-      "reasons": "PBR 0.62倍で割安寄り / PER 9.6倍で利益面は軽い",
-      "cautions": "ネット有利子負債が重い -122.03% / 有利子負債がやや重い"
+      "cautions": "価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "57",
@@ -286,9 +273,36 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -121.21,
       "debtAssetRatio": 72.54,
       "sourceUrl": "https://irbank.net/9324/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "負債、利益の継続性、材料の一過性を確認",
       "reasons": "PBR 0.39倍で割安寄り / PER 6.75倍で利益面は軽い",
-      "cautions": "ネット有利子負債が重い -121.21% / 有利子負債がやや重い"
+      "cautions": "ネット有利子負債が重い -121.21% / 有利子負債がやや重い / 価格検証は売買回数0回なので参考扱い"
+    },
+    {
+      "rank": "2",
+      "code": "4410",
+      "name": "ハリマ化成グループ",
+      "sector": "化学",
+      "status": "見送り寄り",
+      "screenScore": 57,
+      "price": 1047,
+      "marketCap": 25893.8,
+      "pbr": 0.62,
+      "per": 9.6,
+      "netCash": -31597,
+      "netCashRatio": -122.03,
+      "debtAssetRatio": 91.01,
+      "sourceUrl": "https://irbank.net/4410/results",
+      "backtestTrades": 1,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": -2.3,
+      "backtestMaxDrawdown": -2.3,
+      "action": "通常候補へ入れない方向で確認",
+      "reasons": "PBR 0.62倍で割安寄り / PER 9.6倍で利益面は軽い",
+      "cautions": "ネット有利子負債が重い -122.03% / 有利子負債がやや重い / 価格検証が弱い 勝率0% 平均-2.3%"
     },
     {
       "rank": "12",
@@ -305,9 +319,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 15,
       "debtAssetRatio": 10,
       "sourceUrl": "",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "原資料確認まで通常候補へ自動昇格しない",
       "reasons": "PBR 1倍で確認余地 / ネットキャッシュあり 15% / 有利子負債は軽め",
-      "cautions": "推定下書きの補完値なので自動昇格しない"
+      "cautions": "推定下書きの補完値なので自動昇格しない / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "17",
@@ -324,9 +342,59 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 15,
       "debtAssetRatio": 10,
       "sourceUrl": "",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "原資料確認まで通常候補へ自動昇格しない",
       "reasons": "PBR 1倍で確認余地 / ネットキャッシュあり 15% / 有利子負債は軽め",
-      "cautions": "推定下書きの補完値なので自動昇格しない"
+      "cautions": "推定下書きの補完値なので自動昇格しない / 価格検証は売買回数0回なので参考扱い"
+    },
+    {
+      "rank": "26",
+      "code": "5363",
+      "name": "東京窯業",
+      "sector": "ガラス・土石製品",
+      "status": "見送り寄り",
+      "screenScore": 57,
+      "price": 674,
+      "marketCap": 34289.83,
+      "pbr": 0.63,
+      "per": 6.61,
+      "netCash": 10956.68,
+      "netCashRatio": 31.95,
+      "debtAssetRatio": 6.23,
+      "sourceUrl": "https://irbank.net/5363/results",
+      "backtestTrades": 1,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": -3.6,
+      "backtestMaxDrawdown": -3.6,
+      "action": "通常候補へ入れない方向で確認",
+      "reasons": "PBR 0.63倍で割安寄り / PER 6.61倍で利益面は軽い / ネットキャッシュあり 31.95%",
+      "cautions": "価格検証が弱い 勝率0% 平均-3.6%"
+    },
+    {
+      "rank": "36",
+      "code": "5458",
+      "name": "高砂鐵工",
+      "sector": "鉄鋼",
+      "status": "見送り寄り",
+      "screenScore": 57,
+      "price": 1240,
+      "marketCap": 3723.39,
+      "pbr": 0.73,
+      "per": 8.37,
+      "netCash": 2261,
+      "netCashRatio": 60.72,
+      "debtAssetRatio": 0,
+      "sourceUrl": "https://irbank.net/5458/results",
+      "backtestTrades": 1,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": -1.1,
+      "backtestMaxDrawdown": -2.5,
+      "action": "通常候補へ入れない方向で確認",
+      "reasons": "PBR 0.73倍で確認余地 / PER 8.37倍で利益面は軽い / ネットキャッシュが時価総額の60.72%相当",
+      "cautions": "価格検証が弱い 勝率0% 平均-1.1%"
     },
     {
       "rank": "8",
@@ -343,9 +411,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -32.94,
       "debtAssetRatio": 73.69,
       "sourceUrl": "https://irbank.net/7878/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PER 8.4倍で利益面は軽い",
-      "cautions": "有利子負債がやや重い"
+      "cautions": "有利子負債がやや重い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "34",
@@ -362,9 +434,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 15.08,
       "debtAssetRatio": 1,
       "sourceUrl": "https://irbank.net/6859/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PER 15.88倍 / ネットキャッシュあり 15.08% / 有利子負債は軽め",
-      "cautions": "PBR 1.52倍で割安感が薄い"
+      "cautions": "PBR 1.52倍で割安感が薄い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "15",
@@ -381,9 +457,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -35,
       "debtAssetRatio": 43.66,
       "sourceUrl": "https://irbank.net/5232/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
-      "cautions": "大きな注意なし"
+      "cautions": "価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "27",
@@ -400,9 +480,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 4.65,
       "debtAssetRatio": 35.24,
       "sourceUrl": "https://irbank.net/4351/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
-      "cautions": "大きな注意なし"
+      "cautions": "価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "56",
@@ -419,9 +503,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 14.9,
       "debtAssetRatio": 16.98,
       "sourceUrl": "https://irbank.net/6513/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PBR 0.3倍で割安寄り",
-      "cautions": "PER 67.26倍で高い"
+      "cautions": "PER 67.26倍で高い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "20",
@@ -438,9 +526,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -100.71,
       "debtAssetRatio": 70.12,
       "sourceUrl": "https://irbank.net/6310/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PBR 0.53倍で割安寄り / PER 13.35倍",
-      "cautions": "ネット有利子負債が重い -100.71% / 有利子負債がやや重い"
+      "cautions": "ネット有利子負債が重い -100.71% / 有利子負債がやや重い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "16",
@@ -457,9 +549,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 29.03,
       "debtAssetRatio": 17.9,
       "sourceUrl": "https://irbank.net/5587/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PER 10.89倍 / ネットキャッシュあり 29.03%",
-      "cautions": "PBR 1.61倍で割安感が薄い"
+      "cautions": "PBR 1.61倍で割安感が薄い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "11",
@@ -476,8 +572,12 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -300.01,
       "debtAssetRatio": 244.61,
       "sourceUrl": "https://irbank.net/5010/results",
+      "backtestTrades": 1,
+      "backtestWinRate": 100,
+      "backtestAverageReturn": 2.7,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
-      "reasons": "PBR 0.67倍で割安寄り / PER 5.63倍で利益面は軽い",
+      "reasons": "PBR 0.67倍で割安寄り / PER 5.63倍で利益面は軽い / 価格検証 勝率100% 平均2.7%",
       "cautions": "ネット有利子負債が重い -300.01% / 有利子負債が純資産を上回る"
     },
     {
@@ -495,9 +595,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 18.12,
       "debtAssetRatio": 0,
       "sourceUrl": "https://irbank.net/4462/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "ネットキャッシュあり 18.12% / 有利子負債は軽め",
-      "cautions": "PBR 1.87倍で割安感が薄い"
+      "cautions": "PBR 1.87倍で割安感が薄い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "14",
@@ -514,9 +618,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -63.33,
       "debtAssetRatio": 72.83,
       "sourceUrl": "https://irbank.net/9888/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PBR 0.56倍で割安寄り",
-      "cautions": "ネット有利子負債が重い -63.33% / 有利子負債がやや重い"
+      "cautions": "ネット有利子負債が重い -63.33% / 有利子負債がやや重い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "3",
@@ -533,9 +641,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 11.22,
       "debtAssetRatio": 23.29,
       "sourceUrl": "https://irbank.net/3934/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PER 11.35倍",
-      "cautions": "PBR 1.49倍で割安感が薄い"
+      "cautions": "PBR 1.49倍で割安感が薄い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "25",
@@ -552,9 +664,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 26.05,
       "debtAssetRatio": 22.12,
       "sourceUrl": "https://irbank.net/4256/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "ネットキャッシュあり 26.05%",
-      "cautions": "PBR 1.59倍で割安感が薄い"
+      "cautions": "PBR 1.59倍で割安感が薄い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "32",
@@ -571,9 +687,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -43.3,
       "debtAssetRatio": 70.55,
       "sourceUrl": "https://irbank.net/7245/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PBR 0.97倍で確認余地 / PER 15.85倍",
-      "cautions": "ネット有利子負債が重い -43.3% / 有利子負債がやや重い"
+      "cautions": "ネット有利子負債が重い -43.3% / 有利子負債がやや重い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "46",
@@ -590,9 +710,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -95.87,
       "debtAssetRatio": 86.68,
       "sourceUrl": "https://irbank.net/3941/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PBR 0.73倍で確認余地 / PER 11.49倍",
-      "cautions": "ネット有利子負債が重い -95.87% / 有利子負債がやや重い"
+      "cautions": "ネット有利子負債が重い -95.87% / 有利子負債がやや重い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "51",
@@ -609,9 +733,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -2.12,
       "debtAssetRatio": 18.4,
       "sourceUrl": "https://irbank.net/9672/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PER 14.11倍",
-      "cautions": "PBR 1.6倍で割安感が薄い"
+      "cautions": "PBR 1.6倍で割安感が薄い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "23",
@@ -628,9 +756,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 8.32,
       "debtAssetRatio": 9.61,
       "sourceUrl": "https://irbank.net/4570/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "有利子負債は軽め",
-      "cautions": "PBR 4.9倍で割安感が薄い"
+      "cautions": "PBR 4.9倍で割安感が薄い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "24",
@@ -647,9 +779,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 13.62,
       "debtAssetRatio": 2.15,
       "sourceUrl": "https://irbank.net/7734/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "有利子負債は軽め",
-      "cautions": "PBR 1.94倍で割安感が薄い"
+      "cautions": "PBR 1.94倍で割安感が薄い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "38",
@@ -666,8 +802,12 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -260.8,
       "debtAssetRatio": 182.46,
       "sourceUrl": "https://irbank.net/9507/results",
+      "backtestTrades": 1,
+      "backtestWinRate": 100,
+      "backtestAverageReturn": 1.6,
+      "backtestMaxDrawdown": -1.2,
       "action": "通常候補へ入れない方向で確認",
-      "reasons": "PBR 0.64倍で割安寄り / PER 10.07倍",
+      "reasons": "PBR 0.64倍で割安寄り / PER 10.07倍 / 価格検証 勝率100% 平均1.6%",
       "cautions": "ネット有利子負債が重い -260.8% / 有利子負債が純資産を上回る"
     },
     {
@@ -685,9 +825,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 9.26,
       "debtAssetRatio": 4.69,
       "sourceUrl": "https://irbank.net/6516/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "有利子負債は軽め",
-      "cautions": "PBR 1.92倍で割安感が薄い"
+      "cautions": "PBR 1.92倍で割安感が薄い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "1",
@@ -704,9 +848,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 54.6,
       "debtAssetRatio": 1.58,
       "sourceUrl": "https://irbank.net/4378/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "ネットキャッシュが時価総額の54.6%相当 / 有利子負債は軽め",
-      "cautions": "PBR 1.44倍で割安感が薄い / PER 398.52倍で高い"
+      "cautions": "PBR 1.44倍で割安感が薄い / PER 398.52倍で高い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "7",
@@ -723,9 +871,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -187.68,
       "debtAssetRatio": 264.66,
       "sourceUrl": "https://irbank.net/7256/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PBR 0.94倍で確認余地 / PER 3.94倍で利益面は軽い",
-      "cautions": "ネット有利子負債が重い -187.68% / 有利子負債が純資産を上回る"
+      "cautions": "ネット有利子負債が重い -187.68% / 有利子負債が純資産を上回る / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "55",
@@ -742,9 +894,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -44.36,
       "debtAssetRatio": 59.7,
       "sourceUrl": "",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
-      "cautions": "ネット有利子負債が重い -44.36%"
+      "cautions": "ネット有利子負債が重い -44.36% / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "19",
@@ -761,9 +917,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -5.66,
       "debtAssetRatio": 40.78,
       "sourceUrl": "https://irbank.net/5016/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
-      "cautions": "PBR 5.8倍で割安感が薄い"
+      "cautions": "PBR 5.8倍で割安感が薄い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "42",
@@ -780,9 +940,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -15.57,
       "debtAssetRatio": 32.62,
       "sourceUrl": "https://irbank.net/4182/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
-      "cautions": "PBR 1.54倍で割安感が薄い"
+      "cautions": "PBR 1.54倍で割安感が薄い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "44",
@@ -799,9 +963,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 3.68,
       "debtAssetRatio": 24.95,
       "sourceUrl": "https://irbank.net/6315/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
-      "cautions": "PBR 3.37倍で割安感が薄い"
+      "cautions": "PBR 3.37倍で割安感が薄い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "39",
@@ -818,9 +986,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -43.53,
       "debtAssetRatio": 84.89,
       "sourceUrl": "https://irbank.net/7004/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PER 10.09倍",
-      "cautions": "ネット有利子負債が重い -43.53% / 有利子負債がやや重い"
+      "cautions": "ネット有利子負債が重い -43.53% / 有利子負債がやや重い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "10",
@@ -837,9 +1009,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -116.71,
       "debtAssetRatio": 149.96,
       "sourceUrl": "https://irbank.net/7694/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PBR 0.97倍で確認余地 / PER 13.06倍",
-      "cautions": "ネット有利子負債が重い -116.71% / 有利子負債が純資産を上回る"
+      "cautions": "ネット有利子負債が重い -116.71% / 有利子負債が純資産を上回る / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "22",
@@ -856,9 +1032,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -64.56,
       "debtAssetRatio": 105.2,
       "sourceUrl": "https://irbank.net/4651/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PBR 0.99倍で確認余地 / PER 10.83倍",
-      "cautions": "ネット有利子負債が重い -64.56% / 有利子負債が純資産を上回る"
+      "cautions": "ネット有利子負債が重い -64.56% / 有利子負債が純資産を上回る / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "30",
@@ -875,9 +1055,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 2.77,
       "debtAssetRatio": 161.6,
       "sourceUrl": "https://irbank.net/7069/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PER 7.08倍で利益面は軽い",
-      "cautions": "PBR 2.93倍で割安感が薄い / 有利子負債が純資産を上回る"
+      "cautions": "PBR 2.93倍で割安感が薄い / 有利子負債が純資産を上回る / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "45",
@@ -894,9 +1078,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 2.41,
       "debtAssetRatio": 0,
       "sourceUrl": "https://irbank.net/6861/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "有利子負債は軽め",
-      "cautions": "PBR 5.39倍で割安感が薄い / PER 42倍で高い"
+      "cautions": "PBR 5.39倍で割安感が薄い / PER 42倍で高い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "53",
@@ -913,9 +1101,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -91.2,
       "debtAssetRatio": 126.44,
       "sourceUrl": "https://irbank.net/8801/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PER 15.64倍",
-      "cautions": "ネット有利子負債が重い -91.2% / 有利子負債が純資産を上回る"
+      "cautions": "ネット有利子負債が重い -91.2% / 有利子負債が純資産を上回る / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "5",
@@ -932,9 +1124,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 2.62,
       "debtAssetRatio": 41.73,
       "sourceUrl": "https://irbank.net/6522/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
-      "cautions": "PBR 4.65倍で割安感が薄い / PER 122.3倍で高い"
+      "cautions": "PBR 4.65倍で割安感が薄い / PER 122.3倍で高い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "6",
@@ -951,9 +1147,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -4.12,
       "debtAssetRatio": 37.26,
       "sourceUrl": "https://irbank.net/4392/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
-      "cautions": "PBR 3.87倍で割安感が薄い / PER 49.8倍で高い"
+      "cautions": "PBR 3.87倍で割安感が薄い / PER 49.8倍で高い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "33",
@@ -970,9 +1170,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 7.38,
       "debtAssetRatio": 46.88,
       "sourceUrl": "https://irbank.net/4679/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
-      "cautions": "PBR 2.26倍で割安感が薄い / PER 181.34倍で高い"
+      "cautions": "PBR 2.26倍で割安感が薄い / PER 181.34倍で高い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "40",
@@ -989,9 +1193,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -1.62,
       "debtAssetRatio": 58.73,
       "sourceUrl": "https://irbank.net/6993/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
-      "cautions": "PBR 12.45倍で割安感が薄い / PER 107.14倍で高い"
+      "cautions": "PBR 12.45倍で割安感が薄い / PER 107.14倍で高い / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "4",
@@ -1008,6 +1216,10 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -249.97,
       "debtAssetRatio": 594.9,
       "sourceUrl": "https://irbank.net/9941/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "PER 13.49倍",
       "cautions": "PBR 2.27倍で割安感が薄い / ネット有利子負債が重い -249.97% / 有利子負債が純資産を上回る"
@@ -1027,9 +1239,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": 9.58,
       "debtAssetRatio": 43.22,
       "sourceUrl": "https://irbank.net/6696/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
-      "cautions": "PBR 3.79倍で割安感が薄い / EPSが赤字または未確認"
+      "cautions": "PBR 3.79倍で割安感が薄い / EPSが赤字または未確認 / 価格検証は売買回数0回なので参考扱い"
     },
     {
       "rank": "13",
@@ -1046,6 +1262,10 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -6.7,
       "debtAssetRatio": 85.97,
       "sourceUrl": "https://irbank.net/3664/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
       "cautions": "PBR 1.58倍で割安感が薄い / EPSが赤字または未確認 / 有利子負債がやや重い"
@@ -1065,6 +1285,10 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -18.2,
       "debtAssetRatio": 145.68,
       "sourceUrl": "https://irbank.net/281A/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
       "cautions": "PBR 4.09倍で割安感が薄い / EPSが赤字または未確認 / 有利子負債が純資産を上回る"
@@ -1084,6 +1308,10 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -65.34,
       "debtAssetRatio": 153.81,
       "sourceUrl": "https://irbank.net/8830/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
       "cautions": "PBR 2.32倍で割安感が薄い / ネット有利子負債が重い -65.34% / 有利子負債が純資産を上回る"
@@ -1103,9 +1331,13 @@ window.AUTO_FINANCIAL_SCREENING = {
       "netCashRatio": -80.66,
       "debtAssetRatio": 104.94,
       "sourceUrl": "https://irbank.net/8818/results",
+      "backtestTrades": 0,
+      "backtestWinRate": 0,
+      "backtestAverageReturn": 0,
+      "backtestMaxDrawdown": 0,
       "action": "通常候補へ入れない方向で確認",
       "reasons": "確認材料が不足",
-      "cautions": "ネット有利子負債が重い -80.66% / 有利子負債が純資産を上回る"
+      "cautions": "ネット有利子負債が重い -80.66% / 有利子負債が純資産を上回る / 価格検証は売買回数0回なので参考扱い"
     }
   ]
 };

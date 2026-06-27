@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCsvRecords } from "./csv-utils.mjs";
+import { backtestStock } from "./backtest-core.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dataDir = path.join(rootDir, "data");
@@ -34,6 +35,7 @@ function screenRow(row) {
   const debtAssetRatio = number(row.checkedNetAssets) > 0 ? number(row.checkedInterestDebt) / number(row.checkedNetAssets) : 0;
   const missing = missingFields(row);
   const estimatedOnly = row.status === "推定下書き・要確認";
+  const backtest = backtestFromWorklistRow(row);
   const reasons = [];
   const cautions = [];
   let score = 50;
@@ -94,6 +96,15 @@ function screenRow(row) {
     cautions.push("推定下書きの補完値なので自動昇格しない");
   }
 
+  if (backtest.trades >= 1 && (backtest.averageReturn <= 0 || backtest.winRate < 50 || backtest.maxDrawdown <= -12)) {
+    score = Math.min(score, 57);
+    cautions.push(`価格検証が弱い 勝率${pct(backtest.winRate / 100)} 平均${pct(backtest.averageReturn / 100)}`);
+  } else if (backtest.trades === 0) {
+    cautions.push("価格検証は売買回数0回なので参考扱い");
+  } else {
+    reasons.push(`価格検証 勝率${pct(backtest.winRate / 100)} 平均${pct(backtest.averageReturn / 100)}`);
+  }
+
   const status = statusFor(score, missing);
   return {
     rank: row.priorityRank,
@@ -110,10 +121,46 @@ function screenRow(row) {
     netCashRatio: round(netCashRatio * 100),
     debtAssetRatio: round(debtAssetRatio * 100),
     sourceUrl: row.sourceUrl,
+    backtestTrades: backtest.trades,
+    backtestWinRate: backtest.winRate,
+    backtestAverageReturn: backtest.averageReturn,
+    backtestMaxDrawdown: backtest.maxDrawdown,
     action: estimatedOnly ? "原資料確認まで通常候補へ自動昇格しない" : actionFor(status),
     reasons: reasons.slice(0, 3).join(" / ") || "確認材料が不足",
     cautions: cautions.slice(0, 3).join(" / ") || "大きな注意なし",
   };
+}
+
+function backtestFromWorklistRow(row) {
+  const price = number(row.price);
+  const pbrLow = row.checkedPbrLow || "0.64";
+  const pbrHigh = row.checkedPbrHigh || "1.53";
+  return backtestStock({
+    code: row.code,
+    name: row.name,
+    sector: row.sector,
+    price,
+    shares: number(row.checkedShares),
+    treasuryShares: number(row.checkedTreasuryShares),
+    cash: number(row.checkedCash),
+    securities: number(row.checkedSecurities),
+    investmentSecurities: number(row.checkedInvestmentSecurities),
+    interestDebt: number(row.checkedInterestDebt),
+    netAssets: number(row.checkedNetAssets),
+    rentalBook: number(row.checkedRentalBook),
+    rentalMarket: number(row.checkedRentalMarket),
+    bps: number(row.checkedBps),
+    eps: number(row.checkedEps),
+    pbrLow,
+    pbrAvg: row.checkedPbrAvg || midpoint(pbrLow, pbrHigh),
+    pbrHigh,
+    perLow: row.checkedPerLow || "10",
+    perAvg: row.checkedPerAvg || "16",
+    perHigh: row.checkedPerHigh || "24",
+    qualitativeDone: true,
+    held: false,
+    history: String(row.history || "").split("|").map(Number).filter((value) => Number.isFinite(value)),
+  });
 }
 
 function missingFields(row) {
@@ -205,6 +252,10 @@ function toCsv(items) {
     "netCashRatio",
     "debtAssetRatio",
     "sourceUrl",
+    "backtestTrades",
+    "backtestWinRate",
+    "backtestAverageReturn",
+    "backtestMaxDrawdown",
     "action",
     "reasons",
     "cautions",
@@ -227,6 +278,13 @@ function pct(value) {
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
+}
+
+function midpoint(low, high) {
+  const lowValue = number(low);
+  const highValue = number(high);
+  if (!lowValue || !highValue) return "";
+  return String(round((lowValue + highValue) / 2));
 }
 
 function escapeCsv(value) {

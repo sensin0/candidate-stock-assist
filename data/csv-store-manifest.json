@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-27T12:28:36.046Z",
+  "generatedAt": "2026-06-27T23:46:18.308Z",
   "totalFiles": 31,
   "totalRows": 19831,
-  "totalBytes": 3141591,
+  "totalBytes": 3145396,
   "problems": [],
   "files": [
     {
@@ -39,7 +39,7 @@
     },
     {
       "name": "backtest-results.csv",
-      "bytes": 6624,
+      "bytes": 7267,
       "rows": 35,
       "columns": 15,
       "headers": [
@@ -216,9 +216,9 @@
     },
     {
       "name": "financial-worklist-screened.csv",
-      "bytes": 16080,
+      "bytes": 19242,
       "rows": 58,
-      "columns": 17,
+      "columns": 21,
       "headers": [
         "rank",
         "code",
@@ -234,6 +234,10 @@
         "netCashRatio",
         "debtAssetRatio",
         "sourceUrl",
+        "backtestTrades",
+        "backtestWinRate",
+        "backtestAverageReturn",
+        "backtestMaxDrawdown",
         "action",
         "reasons",
         "cautions"
