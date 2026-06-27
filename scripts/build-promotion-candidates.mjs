@@ -9,6 +9,7 @@ const reportsDir = path.join(rootDir, "reports");
 const stockMasterPath = path.join(dataDir, "stock-master.csv");
 const universePath = path.join(dataDir, "universe-price-backtest.csv");
 const multibaggerPath = path.join(dataDir, "multibagger-candidates.csv");
+const universeBuyCandidatesPath = path.join(dataDir, "universe-buy-candidates.csv");
 const outputCsvPath = path.join(dataDir, "promotion-candidates.csv");
 const outputReportPath = path.join(reportsDir, "latest-promotion-candidates.md");
 
@@ -16,8 +17,30 @@ const stockMaster = readCsv(stockMasterPath);
 const existingCodes = new Set(stockMaster.map((row) => row.code));
 const universeRows = readCsv(universePath).filter((row) => row.judgement === "良さそう" && !row.error);
 const multibaggerRows = readCsv(multibaggerPath).filter((row) => row.group === "2倍監視候補");
+const universeBuyRows = readCsv(universeBuyCandidatesPath);
 
 const candidates = new Map();
+
+for (const row of universeBuyRows) {
+  if (existingCodes.has(row.code)) continue;
+  upsert(row.code, {
+    code: row.code,
+    name: row.name,
+    market: row.market,
+    sector: row.sector,
+    source: "自動買い候補予備軍",
+    signal: row.signal,
+    strategy: "財務+価格自動判定",
+    score: number(row.autoBuyScore) + 24,
+    winRate: number(row.winRate),
+    averageReturn: number(row.averageReturn),
+    maxDrawdown: number(row.maxDrawdown),
+    periodReturn: 0,
+    reason: row.comment || "財務と価格の両方が条件内",
+    nextCheck: "有報、決算短信、利益継続性、負債、出来高",
+    caution: row.caution || "正式今買い前の確認待ち",
+  });
+}
 
 for (const row of universeRows) {
   if (existingCodes.has(row.code)) continue;
@@ -85,6 +108,7 @@ function priority(row) {
   value += number(row.winRate) * 0.18;
   value += Math.max(-30, number(row.maxDrawdown)) * 0.8;
   if (row.source === "2倍監視") value += 12;
+  if (row.source === "自動買い候補予備軍") value += 26;
   if (row.signal === "上昇中押し目") value += 10;
   if (row.signal === "高値圏") value -= 14;
   if (number(row.maxDrawdown) <= -15) value -= 18;
@@ -92,6 +116,7 @@ function priority(row) {
 }
 
 function actionLabel(row) {
+  if (row.source === "自動買い候補予備軍") return "最優先で通常候補前確認";
   if (number(row.maxDrawdown) <= -15) return "下落リスク確認が先";
   if (row.signal === "高値圏") return "押し目待ちで財務確認";
   if (row.signal === "上昇中押し目") return "優先して財務確認";
@@ -153,17 +178,24 @@ function writeReport(filePath, rows) {
     "",
     `候補数: ${rows.length}件`,
     `通常候補登録済み: ${existingCodes.size}件`,
+    `自動買い候補予備軍から: ${rows.filter((row) => row.source === "自動買い候補予備軍").length}件`,
+    "",
+    "## 最優先で通常候補前確認",
+    "",
+    ...rows.filter((row) => row.action === "最優先で通常候補前確認").slice(0, 20).map((row, index) =>
+      `- ${index + 1}. ${row.code} ${row.name}: ${row.action} / 優先度${row.priority} / ${row.reason} / 次に確認: ${row.nextCheck}`
+    ),
     "",
     "## 優先して財務確認",
     "",
-    ...rows.slice(0, 20).map((row, index) =>
+    ...rows.filter((row) => row.action === "優先して財務確認").slice(0, 20).map((row, index) =>
       `- ${index + 1}. ${row.code} ${row.name}: ${row.action} / 優先度${row.priority} / ${row.reason} / 次に確認: ${row.nextCheck}`
     ),
     "",
     "## 注意して見る",
     "",
     ...rows
-      .filter((row) => row.action !== "優先して財務確認")
+      .filter((row) => !["最優先で通常候補前確認", "優先して財務確認"].includes(row.action))
       .slice(0, 20)
       .map((row, index) =>
         `- ${index + 1}. ${row.code} ${row.name}: ${row.action} / ${row.caution} / 最大下落${row.maxDrawdown}%`

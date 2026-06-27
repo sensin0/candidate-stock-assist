@@ -17,6 +17,7 @@ const promotedReportPath = path.join(rootDir, "reports", "latest-promoted-candid
 const autoFinancialFollowupReportPath = path.join(rootDir, "reports", "latest-auto-financial-followup.md");
 const financialCoverageReportPath = path.join(rootDir, "reports", "latest-universe-financial-coverage.md");
 const universeCheckStatusReportPath = path.join(rootDir, "reports", "latest-universe-check-status.md");
+const universeBuyCandidatesReportPath = path.join(rootDir, "reports", "latest-universe-buy-candidates.md");
 const productionNextReportPath = path.join(rootDir, "reports", "latest-production-next-steps.md");
 const draftReportPath = path.join(rootDir, "reports", "latest-stock-master-draft.md");
 const expandedPreviewReportPath = path.join(rootDir, "reports", "latest-stock-master-expanded-preview.md");
@@ -38,6 +39,7 @@ const promotedReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-promoted
 const autoFinancialFollowupReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-auto-financial-followup.md`;
 const financialCoverageReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-universe-financial-coverage.md`;
 const universeCheckStatusReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-universe-check-status.md`;
+const universeBuyCandidatesReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-universe-buy-candidates.md`;
 const productionNextReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-production-next-steps.md`;
 const draftReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-stock-master-draft.md`;
 const expandedPreviewReportUrl = `${siteUrl.replace(/\/$/, "")}/reports/latest-stock-master-expanded-preview.md`;
@@ -65,6 +67,7 @@ const promotedReport = fs.existsSync(promotedReportPath) ? fs.readFileSync(promo
 const autoFinancialFollowupReport = fs.existsSync(autoFinancialFollowupReportPath) ? fs.readFileSync(autoFinancialFollowupReportPath, "utf8") : "";
 const financialCoverageReport = fs.existsSync(financialCoverageReportPath) ? fs.readFileSync(financialCoverageReportPath, "utf8") : "";
 const universeCheckStatusReport = fs.existsSync(universeCheckStatusReportPath) ? fs.readFileSync(universeCheckStatusReportPath, "utf8") : "";
+const universeBuyCandidatesReport = fs.existsSync(universeBuyCandidatesReportPath) ? fs.readFileSync(universeBuyCandidatesReportPath, "utf8") : "";
 const productionNextReport = fs.existsSync(productionNextReportPath) ? fs.readFileSync(productionNextReportPath, "utf8") : "";
 const draftReport = fs.existsSync(draftReportPath) ? fs.readFileSync(draftReportPath, "utf8") : "";
 const expandedPreviewReport = fs.existsSync(expandedPreviewReportPath) ? fs.readFileSync(expandedPreviewReportPath, "utf8") : "";
@@ -138,6 +141,9 @@ const message = [
   "今買い候補",
   ...firstItems("今買い候補").map((item) => `- ${clipItem(item)}`),
   "",
+  "全体自動判定・買い候補予備軍",
+  ...firstReportItems(universeBuyCandidatesReport, "予備軍上位", 3).map((item) => `- ${clipItem(item)}`),
+  "",
   "自動財務確認・後追い確認",
   ...firstItems("自動財務確認・後追い確認", 3).map((item) => `- ${clipItem(item)}`),
   "",
@@ -205,6 +211,7 @@ const message = [
   autoFinancialFollowupReportUrl,
   financialCoverageReportUrl,
   universeCheckStatusReportUrl,
+  universeBuyCandidatesReportUrl,
   productionNextReportUrl,
   hiddenGemsReportUrl,
   hiddenGemsDraftReportUrl,

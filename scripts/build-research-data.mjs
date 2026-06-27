@@ -9,11 +9,13 @@ const appDir = path.join(rootDir, "app");
 const universeCsv = path.join(dataDir, "universe-price-backtest.csv");
 const listedUniverseCsv = path.join(dataDir, "listed-universe.csv");
 const multibaggerCsv = path.join(dataDir, "multibagger-candidates.csv");
+const universeBuyCandidatesCsv = path.join(dataDir, "universe-buy-candidates.csv");
 const outputJs = path.join(appDir, "generated-research.js");
 
 const universeRows = readCsv(universeCsv);
 const listedUniverseByCode = new Map(readCsv(listedUniverseCsv).map((row) => [row.code, row]));
 const multibaggerRows = readCsv(multibaggerCsv);
+const universeBuyCandidateRows = readCsv(universeBuyCandidatesCsv);
 
 const universeSuccess = universeRows.filter((row) => !row.error).length;
 const universeAll = universeRows
@@ -47,6 +49,37 @@ const multibaggerWatch = multibaggerRows
     timingRank: timingRank(row),
   }));
 
+const autoBuyCandidates = universeBuyCandidateRows.slice(0, 120).map((row) => ({
+  code: row.code,
+  name: row.name,
+  market: row.market,
+  sector: row.sector,
+  status: row.status,
+  normalCandidate: row.normalCandidate,
+  autoBuyScore: number(row.autoBuyScore),
+  price: number(row.price),
+  buyLine: number(row.buyLine),
+  targetPrice: number(row.targetPrice),
+  buyRatio: number(row.buyRatio),
+  upside: number(row.upside),
+  pbr: number(row.pbr),
+  per: number(row.per),
+  netCashRatio: number(row.netCashRatio),
+  winRate: number(row.winRate),
+  averageReturn: number(row.averageReturn),
+  maxDrawdown: number(row.maxDrawdown),
+  signal: row.signal,
+  judgement: row.judgement,
+  metricSource: row.metricSource,
+  action: row.action,
+  comment: row.comment,
+  caution: row.caution,
+  timingAction: "確認前買い候補",
+  timingRank: number(row.autoBuyScore),
+  qualityRank: number(row.autoBuyScore),
+  qualityNote: row.caution || "正式今買い前に原資料確認",
+}));
+
 const payload = {
   generatedAt: new Date().toISOString(),
   source: "data/universe-price-backtest.csv + data/multibagger-candidates.csv",
@@ -57,10 +90,12 @@ const payload = {
     avoid: universeRows.filter((row) => row.judgement === "見送り寄り").length,
     ranked: universeAll.length,
     buyTiming: timingBuys.length,
+    autoBuyCandidates: autoBuyCandidates.length,
   },
   universeAll,
   universeTop,
   timingBuys,
+  autoBuyCandidates,
   multibaggerWatch,
 };
 
