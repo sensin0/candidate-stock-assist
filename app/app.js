@@ -571,7 +571,7 @@ function enrichAll(data) {
 
 function loadSample() {
   stocks = enrichAll(fallbackStocks);
-  selectedCode = stocks[0]?.code ?? null;
+  selectTopRankingItem();
   setImportStatus("サンプルデータを表示中");
   setAutoUpdateStatus("サンプル表示中");
   render();
@@ -580,7 +580,7 @@ function loadSample() {
 function loadInitialData() {
   if (window.AUTO_STOCK_DATA?.stocks?.length) {
     stocks = enrichAll(window.AUTO_STOCK_DATA.stocks);
-    selectedCode = stocks[0]?.code ?? null;
+    selectTopRankingItem();
     const generatedAt = window.AUTO_STOCK_DATA.generatedAt
       ? new Date(window.AUTO_STOCK_DATA.generatedAt).toLocaleString("ja-JP")
       : "日時不明";
@@ -991,7 +991,7 @@ function rankingFor(type) {
   if (type === "financialConfirmation") return filteredFinancialConfirmationItems(window.AUTO_FINANCIAL_CONFIRMATION?.top ?? []);
   if (type === "financialScreening") return filteredFinancialScreeningItems(window.AUTO_FINANCIAL_SCREENING?.top ?? []);
   if (type === "hiddenGems") return filteredHiddenGemItems(window.AUTO_HIDDEN_GEMS?.top ?? []);
-  if (type === "autoBuyCandidates") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.autoBuyCandidates ?? []);
+  if (type === "autoBuyCandidates") return filteredAutoBuyCandidateItems(window.AUTO_RESEARCH_DATA?.autoBuyCandidates ?? []);
   if (type === "researchTiming") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.timingBuys ?? []);
   if (type === "researchUniverse") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.universeAll ?? window.AUTO_RESEARCH_DATA?.universeTop ?? []);
   if (type === "researchMultibagger") return filteredResearchItems(window.AUTO_RESEARCH_DATA?.multibaggerWatch ?? []);
@@ -1051,6 +1051,49 @@ function renderRanking() {
 
 function rankingLimitFor(type) {
   return 10;
+}
+
+function selectTopRankingItem(type = document.getElementById("rankingSelect")?.value || "today") {
+  const first = rankingFor(type).slice(0, rankingLimitFor(type))[0];
+  if (!first) {
+    selectedResearch = null;
+    selectedCode = visibleStocks()[0]?.code ?? stocks[0]?.code ?? null;
+    return;
+  }
+
+  if (type === "today") {
+    if (first.kind === "stock") {
+      selectedResearch = null;
+      selectedCode = first.code;
+      return;
+    }
+    selectedCode = null;
+    selectedResearch = { type: first.sourceType, code: first.code };
+    return;
+  }
+
+  if (isResearchRankingType(type)) {
+    selectedCode = null;
+    selectedResearch = { type, code: first.code };
+    return;
+  }
+
+  selectedResearch = null;
+  selectedCode = first.code;
+}
+
+function isResearchRankingType(type) {
+  return [
+    "expansionPreview",
+    "hiddenGemsDraft",
+    "financialConfirmation",
+    "financialScreening",
+    "hiddenGems",
+    "autoBuyCandidates",
+    "researchTiming",
+    "researchUniverse",
+    "researchMultibagger",
+  ].includes(type);
 }
 
 function todayRankingItems() {
@@ -1258,6 +1301,19 @@ function filteredResearchItems(items) {
       return !q || text.includes(q);
     })
     .sort((a, b) => (b.qualityRank ?? b.timingRank ?? b.score ?? 0) - (a.qualityRank ?? a.timingRank ?? a.score ?? 0));
+}
+
+function filteredAutoBuyCandidateItems(items) {
+  return filteredResearchItems(items)
+    .sort((a, b) => reviewPriority(b.reviewStatus) - reviewPriority(a.reviewStatus)
+      || (b.qualityRank ?? b.autoBuyScore ?? 0) - (a.qualityRank ?? a.autoBuyScore ?? 0));
+}
+
+function reviewPriority(status) {
+  if (status === "通常候補へ昇格OK") return 3;
+  if (status === "追加確認") return 2;
+  if (status === "今回は見送り") return 1;
+  return 0;
 }
 
 function renderTodayRankingRow(entry, index) {
@@ -2803,7 +2859,10 @@ function setupEvents() {
     selectedResearch = null;
     render();
   });
-  document.getElementById("rankingSelect").addEventListener("change", renderRanking);
+  document.getElementById("rankingSelect").addEventListener("change", () => {
+    selectTopRankingItem();
+    render();
+  });
   document.getElementById("sampleButton")?.addEventListener("click", loadSample);
   document.getElementById("templateButton")?.addEventListener("click", downloadCsvTemplate);
   document.getElementById("searchInput").addEventListener("input", (event) => {
@@ -2811,10 +2870,12 @@ function setupEvents() {
     if (searchQuery.trim()) {
       document.getElementById("rankingSelect").value = "today";
     }
+    selectTopRankingItem();
     render();
   });
   document.getElementById("assistFilter").addEventListener("change", (event) => {
     assistFilter = event.target.value;
+    selectTopRankingItem();
     render();
   });
   document.getElementById("copyReportButton").addEventListener("click", async () => {
@@ -2834,7 +2895,7 @@ function setupEvents() {
       const text = await file.text();
       const parsed = parseCsv(text);
       stocks = enrichAll(parsed);
-      selectedCode = stocks[0]?.code ?? null;
+      selectTopRankingItem();
       setImportStatus(`${file.name} を${stocks.length}件読み込みました`);
       render();
     } catch (error) {

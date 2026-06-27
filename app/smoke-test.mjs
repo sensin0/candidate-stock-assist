@@ -88,12 +88,13 @@ vm.runInContext(
   ${generatedFinancialConfirmation}
   ${generatedFinancialScreening}
   ${code}
-  selectedCode = byAssist("今買い候補")[0]?.code
-    ?? byAssist("検証弱く見送り")[0]?.code
-    ?? byAssist("リスクで見送り")[0]?.code
-    ?? selectedCode;
+  document.getElementById("rankingSelect").value = "today";
+  selectTopRankingItem();
   renderRanking();
   renderDetail();
+  const selectedTopRanking = rankingFor("today")[0];
+  const selectedTopName = selectedTopRanking?.item?.name ?? "";
+  const selectedTopDetailTitle = document.getElementById("detailTitle").textContent;
   const normalChart = document.getElementById("chart").innerHTML;
   const normalLynchChart = document.getElementById("lynchChart").innerHTML;
   const inlineLynchPreview = document.getElementById("rankingList").innerHTML;
@@ -101,8 +102,6 @@ vm.runInContext(
   const normalTimingPanel = document.getElementById("timingPanel").innerHTML;
   const normalBuyTimingAlert = document.getElementById("buyTimingAlert").innerHTML;
   const dataCheckList = document.getElementById("dataCheckList").innerHTML;
-  document.getElementById("rankingSelect").value = "today";
-  renderRanking();
   const todayRanking = document.getElementById("rankingList").innerHTML;
   const todayRankingRows = todayRanking.match(/class="ranking-row/g)?.length ?? 0;
   const todayRankingTop = rankingFor("today")[0];
@@ -167,6 +166,8 @@ vm.runInContext(
     inlineLynchPreview,
     lifecycle: normalLifecycle,
     buyTimingAlert: normalBuyTimingAlert,
+    selectedTopName,
+    selectedTopDetailTitle,
     dataCheckList,
     todayRanking,
     todayRankingRows,
@@ -206,6 +207,9 @@ if (!result.report.includes("# 朝レポート")) failures.push("朝レポート
 if (!result.report.includes("## 監視リスト")) failures.push("朝レポートに監視リストがありません");
 if (!result.report.includes("## 未発掘・今すぐ財務確認")) failures.push("朝レポートに未発掘候補がありません");
 if (!result.dataCheckList.includes("昇格準備")) failures.push("データ確認に昇格準備がありません");
+if (result.selectedTopName && !result.selectedTopDetailTitle.includes(result.selectedTopName)) {
+  failures.push("初期表示のリンチ・チャートがランキング1位と一致していません");
+}
 if (!result.todayRanking.includes("総合") || result.todayRankingRows > 10) {
   failures.push("総合おすすめランキングが10件以内で生成されていません");
 }
