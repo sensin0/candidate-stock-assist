@@ -21,6 +21,7 @@ const steps = [
   ["確認済み候補の昇格プレビュー生成", "scripts/promote-confirmed-candidates.mjs"],
   ["自動財務確認の後追い確認レポート生成", "scripts/build-auto-financial-followup.mjs"],
   ["画面用調査データ生成", "scripts/build-research-data.mjs"],
+  ["日本株全体分析サマリー生成", "scripts/build-universe-analysis-summary.mjs"],
   ["本番化残作業レポート生成", "scripts/build-production-next-steps.mjs"],
 ];
 
