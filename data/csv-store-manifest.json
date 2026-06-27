@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-27T23:46:18.308Z",
+  "generatedAt": "2026-06-27T23:56:55.554Z",
   "totalFiles": 31,
-  "totalRows": 19831,
-  "totalBytes": 3145396,
+  "totalRows": 19797,
+  "totalBytes": 3130059,
   "problems": [],
   "files": [
     {
@@ -451,8 +451,8 @@
     },
     {
       "name": "stock-master-expanded-preview.csv",
-      "bytes": 31446,
-      "rows": 83,
+      "bytes": 16109,
+      "rows": 49,
       "columns": 27,
       "headers": [
         "code",

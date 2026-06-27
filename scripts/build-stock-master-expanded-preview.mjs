@@ -9,7 +9,9 @@ const dataDir = path.join(rootDir, "data");
 const reportsDir = path.join(rootDir, "reports");
 const stockMasterPath = path.join(dataDir, "stock-master.csv");
 const draftPath = path.join(dataDir, "stock-master-input-draft.csv");
+const hiddenDraftPath = path.join(dataDir, "stock-master-hidden-gems-draft.csv");
 const universePromotionDraftPath = path.join(dataDir, "stock-master-universe-promotion-draft.csv");
+const financialScreenedPath = path.join(dataDir, "financial-worklist-screened.csv");
 const outputPath = path.join(dataDir, "stock-master-expanded-preview.csv");
 const reportPath = path.join(reportsDir, "latest-stock-master-expanded-preview.md");
 const appOutputPath = path.join(rootDir, "app", "generated-expansion-preview.js");
@@ -47,11 +49,14 @@ const stockHeaders = [
 
 const masterRows = parseCsvRecords(fs.readFileSync(stockMasterPath, "utf8"));
 const existingCodes = new Set(masterRows.map((row) => row.code));
+const financialScreenedByCode = new Map(readCsv(financialScreenedPath).map((row) => [row.code, row]));
 const draftRows = uniqueByCode([
   ...readCsv(universePromotionDraftPath),
   ...readCsv(draftPath),
+  ...readCsv(hiddenDraftPath),
 ])
   .filter((row) => row.code && !existingCodes.has(row.code))
+  .filter((row) => isPreviewEligible(row))
   .slice(0, limit)
   .map(toPreviewStockRow);
 
@@ -94,6 +99,7 @@ function uniqueByCode(rows) {
 }
 
 function toPreviewStockRow(row) {
+  const screened = financialScreenedByCode.get(row.code);
   const pbrLow = Number(row.pbrLow || 0);
   const pbrHigh = Number(row.pbrHigh || 0);
   const pbrAvg = pbrLow > 0 && pbrHigh > 0 ? round2((pbrLow + pbrHigh) / 2) : "";
@@ -125,10 +131,31 @@ function toPreviewStockRow(row) {
     dataConfidence: "推定",
     qualitativeDone: "false",
     held: "false",
-    risk: "財務確認前。通常候補へ入れる前に有報と決算で確認",
-    catalyst: row.note || "日本株全体スクリーニングからの追加候補",
+    risk: previewRisk(row, screened),
+    catalyst: previewCatalyst(row, screened),
     history: row.history || makeHistory(row.price),
   };
+}
+
+function isPreviewEligible(row) {
+  const screened = financialScreenedByCode.get(row.code);
+  if (!screened) return true;
+  if (screened.status === "見送り寄り") return false;
+  return true;
+}
+
+function previewRisk(row, screened) {
+  const base = "財務確認前。通常候補へ入れる前に有報と決算で確認";
+  if (!screened) return base;
+  if (screened.status === "昇格確認優先") return `${base}。財務スクリーニング: 昇格確認優先`;
+  if (screened.status === "慎重確認") return `${base}。財務スクリーニング: 慎重確認`;
+  return base;
+}
+
+function previewCatalyst(row, screened) {
+  const note = row.note || "日本株全体スクリーニングからの追加候補";
+  if (!screened) return note;
+  return `${note}。${screened.reasons || screened.action || screened.status}`;
 }
 
 function writeReport(masterRows, draftRows) {
@@ -144,6 +171,7 @@ function writeReport(masterRows, draftRows) {
     `既存の通常候補: ${masterRows.length}件`,
     `追加プレビュー: ${draftRows.length}件`,
     `確認後の候補数イメージ: ${masterRows.length + draftRows.length}件`,
+    `除外: 財務スクリーニングで見送り寄りになった銘柄は追加候補から外しています。`,
     "",
     "## 追加候補",
     "",

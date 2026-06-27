@@ -1,9 +1,9 @@
 ﻿{
-  "generatedAt": "2026-06-27T23:46:19.354241+00:00",
+  "generatedAt": "2026-06-27T23:56:56.798130+00:00",
   "database": "data/candidate-stock-assist.sqlite",
-  "databaseBytes": 4333568,
+  "databaseBytes": 4317184,
   "tables": 31,
-  "rows": 19831,
+  "rows": 19797,
   "integrity": "ok",
   "imported": [
     {
@@ -121,9 +121,9 @@
     {
       "table": "stock_master_expanded_preview",
       "csv": "stock-master-expanded-preview.csv",
-      "rows": 83,
+      "rows": 49,
       "columns": 27,
-      "bytes": 31446
+      "bytes": 16109
     },
     {
       "table": "stock_master_hidden_gems_draft",

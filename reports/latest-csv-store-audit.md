@@ -1,10 +1,10 @@
 # CSVストア監査
 
-生成日時: 2026-06-27T23:46:18.308Z
+生成日時: 2026-06-27T23:56:55.554Z
 
 CSVファイル: 31件
-総行数: 19,831行
-総サイズ: 3.15MB
+総行数: 19,797行
+総サイズ: 3.13MB
 問題: 0件
 
 ## 判定
@@ -42,7 +42,7 @@ CSVファイル: 31件
 - price-updates.csv: 35行 / 3列 / 743B
 - promotion-candidates.csv: 150行 / 17列 / 47.51KB
 - promotion-readiness.csv: 50行 / 19列 / 20.86KB
-- stock-master-expanded-preview.csv: 83行 / 27列 / 31.45KB
+- stock-master-expanded-preview.csv: 49行 / 27列 / 16.11KB
 - stock-master-hidden-gems-draft.csv: 6行 / 14列 / 2.15KB
 - stock-master-input-draft.csv: 50行 / 14列 / 17.48KB
 - stock-master-input.csv: 3行 / 13列 / 459B

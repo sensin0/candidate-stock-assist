@@ -18,10 +18,11 @@ const previewRows = parseCsvRecords(fs.readFileSync(previewPath, "utf8"));
 const masterRows = parseCsvRecords(fs.readFileSync(masterPath, "utf8"));
 
 assert.ok(previewRows.length > masterRows.length, "追加候補がプレビューに入っていません");
-assert.ok(previewRows.length >= 50, "プレビュー後の候補数は50件以上を目安にします");
+assert.ok(previewRows.length >= 45, "品質フィルタ後でも候補数45件以上を目安にします");
 
 const addedRows = previewRows.filter((row) => row.dataConfidence === "推定");
-assert.ok(addedRows.length >= 20, "推定の追加候補が20件以上必要です");
+assert.ok(addedRows.length >= 10, "品質フィルタ後でも推定の追加候補が10件以上必要です");
+assert.ok(!addedRows.some((row) => ["5363", "5458"].includes(row.code)), "価格検証が弱い候補は追加プレビューから外します");
 
 const appData = fs.readFileSync(appDataPath, "utf8");
 assert.match(appData, /AUTO_EXPANSION_PREVIEW/, "画面用の追加候補データがありません");
