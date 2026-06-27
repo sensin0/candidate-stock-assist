@@ -5,6 +5,8 @@ node_modules/
 *.log
 tmp/
 .notification-state/
+data/*.sqlite
+data/*.sqlite-*
 reports/morning-report-*.md
 data/stock-master.generated.csv
 *_20260618.md

@@ -16,6 +16,7 @@
     "privacy:check": "node scripts/privacy-check.mjs",
     "privacy:report": "node scripts/privacy-report.mjs",
     "csv:audit": "node scripts/audit-csv-store.mjs",
+    "db:build": "python scripts/build_sqlite_store.py",
     "universe:check": "node scripts/universe-check.mjs",
     "universe:financial": "node scripts/refresh-universe-financial-facts.mjs",
     "universe:update": "node scripts/update-listed-universe.mjs",

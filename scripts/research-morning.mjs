@@ -35,6 +35,7 @@ const steps = [
   ["画面用調査データ生成", "scripts/build-research-data.mjs"],
   ["日本株全体分析サマリー生成", "scripts/build-universe-analysis-summary.mjs"],
   ["CSVストア監査", "scripts/audit-csv-store.mjs"],
+  ["SQLiteストア生成", "scripts/run-sqlite-store.mjs"],
   ["本番化残作業レポート生成", "scripts/build-production-next-steps.mjs"],
 ];
 

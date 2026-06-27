@@ -1,0 +1,227 @@
+﻿{
+  "generatedAt": "2026-06-27T11:52:34.405844+00:00",
+  "database": "data/candidate-stock-assist.sqlite",
+  "databaseBytes": 4337664,
+  "tables": 31,
+  "rows": 19859,
+  "integrity": "ok",
+  "imported": [
+    {
+      "table": "auto_financial_followup",
+      "csv": "auto-financial-followup.csv",
+      "rows": 11,
+      "columns": 21,
+      "bytes": 6107
+    },
+    {
+      "table": "backtest_results",
+      "csv": "backtest-results.csv",
+      "rows": 36,
+      "columns": 15,
+      "bytes": 6950
+    },
+    {
+      "table": "disclosures",
+      "csv": "disclosures.csv",
+      "rows": 5,
+      "columns": 4,
+      "bytes": 664
+    },
+    {
+      "table": "edinet_facts",
+      "csv": "edinet-facts.csv",
+      "rows": 20,
+      "columns": 14,
+      "bytes": 2416
+    },
+    {
+      "table": "financial_confirmation_queue",
+      "csv": "financial-confirmation-queue.csv",
+      "rows": 62,
+      "columns": 14,
+      "bytes": 25350
+    },
+    {
+      "table": "financial_confirmation_worklist",
+      "csv": "financial-confirmation-worklist.csv",
+      "rows": 62,
+      "columns": 37,
+      "bytes": 30375
+    },
+    {
+      "table": "financial_confirmed_input",
+      "csv": "financial-confirmed-input.csv",
+      "rows": 0,
+      "columns": 27,
+      "bytes": 240
+    },
+    {
+      "table": "financial_worklist_screened",
+      "csv": "financial-worklist-screened.csv",
+      "rows": 62,
+      "columns": 17,
+      "bytes": 17348
+    },
+    {
+      "table": "hidden_gems",
+      "csv": "hidden-gems.csv",
+      "rows": 200,
+      "columns": 24,
+      "bytes": 79149
+    },
+    {
+      "table": "listed_universe",
+      "csv": "listed-universe.csv",
+      "rows": 3728,
+      "columns": 4,
+      "bytes": 281383
+    },
+    {
+      "table": "multibagger_candidates",
+      "csv": "multibagger-candidates.csv",
+      "rows": 217,
+      "columns": 17,
+      "bytes": 76128
+    },
+    {
+      "table": "price_backtest_results",
+      "csv": "price-backtest-results.csv",
+      "rows": 60,
+      "columns": 18,
+      "bytes": 8235
+    },
+    {
+      "table": "price_refresh_queue",
+      "csv": "price-refresh-queue.csv",
+      "rows": 1,
+      "columns": 13,
+      "bytes": 294
+    },
+    {
+      "table": "price_updates",
+      "csv": "price-updates.csv",
+      "rows": 36,
+      "columns": 3,
+      "bytes": 763
+    },
+    {
+      "table": "promotion_candidates",
+      "csv": "promotion-candidates.csv",
+      "rows": 150,
+      "columns": 17,
+      "bytes": 49135
+    },
+    {
+      "table": "promotion_readiness",
+      "csv": "promotion-readiness.csv",
+      "rows": 50,
+      "columns": 19,
+      "bytes": 20840
+    },
+    {
+      "table": "stock_master_expanded_preview",
+      "csv": "stock-master-expanded-preview.csv",
+      "rows": 81,
+      "columns": 27,
+      "bytes": 30611
+    },
+    {
+      "table": "stock_master_hidden_gems_draft",
+      "csv": "stock-master-hidden-gems-draft.csv",
+      "rows": 6,
+      "columns": 14,
+      "bytes": 2152
+    },
+    {
+      "table": "stock_master_input_draft",
+      "csv": "stock-master-input-draft.csv",
+      "rows": 50,
+      "columns": 14,
+      "bytes": 17281
+    },
+    {
+      "table": "stock_master_input",
+      "csv": "stock-master-input.csv",
+      "rows": 3,
+      "columns": 13,
+      "bytes": 459
+    },
+    {
+      "table": "stock_master_promoted",
+      "csv": "stock-master-promoted.csv",
+      "rows": 33,
+      "columns": 27,
+      "bytes": 8654
+    },
+    {
+      "table": "stock_master_universe_promotion_draft",
+      "csv": "stock-master-universe-promotion-draft.csv",
+      "rows": 5,
+      "columns": 14,
+      "bytes": 1660
+    },
+    {
+      "table": "stock_master",
+      "csv": "stock-master.csv",
+      "rows": 31,
+      "columns": 27,
+      "bytes": 7728
+    },
+    {
+      "table": "stock_master_generated",
+      "csv": "stock-master.generated.csv",
+      "rows": 3,
+      "columns": 27,
+      "bytes": 810
+    },
+    {
+      "table": "universe_buy_candidate_review",
+      "csv": "universe-buy-candidate-review.csv",
+      "rows": 15,
+      "columns": 21,
+      "bytes": 6315
+    },
+    {
+      "table": "universe_buy_candidates",
+      "csv": "universe-buy-candidates.csv",
+      "rows": 15,
+      "columns": 25,
+      "bytes": 6766
+    },
+    {
+      "table": "universe_check_status",
+      "csv": "universe-check-status.csv",
+      "rows": 3728,
+      "columns": 12,
+      "bytes": 755073
+    },
+    {
+      "table": "universe_financial_facts",
+      "csv": "universe-financial-facts.csv",
+      "rows": 3728,
+      "columns": 21,
+      "bytes": 784271
+    },
+    {
+      "table": "universe_metrics",
+      "csv": "universe-metrics.csv",
+      "rows": 3730,
+      "columns": 14,
+      "bytes": 285702
+    },
+    {
+      "table": "universe_price_backtest",
+      "csv": "universe-price-backtest.csv",
+      "rows": 3728,
+      "columns": 19,
+      "bytes": 639194
+    },
+    {
+      "table": "watchlist",
+      "csv": "watchlist.csv",
+      "rows": 3,
+      "columns": 3,
+      "bytes": 233
+    }
+  ]
+}

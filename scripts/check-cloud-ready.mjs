@@ -26,6 +26,8 @@ const requiredFiles = [
   "scripts/build-auto-financial-followup.mjs",
   "scripts/update-data.mjs",
   "scripts/audit-csv-store.mjs",
+  "scripts/build_sqlite_store.py",
+  "scripts/run-sqlite-store.mjs",
   "scripts/runtime-stock-data.mjs",
   "scripts/backtest-core.mjs",
   "scripts/backtest-timing.mjs",
@@ -122,6 +124,7 @@ const requiredFiles = [
   "data/stock-master-input-draft.csv",
   "data/stock-master-expanded-preview.csv",
   "data/csv-store-manifest.json",
+  "data/sqlite-store-manifest.json",
   "reports/latest-universe-price-backtest.md",
   "reports/latest-multibagger-candidates.md",
   "reports/latest-promotion-candidates.md",
@@ -143,6 +146,7 @@ const requiredFiles = [
   "reports/latest-stock-master-draft.md",
   "reports/latest-stock-master-expanded-preview.md",
   "reports/latest-csv-store-audit.md",
+  "reports/latest-sqlite-store.md",
 ];
 
 const missing = requiredFiles.filter((file) => !fs.existsSync(path.join(rootDir, file)));
@@ -170,6 +174,7 @@ const checks = [
   ["manual confirm helper", process.execPath, ["scripts/confirm-stock.test.mjs"]],
   ["privacy guard", process.execPath, ["scripts/privacy-check.mjs"]],
   ["csv store audit", process.execPath, ["scripts/audit-csv-store.mjs"]],
+  ["sqlite store build", process.execPath, ["scripts/run-sqlite-store.mjs"]],
   ["runtime stock data syntax", process.execPath, ["--check", "scripts/runtime-stock-data.mjs"]],
   ["listed universe", process.execPath, ["scripts/universe-check.mjs"]],
   ["universe screening", process.execPath, ["scripts/universe-screen.mjs"]],

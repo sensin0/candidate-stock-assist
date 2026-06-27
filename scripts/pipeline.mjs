@@ -9,6 +9,7 @@ const steps = [
   ["株価更新キュー生成", "node", ["scripts/build-price-refresh-queue.mjs"]],
   ["画面用調査データ生成", "node", ["scripts/build-research-data.mjs"]],
   ["CSVストア監査", "node", ["scripts/audit-csv-store.mjs"]],
+  ["SQLiteストア生成", "python", ["scripts/build_sqlite_store.py"]],
   ["画面ロジック構文チェック", "node", ["--check", "app/app.js"]],
   ["更新ジョブ構文チェック", "node", ["--check", "scripts/update-data.mjs"]],
   ["画面スモークテスト", "node", ["app/smoke-test.mjs"]],
