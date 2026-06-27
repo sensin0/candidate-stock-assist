@@ -1,5 +1,5 @@
 window.AUTO_FINANCIAL_CONFIRMATION = {
-  "generatedAt": "2026-06-27T00:44:12.494Z",
+  "generatedAt": "2026-06-27T01:07:05.603Z",
   "source": "data/financial-confirmation-queue.csv",
   "total": 63,
   "priorityCount": 43,

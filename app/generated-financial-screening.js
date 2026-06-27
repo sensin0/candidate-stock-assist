@@ -1,5 +1,5 @@
 window.AUTO_FINANCIAL_SCREENING = {
-  "generatedAt": "2026-06-27T01:01:59.737Z",
+  "generatedAt": "2026-06-27T01:07:08.669Z",
   "source": "data/financial-worklist-screened.csv",
   "total": 63,
   "priorityCount": 10,

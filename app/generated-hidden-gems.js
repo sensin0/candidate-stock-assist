@@ -1,5 +1,5 @@
 window.AUTO_HIDDEN_GEMS = {
-  "generatedAt": "2026-06-26T13:10:34.344Z",
+  "generatedAt": "2026-06-27T01:07:04.836Z",
   "source": "data/hidden-gems.csv",
   "total": 200,
   "priorityCount": 29,
@@ -627,32 +627,6 @@ window.AUTO_HIDDEN_GEMS = {
       "nextCheck": "財務、材料、出来高",
       "caution": "検証回数少なめ",
       "reason": "安値反転の検証が良い"
-    },
-    {
-      "hiddenScore": 130,
-      "score": 130,
-      "qualityRank": 130,
-      "code": "4972",
-      "name": "綜研化学",
-      "market": "スタンダード（内国株式）",
-      "sector": "化学",
-      "judgement": "良さそう",
-      "signal": "待ち",
-      "strategy": "高値更新",
-      "priceScore": 65.7,
-      "winRate": 100,
-      "averageReturn": 12.7,
-      "maxDrawdown": -3.2,
-      "periodReturn": 115.8,
-      "trades": 3,
-      "timingAction": "監視候補",
-      "assistAction": "監視候補",
-      "qualityNote": "負けにくさ良好",
-      "comment": "既存候補外で価格検証に残ったため、監視候補として確認します",
-      "status": "未発掘の監視候補",
-      "nextCheck": "財務、材料、出来高",
-      "caution": "なし",
-      "reason": "高値更新型で勢いがある"
     },
     {
       "hiddenScore": 128.9,
@@ -4163,6 +4137,32 @@ window.AUTO_HIDDEN_GEMS = {
       "nextCheck": "BPS、EPS、現金、有利子負債、直近決算",
       "caution": "検証回数少なめ",
       "reason": "既存候補外で上昇中の押し目に見える"
+    },
+    {
+      "hiddenScore": 113.2,
+      "score": 113.2,
+      "qualityRank": 113.2,
+      "code": "4528",
+      "name": "小野薬品工業",
+      "market": "プライム（内国株式）",
+      "sector": "医薬品",
+      "judgement": "良さそう",
+      "signal": "待ち",
+      "strategy": "高値更新",
+      "priceScore": 55.9,
+      "winRate": 100,
+      "averageReturn": 9.3,
+      "maxDrawdown": -5.5,
+      "periodReturn": 50.7,
+      "trades": 3,
+      "timingAction": "様子見",
+      "assistAction": "様子見",
+      "qualityNote": "負けにくさ良好",
+      "comment": "既存候補外で価格検証に残ったため、監視候補として確認します",
+      "status": "未発掘の監視候補",
+      "nextCheck": "財務、材料、出来高",
+      "caution": "なし",
+      "reason": "高値更新型で勢いがある"
     }
   ]
 };

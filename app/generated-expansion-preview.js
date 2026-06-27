@@ -1,9 +1,9 @@
 window.AUTO_EXPANSION_PREVIEW = {
-  "generatedAt": "2026-06-26T13:10:34.128Z",
+  "generatedAt": "2026-06-27T01:07:42.044Z",
   "source": "data/stock-master-expanded-preview.csv",
-  "currentCount": 30,
+  "currentCount": 31,
   "previewAddCount": 50,
-  "expandedCount": 80,
+  "expandedCount": 81,
   "items": [
     {
       "rank": 1,
@@ -280,26 +280,26 @@ window.AUTO_EXPANSION_PREVIEW = {
       "code": "7069",
       "name": "サイバー・バズ",
       "sector": "サービス業",
-      "price": 1279,
-      "bps": 1505,
-      "eps": 79.9,
+      "price": 639.5,
+      "bps": 752,
+      "eps": 40,
       "pbrLow": 0.64,
       "pbrAvg": 1.09,
       "pbrHigh": 1.53,
-      "perAvg": 16.01,
+      "perAvg": 15.99,
       "dataConfidence": "推定",
       "qualitativeDone": false,
       "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
       "catalyst": "推定下書き。優先して財務確認。上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
       "history": [
         1184,
-        1182,
-        1178,
-        1277,
-        1254,
-        1269,
-        1280,
-        1279
+        591,
+        589,
+        639,
+        627,
+        635,
+        640,
+        640
       ]
     },
     {
@@ -415,9 +415,9 @@ window.AUTO_EXPANSION_PREVIEW = {
       "code": "7477",
       "name": "ムラキ",
       "sector": "卸売業",
-      "price": 1911,
-      "bps": 2248,
-      "eps": 119.4,
+      "price": 1871,
+      "bps": 2201,
+      "eps": 116.9,
       "pbrLow": 0.64,
       "pbrAvg": 1.09,
       "pbrHigh": 1.53,
@@ -427,14 +427,14 @@ window.AUTO_EXPANSION_PREVIEW = {
       "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
       "catalyst": "推定下書き。優先して財務確認。上昇トレンド中の押し目候補です。次は決算成長、出来高、直近高値までの距離を確認します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
       "history": [
-        2020,
         2131,
         1999,
         2001,
         2018,
         1950,
         1871,
-        1911
+        1911,
+        1871
       ]
     },
     {
@@ -736,33 +736,6 @@ window.AUTO_EXPANSION_PREVIEW = {
     },
     {
       "rank": 28,
-      "code": "3908",
-      "name": "コラボス",
-      "sector": "情報・通信業",
-      "price": 319,
-      "bps": 319,
-      "eps": 17.7,
-      "pbrLow": 0.75,
-      "pbrAvg": 1.27,
-      "pbrHigh": 1.8,
-      "perAvg": 18.02,
-      "dataConfidence": "推定",
-      "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
-      "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
-      "history": [
-        305,
-        305,
-        313,
-        320,
-        316,
-        319,
-        319,
-        319
-      ]
-    },
-    {
-      "rank": 29,
       "code": "5363",
       "name": "東京窯業",
       "sector": "ガラス・土石製品",
@@ -789,7 +762,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 30,
+      "rank": 29,
       "code": "4351",
       "name": "山田再生系債権回収総合事務所",
       "sector": "その他金融業",
@@ -816,7 +789,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 31,
+      "rank": 30,
       "code": "7513",
       "name": "コジマ",
       "sector": "小売業",
@@ -843,7 +816,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 32,
+      "rank": 31,
       "code": "1515",
       "name": "日鉄鉱業",
       "sector": "鉱業",
@@ -870,7 +843,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 33,
+      "rank": 32,
       "code": "6648",
       "name": "かわでん",
       "sector": "電気機器",
@@ -897,7 +870,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 34,
+      "rank": 33,
       "code": "7245",
       "name": "大同メタル工業",
       "sector": "輸送用機器",
@@ -924,7 +897,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 35,
+      "rank": 34,
       "code": "4679",
       "name": "田谷",
       "sector": "サービス業",
@@ -951,7 +924,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 36,
+      "rank": 35,
       "code": "6643",
       "name": "戸上電機製作所",
       "sector": "電気機器",
@@ -978,34 +951,34 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 37,
+      "rank": 36,
       "code": "7781",
       "name": "平山ホールディングス",
       "sector": "精密機器",
-      "price": 1557,
-      "bps": 1557,
-      "eps": 86.5,
+      "price": 778.5,
+      "bps": 779,
+      "eps": 43.3,
       "pbrLow": 0.75,
       "pbrAvg": 1.27,
       "pbrHigh": 1.8,
-      "perAvg": 18,
+      "perAvg": 17.98,
       "dataConfidence": "推定",
       "qualitativeDone": false,
       "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
       "catalyst": "推定下書き。監視しながら財務確認。高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
       "history": [
         1485,
-        1560,
-        1530,
-        1540,
-        1536,
-        1544,
-        1560,
-        1557
+        780,
+        765,
+        770,
+        768,
+        772,
+        780,
+        779
       ]
     },
     {
-      "rank": 38,
+      "rank": 37,
       "code": "6859",
       "name": "エスペック",
       "sector": "電気機器",
@@ -1032,7 +1005,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 39,
+      "rank": 38,
       "code": "1814",
       "name": "大末建設",
       "sector": "建設業",
@@ -1059,7 +1032,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 40,
+      "rank": 39,
       "code": "5458",
       "name": "高砂鐵工",
       "sector": "鉄鋼",
@@ -1075,18 +1048,18 @@ window.AUTO_EXPANSION_PREVIEW = {
       "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
       "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
       "history": [
-        1249,
         1300,
         1254,
         1269,
         1275,
         1275,
         1223,
+        1240,
         1240
       ]
     },
     {
-      "rank": 41,
+      "rank": 40,
       "code": "4341",
       "name": "西菱電機",
       "sector": "サービス業",
@@ -1113,7 +1086,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 42,
+      "rank": 41,
       "code": "7004",
       "name": "カナデビア",
       "sector": "機械",
@@ -1140,7 +1113,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 43,
+      "rank": 42,
       "code": "5233",
       "name": "太平洋セメント",
       "sector": "ガラス・土石製品",
@@ -1167,7 +1140,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 44,
+      "rank": 43,
       "code": "155A",
       "name": "情報戦略テクノロジー",
       "sector": "情報・通信業",
@@ -1194,7 +1167,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 45,
+      "rank": 44,
       "code": "6999",
       "name": "ＫＯＡ",
       "sector": "電気機器",
@@ -1221,7 +1194,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 46,
+      "rank": 45,
       "code": "9104",
       "name": "商船三井",
       "sector": "海運業",
@@ -1248,7 +1221,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 47,
+      "rank": 46,
       "code": "543A",
       "name": "ＡＲＣＨＩＯＮ",
       "sector": "輸送用機器",
@@ -1275,7 +1248,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 48,
+      "rank": 47,
       "code": "5290",
       "name": "ベルテクスコーポレーション",
       "sector": "ガラス・土石製品",
@@ -1302,7 +1275,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 49,
+      "rank": 48,
       "code": "7426",
       "name": "山大",
       "sector": "卸売業",
@@ -1329,7 +1302,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 50,
+      "rank": 49,
       "code": "3093",
       "name": "トレジャー・ファクトリー",
       "sector": "小売業",
@@ -1353,6 +1326,33 @@ window.AUTO_EXPANSION_PREVIEW = {
         1959,
         2012,
         2063
+      ]
+    },
+    {
+      "rank": 50,
+      "code": "8066",
+      "name": "三谷商事",
+      "sector": "卸売業",
+      "price": 2507,
+      "bps": 2507,
+      "eps": 139.3,
+      "pbrLow": 0.75,
+      "pbrAvg": 1.27,
+      "pbrHigh": 1.8,
+      "perAvg": 18,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
+      "history": [
+        2464,
+        2513,
+        2509,
+        2461,
+        2463,
+        2488,
+        2463,
+        2507
       ]
     }
   ]

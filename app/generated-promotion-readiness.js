@@ -1,7 +1,7 @@
 window.AUTO_PROMOTION_READINESS = {
-  "generatedAt": "2026-06-26T13:10:34.218Z",
+  "generatedAt": "2026-06-27T01:07:31.959Z",
   "source": "data/promotion-readiness.csv",
-  "total": 50,
+  "total": 49,
   "priorityCount": 7,
   "blockerCount": 6,
   "top": [
@@ -573,29 +573,8 @@ window.AUTO_PROMOTION_READINESS = {
       "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します"
     },
     {
-      "readinessScore": 157.8,
-      "rank": 28,
-      "code": "3908",
-      "name": "コラボス",
-      "market": "スタンダード（内国株式）",
-      "sector": "情報・通信業",
-      "status": "監視しながら財務確認",
-      "action": "監視しながら財務確認",
-      "signal": "待ち",
-      "priority": 133.8,
-      "winRate": 100,
-      "averageReturn": 17.1,
-      "maxDrawdown": -1.4,
-      "periodReturn": 2.9,
-      "price": 319,
-      "nextCheck": "財務、材料、流動性",
-      "blockers": "なし",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します"
-    },
-    {
       "readinessScore": 157.7,
-      "rank": 29,
+      "rank": 28,
       "code": "5363",
       "name": "東京窯業",
       "market": "スタンダード（内国株式）",
@@ -616,7 +595,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 157,
-      "rank": 30,
+      "rank": 29,
       "code": "4351",
       "name": "山田再生系債権回収総合事務所",
       "market": "スタンダード（内国株式）",
@@ -637,7 +616,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 157,
-      "rank": 31,
+      "rank": 30,
       "code": "7513",
       "name": "コジマ",
       "market": "プライム（内国株式）",
@@ -658,7 +637,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 156.1,
-      "rank": 32,
+      "rank": 31,
       "code": "1515",
       "name": "日鉄鉱業",
       "market": "プライム（内国株式）",
@@ -679,7 +658,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 155.9,
-      "rank": 33,
+      "rank": 32,
       "code": "6648",
       "name": "かわでん",
       "market": "スタンダード（内国株式）",
@@ -700,7 +679,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 155.8,
-      "rank": 35,
+      "rank": 34,
       "code": "4679",
       "name": "田谷",
       "market": "スタンダード（内国株式）",
@@ -721,7 +700,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 155.5,
-      "rank": 36,
+      "rank": 35,
       "code": "6643",
       "name": "戸上電機製作所",
       "market": "スタンダード（内国株式）",
@@ -742,7 +721,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 155.1,
-      "rank": 37,
+      "rank": 36,
       "code": "7781",
       "name": "平山ホールディングス",
       "market": "スタンダード（内国株式）",
@@ -763,7 +742,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 154.7,
-      "rank": 38,
+      "rank": 37,
       "code": "6859",
       "name": "エスペック",
       "market": "プライム（内国株式）",
@@ -784,7 +763,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 154.3,
-      "rank": 39,
+      "rank": 38,
       "code": "1814",
       "name": "大末建設",
       "market": "プライム（内国株式）",
@@ -805,7 +784,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 153.4,
-      "rank": 40,
+      "rank": 39,
       "code": "5458",
       "name": "高砂鐵工",
       "market": "スタンダード（内国株式）",
@@ -826,7 +805,7 @@ window.AUTO_PROMOTION_READINESS = {
     },
     {
       "readinessScore": 153.2,
-      "rank": 41,
+      "rank": 40,
       "code": "4341",
       "name": "西菱電機",
       "market": "スタンダード（内国株式）",
@@ -840,6 +819,27 @@ window.AUTO_PROMOTION_READINESS = {
       "maxDrawdown": -1.5,
       "periodReturn": 10.4,
       "price": 871,
+      "nextCheck": "財務、材料、流動性",
+      "blockers": "なし",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します"
+    },
+    {
+      "readinessScore": 153,
+      "rank": 41,
+      "code": "7004",
+      "name": "カナデビア",
+      "market": "プライム（内国株式）",
+      "sector": "機械",
+      "status": "監視しながら財務確認",
+      "action": "監視しながら財務確認",
+      "signal": "待ち",
+      "priority": 129,
+      "winRate": 100,
+      "averageReturn": 15.7,
+      "maxDrawdown": -1.8,
+      "periodReturn": 35.9,
+      "price": 1260,
       "nextCheck": "財務、材料、流動性",
       "blockers": "なし",
       "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",

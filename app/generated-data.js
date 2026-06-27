@@ -1,14 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-27T01:02:16.431Z",
+  "generatedAt": "2026-06-27T01:22:03.633Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-27T01:02:16.419Z",
-  "priceFetchedAt": "2026-06-27T01:02:16.423Z",
-  "disclosureFetchedAt": "2026-06-27T01:02:16.425Z",
-  "edinetFetchedAt": "2026-06-27T01:02:16.426Z",
+  "fetchedAt": "2026-06-27T01:22:03.615Z",
+  "priceFetchedAt": "2026-06-27T01:22:03.622Z",
+  "disclosureFetchedAt": "2026-06-27T01:22:03.623Z",
+  "edinetFetchedAt": "2026-06-27T01:22:03.625Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -128,7 +128,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     },
     {
@@ -208,7 +210,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 100,
         "averageReturn": 26.9,
         "maxDrawdown": -3.2,
-        "bestScore": 72.7
+        "bestScore": 72.7,
+        "financialScreeningStatus": "慎重確認",
+        "financialScreeningCautions": "ネット有利子負債が重い -47.59%"
       }
     },
     {
@@ -270,7 +274,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "慎重確認",
+        "financialScreeningCautions": "ネット有利子負債が重い -97.7%"
       }
     },
     {
@@ -346,7 +352,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     },
     {
@@ -422,7 +430,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 100,
         "averageReturn": 34.9,
         "maxDrawdown": 0,
-        "bestScore": 84.9
+        "bestScore": 84.9,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     },
     {
@@ -484,7 +494,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": -2.2,
         "maxDrawdown": -2.2,
-        "bestScore": -1.3
+        "bestScore": -1.3,
+        "financialScreeningStatus": "慎重確認",
+        "financialScreeningCautions": "EPSが赤字または未確認"
       }
     },
     {
@@ -549,7 +561,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": -8.1,
         "maxDrawdown": -8.1,
-        "bestScore": -13.1
+        "bestScore": -13.1,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     },
     {
@@ -619,7 +633,7 @@ window.AUTO_STOCK_DATA = {
         "code": "9672",
         "bestStrategyId": "value-line",
         "bestStrategyLabel": "買いライン到達で買い",
-        "timingLabel": "売り検討",
+        "timingLabel": "財務で見送り",
         "buyTiming": "買いライン到達 (3,417円以下)",
         "sellTiming": "目標の90%付近 (5,040円目安)",
         "confidence": "参考",
@@ -628,7 +642,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "見送り寄り",
+        "financialScreeningCautions": "PBR 1.6倍で割安感が薄い"
       }
     },
     {
@@ -681,7 +697,7 @@ window.AUTO_STOCK_DATA = {
         "code": "8830",
         "bestStrategyId": "value-line",
         "bestStrategyLabel": "買いライン到達で買い",
-        "timingLabel": "待つ",
+        "timingLabel": "財務で見送り",
         "buyTiming": "買いライン到達 (3,600円以下)",
         "sellTiming": "目標の90%付近 (6,480円目安)",
         "confidence": "参考",
@@ -690,7 +706,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "見送り寄り",
+        "financialScreeningCautions": "PBR 2.32倍で割安感が薄い / ネット有利子負債が重い -65.34% / 有利子負債が純資産を上回る"
       }
     },
     {
@@ -743,7 +761,7 @@ window.AUTO_STOCK_DATA = {
         "code": "8801",
         "bestStrategyId": "value-line",
         "bestStrategyLabel": "買いライン到達で買い",
-        "timingLabel": "待つ",
+        "timingLabel": "財務で見送り",
         "buyTiming": "買いライン到達 (944円以下)",
         "sellTiming": "目標の90%付近 (1,967円目安)",
         "confidence": "参考",
@@ -752,7 +770,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "見送り寄り",
+        "financialScreeningCautions": "ネット有利子負債が重い -91.2% / 有利子負債が純資産を上回る"
       }
     },
     {
@@ -814,7 +834,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "慎重確認",
+        "financialScreeningCautions": "大きな注意なし"
       }
     },
     {
@@ -876,7 +898,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "入力待ち",
+        "financialScreeningCautions": "未入力: 発行株数 / 現金等 / 有利子負債 / 純資産 / BPS / EPS / EPSが赤字または未確認"
       }
     },
     {
@@ -938,7 +962,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 100,
         "averageReturn": 28.1,
         "maxDrawdown": 0,
-        "bestScore": 76.8
+        "bestScore": 76.8,
+        "financialScreeningStatus": "昇格確認優先",
+        "financialScreeningCautions": "大きな注意なし"
       }
     },
     {
@@ -991,7 +1017,7 @@ window.AUTO_STOCK_DATA = {
         "code": "6513",
         "bestStrategyId": "value-line",
         "bestStrategyLabel": "買いライン到達で買い",
-        "timingLabel": "買い候補",
+        "timingLabel": "財務で見送り",
         "buyTiming": "買いライン到達 (1,260円以下)",
         "sellTiming": "目標の90%付近 (4,032円目安)",
         "confidence": "参考",
@@ -1000,7 +1026,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 100,
         "averageReturn": 23.1,
         "maxDrawdown": 0,
-        "bestScore": 70.7
+        "bestScore": 70.7,
+        "financialScreeningStatus": "見送り寄り",
+        "financialScreeningCautions": "PER 67.26倍で高い"
       }
     },
     {
@@ -1062,7 +1090,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 100,
         "averageReturn": 9.4,
         "maxDrawdown": -2.1,
-        "bestScore": 52.6
+        "bestScore": 52.6,
+        "financialScreeningStatus": "慎重確認",
+        "financialScreeningCautions": "ネット有利子負債が重い -42.92%"
       }
     },
     {
@@ -1124,7 +1154,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "昇格確認優先",
+        "financialScreeningCautions": "大きな注意なし"
       }
     },
     {
@@ -1185,7 +1217,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 100,
         "averageReturn": 23.8,
         "maxDrawdown": 0,
-        "bestScore": 71.6
+        "bestScore": 71.6,
+        "financialScreeningStatus": "昇格確認優先",
+        "financialScreeningCautions": "大きな注意なし"
       }
     },
     {
@@ -1247,7 +1281,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "慎重確認",
+        "financialScreeningCautions": "ネット有利子負債が重い -121.21% / 有利子負債がやや重い"
       }
     },
     {
@@ -1300,7 +1336,7 @@ window.AUTO_STOCK_DATA = {
         "code": "8818",
         "bestStrategyId": "value-line",
         "bestStrategyLabel": "買いライン到達で買い",
-        "timingLabel": "待つ",
+        "timingLabel": "財務で見送り",
         "buyTiming": "買いライン到達 (990円以下)",
         "sellTiming": "目標の90%付近 (2,351円目安)",
         "confidence": "参考",
@@ -1309,7 +1345,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "見送り寄り",
+        "financialScreeningCautions": "ネット有利子負債が重い -80.66% / 有利子負債が純資産を上回る"
       }
     },
     {
@@ -1371,7 +1409,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 100,
         "averageReturn": 32.7,
         "maxDrawdown": 0,
-        "bestScore": 82.2
+        "bestScore": 82.2,
+        "financialScreeningStatus": "昇格確認優先",
+        "financialScreeningCautions": "大きな注意なし"
       }
     },
     {
@@ -1427,7 +1467,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 100,
         "averageReturn": 8.7,
         "maxDrawdown": 0,
-        "bestScore": 53.4
+        "bestScore": 53.4,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     },
     {
@@ -1483,7 +1525,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     },
     {
@@ -1539,7 +1583,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     },
     {
@@ -1595,7 +1641,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     },
     {
@@ -1651,7 +1699,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     },
     {
@@ -1707,7 +1757,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     },
     {
@@ -1763,7 +1815,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     },
     {
@@ -1819,7 +1873,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     },
     {
@@ -1875,7 +1931,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     },
     {
@@ -1931,7 +1989,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
       }
     },
     {
@@ -1986,7 +2046,9 @@ window.AUTO_STOCK_DATA = {
         "winRate": 0,
         "averageReturn": 0,
         "maxDrawdown": 0,
-        "bestScore": -100
+        "bestScore": -100,
+        "financialScreeningStatus": "昇格確認優先",
+        "financialScreeningCautions": "大きな注意なし"
       }
     }
   ],
