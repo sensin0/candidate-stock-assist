@@ -16,6 +16,7 @@
     "privacy:check": "node scripts/privacy-check.mjs",
     "privacy:report": "node scripts/privacy-report.mjs",
     "universe:check": "node scripts/universe-check.mjs",
+    "universe:financial": "node scripts/refresh-universe-financial-facts.mjs",
     "universe:update": "node scripts/update-listed-universe.mjs",
     "universe:metrics": "node scripts/build-universe-metrics.mjs",
     "universe:screen": "node scripts/universe-screen.mjs",

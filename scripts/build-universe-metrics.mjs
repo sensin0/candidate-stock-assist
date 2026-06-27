@@ -9,6 +9,7 @@ const stockMasterPath = path.join(rootDir, "data", "stock-master.csv");
 const draftPath = path.join(rootDir, "data", "stock-master-input-draft.csv");
 const hiddenDraftPath = path.join(rootDir, "data", "stock-master-hidden-gems-draft.csv");
 const universeBacktestPath = path.join(rootDir, "data", "universe-price-backtest.csv");
+const universeFinancialFactsPath = path.join(rootDir, "data", "universe-financial-facts.csv");
 const outputPath = path.join(rootDir, "data", "universe-metrics.csv");
 const outputReportPath = path.join(rootDir, "reports", "latest-universe-financial-coverage.md");
 const estimateLimit = Number(process.env.UNIVERSE_METRICS_ESTIMATE_LIMIT || 3728);
@@ -36,6 +37,9 @@ for (const stock of stocks) addRow({
 
 for (const row of readCsv(draftPath)) addRow(metricFromDraft(row, "promotionDraft"));
 for (const row of readCsv(hiddenDraftPath)) addRow(metricFromDraft(row, "hiddenDraft"));
+for (const row of readCsv(universeFinancialFactsPath).filter((item) => item.status === "取得成功")) {
+  addRow(metricFromUniverseFinancialFact(row));
+}
 
 const backtestRows = readCsv(universeBacktestPath)
   .filter((row) => !row.error && Number(row.lastClose) > 0)
@@ -74,6 +78,25 @@ function metricFromDraft(row, asOf) {
   };
 }
 
+function metricFromUniverseFinancialFact(row) {
+  return {
+    code: row.code,
+    price: number(row.price),
+    bps: number(row.bps),
+    eps: number(row.eps),
+    cash: number(row.cash),
+    securities: number(row.securities),
+    investmentSecurities: number(row.investmentSecurities),
+    interestDebt: number(row.interestDebt),
+    netAssets: number(row.netAssets),
+    rentalBook: number(row.rentalBook),
+    rentalMarket: number(row.rentalMarket),
+    shares: number(row.shares),
+    treasuryShares: number(row.treasuryShares),
+    asOf: `irbank:${row.period || "latest"}`,
+  };
+}
+
 function metricFromPriceBacktest(row) {
   const price = number(row.lastClose);
   const bps = round(price / 0.9);
@@ -101,7 +124,8 @@ function metricFromPriceBacktest(row) {
 function writeReport(items) {
   fs.mkdirSync(path.dirname(outputReportPath), { recursive: true });
   const confirmed = items.filter((row) => row.asOf === "confirmed");
-  const estimated = items.filter((row) => row.asOf !== "confirmed");
+  const fetched = items.filter((row) => row.asOf?.startsWith("irbank:"));
+  const estimated = items.filter((row) => row.asOf !== "confirmed" && !row.asOf?.startsWith("irbank:"));
   const lines = [
     "# 日本株 財務データ範囲",
     "",
@@ -109,6 +133,7 @@ function writeReport(items) {
     "",
     `財務メトリクス対象: ${items.length}件`,
     `確認済み: ${confirmed.length}件`,
+    `IRBANK自動取得: ${fetched.length}件`,
     `確認前推定: ${estimated.length}件`,
     "",
     "確認前推定は探索用です。通常候補へ昇格するには、確認済み入力またはEDINET相当データが必要です。",

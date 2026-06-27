@@ -24,7 +24,8 @@ const generatedData = readGeneratedData();
 const pagesStatus = await checkPages(pagesUrl);
 
 const confirmedMetricCount = universeMetrics.filter((row) => row.asOf === "confirmed").length;
-const estimatedMetricCount = universeMetrics.filter((row) => row.asOf !== "confirmed").length;
+const irbankMetricCount = universeMetrics.filter((row) => row.asOf?.startsWith("irbank:")).length;
+const estimatedMetricCount = universeMetrics.filter((row) => row.asOf !== "confirmed" && !row.asOf?.startsWith("irbank:")).length;
 const universeCoverage = universe.length ? pct(universeMetrics.length / universe.length) : "0%";
 const pendingFinancial = financialQueue.filter((row) => row.status === "最優先で財務確認").length;
 const worklistReady = worklist.filter((row) => row.confirmed === "true" && row.qualitativeDone === "true").length;
@@ -84,8 +85,8 @@ function buildTasks() {
     }),
     task({
       title: "推定データと確認済みデータの分離",
-      status: estimatedMetricCount > 0 && confirmedMetricCount > 0 ? "完了" : "要対応",
-      reason: `確認済み${confirmedMetricCount}件、確認前推定${estimatedMetricCount}件です。`,
+      status: estimatedMetricCount <= Math.max(250, universeMetrics.length * 0.08) && confirmedMetricCount > 0 ? "完了" : "要対応",
+      reason: `確認済み${confirmedMetricCount}件、IRBANK自動取得${irbankMetricCount}件、確認前推定${estimatedMetricCount}件です。`,
       next: "推定だけの銘柄を買い候補にしないガードを維持",
     }),
     task({
@@ -120,6 +121,7 @@ function writeReport(tasks) {
     `自動財務確認: ${autoFinancialConfirmed}件`,
     `日本株財務メトリクス: ${universeMetrics.length}/${universe.length}件`,
     `確認済み財務メトリクス: ${confirmedMetricCount}件`,
+    `IRBANK自動取得財務メトリクス: ${irbankMetricCount}件`,
     `確認前推定: ${estimatedMetricCount}件`,
     `財務確認キュー: ${financialQueue.length}件`,
     `最優先で財務確認: ${pendingFinancial}件`,

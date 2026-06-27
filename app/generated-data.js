@@ -1,20 +1,20 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-27T00:33:23.554Z",
+  "generatedAt": "2026-06-27T01:02:16.431Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-27T00:33:23.539Z",
-  "priceFetchedAt": "2026-06-27T00:33:23.545Z",
-  "disclosureFetchedAt": "2026-06-27T00:33:23.547Z",
-  "edinetFetchedAt": "2026-06-27T00:33:23.548Z",
+  "fetchedAt": "2026-06-27T01:02:16.419Z",
+  "priceFetchedAt": "2026-06-27T01:02:16.423Z",
+  "disclosureFetchedAt": "2026-06-27T01:02:16.425Z",
+  "edinetFetchedAt": "2026-06-27T01:02:16.426Z",
   "nextSources": [
     "price-api",
     "edinet-api",
     "tdnet"
   ],
-  "priceUpdates": 20,
+  "priceUpdates": 31,
   "disclosureUpdates": 5,
   "edinetUpdates": 20,
   "watchlistUpdates": 3,
@@ -56,7 +56,7 @@ window.AUTO_STOCK_DATA = {
       "code": "8841",
       "name": "テーオーシー",
       "sector": "不動産",
-      "price": 842,
+      "price": 972,
       "shares": 88217703,
       "treasuryShares": 0,
       "cash": 8500,
@@ -88,7 +88,7 @@ window.AUTO_STOCK_DATA = {
         760,
         800,
         836,
-        842
+        972
       ],
       "edinet": {
         "documentType": "annual",
@@ -96,7 +96,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/8841"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "disclosures": [
         {
           "code": "8841",
@@ -135,7 +135,7 @@ window.AUTO_STOCK_DATA = {
       "code": "6505",
       "name": "東洋電機製造",
       "sector": "電機",
-      "price": 1210,
+      "price": 1955,
       "shares": 9735500,
       "treasuryShares": 420000,
       "cash": 8300,
@@ -167,7 +167,7 @@ window.AUTO_STOCK_DATA = {
         1120,
         1160,
         1180,
-        1210
+        1955
       ],
       "edinet": {
         "documentType": "annual",
@@ -175,7 +175,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/6505"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "disclosures": [
         {
           "code": "6505",
@@ -215,7 +215,7 @@ window.AUTO_STOCK_DATA = {
       "code": "3123",
       "name": "サイボー",
       "sector": "繊維・不動産",
-      "price": 618,
+      "price": 605,
       "shares": 12891200,
       "treasuryShares": 0,
       "cash": 2550,
@@ -247,7 +247,7 @@ window.AUTO_STOCK_DATA = {
         630,
         620,
         625,
-        618
+        605
       ],
       "edinet": {
         "documentType": "annual",
@@ -255,7 +255,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/3123"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "3123",
@@ -277,7 +277,7 @@ window.AUTO_STOCK_DATA = {
       "code": "3765",
       "name": "ガンホー",
       "sector": "情報通信",
-      "price": 2600,
+      "price": 2190,
       "shares": 54337100,
       "treasuryShares": 0,
       "cash": 130500,
@@ -309,7 +309,7 @@ window.AUTO_STOCK_DATA = {
         2660,
         2640,
         2625,
-        2600
+        2190
       ],
       "edinet": {
         "documentType": "annual",
@@ -317,7 +317,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/3765"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "disclosures": [
         {
           "code": "3765",
@@ -353,7 +353,7 @@ window.AUTO_STOCK_DATA = {
       "code": "8802",
       "name": "三菱地所",
       "sector": "不動産",
-      "price": 4010,
+      "price": 4101,
       "shares": 1220000000,
       "treasuryShares": 0,
       "cash": 435000,
@@ -385,7 +385,7 @@ window.AUTO_STOCK_DATA = {
         3810,
         3880,
         3940,
-        4010
+        4101
       ],
       "edinet": {
         "documentType": "annual",
@@ -393,7 +393,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/8802"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "disclosures": [
         {
           "code": "8802",
@@ -429,7 +429,7 @@ window.AUTO_STOCK_DATA = {
       "code": "2484",
       "name": "出前館",
       "sector": "サービス",
-      "price": 132,
+      "price": 116,
       "shares": 111550000,
       "treasuryShares": 0,
       "cash": 28538,
@@ -461,7 +461,7 @@ window.AUTO_STOCK_DATA = {
         142,
         138,
         135,
-        132
+        116
       ],
       "edinet": {
         "documentType": "annual",
@@ -469,7 +469,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/2484"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "2484",
@@ -491,7 +491,7 @@ window.AUTO_STOCK_DATA = {
       "code": "1897",
       "name": "金下建設",
       "sector": "建設",
-      "price": 2820,
+      "price": 3075,
       "shares": 3800000,
       "treasuryShares": 220000,
       "cash": 16800,
@@ -523,7 +523,7 @@ window.AUTO_STOCK_DATA = {
         2940,
         2890,
         2850,
-        2820
+        3075
       ],
       "edinet": {
         "documentType": "annual",
@@ -531,7 +531,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/1897"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": {
         "status": "重点監視",
         "note": "買いラインを下回ったら有報の資産欄を再確認"
@@ -556,7 +556,7 @@ window.AUTO_STOCK_DATA = {
       "code": "9672",
       "name": "東京都競馬",
       "sector": "不動産・レジャー",
-      "price": 5920,
+      "price": 4875,
       "shares": 28764000,
       "treasuryShares": 900000,
       "cash": 23000,
@@ -588,7 +588,7 @@ window.AUTO_STOCK_DATA = {
         5600,
         5780,
         5850,
-        5920
+        4875
       ],
       "edinet": {
         "documentType": "annual",
@@ -596,7 +596,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/9672"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "disclosures": [
         {
           "code": "9672",
@@ -635,7 +635,7 @@ window.AUTO_STOCK_DATA = {
       "code": "8830",
       "name": "住友不動産",
       "sector": "不動産",
-      "price": 6200,
+      "price": 3572,
       "shares": 475000000,
       "treasuryShares": 0,
       "cash": 250000,
@@ -666,7 +666,8 @@ window.AUTO_STOCK_DATA = {
         5350,
         5700,
         5980,
-        6200
+        6200,
+        3572
       ],
       "edinet": {
         "documentType": "annual",
@@ -674,7 +675,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/8830"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "8830",
@@ -696,7 +697,7 @@ window.AUTO_STOCK_DATA = {
       "code": "8801",
       "name": "三井不動産",
       "sector": "不動産",
-      "price": 1640,
+      "price": 1480,
       "shares": 2700000000,
       "treasuryShares": 0,
       "cash": 260000,
@@ -727,7 +728,8 @@ window.AUTO_STOCK_DATA = {
         1460,
         1530,
         1590,
-        1640
+        1640,
+        1480
       ],
       "edinet": {
         "documentType": "annual",
@@ -735,7 +737,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/8801"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "8801",
@@ -757,7 +759,7 @@ window.AUTO_STOCK_DATA = {
       "code": "9830",
       "name": "トラスコ中山",
       "sector": "卸売",
-      "price": 2500,
+      "price": 2248,
       "shares": 66000000,
       "treasuryShares": 1200000,
       "cash": 45000,
@@ -788,7 +790,8 @@ window.AUTO_STOCK_DATA = {
         2380,
         2420,
         2480,
-        2500
+        2500,
+        2248
       ],
       "edinet": {
         "documentType": "annual",
@@ -796,7 +799,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/9830"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "9830",
@@ -818,7 +821,7 @@ window.AUTO_STOCK_DATA = {
       "code": "3471",
       "name": "三井不動産ロジスティクスパーク投資法人",
       "sector": "REIT",
-      "price": 455000,
+      "price": 108600,
       "shares": 1100000,
       "treasuryShares": 0,
       "cash": 18000,
@@ -849,7 +852,8 @@ window.AUTO_STOCK_DATA = {
         442000,
         448000,
         452000,
-        455000
+        455000,
+        108600
       ],
       "edinet": {
         "documentType": "annual",
@@ -857,7 +861,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/3471"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "3471",
@@ -879,7 +883,7 @@ window.AUTO_STOCK_DATA = {
       "code": "8018",
       "name": "三共生興",
       "sector": "卸売",
-      "price": 820,
+      "price": 786,
       "shares": 44000000,
       "treasuryShares": 1800000,
       "cash": 21000,
@@ -910,7 +914,8 @@ window.AUTO_STOCK_DATA = {
         735,
         770,
         800,
-        820
+        820,
+        786
       ],
       "edinet": {
         "documentType": "annual",
@@ -918,7 +923,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/8018"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "8018",
@@ -940,7 +945,7 @@ window.AUTO_STOCK_DATA = {
       "code": "6513",
       "name": "オリジン",
       "sector": "電機",
-      "price": 1280,
+      "price": 1075,
       "shares": 6699000,
       "treasuryShares": 300000,
       "cash": 11000,
@@ -971,7 +976,8 @@ window.AUTO_STOCK_DATA = {
         1190,
         1230,
         1260,
-        1280
+        1280,
+        1075
       ],
       "edinet": {
         "documentType": "annual",
@@ -979,7 +985,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/6513"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "6513",
@@ -1001,7 +1007,7 @@ window.AUTO_STOCK_DATA = {
       "code": "1443",
       "name": "技研HD",
       "sector": "建設",
-      "price": 210,
+      "price": 244,
       "shares": 16000000,
       "treasuryShares": 0,
       "cash": 4800,
@@ -1032,7 +1038,8 @@ window.AUTO_STOCK_DATA = {
         205,
         208,
         212,
-        210
+        210,
+        244
       ],
       "edinet": {
         "documentType": "annual",
@@ -1040,7 +1047,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/1443"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "1443",
@@ -1062,7 +1069,7 @@ window.AUTO_STOCK_DATA = {
       "code": "9409",
       "name": "テレビ朝日HD",
       "sector": "情報通信",
-      "price": 2450,
+      "price": 3105,
       "shares": 108000000,
       "treasuryShares": 1500000,
       "cash": 62000,
@@ -1093,7 +1100,8 @@ window.AUTO_STOCK_DATA = {
         2200,
         2320,
         2400,
-        2450
+        2450,
+        3105
       ],
       "edinet": {
         "documentType": "annual",
@@ -1101,7 +1109,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/9409"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "9409",
@@ -1184,7 +1192,7 @@ window.AUTO_STOCK_DATA = {
       "code": "9324",
       "name": "安田倉庫",
       "sector": "倉庫",
-      "price": 1450,
+      "price": 2365,
       "shares": 30200000,
       "treasuryShares": 800000,
       "cash": 18000,
@@ -1215,7 +1223,8 @@ window.AUTO_STOCK_DATA = {
         1320,
         1390,
         1430,
-        1450
+        1450,
+        2365
       ],
       "edinet": {
         "documentType": "annual",
@@ -1223,7 +1232,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/9324"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "9324",
@@ -1245,7 +1254,7 @@ window.AUTO_STOCK_DATA = {
       "code": "8818",
       "name": "京阪神ビルディング",
       "sector": "不動産",
-      "price": 1780,
+      "price": 1071,
       "shares": 50600000,
       "treasuryShares": 1200000,
       "cash": 24000,
@@ -1276,7 +1285,8 @@ window.AUTO_STOCK_DATA = {
         1600,
         1680,
         1740,
-        1780
+        1780,
+        1071
       ],
       "edinet": {
         "documentType": "annual",
@@ -1284,7 +1294,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/8818"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "8818",
@@ -1306,7 +1316,7 @@ window.AUTO_STOCK_DATA = {
       "code": "3892",
       "name": "岡山製紙",
       "sector": "紙・パルプ",
-      "price": 1380,
+      "price": 1620,
       "shares": 5500000,
       "treasuryShares": 100000,
       "cash": 7200,
@@ -1337,7 +1347,8 @@ window.AUTO_STOCK_DATA = {
         1240,
         1310,
         1360,
-        1380
+        1380,
+        1620
       ],
       "edinet": {
         "documentType": "annual",
@@ -1345,7 +1356,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/3892"
       },
-      "priceAsOf": "2026-06-19",
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "3892",
@@ -1367,7 +1378,7 @@ window.AUTO_STOCK_DATA = {
       "code": "6276",
       "name": "SiriusVision CO.,LTD.",
       "sector": "Electric Appliances",
-      "price": 300,
+      "price": 307,
       "shares": 4008220,
       "treasuryShares": 0,
       "cash": 1086.94,
@@ -1398,8 +1409,10 @@ window.AUTO_STOCK_DATA = {
         294,
         289,
         303,
-        300
+        300,
+        307
       ],
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "6276",
@@ -1421,7 +1434,7 @@ window.AUTO_STOCK_DATA = {
       "code": "7435",
       "name": "NADEX CO.,LTD.",
       "sector": "Wholesale Trade",
-      "price": 1240,
+      "price": 1292,
       "shares": 8120875,
       "treasuryShares": 0,
       "cash": 4759.89,
@@ -1452,8 +1465,10 @@ window.AUTO_STOCK_DATA = {
         1287,
         1251,
         1288,
-        1240
+        1240,
+        1292
       ],
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "7435",
@@ -1475,7 +1490,7 @@ window.AUTO_STOCK_DATA = {
       "code": "7567",
       "name": "SAKAE ELECTRONICS CORPORATION",
       "sector": "Wholesale Trade",
-      "price": 547,
+      "price": 523,
       "shares": 5078689,
       "treasuryShares": 0,
       "cash": 1090.79,
@@ -1506,8 +1521,10 @@ window.AUTO_STOCK_DATA = {
         537,
         546,
         548,
-        547
+        547,
+        523
       ],
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "7567",
@@ -1529,7 +1546,7 @@ window.AUTO_STOCK_DATA = {
       "code": "1514",
       "name": "Sumiseki Holdings,Inc.",
       "sector": "Mining",
-      "price": 532,
+      "price": 520,
       "shares": 59823096,
       "treasuryShares": 0,
       "cash": 16924,
@@ -1560,8 +1577,10 @@ window.AUTO_STOCK_DATA = {
         537,
         524,
         550,
-        532
+        532,
+        520
       ],
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "1514",
@@ -1583,7 +1602,7 @@ window.AUTO_STOCK_DATA = {
       "code": "7885",
       "name": "TAKANO Co.,Ltd.",
       "sector": "Other Products",
-      "price": 1013,
+      "price": 1057,
       "shares": 15221218,
       "treasuryShares": 0,
       "cash": 8275.25,
@@ -1614,8 +1633,10 @@ window.AUTO_STOCK_DATA = {
         1057,
         1058,
         1025,
-        1013
+        1013,
+        1057
       ],
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "7885",
@@ -1637,7 +1658,7 @@ window.AUTO_STOCK_DATA = {
       "code": "7901",
       "name": "MATSUMOTO INC.",
       "sector": "Other Products",
-      "price": 770,
+      "price": 760,
       "shares": 1131574,
       "treasuryShares": 0,
       "cash": 676.67,
@@ -1668,8 +1689,10 @@ window.AUTO_STOCK_DATA = {
         791,
         788,
         782,
-        770
+        770,
+        760
       ],
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "7901",
@@ -1691,7 +1714,7 @@ window.AUTO_STOCK_DATA = {
       "code": "6870",
       "name": "Fenwal Controls of Japan,Ltd.",
       "sector": "Electric Appliances",
-      "price": 2493,
+      "price": 2540,
       "shares": 5437304,
       "treasuryShares": 0,
       "cash": 4282.9,
@@ -1722,8 +1745,10 @@ window.AUTO_STOCK_DATA = {
         2466,
         2463,
         2525,
-        2493
+        2493,
+        2540
       ],
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "6870",
@@ -1745,7 +1770,7 @@ window.AUTO_STOCK_DATA = {
       "code": "5939",
       "name": "OTANI KOGYO CO.,LTD.",
       "sector": "Metal Products",
-      "price": 5000,
+      "price": 4970,
       "shares": 778967,
       "treasuryShares": 0,
       "cash": 1222.59,
@@ -1776,8 +1801,10 @@ window.AUTO_STOCK_DATA = {
         4995,
         4975,
         5040,
-        5000
+        5000,
+        4970
       ],
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "5939",
@@ -1799,7 +1826,7 @@ window.AUTO_STOCK_DATA = {
       "code": "2303",
       "name": "Dawn Corporation",
       "sector": "Information & Communication",
-      "price": 1237,
+      "price": 1221,
       "shares": 2587091,
       "treasuryShares": 0,
       "cash": 733.57,
@@ -1830,8 +1857,10 @@ window.AUTO_STOCK_DATA = {
         1234,
         1205,
         1254,
-        1237
+        1237,
+        1221
       ],
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "2303",
@@ -1853,7 +1882,7 @@ window.AUTO_STOCK_DATA = {
       "code": "2332",
       "name": "Quest Co.,Ltd.",
       "sector": "Information & Communication",
-      "price": 1719,
+      "price": 1744,
       "shares": 5127026,
       "treasuryShares": 0,
       "cash": 3057.48,
@@ -1884,8 +1913,10 @@ window.AUTO_STOCK_DATA = {
         1751,
         1760,
         1851,
-        1719
+        1719,
+        1744
       ],
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "2332",
@@ -1940,6 +1971,7 @@ window.AUTO_STOCK_DATA = {
         319,
         319
       ],
+      "priceAsOf": "2026-06-26",
       "watchlist": null,
       "backtest": {
         "code": "3908",
@@ -1964,40 +1996,9 @@ window.AUTO_STOCK_DATA = {
     "validationWarnings": [],
     "externalReferenceWarnings": [],
     "missingBacktest": [],
-    "missingPrice": [
-      "6276 SiriusVision CO.,LTD.",
-      "7435 NADEX CO.,LTD.",
-      "7567 SAKAE ELECTRONICS CORPORATION",
-      "1514 Sumiseki Holdings,Inc.",
-      "7885 TAKANO Co.,Ltd.",
-      "7901 MATSUMOTO INC.",
-      "6870 Fenwal Controls of Japan,Ltd.",
-      "5939 OTANI KOGYO CO.,LTD.",
-      "2303 Dawn Corporation",
-      "2332 Quest Co.,Ltd.",
-      "3908 コラボス"
-    ],
+    "missingPrice": [],
     "stalePrice": [
-      "6513 オリジン: 株価が8日前",
-      "1897 金下建設: 株価が8日前",
-      "1443 技研HD: 株価が8日前",
-      "6505 東洋電機製造: 株価が8日前",
-      "8802 三菱地所: 株価が8日前",
-      "2484 出前館: 株価が8日前",
-      "9672 東京都競馬: 株価が8日前",
-      "8018 三共生興: 株価が8日前",
-      "9402 中部日本放送: 株価が8日前",
-      "3892 岡山製紙: 株価が8日前",
-      "8841 テーオーシー: 株価が8日前",
-      "3123 サイボー: 株価が8日前",
-      "3765 ガンホー: 株価が8日前",
-      "8830 住友不動産: 株価が8日前",
-      "8801 三井不動産: 株価が8日前",
-      "9830 トラスコ中山: 株価が8日前",
-      "3471 三井不動産ロジスティクスパーク投資法人: 株価が8日前",
-      "9409 テレビ朝日HD: 株価が8日前",
-      "9324 安田倉庫: 株価が8日前",
-      "8818 京阪神ビルディング: 株価が8日前"
+      "9402 中部日本放送: 株価が8日前"
     ],
     "missingEdinet": [
       "6276 SiriusVision CO.,LTD.",
@@ -2042,31 +2043,30 @@ window.AUTO_STOCK_DATA = {
       "3908 コラボス"
     ],
     "nextFixes": [
-      "最新株価を確認: 6513 オリジン: 株価が8日前",
-      "最新株価を確認: 1897 金下建設: 株価が8日前",
-      "最新株価を確認: 1443 技研HD: 株価が8日前",
-      "最新株価を確認: 6505 東洋電機製造: 株価が8日前",
-      "最新株価を確認: 8802 三菱地所: 株価が8日前",
-      "最新株価を確認: 2484 出前館: 株価が8日前",
-      "最新株価を確認: 9672 東京都競馬: 株価が8日前",
-      "最新株価を確認: 8018 三共生興: 株価が8日前",
       "最新株価を確認: 9402 中部日本放送: 株価が8日前",
-      "最新株価を確認: 3892 岡山製紙: 株価が8日前",
-      "最新株価を確認: 8841 テーオーシー: 株価が8日前",
-      "最新株価を確認: 3123 サイボー: 株価が8日前"
+      "EDINET相当CSVに追加: 6276 SiriusVision CO.,LTD.",
+      "EDINET相当CSVに追加: 7435 NADEX CO.,LTD.",
+      "EDINET相当CSVに追加: 7567 SAKAE ELECTRONICS CORPORATION",
+      "EDINET相当CSVに追加: 1514 Sumiseki Holdings,Inc.",
+      "EDINET相当CSVに追加: 7885 TAKANO Co.,Ltd.",
+      "EDINET相当CSVに追加: 7901 MATSUMOTO INC.",
+      "EDINET相当CSVに追加: 6870 Fenwal Controls of Japan,Ltd.",
+      "EDINET相当CSVに追加: 5939 OTANI KOGYO CO.,LTD.",
+      "EDINET相当CSVに追加: 2303 Dawn Corporation",
+      "EDINET相当CSVに追加: 2332 Quest Co.,Ltd.",
+      "EDINET相当CSVに追加: 3908 コラボス"
     ],
     "readiness": {
-      "score": 66,
-      "label": "あと少し",
+      "score": 90,
+      "label": "本番運用OK",
       "blockers": [
-        "最新株価を更新: 0/31",
-        "株価未取得を埋める: 20/31",
+        "最新株価を更新: 30/31",
         "EDINET相当を80%以上へ増やす: 20/31"
       ]
     },
     "coverage": {
-      "price": "20/31",
-      "freshPrice": "0/31",
+      "price": "31/31",
+      "freshPrice": "30/31",
       "edinet": "20/31"
     }
   }

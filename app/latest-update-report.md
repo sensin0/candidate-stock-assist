@@ -1,9 +1,9 @@
 # データ更新レポート
 
-更新日時: 2026-06-27T00:33:23.554Z
+更新日時: 2026-06-27T01:02:16.431Z
 入力元: data/stock-master.csv
 株価入力元: data/price-updates.csv
-株価更新件数: 20
+株価更新件数: 31
 開示入力元: data/disclosures.csv
 開示件数: 5
 EDINET入力元: data/edinet-facts.csv
@@ -13,7 +13,7 @@ EDINET更新件数: 20
 バックテスト件数: 31
 銘柄数: 31
 データ状態: 要確認
-本番準備度: 66% あと少し
+本番準備度: 90% 本番運用OK
 一部手入力: 14件
 
 ## データ取得状態
@@ -26,20 +26,9 @@ EDINET更新件数: 20
 
 ## データカバレッジ
 
-- 株価: 20/31
+- 株価: 31/31
 - EDINET相当: 20/31
 - バックテスト: 31/31
-- 株価未取得: 6276 SiriusVision CO.,LTD.
-- 株価未取得: 7435 NADEX CO.,LTD.
-- 株価未取得: 7567 SAKAE ELECTRONICS CORPORATION
-- 株価未取得: 1514 Sumiseki Holdings,Inc.
-- 株価未取得: 7885 TAKANO Co.,Ltd.
-- 株価未取得: 7901 MATSUMOTO INC.
-- 株価未取得: 6870 Fenwal Controls of Japan,Ltd.
-- 株価未取得: 5939 OTANI KOGYO CO.,LTD.
-- 株価未取得: 2303 Dawn Corporation
-- 株価未取得: 2332 Quest Co.,Ltd.
-- 株価未取得: 3908 コラボス
 - EDINET相当未取得: 6276 SiriusVision CO.,LTD.
 - EDINET相当未取得: 7435 NADEX CO.,LTD.
 - EDINET相当未取得: 7567 SAKAE ELECTRONICS CORPORATION
@@ -68,23 +57,22 @@ EDINET更新件数: 20
 
 ## 次に直すデータ
 
-- 最新株価を確認: 6513 オリジン: 株価が8日前
-- 最新株価を確認: 1897 金下建設: 株価が8日前
-- 最新株価を確認: 1443 技研HD: 株価が8日前
-- 最新株価を確認: 6505 東洋電機製造: 株価が8日前
-- 最新株価を確認: 8802 三菱地所: 株価が8日前
-- 最新株価を確認: 2484 出前館: 株価が8日前
-- 最新株価を確認: 9672 東京都競馬: 株価が8日前
-- 最新株価を確認: 8018 三共生興: 株価が8日前
 - 最新株価を確認: 9402 中部日本放送: 株価が8日前
-- 最新株価を確認: 3892 岡山製紙: 株価が8日前
-- 最新株価を確認: 8841 テーオーシー: 株価が8日前
-- 最新株価を確認: 3123 サイボー: 株価が8日前
+- EDINET相当CSVに追加: 6276 SiriusVision CO.,LTD.
+- EDINET相当CSVに追加: 7435 NADEX CO.,LTD.
+- EDINET相当CSVに追加: 7567 SAKAE ELECTRONICS CORPORATION
+- EDINET相当CSVに追加: 1514 Sumiseki Holdings,Inc.
+- EDINET相当CSVに追加: 7885 TAKANO Co.,Ltd.
+- EDINET相当CSVに追加: 7901 MATSUMOTO INC.
+- EDINET相当CSVに追加: 6870 Fenwal Controls of Japan,Ltd.
+- EDINET相当CSVに追加: 5939 OTANI KOGYO CO.,LTD.
+- EDINET相当CSVに追加: 2303 Dawn Corporation
+- EDINET相当CSVに追加: 2332 Quest Co.,Ltd.
+- EDINET相当CSVに追加: 3908 コラボス
 
 ## 本番化の残り
 
-- 最新株価を更新: 0/31
-- 株価未取得を埋める: 20/31
+- 最新株価を更新: 30/31
 - EDINET相当を80%以上へ増やす: 20/31
 
 ## 次に接続する取得元

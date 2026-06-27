@@ -1,48 +1,47 @@
 # 株価自動更新
 
-生成日時: 2026-06-27T00:33:23.337Z
+生成日時: 2026-06-27T01:02:16.210Z
 対象: 31件
-成功: 0件
-失敗: 31件
-price-updates.csv 登録: 20件
+成功: 30件
+失敗: 1件
+price-updates.csv 登録: 31件
 
 ## 更新できた銘柄
 
-- 該当なし
+- 1. 8841 テーオーシー: 2026-06-26 / 972円
+- 2. 6505 東洋電機製造: 2026-06-26 / 1,955円
+- 3. 3123 サイボー: 2026-06-26 / 605円
+- 4. 3765 ガンホー: 2026-06-26 / 2,190円
+- 5. 8802 三菱地所: 2026-06-26 / 4,101円
+- 6. 2484 出前館: 2026-06-26 / 116円
+- 7. 1897 金下建設: 2026-06-26 / 3,075円
+- 8. 9672 東京都競馬: 2026-06-26 / 4,875円
+- 9. 8830 住友不動産: 2026-06-26 / 3,572円
+- 10. 8801 三井不動産: 2026-06-26 / 1,480円
+- 11. 9830 トラスコ中山: 2026-06-26 / 2,248円
+- 12. 3471 三井不動産ロジスティクスパーク投資法人: 2026-06-26 / 108,600円
+- 13. 8018 三共生興: 2026-06-26 / 786円
+- 14. 6513 オリジン: 2026-06-26 / 1,075円
+- 15. 1443 技研HD: 2026-06-26 / 244円
+- 16. 9409 テレビ朝日HD: 2026-06-26 / 3,105円
+- 17. 9324 安田倉庫: 2026-06-26 / 2,365円
+- 18. 8818 京阪神ビルディング: 2026-06-26 / 1,071円
+- 19. 3892 岡山製紙: 2026-06-26 / 1,620円
+- 20. 6276 SiriusVision CO.,LTD.: 2026-06-26 / 307円
+- 21. 7435 NADEX CO.,LTD.: 2026-06-26 / 1,292円
+- 22. 7567 SAKAE ELECTRONICS CORPORATION: 2026-06-26 / 523円
+- 23. 1514 Sumiseki Holdings,Inc.: 2026-06-26 / 520円
+- 24. 7885 TAKANO Co.,Ltd.: 2026-06-26 / 1,057円
+- 25. 7901 MATSUMOTO INC.: 2026-06-26 / 760円
+- 26. 6870 Fenwal Controls of Japan,Ltd.: 2026-06-26 / 2,540円
+- 27. 5939 OTANI KOGYO CO.,LTD.: 2026-06-26 / 4,970円
+- 28. 2303 Dawn Corporation: 2026-06-26 / 1,221円
+- 29. 2332 Quest Co.,Ltd.: 2026-06-26 / 1,744円
+- 30. 3908 コラボス: 2026-06-26 / 319円
 
 ## 取得できなかった銘柄
 
-- 1. 8841 テーオーシー: fetch failed
-- 2. 6505 東洋電機製造: fetch failed
-- 3. 3123 サイボー: fetch failed
-- 4. 3765 ガンホー: fetch failed
-- 5. 8802 三菱地所: fetch failed
-- 6. 2484 出前館: fetch failed
-- 7. 1897 金下建設: fetch failed
-- 8. 9672 東京都競馬: fetch failed
-- 9. 8830 住友不動産: fetch failed
-- 10. 8801 三井不動産: fetch failed
-- 11. 9830 トラスコ中山: fetch failed
-- 12. 3471 三井不動産ロジスティクスパーク投資法人: fetch failed
-- 13. 8018 三共生興: fetch failed
-- 14. 6513 オリジン: fetch failed
-- 15. 1443 技研HD: fetch failed
-- 16. 9409 テレビ朝日HD: fetch failed
-- 17. 9402 中部日本放送: fetch failed
-- 18. 9324 安田倉庫: fetch failed
-- 19. 8818 京阪神ビルディング: fetch failed
-- 20. 3892 岡山製紙: fetch failed
-- 21. 6276 SiriusVision CO.,LTD.: fetch failed
-- 22. 7435 NADEX CO.,LTD.: fetch failed
-- 23. 7567 SAKAE ELECTRONICS CORPORATION: fetch failed
-- 24. 1514 Sumiseki Holdings,Inc.: fetch failed
-- 25. 7885 TAKANO Co.,Ltd.: fetch failed
-- 26. 7901 MATSUMOTO INC.: fetch failed
-- 27. 6870 Fenwal Controls of Japan,Ltd.: fetch failed
-- 28. 5939 OTANI KOGYO CO.,LTD.: fetch failed
-- 29. 2303 Dawn Corporation: fetch failed
-- 30. 2332 Quest Co.,Ltd.: fetch failed
-- 31. 3908 コラボス: fetch failed
+- 1. 9402 中部日本放送: 404 Not Found
 
 ## 運用
 - 毎朝の判定前に最新終値を取得します。

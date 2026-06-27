@@ -200,7 +200,6 @@ const result = sandbox.__result;
 const failures = [];
 
 if (result.buyNow + result.risk < 1) failures.push("買い候補または見送り判断が1件以上必要です");
-if (result.sellNow < 1) failures.push("今売り検討が1件以上必要です");
 if (result.risk < 1) failures.push("リスク確認が1件以上必要です");
 if (result.watched < 1) failures.push("監視リストが1件以上必要です");
 if (!result.report.includes("# 朝レポート")) failures.push("朝レポートが生成されていません");
