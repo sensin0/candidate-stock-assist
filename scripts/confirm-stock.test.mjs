@@ -8,6 +8,8 @@ import { parseStockCsv } from "./providers/csv-provider.mjs";
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const stockMasterPath = path.join(rootDir, "data", "stock-master.csv");
 const original = fs.readFileSync(stockMasterPath, "utf8");
+const originalRows = parseStockCsv(original);
+const originalManualCount = originalRows.filter((stock) => stock.dataConfidence === "一部手入力").length;
 
 try {
   const preview = spawnSync(process.execPath, ["scripts/confirm-stock.mjs", "6505"], {
@@ -24,7 +26,7 @@ try {
   });
   assert.equal(write.status, 0, write.stderr);
   assert.match(write.stdout, /data\/stock-master\.csv を更新しました/);
-  assert.match(write.stdout, /一部手入力の残り: 13件/);
+  assert.match(write.stdout, new RegExp(`一部手入力の残り: ${originalManualCount - 1}件`));
   assert.match(write.stdout, /次に確認: 9672 東京都競馬/);
 
   const rows = parseStockCsv(fs.readFileSync(stockMasterPath, "utf8"));

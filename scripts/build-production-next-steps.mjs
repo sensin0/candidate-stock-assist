@@ -15,6 +15,7 @@ const universe = readCsv(path.join(dataDir, "listed-universe.csv"));
 const universeMetrics = readCsv(path.join(dataDir, "universe-metrics.csv"));
 const financialQueue = readCsv(path.join(dataDir, "financial-confirmation-queue.csv"));
 const worklist = readCsv(path.join(dataDir, "financial-confirmation-worklist.csv"));
+const financialScreened = readCsv(path.join(dataDir, "financial-worklist-screened.csv"));
 const confirmedInput = readCsv(path.join(dataDir, "financial-confirmed-input.csv"));
 const promoted = readCsv(path.join(dataDir, "stock-master-promoted.csv"));
 const autoFinancialFollowup = readCsv(path.join(dataDir, "auto-financial-followup.csv"));
@@ -29,6 +30,9 @@ const irbankMetricCount = universeMetrics.filter((row) => row.asOf?.startsWith("
 const estimatedMetricCount = universeMetrics.filter((row) => row.asOf !== "confirmed" && !row.asOf?.startsWith("irbank:")).length;
 const universeCoverage = universe.length ? pct(universeMetrics.length / universe.length) : "0%";
 const pendingFinancial = financialQueue.filter((row) => row.status === "最優先で財務確認").length;
+const autoFilledWorklist = worklist.filter((row) => row.status?.includes("自動入力")).length;
+const screenPromotionPriority = financialScreened.filter((row) => row.status === "昇格確認優先").length;
+const screenInputWaiting = financialScreened.filter((row) => row.status === "入力待ち").length;
 const worklistReady = worklist.filter((row) => row.confirmed === "true" && row.qualitativeDone === "true").length;
 const confirmedInputReady = confirmedInput.filter((row) => row.dataConfidence === "確認済み" || row.confirmed === "true").length;
 const autoFinancialConfirmed = runtimeStocks.filter((row) => row.dataConfidence === "自動財務確認").length;
@@ -59,10 +63,12 @@ function buildTasks() {
       next: pagesStatus.ok ? "次は財務確認キュー上位の実データ入力" : "Actionsの最新runでbuild/deployがsuccessか確認",
     }),
     task({
-      title: "財務確認キュー上位の実データ入力",
-      status: pendingFinancial > 0 ? "要対応" : "完了",
-      reason: `最優先の財務確認待ちが${pendingFinancial}件あります。`,
-      next: "financial-confirmation-worklist.csv の checked 列を埋める",
+      title: "財務確認キュー上位の自動処理",
+      status: screenInputWaiting > 0 ? "要対応" : screenPromotionPriority > 0 || autoFilledWorklist > 0 ? "確認中" : "完了",
+      reason: `最優先の財務確認待ち${pendingFinancial}件 / 自動入力済み${autoFilledWorklist}件 / 昇格確認優先${screenPromotionPriority}件 / 入力待ち${screenInputWaiting}件です。`,
+      next: screenInputWaiting > 0
+        ? "入力待ちだけ追加取得し、取得できたものを自動スクリーニングへ回す"
+        : "昇格確認優先は自動財務確認として通常候補へ反映し、後追い確認レポートで見る",
     }),
     task({
       title: "株価更新キューの消化",
@@ -127,6 +133,9 @@ function writeReport(tasks) {
     `確認前推定: ${estimatedMetricCount}件`,
     `財務確認キュー: ${financialQueue.length}件`,
     `最優先で財務確認: ${pendingFinancial}件`,
+    `財務自動入力済み: ${autoFilledWorklist}件`,
+    `昇格確認優先: ${screenPromotionPriority}件`,
+    `財務入力待ち: ${screenInputWaiting}件`,
     `株価更新待ち: ${priceRefreshQueue.length}件`,
     `買い・売り判定に影響する株価更新: ${urgentPriceRefresh}件`,
     `本番準備度: ${generatedData?.dataQuality?.readiness?.score ?? "-"}% ${generatedData?.dataQuality?.readiness?.label ?? ""}`.trim(),

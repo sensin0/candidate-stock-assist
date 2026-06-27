@@ -43,7 +43,7 @@ for (const { stock, result } of results) {
 
 const stockOrder = new Map(stocks.map((stock, index) => [stock.code, index]));
 const rows = [...updatedByCode.values()]
-  .filter((row) => row.code)
+  .filter((row) => row.code && stockOrder.has(row.code))
   .sort((a, b) => (stockOrder.get(a.code) ?? 99999) - (stockOrder.get(b.code) ?? 99999) || a.code.localeCompare(b.code));
 
 fs.writeFileSync(priceUpdatesPath, toCsv(rows, ["code", "price", "asOf"]), "utf8");
@@ -54,9 +54,20 @@ console.log(`株価を自動更新しました: ${okCount}/${targets.length}件`
 console.log(path.relative(rootDir, outputReportPath));
 
 async function fetchLatestClose(code) {
+  const errors = [];
+  for (const suffix of [".T", ".N"]) {
+    const result = await fetchLatestCloseWithSymbol(`${code}${suffix}`).catch((error) => {
+      errors.push(`${suffix}: ${error.message}`);
+      return null;
+    });
+    if (result) return { ...result, code };
+  }
+  throw new Error(errors.join(" / ") || "最新株価なし");
+}
+
+async function fetchLatestCloseWithSymbol(symbol) {
   const end = Math.floor(Date.now() / 1000);
   const start = end - 14 * 24 * 60 * 60;
-  const symbol = `${code}.T`;
   const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?period1=${start}&period2=${end}&interval=1d&events=history&includeAdjustedClose=true`;
   const response = await fetch(url, {
     headers: { "User-Agent": "Mozilla/5.0" },
@@ -80,7 +91,7 @@ async function fetchLatestClose(code) {
 
   const latest = prices.at(-1);
   if (!latest) throw new Error("最新株価なし");
-  return { ok: true, code, close: round(latest.close), date: latest.date };
+  return { ok: true, close: round(latest.close), date: latest.date };
 }
 
 function readCsv(filePath) {

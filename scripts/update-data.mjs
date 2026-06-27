@@ -239,7 +239,7 @@ function publicProviderStatus(status) {
 function writeGeneratedData(providerResult, priceResult, disclosureResult, edinetResult, watchlistResult, backtestResult) {
   const autoPromotionRows = readAutoPromotionStocks(providerResult.stocks, autoPromotionDraftCsv, universeMetricsCsv);
   const masterStocks = mergeAutoPromotionRows(providerResult.stocks, autoPromotionRows);
-  const edinetUpdated = applyEdinetFacts(masterStocks, edinetResult.facts);
+  const edinetUpdated = applyInlineFinancialFacts(applyEdinetFacts(masterStocks, edinetResult.facts));
   const priceUpdated = applyPriceUpdates(edinetUpdated, priceResult.prices);
   const disclosureUpdated = applyDisclosures(priceUpdated, disclosureResult.disclosures);
   const watchlistUpdated = applyWatchlist(disclosureUpdated, watchlistResult.items);
@@ -288,6 +288,32 @@ function writeGeneratedData(providerResult, priceResult, disclosureResult, edine
 function mergeAutoPromotionRows(stocks, promotedRows) {
   if (!promotedRows.length) return stocks;
   return [...stocks, ...promotedRows];
+}
+
+function applyInlineFinancialFacts(stocks) {
+  return stocks.map((stock) => {
+    if (stock.edinet?.periodEnd) return stock;
+    if (!["確認済み", "自動財務確認"].includes(stock.dataConfidence)) return stock;
+    if (!Number.isFinite(stock.bps) || stock.bps <= 0 || !Number.isFinite(stock.netAssets) || stock.netAssets <= 0) return stock;
+    return {
+      ...stock,
+      edinet: {
+        documentType: stock.dataConfidence === "自動財務確認" ? "auto-financial" : "confirmed-financial",
+        periodEnd: "stock-master",
+        submittedAt: "",
+        cash: stock.cash,
+        securities: stock.securities,
+        investmentSecurities: stock.investmentSecurities,
+        interestDebt: stock.interestDebt,
+        netAssets: stock.netAssets,
+        rentalBook: stock.rentalBook,
+        rentalMarket: stock.rentalMarket,
+        bps: stock.bps,
+        eps: stock.eps,
+        sourceUrl: "",
+      },
+    };
+  });
 }
 
 function writeReport(payload) {

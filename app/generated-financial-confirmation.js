@@ -1,7 +1,7 @@
 window.AUTO_FINANCIAL_CONFIRMATION = {
-  "generatedAt": "2026-06-27T01:43:55.302Z",
+  "generatedAt": "2026-06-27T12:01:04.333Z",
   "source": "data/financial-confirmation-queue.csv",
-  "total": 62,
+  "total": 58,
   "priorityCount": 42,
   "top": [
     {
@@ -534,38 +534,6 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
     },
     {
       "source": "昇格候補",
-      "code": "6643",
-      "name": "戸上電機製作所",
-      "sector": "電気機器",
-      "price": 5150,
-      "confirmationScore": 163.5,
-      "status": "最優先で財務確認",
-      "action": "通常候補へ入れる前の財務確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "なし",
-      "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
-      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
-      "buyGuard": "確認完了まで買わない",
-      "rank": 34
-    },
-    {
-      "source": "昇格候補",
-      "code": "7781",
-      "name": "平山ホールディングス",
-      "sector": "精密機器",
-      "price": 778.5,
-      "confirmationScore": 163.1,
-      "status": "最優先で財務確認",
-      "action": "通常候補へ入れる前の財務確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "なし",
-      "note": "高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します",
-      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
-      "buyGuard": "確認完了まで買わない",
-      "rank": 35
-    },
-    {
-      "source": "昇格候補",
       "code": "6859",
       "name": "エスペック",
       "sector": "電気機器",
@@ -578,7 +546,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 36
+      "rank": 34
     },
     {
       "source": "昇格候補",
@@ -594,7 +562,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "安値圏から反転し始めた候補です。赤字・下方修正・信用需給が重くないか確認します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 37
+      "rank": 35
     },
     {
       "source": "昇格候補",
@@ -610,7 +578,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
       "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
       "buyGuard": "確認完了まで買わない",
-      "rank": 38
+      "rank": 36
     },
     {
       "source": "昇格候補",
@@ -619,6 +587,38 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "sector": "サービス業",
       "price": 871,
       "confirmationScore": 161.2,
+      "status": "最優先で財務確認",
+      "action": "通常候補へ入れる前の財務確認",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "blockers": "なし",
+      "note": "価格バックテストは良好です。財務、材料、流動性を確認してから候補化します",
+      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
+      "buyGuard": "確認完了まで買わない",
+      "rank": 37
+    },
+    {
+      "source": "昇格候補",
+      "code": "9507",
+      "name": "四国電力",
+      "sector": "電気・ガス業",
+      "price": 1478,
+      "confirmationScore": 161.1,
+      "status": "最優先で財務確認",
+      "action": "通常候補へ入れる前の財務確認",
+      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
+      "blockers": "なし",
+      "note": "安値反転候補。買いライン以下で、上昇余地と価格検証は条件内です",
+      "nextStep": "BPS、EPS、現金、負債、発行株数を確認",
+      "buyGuard": "確認完了まで買わない",
+      "rank": 38
+    },
+    {
+      "source": "昇格候補",
+      "code": "7004",
+      "name": "カナデビア",
+      "sector": "機械",
+      "price": 1260,
+      "confirmationScore": 161,
       "status": "最優先で財務確認",
       "action": "通常候補へ入れる前の財務確認",
       "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
@@ -886,22 +886,6 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
     },
     {
       "source": "通常候補",
-      "code": "8018",
-      "name": "三共生興",
-      "sector": "卸売",
-      "price": 820,
-      "confirmationScore": 108,
-      "status": "通常候補の再確認",
-      "action": "既存候補の財務データを確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "一部手入力",
-      "note": "投資有価証券",
-      "nextStep": "仮置きや手入力を有報・決算短信で更新",
-      "buyGuard": "不明点が残るなら買わない",
-      "rank": 56
-    },
-    {
-      "source": "通常候補",
       "code": "6513",
       "name": "オリジン",
       "sector": "電機",
@@ -914,39 +898,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "ネットキャッシュ",
       "nextStep": "仮置きや手入力を有報・決算短信で更新",
       "buyGuard": "不明点が残るなら買わない",
-      "rank": 57
-    },
-    {
-      "source": "通常候補",
-      "code": "9409",
-      "name": "テレビ朝日HD",
-      "sector": "情報通信",
-      "price": 2450,
-      "confirmationScore": 108,
-      "status": "通常候補の再確認",
-      "action": "既存候補の財務データを確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "一部手入力",
-      "note": "都心不動産",
-      "nextStep": "仮置きや手入力を有報・決算短信で更新",
-      "buyGuard": "不明点が残るなら買わない",
-      "rank": 58
-    },
-    {
-      "source": "通常候補",
-      "code": "9402",
-      "name": "中部日本放送",
-      "sector": "情報通信",
-      "price": 780,
-      "confirmationScore": 108,
-      "status": "通常候補の再確認",
-      "action": "既存候補の財務データを確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "一部手入力",
-      "note": "不動産含み益",
-      "nextStep": "仮置きや手入力を有報・決算短信で更新",
-      "buyGuard": "不明点が残るなら買わない",
-      "rank": 59
+      "rank": 56
     },
     {
       "source": "通常候補",
@@ -962,7 +914,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "倉庫不動産",
       "nextStep": "仮置きや手入力を有報・決算短信で更新",
       "buyGuard": "不明点が残るなら買わない",
-      "rank": 60
+      "rank": 57
     },
     {
       "source": "通常候補",
@@ -978,23 +930,7 @@ window.AUTO_FINANCIAL_CONFIRMATION = {
       "note": "賃貸等不動産",
       "nextStep": "仮置きや手入力を有報・決算短信で更新",
       "buyGuard": "不明点が残るなら買わない",
-      "rank": 61
-    },
-    {
-      "source": "通常候補",
-      "code": "3892",
-      "name": "岡山製紙",
-      "sector": "紙・パルプ",
-      "price": 1380,
-      "confirmationScore": 108,
-      "status": "通常候補の再確認",
-      "action": "既存候補の財務データを確認",
-      "checklist": "BPS、EPS、現金、有利子負債、発行株数、直近決算、出来高",
-      "blockers": "一部手入力",
-      "note": "ネットキャッシュ",
-      "nextStep": "仮置きや手入力を有報・決算短信で更新",
-      "buyGuard": "不明点が残るなら買わない",
-      "rank": 62
+      "rank": 58
     }
   ]
 };

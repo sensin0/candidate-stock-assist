@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-27T11:52:33.279Z",
+  "generatedAt": "2026-06-27T12:04:02.380Z",
   "totalFiles": 31,
-  "totalRows": 19859,
-  "totalBytes": 3152286,
+  "totalRows": 19830,
+  "totalBytes": 3141215,
   "problems": [],
   "files": [
     {
       "name": "auto-financial-followup.csv",
-      "bytes": 6107,
-      "rows": 11,
+      "bytes": 10410,
+      "rows": 19,
       "columns": 21,
       "headers": [
         "rank",
@@ -39,8 +39,8 @@
     },
     {
       "name": "backtest-results.csv",
-      "bytes": 6950,
-      "rows": 36,
+      "bytes": 6678,
+      "rows": 35,
       "columns": 15,
       "headers": [
         "code",
@@ -105,8 +105,8 @@
     },
     {
       "name": "financial-confirmation-queue.csv",
-      "bytes": 25350,
-      "rows": 62,
+      "bytes": 23967,
+      "rows": 58,
       "columns": 14,
       "headers": [
         "rank",
@@ -130,8 +130,8 @@
     },
     {
       "name": "financial-confirmation-worklist.csv",
-      "bytes": 30375,
-      "rows": 62,
+      "bytes": 28906,
+      "rows": 58,
       "columns": 37,
       "headers": [
         "priorityRank",
@@ -216,8 +216,8 @@
     },
     {
       "name": "financial-worklist-screened.csv",
-      "bytes": 17348,
-      "rows": 62,
+      "bytes": 15978,
+      "rows": 58,
       "columns": 17,
       "headers": [
         "rank",
@@ -244,7 +244,7 @@
     },
     {
       "name": "hidden-gems.csv",
-      "bytes": 79149,
+      "bytes": 79139,
       "rows": 200,
       "columns": 24,
       "headers": [
@@ -351,7 +351,7 @@
     },
     {
       "name": "price-refresh-queue.csv",
-      "bytes": 294,
+      "bytes": 290,
       "rows": 1,
       "columns": 13,
       "headers": [
@@ -375,8 +375,8 @@
     },
     {
       "name": "price-updates.csv",
-      "bytes": 763,
-      "rows": 36,
+      "bytes": 742,
+      "rows": 35,
       "columns": 3,
       "headers": [
         "code",
@@ -389,7 +389,7 @@
     },
     {
       "name": "promotion-candidates.csv",
-      "bytes": 49135,
+      "bytes": 47514,
       "rows": 150,
       "columns": 17,
       "headers": [
@@ -417,7 +417,7 @@
     },
     {
       "name": "promotion-readiness.csv",
-      "bytes": 20840,
+      "bytes": 20861,
       "rows": 50,
       "columns": 19,
       "headers": [
@@ -447,8 +447,8 @@
     },
     {
       "name": "stock-master-expanded-preview.csv",
-      "bytes": 30611,
-      "rows": 81,
+      "bytes": 31446,
+      "rows": 83,
       "columns": 27,
       "headers": [
         "code",
@@ -510,7 +510,7 @@
     },
     {
       "name": "stock-master-input-draft.csv",
-      "bytes": 17281,
+      "bytes": 17479,
       "rows": 50,
       "columns": 14,
       "headers": [
@@ -597,8 +597,8 @@
     },
     {
       "name": "stock-master-universe-promotion-draft.csv",
-      "bytes": 1660,
-      "rows": 5,
+      "bytes": 95,
+      "rows": 0,
       "columns": 14,
       "headers": [
         "code",
@@ -622,8 +622,8 @@
     },
     {
       "name": "stock-master.csv",
-      "bytes": 7728,
-      "rows": 31,
+      "bytes": 9184,
+      "rows": 35,
       "columns": 27,
       "headers": [
         "code",
@@ -698,8 +698,8 @@
     },
     {
       "name": "universe-buy-candidate-review.csv",
-      "bytes": 6315,
-      "rows": 15,
+      "bytes": 1395,
+      "rows": 3,
       "columns": 21,
       "headers": [
         "code",
@@ -730,8 +730,8 @@
     },
     {
       "name": "universe-buy-candidates.csv",
-      "bytes": 6766,
-      "rows": 15,
+      "bytes": 1585,
+      "rows": 3,
       "columns": 25,
       "headers": [
         "rank",
@@ -766,7 +766,7 @@
     },
     {
       "name": "universe-check-status.csv",
-      "bytes": 755073,
+      "bytes": 755068,
       "rows": 3728,
       "columns": 12,
       "headers": [
@@ -821,7 +821,7 @@
     },
     {
       "name": "universe-metrics.csv",
-      "bytes": 285702,
+      "bytes": 285639,
       "rows": 3730,
       "columns": 14,
       "headers": [

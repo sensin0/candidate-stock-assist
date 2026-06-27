@@ -30,7 +30,10 @@ const steps = [
   ["財務確認ワークシート自動入力補助", "scripts/enrich-financial-worklist.mjs"],
   ["財務確認候補スクリーニング", "scripts/screen-financial-worklist.mjs"],
   ["財務確認ワークシート反映", "scripts/apply-financial-worklist.mjs"],
-  ["確認済み候補の昇格プレビュー生成", "scripts/promote-confirmed-candidates.mjs"],
+  ["確認済み候補の通常候補自動反映", "scripts/promote-confirmed-candidates.mjs", ["--write"]],
+  ["昇格後の株価再更新", "scripts/refresh-price-updates.mjs"],
+  ["昇格後のバックテスト再更新", "scripts/backtest-timing.mjs"],
+  ["昇格後の通常候補データ再生成", "scripts/update-data.mjs"],
   ["自動財務確認の後追い確認レポート生成", "scripts/build-auto-financial-followup.mjs"],
   ["画面用調査データ生成", "scripts/build-research-data.mjs"],
   ["日本株全体分析サマリー生成", "scripts/build-universe-analysis-summary.mjs"],
@@ -39,9 +42,9 @@ const steps = [
   ["本番化残作業レポート生成", "scripts/build-production-next-steps.mjs"],
 ];
 
-for (const [label, script] of steps) {
+for (const [label, script, args = []] of steps) {
   console.log(`\n== ${label} ==`);
-  const result = spawnSync(process.execPath, [script], {
+  const result = spawnSync(process.execPath, [script, ...args], {
     stdio: "inherit",
     shell: false,
     env: process.env,

@@ -1,21 +1,21 @@
 # データ更新レポート
 
-更新日時: 2026-06-27T11:52:32.766Z
+更新日時: 2026-06-27T12:04:01.869Z
 入力元: data/stock-master.csv
 株価入力元: data/price-updates.csv
-株価更新件数: 36
+株価更新件数: 35
 開示入力元: data/disclosures.csv
 開示件数: 5
 EDINET入力元: data/edinet-facts.csv
 EDINET更新件数: 20
 監視リスト入力元: data/watchlist.csv
 監視リスト件数: 3
-バックテスト件数: 36
-自動昇格反映: 5件
-銘柄数: 36
+バックテスト件数: 35
+自動昇格反映: 0件
+銘柄数: 35
 データ状態: 要確認
-本番準備度: 91% 本番運用OK
-一部手入力: 14件
+本番準備度: 99% 本番運用OK
+一部手入力: 10件
 
 ## データ取得状態
 
@@ -27,54 +27,27 @@ EDINET更新件数: 20
 
 ## データカバレッジ
 
-- 株価: 36/36
-- EDINET相当: 25/36
-- バックテスト: 36/36
-- EDINET相当未取得: 6276 SiriusVision CO.,LTD.
-- EDINET相当未取得: 7435 NADEX CO.,LTD.
-- EDINET相当未取得: 7567 SAKAE ELECTRONICS CORPORATION
-- EDINET相当未取得: 1514 Sumiseki Holdings,Inc.
-- EDINET相当未取得: 7885 TAKANO Co.,Ltd.
-- EDINET相当未取得: 7901 MATSUMOTO INC.
-- EDINET相当未取得: 6870 Fenwal Controls of Japan,Ltd.
-- EDINET相当未取得: 5939 OTANI KOGYO CO.,LTD.
-- EDINET相当未取得: 2303 Dawn Corporation
-- EDINET相当未取得: 2332 Quest Co.,Ltd.
-- EDINET相当未取得: 3908 コラボス
+- 株価: 35/35
+- EDINET相当: 35/35
+- バックテスト: 35/35
 - 一部手入力: 6505 東洋電機製造
 - 一部手入力: 9672 東京都競馬
 - 一部手入力: 8830 住友不動産
 - 一部手入力: 8801 三井不動産
 - 一部手入力: 9830 トラスコ中山
 - 一部手入力: 3471 三井不動産ロジスティクスパーク投資法人
-- 一部手入力: 8018 三共生興
 - 一部手入力: 6513 オリジン
 - 一部手入力: 1443 技研HD
-- 一部手入力: 9409 テレビ朝日HD
-- 一部手入力: 9402 中部日本放送
 - 一部手入力: 9324 安田倉庫
 - 一部手入力: 8818 京阪神ビルディング
-- 一部手入力: 3892 岡山製紙
 
 ## 次に直すデータ
 
 - 最新株価を確認: 9402 中部日本放送: 株価が8日前
-- EDINET相当CSVに追加: 6276 SiriusVision CO.,LTD.
-- EDINET相当CSVに追加: 7435 NADEX CO.,LTD.
-- EDINET相当CSVに追加: 7567 SAKAE ELECTRONICS CORPORATION
-- EDINET相当CSVに追加: 1514 Sumiseki Holdings,Inc.
-- EDINET相当CSVに追加: 7885 TAKANO Co.,Ltd.
-- EDINET相当CSVに追加: 7901 MATSUMOTO INC.
-- EDINET相当CSVに追加: 6870 Fenwal Controls of Japan,Ltd.
-- EDINET相当CSVに追加: 5939 OTANI KOGYO CO.,LTD.
-- EDINET相当CSVに追加: 2303 Dawn Corporation
-- EDINET相当CSVに追加: 2332 Quest Co.,Ltd.
-- EDINET相当CSVに追加: 3908 コラボス
 
 ## 本番化の残り
 
-- 最新株価を更新: 35/36
-- EDINET相当を80%以上へ増やす: 25/36
+- 最新株価を更新: 34/35
 
 ## 次に接続する取得元
 
@@ -115,11 +88,10 @@ EDINET更新件数: 20
 - 2303 Dawn Corporation
 - 2332 Quest Co.,Ltd.
 - 3908 コラボス
-- 6497 ハマイ
-- 4247 ポバール興業
-- 5388 クニミネ工業
-- 6518 三相電機
-- 2915 ケンコーマヨネーズ
+- 6643 戸上電機製作所
+- 7781 平山ホールディングス
+- 1814 大末建設
+- 4341 西菱電機
 
 ## 開示
 
@@ -151,11 +123,21 @@ EDINET更新件数: 20
 - 9324 安田倉庫: annual 2026-03-31
 - 8818 京阪神ビルディング: annual 2026-03-31
 - 3892 岡山製紙: annual 2026-03-31
-- 6497 ハマイ: irbank-auto 2026-03-01
-- 4247 ポバール興業: irbank-auto 2026-03-01
-- 5388 クニミネ工業: irbank-auto 2026-03-01
-- 6518 三相電機: irbank-auto 2026-03-01
-- 2915 ケンコーマヨネーズ: irbank-auto 2026-03-01
+- 6276 SiriusVision CO.,LTD.: auto-financial stock-master
+- 7435 NADEX CO.,LTD.: auto-financial stock-master
+- 7567 SAKAE ELECTRONICS CORPORATION: auto-financial stock-master
+- 1514 Sumiseki Holdings,Inc.: auto-financial stock-master
+- 7885 TAKANO Co.,Ltd.: auto-financial stock-master
+- 7901 MATSUMOTO INC.: auto-financial stock-master
+- 6870 Fenwal Controls of Japan,Ltd.: auto-financial stock-master
+- 5939 OTANI KOGYO CO.,LTD.: auto-financial stock-master
+- 2303 Dawn Corporation: auto-financial stock-master
+- 2332 Quest Co.,Ltd.: auto-financial stock-master
+- 3908 コラボス: auto-financial stock-master
+- 6643 戸上電機製作所: auto-financial stock-master
+- 7781 平山ホールディングス: auto-financial stock-master
+- 1814 大末建設: auto-financial stock-master
+- 4341 西菱電機: auto-financial stock-master
 
 ## 監視リスト
 
