@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-28T00:52:38.609Z",
+  "generatedAt": "2026-06-28T00:56:57.908Z",
   "totalFiles": 31,
   "totalRows": 19797,
-  "totalBytes": 3130269,
+  "totalBytes": 3131081,
   "problems": [],
   "files": [
     {
       "name": "auto-financial-followup.csv",
-      "bytes": 10410,
+      "bytes": 11222,
       "rows": 19,
       "columns": 21,
       "headers": [
