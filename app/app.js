@@ -1338,11 +1338,14 @@ function renderInlineMobileLynchPreview(content, title, summary = "") {
 }
 
 function renderInlineStockSummary(stock) {
+  const plan = profitTakingPlan(stock);
   const stats = [
     ["判断", stock.assist.label],
     ["株価", yen(stock.price)],
     ["買い", yen(stock.buyLine)],
     ["第一利確", yen(stock.sellGuidePrice)],
+    ["本命利確", yen(plan.coreTarget)],
+    ["伸ばす上限", yen(plan.runnerTarget)],
     ["理論上限", yen(stock.targetPrice)],
     ["上昇余地", pct(stock.upside)],
     ["修正PBR", times(stock.modifiedPbr)],
@@ -1365,6 +1368,7 @@ function renderInlineStockSummary(stock) {
       </div>
       <ul class="inline-action-list">
         ${actions.map((action) => `<li>${escapeHtml(action)}</li>`).join("")}
+        <li>${escapeHtml(plan.summary)}</li>
       </ul>
     </div>
   `;
@@ -2325,6 +2329,7 @@ function renderTimingPanel(stock) {
 
 function renderLifecycleAssist(stock) {
   const stages = lifecycleStages(stock);
+  const profitPlan = renderProfitPlan(stock);
   return `
     <section class="lifecycle-assist" aria-label="買いから売りまでのアシスト">
       <div class="section-heading">
@@ -2343,6 +2348,7 @@ function renderLifecycleAssist(stock) {
           </article>
         `).join("")}
       </div>
+      ${profitPlan}
     </section>
   `;
 }
@@ -2356,6 +2362,7 @@ function lifecycleHeadline(stock) {
 }
 
 function lifecycleStages(stock) {
+  const plan = profitTakingPlan(stock);
   const buyActive = ["今買い候補", "買い場に近い", "財務確認待ち", "データ更新待ち"].includes(stock.assist.label);
   const holdActive = stock.held && !["今売り検討", "一部利益確定検討"].includes(stock.assist.label);
   const sellActive = ["今売り検討", "一部利益確定検討"].includes(stock.assist.label);
@@ -2376,8 +2383,8 @@ function lifecycleStages(stock) {
       tone: holdActive ? "tone-hold" : "",
       message: stock.held
         ? "保有中です。目標株価までの距離と悪材料の有無を見ます。"
-        : "買った後は、第一利確・決算悪化・買い増し条件を先に決めます。",
-      check: `第一利確 ${yen(stock.sellGuidePrice)} / 理論上限 ${yen(stock.targetPrice)}`,
+        : "買った後は、第一利確・本命利確・撤退引き上げを先に決めます。",
+      check: `第一 ${yen(plan.firstTarget)} / 本命 ${yen(plan.coreTarget)} / 伸ばす ${yen(plan.runnerTarget)}`,
     },
     {
       title: "売る時",
@@ -2386,7 +2393,7 @@ function lifecycleStages(stock) {
       message: sellActive
         ? "売り検討ゾーンです。一括売りか一部利益確定かを確認します。"
         : "第一利確到達、決算悪化、資産価値の低下で売り判断します。",
-      check: stock.backtest?.sellTiming ?? `第一利確目安 ${yen(stock.sellGuidePrice)}`,
+      check: `${plan.summary} / 撤退目安 ${yen(plan.raiseStopTo)}`,
     },
     {
       title: "見送る時",
@@ -2398,6 +2405,62 @@ function lifecycleStages(stock) {
       check: stock.risk || stock.assist.reasons[0] || "見送り条件を確認",
     },
   ];
+}
+
+function profitTakingPlan(stock) {
+  const firstTarget = Math.max(1, Number(stock.sellGuidePrice || stock.price * 1.2 || 0));
+  const fairPbrTarget = stock.bps > 0 && stock.pbrAvg > 0 ? stock.bps * stock.pbrAvg : 0;
+  const targetCandidates = [
+    Number(stock.targetPrice || 0),
+    stock.bps > 0 && stock.pbrHigh > 0 ? stock.bps * stock.pbrHigh : 0,
+    stock.eps > 0 && stock.perHigh > 0 ? stock.eps * stock.perHigh : 0,
+  ].filter((value) => Number.isFinite(value) && value > 0);
+  const theoretical = Math.max(firstTarget, ...targetCandidates);
+  const coreCandidate = Math.max(firstTarget * 1.18, fairPbrTarget || 0);
+  const coreTarget = Math.min(theoretical * 0.35, Math.max(firstTarget, coreCandidate));
+  const runnerCandidate = Math.max(coreTarget * 1.35, firstTarget * 1.8);
+  const runnerTarget = Math.min(theoretical * 0.5, Math.max(coreTarget, runnerCandidate));
+  const raiseStopTo = Math.max(Number(stock.buyLine || 0), firstTarget * 0.9);
+  const targetGap = theoretical / Math.max(1, firstTarget);
+  const caution = targetGap >= 4
+    ? "理論上限は遠いので全部をそこまで引っ張らない"
+    : "理論上限は参考。価格の勢いと決算で確認";
+  return {
+    firstTarget,
+    coreTarget,
+    runnerTarget,
+    raiseStopTo,
+    theoretical,
+    summary: `第一利確で一部、残りは本命${yen(coreTarget)}付近。強い時だけ${yen(runnerTarget)}まで伸ばす。${caution}`,
+  };
+}
+
+function renderProfitPlan(stock) {
+  const plan = profitTakingPlan(stock);
+  const rows = [
+    ["第一利確", yen(plan.firstTarget), "一部を利確して、撤退ラインを上げる"],
+    ["本命利確", yen(plan.coreTarget), "残りの主力利確。PBR標準や第一利確後の伸びを目安にする"],
+    ["伸ばす上限", yen(plan.runnerTarget), "出来高・決算・地合いが強い時だけ残りを伸ばす"],
+    ["理論上限", yen(plan.theoretical), "参考値。ここまで全部保有する前提にはしない"],
+  ];
+  return `
+    <div class="profit-plan">
+      <div class="profit-plan-head">
+        <strong>利益をどこまで伸ばすか</strong>
+        <span>撤退引き上げ ${yen(plan.raiseStopTo)}</span>
+      </div>
+      <div class="profit-plan-grid">
+        ${rows.map(([label, value, note]) => `
+          <div class="profit-plan-step">
+            <span>${escapeHtml(label)}</span>
+            <strong>${escapeHtml(value)}</strong>
+            <small>${escapeHtml(note)}</small>
+          </div>
+        `).join("")}
+      </div>
+      <p>${escapeHtml(plan.summary)}</p>
+    </div>
+  `;
 }
 
 function renderResearchLifecycleAssist(item) {
@@ -2539,6 +2602,7 @@ function renderExpansionMetrics(item) {
 }
 
 function renderMetrics(stock) {
+  const profitPlan = profitTakingPlan(stock);
   const providerWarnings = window.AUTO_STOCK_DATA?.dataQuality?.providerWarnings ?? [];
   const validationWarnings = window.AUTO_STOCK_DATA?.dataQuality?.validationWarnings ?? [];
   const referenceWarnings = window.AUTO_STOCK_DATA?.dataQuality?.externalReferenceWarnings ?? [];
@@ -2568,6 +2632,8 @@ function renderMetrics(stock) {
     ["不動産含み益/時価総額", times(stock.realEstateGainRatio)],
     ["買いライン接近率", times(stock.buyRatio)],
     ["第一利確目安", yen(stock.sellGuidePrice)],
+    ["本命利確目安", yen(profitPlan.coreTarget)],
+    ["伸ばす上限", yen(profitPlan.runnerTarget)],
     ["理論上限", yen(stock.targetPrice)],
     ["上昇余地", pct(stock.upside)],
     ["総合スコア", `${stock.score}点`],
@@ -2595,7 +2661,8 @@ function renderChart(stock) {
   const width = 880;
   const height = 330;
   const pad = { left: 58, right: 28, top: 28, bottom: 42 };
-  const values = [...stock.history, stock.buyLine, stock.sellGuidePrice, stock.price];
+  const plan = profitTakingPlan(stock);
+  const values = [...stock.history, stock.buyLine, stock.sellGuidePrice, plan.coreTarget, plan.runnerTarget, stock.price];
   const min = Math.max(1, Math.min(...values) * 0.82);
   const max = Math.max(...values) * 1.12;
   const x = (index) => pad.left + (index / Math.max(1, stock.history.length - 1)) * (width - pad.left - pad.right);
@@ -2603,6 +2670,8 @@ function renderChart(stock) {
   const points = stock.history.map((value, index) => `${x(index)},${y(value)}`).join(" ");
   const buyY = y(stock.buyLine);
   const sellGuideY = y(stock.sellGuidePrice);
+  const coreTargetY = y(plan.coreTarget);
+  const runnerTargetY = y(plan.runnerTarget);
   const currentX = x(stock.history.length - 1);
   const currentY = y(stock.price);
   const buyZoneHeight = Math.max(0, height - pad.bottom - buyY);
@@ -2624,6 +2693,8 @@ function renderChart(stock) {
       <rect x="${pad.left}" y="${pad.top}" width="${width - pad.left - pad.right}" height="${sellZoneHeight}" fill="#f7dedb" />
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${buyY}" y2="${buyY}" stroke="#1f8a55" stroke-width="2" stroke-dasharray="6 6" />
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${sellGuideY}" y2="${sellGuideY}" stroke="#c44536" stroke-width="2" stroke-dasharray="6 6" />
+      <line x1="${pad.left}" x2="${width - pad.right}" y1="${coreTargetY}" y2="${coreTargetY}" stroke="#b98513" stroke-width="2" stroke-dasharray="8 6" />
+      <line x1="${pad.left}" x2="${width - pad.right}" y1="${runnerTargetY}" y2="${runnerTargetY}" stroke="#7356a5" stroke-width="2" stroke-dasharray="8 6" />
       <polyline points="${points}" fill="none" stroke="#246a9f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
       <circle cx="${currentX}" cy="${currentY}" r="7" fill="#1d2522" />
       <g transform="translate(${Math.min(currentX + 18, width - 250)}, ${Math.max(42, currentY - 50)})">
@@ -2633,6 +2704,8 @@ function renderChart(stock) {
       </g>
       <text x="${pad.left}" y="${buyY - 8}" font-size="12" fill="#1f8a55">ここで買い候補 ${yen(stock.buyLine)}</text>
       <text x="${pad.left}" y="${sellGuideY - 8}" font-size="12" fill="#c44536">第一利確 ${yen(stock.sellGuidePrice)}</text>
+      <text x="${width - pad.right}" y="${coreTargetY - 8}" text-anchor="end" font-size="12" fill="#8b650f">本命利確 ${yen(plan.coreTarget)}</text>
+      <text x="${width - pad.right}" y="${runnerTargetY - 8}" text-anchor="end" font-size="12" fill="#7356a5">伸ばす上限 ${yen(plan.runnerTarget)}</text>
       <text x="${currentX - 42}" y="${currentY + 24}" font-size="12" fill="#1d2522">現在 ${yen(stock.price)}</text>
       <text x="${pad.left}" y="${height - 12}" font-size="12" fill="#65706b">${timingText}</text>
     </svg>
