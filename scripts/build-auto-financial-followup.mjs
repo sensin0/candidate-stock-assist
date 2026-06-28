@@ -2,16 +2,20 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseStockCsv } from "./providers/csv-provider.mjs";
+import { applyPriceUpdates, fetchPriceUpdates } from "./providers/price-provider.mjs";
 import { backtestStock, timingInputs } from "./backtest-core.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dataDir = path.join(rootDir, "data");
 const reportsDir = path.join(rootDir, "reports");
 const inputCsv = path.join(dataDir, "stock-master.csv");
+const inputPriceCsv = path.join(dataDir, "price-updates.csv");
 const outputCsv = path.join(dataDir, "auto-financial-followup.csv");
 const outputReport = path.join(reportsDir, "latest-auto-financial-followup.md");
 
-const stocks = parseStockCsv(fs.readFileSync(inputCsv, "utf8"));
+const rawStocks = parseStockCsv(fs.readFileSync(inputCsv, "utf8"));
+const priceUpdates = await fetchPriceUpdates({ inputPriceCsv });
+const stocks = applyPriceUpdates(rawStocks, priceUpdates.prices);
 const targets = stocks
   .filter((stock) => stock.dataConfidence === "自動財務確認")
   .map(buildFollowup)

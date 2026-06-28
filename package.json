@@ -28,6 +28,7 @@
     "universe:summary": "node scripts/build-universe-analysis-summary.mjs",
     "backtest": "node scripts/backtest-timing.mjs",
     "price:queue": "node scripts/build-price-refresh-queue.mjs",
+    "history:refresh": "node scripts/refresh-short-history.mjs",
     "backtest:research": "node scripts/research-price-backtest.mjs",
     "backtest:universe": "node scripts/research-universe-price-backtest.mjs",
     "multibagger:research": "node scripts/analyze-multibagger-candidates.mjs",

@@ -2,6 +2,7 @@ import { spawnSync } from "node:child_process";
 
 const steps = [
   ["全体自動買い候補の昇格判定", "node", ["scripts/review-universe-buy-candidates.mjs"]],
+  ["短い価格履歴の自動補完", "node", ["scripts/refresh-short-history.mjs"]],
   ["株価自動更新", "node", ["scripts/refresh-price-updates.mjs"]],
   ["バックテスト更新", "node", ["scripts/backtest-timing.mjs"]],
   ["通常候補追加プレビュー生成", "node", ["scripts/build-stock-master-expanded-preview.mjs"]],

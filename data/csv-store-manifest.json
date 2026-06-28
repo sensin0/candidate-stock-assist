@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-28T01:12:00.631Z",
+  "generatedAt": "2026-06-28T01:21:47.180Z",
   "totalFiles": 31,
   "totalRows": 19797,
-  "totalBytes": 3131081,
+  "totalBytes": 3131204,
   "problems": [],
   "files": [
     {
       "name": "auto-financial-followup.csv",
-      "bytes": 11222,
+      "bytes": 11224,
       "rows": 19,
       "columns": 21,
       "headers": [
@@ -39,7 +39,7 @@
     },
     {
       "name": "backtest-results.csv",
-      "bytes": 7327,
+      "bytes": 7364,
       "rows": 35,
       "columns": 15,
       "headers": [
@@ -451,7 +451,7 @@
     },
     {
       "name": "stock-master-expanded-preview.csv",
-      "bytes": 16109,
+      "bytes": 16151,
       "rows": 49,
       "columns": 27,
       "headers": [
@@ -626,7 +626,7 @@
     },
     {
       "name": "stock-master.csv",
-      "bytes": 9184,
+      "bytes": 9226,
       "rows": 35,
       "columns": 27,
       "headers": [

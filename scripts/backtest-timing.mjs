@@ -3,20 +3,24 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { backtestStock } from "./backtest-core.mjs";
 import { readRuntimeStocks } from "./runtime-stock-data.mjs";
+import { applyPriceUpdates, fetchPriceUpdates } from "./providers/price-provider.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const stockMasterPath = path.join(rootDir, "data", "stock-master.csv");
+const priceUpdatesPath = path.join(rootDir, "data", "price-updates.csv");
 const autoPromotionDraftPath = path.join(rootDir, "data", "stock-master-universe-promotion-draft.csv");
 const universeMetricsPath = path.join(rootDir, "data", "universe-metrics.csv");
 const financialScreenedPath = path.join(rootDir, "data", "financial-worklist-screened.csv");
 const outputPath = path.join(rootDir, "data", "backtest-results.csv");
 
-const stocks = readRuntimeStocks({ stockMasterPath, autoPromotionDraftPath, universeMetricsPath });
+const rawStocks = readRuntimeStocks({ stockMasterPath, autoPromotionDraftPath, universeMetricsPath });
+const priceUpdates = await fetchPriceUpdates({ inputPriceCsv: priceUpdatesPath });
+const stocks = applyPriceUpdates(rawStocks, priceUpdates.prices);
 const financialScreening = loadFinancialScreening();
 const rows = stocks.map((stock) => {
   const result = backtestStock(stock);
   const screening = financialScreening.get(String(stock.code));
-  const timingLabel = guardedTimingLabel(result.timingLabel, screening);
+  const timingLabel = guardedTimingLabel(result, screening);
   return {
     code: stock.code,
     bestStrategyId: result.bestStrategyId,
@@ -46,10 +50,17 @@ for (const row of usable.sort((a, b) => Number(b.bestScore) - Number(a.bestScore
   console.log(`${row.code} ${row.timingLabel}: ${row.bestStrategyLabel} / 勝率${row.winRate}% / 平均${row.averageReturn}%`);
 }
 
-function guardedTimingLabel(timingLabel, screening) {
+function guardedTimingLabel(result, screening) {
+  if (isWeakBacktest(result)) return "検証弱く見送り";
+  const timingLabel = result.timingLabel;
   if (screening?.status === "見送り寄り") return "財務で見送り";
   if (screening?.status === "慎重確認" && timingLabel === "買い候補") return "財務慎重確認";
   return timingLabel;
+}
+
+function isWeakBacktest(result) {
+  return result.trades >= 1
+    && (result.averageReturn <= 0 || result.winRate < 50 || result.maxDrawdown <= -15);
 }
 
 function loadFinancialScreening() {

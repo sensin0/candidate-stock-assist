@@ -42,6 +42,8 @@ const autoFinancialConfirmed = runtimeStocks.filter((row) => row.dataConfidence 
 const autoFinancialPriority = autoFinancialFollowup.filter((row) => row.action === "決算短信と有報を先に確認" || row.action === "財務確認を進める").length;
 const autoFinancialBuyLineWait = autoFinancialFollowup.filter((row) => row.action === "買いラインまで待つ").length;
 const autoFinancialPriceHistoryWait = autoFinancialFollowup.filter((row) => row.action === "価格履歴を先に増やす").length;
+const shortHistoryRefresh = readShortHistoryRefresh();
+const shortHistoryFailed = shortHistoryRefresh.filter((row) => row.status === "取得失敗").length;
 const autoFinancialWait = autoFinancialFollowup.filter((row) => row.action === "買いは後回し" || row.action === "監視継続" || row.action === "買いラインまで待つ" || row.action === "価格履歴を先に増やす").length;
 const promotedNewCount = Number(generatedData?.autoPromotionUpdates ?? 0) || Math.max(0, runtimeStocks.length - stockMaster.length);
 const successfulBacktests = researchBacktest.filter((row) => !row.error).length;
@@ -82,7 +84,7 @@ function buildTasks() {
     task({
       title: "株価更新キューの消化",
       status: priceRefreshQueue.length || autoFinancialPriceHistoryWait ? "要対応" : "完了",
-      reason: `最新株価の確認待ちが${priceRefreshQueue.length}件あります。買い・売り判定に影響するものは${urgentPriceRefresh}件、自動財務確認の価格履歴不足は${autoFinancialPriceHistoryWait}件です。`,
+      reason: `最新株価の確認待ちが${priceRefreshQueue.length}件あります。買い・売り判定に影響するものは${urgentPriceRefresh}件、自動財務確認の価格履歴不足は${autoFinancialPriceHistoryWait}件、履歴補完の取得失敗は${shortHistoryFailed}件です。`,
       next: nextPriceRefresh
         ? `${nextPriceRefresh.code} ${nextPriceRefresh.name} の最新株価を price-updates.csv に追加`
         : autoFinancialPriceHistoryWait
@@ -141,6 +143,7 @@ function writeReport(tasks) {
     `自動財務確認の優先確認: ${autoFinancialPriority}件`,
     `自動財務確認の買いライン待ち: ${autoFinancialBuyLineWait}件`,
     `自動財務確認の価格履歴不足: ${autoFinancialPriceHistoryWait}件`,
+    `短い価格履歴の取得失敗: ${shortHistoryFailed}件`,
     `日本株財務メトリクス: ${universeMetrics.length}/${universe.length}件`,
     `確認済み財務メトリクス: ${confirmedMetricCount}件`,
     `IRBANK自動取得財務メトリクス: ${irbankMetricCount}件`,
@@ -174,6 +177,29 @@ function writeReport(tasks) {
 function readCsv(filePath) {
   if (!fs.existsSync(filePath)) return [];
   return parseCsvRecords(fs.readFileSync(filePath, "utf8"));
+}
+
+function readShortHistoryRefresh() {
+  const filePath = path.join(reportsDir, "latest-short-history-refresh.md");
+  if (!fs.existsSync(filePath)) return [];
+  const lines = fs.readFileSync(filePath, "utf8").split(/\r?\n/);
+  const failedSectionIndex = lines.findIndex((line) => line === "## 取得失敗");
+  if (failedSectionIndex < 0) return [];
+  const nextSectionOffset = lines.slice(failedSectionIndex + 1).findIndex((line) => line.startsWith("## "));
+  const sectionLines = nextSectionOffset >= 0
+    ? lines.slice(failedSectionIndex + 1, failedSectionIndex + 1 + nextSectionOffset)
+    : lines.slice(failedSectionIndex + 1);
+  return sectionLines
+    .filter((line) => line.startsWith("- ") && !line.includes("該当なし"))
+    .map((line) => {
+      const match = line.match(/^- ([0-9A-Z]{4}) ([^:]+): (.+)$/);
+      return {
+        status: "取得失敗",
+        code: match?.[1] ?? "",
+        name: match?.[2] ?? "",
+        message: match?.[3] ?? line.slice(2),
+      };
+    });
 }
 
 function readGeneratedData() {

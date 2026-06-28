@@ -1,5 +1,5 @@
 ﻿{
-  "generatedAt": "2026-06-28T01:12:01.570537+00:00",
+  "generatedAt": "2026-06-28T01:21:48.123339+00:00",
   "database": "data/candidate-stock-assist.sqlite",
   "databaseBytes": 4317184,
   "tables": 31,
@@ -11,14 +11,14 @@
       "csv": "auto-financial-followup.csv",
       "rows": 19,
       "columns": 21,
-      "bytes": 11222
+      "bytes": 11224
     },
     {
       "table": "backtest_results",
       "csv": "backtest-results.csv",
       "rows": 35,
       "columns": 15,
-      "bytes": 7327
+      "bytes": 7364
     },
     {
       "table": "disclosures",
@@ -123,7 +123,7 @@
       "csv": "stock-master-expanded-preview.csv",
       "rows": 49,
       "columns": 27,
-      "bytes": 16109
+      "bytes": 16151
     },
     {
       "table": "stock_master_hidden_gems_draft",
@@ -165,7 +165,7 @@
       "csv": "stock-master.csv",
       "rows": 35,
       "columns": 27,
-      "bytes": 9184
+      "bytes": 9226
     },
     {
       "table": "stock_master_generated",

@@ -105,6 +105,17 @@ vm.runInContext(
   const todayRanking = document.getElementById("rankingList").innerHTML;
   const todayRankingRows = todayRanking.match(/class="ranking-row/g)?.length ?? 0;
   const todayRankingTop = rankingFor("today")[0];
+  const firstStockRanking = rankingFor("today").find((entry) => entry.kind === "stock");
+  if (firstStockRanking) {
+    selectedResearch = null;
+    selectedCode = firstStockRanking.code;
+    renderRanking();
+    renderDetail();
+  }
+  const stockDetailChart = document.getElementById("chart").innerHTML;
+  const stockDetailLynchChart = document.getElementById("lynchChart").innerHTML;
+  const stockDetailLifecycle = document.getElementById("lifecycleAssist").innerHTML;
+  const stockDetailTimingPanel = document.getElementById("timingPanel").innerHTML;
   document.getElementById("rankingSelect").value = "researchUniverse";
   renderRanking();
   const researchRanking = document.getElementById("rankingList").innerHTML;
@@ -161,10 +172,10 @@ vm.runInContext(
     risk: byAssist("リスクで見送り").length + byAssist("検証弱く見送り").length,
     watched: stocks.filter((stock) => stock.watchlist).length,
     report: document.getElementById("morningReport").value,
-    chart: normalChart,
-    lynchChart: normalLynchChart,
+    chart: stockDetailChart || normalChart,
+    lynchChart: stockDetailLynchChart || normalLynchChart,
     inlineLynchPreview,
-    lifecycle: normalLifecycle,
+    lifecycle: stockDetailLifecycle || normalLifecycle,
     buyTimingAlert: normalBuyTimingAlert,
     selectedTopName,
     selectedTopDetailTitle,
@@ -193,7 +204,7 @@ vm.runInContext(
     expansionDetailChart,
     expansionLynchChart,
     summaryTitle: document.getElementById("todaySummaryTitle").textContent,
-    timingPanel: normalTimingPanel
+    timingPanel: stockDetailTimingPanel || normalTimingPanel
   };`,
   sandbox,
   { filename: "app.js" },
