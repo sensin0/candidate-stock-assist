@@ -30,6 +30,7 @@ writeCsv(outputCsvPath, rows, [
   "priceAge",
   "buyLine",
   "targetPrice",
+  "sellGuidePrice",
   "buyRatio",
   "upside",
   "reason",
@@ -62,9 +63,13 @@ function enrich(stock) {
     : pbrTarget;
   const buyLine = Math.max(1, Math.min(pbrBuy, perBuy));
   const targetPrice = Math.max(pbrTarget, perTarget, buyLine * 1.5);
+  const sellGuidePrice = practicalSellGuidePrice({ ...stock, buyLine, targetPrice });
   const buyRatio = Number(stock.price || 0) / buyLine;
   const upside = (targetPrice / Number(stock.price || 1) - 1) * 100;
-  const netCash = Number(stock.cash || 0) + Number(stock.securities || 0) - Number(stock.interestDebt || 0);
+  const netCash = Number(stock.cash || 0)
+    + Number(stock.securities || 0)
+    + Number(stock.investmentSecurities || 0)
+    - Number(stock.interestDebt || 0);
   const netCashRatio = marketCap > 0 ? netCash / marketCap : 0;
   const priceAge = daysSince(stock.priceAsOf);
 
@@ -72,6 +77,7 @@ function enrich(stock) {
     ...stock,
     buyLine,
     targetPrice,
+    sellGuidePrice,
     buyRatio,
     upside,
     netCashRatio,
@@ -86,7 +92,7 @@ function toQueueRow(stock) {
     && Number(stock.backtest?.averageReturn || 0) > 0
     && Number(stock.backtest?.winRate || 0) >= 60
     && Number(stock.backtest?.maxDrawdown || 0) > -15;
-  const sellCheck = stock.held && Number(stock.price || 0) >= stock.targetPrice * 0.9;
+  const sellCheck = stock.held && Number(stock.price || 0) >= stock.sellGuidePrice * 0.9;
   const reasons = [];
   if (!stock.priceAsOf) reasons.push("株価日付なし");
   else reasons.push(`株価が${stock.priceAge}日前`);
@@ -114,11 +120,23 @@ function toQueueRow(stock) {
     priceAge: stock.priceAge ?? "",
     buyLine: round(stock.buyLine),
     targetPrice: round(stock.targetPrice),
+    sellGuidePrice: round(stock.sellGuidePrice),
     buyRatio: round(stock.buyRatio),
     upside: round(stock.upside),
     reason: reasons.join(" / "),
     nextAction: "最新株価を確認して price-updates.csv に追加",
   };
+}
+
+function practicalSellGuidePrice(stock) {
+  const price = Number(stock.price || 0);
+  const buyLine = Number(stock.buyLine || 0);
+  const targetPrice = Number(stock.targetPrice || 0);
+  const history = Array.isArray(stock.history) ? stock.history.filter((value) => Number.isFinite(value) && value > 0) : [];
+  const recentHigh = Math.max(price, ...history);
+  const firstProfit = Math.max(price * 1.2, buyLine * 1.25, recentHigh * 1.05);
+  if (!Number.isFinite(targetPrice) || targetPrice <= 0) return firstProfit;
+  return Math.max(1, Math.min(targetPrice * 0.9, firstProfit));
 }
 
 function writeReport(queueRows) {

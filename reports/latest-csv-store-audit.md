@@ -1,6 +1,6 @@
 # CSVストア監査
 
-生成日時: 2026-06-28T06:17:07.623Z
+生成日時: 2026-06-28T06:26:29.270Z
 
 CSVファイル: 31件
 総行数: 19,797行
@@ -38,7 +38,7 @@ CSVファイル: 31件
 - listed-universe.csv: 3,728行 / 4列 / 281.38KB
 - multibagger-candidates.csv: 217行 / 17列 / 76.13KB
 - price-backtest-results.csv: 60行 / 18列 / 8.24KB
-- price-refresh-queue.csv: 0行 / 13列 / 103B
+- price-refresh-queue.csv: 0行 / 14列 / 118B
 - price-updates.csv: 35行 / 3列 / 743B
 - promotion-candidates.csv: 150行 / 17列 / 47.51KB
 - promotion-readiness.csv: 50行 / 19列 / 20.86KB

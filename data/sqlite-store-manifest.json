@@ -1,5 +1,5 @@
 ﻿{
-  "generatedAt": "2026-06-28T06:17:08.509765+00:00",
+  "generatedAt": "2026-06-28T06:26:30.173673+00:00",
   "database": "data/candidate-stock-assist.sqlite",
   "databaseBytes": 4317184,
   "tables": 31,
@@ -94,8 +94,8 @@
       "table": "price_refresh_queue",
       "csv": "price-refresh-queue.csv",
       "rows": 0,
-      "columns": 13,
-      "bytes": 103
+      "columns": 14,
+      "bytes": 118
     },
     {
       "table": "price_updates",

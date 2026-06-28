@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-28T06:17:07.623Z",
+  "generatedAt": "2026-06-28T06:26:29.270Z",
   "totalFiles": 31,
   "totalRows": 19797,
-  "totalBytes": 3131283,
+  "totalBytes": 3131298,
   "problems": [],
   "files": [
     {
@@ -356,9 +356,9 @@
     },
     {
       "name": "price-refresh-queue.csv",
-      "bytes": 103,
+      "bytes": 118,
       "rows": 0,
-      "columns": 13,
+      "columns": 14,
       "headers": [
         "rank",
         "priority",
@@ -369,6 +369,7 @@
         "priceAge",
         "buyLine",
         "targetPrice",
+        "sellGuidePrice",
         "buyRatio",
         "upside",
         "reason",
