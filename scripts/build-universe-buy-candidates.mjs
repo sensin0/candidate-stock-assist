@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCsvRecords } from "./csv-utils.mjs";
+import { timingInputs } from "./backtest-core.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dataDir = path.join(rootDir, "data");
@@ -17,6 +18,12 @@ const listedByCode = new Map(listed.map((row) => [row.code, row]));
 const priceByCode = new Map(priceRows.map((row) => [row.code, row]));
 const statusByCode = new Map(statusRows.map((row) => [row.code, row]));
 const stockMasterCodes = new Set(stockMaster.map((row) => row.code));
+const defaultTiming = {
+  pbrLow: 0.64,
+  pbrHigh: 1.53,
+  perLow: 10,
+  perHigh: 24,
+};
 
 const candidates = metrics
   .filter((row) => listedByCode.has(row.code))
@@ -49,8 +56,7 @@ function toCandidate(row) {
   const per = eps > 0 ? price / eps : 0;
   const netCash = number(row.cash) + number(row.securities) + number(row.investmentSecurities) - number(row.interestDebt);
   const netCashRatio = marketCap > 0 ? netCash / marketCap : 0;
-  const buyLine = Math.min(bps * 0.8, eps * 12);
-  const targetPrice = Math.max(bps * 1.2, eps * 18, buyLine * 1.5);
+  const { buyLine, targetPrice } = timingInputs({ bps, eps, ...defaultTiming });
   const buyRatio = buyLine > 0 ? price / buyLine : 999;
   const upside = targetPrice > 0 ? (targetPrice / price - 1) * 100 : 0;
   const winRate = number(priceRow?.winRate);
@@ -61,7 +67,7 @@ function toCandidate(row) {
 
   if (judgement !== "良さそう") return null;
   if (!["上昇中押し目", "安値反転候補"].includes(signal)) return null;
-  if (buyRatio > 1 || upside < 50 || pbr <= 0 || pbr > 1 || per <= 0 || per > 20) return null;
+  if (buyRatio > 1.1 || upside < 50 || pbr <= 0 || pbr > 1 || per <= 0 || per > 20) return null;
   if (winRate < 60 || averageReturn < 8 || maxDrawdown <= -15) return null;
 
   const safety = netCashRatio >= 0 || pbr <= 0.6 ? "自動買い候補予備軍" : "財務注意つき予備軍";
@@ -103,7 +109,7 @@ function toCandidate(row) {
     judgement,
     metricSource,
     action: alreadyNormal ? "正式候補の財務ガードで最終確認" : "通常候補へ昇格する前に有報と決算短信を確認",
-    comment: `${signal}。買いライン以下で、上昇余地と価格検証は条件内です`,
+    comment: `${signal}。買いライン近辺で、上昇余地と価格検証は条件内です`,
     caution: safety === "財務注意つき予備軍" ? "ネット有利子負債が重め。負債と利益継続性を先に確認" : "正式な今買い前に原資料確認",
   };
 }

@@ -556,6 +556,51 @@ main {
   display: none;
 }
 
+.inline-selected-summary {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.inline-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.inline-summary-cell {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  padding: 8px 10px;
+  min-width: 0;
+}
+
+.inline-summary-cell span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.inline-summary-cell strong {
+  display: block;
+  margin-top: 2px;
+  color: var(--ink);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.inline-action-list {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
 select {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -1035,14 +1080,67 @@ footer {
   .inline-mobile-lynch-preview {
     display: block;
     margin: -2px 0 12px;
-    padding: 12px;
+    padding: 10px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: #fbfcfb;
   }
 
   .inline-mobile-lynch-preview .section-heading {
-    margin-bottom: 10px;
+    margin-bottom: 6px;
+  }
+
+  .inline-mobile-lynch-preview .section-heading h3 {
+    font-size: 15px;
+  }
+
+  .inline-mobile-lynch-preview .section-heading .eyebrow {
+    font-size: 10px;
+  }
+
+  .inline-mobile-lynch-preview .chart {
+    margin-top: 0;
+  }
+
+  .inline-mobile-lynch-preview svg {
+    max-height: 220px;
+  }
+
+  .inline-selected-summary {
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .inline-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .inline-summary-cell {
+    padding: 6px 8px;
+  }
+
+  .inline-summary-cell span {
+    font-size: 10px;
+  }
+
+  .inline-summary-cell strong {
+    font-size: 13px;
+  }
+
+  .inline-action-list {
+    gap: 3px;
+    padding-left: 16px;
+    font-size: 11px;
+  }
+
+  .ranking-row {
+    gap: 6px;
+  }
+
+  .ranking-meta {
+    gap: 5px;
+    font-size: 11px;
   }
 
   .detail-panel > #lynchChart {

@@ -1309,16 +1309,85 @@ function renderMobileLynchPreview(content, title) {
   element.innerHTML = "";
 }
 
-function renderInlineMobileLynchPreview(content, title) {
+function renderInlineMobileLynchPreview(content, title, summary = "") {
   return `
     <div class="inline-mobile-lynch-preview" aria-live="polite">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">選択中</p>
-        <h3>${escapeHtml(title)}</h3>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">選択中</p>
+          <h3>${escapeHtml(title)}</h3>
+        </div>
       </div>
+      <div class="chart" role="img" aria-label="選択中銘柄のリンチ・チャート">${content}</div>
+      ${summary}
     </div>
-    <div class="chart" role="img" aria-label="選択中銘柄のリンチ・チャート">${content}</div>
+  `;
+}
+
+function renderInlineStockSummary(stock) {
+  const stats = [
+    ["判断", stock.assist.label],
+    ["株価", yen(stock.price)],
+    ["買い", yen(stock.buyLine)],
+    ["売り目安", yen(stock.targetPrice)],
+    ["上昇余地", pct(stock.upside)],
+    ["修正PBR", times(stock.modifiedPbr)],
+    ["勝率", pct(stock.backtest?.winRate ?? 0)],
+    ["平均", pct(stock.backtest?.averageReturn ?? 0)],
+  ];
+  const actions = [
+    ...(stock.assist.reasons ?? []).slice(0, 2),
+    ...(stock.assist.nextActions ?? []).slice(0, 2),
+  ].slice(0, 4);
+  return `
+    <div class="inline-selected-summary">
+      <div class="inline-summary-grid">
+        ${stats.map(([label, value]) => `
+          <div class="inline-summary-cell">
+            <span>${escapeHtml(label)}</span>
+            <strong>${escapeHtml(value)}</strong>
+          </div>
+        `).join("")}
+      </div>
+      <ul class="inline-action-list">
+        ${actions.map((action) => `<li>${escapeHtml(action)}</li>`).join("")}
+      </ul>
+    </div>
+  `;
+}
+
+function renderInlineResearchSummary(item, type) {
+  const registered = stocks.find((stock) => String(stock.code) === String(item.code));
+  if (registered) return renderInlineStockSummary(registered);
+
+  const stats = [
+    ["判断", item.reviewStatus || item.status || item.signal || "確認"],
+    ["株価", item.price ? yen(item.price) : "-"],
+    ["買い", item.buyLine ? yen(item.buyLine) : "-"],
+    ["売り目安", item.targetPrice ? yen(item.targetPrice) : "-"],
+    ["買い比率", item.buyRatio ? times(item.buyRatio) : "-"],
+    ["上昇余地", item.upside != null ? pct(item.upside) : "-"],
+    ["勝率", item.winRate != null ? pct(item.winRate) : "-"],
+    ["平均", item.averageReturn != null ? pct(item.averageReturn) : "-"],
+  ];
+  const notes = [
+    item.comment || item.reason || signalComment(item),
+    item.action || item.nextStep || item.timingAction,
+    item.caution || item.blockers,
+  ].filter(Boolean).slice(0, 3);
+  return `
+    <div class="inline-selected-summary">
+      <div class="inline-summary-grid">
+        ${stats.map(([label, value]) => `
+          <div class="inline-summary-cell">
+            <span>${escapeHtml(label)}</span>
+            <strong>${escapeHtml(String(value))}</strong>
+          </div>
+        `).join("")}
+      </div>
+      <ul class="inline-action-list">
+        ${notes.map((note) => `<li>${escapeHtml(note)}</li>`).join("")}
+      </ul>
     </div>
   `;
 }
@@ -1410,7 +1479,7 @@ function renderTodayRankingRow(entry, index) {
         </div>
         ${renderMiniMeter(stock)}
       </article>
-      ${stock.code === selectedCode ? renderInlineMobileLynchPreview(renderLynchChart(stock), `${stock.name}のリンチ・チャート`) : ""}
+      ${stock.code === selectedCode ? renderInlineMobileLynchPreview(renderLynchChart(stock), `${stock.name}のリンチ・チャート`, renderInlineStockSummary(stock)) : ""}
     `;
   }
 
@@ -1423,7 +1492,7 @@ function renderTodayRankingRow(entry, index) {
     : (item.comment || item.reason || signalComment(item));
   const lynch = type === "financialConfirmation"
     ? renderFinancialConfirmationPlaceholder(item)
-    : renderResearchLynchPlaceholder(item);
+    : renderResearchLynch(item, type);
 
   return `
     <article class="ranking-row research-ranking-row ${isActive ? "active" : ""}" data-research-type="${type}" data-research-code="${escapeHtml(item.code)}">
@@ -1444,7 +1513,7 @@ function renderTodayRankingRow(entry, index) {
         <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
       </div>
     </article>
-    ${isActive ? renderInlineMobileLynchPreview(lynch, `${item.name}の確認`) : ""}
+    ${isActive ? renderInlineMobileLynchPreview(lynch, `${item.name}の確認`, renderInlineResearchSummary(item, type)) : ""}
   `;
 }
 
@@ -1468,7 +1537,7 @@ function renderExpansionRankingRow(item, index) {
         <span>財務確認前</span>
       </div>
     </article>
-    ${isActive ? renderInlineMobileLynchPreview(renderExpansionLynchPlaceholder(item), `${item.name}のリンチ・チャート`) : ""}
+    ${isActive ? renderInlineMobileLynchPreview(renderExpansionLynchPlaceholder(item), `${item.name}のリンチ・チャート`, renderInlineResearchSummary(item, "expansionPreview")) : ""}
   `;
 }
 
@@ -1493,7 +1562,7 @@ function renderHiddenGemDraftRankingRow(item, index) {
         <span>財務確認前</span>
       </div>
     </article>
-    ${isActive ? renderInlineMobileLynchPreview(renderExpansionLynchPlaceholder(item), `${item.name}のリンチ・チャート`) : ""}
+    ${isActive ? renderInlineMobileLynchPreview(renderExpansionLynchPlaceholder(item), `${item.name}のリンチ・チャート`, renderInlineResearchSummary(item, "hiddenGemsDraft")) : ""}
   `;
 }
 
@@ -1520,7 +1589,7 @@ function renderHiddenGemRankingRow(item, index) {
         <span>${escapeHtml(item.caution || "注意なし")}</span>
       </div>
     </article>
-    ${isActive ? renderInlineMobileLynchPreview(renderResearchLynch(item, type), `${item.name}のリンチ・チャート`) : ""}
+    ${isActive ? renderInlineMobileLynchPreview(renderResearchLynch(item, "hiddenGems"), `${item.name}のリンチ・チャート`, renderInlineResearchSummary(item, "hiddenGems")) : ""}
   `;
 }
 
@@ -1544,7 +1613,7 @@ function renderFinancialConfirmationRankingRow(item, index) {
         <span>${escapeHtml(item.blockers || "注意なし")}</span>
       </div>
     </article>
-    ${isActive ? renderInlineMobileLynchPreview(renderFinancialConfirmationPlaceholder(item), `${item.name}の財務確認`) : ""}
+    ${isActive ? renderInlineMobileLynchPreview(renderFinancialConfirmationPlaceholder(item), `${item.name}の財務確認`, renderInlineResearchSummary(item, "financialConfirmation")) : ""}
   `;
 }
 
@@ -1569,7 +1638,7 @@ function renderFinancialScreeningRankingRow(item, index) {
         <span>${escapeHtml(item.cautions || "注意なし")}</span>
       </div>
     </article>
-    ${isActive ? renderInlineMobileLynchPreview(renderFinancialScreeningPlaceholder(item), `${item.name}の財務スクリーニング`) : ""}
+    ${isActive ? renderInlineMobileLynchPreview(renderFinancialScreeningPlaceholder(item), `${item.name}の財務スクリーニング`, renderInlineResearchSummary(item, "financialScreening")) : ""}
   `;
 }
 
@@ -1613,7 +1682,7 @@ function renderResearchRankingRow(item, index, type) {
         <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
       </div>
     </article>
-    ${isActive ? renderInlineMobileLynchPreview(renderResearchLynchPlaceholder(item), `${item.name}のリンチ・チャート`) : ""}
+    ${isActive ? renderInlineMobileLynchPreview(renderResearchLynch(item, type), `${item.name}のリンチ・チャート`, renderInlineResearchSummary(item, type)) : ""}
   `;
 }
 
@@ -1638,7 +1707,7 @@ function renderRankingRow(stock, index) {
       </div>
       ${renderMiniMeter(stock)}
     </article>
-    ${stock.code === selectedCode ? renderInlineMobileLynchPreview(renderLynchChart(stock), `${stock.name}のリンチ・チャート`) : ""}
+    ${stock.code === selectedCode ? renderInlineMobileLynchPreview(renderLynchChart(stock), `${stock.name}のリンチ・チャート`, renderInlineStockSummary(stock)) : ""}
   `;
 }
 

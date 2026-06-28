@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-28T05:24:15.261Z",
+  "generatedAt": "2026-06-28T06:01:41.522Z",
   "totalFiles": 31,
   "totalRows": 19797,
-  "totalBytes": 3131030,
+  "totalBytes": 3131102,
   "problems": [],
   "files": [
     {
@@ -702,7 +702,7 @@
     },
     {
       "name": "universe-buy-candidate-review.csv",
-      "bytes": 1395,
+      "bytes": 1466,
       "rows": 3,
       "columns": 21,
       "headers": [
@@ -734,7 +734,7 @@
     },
     {
       "name": "universe-buy-candidates.csv",
-      "bytes": 1585,
+      "bytes": 1586,
       "rows": 3,
       "columns": 25,
       "headers": [

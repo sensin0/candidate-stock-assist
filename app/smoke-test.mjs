@@ -247,6 +247,9 @@ if (!/\d{4}\/\d{2}/.test(result.lynchChart)) {
 if (!result.inlineLynchPreview.includes("inline-mobile-lynch-preview") || !result.inlineLynchPreview.includes("リンチ・チャート")) {
   failures.push("選択銘柄直下のリンチ・チャートプレビューが生成されていません");
 }
+if (!result.inlineLynchPreview.includes("inline-selected-summary") || !result.inlineLynchPreview.includes("買い")) {
+  failures.push("選択銘柄直下の要約情報が生成されていません");
+}
 if (!result.researchOverview.includes("日本株全体") || !result.researchOverview.includes("2倍監視")) {
   failures.push("広域バックテスト候補が生成されていません");
 }

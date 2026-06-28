@@ -1,6 +1,6 @@
 # CSVストア監査
 
-生成日時: 2026-06-28T05:24:15.261Z
+生成日時: 2026-06-28T06:01:41.522Z
 
 CSVファイル: 31件
 総行数: 19,797行
@@ -50,7 +50,7 @@ CSVファイル: 31件
 - stock-master-universe-promotion-draft.csv: 0行 / 14列 / 95B
 - stock-master.csv: 35行 / 27列 / 9.23KB
 - stock-master.generated.csv: 3行 / 27列 / 810B
-- universe-buy-candidate-review.csv: 3行 / 21列 / 1.4KB
+- universe-buy-candidate-review.csv: 3行 / 21列 / 1.47KB
 - universe-buy-candidates.csv: 3行 / 25列 / 1.59KB
 - universe-check-status.csv: 3,728行 / 12列 / 755.07KB
 - universe-financial-facts.csv: 3,728行 / 21列 / 784.27KB

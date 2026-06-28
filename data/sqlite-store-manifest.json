@@ -1,5 +1,5 @@
 ﻿{
-  "generatedAt": "2026-06-28T05:24:18.056529+00:00",
+  "generatedAt": "2026-06-28T06:01:42.440529+00:00",
   "database": "data/candidate-stock-assist.sqlite",
   "databaseBytes": 4317184,
   "tables": 31,
@@ -179,14 +179,14 @@
       "csv": "universe-buy-candidate-review.csv",
       "rows": 3,
       "columns": 21,
-      "bytes": 1395
+      "bytes": 1466
     },
     {
       "table": "universe_buy_candidates",
       "csv": "universe-buy-candidates.csv",
       "rows": 3,
       "columns": 25,
-      "bytes": 1585
+      "bytes": 1586
     },
     {
       "table": "universe_check_status",
