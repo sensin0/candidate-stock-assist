@@ -90,7 +90,7 @@ const autoBuyCandidates = universeBuyCandidateRows.slice(0, 120).map((row) => {
     timingAction: "確認前買い候補",
     timingRank: number(row.autoBuyScore),
     qualityRank: number(row.autoBuyScore),
-    qualityNote: review.reviewStatus ? `${review.reviewStatus}: ${review.reasons || review.cautions}` : row.caution || "正式今買い前に原資料確認",
+    qualityNote: review.reviewStatus ? `${review.reviewStatus}: ${review.reasons || review.cautions}` : row.caution || "自動ランキング反映済み。原資料確認で精度向上",
   };
 }).sort((a, b) => reviewPriority(b.reviewStatus) - reviewPriority(a.reviewStatus) || b.autoBuyScore - a.autoBuyScore);
 

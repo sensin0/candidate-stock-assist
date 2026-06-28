@@ -38,7 +38,7 @@ for (const row of universeBuyRows) {
     periodReturn: 0,
     reason: row.comment || "財務と価格の両方が条件内",
     nextCheck: "有報、決算短信、利益継続性、負債、出来高",
-    caution: row.caution || "正式今買い前の確認待ち",
+    caution: row.caution || "自動ランキング反映済み。原資料確認で精度向上",
   });
 }
 

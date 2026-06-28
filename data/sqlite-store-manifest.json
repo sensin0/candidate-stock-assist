@@ -1,9 +1,9 @@
 ﻿{
-  "generatedAt": "2026-06-28T10:27:37.929039+00:00",
+  "generatedAt": "2026-06-28T12:43:38.228363+00:00",
   "database": "data/candidate-stock-assist.sqlite",
-  "databaseBytes": 44277760,
+  "databaseBytes": 44437504,
   "tables": 34,
-  "rows": 282180,
+  "rows": 282482,
   "integrity": "ok",
   "imported": [
     {
@@ -16,9 +16,9 @@
     {
       "table": "backtest_results",
       "csv": "backtest-results.csv",
-      "rows": 35,
+      "rows": 52,
       "columns": 15,
-      "bytes": 7281
+      "bytes": 10073
     },
     {
       "table": "disclosures",
@@ -88,14 +88,14 @@
       "csv": "monthly-signal-backtest.csv",
       "rows": 131171,
       "columns": 21,
-      "bytes": 29985534
+      "bytes": 29993343
     },
     {
       "table": "monthly_signal_summary",
       "csv": "monthly-signal-summary.csv",
       "rows": 41,
       "columns": 16,
-      "bytes": 4924
+      "bytes": 4922
     },
     {
       "table": "multibagger_candidates",
@@ -121,16 +121,16 @@
     {
       "table": "price_updates",
       "csv": "price-updates.csv",
-      "rows": 35,
+      "rows": 52,
       "columns": 3,
-      "bytes": 743
+      "bytes": 1092
     },
     {
       "table": "promotion_candidates",
       "csv": "promotion-candidates.csv",
       "rows": 150,
       "columns": 17,
-      "bytes": 47514
+      "bytes": 58738
     },
     {
       "table": "promotion_readiness",
@@ -142,9 +142,9 @@
     {
       "table": "stock_master_expanded_preview",
       "csv": "stock-master-expanded-preview.csv",
-      "rows": 49,
+      "rows": 66,
       "columns": 27,
-      "bytes": 16151
+      "bytes": 24870
     },
     {
       "table": "stock_master_hidden_gems_draft",
@@ -177,9 +177,9 @@
     {
       "table": "stock_master_universe_promotion_draft",
       "csv": "stock-master-universe-promotion-draft.csv",
-      "rows": 0,
+      "rows": 17,
       "columns": 14,
-      "bytes": 95
+      "bytes": 6472
     },
     {
       "table": "stock_master",
@@ -198,16 +198,16 @@
     {
       "table": "universe_buy_candidate_review",
       "csv": "universe-buy-candidate-review.csv",
-      "rows": 3,
+      "rows": 120,
       "columns": 21,
-      "bytes": 1466
+      "bytes": 50754
     },
     {
       "table": "universe_buy_candidates",
       "csv": "universe-buy-candidates.csv",
-      "rows": 3,
+      "rows": 120,
       "columns": 26,
-      "bytes": 1622
+      "bytes": 53904
     },
     {
       "table": "universe_check_status",

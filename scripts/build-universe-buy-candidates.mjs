@@ -13,11 +13,14 @@ const metrics = readCsv("universe-metrics.csv");
 const priceRows = readCsv("universe-price-backtest.csv");
 const statusRows = readCsv("universe-check-status.csv");
 const stockMaster = readCsv("stock-master.csv");
+const monthlySignalRows = readCsv("monthly-signal-backtest.csv");
 
 const listedByCode = new Map(listed.map((row) => [row.code, row]));
 const priceByCode = new Map(priceRows.map((row) => [row.code, row]));
 const statusByCode = new Map(statusRows.map((row) => [row.code, row]));
 const stockMasterCodes = new Set(stockMaster.map((row) => row.code));
+const latestMonth = monthlySignalRows.map((row) => row.month).sort().at(-1) || "";
+const monthlySignalByCode = new Map(monthlySignalRows.filter((row) => row.month === latestMonth).map((row) => [row.code, row]));
 const defaultTiming = {
   pbrLow: 0.64,
   pbrHigh: 1.53,
@@ -42,14 +45,16 @@ function toCandidate(row) {
   const listedRow = listedByCode.get(row.code);
   const priceRow = priceByCode.get(row.code);
   const statusRow = statusByCode.get(row.code);
+  const monthlyRow = monthlySignalByCode.get(row.code);
   const metricSource = row.asOf || "";
-  const price = number(priceRow?.lastClose || row.price);
+  const price = number(monthlyRow?.close || priceRow?.lastClose || row.price);
   const bps = number(row.bps);
   const eps = number(row.eps);
   const shares = Math.max(0, number(row.shares) - number(row.treasuryShares));
   if (!price || !bps || !eps || !shares) return null;
   if (metricSource === "unavailable" || metricSource === "priceEstimate") return null;
   if (statusRow?.status && !["自動チェック完了", "財務のみ完了"].includes(statusRow.status)) return null;
+  if (monthlyRow?.dataStatus && monthlyRow.dataStatus !== "判定可能") return null;
 
   const marketCap = (price * shares) / 1_000_000;
   const pbr = price / bps;
@@ -57,20 +62,20 @@ function toCandidate(row) {
   const netCash = number(row.cash) + number(row.securities) + number(row.investmentSecurities) - number(row.interestDebt);
   const netCashRatio = marketCap > 0 ? netCash / marketCap : 0;
   const { buyLine, targetPrice, sellGuidePrice } = timingInputs({ price, bps, eps, ...defaultTiming });
-  const buyRatio = buyLine > 0 ? price / buyLine : 999;
-  const upside = targetPrice > 0 ? (targetPrice / price - 1) * 100 : 0;
+  const buyRatio = number(monthlyRow?.buyRatio) || (buyLine > 0 ? price / buyLine : 999);
+  const upside = number(monthlyRow?.upside) || (targetPrice > 0 ? (targetPrice / price - 1) * 100 : 0);
   const winRate = number(priceRow?.winRate);
   const averageReturn = number(priceRow?.averageReturn);
   const maxDrawdown = number(priceRow?.maxDrawdown);
   const judgement = priceRow?.judgement || "";
-  const signal = priceRow?.latestSignal || "";
+  const signal = monthlyRow?.signal || priceRow?.latestSignal || "";
 
-  if (judgement !== "良さそう") return null;
-  if (!["上昇中押し目", "安値反転候補"].includes(signal)) return null;
-  if (buyRatio > 1.1 || upside < 50 || pbr <= 0 || pbr > 1 || per <= 0 || per > 20) return null;
-  if (winRate < 60 || averageReturn < 8 || maxDrawdown <= -15) return null;
+  if (!["今買い候補", "買い場近い"].includes(signal)) return null;
+  if (upside < 50 || pbr <= 0 || pbr > 1 || per <= 0 || per > 20) return null;
 
-  const safety = netCashRatio >= 0 || pbr <= 0.6 ? "自動買い候補予備軍" : "財務注意つき予備軍";
+  const safety = signal === "今買い候補"
+    ? netCashRatio >= 0 || pbr <= 0.6 ? "自動今買い候補" : "財務注意つき自動今買い"
+    : netCashRatio >= 0 || pbr <= 0.6 ? "自動買い場近い" : "財務注意つき買い場近い";
   const alreadyNormal = stockMasterCodes.has(row.code);
   const autoBuyScore = score({
     pbr,
@@ -107,11 +112,11 @@ function toCandidate(row) {
     averageReturn: round(averageReturn),
     maxDrawdown: round(maxDrawdown),
     signal,
-    judgement,
+    judgement: judgement || monthlyRow?.reason || "月次シグナル",
     metricSource,
-    action: alreadyNormal ? "正式候補の財務ガードで最終確認" : "通常候補へ昇格する前に有報と決算短信を確認",
-    comment: `${signal}。買いライン近辺で、上昇余地と価格検証は条件内です`,
-    caution: safety === "財務注意つき予備軍" ? "ネット有利子負債が重め。負債と利益継続性を先に確認" : "正式な今買い前に原資料確認",
+    action: alreadyNormal ? "通常候補として自動ランキング反映" : "自動取得財務でランキング反映。原資料チェックで精度を上げる",
+    comment: `${signal}。自動取得財務と月次シグナルで条件内です`,
+    caution: safety.includes("財務注意") ? "ネット有利子負債が重め。負債と利益継続性を確認" : "自動取得財務で判定。原資料チェック推奨",
   };
 }
 
@@ -141,7 +146,8 @@ function writeReport(rows, total) {
     `生成日時: ${new Date().toISOString()}`,
     "",
     "日本株全体から、財務データと価格タイミングの両方が条件内のものを抽出しています。",
-    "これは正式な今買いではありません。通常候補へ昇格し、原資料確認が済んだものだけ正式な今買い候補にします。",
+    "自動取得財務をランキングへ反映します。原資料チェック済みかどうかはラベルと注意で分けます。",
+    `対象月: ${latestMonth}`,
     "",
     `抽出候補: ${total}件`,
     `表示候補: ${rows.length}件`,
@@ -156,9 +162,9 @@ function writeReport(rows, total) {
     "",
     "## 運用ルール",
     "",
-    "- 正式な今買い候補とは分けて表示します。",
-    "- 予備軍は、買いライン以下でも有報と決算短信の確認が終わるまで買い表示にしません。",
-    "- 財務注意つき予備軍は、負債と利益継続性の確認が済むまで通常候補へ昇格させません。",
+    "- 自動取得財務の銘柄もランキングに出します。",
+    "- 原資料チェック済みと自動取得はラベルで分けます。",
+    "- 財務注意つきは除外せず、負債と利益継続性の注意を付けて表示します。",
   ];
   fs.writeFileSync(path.join(reportsDir, "latest-universe-buy-candidates.md"), `${lines.join("\n")}\n`, "utf8");
 }

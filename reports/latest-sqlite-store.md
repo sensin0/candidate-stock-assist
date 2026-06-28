@@ -1,11 +1,11 @@
 ﻿# SQLiteストア
 
-生成日時: 2026-06-28T10:27:37.929039+00:00
+生成日時: 2026-06-28T12:43:38.228363+00:00
 
 DB: `data/candidate-stock-assist.sqlite`
 テーブル: 34件
-総行数: 282,180行
-DBサイズ: 44.28MB
+総行数: 282,482行
+DBサイズ: 44.44MB
 整合性: ok
 
 ## 方針
@@ -26,8 +26,8 @@ DBサイズ: 44.28MB
 - multibagger_candidates: 217行 / 17列 / 元CSV `multibagger-candidates.csv`
 - hidden_gems: 200行 / 24列 / 元CSV `hidden-gems.csv`
 - promotion_candidates: 150行 / 17列 / 元CSV `promotion-candidates.csv`
-- price_backtest_results: 60行 / 18列 / 元CSV `price-backtest-results.csv`
-- financial_confirmation_queue: 58行 / 14列 / 元CSV `financial-confirmation-queue.csv`
+- universe_buy_candidate_review: 120行 / 21列 / 元CSV `universe-buy-candidate-review.csv`
+- universe_buy_candidates: 120行 / 26列 / 元CSV `universe-buy-candidates.csv`
 
 ## 代表ビュー
 

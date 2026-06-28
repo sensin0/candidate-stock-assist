@@ -90,10 +90,10 @@ function reviewCandidate(row, metric = {}) {
   else if (!isExisting && !isSpecialSector && netCashRatio >= 0 && buyRatio <= 0.95 && maxDrawdown > -8) reviewStatus = "通常候補へ昇格OK";
 
   const nextAction = reviewStatus === "通常候補へ昇格OK"
-    ? "通常候補追加プレビューへ反映。正式買い表示は次回の財務ガード後"
+    ? "自動ランキングへ反映済み。通常候補追加プレビューへも反映"
     : reviewStatus === "今回は見送り"
       ? "ランキング上位から外す。条件改善まで買い表示しない"
-      : "有報・決算短信・負債・利益継続性を確認";
+      : "自動ランキングには反映。原資料チェックで信頼度を上げる";
 
   return {
     code: row.code,
@@ -144,7 +144,7 @@ function toStockInputCsv(rows) {
       eps: row.eps,
       pbrLow: round(pbrLow),
       pbrHigh: round(pbrHigh),
-      note: `全体自動判定から昇格OK。${row.reasons}。買い表示前に原資料確認`,
+      note: `全体自動判定から昇格OK。${row.reasons}。自動ランキング反映済み。原資料確認で精度向上`,
       history: makeHistory(row.price),
     };
   });
@@ -161,8 +161,8 @@ function writeReport(rows, approvedRows) {
     "",
     `生成日時: ${new Date().toISOString()}`,
     "",
-    "日本株全体から抽出した自動買い候補予備軍を、通常候補へ進める前にもう一段ふるい分けします。",
-    "ここで昇格OKでも、正式な今買い表示は通常候補側の財務ガードを通してからです。",
+    "日本株全体から抽出した自動買い候補を、自動ランキングへ反映した上で信頼度を分けます。",
+    "昇格OKは通常候補追加プレビューにも入れます。追加確認はランキングに出しつつ、原資料チェックで精度を上げます。",
     "",
     `対象: ${rows.length}件`,
     `通常候補へ昇格OK: ${approvedCount}件`,
@@ -184,9 +184,9 @@ function writeReport(rows, approvedRows) {
     "",
     "## ルール",
     "",
-    "- 特殊業種、重いネット有利子負債、下落余地が大きい候補は自動昇格しません。",
-    "- 昇格OKは通常候補追加プレビューに入れますが、正式買い表示は別ガードで判定します。",
-    "- 見送りはランキングで誤って買い誘導しないため、理由を残します。",
+    "- 特殊業種、重いネット有利子負債、下落余地が大きい候補は昇格OKにしません。",
+    "- 昇格OKは通常候補追加プレビューにも入れます。自動ランキングではすでに表示します。",
+    "- 見送りはランキング下位へ回し、誤って買い誘導しないため理由を残します。",
   ];
   fs.writeFileSync(reportPath, `${lines.join("\n")}\n`, "utf8");
 }

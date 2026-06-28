@@ -1,12 +1,420 @@
 window.AUTO_EXPANSION_PREVIEW = {
-  "generatedAt": "2026-06-28T12:10:42.472Z",
+  "generatedAt": "2026-06-28T12:43:26.290Z",
   "source": "data/stock-master-expanded-preview.csv",
   "currentCount": 35,
-  "previewAddCount": 14,
-  "expandedCount": 49,
+  "previewAddCount": 31,
+  "expandedCount": 66,
   "items": [
     {
       "rank": 1,
+      "code": "5697",
+      "name": "サンユウ",
+      "sector": "鉄鋼",
+      "price": 696,
+      "bps": 1710.25,
+      "eps": 102.57,
+      "pbrLow": 0.45,
+      "pbrAvg": 0.75,
+      "pbrHigh": 1.05,
+      "perAvg": 6.79,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.41倍 / 低PER 6.79倍 / ネット現金厚め 80.52% / 買いライン以下 0.68倍 / 上昇余地大 275.96% / 価格検証良好 勝率100%/平均13.8%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        626,
+        647,
+        661,
+        682,
+        696
+      ]
+    },
+    {
+      "rank": 2,
+      "code": "7261",
+      "name": "マツダ",
+      "sector": "輸送用機器",
+      "price": 1099,
+      "bps": 3020.96,
+      "eps": 142.68,
+      "pbrLow": 0.45,
+      "pbrAvg": 0.75,
+      "pbrHigh": 1.05,
+      "perAvg": 7.7,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.36倍 / 低PER 7.7倍 / ネット現金厚め 65.6% / 買いライン以下 0.77倍 / 上昇余地大 320.57% / 価格検証良好 勝率100%/平均13.3%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        989,
+        1022,
+        1044,
+        1077,
+        1099
+      ]
+    },
+    {
+      "rank": 3,
+      "code": "4231",
+      "name": "タイガースポリマー",
+      "sector": "化学",
+      "price": 970,
+      "bps": 2405.48,
+      "eps": 122.84,
+      "pbrLow": 0.45,
+      "pbrAvg": 0.75,
+      "pbrHigh": 1.05,
+      "perAvg": 7.9,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.4倍 / 低PER 7.9倍 / ネット現金厚め 62.01% / 買いライン以下 0.79倍 / 上昇余地大 279.42% / 価格検証良好 勝率100%/平均13.1%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        873,
+        902,
+        922,
+        951,
+        970
+      ]
+    },
+    {
+      "rank": 4,
+      "code": "4119",
+      "name": "日本ピグメントホールディングス",
+      "sector": "化学",
+      "price": 5650,
+      "bps": 14264.55,
+      "eps": 828.29,
+      "pbrLow": 0.45,
+      "pbrAvg": 0.75,
+      "pbrHigh": 1.05,
+      "perAvg": 6.82,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.4倍 / 低PER 6.82倍 / 買いライン以下 0.68倍 / 上昇余地大 286.28% / 価格検証良好 勝率100%/平均15.4%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        5085,
+        5255,
+        5368,
+        5537,
+        5650
+      ]
+    },
+    {
+      "rank": 5,
+      "code": "4224",
+      "name": "ロンシール工業",
+      "sector": "化学",
+      "price": 1988,
+      "bps": 4279.14,
+      "eps": 227.86,
+      "pbrLow": 0.45,
+      "pbrAvg": 0.75,
+      "pbrHigh": 1.05,
+      "perAvg": 8.72,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.46倍 / 低PER 8.72倍 / ネット現金厚め 73.21% / 買いライン以下 0.87倍 / 上昇余地大 229.33% / 価格検証良好 勝率100%/平均14.5%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        1789,
+        1849,
+        1889,
+        1948,
+        1988
+      ]
+    },
+    {
+      "rank": 6,
+      "code": "7266",
+      "name": "今仙電機製作所",
+      "sector": "輸送用機器",
+      "price": 903,
+      "bps": 2624.48,
+      "eps": 108.28,
+      "pbrLow": 0.45,
+      "pbrAvg": 0.75,
+      "pbrHigh": 1.05,
+      "perAvg": 8.34,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.34倍 / 低PER 8.34倍 / ネット現金厚め 64.79% / 買いライン以下 0.83倍 / 上昇余地大 344.68% / 価格検証良好 勝率100%/平均12.1%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        813,
+        840,
+        858,
+        885,
+        903
+      ]
+    },
+    {
+      "rank": 7,
+      "code": "9980",
+      "name": "ＭＲＫホールディングス",
+      "sector": "小売業",
+      "price": 91,
+      "bps": 158.56,
+      "eps": 13.47,
+      "pbrLow": 0.51,
+      "pbrAvg": 0.78,
+      "pbrHigh": 1.05,
+      "perAvg": 6.76,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.57倍 / 低PER 6.76倍 / ネット現金厚め 23.05% / 買いライン以下 0.9倍 / 上昇余地大 255.25% / 価格検証良好 勝率100%/平均29.3%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        82,
+        85,
+        86,
+        89,
+        91
+      ]
+    },
+    {
+      "rank": 8,
+      "code": "5282",
+      "name": "ジオスター",
+      "sector": "ガラス・土石製品",
+      "price": 419,
+      "bps": 819.99,
+      "eps": 60.39,
+      "pbrLow": 0.46,
+      "pbrAvg": 0.76,
+      "pbrHigh": 1.05,
+      "perAvg": 6.94,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.51倍 / 低PER 6.94倍 / ネット現金厚め 60.11% / 買いライン以下 0.8倍 / 上昇余地大 245.91% / 価格検証良好 勝率100%/平均8.8%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        377,
+        390,
+        398,
+        411,
+        419
+      ]
+    },
+    {
+      "rank": 9,
+      "code": "1866",
+      "name": "北野建設",
+      "sector": "建設業",
+      "price": 1080,
+      "bps": 2120.53,
+      "eps": 143.91,
+      "pbrLow": 0.46,
+      "pbrAvg": 0.76,
+      "pbrHigh": 1.05,
+      "perAvg": 7.5,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.51倍 / 低PER 7.5倍 / ネット現金厚め 44.74% / 買いライン以下 0.8倍 / 上昇余地大 219.8% / 価格検証良好 勝率100%/平均13.8%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        972,
+        1004,
+        1026,
+        1058,
+        1080
+      ]
+    },
+    {
+      "rank": 10,
+      "code": "9767",
+      "name": "日建工学",
+      "sector": "サービス業",
+      "price": 1505,
+      "bps": 2704.06,
+      "eps": 192.07,
+      "pbrLow": 0.5,
+      "pbrAvg": 0.78,
+      "pbrHigh": 1.05,
+      "perAvg": 7.84,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.56倍 / 低PER 7.84倍 / ネット現金厚め 89.42% / 買いライン以下 0.87倍 / 上昇余地大 206.29% / 価格検証良好 勝率100%/平均9.7%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        1355,
+        1400,
+        1430,
+        1475,
+        1505
+      ]
+    },
+    {
+      "rank": 11,
+      "code": "8104",
+      "name": "クワザワホールディングス",
+      "sector": "卸売業",
+      "price": 650,
+      "bps": 1160.58,
+      "eps": 77.74,
+      "pbrLow": 0.5,
+      "pbrAvg": 0.78,
+      "pbrHigh": 1.05,
+      "perAvg": 8.36,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.56倍 / 低PER 8.36倍 / ネット現金厚め 77.44% / 買いライン以下 0.88倍 / 上昇余地大 187.04% / 価格検証良好 勝率100%/平均12.1%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        585,
+        605,
+        618,
+        637,
+        650
+      ]
+    },
+    {
+      "rank": 12,
+      "code": "3352",
+      "name": "バッファロー",
+      "sector": "小売業",
+      "price": 1658,
+      "bps": 2773.31,
+      "eps": 206.96,
+      "pbrLow": 0.54,
+      "pbrAvg": 0.81,
+      "pbrHigh": 1.08,
+      "perAvg": 8.01,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.6倍 / 低PER 8.01倍 / ネット現金厚め 76.75% / 上昇余地大 199.58% / 価格検証良好 勝率100%/平均10%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        1492,
+        1542,
+        1575,
+        1625,
+        1658
+      ]
+    },
+    {
+      "rank": 13,
+      "code": "6497",
+      "name": "ハマイ",
+      "sector": "機械",
+      "price": 1334,
+      "bps": 2594.13,
+      "eps": 146.23,
+      "pbrLow": 0.46,
+      "pbrAvg": 0.76,
+      "pbrHigh": 1.05,
+      "perAvg": 9.12,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.51倍 / 低PER 9.12倍 / ネット現金厚め 48.88% / 上昇余地大 197.53% / 価格検証良好 勝率100%/平均10.6%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        1201,
+        1241,
+        1267,
+        1307,
+        1334
+      ]
+    },
+    {
+      "rank": 14,
+      "code": "9896",
+      "name": "ＪＫホールディングス",
+      "sector": "卸売業",
+      "price": 1423,
+      "bps": 2445.38,
+      "eps": 160.15,
+      "pbrLow": 0.52,
+      "pbrAvg": 0.79,
+      "pbrHigh": 1.05,
+      "perAvg": 8.89,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.58倍 / 低PER 8.89倍 / ネット現金厚め 44.28% / 上昇余地大 170.11% / 価格検証良好 勝率100%/平均12.7%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        1281,
+        1323,
+        1352,
+        1395,
+        1423
+      ]
+    },
+    {
+      "rank": 15,
+      "code": "7955",
+      "name": "クリナップ",
+      "sector": "その他製品",
+      "price": 877,
+      "bps": 1713.98,
+      "eps": 100.67,
+      "pbrLow": 0.46,
+      "pbrAvg": 0.76,
+      "pbrHigh": 1.05,
+      "perAvg": 8.71,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.51倍 / 低PER 8.71倍 / ネット現金厚め 38.61% / 買いライン以下 0.87倍 / 上昇余地大 199.02% / 価格検証良好 勝率100%/平均8.8%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        789,
+        816,
+        833,
+        859,
+        877
+      ]
+    },
+    {
+      "rank": 16,
+      "code": "3435",
+      "name": "サンコーテクノ",
+      "sector": "金属製品",
+      "price": 1428,
+      "bps": 2520.85,
+      "eps": 157.94,
+      "pbrLow": 0.51,
+      "pbrAvg": 0.78,
+      "pbrHigh": 1.05,
+      "perAvg": 9.04,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.57倍 / 低PER 9.04倍 / 買いライン以下 0.9倍 / 上昇余地大 170.09% / 価格検証良好 勝率100%/平均9%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        1285,
+        1328,
+        1357,
+        1399,
+        1428
+      ]
+    },
+    {
+      "rank": 17,
+      "code": "5975",
+      "name": "東プレ",
+      "sector": "金属製品",
+      "price": 2703,
+      "bps": 4926.51,
+      "eps": 303.53,
+      "pbrLow": 0.5,
+      "pbrAvg": 0.78,
+      "pbrHigh": 1.05,
+      "perAvg": 8.91,
+      "dataConfidence": "推定",
+      "qualitativeDone": false,
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.55倍 / 低PER 8.91倍 / 買いライン以下 0.89倍 / 上昇余地大 178.86% / 価格検証良好 勝率100%/平均9.3%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        2433,
+        2514,
+        2568,
+        2649,
+        2703
+      ]
+    },
+    {
+      "rank": 18,
       "code": "9322",
       "name": "川西倉庫",
       "sector": "倉庫・運輸関連業",
@@ -33,7 +441,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 2,
+      "rank": 19,
       "code": "7513",
       "name": "コジマ",
       "sector": "小売業",
@@ -60,7 +468,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 3,
+      "rank": 20,
       "code": "1515",
       "name": "日鉄鉱業",
       "sector": "鉱業",
@@ -87,7 +495,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 4,
+      "rank": 21,
       "code": "6648",
       "name": "かわでん",
       "sector": "電気機器",
@@ -114,7 +522,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 5,
+      "rank": 22,
       "code": "7426",
       "name": "山大",
       "sector": "卸売業",
@@ -141,7 +549,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 6,
+      "rank": 23,
       "code": "5233",
       "name": "太平洋セメント",
       "sector": "ガラス・土石製品",
@@ -168,7 +576,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 7,
+      "rank": 24,
       "code": "155A",
       "name": "情報戦略テクノロジー",
       "sector": "情報・通信業",
@@ -195,7 +603,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 8,
+      "rank": 25,
       "code": "6999",
       "name": "ＫＯＡ",
       "sector": "電気機器",
@@ -222,7 +630,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 9,
+      "rank": 26,
       "code": "9310",
       "name": "日本トランスシティ",
       "sector": "倉庫・運輸関連業",
@@ -249,7 +657,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 10,
+      "rank": 27,
       "code": "9104",
       "name": "商船三井",
       "sector": "海運業",
@@ -276,7 +684,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 11,
+      "rank": 28,
       "code": "543A",
       "name": "ＡＲＣＨＩＯＮ",
       "sector": "輸送用機器",
@@ -303,7 +711,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 12,
+      "rank": 29,
       "code": "5290",
       "name": "ベルテクスコーポレーション",
       "sector": "ガラス・土石製品",
@@ -330,7 +738,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 13,
+      "rank": 30,
       "code": "3093",
       "name": "トレジャー・ファクトリー",
       "sector": "小売業",
@@ -357,7 +765,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       ]
     },
     {
-      "rank": 14,
+      "rank": 31,
       "code": "8066",
       "name": "三谷商事",
       "sector": "卸売業",

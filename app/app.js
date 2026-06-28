@@ -868,7 +868,7 @@ function renderDataCheck() {
     dataCheckItem(
       "買い予備軍",
       `${autoBuyCandidateCount}件`,
-      autoBuyCandidateCount ? "正式今買い前の全体自動判定候補です" : "条件内の予備軍はありません",
+      autoBuyCandidateCount ? "全体自動判定からランキング反映中の候補です" : "条件内の予備軍はありません",
       autoBuyCandidateCount ? "warn" : "good",
     ),
     dataCheckItem(
@@ -1254,6 +1254,9 @@ function todayResearchItem(item, sourceType, label, bonus) {
     + (item.timingAction === "初回買い候補" ? 22 : 0)
     + (item.timingAction === "買わない" ? -80 : 0)
     + (item.signal === "高値圏" ? -18 : 0)
+    + (item.reviewStatus === "通常候補へ昇格OK" ? 22 : 0)
+    + (item.reviewStatus === "追加確認" ? -8 : 0)
+    + (item.reviewStatus === "今回は見送り" ? -90 : 0)
     + backtestScore
     + bonus;
   return {
@@ -1269,7 +1272,14 @@ function todayResearchItem(item, sourceType, label, bonus) {
 }
 
 function researchPriority(item, sourceType) {
-  if (sourceType === "autoBuyCandidates") return 74;
+  if (sourceType === "autoBuyCandidates") {
+    if (item.reviewStatus === "今回は見送り") return 24;
+    if (item.reviewStatus === "通常候補へ昇格OK") return 98;
+    if (item.reviewStatus === "追加確認" && String(item.status || "").includes("自動今買い")) return 90;
+    if (String(item.status || "").includes("自動今買い")) return 96;
+    if (String(item.status || "").includes("買い場近い")) return 88;
+    return 82;
+  }
   if (sourceType === "researchTiming") {
     return ["押し目買い候補", "初回買い候補"].includes(item.timingAction) ? 70 : 48;
   }
@@ -1929,7 +1939,7 @@ function renderAutoBuyCandidateAlert(item) {
     <section class="buy-timing-alert" aria-label="自動買い候補予備軍">
       <div>
         <p class="eyebrow">全体自動判定</p>
-        <h3>${escapeHtml(item.reviewStatus || "正式今買い前の予備軍")}</h3>
+        <h3>${escapeHtml(item.reviewStatus || "全体自動判定候補")}</h3>
         <p>${escapeHtml(item.action || "通常候補へ昇格する前に有報と決算短信を確認します。")}</p>
       </div>
       <div class="buy-timing-values">
@@ -2230,7 +2240,7 @@ function researchActionLabel(item) {
   if (item.reviewStatus === "通常候補へ昇格OK") return "通常候補へ昇格OK";
   if (item.reviewStatus === "今回は見送り") return "今回は見送り";
   if (item.reviewStatus === "追加確認") return "追加確認";
-  if (item.status === "自動買い候補予備軍") return "正式今買い前の予備軍";
+  if (item.status === "自動買い候補予備軍") return "全体自動判定候補";
   if (item.status === "財務注意つき予備軍") return "財務注意つき予備軍";
   if (item.timingAction) return item.timingAction;
   if (item.signal === "上昇中押し目" && item.judgement === "良さそう") return "優先監視。押し目と出来高を確認";
@@ -2959,7 +2969,7 @@ function renderMorningReport() {
   const report = [
     "# 朝レポート",
     "",
-    `今日は正式な今買い候補${buyNow.length}件、自動買い候補予備軍${autoBuyCandidates.length}件、今売り検討${sellNow.length}件、買い場候補${near.length}件、自動財務確認${autoFinancial.length}件、検証弱く見送り${backtestWeak.length}件です。`,
+    `今日は通常今買い候補${buyNow.length}件、全体自動判定の買い候補${autoBuyCandidates.length}件、今売り検討${sellNow.length}件、買い場候補${near.length}件、自動財務確認${autoFinancial.length}件、検証弱く見送り${backtestWeak.length}件です。`,
     "",
     dataOverview,
     priorityMarkdown("今日見る優先順位", priorities),
@@ -3032,7 +3042,7 @@ function researchPriorityReason(entry) {
     return `${item.status || "財務確認"}。確認完了まで買わない`;
   }
   if (entry.sourceType === "autoBuyCandidates") {
-    return `${item.status || "自動買い候補予備軍"}。通常候補へ昇格して原資料確認`;
+    return `${item.status || "自動買い候補"}。自動取得財務でランキング反映`;
   }
   if (entry.sourceType === "researchTiming") {
     return `${item.timingAction || "上昇タイミング"}。勝率${pct(item.winRate ?? 0)}、平均${pct(item.averageReturn ?? 0)}です`;
@@ -3044,7 +3054,7 @@ function researchNextAction(entry) {
   const item = entry.item;
   if (entry.sourceType === "hiddenGems") return item.nextCheck || "BPS、EPS、現金、有利子負債、直近決算";
   if (entry.sourceType === "financialConfirmation") return item.nextStep || "BPS、EPS、現金、負債、発行株数を確認";
-  if (entry.sourceType === "autoBuyCandidates") return item.action || "有報・決算短信・負債・利益継続性を確認";
+  if (entry.sourceType === "autoBuyCandidates") return item.action || "原資料チェックで精度を上げる";
   if (entry.sourceType === "researchTiming") return "財務、材料、出来高を確認";
   return "財務、材料、出来高を確認";
 }
@@ -3135,7 +3145,7 @@ function autoBuyCandidateMarkdown(title, list) {
   if (!list.length) return `## ${title}\n該当なし\n`;
   return [
     `## ${title}`,
-    "正式な今買いではありません。通常候補へ昇格し、原資料確認が済んだものだけ買い表示にします。",
+    "自動取得財務をランキングへ反映しています。原資料チェック済みかどうかはラベルと注意で分けます。",
     ...list.map((item, index) =>
       `- ${index + 1}. ${item.code} ${item.name}: ${item.status || "予備軍"} / 点 ${Math.round((item.autoBuyScore ?? 0) * 10) / 10} / 買い比率 ${times(item.buyRatio ?? 0)} / 上昇余地 ${pct(item.upside ?? 0)} / PBR ${times(item.pbr ?? 0)} / PER ${times(item.per ?? 0)} / 次: ${item.action || "有報と決算短信を確認"}`
     ),
