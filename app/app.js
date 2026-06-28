@@ -2410,6 +2410,7 @@ function lifecycleStages(stock) {
 function profitTakingPlan(stock) {
   const firstTarget = Math.max(1, Number(stock.sellGuidePrice || stock.price * 1.2 || 0));
   const fairPbrTarget = stock.bps > 0 && stock.pbrAvg > 0 ? stock.bps * stock.pbrAvg : 0;
+  const fairPerTarget = stock.eps > 0 && stock.perAvg > 0 ? stock.eps * stock.perAvg : 0;
   const targetCandidates = [
     Number(stock.targetPrice || 0),
     stock.bps > 0 && stock.pbrHigh > 0 ? stock.bps * stock.pbrHigh : 0,
@@ -2418,20 +2419,30 @@ function profitTakingPlan(stock) {
   const theoretical = Math.max(firstTarget, ...targetCandidates);
   const coreCandidate = Math.max(firstTarget * 1.18, fairPbrTarget || 0);
   const coreTarget = Math.min(theoretical * 0.35, Math.max(firstTarget, coreCandidate));
-  const runnerCandidate = Math.max(coreTarget * 1.35, firstTarget * 1.8);
-  const runnerTarget = Math.min(theoretical * 0.5, Math.max(coreTarget, runnerCandidate));
+  const canStretchToPer = fairPerTarget > coreTarget
+    && stock.eps > 0
+    && Number(stock.netCashRatio || 0) >= 0
+    && Number(stock.per || stock.price / stock.eps || 0) <= Number(stock.perAvg || 0) * 0.55;
+  const runnerCandidate = canStretchToPer
+    ? Math.max(coreTarget * 1.35, firstTarget * 1.8, fairPerTarget)
+    : Math.max(coreTarget * 1.35, firstTarget * 1.8);
+  const runnerTarget = Math.min(theoretical * 0.9, Math.max(coreTarget, runnerCandidate));
   const raiseStopTo = Math.max(Number(stock.buyLine || 0), firstTarget * 0.9);
   const targetGap = theoretical / Math.max(1, firstTarget);
   const caution = targetGap >= 4
     ? "理論上限は遠いので全部をそこまで引っ張らない"
     : "理論上限は参考。価格の勢いと決算で確認";
+  const runnerReason = canStretchToPer
+    ? `利益が維持されるならPER標準${yen(fairPerTarget)}まで一部を伸ばす`
+    : "出来高・決算・地合いが強い時だけ残りを伸ばす";
   return {
     firstTarget,
     coreTarget,
     runnerTarget,
     raiseStopTo,
     theoretical,
-    summary: `第一利確で一部、残りは本命${yen(coreTarget)}付近。強い時だけ${yen(runnerTarget)}まで伸ばす。${caution}`,
+    runnerReason,
+    summary: `第一利確で一部、残りは本命${yen(coreTarget)}付近。${runnerReason}。${caution}`,
   };
 }
 
@@ -2440,7 +2451,7 @@ function renderProfitPlan(stock) {
   const rows = [
     ["第一利確", yen(plan.firstTarget), "一部を利確して、撤退ラインを上げる"],
     ["本命利確", yen(plan.coreTarget), "残りの主力利確。PBR標準や第一利確後の伸びを目安にする"],
-    ["伸ばす上限", yen(plan.runnerTarget), "出来高・決算・地合いが強い時だけ残りを伸ばす"],
+    ["伸ばす上限", yen(plan.runnerTarget), plan.runnerReason],
     ["理論上限", yen(plan.theoretical), "参考値。ここまで全部保有する前提にはしない"],
   ];
   return `
