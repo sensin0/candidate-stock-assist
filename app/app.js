@@ -439,6 +439,17 @@ function financialScreeningFor(stock) {
   return (window.AUTO_FINANCIAL_SCREENING?.top ?? []).find((item) => String(item.code) === code) ?? null;
 }
 
+function autoFinancialFollowupFor(stock) {
+  const code = String(stock.code ?? "").trim();
+  if (!code) return null;
+  return (window.AUTO_FINANCIAL_FOLLOWUP?.top ?? []).find((item) => String(item.code) === code) ?? null;
+}
+
+function isPriorityAutoFinancialFollowup(stock) {
+  const followup = autoFinancialFollowupFor(stock);
+  return followup && ["決算短信と有報を先に確認", "財務確認を進める"].includes(followup.action);
+}
+
 function financialScreeningGuardAssist(stock) {
   const screening = financialScreeningFor(stock);
   if (!screening || stock.held || stock.buyRatio > 1.05 || stock.upside < 50) return null;
@@ -520,6 +531,15 @@ function assistFor(stock) {
         "有報と決算短信を見てから判断してください",
       ], ["有価証券報告書を確認", "不動産と政策保有株を確認"]);
     }
+  }
+
+  if (isAutoFinancial(stock) && isPriorityAutoFinancialFollowup(stock)) {
+    const followup = autoFinancialFollowupFor(stock);
+    return makeAssist("財務確認待ち", "label-research", [
+      followup.action,
+      `フォローアップスコア${Math.round(Number(followup.followupScore ?? 0))}点、買い目安${yen(followup.buyLine)}`,
+      "確認前なので正式な今買い候補には上げません",
+    ], ["決算短信の利益と資産を確認", "有報の現金と有利子負債を確認"]);
   }
 
   if (isAutoFinancial(stock) && stock.buyRatio <= 1.05 && stock.upside >= 50) {
@@ -811,6 +831,8 @@ function renderDataCheck() {
   const readiness = quality?.readiness ?? { score: 0, label: "準備中", blockers: [] };
   const readinessTone = readiness.score >= 85 ? "good" : readiness.score >= 65 ? "warn" : "alert";
   const autoFinancialCount = stocks.filter(isAutoFinancial).length;
+  const autoFinancialFollowup = window.AUTO_FINANCIAL_FOLLOWUP;
+  const autoFinancialPriorityCount = autoFinancialFollowup?.priorityCount ?? 0;
   const autoBuyCandidateCount = research?.universe?.autoBuyCandidates ?? window.AUTO_RESEARCH_DATA?.autoBuyCandidates?.length ?? 0;
 
   document.getElementById("dataCheckList").innerHTML = [
@@ -837,7 +859,9 @@ function renderDataCheck() {
     dataCheckItem(
       "自動財務",
       `${autoFinancialCount}件`,
-      autoFinancialCount ? "買う前に決算短信と有報を後追い確認します" : "自動財務確認の候補はありません",
+      autoFinancialPriorityCount
+        ? `優先確認${autoFinancialPriorityCount}件。買う前に決算短信と有報を後追い確認します`
+        : autoFinancialCount ? "買う前に決算短信と有報を後追い確認します" : "自動財務確認の候補はありません",
       autoFinancialCount ? "warn" : "good",
     ),
     dataCheckItem(
@@ -1141,6 +1165,7 @@ function todayRankingItems() {
 function todayStockPriority(stock) {
   if (stock.assist.label === "今買い候補") return 100;
   if (stock.assist.label === "買い場に近い") return 90;
+  if (isPriorityAutoFinancialFollowup(stock)) return 86;
   if (stock.assist.label === "財務確認待ち") return 76;
   if (stock.assist.label === "データ更新待ち") return 54;
   if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") return 72;
@@ -1155,9 +1180,13 @@ function todayStockPriority(stock) {
 
 function todayStockScore(stock) {
   let score = stock.score;
+  const autoFollowup = autoFinancialFollowupFor(stock);
   if (stock.assist.label === "今買い候補") score += 46;
   if (stock.assist.label === "買い場に近い") score += 30;
   if (stock.assist.label === "財務確認待ち") score += 16;
+  if (isPriorityAutoFinancialFollowup(stock)) score += Math.min(28, Number(autoFollowup?.followupScore ?? 0) * 0.22);
+  if (autoFollowup?.action === "買いは後回し") score -= 36;
+  if (autoFollowup?.action === "価格履歴を先に増やす") score -= 20;
   if (stock.assist.label === "データ更新待ち") score += 8;
   if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") score += 18;
   if (stock.watchlist) score += 10;
@@ -1189,6 +1218,7 @@ function backtestQualityScore(backtest) {
 function todayStockReason(stock) {
   if (stock.assist.label === "今買い候補") return "買いタイミング優先";
   if (stock.assist.label === "買い場に近い") return "買い場接近";
+  if (isPriorityAutoFinancialFollowup(stock)) return "財務優先確認";
   if (stock.assist.label === "財務確認待ち") return "財務確認待ち";
   if (stock.assist.label === "データ更新待ち") return "データ更新待ち";
   if (stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討") return "売り判断の確認";
@@ -2158,16 +2188,25 @@ function renderBuyTimingAlert(stock) {
 
 function renderAutoFinancialAlert(stock) {
   if (!isAutoFinancial(stock)) return "";
+  const followup = autoFinancialFollowupFor(stock);
+  const headline = isPriorityAutoFinancialFollowup(stock)
+    ? "通常候補へ進める前の最優先確認"
+    : followup?.action === "買いは後回し"
+      ? "検証が弱いので買いは後回し"
+      : "買う前に決算短信と有報を確認";
+  const body = followup?.checkItems
+    || "財務データは自動取得で候補化しています。現金、有利子負債、BPS、EPS、直近決算に大きなズレや悪化がないか確認してから判断します。";
   return `
     <section class="confirmation-alert" aria-label="自動財務確認の注意">
       <div>
         <p class="eyebrow">後追い確認が必要</p>
-        <h3>買う前に決算短信と有報を確認</h3>
-        <p>財務データは自動取得で候補化しています。現金、有利子負債、BPS、EPS、直近決算に大きなズレや悪化がないか確認してから判断します。</p>
+        <h3>${escapeHtml(headline)}</h3>
+        <p>${escapeHtml(body)}</p>
       </div>
       <div class="buy-timing-values">
-        <span>自動財務確認</span>
-        <span>買いライン ${yen(stock.buyLine)}</span>
+        <span>${escapeHtml(followup?.action || "自動財務確認")}</span>
+        <span>買いライン ${yen(followup?.buyLine ?? stock.buyLine)}</span>
+        <span>点 ${Math.round(Number(followup?.followupScore ?? stock.score ?? 0))}</span>
         <span>検証 ${stock.backtest?.confidence ?? "未検証"}</span>
       </div>
     </section>
@@ -2772,6 +2811,7 @@ function morningDataOverview(visible) {
   const hidden = window.AUTO_HIDDEN_GEMS;
   const financial = window.AUTO_FINANCIAL_CONFIRMATION;
   const financialScreening = window.AUTO_FINANCIAL_SCREENING;
+  const autoFollowup = window.AUTO_FINANCIAL_FOLLOWUP;
   const quality = data?.dataQuality;
   const providerWarnings = quality?.providerWarnings ?? [];
   const validationWarnings = quality?.validationWarnings ?? [];
@@ -2800,7 +2840,7 @@ function morningDataOverview(visible) {
     `- 追加候補確認: ${previewAddCount}件。財務確認後の候補数イメージは${expandedCount}件`,
     `- 未発掘候補: ${hidden?.total ?? 0}件。今すぐ財務確認 ${hiddenPriorityCount}件`,
     `- 財務確認キュー: ${financial?.total ?? 0}件。最優先 ${financial?.priorityCount ?? 0}件 / スクリーニング済み ${financialScreening?.total ?? 0}件 / 昇格優先 ${financialScreening?.priorityCount ?? 0}件`,
-    `- 自動財務確認: ${autoFinancialCount}件。買う前に決算短信と有報を後追い確認`,
+    `- 自動財務確認: ${autoFinancialCount}件。優先確認 ${autoFollowup?.priorityCount ?? 0}件 / 買いライン待ち ${autoFollowup?.buyLineWaitCount ?? 0}件 / 後回し ${autoFollowup?.avoidCount ?? 0}件`,
     `- 日本株全体の価格検証: ${universeCount || "準備中"}${universeTotal ? `/${universeTotal}件` : ""}`,
     `- 銘柄マスタ: ${data?.source ?? "サンプル"}`,
     `- データ状態: ${quality?.ok ? "OK" : "要確認"}。注意${warningCount}件`,
@@ -2816,9 +2856,10 @@ function autoFinancialMarkdown(title, list) {
   if (!list.length) return `## ${title}\n該当なし\n`;
   return [
     `## ${title}`,
-    ...list.map((stock) =>
-      `- ${stock.code} ${stock.name}: ${stock.assist.label}。${stock.assist.reasons[1] || "後追い確認が必要です"} / 確認: 決算短信、有報、現金、有利子負債、BPS、EPS / 買い目安: ${stock.backtest?.buyTiming ?? "未検証"}`
-    ),
+    ...list.map((stock) => {
+      const followup = autoFinancialFollowupFor(stock);
+      return `- ${stock.code} ${stock.name}: ${followup?.action || stock.assist.label}。${stock.assist.reasons[1] || "後追い確認が必要です"} / 点 ${Math.round(Number(followup?.followupScore ?? stock.score ?? 0))} / 確認: 決算短信、有報、現金、有利子負債、BPS、EPS / 買い目安: ${stock.backtest?.buyTiming ?? "未検証"}`;
+    }),
     "",
   ].join("\n");
 }

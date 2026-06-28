@@ -50,6 +50,7 @@ function rootIndexHtml() {
     .replaceAll('src="./generated-hidden-gems-draft.js"', 'src="./app/generated-hidden-gems-draft.js"')
     .replaceAll('src="./generated-financial-confirmation.js"', 'src="./app/generated-financial-confirmation.js"')
     .replaceAll('src="./generated-financial-screening.js"', 'src="./app/generated-financial-screening.js"')
+    .replaceAll('src="./generated-auto-financial-followup.js"', 'src="./app/generated-auto-financial-followup.js"')
     .replaceAll('src="./app.js"', 'src="./app/app.js"')
     .replaceAll('href="../reports/', 'href="./reports/');
 }

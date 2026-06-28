@@ -12,6 +12,7 @@ const inputCsv = path.join(dataDir, "stock-master.csv");
 const inputPriceCsv = path.join(dataDir, "price-updates.csv");
 const outputCsv = path.join(dataDir, "auto-financial-followup.csv");
 const outputReport = path.join(reportsDir, "latest-auto-financial-followup.md");
+const outputJs = path.join(rootDir, "app", "generated-auto-financial-followup.js");
 
 const rawStocks = parseStockCsv(fs.readFileSync(inputCsv, "utf8"));
 const priceUpdates = await fetchPriceUpdates({ inputPriceCsv });
@@ -23,6 +24,7 @@ const targets = stocks
 
 fs.writeFileSync(outputCsv, toCsv(targets), "utf8");
 fs.writeFileSync(outputReport, buildReport(targets), "utf8");
+fs.writeFileSync(outputJs, `window.AUTO_FINANCIAL_FOLLOWUP = ${JSON.stringify(buildPayload(targets), null, 2)};\n`, "utf8");
 
 console.log(`自動財務確認の後追い確認レポートを作成しました: ${targets.length}件`);
 
@@ -173,6 +175,25 @@ function buildReport(rows) {
     "- 確認できた銘柄だけ通常候補へ昇格させます。",
     "",
   ].join("\n");
+}
+
+function buildPayload(rows) {
+  const priority = rows.filter((row) => row.action === "決算短信と有報を先に確認" || row.action === "財務確認を進める");
+  const waitForBuyLine = rows.filter((row) => row.action === "買いラインまで待つ");
+  const priceHistory = rows.filter((row) => row.action === "価格履歴を先に増やす");
+  const avoid = rows.filter((row) => ["買いは後回し", "監視継続"].includes(row.action));
+  return {
+    generatedAt: new Date().toISOString(),
+    total: rows.length,
+    priorityCount: priority.length,
+    buyLineWaitCount: waitForBuyLine.length,
+    priceHistoryWaitCount: priceHistory.length,
+    avoidCount: avoid.length,
+    top: rows,
+    priority: priority.slice(0, 10),
+    buyLineWait: waitForBuyLine.slice(0, 20),
+    avoid: avoid.slice(0, 20),
+  };
 }
 
 function markdownRows(rows) {
