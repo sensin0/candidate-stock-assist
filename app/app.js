@@ -1343,10 +1343,10 @@ function renderInlineStockSummary(stock) {
     ["判断", stock.assist.label],
     ["株価", yen(stock.price)],
     ["買い", yen(stock.buyLine)],
-    ["第一利確", yen(stock.sellGuidePrice)],
-    ["本命利確", yen(plan.coreTarget)],
-    ["伸ばす上限", yen(plan.runnerTarget)],
-    ["理論上限", yen(stock.targetPrice)],
+    ["一部売り", yen(stock.sellGuidePrice)],
+    ["基準売り", yen(plan.coreTarget)],
+    ["伸ばす時", yen(plan.runnerTarget)],
+    ["参考上限", yen(stock.targetPrice)],
     ["上昇余地", pct(stock.upside)],
     ["修正PBR", times(stock.modifiedPbr)],
     ["勝率", pct(stock.backtest?.winRate ?? 0)],
@@ -2383,8 +2383,8 @@ function lifecycleStages(stock) {
       tone: holdActive ? "tone-hold" : "",
       message: stock.held
         ? "保有中です。目標株価までの距離と悪材料の有無を見ます。"
-        : "買った後は、第一利確・本命利確・撤退引き上げを先に決めます。",
-      check: `第一 ${yen(plan.firstTarget)} / 本命 ${yen(plan.coreTarget)} / 伸ばす ${yen(plan.runnerTarget)}`,
+        : "買った後は、一部売り・基準売り・撤退引き上げを先に決めます。",
+      check: `一部 ${yen(plan.firstTarget)} / 基準 ${yen(plan.coreTarget)} / 伸ばす ${yen(plan.runnerTarget)}`,
     },
     {
       title: "売る時",
@@ -2392,7 +2392,7 @@ function lifecycleStages(stock) {
       tone: sellActive ? "tone-sell" : "",
       message: sellActive
         ? "売り検討ゾーンです。一括売りか一部利益確定かを確認します。"
-        : "第一利確到達、決算悪化、資産価値の低下で売り判断します。",
+        : "一部売り到達、決算悪化、資産価値の低下で売り判断します。",
       check: `${plan.summary} / 撤退目安 ${yen(plan.raiseStopTo)}`,
     },
     {
@@ -2419,10 +2419,12 @@ function profitTakingPlan(stock) {
   const theoretical = Math.max(firstTarget, ...targetCandidates);
   const coreCandidate = Math.max(firstTarget * 1.18, fairPbrTarget || 0);
   const coreTarget = Math.min(theoretical * 0.35, Math.max(firstTarget, coreCandidate));
+  const recentHigh = Math.max(Number(stock.price || 0), ...(stock.history || []).filter((value) => Number.isFinite(value) && value > 0));
   const canStretchToPer = fairPerTarget > coreTarget
     && stock.eps > 0
     && Number(stock.netCashRatio || 0) >= 0
-    && Number(stock.per || stock.price / stock.eps || 0) <= Number(stock.perAvg || 0) * 0.55;
+    && Number(stock.per || stock.price / stock.eps || 0) <= Number(stock.perAvg || 0) * 0.55
+    && fairPerTarget <= Math.max(recentHigh * 1.25, coreTarget * 1.8);
   const runnerCandidate = canStretchToPer
     ? Math.max(coreTarget * 1.35, firstTarget * 1.8, fairPerTarget)
     : Math.max(coreTarget * 1.35, firstTarget * 1.8);
@@ -2434,7 +2436,9 @@ function profitTakingPlan(stock) {
     : "理論上限は参考。価格の勢いと決算で確認";
   const runnerReason = canStretchToPer
     ? `利益が維持されるならPER標準${yen(fairPerTarget)}まで一部を伸ばす`
-    : "出来高・決算・地合いが強い時だけ残りを伸ばす";
+    : fairPerTarget > runnerTarget * 1.8
+      ? `PER標準${yen(fairPerTarget)}は遠い参考値。まず過去高値圏までを上限に見る`
+      : "出来高・決算・地合いが強い時だけ残りを伸ばす";
   return {
     firstTarget,
     coreTarget,
@@ -2442,24 +2446,25 @@ function profitTakingPlan(stock) {
     raiseStopTo,
     theoretical,
     runnerReason,
-    summary: `第一利確で一部、残りは本命${yen(coreTarget)}付近。${runnerReason}。${caution}`,
+    summary: `一部売りでリスクを下げ、残りは基準${yen(coreTarget)}付近を見る。${runnerReason}。${caution}`,
   };
 }
 
 function renderProfitPlan(stock) {
   const plan = profitTakingPlan(stock);
   const rows = [
-    ["第一利確", yen(plan.firstTarget), "一部を利確して、撤退ラインを上げる"],
-    ["本命利確", yen(plan.coreTarget), "残りの主力利確。PBR標準や第一利確後の伸びを目安にする"],
-    ["伸ばす上限", yen(plan.runnerTarget), plan.runnerReason],
-    ["理論上限", yen(plan.theoretical), "参考値。ここまで全部保有する前提にはしない"],
+    ["1. 一部売り", yen(plan.firstTarget), "一部を利確して、撤退ラインを上げる"],
+    ["2. 基準売り", yen(plan.coreTarget), "残りの主力判断。PBR標準や一部売り後の伸びを目安にする"],
+    ["3. 伸ばす時", yen(plan.runnerTarget), plan.runnerReason],
+    ["参考上限", yen(plan.theoretical), "PER/PBR上限から見た参考値。全部保有する前提ではない"],
   ];
   return `
     <div class="profit-plan">
       <div class="profit-plan-head">
-        <strong>利益をどこまで伸ばすか</strong>
+        <strong>売却目安の見る順番</strong>
         <span>撤退引き上げ ${yen(plan.raiseStopTo)}</span>
       </div>
+      <p class="profit-plan-guide">PER/PBRラインは根拠線です。実際の売却は 1 → 2 → 3 の順に判断します。</p>
       <div class="profit-plan-grid">
         ${rows.map(([label, value, note]) => `
           <div class="profit-plan-step">
@@ -2642,10 +2647,10 @@ function renderMetrics(stock) {
     ["修正PBR", times(stock.modifiedPbr)],
     ["不動産含み益/時価総額", times(stock.realEstateGainRatio)],
     ["買いライン接近率", times(stock.buyRatio)],
-    ["第一利確目安", yen(stock.sellGuidePrice)],
-    ["本命利確目安", yen(profitPlan.coreTarget)],
-    ["伸ばす上限", yen(profitPlan.runnerTarget)],
-    ["理論上限", yen(stock.targetPrice)],
+    ["一部売り目安", yen(stock.sellGuidePrice)],
+    ["基準売り目安", yen(profitPlan.coreTarget)],
+    ["伸ばす時の目安", yen(profitPlan.runnerTarget)],
+    ["参考上限", yen(stock.targetPrice)],
     ["上昇余地", pct(stock.upside)],
     ["総合スコア", `${stock.score}点`],
   ];
@@ -2714,9 +2719,9 @@ function renderChart(stock) {
         <text x="12" y="38" font-size="12" fill="#65706b">${stock.assist.reasons[0] ?? ""}</text>
       </g>
       <text x="${pad.left}" y="${buyY - 8}" font-size="12" fill="#1f8a55">ここで買い候補 ${yen(stock.buyLine)}</text>
-      <text x="${pad.left}" y="${sellGuideY - 8}" font-size="12" fill="#c44536">第一利確 ${yen(stock.sellGuidePrice)}</text>
-      <text x="${width - pad.right}" y="${coreTargetY - 8}" text-anchor="end" font-size="12" fill="#8b650f">本命利確 ${yen(plan.coreTarget)}</text>
-      <text x="${width - pad.right}" y="${runnerTargetY - 8}" text-anchor="end" font-size="12" fill="#7356a5">伸ばす上限 ${yen(plan.runnerTarget)}</text>
+      <text x="${pad.left}" y="${sellGuideY - 8}" font-size="12" fill="#c44536">1. 一部売り ${yen(stock.sellGuidePrice)}</text>
+      <text x="${width - pad.right}" y="${coreTargetY - 8}" text-anchor="end" font-size="12" fill="#8b650f">2. 基準売り ${yen(plan.coreTarget)}</text>
+      <text x="${width - pad.right}" y="${runnerTargetY - 8}" text-anchor="end" font-size="12" fill="#7356a5">3. 伸ばす時 ${yen(plan.runnerTarget)}</text>
       <text x="${currentX - 42}" y="${currentY + 24}" font-size="12" fill="#1d2522">現在 ${yen(stock.price)}</text>
       <text x="${pad.left}" y="${height - 12}" font-size="12" fill="#65706b">${timingText}</text>
     </svg>
