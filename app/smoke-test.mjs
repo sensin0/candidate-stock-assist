@@ -180,6 +180,8 @@ vm.runInContext(
     hiddenGemsRanking,
     hiddenGemsDraftRanking,
     financialConfirmationRanking,
+    financialConfirmationTotal: window.AUTO_FINANCIAL_CONFIRMATION?.total ?? 0,
+    financialScreeningTotal: window.AUTO_FINANCIAL_SCREENING?.total ?? 0,
     financialConfirmationDetail,
     financialScreeningRanking,
     financialScreeningDetail,
@@ -255,7 +257,10 @@ if (!result.hiddenGemsRanking.includes("未発掘")) {
 if (!result.hiddenGemsDraftRanking.includes("下書き")) {
   failures.push("ランキングに未発掘下書きが生成されていません");
 }
-if (!result.financialConfirmationRanking.includes("財務確認")) {
+if (
+  result.financialConfirmationTotal > result.financialScreeningTotal
+  && !result.financialConfirmationRanking.includes("財務確認")
+) {
   failures.push("ランキングに財務確認キューが生成されていません");
 }
 if (

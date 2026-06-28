@@ -1313,10 +1313,12 @@ function filteredHiddenGemItems(items) {
 
 function filteredFinancialConfirmationItems(items) {
   const q = searchQuery.trim().toLowerCase();
+  const screenedCodes = new Set((window.AUTO_FINANCIAL_SCREENING?.top ?? []).map((item) => String(item.code)));
   return items
     .filter((item) => {
       const text = `${item.code} ${item.name} ${item.sector} ${item.source} ${item.status}`.toLowerCase();
-      return !q || text.includes(q);
+      const matchesSearch = !q || text.includes(q);
+      return matchesSearch && !screenedCodes.has(String(item.code));
     })
     .sort((a, b) => (b.confirmationScore ?? 0) - (a.confirmationScore ?? 0));
 }
@@ -2668,7 +2670,7 @@ function renderMorningReport() {
   const hiddenGems = (window.AUTO_HIDDEN_GEMS?.top ?? [])
     .filter((item) => item.assistAction === "今すぐ財務確認")
     .slice(0, 5);
-  const financialConfirmation = (window.AUTO_FINANCIAL_CONFIRMATION?.top ?? []).slice(0, 5);
+  const financialConfirmation = filteredFinancialConfirmationItems(window.AUTO_FINANCIAL_CONFIRMATION?.top ?? []).slice(0, 5);
   const autoBuyCandidates = (window.AUTO_RESEARCH_DATA?.autoBuyCandidates ?? []).slice(0, 10);
   const report = [
     "# 朝レポート",
@@ -2769,6 +2771,7 @@ function morningDataOverview(visible) {
   const expansion = window.AUTO_EXPANSION_PREVIEW;
   const hidden = window.AUTO_HIDDEN_GEMS;
   const financial = window.AUTO_FINANCIAL_CONFIRMATION;
+  const financialScreening = window.AUTO_FINANCIAL_SCREENING;
   const quality = data?.dataQuality;
   const providerWarnings = quality?.providerWarnings ?? [];
   const validationWarnings = quality?.validationWarnings ?? [];
@@ -2796,7 +2799,7 @@ function morningDataOverview(visible) {
     `- 通常候補: ${visible.length}件。${stockCountNote}`,
     `- 追加候補確認: ${previewAddCount}件。財務確認後の候補数イメージは${expandedCount}件`,
     `- 未発掘候補: ${hidden?.total ?? 0}件。今すぐ財務確認 ${hiddenPriorityCount}件`,
-    `- 財務確認キュー: ${financial?.total ?? 0}件。最優先 ${financial?.priorityCount ?? 0}件`,
+    `- 財務確認キュー: ${financial?.total ?? 0}件。最優先 ${financial?.priorityCount ?? 0}件 / スクリーニング済み ${financialScreening?.total ?? 0}件 / 昇格優先 ${financialScreening?.priorityCount ?? 0}件`,
     `- 自動財務確認: ${autoFinancialCount}件。買う前に決算短信と有報を後追い確認`,
     `- 日本株全体の価格検証: ${universeCount || "準備中"}${universeTotal ? `/${universeTotal}件` : ""}`,
     `- 銘柄マスタ: ${data?.source ?? "サンプル"}`,

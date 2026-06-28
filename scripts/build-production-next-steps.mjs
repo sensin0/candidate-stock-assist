@@ -34,6 +34,8 @@ const autoFilledWorklist = worklist.filter((row) => row.status?.includes("自動
 const screenPromotionPriority = financialScreened.filter((row) => row.status === "昇格確認優先").length;
 const screenReflected = financialScreened.filter((row) => row.status === "反映済み・後追い確認").length;
 const screenInputWaiting = financialScreened.filter((row) => row.status === "入力待ち").length;
+const screenedCodes = new Set(financialScreened.map((row) => String(row.code)));
+const unscreenedPriorityFinancial = financialQueue.filter((row) => row.status === "最優先で財務確認" && !screenedCodes.has(String(row.code))).length;
 const worklistReady = worklist.filter((row) => row.confirmed === "true" && row.qualitativeDone === "true").length;
 const confirmedInputReady = confirmedInput.filter((row) => row.dataConfidence === "確認済み" || row.confirmed === "true").length;
 const autoFinancialConfirmed = runtimeStocks.filter((row) => row.dataConfidence === "自動財務確認").length;
@@ -67,13 +69,15 @@ function buildTasks() {
     }),
     task({
       title: "財務確認キュー上位の自動処理",
-      status: screenInputWaiting > 0 ? "要対応" : screenPromotionPriority > 0 || autoFilledWorklist > 0 ? "確認中" : "完了",
-      reason: `最優先の財務確認待ち${pendingFinancial}件 / 自動入力済み${autoFilledWorklist}件 / 昇格確認優先${screenPromotionPriority}件 / 入力待ち${screenInputWaiting}件です。`,
+      status: screenInputWaiting > 0 || unscreenedPriorityFinancial > 0 ? "要対応" : screenPromotionPriority > 0 ? "確認中" : "完了",
+      reason: `最優先キュー${pendingFinancial}件のうち未スクリーニング${unscreenedPriorityFinancial}件 / 自動入力済み${autoFilledWorklist}件 / スクリーニング済み${financialScreened.length}件 / 昇格確認優先${screenPromotionPriority}件 / 入力待ち${screenInputWaiting}件です。`,
       next: screenInputWaiting > 0
         ? "入力待ちだけ追加取得し、取得できたものを自動スクリーニングへ回す"
+        : unscreenedPriorityFinancial > 0
+          ? "未スクリーニングの最優先キューを financial:worklist から financial:screen へ回す"
         : screenPromotionPriority > 0
           ? "昇格確認優先は自動財務確認として通常候補へ反映し、後追い確認レポートで見る"
-          : "新規に通常候補へ上げる財務確認候補はありません。反映済み候補は後追い確認と価格履歴待ちで見る",
+          : "財務確認キュー上位の自動処理は完了。新規昇格候補はなく、反映済み候補は後追い確認と価格履歴待ちで見る",
     }),
     task({
       title: "株価更新キューの消化",
@@ -143,7 +147,9 @@ function writeReport(tasks) {
     `確認前推定: ${estimatedMetricCount}件`,
     `財務確認キュー: ${financialQueue.length}件`,
     `最優先で財務確認: ${pendingFinancial}件`,
+    `最優先の未スクリーニング: ${unscreenedPriorityFinancial}件`,
     `財務自動入力済み: ${autoFilledWorklist}件`,
+    `財務スクリーニング済み: ${financialScreened.length}件`,
     `昇格確認優先: ${screenPromotionPriority}件`,
     `反映済み・後追い確認: ${screenReflected}件`,
     `財務入力待ち: ${screenInputWaiting}件`,
