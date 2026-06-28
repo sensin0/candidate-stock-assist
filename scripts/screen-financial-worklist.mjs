@@ -112,7 +112,7 @@ function screenRow(row) {
   }
 
   const alreadyReflected = reflectedCodes.has(row.code);
-  const status = alreadyReflected ? "反映済み・後追い確認" : statusFor(score, missing);
+  const status = alreadyReflected ? "反映済み" : statusFor(score, missing);
   return {
     rank: row.priorityRank,
     code: row.code,
@@ -132,7 +132,7 @@ function screenRow(row) {
     backtestWinRate: backtest.winRate,
     backtestAverageReturn: backtest.averageReturn,
     backtestMaxDrawdown: backtest.maxDrawdown,
-    action: alreadyReflected ? "通常候補へ反映済み。買い判断は後追い確認と価格履歴を待つ" : estimatedOnly ? "原資料確認まで通常候補へ自動昇格しない" : actionFor(status),
+    action: alreadyReflected ? "通常候補へ反映済み。買いラインと価格履歴で自動判定" : estimatedOnly ? "原資料確認まで通常候補へ自動昇格しない" : actionFor(status),
     reasons: reasons.slice(0, 3).join(" / ") || "確認材料が不足",
     cautions: cautions.slice(0, 3).join(" / ") || "大きな注意なし",
   };
@@ -201,7 +201,7 @@ function actionFor(status) {
 
 function writeReport(items) {
   fs.mkdirSync(reportsDir, { recursive: true });
-  const groups = ["昇格確認優先", "反映済み・後追い確認", "慎重確認", "入力待ち", "見送り寄り"];
+  const groups = ["昇格確認優先", "反映済み", "慎重確認", "入力待ち", "見送り寄り"];
   const lines = [
     "# 財務確認候補スクリーニング",
     "",

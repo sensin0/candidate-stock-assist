@@ -1,6 +1,6 @@
 # CSVストア監査
 
-生成日時: 2026-06-28T05:01:31.669Z
+生成日時: 2026-06-28T05:16:33.337Z
 
 CSVファイル: 31件
 総行数: 19,797行
@@ -26,14 +26,14 @@ CSVファイル: 31件
 
 ## 全CSV
 
-- auto-financial-followup.csv: 19行 / 21列 / 11.22KB
-- backtest-results.csv: 35行 / 15列 / 7.36KB
+- auto-financial-followup.csv: 19行 / 21列 / 11.23KB
+- backtest-results.csv: 35行 / 15列 / 7.29KB
 - disclosures.csv: 5行 / 4列 / 664B
 - edinet-facts.csv: 20行 / 14列 / 2.42KB
 - financial-confirmation-queue.csv: 58行 / 14列 / 23.97KB
 - financial-confirmation-worklist.csv: 58行 / 37列 / 28.89KB
 - financial-confirmed-input.csv: 0行 / 27列 / 240B
-- financial-worklist-screened.csv: 58行 / 21列 / 19.39KB
+- financial-worklist-screened.csv: 58行 / 21列 / 19.28KB
 - hidden-gems.csv: 200行 / 24列 / 79.14KB
 - listed-universe.csv: 3,728行 / 4列 / 281.38KB
 - multibagger-candidates.csv: 217行 / 17列 / 76.13KB

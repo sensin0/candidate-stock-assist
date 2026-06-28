@@ -24,7 +24,7 @@ assert.ok(rows.every((row) => row.action));
 assert.ok(rows.every((row) => Number(row.followupScore) >= 0));
 const firstPriceHistoryIndex = rows.findIndex((row) => row.action === "価格履歴を先に増やす");
 const lastPriorityIndex = Math.max(
-  rows.findLastIndex((row) => row.action === "決算短信と有報を先に確認"),
+  rows.findLastIndex((row) => row.action === "自動確認済み・買い場接近"),
   rows.findLastIndex((row) => row.action === "財務確認を進める"),
 );
 if (firstPriceHistoryIndex >= 0 && lastPriorityIndex >= 0) {
@@ -32,8 +32,8 @@ if (firstPriceHistoryIndex >= 0 && lastPriorityIndex >= 0) {
 }
 
 const report = fs.readFileSync(reportPath, "utf8");
-assert.match(report, /# 自動財務確認 後追い確認/);
-assert.match(report, /## 優先確認/);
+assert.match(report, /# 自動財務確認/);
+assert.match(report, /## 買い場接近/);
 assert.match(report, /## 買いライン待ち/);
 assert.match(report, /## 価格履歴不足/);
 assert.match(report, /## 後回し・見送り寄り/);

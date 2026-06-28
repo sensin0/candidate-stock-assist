@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-28T05:01:31.669Z",
+  "generatedAt": "2026-06-28T05:16:33.337Z",
   "totalFiles": 31,
   "totalRows": 19797,
-  "totalBytes": 3131204,
+  "totalBytes": 3131030,
   "problems": [],
   "files": [
     {
       "name": "auto-financial-followup.csv",
-      "bytes": 11224,
+      "bytes": 11230,
       "rows": 19,
       "columns": 21,
       "headers": [
@@ -39,7 +39,7 @@
     },
     {
       "name": "backtest-results.csv",
-      "bytes": 7364,
+      "bytes": 7292,
       "rows": 35,
       "columns": 15,
       "headers": [
@@ -216,7 +216,7 @@
     },
     {
       "name": "financial-worklist-screened.csv",
-      "bytes": 19392,
+      "bytes": 19284,
       "rows": 58,
       "columns": 21,
       "headers": [

@@ -1,5 +1,5 @@
 ﻿{
-  "generatedAt": "2026-06-28T05:01:34.552495+00:00",
+  "generatedAt": "2026-06-28T05:16:35.906522+00:00",
   "database": "data/candidate-stock-assist.sqlite",
   "databaseBytes": 4317184,
   "tables": 31,
@@ -11,14 +11,14 @@
       "csv": "auto-financial-followup.csv",
       "rows": 19,
       "columns": 21,
-      "bytes": 11224
+      "bytes": 11230
     },
     {
       "table": "backtest_results",
       "csv": "backtest-results.csv",
       "rows": 35,
       "columns": 15,
-      "bytes": 7364
+      "bytes": 7292
     },
     {
       "table": "disclosures",
@@ -60,7 +60,7 @@
       "csv": "financial-worklist-screened.csv",
       "rows": 58,
       "columns": 21,
-      "bytes": 19392
+      "bytes": 19284
     },
     {
       "table": "hidden_gems",

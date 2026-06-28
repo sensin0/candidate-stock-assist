@@ -1,34 +1,11 @@
 window.AUTO_FINANCIAL_FOLLOWUP = {
-  "generatedAt": "2026-06-28T05:01:11.464Z",
+  "generatedAt": "2026-06-28T05:16:12.974Z",
   "total": 19,
   "priorityCount": 1,
   "buyLineWaitCount": 17,
   "priceHistoryWaitCount": 0,
   "avoidCount": 1,
   "top": [
-    {
-      "code": "6276",
-      "name": "SiriusVision CO.,LTD.",
-      "sector": "Electric Appliances",
-      "price": 307,
-      "buyLine": 284.9472,
-      "targetPrice": 2677.92,
-      "upside": 772.28664495114,
-      "pbr": 0.689531253509422,
-      "per": 2.751389137838322,
-      "netCashRatio": 0.6638881528426511,
-      "followupScore": 100,
-      "action": "決算短信と有報を先に確認",
-      "buyDistance": 1.077392583608472,
-      "timingLabel": "買い場待ち",
-      "buyTiming": "買いライン到達 (285円以下)",
-      "sellTiming": "目標の90%付近 (2,410円目安)",
-      "backtestTrades": 1,
-      "backtestWinRate": 100,
-      "backtestAverageReturn": 11.2,
-      "backtestMaxDrawdown": 0,
-      "checkItems": "直近決算の現預金・有価証券・有利子負債を確認 / 自己株式と発行株数を確認 / ネットキャッシュの持続性を確認 / 低PBRの理由が一時的か確認 / 今期利益が維持できるか確認 / 買いライン付近なので買う前に優先確認"
-    },
     {
       "code": "7435",
       "name": "NADEX CO.,LTD.",
@@ -421,6 +398,29 @@ window.AUTO_FINANCIAL_FOLLOWUP = {
       "checkItems": "直近決算の現預金・有価証券・有利子負債を確認 / 自己株式と発行株数を確認 / ネットキャッシュの持続性を確認 / 買いラインまで距離があるので追いかけない / 買いライン未到達のため検証売買は0回"
     },
     {
+      "code": "6276",
+      "name": "SiriusVision CO.,LTD.",
+      "sector": "Electric Appliances",
+      "price": 307,
+      "buyLine": 284.9472,
+      "targetPrice": 2677.92,
+      "upside": 772.28664495114,
+      "pbr": 0.689531253509422,
+      "per": 2.751389137838322,
+      "netCashRatio": 0.6638881528426511,
+      "followupScore": 100,
+      "action": "自動確認済み・買い場接近",
+      "buyDistance": 1.077392583608472,
+      "timingLabel": "買い場待ち",
+      "buyTiming": "買いライン到達 (285円以下)",
+      "sellTiming": "目標の90%付近 (2,410円目安)",
+      "backtestTrades": 1,
+      "backtestWinRate": 100,
+      "backtestAverageReturn": 11.2,
+      "backtestMaxDrawdown": 0,
+      "checkItems": "直近決算の現預金・有価証券・有利子負債を確認 / 自己株式と発行株数を確認 / ネットキャッシュの持続性を確認 / 低PBRの理由が一時的か確認 / 今期利益が維持できるか確認 / 買いライン付近なので急騰を追いかけない"
+    },
+    {
       "code": "3892",
       "name": "岡山製紙",
       "sector": "紙・パルプ",
@@ -441,7 +441,7 @@ window.AUTO_FINANCIAL_FOLLOWUP = {
       "backtestWinRate": 0,
       "backtestAverageReturn": -1.1,
       "backtestMaxDrawdown": -1.1,
-      "checkItems": "直近決算の現預金・有価証券・有利子負債を確認 / 自己株式と発行株数を確認 / ネットキャッシュの持続性を確認 / 低PBRの理由が一時的か確認 / 今期利益が維持できるか確認 / 買いライン付近なので買う前に優先確認 / 過去の売買検証が弱いので原則見送り"
+      "checkItems": "直近決算の現預金・有価証券・有利子負債を確認 / 自己株式と発行株数を確認 / ネットキャッシュの持続性を確認 / 低PBRの理由が一時的か確認 / 今期利益が維持できるか確認 / 買いライン付近なので急騰を追いかけない / 過去の売買検証が弱いので原則見送り"
     }
   ],
   "priority": [
@@ -457,7 +457,7 @@ window.AUTO_FINANCIAL_FOLLOWUP = {
       "per": 2.751389137838322,
       "netCashRatio": 0.6638881528426511,
       "followupScore": 100,
-      "action": "決算短信と有報を先に確認",
+      "action": "自動確認済み・買い場接近",
       "buyDistance": 1.077392583608472,
       "timingLabel": "買い場待ち",
       "buyTiming": "買いライン到達 (285円以下)",
@@ -466,7 +466,7 @@ window.AUTO_FINANCIAL_FOLLOWUP = {
       "backtestWinRate": 100,
       "backtestAverageReturn": 11.2,
       "backtestMaxDrawdown": 0,
-      "checkItems": "直近決算の現預金・有価証券・有利子負債を確認 / 自己株式と発行株数を確認 / ネットキャッシュの持続性を確認 / 低PBRの理由が一時的か確認 / 今期利益が維持できるか確認 / 買いライン付近なので買う前に優先確認"
+      "checkItems": "直近決算の現預金・有価証券・有利子負債を確認 / 自己株式と発行株数を確認 / ネットキャッシュの持続性を確認 / 低PBRの理由が一時的か確認 / 今期利益が維持できるか確認 / 買いライン付近なので急騰を追いかけない"
     }
   ],
   "buyLineWait": [
@@ -884,7 +884,7 @@ window.AUTO_FINANCIAL_FOLLOWUP = {
       "backtestWinRate": 0,
       "backtestAverageReturn": -1.1,
       "backtestMaxDrawdown": -1.1,
-      "checkItems": "直近決算の現預金・有価証券・有利子負債を確認 / 自己株式と発行株数を確認 / ネットキャッシュの持続性を確認 / 低PBRの理由が一時的か確認 / 今期利益が維持できるか確認 / 買いライン付近なので買う前に優先確認 / 過去の売買検証が弱いので原則見送り"
+      "checkItems": "直近決算の現預金・有価証券・有利子負債を確認 / 自己株式と発行株数を確認 / ネットキャッシュの持続性を確認 / 低PBRの理由が一時的か確認 / 今期利益が維持できるか確認 / 買いライン付近なので急騰を追いかけない / 過去の売買検証が弱いので原則見送り"
     }
   ]
 };

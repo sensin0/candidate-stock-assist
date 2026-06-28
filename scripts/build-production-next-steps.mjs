@@ -32,14 +32,14 @@ const universeCoverage = universe.length ? pct(universeMetrics.length / universe
 const pendingFinancial = financialQueue.filter((row) => row.status === "最優先で財務確認").length;
 const autoFilledWorklist = worklist.filter((row) => row.status?.includes("自動入力")).length;
 const screenPromotionPriority = financialScreened.filter((row) => row.status === "昇格確認優先").length;
-const screenReflected = financialScreened.filter((row) => row.status === "反映済み・後追い確認").length;
+const screenReflected = financialScreened.filter((row) => row.status === "反映済み" || row.status === "反映済み・後追い確認").length;
 const screenInputWaiting = financialScreened.filter((row) => row.status === "入力待ち").length;
 const screenedCodes = new Set(financialScreened.map((row) => String(row.code)));
 const unscreenedPriorityFinancial = financialQueue.filter((row) => row.status === "最優先で財務確認" && !screenedCodes.has(String(row.code))).length;
 const worklistReady = worklist.filter((row) => row.confirmed === "true" && row.qualitativeDone === "true").length;
 const confirmedInputReady = confirmedInput.filter((row) => row.dataConfidence === "確認済み" || row.confirmed === "true").length;
 const autoFinancialConfirmed = runtimeStocks.filter((row) => row.dataConfidence === "自動財務確認").length;
-const autoFinancialPriority = autoFinancialFollowup.filter((row) => row.action === "決算短信と有報を先に確認" || row.action === "財務確認を進める").length;
+const autoFinancialPriority = autoFinancialFollowup.filter((row) => row.action === "自動確認済み・買い場接近" || row.action === "財務確認を進める").length;
 const autoFinancialBuyLineWait = autoFinancialFollowup.filter((row) => row.action === "買いラインまで待つ").length;
 const autoFinancialPriceHistoryWait = autoFinancialFollowup.filter((row) => row.action === "価格履歴を先に増やす").length;
 const shortHistoryRefresh = readShortHistoryRefresh();
@@ -78,8 +78,8 @@ function buildTasks() {
         : unscreenedPriorityFinancial > 0
           ? "未スクリーニングの最優先キューを financial:worklist から financial:screen へ回す"
         : screenPromotionPriority > 0
-          ? "昇格確認優先は自動財務確認として通常候補へ反映し、後追い確認レポートで見る"
-          : "財務確認キュー上位の自動処理は完了。新規昇格候補はなく、反映済み候補は後追い確認と価格履歴待ちで見る",
+          ? "昇格確認優先は自動財務確認として通常候補へ反映する"
+          : "財務確認キュー上位の自動処理は完了。反映済み候補は価格履歴で自動判定します",
     }),
     task({
       title: "株価更新キューの消化",
@@ -93,9 +93,13 @@ function buildTasks() {
     }),
     task({
       title: "確認済み候補の通常候補昇格",
-      status: confirmedInputReady || worklistReady || promotedNewCount || autoFinancialConfirmed ? "確認中" : "要対応",
-      reason: `確認済み入力 ${confirmedInputReady}件 / 自動財務確認 ${autoFinancialConfirmed}件 / 優先確認 ${autoFinancialPriority}件 / 買いライン待ち ${autoFinancialBuyLineWait}件 / 価格履歴不足 ${autoFinancialPriceHistoryWait}件 / 後回し ${autoFinancialWait}件 / ワークシート確認済み ${worklistReady}件 / 昇格プレビュー追加 ${promotedNewCount}件です。`,
-      next: autoFinancialConfirmed ? "latest-auto-financial-followup.md を見て、優先確認だけ決算短信と有報を後追い確認" : "確認済みになったものを financial-confirmed-input.csv に入れて npm run financial:promote",
+      status: screenInputWaiting > 0 || autoFinancialPriceHistoryWait > 0 ? "要対応" : "完了",
+      reason: `確認済み入力 ${confirmedInputReady}件 / 自動財務確認 ${autoFinancialConfirmed}件 / 買い場接近 ${autoFinancialPriority}件 / 買いライン待ち ${autoFinancialBuyLineWait}件 / 価格履歴不足 ${autoFinancialPriceHistoryWait}件 / 後回し ${autoFinancialWait}件 / ワークシート確認済み ${worklistReady}件 / 昇格プレビュー追加 ${promotedNewCount}件です。`,
+      next: screenInputWaiting > 0
+        ? "入力待ちだけ追加取得して自動スクリーニングへ回す"
+        : autoFinancialPriceHistoryWait > 0
+          ? "価格履歴不足は日次データ蓄積後に自動再判定"
+          : "自動財務確認済み候補は、買いラインと弱い検証ガードで通常ランキングへ反映済み",
     }),
     task({
       title: "日本株全体の探索範囲",
@@ -140,7 +144,7 @@ function writeReport(tasks) {
     `通常候補: ${runtimeStocks.length}件`,
     `うち自動昇格反映: ${promotedNewCount}件`,
     `自動財務確認: ${autoFinancialConfirmed}件`,
-    `自動財務確認の優先確認: ${autoFinancialPriority}件`,
+    `自動財務確認の買い場接近: ${autoFinancialPriority}件`,
     `自動財務確認の買いライン待ち: ${autoFinancialBuyLineWait}件`,
     `自動財務確認の価格履歴不足: ${autoFinancialPriceHistoryWait}件`,
     `短い価格履歴の取得失敗: ${shortHistoryFailed}件`,
@@ -154,7 +158,7 @@ function writeReport(tasks) {
     `財務自動入力済み: ${autoFilledWorklist}件`,
     `財務スクリーニング済み: ${financialScreened.length}件`,
     `昇格確認優先: ${screenPromotionPriority}件`,
-    `反映済み・後追い確認: ${screenReflected}件`,
+    `反映済み: ${screenReflected}件`,
     `財務入力待ち: ${screenInputWaiting}件`,
     `株価更新待ち: ${priceRefreshQueue.length}件`,
     `買い・売り判定に影響する株価更新: ${urgentPriceRefresh}件`,

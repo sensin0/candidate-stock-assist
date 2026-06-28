@@ -1,14 +1,14 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-06-28T05:01:30.275Z",
+  "generatedAt": "2026-06-28T05:16:31.845Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-06-28T05:01:30.190Z",
-  "priceFetchedAt": "2026-06-28T05:01:30.210Z",
-  "disclosureFetchedAt": "2026-06-28T05:01:30.216Z",
-  "edinetFetchedAt": "2026-06-28T05:01:30.218Z",
+  "fetchedAt": "2026-06-28T05:16:31.772Z",
+  "priceFetchedAt": "2026-06-28T05:16:31.788Z",
+  "disclosureFetchedAt": "2026-06-28T05:16:31.791Z",
+  "edinetFetchedAt": "2026-06-28T05:16:31.794Z",
   "nextSources": [
     "price-api",
     "edinet-api",
@@ -276,7 +276,7 @@ window.AUTO_STOCK_DATA = {
         "averageReturn": 0,
         "maxDrawdown": 0,
         "bestScore": -100,
-        "financialScreeningStatus": "反映済み・後追い確認",
+        "financialScreeningStatus": "反映済み",
         "financialScreeningCautions": "ネット有利子負債が重い -97.7% / 価格検証は売買回数0回なので参考扱い"
       }
     },
@@ -496,7 +496,7 @@ window.AUTO_STOCK_DATA = {
         "averageReturn": -15.9,
         "maxDrawdown": -15.9,
         "bestScore": -28.9,
-        "financialScreeningStatus": "反映済み・後追い確認",
+        "financialScreeningStatus": "反映済み",
         "financialScreeningCautions": "EPSが赤字または未確認 / 価格検証は売買回数0回なので参考扱い"
       }
     },
@@ -2425,7 +2425,7 @@ window.AUTO_STOCK_DATA = {
         "averageReturn": 0,
         "maxDrawdown": 0,
         "bestScore": -100,
-        "financialScreeningStatus": "反映済み・後追い確認",
+        "financialScreeningStatus": "反映済み",
         "financialScreeningCautions": "価格検証は売買回数0回なので参考扱い"
       }
     },
@@ -2497,7 +2497,7 @@ window.AUTO_STOCK_DATA = {
         "averageReturn": 0,
         "maxDrawdown": 0,
         "bestScore": -100,
-        "financialScreeningStatus": "反映済み・後追い確認",
+        "financialScreeningStatus": "反映済み",
         "financialScreeningCautions": "価格検証は売買回数0回なので参考扱い"
       }
     }

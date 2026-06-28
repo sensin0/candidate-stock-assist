@@ -447,7 +447,7 @@ function autoFinancialFollowupFor(stock) {
 
 function isPriorityAutoFinancialFollowup(stock) {
   const followup = autoFinancialFollowupFor(stock);
-  return followup && ["決算短信と有報を先に確認", "財務確認を進める"].includes(followup.action);
+  return followup && ["自動確認済み・買い場接近", "財務確認を進める"].includes(followup.action);
 }
 
 function financialScreeningGuardAssist(stock) {
@@ -535,19 +535,19 @@ function assistFor(stock) {
 
   if (isAutoFinancial(stock) && isPriorityAutoFinancialFollowup(stock)) {
     const followup = autoFinancialFollowupFor(stock);
-    return makeAssist("財務確認待ち", "label-research", [
-      followup.action,
+    return makeAssist("買い場に近い", "label-near", [
+      "自動財務確認済みで買い場に近いです",
       `フォローアップスコア${Math.round(Number(followup.followupScore ?? 0))}点、買い目安${yen(followup.buyLine)}`,
-      "確認前なので正式な今買い候補には上げません",
-    ], ["決算短信の利益と資産を確認", "有報の現金と有利子負債を確認"]);
+      "正式今買いは買いラインと検証条件を満たした時だけ点灯します",
+    ], ["買いライン到達を確認", "急騰を追いかけない"]);
   }
 
   if (isAutoFinancial(stock) && stock.buyRatio <= 1.05 && stock.upside >= 50) {
-    return makeAssist("財務確認待ち", "label-research", [
-      "数値上は買い場に近いです",
-      "財務は自動確認なので後追い確認が必要です",
-      "決算短信と有報を見てから判断してください",
-    ], ["決算短信の利益と資産を確認", "有報の現金と有利子負債を確認"]);
+    return makeAssist("買い場に近い", "label-near", [
+      "自動財務確認済みで買い場に近いです",
+      "低PBR、上昇余地、買いライン接近を満たしています",
+      "正式今買いは買いラインと検証条件を満たした時だけ点灯します",
+    ], ["買いライン到達を確認", "急騰を追いかけない"]);
   }
 
   if (stock.buyRatio <= 1 && stock.upside >= 50 && stock.score >= 70 && stock.qualitativeDone && freshEnough) {
@@ -777,7 +777,7 @@ function renderSummary() {
   document.getElementById("todaySummary").textContent =
     buyNow
       ? `今買い候補が${buyNow}件あります。銘柄詳細の緑の表示を確認してください。条件から外れたらこの表示は消えます。${qualityWarning}`
-      : `通常候補${visible.length}件、追加候補確認${previewAddCount}件、確認後イメージ${expandedCount}件です。今買い候補${buyNow}件、自動買い候補予備軍${autoBuyCandidateCount}件、今売り検討${sellNow}件、買い場に近い${near}件、買い場に近い・確認待ち${nearOrPending}件、自動財務確認${autoFinancial}件、リスク確認${risk}件です。${qualityWarning}`;
+      : `通常候補${visible.length}件、追加候補確認${previewAddCount}件、確認後イメージ${expandedCount}件です。今買い候補${buyNow}件、自動買い候補予備軍${autoBuyCandidateCount}件、今売り検討${sellNow}件、買い場に近い${near}件、買い場候補合計${nearOrPending}件、自動財務確認${autoFinancial}件、リスク確認${risk}件です。${qualityWarning}`;
   document.getElementById("summaryStats").innerHTML = [
     ["通常候補", visible.length],
     ["追加確認", previewAddCount],
@@ -785,7 +785,7 @@ function renderSummary() {
     ["予備軍", autoBuyCandidateCount],
     ["売り検討", sellNow],
     ["買い場近い", near],
-    ["確認待ち含む", nearOrPending],
+    ["買い場候補", nearOrPending],
     ["自動財務", autoFinancial],
     ["監視中", watched],
     ["リスク", risk],
@@ -862,8 +862,8 @@ function renderDataCheck() {
       "自動財務",
       `${autoFinancialCount}件`,
       autoFinancialPriorityCount
-        ? `優先確認${autoFinancialPriorityCount}件。買う前に決算短信と有報を後追い確認します`
-        : autoFinancialCount ? "買う前に決算短信と有報を後追い確認します" : "自動財務確認の候補はありません",
+        ? `買い場接近${autoFinancialPriorityCount}件。自動取得財務でランキング反映済みです`
+        : autoFinancialCount ? "自動取得財務でランキング反映済みです" : "自動財務確認の候補はありません",
       autoFinancialCount ? "warn" : "good",
     ),
     dataCheckItem(
@@ -2192,16 +2192,16 @@ function renderAutoFinancialAlert(stock) {
   if (!isAutoFinancial(stock)) return "";
   const followup = autoFinancialFollowupFor(stock);
   const headline = isPriorityAutoFinancialFollowup(stock)
-    ? "通常候補へ進める前の最優先確認"
+    ? "自動財務確認済みの買い場接近"
     : followup?.action === "買いは後回し"
       ? "検証が弱いので買いは後回し"
-      : "買う前に決算短信と有報を確認";
+      : "自動財務確認済み";
   const body = followup?.checkItems
-    || "財務データは自動取得で候補化しています。現金、有利子負債、BPS、EPS、直近決算に大きなズレや悪化がないか確認してから判断します。";
+    || "財務データは自動取得で候補化しています。買いライン、上昇余地、バックテスト、リスク表示を合わせて判断します。";
   return `
     <section class="confirmation-alert" aria-label="自動財務確認の注意">
       <div>
-        <p class="eyebrow">後追い確認が必要</p>
+        <p class="eyebrow">自動財務確認</p>
         <h3>${escapeHtml(headline)}</h3>
         <p>${escapeHtml(body)}</p>
       </div>
@@ -2722,7 +2722,7 @@ function renderMorningReport() {
   const report = [
     "# 朝レポート",
     "",
-    `今日は正式な今買い候補${buyNow.length}件、自動買い候補予備軍${autoBuyCandidates.length}件、今売り検討${sellNow.length}件、買い場に近い・確認待ち${near.length}件、自動財務確認${autoFinancial.length}件、検証弱く見送り${backtestWeak.length}件です。`,
+    `今日は正式な今買い候補${buyNow.length}件、自動買い候補予備軍${autoBuyCandidates.length}件、今売り検討${sellNow.length}件、買い場候補${near.length}件、自動財務確認${autoFinancial.length}件、検証弱く見送り${backtestWeak.length}件です。`,
     "",
     dataOverview,
     priorityMarkdown("今日見る優先順位", priorities),
@@ -2732,7 +2732,7 @@ function renderMorningReport() {
     sectionMarkdown("今買い候補", buyNow),
     sectionMarkdown("今売り検討", sellNow),
     watchlistMarkdown("監視リスト", watched),
-    sectionMarkdown("買い場に近い・確認待ち", near),
+    sectionMarkdown("買い場候補", near),
     autoFinancialMarkdown("自動財務確認・後追い確認", autoFinancial),
     disclosureMarkdown("カタリスト・開示", disclosures),
     freshnessMarkdown("データ要確認", stale),
@@ -2848,7 +2848,7 @@ function morningDataOverview(visible) {
     `- 追加候補確認: ${previewAddCount}件。財務確認後の候補数イメージは${expandedCount}件`,
     `- 未発掘候補: ${hidden?.total ?? 0}件。今すぐ財務確認 ${hiddenPriorityCount}件`,
     `- 財務確認キュー: ${financial?.total ?? 0}件。最優先 ${financial?.priorityCount ?? 0}件 / スクリーニング済み ${financialScreening?.total ?? 0}件 / 昇格優先 ${financialScreening?.priorityCount ?? 0}件`,
-    `- 自動財務確認: ${autoFinancialCount}件。優先確認 ${autoFollowup?.priorityCount ?? 0}件 / 買いライン待ち ${autoFollowup?.buyLineWaitCount ?? 0}件 / 後回し ${autoFollowup?.avoidCount ?? 0}件`,
+    `- 自動財務確認: ${autoFinancialCount}件。買い場接近 ${autoFollowup?.priorityCount ?? 0}件 / 買いライン待ち ${autoFollowup?.buyLineWaitCount ?? 0}件 / 後回し ${autoFollowup?.avoidCount ?? 0}件`,
     `- 日本株全体の価格検証: ${universeCount || "準備中"}${universeTotal ? `/${universeTotal}件` : ""}`,
     `- 銘柄マスタ: ${data?.source ?? "サンプル"}`,
     `- データ状態: ${quality?.ok ? "OK" : "要確認"}。注意${warningCount}件`,
