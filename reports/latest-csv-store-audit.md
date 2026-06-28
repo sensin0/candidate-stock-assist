@@ -1,6 +1,6 @@
 # CSVストア監査
 
-生成日時: 2026-06-28T07:06:08.054Z
+生成日時: 2026-06-28T10:27:29.581Z
 
 CSVファイル: 34件
 総行数: 282,180行
@@ -23,7 +23,7 @@ CSVファイル: 34件
 - universe-financial-facts.csv: 3,728行 / 784.27KB
 - universe-check-status.csv: 3,728行 / 755.07KB
 - universe-price-backtest.csv: 3,728行 / 639.19KB
-- universe-metrics.csv: 3,730行 / 285.64KB
+- universe-metrics.csv: 3,730行 / 286.1KB
 - listed-universe.csv: 3,728行 / 281.38KB
 
 ## 全CSV
@@ -59,6 +59,6 @@ CSVファイル: 34件
 - universe-buy-candidates.csv: 3行 / 26列 / 1.62KB
 - universe-check-status.csv: 3,728行 / 12列 / 755.07KB
 - universe-financial-facts.csv: 3,728行 / 21列 / 784.27KB
-- universe-metrics.csv: 3,730行 / 14列 / 285.64KB
+- universe-metrics.csv: 3,730行 / 14列 / 286.1KB
 - universe-price-backtest.csv: 3,728行 / 19列 / 639.19KB
 - watchlist.csv: 3行 / 3列 / 233B

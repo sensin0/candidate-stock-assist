@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-28T07:06:08.054Z",
+  "generatedAt": "2026-06-28T10:27:29.581Z",
   "totalFiles": 34,
   "totalRows": 282180,
-  "totalBytes": 36877354,
+  "totalBytes": 36877824,
   "problems": [],
   "files": [
     {
@@ -849,7 +849,7 @@
     },
     {
       "name": "universe-check-status.csv",
-      "bytes": 755068,
+      "bytes": 755074,
       "rows": 3728,
       "columns": 12,
       "headers": [
@@ -904,7 +904,7 @@
     },
     {
       "name": "universe-metrics.csv",
-      "bytes": 285639,
+      "bytes": 286103,
       "rows": 3730,
       "columns": 14,
       "headers": [

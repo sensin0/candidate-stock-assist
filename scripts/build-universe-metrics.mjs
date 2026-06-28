@@ -18,7 +18,7 @@ const estimateLimit = Number(process.env.UNIVERSE_METRICS_ESTIMATE_LIMIT || 3728
 const stocks = parseStockCsv(fs.readFileSync(stockMasterPath, "utf8"));
 const listed = readCsv(listedPath);
 const rows = [];
-const seen = new Set();
+const rowByCode = new Map();
 
 for (const stock of stocks) addRow({
   code: stock.code,
@@ -61,9 +61,22 @@ console.log(`universe-metrics を生成しました: 日本株母集団 ${listed
 console.log(`確認済み: ${listedRowsForLog.filter((row) => row.asOf === "confirmed").length}件 / IRBANK自動取得: ${listedRowsForLog.filter((row) => row.asOf?.startsWith("irbank:")).length}件 / 推定: ${estimatedRowsForLog.length}件 / 自動除外: ${listedRowsForLog.filter((row) => row.asOf === "unavailable").length}件`);
 
 function addRow(row) {
-  if (!row?.code || seen.has(row.code)) return;
-  seen.add(row.code);
-  rows.push(row);
+  if (!row?.code) return;
+  const current = rowByCode.get(row.code);
+  if (current && metricPriority(current.asOf) >= metricPriority(row.asOf)) return;
+  rowByCode.set(row.code, row);
+  const index = rows.findIndex((item) => item.code === row.code);
+  if (index >= 0) rows[index] = row;
+  else rows.push(row);
+}
+
+function metricPriority(asOf) {
+  if (asOf === "confirmed") return 50;
+  if (String(asOf || "").startsWith("irbank:")) return 40;
+  if (asOf === "promotionDraft" || asOf === "hiddenDraft") return 30;
+  if (asOf === "priceEstimate") return 10;
+  if (asOf === "unavailable") return 0;
+  return 20;
 }
 
 function metricFromDraft(row, asOf) {

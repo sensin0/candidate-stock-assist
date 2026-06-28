@@ -2794,7 +2794,35 @@ function estimatedBpsSeries(length, currentBps) {
 function renderResearchLynch(item, type) {
   const registered = stocks.find((stock) => String(stock.code) === String(item.code));
   if (registered) return renderLynchChart(registered);
+  const researchStock = stockFromResearchItem(item);
+  if (researchStock) return renderLynchChart(researchStock);
   return renderResearchLynchPlaceholder(item, type);
+}
+
+function stockFromResearchItem(item) {
+  const price = Number(item.price || 0);
+  const bps = Number(item.bps || 0);
+  const eps = Number(item.eps || 0);
+  if (!price || !bps || !eps) return null;
+  const history = Array.isArray(item.history)
+    ? item.history.map((value) => Number(value)).filter((value) => Number.isFinite(value) && value > 0)
+    : [];
+  const normalizedHistory = history.length >= 4 ? history : [0.92, 0.96, 0.99, 1].map((rate) => Math.round(price * rate));
+  return {
+    code: item.code,
+    name: item.name,
+    price,
+    bps,
+    eps,
+    history: normalizedHistory,
+    priceAsOf: window.AUTO_RESEARCH_DATA?.generatedAt,
+    perLow: 10,
+    perAvg: 16,
+    perHigh: 24,
+    pbrLow: 0.64,
+    pbrAvg: 1,
+    pbrHigh: 1.53,
+  };
 }
 
 function renderResearchLynchPlaceholder(item) {

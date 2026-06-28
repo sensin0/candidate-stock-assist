@@ -11,10 +11,14 @@ const listedUniverseCsv = path.join(dataDir, "listed-universe.csv");
 const multibaggerCsv = path.join(dataDir, "multibagger-candidates.csv");
 const universeBuyCandidatesCsv = path.join(dataDir, "universe-buy-candidates.csv");
 const universeBuyCandidateReviewCsv = path.join(dataDir, "universe-buy-candidate-review.csv");
+const universeMetricsCsv = path.join(dataDir, "universe-metrics.csv");
+const monthlyPriceHistoryCsv = path.join(dataDir, "monthly-price-history.csv");
 const outputJs = path.join(appDir, "generated-research.js");
 
 const universeRows = readCsv(universeCsv);
 const listedUniverseByCode = new Map(readCsv(listedUniverseCsv).map((row) => [row.code, row]));
+const metricsByCode = new Map(readCsv(universeMetricsCsv).map((row) => [row.code, row]));
+const monthlyHistoryByCode = groupMonthlyHistory(readCsv(monthlyPriceHistoryCsv));
 const multibaggerRows = readCsv(multibaggerCsv);
 const universeBuyCandidateRows = readCsv(universeBuyCandidatesCsv);
 const universeBuyCandidateReviewByCode = new Map(readCsv(universeBuyCandidateReviewCsv).map((row) => [row.code, row]));
@@ -131,6 +135,8 @@ function reviewPriority(status) {
 
 function mapUniverseRow(row) {
   const listed = listedUniverseByCode.get(row.code);
+  const metrics = metricsByCode.get(row.code) ?? {};
+  const price = number(row.lastClose || metrics.price);
   return {
     code: row.code,
     name: listed?.name || row.name,
@@ -141,6 +147,11 @@ function mapUniverseRow(row) {
     signal: row.latestSignal,
     strategy: row.bestStrategy,
     score: number(row.priceScore),
+    price,
+    bps: number(metrics.bps),
+    eps: number(metrics.eps),
+    metricSource: metrics.asOf || "",
+    history: monthlyHistoryByCode.get(row.code) ?? [],
     winRate: number(row.winRate),
     averageReturn: number(row.averageReturn),
     maxDrawdown: number(row.maxDrawdown),
@@ -151,6 +162,24 @@ function mapUniverseRow(row) {
     qualityRank: qualityRank(row),
     qualityNote: qualityNote(row),
   };
+}
+
+function groupMonthlyHistory(rows) {
+  const byCode = new Map();
+  for (const row of rows) {
+    const close = number(row.close);
+    if (!row.code || !close) continue;
+    const current = byCode.get(row.code) ?? [];
+    current.push({ month: row.month, close });
+    byCode.set(row.code, current);
+  }
+  return new Map([...byCode.entries()].map(([code, items]) => [
+    code,
+    items
+      .sort((a, b) => String(a.month).localeCompare(String(b.month)))
+      .slice(-18)
+      .map((item) => item.close),
+  ]));
 }
 
 function timingAction(row) {

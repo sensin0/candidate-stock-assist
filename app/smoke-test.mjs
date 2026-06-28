@@ -296,8 +296,8 @@ if (!result.hiddenGemDetailAlert.includes("未発掘候補アシスト")) {
 if (!result.researchDetailTitle || !result.researchDetailChart.includes("価格バックテストの見え方")) {
   failures.push("広域候補の詳細が生成されていません");
 }
-if (!result.researchLynchChart.includes("財務確認後に表示")) {
-  failures.push("広域候補のリンチ・チャート案内が生成されていません");
+if (!result.researchLynchChart.includes("財務確認後に表示") && !result.researchLynchChart.includes("簡易リンチ・チャート")) {
+  failures.push("広域候補のリンチ・チャートまたは案内が生成されていません");
 }
 if (!result.expansionDetailTitle || !result.expansionDetailChart.includes("買い判断は財務確認後")) {
   failures.push("追加候補確認の詳細が生成されていません");
