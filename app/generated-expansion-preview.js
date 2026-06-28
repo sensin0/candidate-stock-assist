@@ -1,5 +1,5 @@
 window.AUTO_EXPANSION_PREVIEW = {
-  "generatedAt": "2026-06-28T10:27:27.178Z",
+  "generatedAt": "2026-06-28T12:10:42.472Z",
   "source": "data/stock-master-expanded-preview.csv",
   "currentCount": 35,
   "previewAddCount": 14,
@@ -19,7 +19,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       "perAvg": 17.99,
       "dataConfidence": "推定",
       "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認。財務スクリーニング: 慎重確認",
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック。財務スクリーニング: 慎重確認",
       "catalyst": "推定下書き。監視しながら財務確認。安値圏から反転し始めた候補です。赤字・下方修正・信用需給が重くないか確認します。財務確認: BPS/EPS/現金/有利子負債/発行株数。PBR 0.79倍で確認余地",
       "history": [
         2257,
@@ -46,7 +46,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       "perAvg": 18.01,
       "dataConfidence": "推定",
       "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認。財務スクリーニング: 慎重確認",
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック。財務スクリーニング: 慎重確認",
       "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数。ネットキャッシュあり 17.54% / 有利子負債は軽め",
       "history": [
         1369,
@@ -73,7 +73,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       "perAvg": 18.01,
       "dataConfidence": "推定",
       "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認。財務スクリーニング: 慎重確認",
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック。財務スクリーニング: 慎重確認",
       "catalyst": "推定下書き。監視しながら財務確認。高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します。財務確認: BPS/EPS/現金/有利子負債/発行株数。PER 14.98倍",
       "history": [
         2593,
@@ -100,7 +100,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       "perAvg": 18,
       "dataConfidence": "推定",
       "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認。財務スクリーニング: 慎重確認",
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック。財務スクリーニング: 慎重確認",
       "catalyst": "推定下書き。監視しながら財務確認。高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します。財務確認: BPS/EPS/現金/有利子負債/発行株数。PER 9.84倍で利益面は軽い / ネットキャッシュあり 33.98% / 有利子負債は軽め",
       "history": [
         1779,
@@ -127,7 +127,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       "perAvg": 17.99,
       "dataConfidence": "推定",
       "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
       "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
       "history": [
         599,
@@ -154,7 +154,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       "perAvg": 18,
       "dataConfidence": "推定",
       "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
       "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
       "history": [
         4425,
@@ -181,7 +181,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       "perAvg": 17.99,
       "dataConfidence": "推定",
       "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
       "catalyst": "推定下書き。監視しながら財務確認。高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
       "history": [
         866,
@@ -208,7 +208,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       "perAvg": 18,
       "dataConfidence": "推定",
       "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
       "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
       "history": [
         2929,
@@ -235,7 +235,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       "perAvg": 17.99,
       "dataConfidence": "推定",
       "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
       "catalyst": "推定下書き。最優先で通常候補前確認。安値反転候補。買いライン以下で、上昇余地と価格検証は条件内です。財務確認: BPS/EPS/現金/有利子負債/発行株数",
       "history": [
         1112,
@@ -262,7 +262,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       "perAvg": 18,
       "dataConfidence": "推定",
       "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
       "catalyst": "推定下書き。監視しながら財務確認。高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
       "history": [
         5438,
@@ -289,7 +289,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       "perAvg": 18.05,
       "dataConfidence": "推定",
       "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
       "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
       "history": [
         298,
@@ -316,7 +316,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       "perAvg": 18.01,
       "dataConfidence": "推定",
       "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
       "catalyst": "推定下書き。監視しながら財務確認。高値更新型で強い値動きです。飛びつきではなく、出来高を伴う継続上昇かを確認します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
       "history": [
         1394,
@@ -343,7 +343,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       "perAvg": 18,
       "dataConfidence": "推定",
       "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
       "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
       "history": [
         2110,
@@ -370,7 +370,7 @@ window.AUTO_EXPANSION_PREVIEW = {
       "perAvg": 18,
       "dataConfidence": "推定",
       "qualitativeDone": false,
-      "risk": "財務確認前。通常候補へ入れる前に有報と決算で確認",
+      "risk": "推定表示。通常候補へ入れる前に有報と決算で原資料チェック",
       "catalyst": "推定下書き。監視しながら財務確認。価格バックテストは良好です。財務、材料、流動性を確認してから候補化します。財務確認: BPS/EPS/現金/有利子負債/発行株数",
       "history": [
         2464,

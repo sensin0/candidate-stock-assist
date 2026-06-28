@@ -856,7 +856,7 @@ function renderDataCheck() {
     dataCheckItem(
       "追加候補",
       `${previewAddCount}件`,
-      previewAddCount ? `財務確認後の候補数イメージは${expandedCount}件です` : "追加候補はまだありません",
+      previewAddCount ? `推定表示込みの候補数イメージは${expandedCount}件です` : "追加候補はまだありません",
       previewAddCount ? "warn" : "alert",
     ),
     dataCheckItem(
@@ -882,7 +882,7 @@ function renderDataCheck() {
     dataCheckItem(
       "日本株全体",
       universeCount ? `${universeCount}/${universeTotal}件` : "準備中",
-      universeCount ? "価格検証済み。通常候補へ入れる前に財務確認します" : "広域調査データ待ちです",
+      universeCount ? "価格検証済み。通常候補へ入れる前に原資料をチェックします" : "広域調査データ待ちです",
       universeCount ? "good" : "warn",
     ),
     dataCheckItem("入力元", sourceLabel, source, providerWarnings.length ? "warn" : "good"),
@@ -1545,18 +1545,18 @@ function renderExpansionRankingRow(item, index) {
           <strong>${index + 1}. ${escapeHtml(item.name)}</strong>
           <div class="stock-code">${escapeHtml(item.code)} / ${escapeHtml(item.sector || "未分類")}</div>
         </div>
-        <span class="assist-label label-research">確認前</span>
+        <span class="assist-label label-research">推定表示</span>
       </div>
-      <p class="reason">通常候補へ入れる前の追加候補です。株価は取得済み、財務は確認前です。</p>
+      <p class="reason">通常候補へ入れる前の追加候補です。株価と推定財務で仮表示しています。</p>
       <div class="ranking-meta">
         <span>${escapeHtml(item.dataConfidence || "推定")}</span>
         <span>株価 ${yen(item.price)}</span>
-        <span>BPS確認 ${yen(item.bps)}</span>
-        <span>EPS確認 ${Math.round((item.eps ?? 0) * 10) / 10}</span>
-        <span>財務確認前</span>
+        <span>推定BPS ${yen(item.bps)}</span>
+        <span>推定EPS ${Math.round((item.eps ?? 0) * 10) / 10}</span>
+        <span>原資料チェック対象</span>
       </div>
     </article>
-    ${isActive ? renderInlineMobileLynchPreview(renderExpansionLynchPlaceholder(item), `${item.name}のリンチ・チャート`, renderInlineResearchSummary(item, "expansionPreview")) : ""}
+    ${isActive ? renderInlineMobileLynchPreview(renderResearchLynch(item, "expansionPreview"), `${item.name}のリンチ・チャート`, renderInlineResearchSummary(item, "expansionPreview")) : ""}
   `;
 }
 
@@ -1578,10 +1578,10 @@ function renderHiddenGemDraftRankingRow(item, index) {
         <span>勝率 ${pct(item.winRate ?? 0)}</span>
         <span>平均 ${pct(item.averageReturn ?? 0)}</span>
         <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
-        <span>財務確認前</span>
+        <span>原資料チェック対象</span>
       </div>
     </article>
-    ${isActive ? renderInlineMobileLynchPreview(renderExpansionLynchPlaceholder(item), `${item.name}のリンチ・チャート`, renderInlineResearchSummary(item, "hiddenGemsDraft")) : ""}
+    ${isActive ? renderInlineMobileLynchPreview(renderResearchLynch(item, "hiddenGemsDraft"), `${item.name}のリンチ・チャート`, renderInlineResearchSummary(item, "hiddenGemsDraft")) : ""}
   `;
 }
 
@@ -1824,7 +1824,7 @@ function renderExpansionDetail(item) {
   document.getElementById("detailBadges").innerHTML = [
     "通常候補前",
     item.dataConfidence || "推定",
-    "財務確認前",
+    item.metricSource ? `財務 ${item.metricSource}` : "推定財務",
     item.sector || "未分類",
   ].map((badge) => `<span class="badge">${escapeHtml(badge)}</span>`).join("");
   document.getElementById("buyTimingAlert").innerHTML = "";
@@ -1832,12 +1832,12 @@ function renderExpansionDetail(item) {
   document.getElementById("lifecycleAssist").innerHTML = renderExpansionLifecycleAssist(item);
   document.getElementById("tradeMeter").innerHTML = renderExpansionMeter(item);
   document.getElementById("chart").innerHTML = renderExpansionChart(item);
-  const lynchChart = renderExpansionLynchPlaceholder(item);
+  const lynchChart = renderResearchLynch(item, "expansionPreview");
   document.getElementById("lynchChart").innerHTML = lynchChart;
   renderMobileLynchPreview(lynchChart, `${item.name}のリンチ・チャート`);
   document.getElementById("reasonList").innerHTML = [
     "日本株全体スクリーニングから通常候補への追加候補に入っています",
-    "まだ買い候補ではなく、BPS、EPS、現金、有利子負債、発行株数の確認が先です",
+    "財務データを使ってチャートは表示済みです。原資料チェックで精度を上げます",
     item.catalyst || "価格と財務を確認してから昇格判断します",
   ].map((reason) => `<li>${escapeHtml(reason)}</li>`).join("");
   document.getElementById("nextActionList").innerHTML = [
@@ -2206,8 +2206,8 @@ function renderResearchMetrics(item) {
     ["昇格判定", item.reviewStatus || "未判定"],
     ["昇格理由", item.reviewReasons || "-"],
     ["確認注意", item.reviewCautions || item.caution || "財務と開示を確認"],
-    ["買いライン", item.buyLine ? yen(item.buyLine) : "確認後"],
-    ["目標株価", item.targetPrice ? yen(item.targetPrice) : "確認後"],
+    ["買いライン", item.buyLine ? yen(item.buyLine) : "推定中"],
+    ["目標株価", item.targetPrice ? yen(item.targetPrice) : "推定中"],
     ["買い比率", item.buyRatio ? times(item.buyRatio) : "-"],
     ["上昇余地", item.upside ? pct(item.upside) : "-"],
     ["PBR", item.pbr ? times(item.pbr) : "-"],
@@ -2515,13 +2515,13 @@ function renderExpansionLifecycleAssist(item) {
           <p class="eyebrow">通常候補へ入れる前</p>
           <h3>昇格までの順番</h3>
         </div>
-        <span>確認前</span>
+        <span>推定表示</span>
       </div>
       <div class="lifecycle-grid">
         ${[
           ["価格", `株価は${yen(item.price)}です。まず高値掴みでないか見ます。`, "チャート位置と出来高を確認"],
-          ["財務", "BPS、EPS、現金、有利子負債、発行株数を有報で確認します。", "ここが未確認なら買い候補にしません"],
-          ["価値", "確認済みBPSとPER/PBRレンジで買いラインと売り目安を作ります。", "リンチ・チャートは確認後に本表示"],
+          ["財務", "BPS、EPS、現金、有利子負債、発行株数を原資料でチェックします。", "推定値のままなら買い判断は弱め"],
+          ["価値", "推定BPSとPER/PBRレンジで仮の買いラインと売り目安を表示します。", "リンチ・チャートも推定値で表示"],
           ["昇格", "財務と材料が揃ったら通常候補へ入れます。", "朝ランキングの対象に昇格"],
         ].map(([title, message, check], index) => `
           <article class="lifecycle-step ${index === 1 ? "lifecycle-active tone-risk" : ""}">
@@ -2554,14 +2554,14 @@ function renderTradeMeter(stock) {
 function renderExpansionMeter(item) {
   return `
     <div class="card-top">
-      <strong>財務確認前</strong>
+      <strong>推定表示</strong>
       <span>${yen(item.price)}</span>
     </div>
     <div class="meter-track"><span class="meter-marker" style="left:50%"></span></div>
     <div class="meter-labels">
-      <span>確認前</span>
+      <span>推定</span>
       <span>現在 ${yen(item.price)}</span>
-      <span>昇格後に売買ライン作成</span>
+      <span>仮の売買ラインを表示</span>
     </div>
   `;
 }
@@ -2584,7 +2584,7 @@ function renderExpansionChart(item) {
       <polyline points="${points}" fill="none" stroke="#246a9f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
       <circle cx="${56 + (width - 112)}" cy="${height - 48 - ((history.at(-1) - min) / Math.max(1, max - min)) * 160}" r="6" fill="#246a9f" />
       <text x="52" y="48" font-size="13" fill="#65706b">追加候補の価格推移</text>
-      <text x="52" y="72" font-size="18" font-weight="700" fill="#1d2522">買い判断は財務確認後</text>
+      <text x="52" y="72" font-size="18" font-weight="700" fill="#1d2522">推定ラインで仮表示中</text>
       <text x="${width - 52}" y="72" text-anchor="end" font-size="18" font-weight="700" fill="#246a9f">${yen(item.price)}</text>
     </svg>
   `;
@@ -2593,8 +2593,8 @@ function renderExpansionChart(item) {
 function renderExpansionLynchPlaceholder(item) {
   return `
     <div class="chart-empty">
-      <strong>リンチ・チャートは財務確認後</strong>
-      <p>${escapeHtml(item.name)}は追加候補です。EPSとPERレンジを確認すると、買いラインと売り目安をチャート上に表示できます。</p>
+      <strong>リンチ・チャートは推定値で表示中</strong>
+      <p>${escapeHtml(item.name)}は追加候補です。EPS、BPS、PER/PBRレンジは推定値なので、原資料チェック後に精度が上がります。</p>
     </div>
   `;
 }
@@ -2611,7 +2611,7 @@ function renderExpansionMetrics(item) {
     ["推定PBR平均", times(item.pbrAvg ?? 0)],
     ["推定PBR高め", times(item.pbrHigh ?? 0)],
     ["推定PER平均", times(item.perAvg ?? 0)],
-    ["注意", item.risk || "財務確認前"],
+    ["注意", item.risk || "原資料チェック対象"],
     ["メモ", item.catalyst || "通常候補への追加候補"],
   ];
   return metrics.map(([label, value]) => `<div class="metric"><span>${label}</span><strong>${escapeHtml(value)}</strong></div>`).join("");
@@ -2932,8 +2932,8 @@ function renderResearchLynchPlaceholder(item) {
   return `
     <div class="chart-empty">
       <p class="eyebrow">リンチ・チャート</p>
-      <h3>${escapeHtml(item.name)}は財務確認後に表示</h3>
-      <p>広域候補はまだEPSやPER目安を通常候補データとして確認していません。昇格候補レポートで財務を埋めると、リンチ・チャートで見られます。</p>
+      <h3>${escapeHtml(item.name)}は推定チャート準備中</h3>
+      <p>広域候補はEPSやPER目安が不足しています。価格推移と不足項目を先に表示し、財務データが入るとリンチ・チャートへ切り替わります。</p>
     </div>
   `;
 }
@@ -3082,7 +3082,7 @@ function morningDataOverview(visible) {
   return [
     "## データ確認",
     `- 通常候補: ${visible.length}件。${stockCountNote}`,
-    `- 追加候補確認: ${previewAddCount}件。財務確認後の候補数イメージは${expandedCount}件`,
+    `- 追加候補確認: ${previewAddCount}件。推定表示込みの候補数イメージは${expandedCount}件`,
     `- 未発掘候補: ${hidden?.total ?? 0}件。今すぐ財務確認 ${hiddenPriorityCount}件`,
     `- 財務確認キュー: ${financial?.total ?? 0}件。最優先 ${financial?.priorityCount ?? 0}件 / スクリーニング済み ${financialScreening?.total ?? 0}件 / 昇格優先 ${financialScreening?.priorityCount ?? 0}件`,
     `- 自動財務確認: ${autoFinancialCount}件。買い場接近 ${autoFollowup?.priorityCount ?? 0}件 / 買いライン待ち ${autoFollowup?.buyLineWaitCount ?? 0}件 / 後回し ${autoFollowup?.avoidCount ?? 0}件`,

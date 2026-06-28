@@ -145,7 +145,7 @@ function isPreviewEligible(row) {
 }
 
 function previewRisk(row, screened) {
-  const base = "財務確認前。通常候補へ入れる前に有報と決算で確認";
+  const base = "推定表示。通常候補へ入れる前に有報と決算で原資料チェック";
   if (!screened) return base;
   if (screened.status === "昇格確認優先") return `${base}。財務スクリーニング: 昇格確認優先`;
   if (screened.status === "慎重確認") return `${base}。財務スクリーニング: 慎重確認`;
@@ -166,11 +166,11 @@ function writeReport(masterRows, draftRows) {
     `生成日時: ${new Date().toISOString()}`,
     "",
     "既存の通常候補に、全体スクリーニングから拾った追加候補を仮で足した確認用ファイルです。",
-    "ここに出た銘柄は、まだ買い候補として確定ではありません。財務数値を確認してから通常候補へ昇格します。",
+    "ここに出た銘柄は、まだ買い候補として確定ではありません。推定財務を原資料でチェックしてから通常候補へ昇格します。",
     "",
     `既存の通常候補: ${masterRows.length}件`,
     `追加プレビュー: ${draftRows.length}件`,
-    `確認後の候補数イメージ: ${masterRows.length + draftRows.length}件`,
+    `推定表示込みの候補数イメージ: ${masterRows.length + draftRows.length}件`,
     `除外: 財務スクリーニングで見送り寄りになった銘柄は追加候補から外しています。`,
     "",
     "## 追加候補",
@@ -183,7 +183,7 @@ function writeReport(masterRows, draftRows) {
     "",
     "- BPS、EPS、現金、有利子負債、発行株数が決算資料と合っているか",
     "- 急騰後だけでランキングに入っていないか",
-    "- 初心者向けには、財務確認前の銘柄を今買い表示にしない",
+    "- 初心者向けには、推定値だけの銘柄を今買い表示にしない",
   ];
   fs.writeFileSync(reportPath, `${lines.join("\n")}\n`, "utf8");
 }

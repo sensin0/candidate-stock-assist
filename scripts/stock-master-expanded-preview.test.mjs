@@ -26,13 +26,13 @@ assert.ok(!addedRows.some((row) => ["5363", "5458"].includes(row.code)), "価格
 
 const appData = fs.readFileSync(appDataPath, "utf8");
 assert.match(appData, /AUTO_EXPANSION_PREVIEW/, "画面用の追加候補データがありません");
-assert.match(appData, /財務確認前/, "画面用データに財務確認前の注意がありません");
+assert.match(appData, /推定表示/, "画面用データに推定表示の注意がありません");
 
 for (const row of addedRows.slice(0, 10)) {
   assert.match(row.code, /^[0-9A-Z]{4}$/);
   assert.ok(Number(row.price) > 0, `${row.code}: 株価がありません`);
-  assert.equal(row.qualitativeDone, "false", `${row.code}: 財務確認前は qualitativeDone=false にします`);
-  assert.match(row.risk, /財務確認前/, `${row.code}: 財務確認前の注意がありません`);
+  assert.equal(row.qualitativeDone, "false", `${row.code}: 推定表示は qualitativeDone=false にします`);
+  assert.match(row.risk, /推定表示/, `${row.code}: 推定表示の注意がありません`);
 }
 
 console.log("stock-master-expanded-preview-test ok");
