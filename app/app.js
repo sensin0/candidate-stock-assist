@@ -766,6 +766,7 @@ function renderSummary() {
   const sellNow = byAssist("今売り検討", visible).length + byAssist("一部利益確定検討", visible).length;
   const risk = visible.filter((stock) => isAvoidAssist(stock.assist.label)).length;
   const near = byAssist("買い場に近い", visible).length;
+  const nearOrPending = visible.filter((stock) => isNearOrPending(stock.assist.label)).length;
   const watched = visible.filter((stock) => stock.watchlist).length;
   const autoFinancial = visible.filter(isAutoFinancial).length;
   const qualityWarning = window.AUTO_STOCK_DATA?.dataQuality?.ok === false
@@ -776,7 +777,7 @@ function renderSummary() {
   document.getElementById("todaySummary").textContent =
     buyNow
       ? `今買い候補が${buyNow}件あります。銘柄詳細の緑の表示を確認してください。条件から外れたらこの表示は消えます。${qualityWarning}`
-      : `通常候補${visible.length}件、追加候補確認${previewAddCount}件、確認後イメージ${expandedCount}件です。今買い候補${buyNow}件、自動買い候補予備軍${autoBuyCandidateCount}件、今売り検討${sellNow}件、買い場に近い銘柄${near}件、自動財務確認${autoFinancial}件、リスク確認${risk}件です。${qualityWarning}`;
+      : `通常候補${visible.length}件、追加候補確認${previewAddCount}件、確認後イメージ${expandedCount}件です。今買い候補${buyNow}件、自動買い候補予備軍${autoBuyCandidateCount}件、今売り検討${sellNow}件、買い場に近い${near}件、買い場に近い・確認待ち${nearOrPending}件、自動財務確認${autoFinancial}件、リスク確認${risk}件です。${qualityWarning}`;
   document.getElementById("summaryStats").innerHTML = [
     ["通常候補", visible.length],
     ["追加確認", previewAddCount],
@@ -784,6 +785,7 @@ function renderSummary() {
     ["予備軍", autoBuyCandidateCount],
     ["売り検討", sellNow],
     ["買い場近い", near],
+    ["確認待ち含む", nearOrPending],
     ["自動財務", autoFinancial],
     ["監視中", watched],
     ["リスク", risk],
@@ -1518,7 +1520,7 @@ function renderHiddenGemRankingRow(item, index) {
         <span>${escapeHtml(item.caution || "注意なし")}</span>
       </div>
     </article>
-    ${isActive ? renderInlineMobileLynchPreview(renderResearchLynchPlaceholder(item), `${item.name}のリンチ・チャート`) : ""}
+    ${isActive ? renderInlineMobileLynchPreview(renderResearchLynch(item, type), `${item.name}のリンチ・チャート`) : ""}
   `;
 }
 
@@ -1786,7 +1788,7 @@ function renderResearchDetail(item, type) {
   document.getElementById("lifecycleAssist").innerHTML = renderResearchLifecycleAssist(item);
   document.getElementById("tradeMeter").innerHTML = renderResearchMeter(item);
   document.getElementById("chart").innerHTML = renderResearchChart(item);
-  const lynchChart = renderResearchLynchPlaceholder(item);
+  const lynchChart = renderResearchLynch(item, type);
   document.getElementById("lynchChart").innerHTML = lynchChart;
   renderMobileLynchPreview(lynchChart, `${item.name}のリンチ・チャート`);
   document.getElementById("reasonList").innerHTML = [
@@ -2681,6 +2683,12 @@ function estimatedEpsSeries(length, currentEps) {
     const progress = index / (length - 1);
     return currentEps * (startRate + (1 - startRate) * progress);
   });
+}
+
+function renderResearchLynch(item, type) {
+  const registered = stocks.find((stock) => String(stock.code) === String(item.code));
+  if (registered) return renderLynchChart(registered);
+  return renderResearchLynchPlaceholder(item, type);
 }
 
 function renderResearchLynchPlaceholder(item) {
