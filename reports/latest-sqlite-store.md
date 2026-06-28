@@ -1,11 +1,11 @@
 ﻿# SQLiteストア
 
-生成日時: 2026-06-28T06:26:30.173673+00:00
+生成日時: 2026-06-28T07:06:16.563624+00:00
 
 DB: `data/candidate-stock-assist.sqlite`
-テーブル: 31件
-総行数: 19,797行
-DBサイズ: 4.32MB
+テーブル: 34件
+総行数: 282,180行
+DBサイズ: 44.28MB
 整合性: ok
 
 ## 方針
@@ -16,6 +16,8 @@ DBサイズ: 4.32MB
 
 ## 大きいテーブル
 
+- monthly_price_history: 131,171行 / 4列 / 元CSV `monthly-price-history.csv`
+- monthly_signal_backtest: 131,171行 / 21列 / 元CSV `monthly-signal-backtest.csv`
 - universe_metrics: 3,730行 / 14列 / 元CSV `universe-metrics.csv`
 - listed_universe: 3,728行 / 4列 / 元CSV `listed-universe.csv`
 - universe_check_status: 3,728行 / 12列 / 元CSV `universe-check-status.csv`
@@ -26,11 +28,10 @@ DBサイズ: 4.32MB
 - promotion_candidates: 150行 / 17列 / 元CSV `promotion-candidates.csv`
 - price_backtest_results: 60行 / 18列 / 元CSV `price-backtest-results.csv`
 - financial_confirmation_queue: 58行 / 14列 / 元CSV `financial-confirmation-queue.csv`
-- financial_confirmation_worklist: 58行 / 37列 / 元CSV `financial-confirmation-worklist.csv`
-- financial_worklist_screened: 58行 / 21列 / 元CSV `financial-worklist-screened.csv`
 
 ## 代表ビュー
 
 - `runtime_candidates`: 通常候補と自動昇格候補を合わせた実運用候補
 - `runtime_candidate_backtest`: 通常候補とバックテスト結果
 - `auto_buy_candidate_review`: 自動買い候補と昇格判定
+- `latest_monthly_buy_candidates`: 最新月の月次買い候補

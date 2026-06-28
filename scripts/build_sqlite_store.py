@@ -207,6 +207,35 @@ def create_views(conn):
             LEFT JOIN universe_buy_candidate_review r ON r.code = c.code
             """
         )
+    if {"monthly_signal_backtest", "monthly_signal_summary"} <= tables:
+        conn.execute(
+            """
+            CREATE VIEW latest_monthly_buy_candidates AS
+            SELECT
+              b.month,
+              b.code,
+              b.name,
+              b.market,
+              b.sector,
+              b.close,
+              b.buyLine,
+              b.sellGuidePrice,
+              b.targetPrice,
+              b.buyRatio,
+              b.upside,
+              b.pbr,
+              b.per,
+              b.netCashRatio,
+              b.signal,
+              b.forward1m,
+              b.forward3m,
+              b.forward6m
+            FROM monthly_signal_backtest b
+            WHERE b.month = (SELECT MAX(month) FROM monthly_signal_summary)
+              AND b.signal IN ('今買い候補', '買い場近い')
+            ORDER BY CAST(NULLIF(b.buyRatio, '') AS REAL) ASC, CAST(NULLIF(b.upside, '') AS REAL) DESC
+            """
+        )
 
 
 def table_name_for(filename):
@@ -261,6 +290,7 @@ def render_report(manifest):
         "- `runtime_candidates`: 通常候補と自動昇格候補を合わせた実運用候補",
         "- `runtime_candidate_backtest`: 通常候補とバックテスト結果",
         "- `auto_buy_candidate_review`: 自動買い候補と昇格判定",
+        "- `latest_monthly_buy_candidates`: 最新月の月次買い候補",
         "",
     ]
     return "\n".join(lines)

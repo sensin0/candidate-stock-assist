@@ -27,6 +27,7 @@
     "universe:screen": "node scripts/universe-screen.mjs",
     "universe:summary": "node scripts/build-universe-analysis-summary.mjs",
     "backtest": "node scripts/backtest-timing.mjs",
+    "backtest:monthly": "python scripts/monthly_signal_backtest.py",
     "price:queue": "node scripts/build-price-refresh-queue.mjs",
     "history:refresh": "node scripts/refresh-short-history.mjs",
     "backtest:research": "node scripts/research-price-backtest.mjs",

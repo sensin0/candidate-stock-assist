@@ -11,6 +11,7 @@ const steps = [
   ["画面用調査データ生成", "node", ["scripts/build-research-data.mjs"]],
   ["CSVストア監査", "node", ["scripts/audit-csv-store.mjs"]],
   ["SQLiteストア生成", "python", ["scripts/build_sqlite_store.py"]],
+  ["月次シグナルバックテスト", "python", ["scripts/monthly_signal_backtest.py"]],
   ["本番化残作業レポート生成", "node", ["scripts/build-production-next-steps.mjs"]],
   ["画面ロジック構文チェック", "node", ["--check", "app/app.js"]],
   ["更新ジョブ構文チェック", "node", ["--check", "scripts/update-data.mjs"]],

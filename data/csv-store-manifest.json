@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-28T06:26:29.270Z",
-  "totalFiles": 31,
-  "totalRows": 19797,
-  "totalBytes": 3131298,
+  "generatedAt": "2026-06-28T07:06:08.054Z",
+  "totalFiles": 34,
+  "totalRows": 282180,
+  "totalBytes": 36877354,
   "problems": [],
   "files": [
     {
@@ -292,6 +292,82 @@
         "name",
         "market",
         "sector"
+      ],
+      "duplicateCodes": 0,
+      "warnings": [],
+      "problems": []
+    },
+    {
+      "name": "monthly-price-history.csv",
+      "bytes": 3755598,
+      "rows": 131171,
+      "columns": 4,
+      "headers": [
+        "code",
+        "month",
+        "close",
+        "source"
+      ],
+      "duplicateCodes": 3713,
+      "warnings": [],
+      "problems": []
+    },
+    {
+      "name": "monthly-signal-backtest.csv",
+      "bytes": 29985534,
+      "rows": 131171,
+      "columns": 21,
+      "headers": [
+        "month",
+        "code",
+        "name",
+        "market",
+        "sector",
+        "close",
+        "buyLine",
+        "sellGuidePrice",
+        "targetPrice",
+        "buyRatio",
+        "upside",
+        "pbr",
+        "per",
+        "netCashRatio",
+        "signal",
+        "reason",
+        "forward1m",
+        "forward3m",
+        "forward6m",
+        "metricSource",
+        "dataStatus"
+      ],
+      "duplicateCodes": 3713,
+      "warnings": [
+        "サイズが大きい 29985534 bytes"
+      ],
+      "problems": []
+    },
+    {
+      "name": "monthly-signal-summary.csv",
+      "bytes": 4924,
+      "rows": 41,
+      "columns": 16,
+      "headers": [
+        "month",
+        "universeCount",
+        "priceAvailableCount",
+        "analyzedCount",
+        "nowBuyCount",
+        "nearBuyCount",
+        "sellCheckCount",
+        "waitCount",
+        "avoidCount",
+        "dataGapCount",
+        "fetchErrorCount",
+        "buyForward1mAvg",
+        "buyForward3mAvg",
+        "buyForward6mAvg",
+        "buyForward3mWinRate",
+        "topBuyCodes"
       ],
       "duplicateCodes": 0,
       "warnings": [],

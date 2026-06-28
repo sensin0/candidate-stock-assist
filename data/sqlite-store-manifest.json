@@ -1,9 +1,9 @@
 ﻿{
-  "generatedAt": "2026-06-28T06:26:30.173673+00:00",
+  "generatedAt": "2026-06-28T07:06:16.563624+00:00",
   "database": "data/candidate-stock-assist.sqlite",
-  "databaseBytes": 4317184,
-  "tables": 31,
-  "rows": 19797,
+  "databaseBytes": 44277760,
+  "tables": 34,
+  "rows": 282180,
   "integrity": "ok",
   "imported": [
     {
@@ -75,6 +75,27 @@
       "rows": 3728,
       "columns": 4,
       "bytes": 281383
+    },
+    {
+      "table": "monthly_price_history",
+      "csv": "monthly-price-history.csv",
+      "rows": 131171,
+      "columns": 4,
+      "bytes": 3755598
+    },
+    {
+      "table": "monthly_signal_backtest",
+      "csv": "monthly-signal-backtest.csv",
+      "rows": 131171,
+      "columns": 21,
+      "bytes": 29985534
+    },
+    {
+      "table": "monthly_signal_summary",
+      "csv": "monthly-signal-summary.csv",
+      "rows": 41,
+      "columns": 16,
+      "bytes": 4924
     },
     {
       "table": "multibagger_candidates",

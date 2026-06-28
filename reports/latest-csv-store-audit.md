@@ -1,10 +1,10 @@
 # CSVストア監査
 
-生成日時: 2026-06-28T06:26:29.270Z
+生成日時: 2026-06-28T07:06:08.054Z
 
-CSVファイル: 31件
-総行数: 19,797行
-総サイズ: 3.13MB
+CSVファイル: 34件
+総行数: 282,180行
+総サイズ: 36.88MB
 問題: 0件
 
 ## 判定
@@ -18,6 +18,8 @@ CSVファイル: 31件
 
 ## 大きいCSV
 
+- monthly-signal-backtest.csv: 131,171行 / 29.99MB
+- monthly-price-history.csv: 131,171行 / 3.76MB
 - universe-financial-facts.csv: 3,728行 / 784.27KB
 - universe-check-status.csv: 3,728行 / 755.07KB
 - universe-price-backtest.csv: 3,728行 / 639.19KB
@@ -36,6 +38,9 @@ CSVファイル: 31件
 - financial-worklist-screened.csv: 58行 / 21列 / 19.28KB
 - hidden-gems.csv: 200行 / 24列 / 79.14KB
 - listed-universe.csv: 3,728行 / 4列 / 281.38KB
+- monthly-price-history.csv: 131,171行 / 4列 / 3.76MB
+- monthly-signal-backtest.csv: 131,171行 / 21列 / 29.99MB / 注意: サイズが大きい 29985534 bytes
+- monthly-signal-summary.csv: 41行 / 16列 / 4.92KB
 - multibagger-candidates.csv: 217行 / 17列 / 76.13KB
 - price-backtest-results.csv: 60行 / 18列 / 8.24KB
 - price-refresh-queue.csv: 0行 / 14列 / 118B
