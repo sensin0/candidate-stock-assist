@@ -20,6 +20,7 @@ const steps = [
   ["自動昇格候補を含めたバックテスト", "scripts/backtest-timing.mjs"],
   ["自動昇格候補を通常候補データへ反映", "scripts/update-data.mjs"],
   ["2倍候補調査", "scripts/analyze-multibagger-candidates.mjs"],
+  ["SQLiteストア生成", "scripts/run-sqlite-store.mjs"],
   ["通常候補への昇格候補抽出", "scripts/build-promotion-candidates.mjs"],
   ["通常候補入力下書き生成", "scripts/build-stock-master-draft-from-promotions.mjs"],
   ["通常候補追加プレビュー生成", "scripts/build-stock-master-expanded-preview.mjs"],
@@ -36,10 +37,10 @@ const steps = [
   ["昇格後のバックテスト再更新", "scripts/backtest-timing.mjs"],
   ["昇格後の通常候補データ再生成", "scripts/update-data.mjs"],
   ["自動財務確認の後追い確認レポート生成", "scripts/build-auto-financial-followup.mjs"],
+  ["SQLiteストア再生成", "scripts/run-sqlite-store.mjs"],
   ["画面用調査データ生成", "scripts/build-research-data.mjs"],
   ["日本株全体分析サマリー生成", "scripts/build-universe-analysis-summary.mjs"],
   ["CSVストア監査", "scripts/audit-csv-store.mjs"],
-  ["SQLiteストア生成", "scripts/run-sqlite-store.mjs"],
   ["本番化残作業レポート生成", "scripts/build-production-next-steps.mjs"],
 ];
 

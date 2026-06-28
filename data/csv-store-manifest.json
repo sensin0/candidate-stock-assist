@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-28T12:43:28.921Z",
+  "generatedAt": "2026-06-28T12:55:40.174Z",
   "totalFiles": 34,
   "totalRows": 282482,
-  "totalBytes": 37016662,
+  "totalBytes": 37014338,
   "problems": [],
   "files": [
     {
@@ -471,9 +471,9 @@
     },
     {
       "name": "promotion-candidates.csv",
-      "bytes": 58738,
+      "bytes": 56414,
       "rows": 150,
-      "columns": 17,
+      "columns": 18,
       "headers": [
         "priority",
         "code",
@@ -484,6 +484,7 @@
         "action",
         "signal",
         "strategy",
+        "reviewStatus",
         "score",
         "winRate",
         "averageReturn",

@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCsvRecords } from "./csv-utils.mjs";
+import { sqliteFreshFor, tableRows } from "./sqlite-utils.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dataDir = path.join(rootDir, "data");
@@ -15,13 +16,23 @@ const universeMetricsCsv = path.join(dataDir, "universe-metrics.csv");
 const monthlyPriceHistoryCsv = path.join(dataDir, "monthly-price-history.csv");
 const outputJs = path.join(appDir, "generated-research.js");
 
-const universeRows = readCsv(universeCsv);
-const listedUniverseByCode = new Map(readCsv(listedUniverseCsv).map((row) => [row.code, row]));
-const metricsByCode = new Map(readCsv(universeMetricsCsv).map((row) => [row.code, row]));
-const monthlyHistoryByCode = groupMonthlyHistory(readCsv(monthlyPriceHistoryCsv));
-const multibaggerRows = readCsv(multibaggerCsv);
-const universeBuyCandidateRows = readCsv(universeBuyCandidatesCsv);
-const universeBuyCandidateReviewByCode = new Map(readCsv(universeBuyCandidateReviewCsv).map((row) => [row.code, row]));
+const sqliteInputs = [
+  universeCsv,
+  listedUniverseCsv,
+  universeMetricsCsv,
+  monthlyPriceHistoryCsv,
+  multibaggerCsv,
+  universeBuyCandidatesCsv,
+  universeBuyCandidateReviewCsv,
+];
+const useSqlite = sqliteFreshFor(sqliteInputs);
+const universeRows = readTable("universe_price_backtest", universeCsv);
+const listedUniverseByCode = new Map(readTable("listed_universe", listedUniverseCsv).map((row) => [row.code, row]));
+const metricsByCode = new Map(readTable("universe_metrics", universeMetricsCsv).map((row) => [row.code, row]));
+const monthlyHistoryByCode = groupMonthlyHistory(readTable("monthly_price_history", monthlyPriceHistoryCsv));
+const multibaggerRows = readTable("multibagger_candidates", multibaggerCsv);
+const universeBuyCandidateRows = readTable("universe_buy_candidates", universeBuyCandidatesCsv);
+const universeBuyCandidateReviewByCode = new Map(readTable("universe_buy_candidate_review", universeBuyCandidateReviewCsv).map((row) => [row.code, row]));
 
 const universeSuccess = universeRows.filter((row) => !row.error).length;
 const universeAll = universeRows
@@ -97,6 +108,7 @@ const autoBuyCandidates = universeBuyCandidateRows.slice(0, 120).map((row) => {
 const payload = {
   generatedAt: new Date().toISOString(),
   source: "data/universe-price-backtest.csv + data/multibagger-candidates.csv",
+  store: useSqlite ? "sqlite:data/candidate-stock-assist.sqlite" : "csv:fallback",
   universe: {
     total: universeRows.length,
     success: universeSuccess,
@@ -119,6 +131,11 @@ console.log(`画面用調査データを生成しました: ${outputJs}`);
 function readCsv(filePath) {
   if (!fs.existsSync(filePath)) return [];
   return parseCsvRecords(fs.readFileSync(filePath, "utf8"));
+}
+
+function readTable(tableName, csvPath) {
+  if (useSqlite) return tableRows(tableName);
+  return readCsv(csvPath);
 }
 
 function number(value) {

@@ -1,5 +1,5 @@
 ﻿{
-  "generatedAt": "2026-06-28T12:43:38.228363+00:00",
+  "generatedAt": "2026-06-28T12:55:36.885622+00:00",
   "database": "data/candidate-stock-assist.sqlite",
   "databaseBytes": 44437504,
   "tables": 34,
@@ -129,8 +129,8 @@
       "table": "promotion_candidates",
       "csv": "promotion-candidates.csv",
       "rows": 150,
-      "columns": 17,
-      "bytes": 58738
+      "columns": 18,
+      "bytes": 56414
     },
     {
       "table": "promotion_readiness",

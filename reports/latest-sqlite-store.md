@@ -1,6 +1,6 @@
 ﻿# SQLiteストア
 
-生成日時: 2026-06-28T12:43:38.228363+00:00
+生成日時: 2026-06-28T12:55:36.885622+00:00
 
 DB: `data/candidate-stock-assist.sqlite`
 テーブル: 34件
@@ -10,9 +10,9 @@ DBサイズ: 44.44MB
 
 ## 方針
 
-- CSVを正本として残し、SQLiteは毎回自動再構築します。
-- 検索、結合、履歴分析、バックテスト集計をSQLiteへ順次寄せられます。
-- DBファイルは生成物なのでGit管理しません。監査結果だけ追跡します。
+- SQLiteを検索、結合、ランキング生成の正本にします。
+- CSVは外部取得、手動確認、Git差分確認、バックアップ用に残します。
+- DBファイルはCSVから毎回自動再構築します。監査結果だけ追跡します。
 
 ## 大きいテーブル
 
@@ -25,7 +25,7 @@ DBサイズ: 44.44MB
 - universe_price_backtest: 3,728行 / 19列 / 元CSV `universe-price-backtest.csv`
 - multibagger_candidates: 217行 / 17列 / 元CSV `multibagger-candidates.csv`
 - hidden_gems: 200行 / 24列 / 元CSV `hidden-gems.csv`
-- promotion_candidates: 150行 / 17列 / 元CSV `promotion-candidates.csv`
+- promotion_candidates: 150行 / 18列 / 元CSV `promotion-candidates.csv`
 - universe_buy_candidate_review: 120行 / 21列 / 元CSV `universe-buy-candidate-review.csv`
 - universe_buy_candidates: 120行 / 26列 / 元CSV `universe-buy-candidates.csv`
 
