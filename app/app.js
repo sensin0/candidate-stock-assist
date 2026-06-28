@@ -2728,6 +2728,10 @@ function renderLynchChart(stock) {
   const height = 360;
   const pad = { left: 62, right: 36, top: 38, bottom: 86 };
   const bps = Number(stock.bps || 0);
+  const adjustedBps = lynchBps(stock);
+  const usesAdjustedBps = Math.abs(adjustedBps - bps) >= Math.max(1, bps * 0.03);
+  const pbrLabel = usesAdjustedBps ? "修正PBR" : "PBR";
+  const chartBasis = usesAdjustedBps ? "修正BPS×PBR" : "BPS×PBR";
   const perLow = Number(stock.perLow || 0) > 0 ? Number(stock.perLow) : Math.max(1, Number(stock.pbrLow || 0) * 20);
   const perAvg = Number(stock.perAvg || 0) > 0 ? Number(stock.perAvg) : Math.max(perLow, (perLow + Number(stock.perHigh || perLow * 1.6)) / 2);
   const perHigh = Number(stock.perHigh || 0) > 0 ? Number(stock.perHigh) : Math.max(perAvg * 1.35, perAvg + 4);
@@ -2735,7 +2739,7 @@ function renderLynchChart(stock) {
   const pbrAvg = Number(stock.pbrAvg || 0) > 0 ? Number(stock.pbrAvg) : Math.max(pbrLow, (pbrLow + Number(stock.pbrHigh || pbrLow * 1.6)) / 2);
   const pbrHigh = Number(stock.pbrHigh || 0) > 0 ? Number(stock.pbrHigh) : Math.max(pbrAvg * 1.35, pbrAvg + 0.25);
   const epsSeries = estimatedEpsSeries(stock.history.length, eps);
-  const bpsSeries = estimatedBpsSeries(stock.history.length, bps);
+  const bpsSeries = estimatedBpsSeries(stock.history.length, adjustedBps);
   const perLowSeries = epsSeries.map((value) => value * perLow);
   const perFairSeries = epsSeries.map((value) => value * perAvg);
   const perHighSeries = epsSeries.map((value) => value * perHigh);
@@ -2777,13 +2781,13 @@ function renderLynchChart(stock) {
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${y(min * 1.08)}" y2="${y(min * 1.08)}" stroke="#edf1ed" />
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${y((min + max) / 2)}" y2="${y((min + max) / 2)}" stroke="#edf1ed" />
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${y(max * 0.92)}" y2="${y(max * 0.92)}" stroke="#edf1ed" />
-      <text x="${pad.left}" y="22" font-size="13" fill="#65706b">簡易リンチ・チャート: 株価 / EPS×PER / BPS×PBR</text>
+      <text x="${pad.left}" y="22" font-size="13" fill="#65706b">簡易リンチ・チャート: 株価 / EPS×PER / ${chartBasis}</text>
       ${valueLine(perHighSeries, "#c44536", `PER上限 ${Math.round(perHigh * 10) / 10}`, "8 6")}
       ${valueLine(perFairSeries, "#246a9f", `PER標準 ${Math.round(perAvg * 10) / 10}`)}
       ${valueLine(perLowSeries, "#1f8a55", `PER下限 ${Math.round(perLow * 10) / 10}`, "5 5")}
-      ${valueLine(pbrHighSeries, "#d58b73", `PBR上限 ${Math.round(pbrHigh * 100) / 100}`, "3 7", 12, 1.8)}
-      ${valueLine(pbrFairSeries, "#7d9fbd", `PBR標準 ${Math.round(pbrAvg * 100) / 100}`, "3 7", 24, 1.8)}
-      ${valueLine(pbrLowSeries, "#78a889", `PBR下限 ${Math.round(pbrLow * 100) / 100}`, "3 7", 36, 1.8)}
+      ${valueLine(pbrHighSeries, "#d58b73", `${pbrLabel}上限 ${Math.round(pbrHigh * 100) / 100}`, "3 7", 12, 1.8)}
+      ${valueLine(pbrFairSeries, "#7d9fbd", `${pbrLabel}標準 ${Math.round(pbrAvg * 100) / 100}`, "3 7", 24, 1.8)}
+      ${valueLine(pbrLowSeries, "#78a889", `${pbrLabel}下限 ${Math.round(pbrLow * 100) / 100}`, "3 7", 36, 1.8)}
       <polyline points="${pricePoints}" fill="none" stroke="#1d2522" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
       <circle cx="${x(stock.history.length - 1)}" cy="${y(stock.price)}" r="7" fill="${calloutColor}" />
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${height - pad.bottom}" y2="${height - pad.bottom}" stroke="#d9dfdb" />
@@ -2803,9 +2807,19 @@ function renderLynchChart(stock) {
         <line x1="326" x2="350" y1="0" y2="0" stroke="#c44536" stroke-width="2.4" stroke-dasharray="8 6" />
         <text x="358" y="4" font-size="12" fill="#65706b">PER上限</text>
       </g>
-      <text x="${pad.left}" y="${height - 14}" font-size="12" fill="#65706b">PER/PBRラインは現在EPS/BPSからの推定です。本来は過去EPS/BPSと月次株価で更新します。</text>
+      <text x="${pad.left}" y="${height - 14}" font-size="12" fill="#65706b">PER/${pbrLabel}ラインは現在EPS/${usesAdjustedBps ? "修正BPS" : "BPS"}からの推定です。本来は過去EPS/BPSと月次株価で更新します。</text>
     </svg>
   `;
+}
+
+function lynchBps(stock) {
+  const bps = Number(stock.bps || 0);
+  const modifiedAssets = Number(stock.modifiedAssets || 0);
+  const effectiveShares = Math.max(1, Number(stock.shares || 0) - Number(stock.treasuryShares || 0));
+  if (!Number.isFinite(modifiedAssets) || modifiedAssets <= 0 || effectiveShares <= 0) return bps;
+  const adjustedBps = (modifiedAssets * 1_000_000) / effectiveShares;
+  if (!Number.isFinite(adjustedBps) || adjustedBps <= 0) return bps;
+  return Math.max(bps, adjustedBps);
 }
 
 function estimatedHistoryDates(stock) {
