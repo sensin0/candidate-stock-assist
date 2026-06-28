@@ -35,21 +35,33 @@ export function timingInputs(stock) {
   const perTarget = stock.eps > 0 && stock.perHigh > 0 ? stock.eps * stock.perHigh : pbrTarget;
   const buyLine = Math.max(1, Math.min(pbrBuy, perBuy));
   const targetPrice = Math.max(pbrTarget, perTarget, buyLine * 1.5);
-  return { buyLine, targetPrice };
+  const sellGuidePrice = practicalSellGuidePrice({ ...stock, buyLine, targetPrice });
+  return { buyLine, targetPrice, sellGuidePrice };
+}
+
+export function practicalSellGuidePrice(stock) {
+  const price = Number(stock.price || 0);
+  const buyLine = Number(stock.buyLine || 0);
+  const targetPrice = Number(stock.targetPrice || 0);
+  const history = Array.isArray(stock.history) ? stock.history.filter((value) => Number.isFinite(value) && value > 0) : [];
+  const recentHigh = Math.max(price, ...history);
+  const firstProfit = Math.max(price * 1.2, buyLine * 1.25, recentHigh * 1.05);
+  if (!Number.isFinite(targetPrice) || targetPrice <= 0) return firstProfit;
+  return Math.max(1, Math.min(targetPrice * 0.9, firstProfit));
 }
 
 export function backtestStock(stock) {
   const history = Array.isArray(stock.history) ? stock.history.filter((value) => Number.isFinite(value) && value > 0) : [];
-  const { buyLine, targetPrice } = timingInputs(stock);
-  const results = timingStrategies.map((strategy) => runStrategy({ history, buyLine, targetPrice, strategy }));
+  const { buyLine, targetPrice, sellGuidePrice } = timingInputs(stock);
+  const results = timingStrategies.map((strategy) => runStrategy({ history, buyLine, targetPrice: sellGuidePrice, strategy }));
   const ranked = [...results].sort((a, b) => strategyScore(b) - strategyScore(a));
   const best = ranked[0] ?? emptyResult(timingStrategies[0]);
   return {
     bestStrategyId: best.strategyId,
     bestStrategyLabel: best.strategyLabel,
-    timingLabel: timingLabel({ stock, buyLine, targetPrice, best }),
+    timingLabel: timingLabel({ stock, buyLine, targetPrice: sellGuidePrice, best }),
     buyTiming: buyTimingText(best, buyLine),
-    sellTiming: sellTimingText(best, targetPrice),
+    sellTiming: sellTimingText(best, sellGuidePrice),
     confidence: confidenceLabel(best),
     sampleCount: history.length,
     trades: best.trades,
@@ -164,9 +176,9 @@ function buyTimingText(result, buyLine) {
   return `買いライン到達 (${formatYen(buyLine)}以下)`;
 }
 
-function sellTimingText(result, targetPrice) {
-  if (result.strategyId === "early-value") return `目標の85%付近 (${formatYen(targetPrice * 0.85)}目安)`;
-  return `目標の90%付近 (${formatYen(targetPrice * 0.9)}目安)`;
+function sellTimingText(result, sellGuidePrice) {
+  if (result.strategyId === "early-value") return `第一利確の85%付近 (${formatYen(sellGuidePrice * 0.85)}目安)`;
+  return `第一利確目安 (${formatYen(sellGuidePrice)}付近)`;
 }
 
 function average(values) {

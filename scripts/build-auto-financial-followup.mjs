@@ -29,7 +29,7 @@ fs.writeFileSync(outputJs, `window.AUTO_FINANCIAL_FOLLOWUP = ${JSON.stringify(bu
 console.log(`自動財務確認レポートを作成しました: ${targets.length}件`);
 
 function buildFollowup(stock) {
-  const { buyLine, targetPrice } = timingInputs(stock);
+  const { buyLine, targetPrice, sellGuidePrice } = timingInputs(stock);
   const backtest = backtestStock(stock);
   const marketCap = ((stock.price * Math.max(0, stock.shares - stock.treasuryShares)) / 1_000_000) || 0;
   const netCash = stock.cash + stock.securities + stock.investmentSecurities - stock.interestDebt;
@@ -59,6 +59,7 @@ function buildFollowup(stock) {
     price: stock.price,
     buyLine,
     targetPrice,
+    sellGuidePrice,
     upside,
     pbr,
     per,
@@ -224,6 +225,7 @@ function toCsv(rows) {
     "price",
     "buyLine",
     "targetPrice",
+    "sellGuidePrice",
     "upside",
     "pbr",
     "per",

@@ -329,6 +329,17 @@ function effectiveMarketCap(stock) {
   return (stock.price * (stock.shares - stock.treasuryShares)) / 1_000_000;
 }
 
+function practicalSellGuidePrice(stock) {
+  const price = Number(stock.price || 0);
+  const buyLine = Number(stock.buyLine || 0);
+  const targetPrice = Number(stock.targetPrice || 0);
+  const history = Array.isArray(stock.history) ? stock.history.filter((value) => Number.isFinite(value) && value > 0) : [];
+  const recentHigh = Math.max(price, ...history);
+  const firstProfit = Math.max(price * 1.2, buyLine * 1.25, recentHigh * 1.05);
+  if (!Number.isFinite(targetPrice) || targetPrice <= 0) return firstProfit;
+  return Math.max(1, Math.min(targetPrice * 0.9, firstProfit));
+}
+
 function calculate(stock) {
   const dataFreshness = evaluateDataFreshness(stock);
   const marketCap = effectiveMarketCap(stock);
@@ -346,9 +357,10 @@ function calculate(stock) {
   const perTarget = stock.eps > 0 && stock.perHigh > 0 ? stock.eps * stock.perHigh : pbrTarget;
   const buyLine = Math.max(1, Math.min(pbrBuy, perBuy));
   const targetPrice = Math.max(pbrTarget, perTarget, buyLine * 1.5);
+  const sellGuidePrice = practicalSellGuidePrice({ ...stock, buyLine, targetPrice });
   const upside = (targetPrice / stock.price - 1) * 100;
   const buyRatio = stock.price / buyLine;
-  const backtest = normalizeBacktest(stock.backtest, { ...stock, buyLine, targetPrice });
+  const backtest = normalizeBacktest(stock.backtest, { ...stock, buyLine, targetPrice, sellGuidePrice });
   const netCashRatio = netCash / marketCap;
   const nonBusinessAssetRatio = nonBusinessAssets / marketCap;
   const intrinsicValueRatio = intrinsicValue / marketCap;
@@ -376,6 +388,7 @@ function calculate(stock) {
     intrinsicValue,
     buyLine,
     targetPrice,
+    sellGuidePrice,
     upside,
     buyRatio,
     netCashRatio,
@@ -397,7 +410,7 @@ function normalizeBacktest(backtest, stock) {
     bestStrategyLabel: "買いライン到達で買い",
     timingLabel: sampleCount >= 4 ? "参考" : "未検証",
     buyTiming: `買いライン到達 (${yen(stock.buyLine)}以下)`,
-    sellTiming: `目標の90%付近 (${yen(stock.targetPrice * 0.9)}目安)`,
+    sellTiming: `第一利確目安 (${yen(stock.sellGuidePrice)}付近)`,
     confidence: sampleCount >= 4 ? "参考" : "未検証",
     sampleCount,
     trades: 0,
@@ -490,17 +503,17 @@ function assistFor(stock) {
     ], ["悪化理由を確認", "現金の減り方を確認"]);
   }
 
-  if (stock.held && stock.price >= stock.targetPrice) {
+  if (stock.held && stock.price >= stock.sellGuidePrice) {
     return makeAssist("今売り検討", "label-sell", [
-      "目標株価に到達しています",
+      "第一利確目安に到達しています",
       "安全域が小さくなっています",
       "代替候補と比較してください",
     ], ["保有比率を確認", "税金と入れ替え候補を確認"]);
   }
 
-  if (stock.held && stock.price >= stock.targetPrice * 0.9) {
+  if (stock.held && stock.price >= stock.sellGuidePrice * 0.9) {
     return makeAssist("一部利益確定検討", "label-sell", [
-      "目標株価に近づいています",
+      "第一利確目安に近づいています",
       "上昇余地が小さくなっています",
     ], ["売却ではなく一部調整も検討", "他候補の安全域を確認"]);
   }
@@ -553,7 +566,7 @@ function assistFor(stock) {
   if (stock.buyRatio <= 1 && stock.upside >= 50 && stock.score >= 70 && stock.qualitativeDone && freshEnough) {
     return makeAssist("今買い候補", "label-buy", [
       "買いラインを下回っています",
-      `目標株価まで${pct(stock.upside)}の余地があります`,
+      `理論上限まで${pct(stock.upside)}の余地があります`,
       isGoodBacktest(stock.backtest)
         ? `検証平均リターンが${pct(stock.backtest.averageReturn)}です`
         : `非事業資産倍率が${times(stock.nonBusinessAssetRatio)}あります`,
@@ -563,14 +576,14 @@ function assistFor(stock) {
   if (stock.buyRatio <= 1.05 && stock.upside >= 50) {
     return makeAssist("買い場に近い", "label-near", [
       "買い目安にかなり近いです",
-      `目標株価まで${pct(stock.upside)}の余地があります`,
+      `理論上限まで${pct(stock.upside)}の余地があります`,
       isGoodBacktest(stock.backtest) ? `検証勝率は${pct(stock.backtest.winRate)}です` : "バックテストは参考扱いです",
     ], ["有報確認が完了しているか確認", "買いラインの根拠を確認"]);
   }
 
   if (stock.held) {
     return makeAssist("保有継続候補", "label-near", [
-      "目標株価まで余地があります",
+      "理論上限まで余地があります",
       "重大なリスク警告はありません",
     ], ["保有比率を確認", "次回決算予定を確認"]);
   }
@@ -1329,7 +1342,8 @@ function renderInlineStockSummary(stock) {
     ["判断", stock.assist.label],
     ["株価", yen(stock.price)],
     ["買い", yen(stock.buyLine)],
-    ["売り目安", yen(stock.targetPrice)],
+    ["第一利確", yen(stock.sellGuidePrice)],
+    ["理論上限", yen(stock.targetPrice)],
     ["上昇余地", pct(stock.upside)],
     ["修正PBR", times(stock.modifiedPbr)],
     ["勝率", pct(stock.backtest?.winRate ?? 0)],
@@ -1364,7 +1378,8 @@ function renderInlineResearchSummary(item, type) {
     ["判断", item.reviewStatus || item.status || item.signal || "確認"],
     ["株価", item.price ? yen(item.price) : "-"],
     ["買い", item.buyLine ? yen(item.buyLine) : "-"],
-    ["売り目安", item.targetPrice ? yen(item.targetPrice) : "-"],
+    ["第一利確", item.sellGuidePrice ? yen(item.sellGuidePrice) : item.price ? yen(item.price * 1.2) : "-"],
+    ["理論上限", item.targetPrice ? yen(item.targetPrice) : "-"],
     ["買い比率", item.buyRatio ? times(item.buyRatio) : "-"],
     ["上昇余地", item.upside != null ? pct(item.upside) : "-"],
     ["勝率", item.winRate != null ? pct(item.winRate) : "-"],
@@ -2361,8 +2376,8 @@ function lifecycleStages(stock) {
       tone: holdActive ? "tone-hold" : "",
       message: stock.held
         ? "保有中です。目標株価までの距離と悪材料の有無を見ます。"
-        : "買った後は、目標株価・決算悪化・買い増し条件を先に決めます。",
-      check: `目標 ${yen(stock.targetPrice)} / 上昇余地 ${pct(stock.upside)}`,
+        : "買った後は、第一利確・決算悪化・買い増し条件を先に決めます。",
+      check: `第一利確 ${yen(stock.sellGuidePrice)} / 理論上限 ${yen(stock.targetPrice)}`,
     },
     {
       title: "売る時",
@@ -2370,8 +2385,8 @@ function lifecycleStages(stock) {
       tone: sellActive ? "tone-sell" : "",
       message: sellActive
         ? "売り検討ゾーンです。一括売りか一部利益確定かを確認します。"
-        : "目標到達、決算悪化、資産価値の低下で売り判断します。",
-      check: stock.backtest?.sellTiming ?? `目標の90%付近 ${yen(stock.targetPrice * 0.9)}`,
+        : "第一利確到達、決算悪化、資産価値の低下で売り判断します。",
+      check: stock.backtest?.sellTiming ?? `第一利確目安 ${yen(stock.sellGuidePrice)}`,
     },
     {
       title: "見送る時",
@@ -2552,6 +2567,8 @@ function renderMetrics(stock) {
     ["修正PBR", times(stock.modifiedPbr)],
     ["不動産含み益/時価総額", times(stock.realEstateGainRatio)],
     ["買いライン接近率", times(stock.buyRatio)],
+    ["第一利確目安", yen(stock.sellGuidePrice)],
+    ["理論上限", yen(stock.targetPrice)],
     ["上昇余地", pct(stock.upside)],
     ["総合スコア", `${stock.score}点`],
   ];
@@ -2578,18 +2595,18 @@ function renderChart(stock) {
   const width = 880;
   const height = 330;
   const pad = { left: 58, right: 28, top: 28, bottom: 42 };
-  const values = [...stock.history, stock.buyLine, stock.targetPrice, stock.price];
+  const values = [...stock.history, stock.buyLine, stock.sellGuidePrice, stock.price];
   const min = Math.max(1, Math.min(...values) * 0.82);
   const max = Math.max(...values) * 1.12;
   const x = (index) => pad.left + (index / Math.max(1, stock.history.length - 1)) * (width - pad.left - pad.right);
   const y = (value) => pad.top + (1 - (value - min) / (max - min)) * (height - pad.top - pad.bottom);
   const points = stock.history.map((value, index) => `${x(index)},${y(value)}`).join(" ");
   const buyY = y(stock.buyLine);
-  const targetY = y(stock.targetPrice);
+  const sellGuideY = y(stock.sellGuidePrice);
   const currentX = x(stock.history.length - 1);
   const currentY = y(stock.price);
   const buyZoneHeight = Math.max(0, height - pad.bottom - buyY);
-  const sellZoneHeight = Math.max(0, targetY - pad.top);
+  const sellZoneHeight = Math.max(0, sellGuideY - pad.top);
   const assistText = stock.assist.label === "今売り検討" || stock.assist.label === "一部利益確定検討"
     ? "ここから売り検討"
     : stock.assist.label === "今買い候補"
@@ -2606,7 +2623,7 @@ function renderChart(stock) {
       <rect x="${pad.left}" y="${buyY}" width="${width - pad.left - pad.right}" height="${buyZoneHeight}" fill="#dff3e8" />
       <rect x="${pad.left}" y="${pad.top}" width="${width - pad.left - pad.right}" height="${sellZoneHeight}" fill="#f7dedb" />
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${buyY}" y2="${buyY}" stroke="#1f8a55" stroke-width="2" stroke-dasharray="6 6" />
-      <line x1="${pad.left}" x2="${width - pad.right}" y1="${targetY}" y2="${targetY}" stroke="#c44536" stroke-width="2" stroke-dasharray="6 6" />
+      <line x1="${pad.left}" x2="${width - pad.right}" y1="${sellGuideY}" y2="${sellGuideY}" stroke="#c44536" stroke-width="2" stroke-dasharray="6 6" />
       <polyline points="${points}" fill="none" stroke="#246a9f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
       <circle cx="${currentX}" cy="${currentY}" r="7" fill="#1d2522" />
       <g transform="translate(${Math.min(currentX + 18, width - 250)}, ${Math.max(42, currentY - 50)})">
@@ -2615,7 +2632,7 @@ function renderChart(stock) {
         <text x="12" y="38" font-size="12" fill="#65706b">${stock.assist.reasons[0] ?? ""}</text>
       </g>
       <text x="${pad.left}" y="${buyY - 8}" font-size="12" fill="#1f8a55">ここで買い候補 ${yen(stock.buyLine)}</text>
-      <text x="${pad.left}" y="${targetY - 8}" font-size="12" fill="#c44536">目標株価 ${yen(stock.targetPrice)}</text>
+      <text x="${pad.left}" y="${sellGuideY - 8}" font-size="12" fill="#c44536">第一利確 ${yen(stock.sellGuidePrice)}</text>
       <text x="${currentX - 42}" y="${currentY + 24}" font-size="12" fill="#1d2522">現在 ${yen(stock.price)}</text>
       <text x="${pad.left}" y="${height - 12}" font-size="12" fill="#65706b">${timingText}</text>
     </svg>

@@ -56,7 +56,7 @@ function toCandidate(row) {
   const per = eps > 0 ? price / eps : 0;
   const netCash = number(row.cash) + number(row.securities) + number(row.investmentSecurities) - number(row.interestDebt);
   const netCashRatio = marketCap > 0 ? netCash / marketCap : 0;
-  const { buyLine, targetPrice } = timingInputs({ bps, eps, ...defaultTiming });
+  const { buyLine, targetPrice, sellGuidePrice } = timingInputs({ price, bps, eps, ...defaultTiming });
   const buyRatio = buyLine > 0 ? price / buyLine : 999;
   const upside = targetPrice > 0 ? (targetPrice / price - 1) * 100 : 0;
   const winRate = number(priceRow?.winRate);
@@ -97,6 +97,7 @@ function toCandidate(row) {
     price: round(price),
     buyLine: round(buyLine),
     targetPrice: round(targetPrice),
+    sellGuidePrice: round(sellGuidePrice),
     buyRatio: round(buyRatio),
     upside: round(upside),
     pbr: round(pbr),
@@ -190,6 +191,7 @@ function toCsv(rows) {
     "price",
     "buyLine",
     "targetPrice",
+    "sellGuidePrice",
     "buyRatio",
     "upside",
     "pbr",

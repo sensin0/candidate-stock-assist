@@ -68,6 +68,7 @@ const autoBuyCandidates = universeBuyCandidateRows.slice(0, 120).map((row) => {
     price: number(row.price),
     buyLine: number(row.buyLine),
     targetPrice: number(row.targetPrice),
+    sellGuidePrice: number(row.sellGuidePrice),
     buyRatio: number(row.buyRatio),
     upside: number(row.upside),
     pbr: number(row.pbr),

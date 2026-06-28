@@ -1,5 +1,5 @@
 window.AUTO_RESEARCH_DATA = {
-  "generatedAt": "2026-06-28T06:01:41.255Z",
+  "generatedAt": "2026-06-28T06:17:07.365Z",
   "source": "data/universe-price-backtest.csv + data/multibagger-candidates.csv",
   "universe": {
     "total": 3728,
@@ -81332,6 +81332,7 @@ window.AUTO_RESEARCH_DATA = {
       "price": 307,
       "buyLine": 284.95,
       "targetPrice": 2677.92,
+      "sellGuidePrice": 368.4,
       "buyRatio": 1.08,
       "upside": 772.29,
       "pbr": 0.69,
@@ -81366,6 +81367,7 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1478,
       "buyLine": 1467.9,
       "targetPrice": 3552.61,
+      "sellGuidePrice": 1834.87,
       "buyRatio": 1.01,
       "upside": 140.37,
       "pbr": 0.64,
@@ -81400,6 +81402,7 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1126,
       "buyLine": 1046.85,
       "targetPrice": 2599.2,
+      "sellGuidePrice": 1351.2,
       "buyRatio": 1.08,
       "upside": 130.83,
       "pbr": 0.69,

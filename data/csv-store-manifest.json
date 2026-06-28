@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-28T06:01:41.522Z",
+  "generatedAt": "2026-06-28T06:17:07.623Z",
   "totalFiles": 31,
   "totalRows": 19797,
-  "totalBytes": 3131102,
+  "totalBytes": 3131283,
   "problems": [],
   "files": [
     {
       "name": "auto-financial-followup.csv",
-      "bytes": 11230,
+      "bytes": 11386,
       "rows": 19,
-      "columns": 21,
+      "columns": 22,
       "headers": [
         "rank",
         "code",
@@ -21,6 +21,7 @@
         "price",
         "buyLine",
         "targetPrice",
+        "sellGuidePrice",
         "upside",
         "pbr",
         "per",
@@ -39,7 +40,7 @@
     },
     {
       "name": "backtest-results.csv",
-      "bytes": 7292,
+      "bytes": 7281,
       "rows": 35,
       "columns": 15,
       "headers": [
@@ -734,9 +735,9 @@
     },
     {
       "name": "universe-buy-candidates.csv",
-      "bytes": 1586,
+      "bytes": 1622,
       "rows": 3,
-      "columns": 25,
+      "columns": 26,
       "headers": [
         "rank",
         "code",
@@ -749,6 +750,7 @@
         "price",
         "buyLine",
         "targetPrice",
+        "sellGuidePrice",
         "buyRatio",
         "upside",
         "pbr",
