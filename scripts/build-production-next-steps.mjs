@@ -38,7 +38,9 @@ const worklistReady = worklist.filter((row) => row.confirmed === "true" && row.q
 const confirmedInputReady = confirmedInput.filter((row) => row.dataConfidence === "確認済み" || row.confirmed === "true").length;
 const autoFinancialConfirmed = runtimeStocks.filter((row) => row.dataConfidence === "自動財務確認").length;
 const autoFinancialPriority = autoFinancialFollowup.filter((row) => row.action === "決算短信と有報を先に確認" || row.action === "財務確認を進める").length;
-const autoFinancialWait = autoFinancialFollowup.filter((row) => row.action === "買いは後回し" || row.action === "価格履歴を先に増やす").length;
+const autoFinancialBuyLineWait = autoFinancialFollowup.filter((row) => row.action === "買いラインまで待つ").length;
+const autoFinancialPriceHistoryWait = autoFinancialFollowup.filter((row) => row.action === "価格履歴を先に増やす").length;
+const autoFinancialWait = autoFinancialFollowup.filter((row) => row.action === "買いは後回し" || row.action === "監視継続" || row.action === "買いラインまで待つ" || row.action === "価格履歴を先に増やす").length;
 const promotedNewCount = Number(generatedData?.autoPromotionUpdates ?? 0) || Math.max(0, runtimeStocks.length - stockMaster.length);
 const successfulBacktests = researchBacktest.filter((row) => !row.error).length;
 const goodBacktests = researchBacktest.filter((row) => row.judgement === "良さそう").length;
@@ -75,16 +77,18 @@ function buildTasks() {
     }),
     task({
       title: "株価更新キューの消化",
-      status: priceRefreshQueue.length ? "要対応" : "完了",
-      reason: `最新株価の確認待ちが${priceRefreshQueue.length}件あります。買い・売り判定に影響するものは${urgentPriceRefresh}件です。`,
+      status: priceRefreshQueue.length || autoFinancialPriceHistoryWait ? "要対応" : "完了",
+      reason: `最新株価の確認待ちが${priceRefreshQueue.length}件あります。買い・売り判定に影響するものは${urgentPriceRefresh}件、自動財務確認の価格履歴不足は${autoFinancialPriceHistoryWait}件です。`,
       next: nextPriceRefresh
         ? `${nextPriceRefresh.code} ${nextPriceRefresh.name} の最新株価を price-updates.csv に追加`
-        : "株価更新待ちはありません",
+        : autoFinancialPriceHistoryWait
+          ? "価格履歴不足は新しい日次データが蓄積されるまで買い判断に使わない"
+          : "株価更新待ちはありません",
     }),
     task({
       title: "確認済み候補の通常候補昇格",
       status: confirmedInputReady || worklistReady || promotedNewCount || autoFinancialConfirmed ? "確認中" : "要対応",
-      reason: `確認済み入力 ${confirmedInputReady}件 / 自動財務確認 ${autoFinancialConfirmed}件 / 優先確認 ${autoFinancialPriority}件 / 後回し ${autoFinancialWait}件 / ワークシート確認済み ${worklistReady}件 / 昇格プレビュー追加 ${promotedNewCount}件です。`,
+      reason: `確認済み入力 ${confirmedInputReady}件 / 自動財務確認 ${autoFinancialConfirmed}件 / 優先確認 ${autoFinancialPriority}件 / 買いライン待ち ${autoFinancialBuyLineWait}件 / 価格履歴不足 ${autoFinancialPriceHistoryWait}件 / 後回し ${autoFinancialWait}件 / ワークシート確認済み ${worklistReady}件 / 昇格プレビュー追加 ${promotedNewCount}件です。`,
       next: autoFinancialConfirmed ? "latest-auto-financial-followup.md を見て、優先確認だけ決算短信と有報を後追い確認" : "確認済みになったものを financial-confirmed-input.csv に入れて npm run financial:promote",
     }),
     task({
@@ -130,6 +134,9 @@ function writeReport(tasks) {
     `通常候補: ${runtimeStocks.length}件`,
     `うち自動昇格反映: ${promotedNewCount}件`,
     `自動財務確認: ${autoFinancialConfirmed}件`,
+    `自動財務確認の優先確認: ${autoFinancialPriority}件`,
+    `自動財務確認の買いライン待ち: ${autoFinancialBuyLineWait}件`,
+    `自動財務確認の価格履歴不足: ${autoFinancialPriceHistoryWait}件`,
     `日本株財務メトリクス: ${universeMetrics.length}/${universe.length}件`,
     `確認済み財務メトリクス: ${confirmedMetricCount}件`,
     `IRBANK自動取得財務メトリクス: ${irbankMetricCount}件`,

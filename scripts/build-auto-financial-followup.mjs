@@ -15,7 +15,7 @@ const stocks = parseStockCsv(fs.readFileSync(inputCsv, "utf8"));
 const targets = stocks
   .filter((stock) => stock.dataConfidence === "自動財務確認")
   .map(buildFollowup)
-  .sort((a, b) => b.followupScore - a.followupScore || a.buyDistance - b.buyDistance);
+  .sort(compareFollowup);
 
 fs.writeFileSync(outputCsv, toCsv(targets), "utf8");
 fs.writeFileSync(outputReport, buildReport(targets), "utf8");
@@ -59,6 +59,7 @@ function buildFollowup(stock) {
     netCashRatio,
     followupScore: score,
     action: actionLabel({ score, buyDistance, weakBacktest, noBacktest, backtest }),
+    buyDistance,
     timingLabel: backtest.timingLabel,
     buyTiming: backtest.buyTiming,
     sellTiming: backtest.sellTiming,
@@ -98,6 +99,21 @@ function actionLabel({ score, buyDistance, weakBacktest, noBacktest, backtest })
   return "監視継続";
 }
 
+function compareFollowup(a, b) {
+  return actionPriority(a) - actionPriority(b)
+    || b.followupScore - a.followupScore
+    || a.buyDistance - b.buyDistance;
+}
+
+function actionPriority(row) {
+  if (row.action === "決算短信と有報を先に確認") return 0;
+  if (row.action === "財務確認を進める") return 1;
+  if (row.action === "買いラインまで待つ") return 2;
+  if (row.action === "価格履歴を先に増やす") return 3;
+  if (row.action === "監視継続") return 4;
+  return 5;
+}
+
 function checkItems({ stock, netCashRatio, pbr, per, buyDistance, weakBacktest, noBacktest, backtest }) {
   const items = [
     "直近決算の現預金・有価証券・有利子負債を確認",
@@ -117,17 +133,27 @@ function checkItems({ stock, netCashRatio, pbr, per, buyDistance, weakBacktest, 
 
 function buildReport(rows) {
   const priority = rows.filter((row) => row.action === "決算短信と有報を先に確認" || row.action === "財務確認を進める");
-  const avoid = rows.filter((row) => ["買いは後回し", "価格履歴を先に増やす", "買いラインまで待つ"].includes(row.action));
+  const waitForBuyLine = rows.filter((row) => row.action === "買いラインまで待つ");
+  const priceHistory = rows.filter((row) => row.action === "価格履歴を先に増やす");
+  const avoid = rows.filter((row) => ["買いは後回し", "監視継続"].includes(row.action));
   return [
     "# 自動財務確認 後追い確認",
     "",
     `生成日時: ${new Date().toISOString()}`,
     `対象: ${rows.length}件`,
     `優先確認: ${priority.length}件`,
-    `後回し: ${avoid.length}件`,
+    `買いライン待ち: ${waitForBuyLine.length}件`,
+    `価格履歴不足: ${priceHistory.length}件`,
+    `後回し・見送り寄り: ${avoid.length}件`,
     "",
     "## 優先確認",
     ...markdownRows(priority.slice(0, 10)),
+    "",
+    "## 買いライン待ち",
+    ...markdownRows(waitForBuyLine.slice(0, 10)),
+    "",
+    "## 価格履歴不足",
+    ...markdownRows(priceHistory),
     "",
     "## 後回し・見送り寄り",
     ...markdownRows(avoid.slice(0, 10)),
@@ -139,6 +165,7 @@ function buildReport(rows) {
     "- 優先確認に出た銘柄だけ、決算短信と有報で現金・有価証券・借入・発行株数を後追い確認します。",
     "- 後回しに出た銘柄は、今買いに見えてもランキング上位へ上げません。",
     "- 買いラインまで待つ銘柄は、財務より先に価格が買い目安へ近づくまで待ちます。",
+    "- 価格履歴不足の銘柄は、価格データが増えるまで買い判断に使いません。",
     "- 確認できた銘柄だけ通常候補へ昇格させます。",
     "",
   ].join("\n");
