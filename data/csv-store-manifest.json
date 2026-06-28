@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-27T23:56:55.554Z",
+  "generatedAt": "2026-06-28T00:52:38.609Z",
   "totalFiles": 31,
   "totalRows": 19797,
-  "totalBytes": 3130059,
+  "totalBytes": 3130269,
   "problems": [],
   "files": [
     {
@@ -39,7 +39,7 @@
     },
     {
       "name": "backtest-results.csv",
-      "bytes": 7267,
+      "bytes": 7327,
       "rows": 35,
       "columns": 15,
       "headers": [
@@ -216,7 +216,7 @@
     },
     {
       "name": "financial-worklist-screened.csv",
-      "bytes": 19242,
+      "bytes": 19392,
       "rows": 58,
       "columns": 21,
       "headers": [

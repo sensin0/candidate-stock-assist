@@ -8,11 +8,17 @@ const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const dataDir = path.join(rootDir, "data");
 const reportsDir = path.join(rootDir, "reports");
 const appDir = path.join(rootDir, "app");
+const stockMasterPath = path.join(dataDir, "stock-master.csv");
 const worklistPath = path.join(dataDir, "financial-confirmation-worklist.csv");
 const outputCsvPath = path.join(dataDir, "financial-worklist-screened.csv");
 const outputReportPath = path.join(reportsDir, "latest-financial-worklist-screening.md");
 const outputJsPath = path.join(appDir, "generated-financial-screening.js");
 
+const reflectedCodes = new Set(
+  readCsv(stockMasterPath)
+    .filter((row) => row.dataConfidence === "確認済み" || row.dataConfidence === "自動財務確認")
+    .map((row) => row.code)
+);
 const rows = readCsv(worklistPath).map(screenRow).sort((a, b) => b.screenScore - a.screenScore);
 
 fs.writeFileSync(outputCsvPath, toCsv(rows), "utf8");
@@ -105,7 +111,8 @@ function screenRow(row) {
     reasons.push(`価格検証 勝率${pct(backtest.winRate / 100)} 平均${pct(backtest.averageReturn / 100)}`);
   }
 
-  const status = statusFor(score, missing);
+  const alreadyReflected = reflectedCodes.has(row.code);
+  const status = alreadyReflected ? "反映済み・後追い確認" : statusFor(score, missing);
   return {
     rank: row.priorityRank,
     code: row.code,
@@ -125,7 +132,7 @@ function screenRow(row) {
     backtestWinRate: backtest.winRate,
     backtestAverageReturn: backtest.averageReturn,
     backtestMaxDrawdown: backtest.maxDrawdown,
-    action: estimatedOnly ? "原資料確認まで通常候補へ自動昇格しない" : actionFor(status),
+    action: alreadyReflected ? "通常候補へ反映済み。買い判断は後追い確認と価格履歴を待つ" : estimatedOnly ? "原資料確認まで通常候補へ自動昇格しない" : actionFor(status),
     reasons: reasons.slice(0, 3).join(" / ") || "確認材料が不足",
     cautions: cautions.slice(0, 3).join(" / ") || "大きな注意なし",
   };
@@ -194,7 +201,7 @@ function actionFor(status) {
 
 function writeReport(items) {
   fs.mkdirSync(reportsDir, { recursive: true });
-  const groups = ["昇格確認優先", "慎重確認", "入力待ち", "見送り寄り"];
+  const groups = ["昇格確認優先", "反映済み・後追い確認", "慎重確認", "入力待ち", "見送り寄り"];
   const lines = [
     "# 財務確認候補スクリーニング",
     "",

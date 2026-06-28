@@ -32,6 +32,7 @@ const universeCoverage = universe.length ? pct(universeMetrics.length / universe
 const pendingFinancial = financialQueue.filter((row) => row.status === "最優先で財務確認").length;
 const autoFilledWorklist = worklist.filter((row) => row.status?.includes("自動入力")).length;
 const screenPromotionPriority = financialScreened.filter((row) => row.status === "昇格確認優先").length;
+const screenReflected = financialScreened.filter((row) => row.status === "反映済み・後追い確認").length;
 const screenInputWaiting = financialScreened.filter((row) => row.status === "入力待ち").length;
 const worklistReady = worklist.filter((row) => row.confirmed === "true" && row.qualitativeDone === "true").length;
 const confirmedInputReady = confirmedInput.filter((row) => row.dataConfidence === "確認済み" || row.confirmed === "true").length;
@@ -68,7 +69,9 @@ function buildTasks() {
       reason: `最優先の財務確認待ち${pendingFinancial}件 / 自動入力済み${autoFilledWorklist}件 / 昇格確認優先${screenPromotionPriority}件 / 入力待ち${screenInputWaiting}件です。`,
       next: screenInputWaiting > 0
         ? "入力待ちだけ追加取得し、取得できたものを自動スクリーニングへ回す"
-        : "昇格確認優先は自動財務確認として通常候補へ反映し、後追い確認レポートで見る",
+        : screenPromotionPriority > 0
+          ? "昇格確認優先は自動財務確認として通常候補へ反映し、後追い確認レポートで見る"
+          : "新規に通常候補へ上げる財務確認候補はありません。反映済み候補は後追い確認と価格履歴待ちで見る",
     }),
     task({
       title: "株価更新キューの消化",
@@ -135,6 +138,7 @@ function writeReport(tasks) {
     `最優先で財務確認: ${pendingFinancial}件`,
     `財務自動入力済み: ${autoFilledWorklist}件`,
     `昇格確認優先: ${screenPromotionPriority}件`,
+    `反映済み・後追い確認: ${screenReflected}件`,
     `財務入力待ち: ${screenInputWaiting}件`,
     `株価更新待ち: ${priceRefreshQueue.length}件`,
     `買い・売り判定に影響する株価更新: ${urgentPriceRefresh}件`,

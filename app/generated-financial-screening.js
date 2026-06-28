@@ -1,8 +1,8 @@
 window.AUTO_FINANCIAL_SCREENING = {
-  "generatedAt": "2026-06-27T23:44:02.477Z",
+  "generatedAt": "2026-06-28T00:51:15.440Z",
   "source": "data/financial-worklist-screened.csv",
   "total": 58,
-  "priorityCount": 2,
+  "priorityCount": 0,
   "cautionCount": 46,
   "top": [
     {
@@ -10,7 +10,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "code": "1814",
       "name": "大末建設",
       "sector": "建設業",
-      "status": "昇格確認優先",
+      "status": "反映済み・後追い確認",
       "screenScore": 88,
       "price": 3200,
       "marketCap": 32946.27,
@@ -24,7 +24,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "backtestWinRate": 0,
       "backtestAverageReturn": 0,
       "backtestMaxDrawdown": 0,
-      "action": "決算短信と有報を見て、問題なければconfirmed候補",
+      "action": "通常候補へ反映済み。買い判断は後追い確認と価格履歴を待つ",
       "reasons": "PER 8.53倍で利益面は軽い / ネットキャッシュあり 24.35% / 有利子負債は軽め",
       "cautions": "価格検証は売買回数0回なので参考扱い"
     },
@@ -33,7 +33,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "code": "4341",
       "name": "西菱電機",
       "sector": "サービス業",
-      "status": "昇格確認優先",
+      "status": "反映済み・後追い確認",
       "screenScore": 84,
       "price": 871,
       "marketCap": 2947.63,
@@ -47,7 +47,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "backtestWinRate": 0,
       "backtestAverageReturn": 0,
       "backtestMaxDrawdown": 0,
-      "action": "決算短信と有報を見て、問題なければconfirmed候補",
+      "action": "通常候補へ反映済み。買い判断は後追い確認と価格履歴を待つ",
       "reasons": "PBR 0.53倍で割安寄り / PER 14.03倍",
       "cautions": "価格検証は売買回数0回なので参考扱い"
     },
@@ -102,7 +102,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "code": "3123",
       "name": "サイボー",
       "sector": "繊維・不動産",
-      "status": "慎重確認",
+      "status": "反映済み・後追い確認",
       "screenScore": 72,
       "price": 625,
       "marketCap": 8927.38,
@@ -116,7 +116,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "backtestWinRate": 0,
       "backtestAverageReturn": 0,
       "backtestMaxDrawdown": 0,
-      "action": "負債、利益の継続性、材料の一過性を確認",
+      "action": "通常候補へ反映済み。買い判断は後追い確認と価格履歴を待つ",
       "reasons": "PBR 0.41倍で割安寄り / PER 8.09倍で利益面は軽い",
       "cautions": "ネット有利子負債が重い -97.7% / 価格検証は売買回数0回なので参考扱い"
     },
@@ -148,7 +148,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "code": "2484",
       "name": "出前館",
       "sector": "サービス",
-      "status": "慎重確認",
+      "status": "反映済み・後追い確認",
       "screenScore": 69,
       "price": 135,
       "marketCap": 16913.41,
@@ -162,7 +162,7 @@ window.AUTO_FINANCIAL_SCREENING = {
       "backtestWinRate": 0,
       "backtestAverageReturn": 0,
       "backtestMaxDrawdown": 0,
-      "action": "負債、利益の継続性、材料の一過性を確認",
+      "action": "通常候補へ反映済み。買い判断は後追い確認と価格履歴を待つ",
       "reasons": "PBR 0.59倍で割安寄り / ネットキャッシュが時価総額の168.72%相当 / 有利子負債は軽め",
       "cautions": "EPSが赤字または未確認 / 価格検証は売買回数0回なので参考扱い"
     },
