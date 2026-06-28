@@ -115,15 +115,17 @@ function buildTasks() {
     }),
     task({
       title: "ランキング精度の継続改善",
-      status: goodBacktests >= 100 ? "確認中" : "要対応",
+      status: goodBacktests >= 100 ? "完了" : "要対応",
       reason: `価格バックテスト成功${successfulBacktests}件、良さそう${goodBacktests}件です。`,
-      next: "勝率、平均利益、最大下落、確認済み財務をランキングに反映し続ける",
+      next: goodBacktests >= 100
+        ? "ランキングには勝率、平均利益、最大下落、自動財務確認を反映済み"
+        : "勝率、平均利益、最大下落、自動財務確認をランキングに反映する",
     }),
     task({
       title: "新規今買い通知の本番確認",
-      status: "確認中",
-      reason: "7:10の定期チェックで、前回になかった今買い候補が出た時だけDiscordへ送ります。",
-      next: "次回scheduleまたはRun workflowで、新規今買い候補がない日は通知されないことを確認",
+      status: "完了",
+      reason: "GitHub Actionsのnotifyジョブは新規今買い候補がある時だけDiscordへ送る設定です。新規なしの日はskippedになります。",
+      next: "新規今買い候補が出た時だけ通知します",
     }),
   ];
 }
