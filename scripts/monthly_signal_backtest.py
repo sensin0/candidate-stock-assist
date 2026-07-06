@@ -223,8 +223,12 @@ def dedupe_months(rows):
 
 def build_monthly_signals(universe, cached_prices, months):
     rows = []
+    current_month = datetime.now(timezone.utc).strftime("%Y-%m")
     for stock in universe:
-        prices = cached_prices.get(stock["code"], [])[-months:]
+        prices = [
+            row for row in cached_prices.get(stock["code"], [])
+            if row.get("month", "") < current_month
+        ][-months:]
         for index, price_row in enumerate(prices):
             rows.append(monthly_signal(stock, price_row, prices, index))
     return sorted(rows, key=lambda item: (item["month"], signal_sort(item["signal"]), item["buyRatio"], item["code"]))

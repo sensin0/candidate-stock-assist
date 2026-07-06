@@ -1,4 +1,8 @@
 import { spawnSync } from "node:child_process";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const steps = [
   ["全体自動買い候補の昇格判定", "node", ["scripts/review-universe-buy-candidates.mjs"]],
@@ -21,7 +25,7 @@ const steps = [
 
 for (const [label, command, args] of steps) {
   console.log(`\n== ${label} ==`);
-  const result = spawnSync(command, args, { stdio: "inherit", shell: false });
+  const result = spawnSync(command, args, { cwd: rootDir, stdio: "inherit", shell: false });
   if (result.status !== 0) {
     console.error(`\n${label} に失敗しました`);
     process.exit(result.status ?? 1);

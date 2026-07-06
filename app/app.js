@@ -1877,10 +1877,12 @@ function renderResearchDetail(item, type) {
     "日本株全体調査",
     item.judgement || "価格検証",
     item.timingAction || item.status || "監視",
+    item.doubleTag || "",
+    item.multibaggerLabel || "",
     item.qualityNote || "利益と下落耐性",
     item.signal || "待ち",
     item.market || "市場不明",
-  ].map((badge) => `<span class="badge">${escapeHtml(badge)}</span>`).join("");
+  ].filter(Boolean).map((badge) => `<span class="badge">${escapeHtml(badge)}</span>`).join("");
   document.getElementById("buyTimingAlert").innerHTML = type === "hiddenGems" ? renderHiddenGemAssistAlert(item) : type === "autoBuyCandidates" ? renderAutoBuyCandidateAlert(item) : "";
   document.getElementById("timingPanel").innerHTML = renderResearchTimingPanel(item, label);
   document.getElementById("lifecycleAssist").innerHTML = renderResearchLifecycleAssist(item);
@@ -1892,7 +1894,7 @@ function renderResearchDetail(item, type) {
   document.getElementById("reasonList").innerHTML = [
     comment,
     type === "autoBuyCandidates"
-      ? `買いライン比率${times(item.buyRatio ?? 0)}、上昇余地${pct(item.upside ?? 0)}、PBR ${times(item.pbr ?? 0)}、PER ${times(item.per ?? 0)}です`
+      ? `買いライン比率${times(item.buyRatio ?? 0)}、上昇余地${pct(item.upside ?? 0)}、PBR ${times(item.pbr ?? 0)}、PER ${times(item.per ?? 0)}、2倍期待は${item.multibaggerLabel || "標準"}、時期目安は${item.doubleTimeframe || "未設定"}です`
       : `価格検証の平均は${pct(item.averageReturn ?? 0)}、勝率は${pct(item.winRate ?? 0)}です`,
     item.caution || "価格だけの一次候補なので、財務と開示の確認が必要です",
   ].map((reason) => `<li>${escapeHtml(reason)}</li>`).join("");
@@ -1943,7 +1945,10 @@ function renderAutoBuyCandidateAlert(item) {
         <p>${escapeHtml(item.action || "通常候補へ昇格する前に有報と決算短信を確認します。")}</p>
       </div>
       <div class="buy-timing-values">
-        <span>点 ${Math.round((item.autoBuyScore ?? item.qualityRank ?? 0) * 10) / 10}</span>
+        <span>総合 ${Math.round((item.rankingScore ?? item.autoBuyScore ?? item.qualityRank ?? 0) * 10) / 10}</span>
+        ${item.doubleTag ? `<span>${escapeHtml(item.doubleTag)}</span>` : ""}
+        ${item.multibaggerLabel ? `<span>${escapeHtml(item.multibaggerLabel)}</span>` : ""}
+        ${item.doubleTimeframe ? `<span>${escapeHtml(item.doubleTimeframe)}</span>` : ""}
         <span>買い比率 ${times(item.buyRatio ?? 0)}</span>
         <span>上昇余地 ${pct(item.upside ?? 0)}</span>
         <span>${escapeHtml(item.reviewStatus || item.normalCandidate || "通常候補前")}</span>
@@ -2131,8 +2136,8 @@ function renderExpansionTimingPanel(item) {
 
 function renderResearchTimingPanel(item, label) {
   const tone = item.judgement === "良さそう" && (item.maxDrawdown ?? 0) > -15 ? "good" : "warn";
-  const score = item.autoBuyScore ?? item.score ?? 0;
-  const quality = item.autoBuyScore ?? item.qualityRank ?? item.timingRank ?? item.score ?? 0;
+  const score = item.rankingScore ?? item.autoBuyScore ?? item.score ?? 0;
+  const quality = item.rankingScore ?? item.autoBuyScore ?? item.qualityRank ?? item.timingRank ?? item.score ?? 0;
   return `
     <section class="timing-card timing-${tone}" aria-label="広域バックテスト確認">
       <div>
@@ -2146,6 +2151,7 @@ function renderResearchTimingPanel(item, label) {
       <div class="timing-stats">
         <span>点数 ${Math.round(score * 10) / 10}</span>
         <span>品質 ${Math.round(quality * 10) / 10}</span>
+        ${item.multibaggerLabel ? `<span>${escapeHtml(item.multibaggerLabel)}</span>` : ""}
         ${item.buyRatio ? `<span>買い比率 ${times(item.buyRatio)}</span>` : ""}
         ${item.upside ? `<span>上昇余地 ${pct(item.upside)}</span>` : ""}
         <span>勝率 ${pct(item.winRate ?? 0)}</span>
@@ -2158,7 +2164,7 @@ function renderResearchTimingPanel(item, label) {
 }
 
 function renderResearchMeter(item) {
-  const score = item.autoBuyScore ?? item.score ?? 0;
+  const score = item.rankingScore ?? item.autoBuyScore ?? item.score ?? 0;
   const scorePos = Math.max(0, Math.min(98, score / 1.5));
   return `
     <div class="card-top">
@@ -2177,7 +2183,7 @@ function renderResearchMeter(item) {
 function renderResearchChart(item) {
   const width = 880;
   const height = 260;
-  const score = item.autoBuyScore ?? item.score ?? 0;
+  const score = item.rankingScore ?? item.autoBuyScore ?? item.score ?? 0;
   const metrics = [
     ["点数", Math.min(100, score / 1.5), "#246a9f"],
     ["勝率", Math.max(0, Math.min(100, item.winRate ?? 0)), "#1f8a55"],
@@ -2224,8 +2230,15 @@ function renderResearchMetrics(item) {
     ["PER", item.per ? times(item.per) : "-"],
     ["ネット現金比率", item.netCashRatio || item.netCashRatio === 0 ? percentPoint(item.netCashRatio) : "-"],
     ["期間騰落", pct(item.periodReturn ?? 0)],
-    ["点数", `${Math.round((item.autoBuyScore ?? item.score ?? 0) * 10) / 10}点`],
-    ["品質ランク", `${Math.round((item.autoBuyScore ?? item.qualityRank ?? item.timingRank ?? item.score ?? 0) * 10) / 10}点`],
+    ["総合点", `${Math.round((item.rankingScore ?? item.autoBuyScore ?? item.score ?? 0) * 10) / 10}点`],
+    ["基本点", `${Math.round((item.autoBuyScore ?? item.score ?? 0) * 10) / 10}点`],
+    ["2倍期待", item.multibaggerLabel ? `${item.multibaggerLabel} ${Math.round((item.multibaggerScore ?? 0) * 10) / 10}点` : "-"],
+    ["2倍タグ", item.doubleTag || "-"],
+    ["2倍目安株価", item.doubleTargetPrice ? yen(item.doubleTargetPrice) : "-"],
+    ["2倍時期目安", item.doubleTimeframe || "-"],
+    ["2倍メモ", item.doubleComment || "-"],
+    ["2倍理由", item.multibaggerReasons || "-"],
+    ["品質ランク", `${Math.round((item.rankingScore ?? item.autoBuyScore ?? item.qualityRank ?? item.timingRank ?? item.score ?? 0) * 10) / 10}点`],
     ["負けにくさメモ", item.qualityNote || "利益と下落耐性を確認"],
     ["勝率", pct(item.winRate ?? 0)],
     ["平均リターン", pct(item.averageReturn ?? 0)],

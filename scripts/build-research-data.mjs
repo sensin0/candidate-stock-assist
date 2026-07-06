@@ -98,12 +98,24 @@ const autoBuyCandidates = universeBuyCandidateRows.slice(0, 120).map((row) => {
     action: review.nextAction || row.action,
     comment: row.comment,
     caution: review.cautions || row.caution,
+    rankingScore: number(row.rankingScore || row.autoBuyScore),
+    multibaggerScore: number(row.multibaggerScore),
+    multibaggerLabel: row.multibaggerLabel || "",
+    multibaggerReasons: row.multibaggerReasons || "",
+    doubleTag: row.doubleTag || "",
+    doubleTargetPrice: number(row.doubleTargetPrice),
+    doubleTimeframe: row.doubleTimeframe || "",
+    doubleComment: row.doubleComment || "",
+    trades: number(row.trades),
+    priceScore: number(row.priceScore),
+    latestSignal: row.latestSignal || "",
+    periodReturn: number(row.periodReturn),
     timingAction: "確認前買い候補",
-    timingRank: number(row.autoBuyScore),
-    qualityRank: number(row.autoBuyScore),
+    timingRank: number(row.rankingScore || row.autoBuyScore),
+    qualityRank: number(row.rankingScore || row.autoBuyScore),
     qualityNote: review.reviewStatus ? `${review.reviewStatus}: ${review.reasons || review.cautions}` : row.caution || "自動ランキング反映済み。原資料確認で精度向上",
   };
-}).sort((a, b) => reviewPriority(b.reviewStatus) - reviewPriority(a.reviewStatus) || b.autoBuyScore - a.autoBuyScore);
+}).sort((a, b) => reviewPriority(b.reviewStatus) - reviewPriority(a.reviewStatus) || b.rankingScore - a.rankingScore);
 
 const payload = {
   generatedAt: new Date().toISOString(),

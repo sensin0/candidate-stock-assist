@@ -19,7 +19,7 @@ const listedByCode = new Map(listed.map((row) => [row.code, row]));
 const priceByCode = new Map(priceRows.map((row) => [row.code, row]));
 const statusByCode = new Map(statusRows.map((row) => [row.code, row]));
 const stockMasterCodes = new Set(stockMaster.map((row) => row.code));
-const latestMonth = monthlySignalRows.map((row) => row.month).sort().at(-1) || "";
+const latestMonth = latestUsableMonth(monthlySignalRows);
 const monthlySignalByCode = new Map(monthlySignalRows.filter((row) => row.month === latestMonth).map((row) => [row.code, row]));
 const defaultTiming = {
   pbrLow: 0.64,
@@ -27,14 +27,23 @@ const defaultTiming = {
   perLow: 10,
   perHigh: 24,
 };
+const specialSectors = new Set(["銀行業", "証券、商品先物取引業", "保険業", "その他金融業", "電気・ガス業", "不動産業"]);
 
 const candidates = metrics
   .filter((row) => listedByCode.has(row.code))
   .map(toCandidate)
   .filter(Boolean)
-  .sort((a, b) => b.autoBuyScore - a.autoBuyScore || a.buyRatio - b.buyRatio || b.upside - a.upside);
+  .sort((a, b) =>
+    b.rankingScore - a.rankingScore
+    || b.autoBuyScore - a.autoBuyScore
+    || a.buyRatio - b.buyRatio
+    || b.upside - a.upside
+  );
 
 const top = candidates.slice(0, 120);
+top.forEach((row, index) => {
+  row.rank = index + 1;
+});
 fs.writeFileSync(path.join(dataDir, "universe-buy-candidates.csv"), toCsv(top), "utf8");
 writeReport(top, candidates.length);
 
@@ -67,6 +76,10 @@ function toCandidate(row) {
   const winRate = number(priceRow?.winRate);
   const averageReturn = number(priceRow?.averageReturn);
   const maxDrawdown = number(priceRow?.maxDrawdown);
+  const trades = number(priceRow?.trades);
+  const priceScore = number(priceRow?.priceScore);
+  const latestSignal = priceRow?.latestSignal || "";
+  const periodReturn = number(priceRow?.periodReturn);
   const judgement = priceRow?.judgement || "";
   const signal = monthlyRow?.signal || priceRow?.latestSignal || "";
 
@@ -77,6 +90,22 @@ function toCandidate(row) {
     ? netCashRatio >= 0 || pbr <= 0.6 ? "自動今買い候補" : "財務注意つき自動今買い"
     : netCashRatio >= 0 || pbr <= 0.6 ? "自動買い場近い" : "財務注意つき買い場近い";
   const alreadyNormal = stockMasterCodes.has(row.code);
+  const specialSector = specialSectors.has(listedRow?.sector || statusRow?.sector || "");
+  const multibagger = multibaggerProfile({
+    latestSignal,
+    judgement,
+    priceScore,
+    winRate,
+    averageReturn,
+    maxDrawdown,
+    trades,
+    periodReturn,
+    pbr,
+    per,
+    netCashRatio,
+    specialSector,
+  });
+  const doublePlan = doubleTargetPlan({ price, multibagger, latestSignal, priceScore, winRate, averageReturn, trades });
   const autoBuyScore = score({
     pbr,
     per,
@@ -86,9 +115,16 @@ function toCandidate(row) {
     winRate,
     averageReturn,
     maxDrawdown,
+    trades,
+    priceScore,
+    latestSignal,
+    periodReturn,
+    judgement,
+    specialSector,
     signal,
     alreadyNormal,
   });
+  const rankingScore = autoBuyScore + multibagger.score;
 
   return {
     rank: 0,
@@ -99,6 +135,14 @@ function toCandidate(row) {
     status: safety,
     normalCandidate: alreadyNormal ? "通常候補登録済み" : "通常候補前",
     autoBuyScore: round(autoBuyScore),
+    rankingScore: round(rankingScore),
+    multibaggerScore: round(multibagger.score),
+    multibaggerLabel: multibagger.label,
+    multibaggerReasons: multibagger.reasons.join(" / "),
+    doubleTag: doublePlan.tag,
+    doubleTargetPrice: doublePlan.targetPrice,
+    doubleTimeframe: doublePlan.timeframe,
+    doubleComment: doublePlan.comment,
     price: round(price),
     buyLine: round(buyLine),
     targetPrice: round(targetPrice),
@@ -111,12 +155,58 @@ function toCandidate(row) {
     winRate: round(winRate),
     averageReturn: round(averageReturn),
     maxDrawdown: round(maxDrawdown),
+    trades: round(trades),
+    priceScore: round(priceScore),
+    latestSignal,
+    periodReturn: round(periodReturn),
     signal,
     judgement: judgement || monthlyRow?.reason || "月次シグナル",
     metricSource,
     action: alreadyNormal ? "通常候補として自動ランキング反映" : "自動取得財務でランキング反映。原資料チェックで精度を上げる",
-    comment: `${signal}。自動取得財務と月次シグナルで条件内です`,
-    caution: safety.includes("財務注意") ? "ネット有利子負債が重め。負債と利益継続性を確認" : "自動取得財務で判定。原資料チェック推奨",
+    comment: `${signal}。自動取得財務と月次シグナルで条件内です。${doublePlan.tag}: ${doublePlan.timeframe}。${multibagger.label}: ${multibagger.reasons.join(" / ") || "2倍化条件は標準"}`,
+    caution: cautionText({ safety, multibagger, latestSignal, periodReturn }),
+  };
+}
+
+function doubleTargetPlan({ price, multibagger, latestSignal, priceScore, winRate, averageReturn, trades }) {
+  const targetPrice = round(price * 2);
+  if (multibagger.label === "2倍期待強" && latestSignal === "上昇中押し目" && priceScore >= 90 && winRate >= 80 && averageReturn >= 15) {
+    return {
+      tag: "2倍候補",
+      targetPrice,
+      timeframe: "早ければ2〜4か月、通常は6〜12か月目安",
+      comment: "過去の強い上昇中押し目では短期2倍化が出ています。出来高と材料継続が前提です",
+    };
+  }
+  if (multibagger.label === "2倍期待強") {
+    return {
+      tag: "2倍候補",
+      targetPrice,
+      timeframe: "6〜12か月目安",
+      comment: "2倍条件は強いですが、短期化には出来高増加と材料が必要です",
+    };
+  }
+  if (multibagger.label === "2倍期待あり") {
+    return {
+      tag: "2倍監視",
+      targetPrice,
+      timeframe: "9〜18か月目安",
+      comment: "2倍要素はあります。まず第一利確とPBR平均到達を確認します",
+    };
+  }
+  if (multibagger.label === "2倍監視") {
+    return {
+      tag: "2倍監視",
+      targetPrice,
+      timeframe: "12か月以上。条件改善待ち",
+      comment: "現時点では監視寄りです。上昇中押し目か価格スコア改善を待ちます",
+    };
+  }
+  return {
+    tag: "通常候補",
+    targetPrice,
+    timeframe: "2倍狙いではなく第一利確優先",
+    comment: "2倍化条件は弱めです。短期利確と損切りを優先します",
   };
 }
 
@@ -126,13 +216,94 @@ function score(item) {
   value += Math.min(42, item.upside / 5);
   value += item.pbr <= 0.5 ? 18 : item.pbr <= 0.7 ? 12 : 6;
   value += item.per <= 10 ? 14 : item.per <= 15 ? 8 : 3;
-  value += item.netCashRatio >= 0.5 ? 18 : item.netCashRatio >= 0 ? 10 : -8;
+  if (item.specialSector) value += item.netCashRatio >= 0 ? 3 : -8;
+  else value += item.netCashRatio >= 0.5 ? 18 : item.netCashRatio >= 0 ? 10 : -8;
   value += item.winRate * 0.16;
   value += item.averageReturn * 0.7;
   value += Math.max(-20, item.maxDrawdown) * 0.8;
+  value += Math.min(16, item.trades * 2);
+  value += Math.min(14, item.priceScore * 0.1);
   if (item.signal === "上昇中押し目") value += 10;
+  if (item.latestSignal === "上昇中押し目") value += 14;
+  if (item.judgement === "良さそう") value += 10;
+  if (item.latestSignal === "高値圏") value -= 16;
+  if (item.periodReturn > 180) value -= 12;
+  if (item.specialSector) value -= 14;
   if (item.alreadyNormal) value += 4;
   return value;
+}
+
+function multibaggerProfile(item) {
+  let score = 0;
+  const reasons = [];
+  if (item.latestSignal === "上昇中押し目") {
+    score += 18;
+    reasons.push("上昇中押し目");
+  }
+  if (item.judgement === "良さそう") {
+    score += 12;
+    reasons.push("広域検証良好");
+  }
+  if (item.priceScore >= 50) {
+    score += 10;
+    reasons.push(`価格スコア${round(item.priceScore)}`);
+  }
+  if (item.trades >= 5) {
+    score += 12;
+    reasons.push(`検証${round(item.trades)}回`);
+  } else if (item.trades >= 3) {
+    score += 7;
+    reasons.push(`検証${round(item.trades)}回`);
+  }
+  if (item.winRate >= 70 && item.averageReturn >= 10) {
+    score += 12;
+    reasons.push(`勝率${round(item.winRate)}%/平均${round(item.averageReturn)}%`);
+  }
+  if (item.maxDrawdown > -15) {
+    score += 6;
+    reasons.push(`下落浅め${round(item.maxDrawdown)}%`);
+  }
+  if (!item.specialSector && item.netCashRatio >= 1) {
+    score += 8;
+    reasons.push("ネット現金100%以上");
+  } else if (!item.specialSector && item.netCashRatio >= 0.5) {
+    score += 5;
+    reasons.push("ネット現金50%以上");
+  }
+  if (item.pbr > 0 && item.pbr <= 1 && item.per > 0 && item.per <= 15) {
+    score += 4;
+    reasons.push("低PBR+低PER");
+  }
+  if (item.latestSignal === "高値圏") {
+    score -= 18;
+    reasons.push("高値圏は追いかけ注意");
+  }
+  if (item.periodReturn > 180) {
+    score -= 12;
+    reasons.push("直近上昇済み");
+  }
+  if (item.specialSector) {
+    score -= 8;
+    reasons.push("特殊業種は財務指標を割引");
+  }
+  const label = score >= 45
+    ? "2倍期待強"
+    : score >= 28
+      ? "2倍期待あり"
+      : score >= 12
+        ? "2倍監視"
+        : "2倍要素薄め";
+  return { score, label, reasons };
+}
+
+function cautionText({ safety, multibagger, latestSignal, periodReturn }) {
+  const cautions = [];
+  if (safety.includes("財務注意")) cautions.push("ネット有利子負債が重め。負債と利益継続性を確認");
+  else cautions.push("自動取得財務で判定。原資料チェック推奨");
+  if (latestSignal === "高値圏") cautions.push("高値圏のため追いかけ買い注意");
+  if (periodReturn > 180) cautions.push("直近で上がりすぎ。押し目待ち優先");
+  if (multibagger.label === "2倍要素薄め") cautions.push("2倍化条件は弱い。第一利確優先");
+  return cautions.join(" / ");
 }
 
 function writeReport(rows, total) {
@@ -157,7 +328,7 @@ function writeReport(rows, total) {
     "## 予備軍上位",
     "",
     ...rows.slice(0, 30).map((row) =>
-      `- ${row.rank}. ${row.code} ${row.name}: ${row.status} / 点${row.autoBuyScore} / 買い比率${row.buyRatio} / 上昇余地${row.upside}% / PBR ${row.pbr} / PER ${row.per} / ネット現金${row.netCashRatio}% / ${row.signal} / 次: ${row.action}`
+      `- ${row.rank}. ${row.code} ${row.name}: ${row.status} / ${row.doubleTag} / 2倍目安 ${row.doubleTimeframe} / 2倍価格 ${row.doubleTargetPrice}円 / 総合${row.rankingScore} / 2倍${row.multibaggerScore}(${row.multibaggerLabel}) / 買い比率${row.buyRatio} / 上昇余地${row.upside}% / PBR ${row.pbr} / PER ${row.per} / ネット現金${row.netCashRatio}% / ${row.signal} / 次: ${row.action}`
     ),
     "",
     "## 運用ルール",
@@ -173,6 +344,20 @@ function readCsv(name) {
   const filePath = path.join(dataDir, name);
   if (!fs.existsSync(filePath)) return [];
   return parseCsvRecords(fs.readFileSync(filePath, "utf8"));
+}
+
+function latestUsableMonth(rows) {
+  const counts = new Map();
+  for (const row of rows) {
+    if (!row.month) continue;
+    counts.set(row.month, (counts.get(row.month) ?? 0) + 1);
+  }
+  const usable = [...counts.entries()]
+    .filter(([, count]) => count >= 1000)
+    .map(([month]) => month)
+    .sort();
+  if (usable.length) return usable.at(-1);
+  return [...counts.keys()].sort().at(-1) || "";
 }
 
 function number(value) {
@@ -194,6 +379,14 @@ function toCsv(rows) {
     "status",
     "normalCandidate",
     "autoBuyScore",
+    "rankingScore",
+    "multibaggerScore",
+    "multibaggerLabel",
+    "multibaggerReasons",
+    "doubleTag",
+    "doubleTargetPrice",
+    "doubleTimeframe",
+    "doubleComment",
     "price",
     "buyLine",
     "targetPrice",
@@ -206,6 +399,10 @@ function toCsv(rows) {
     "winRate",
     "averageReturn",
     "maxDrawdown",
+    "trades",
+    "priceScore",
+    "latestSignal",
+    "periodReturn",
     "signal",
     "judgement",
     "metricSource",

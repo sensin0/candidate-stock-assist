@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-28T12:55:40.174Z",
-  "totalFiles": 34,
-  "totalRows": 282482,
-  "totalBytes": 37014338,
+  "generatedAt": "2026-07-06T12:55:36.008Z",
+  "totalFiles": 35,
+  "totalRows": 282563,
+  "totalBytes": 37067360,
   "problems": [],
   "files": [
     {
       "name": "auto-financial-followup.csv",
-      "bytes": 11386,
+      "bytes": 11270,
       "rows": 19,
       "columns": 22,
       "headers": [
@@ -40,8 +40,8 @@
     },
     {
       "name": "backtest-results.csv",
-      "bytes": 10073,
-      "rows": 52,
+      "bytes": 9744,
+      "rows": 50,
       "columns": 15,
       "headers": [
         "code",
@@ -299,8 +299,8 @@
     },
     {
       "name": "monthly-price-history.csv",
-      "bytes": 3755598,
-      "rows": 131171,
+      "bytes": 3756072,
+      "rows": 131189,
       "columns": 4,
       "headers": [
         "code",
@@ -308,14 +308,14 @@
         "close",
         "source"
       ],
-      "duplicateCodes": 3713,
+      "duplicateCodes": 3716,
       "warnings": [],
       "problems": []
     },
     {
       "name": "monthly-signal-backtest.csv",
-      "bytes": 29993343,
-      "rows": 131171,
+      "bytes": 29996223,
+      "rows": 131186,
       "columns": 21,
       "headers": [
         "month",
@@ -340,9 +340,9 @@
         "metricSource",
         "dataStatus"
       ],
-      "duplicateCodes": 3713,
+      "duplicateCodes": 3716,
       "warnings": [
-        "サイズが大きい 29993343 bytes"
+        "サイズが大きい 29996223 bytes"
       ],
       "problems": []
     },
@@ -402,6 +402,25 @@
       "problems": []
     },
     {
+      "name": "multibagger-thresholds.csv",
+      "bytes": 3282,
+      "rows": 55,
+      "columns": 8,
+      "headers": [
+        "type",
+        "label",
+        "sample",
+        "hits",
+        "hitRate",
+        "lift",
+        "avgPeriodReturn",
+        "medianPeriodReturn"
+      ],
+      "duplicateCodes": 0,
+      "warnings": [],
+      "problems": []
+    },
+    {
       "name": "price-backtest-results.csv",
       "bytes": 8235,
       "rows": 60,
@@ -432,8 +451,8 @@
     },
     {
       "name": "price-refresh-queue.csv",
-      "bytes": 118,
-      "rows": 0,
+      "bytes": 291,
+      "rows": 1,
       "columns": 14,
       "headers": [
         "rank",
@@ -457,8 +476,8 @@
     },
     {
       "name": "price-updates.csv",
-      "bytes": 1092,
-      "rows": 52,
+      "bytes": 1054,
+      "rows": 50,
       "columns": 3,
       "headers": [
         "code",
@@ -530,8 +549,8 @@
     },
     {
       "name": "stock-master-expanded-preview.csv",
-      "bytes": 24870,
-      "rows": 66,
+      "bytes": 23859,
+      "rows": 64,
       "columns": 27,
       "headers": [
         "code",
@@ -680,8 +699,8 @@
     },
     {
       "name": "stock-master-universe-promotion-draft.csv",
-      "bytes": 6472,
-      "rows": 17,
+      "bytes": 5717,
+      "rows": 15,
       "columns": 14,
       "headers": [
         "code",
@@ -781,7 +800,7 @@
     },
     {
       "name": "universe-buy-candidate-review.csv",
-      "bytes": 50754,
+      "bytes": 49936,
       "rows": 120,
       "columns": 21,
       "headers": [
@@ -813,9 +832,9 @@
     },
     {
       "name": "universe-buy-candidates.csv",
-      "bytes": 53904,
+      "bytes": 103184,
       "rows": 120,
-      "columns": 26,
+      "columns": 38,
       "headers": [
         "rank",
         "code",
@@ -825,6 +844,14 @@
         "status",
         "normalCandidate",
         "autoBuyScore",
+        "rankingScore",
+        "multibaggerScore",
+        "multibaggerLabel",
+        "multibaggerReasons",
+        "doubleTag",
+        "doubleTargetPrice",
+        "doubleTimeframe",
+        "doubleComment",
         "price",
         "buyLine",
         "targetPrice",
@@ -837,6 +864,10 @@
         "winRate",
         "averageReturn",
         "maxDrawdown",
+        "trades",
+        "priceScore",
+        "latestSignal",
+        "periodReturn",
         "signal",
         "judgement",
         "metricSource",

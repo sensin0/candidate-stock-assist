@@ -1,9 +1,9 @@
 ﻿{
-  "generatedAt": "2026-06-28T12:55:36.885622+00:00",
+  "generatedAt": "2026-07-06T12:55:32.282517+00:00",
   "database": "data/candidate-stock-assist.sqlite",
-  "databaseBytes": 44437504,
-  "tables": 34,
-  "rows": 282482,
+  "databaseBytes": 44511232,
+  "tables": 35,
+  "rows": 282563,
   "integrity": "ok",
   "imported": [
     {
@@ -11,14 +11,14 @@
       "csv": "auto-financial-followup.csv",
       "rows": 19,
       "columns": 22,
-      "bytes": 11386
+      "bytes": 11270
     },
     {
       "table": "backtest_results",
       "csv": "backtest-results.csv",
-      "rows": 52,
+      "rows": 50,
       "columns": 15,
-      "bytes": 10073
+      "bytes": 9744
     },
     {
       "table": "disclosures",
@@ -79,16 +79,16 @@
     {
       "table": "monthly_price_history",
       "csv": "monthly-price-history.csv",
-      "rows": 131171,
+      "rows": 131189,
       "columns": 4,
-      "bytes": 3755598
+      "bytes": 3756072
     },
     {
       "table": "monthly_signal_backtest",
       "csv": "monthly-signal-backtest.csv",
-      "rows": 131171,
+      "rows": 131186,
       "columns": 21,
-      "bytes": 29993343
+      "bytes": 29996223
     },
     {
       "table": "monthly_signal_summary",
@@ -105,6 +105,13 @@
       "bytes": 76128
     },
     {
+      "table": "multibagger_thresholds",
+      "csv": "multibagger-thresholds.csv",
+      "rows": 55,
+      "columns": 8,
+      "bytes": 3282
+    },
+    {
       "table": "price_backtest_results",
       "csv": "price-backtest-results.csv",
       "rows": 60,
@@ -114,16 +121,16 @@
     {
       "table": "price_refresh_queue",
       "csv": "price-refresh-queue.csv",
-      "rows": 0,
+      "rows": 1,
       "columns": 14,
-      "bytes": 118
+      "bytes": 291
     },
     {
       "table": "price_updates",
       "csv": "price-updates.csv",
-      "rows": 52,
+      "rows": 50,
       "columns": 3,
-      "bytes": 1092
+      "bytes": 1054
     },
     {
       "table": "promotion_candidates",
@@ -142,9 +149,9 @@
     {
       "table": "stock_master_expanded_preview",
       "csv": "stock-master-expanded-preview.csv",
-      "rows": 66,
+      "rows": 64,
       "columns": 27,
-      "bytes": 24870
+      "bytes": 23859
     },
     {
       "table": "stock_master_hidden_gems_draft",
@@ -177,9 +184,9 @@
     {
       "table": "stock_master_universe_promotion_draft",
       "csv": "stock-master-universe-promotion-draft.csv",
-      "rows": 17,
+      "rows": 15,
       "columns": 14,
-      "bytes": 6472
+      "bytes": 5717
     },
     {
       "table": "stock_master",
@@ -200,14 +207,14 @@
       "csv": "universe-buy-candidate-review.csv",
       "rows": 120,
       "columns": 21,
-      "bytes": 50754
+      "bytes": 49936
     },
     {
       "table": "universe_buy_candidates",
       "csv": "universe-buy-candidates.csv",
       "rows": 120,
-      "columns": 26,
-      "bytes": 53904
+      "columns": 38,
+      "bytes": 103184
     },
     {
       "table": "universe_check_status",
