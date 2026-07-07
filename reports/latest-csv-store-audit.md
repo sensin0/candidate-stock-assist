@@ -1,6 +1,6 @@
 # CSVストア監査
 
-生成日時: 2026-07-06T12:55:36.008Z
+生成日時: 2026-07-07T09:54:20.659Z
 
 CSVファイル: 35件
 総行数: 282,563行
@@ -25,12 +25,12 @@ CSVファイル: 35件
 - universe-price-backtest.csv: 3,728行 / 639.19KB
 - universe-metrics.csv: 3,730行 / 286.1KB
 - listed-universe.csv: 3,728行 / 281.38KB
-- universe-buy-candidates.csv: 120行 / 103.18KB
+- universe-buy-candidates.csv: 120行 / 102.89KB
 
 ## 全CSV
 
-- auto-financial-followup.csv: 19行 / 22列 / 11.27KB
-- backtest-results.csv: 50行 / 15列 / 9.74KB
+- auto-financial-followup.csv: 19行 / 22列 / 11.31KB
+- backtest-results.csv: 50行 / 15列 / 9.75KB
 - disclosures.csv: 5行 / 4列 / 664B
 - edinet-facts.csv: 20行 / 14列 / 2.42KB
 - financial-confirmation-queue.csv: 58行 / 14列 / 23.97KB
@@ -57,8 +57,8 @@ CSVファイル: 35件
 - stock-master-universe-promotion-draft.csv: 15行 / 14列 / 5.72KB
 - stock-master.csv: 35行 / 27列 / 9.23KB
 - stock-master.generated.csv: 3行 / 27列 / 810B
-- universe-buy-candidate-review.csv: 120行 / 21列 / 49.94KB
-- universe-buy-candidates.csv: 120行 / 38列 / 103.18KB
+- universe-buy-candidate-review.csv: 120行 / 21列 / 50.13KB
+- universe-buy-candidates.csv: 120行 / 38列 / 102.89KB
 - universe-check-status.csv: 3,728行 / 12列 / 755.07KB
 - universe-financial-facts.csv: 3,728行 / 21列 / 784.27KB
 - universe-metrics.csv: 3,730行 / 14列 / 286.1KB

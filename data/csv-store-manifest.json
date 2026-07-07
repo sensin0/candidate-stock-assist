@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-06T12:55:36.008Z",
+  "generatedAt": "2026-07-07T09:54:20.659Z",
   "totalFiles": 35,
   "totalRows": 282563,
-  "totalBytes": 37067360,
+  "totalBytes": 37067311,
   "problems": [],
   "files": [
     {
       "name": "auto-financial-followup.csv",
-      "bytes": 11270,
+      "bytes": 11310,
       "rows": 19,
       "columns": 22,
       "headers": [
@@ -40,7 +40,7 @@
     },
     {
       "name": "backtest-results.csv",
-      "bytes": 9744,
+      "bytes": 9750,
       "rows": 50,
       "columns": 15,
       "headers": [
@@ -476,7 +476,7 @@
     },
     {
       "name": "price-updates.csv",
-      "bytes": 1054,
+      "bytes": 1052,
       "rows": 50,
       "columns": 3,
       "headers": [
@@ -800,7 +800,7 @@
     },
     {
       "name": "universe-buy-candidate-review.csv",
-      "bytes": 49936,
+      "bytes": 50134,
       "rows": 120,
       "columns": 21,
       "headers": [
@@ -832,7 +832,7 @@
     },
     {
       "name": "universe-buy-candidates.csv",
-      "bytes": 103184,
+      "bytes": 102893,
       "rows": 120,
       "columns": 38,
       "headers": [

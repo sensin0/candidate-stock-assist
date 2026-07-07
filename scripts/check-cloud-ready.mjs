@@ -132,6 +132,8 @@ const requiredFiles = [
   "reports/latest-universe-price-backtest.md",
   "reports/latest-monthly-signal-backtest.md",
   "reports/latest-multibagger-candidates.md",
+  "reports/latest-multibagger-thresholds.md",
+  "reports/latest-exit-target-6276.md",
   "reports/latest-promotion-candidates.md",
   "reports/latest-promotion-readiness.md",
   "reports/latest-hidden-gems.md",

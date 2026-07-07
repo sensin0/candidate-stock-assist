@@ -1,5 +1,5 @@
 ﻿{
-  "generatedAt": "2026-07-06T12:55:32.282517+00:00",
+  "generatedAt": "2026-07-07T09:54:16.475022+00:00",
   "database": "data/candidate-stock-assist.sqlite",
   "databaseBytes": 44511232,
   "tables": 35,
@@ -11,14 +11,14 @@
       "csv": "auto-financial-followup.csv",
       "rows": 19,
       "columns": 22,
-      "bytes": 11270
+      "bytes": 11310
     },
     {
       "table": "backtest_results",
       "csv": "backtest-results.csv",
       "rows": 50,
       "columns": 15,
-      "bytes": 9744
+      "bytes": 9750
     },
     {
       "table": "disclosures",
@@ -130,7 +130,7 @@
       "csv": "price-updates.csv",
       "rows": 50,
       "columns": 3,
-      "bytes": 1054
+      "bytes": 1052
     },
     {
       "table": "promotion_candidates",
@@ -207,14 +207,14 @@
       "csv": "universe-buy-candidate-review.csv",
       "rows": 120,
       "columns": 21,
-      "bytes": 49936
+      "bytes": 50134
     },
     {
       "table": "universe_buy_candidates",
       "csv": "universe-buy-candidates.csv",
       "rows": 120,
       "columns": 38,
-      "bytes": 103184
+      "bytes": 102893
     },
     {
       "table": "universe_check_status",

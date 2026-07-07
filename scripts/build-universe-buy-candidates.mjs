@@ -28,19 +28,23 @@ const defaultTiming = {
   perHigh: 24,
 };
 const specialSectors = new Set(["銀行業", "証券、商品先物取引業", "保険業", "その他金融業", "電気・ガス業", "不動産業"]);
+const displayLimit = 120;
+const nowBuyDisplayLimit = 90;
 
 const candidates = metrics
   .filter((row) => listedByCode.has(row.code))
   .map(toCandidate)
   .filter(Boolean)
   .sort((a, b) =>
-    b.rankingScore - a.rankingScore
+    signalPriority(b) - signalPriority(a)
+    || financialPriority(b) - financialPriority(a)
+    || b.rankingScore - a.rankingScore
     || b.autoBuyScore - a.autoBuyScore
     || a.buyRatio - b.buyRatio
     || b.upside - a.upside
   );
 
-const top = candidates.slice(0, 120);
+const top = selectDisplayCandidates(candidates, displayLimit);
 top.forEach((row, index) => {
   row.rank = index + 1;
 });
@@ -233,6 +237,32 @@ function score(item) {
   return value;
 }
 
+function signalPriority(row) {
+  if (row.signal === "今買い候補") return 3;
+  if (row.signal === "買い場近い") return 2;
+  return 1;
+}
+
+function financialPriority(row) {
+  if (String(row.status || "").includes("財務注意")) return 0;
+  return 1;
+}
+
+function selectDisplayCandidates(rows, limit) {
+  const nowBuy = rows.filter((row) => row.signal === "今買い候補");
+  const nearBuy = rows.filter((row) => row.signal === "買い場近い");
+  const other = rows.filter((row) => !["今買い候補", "買い場近い"].includes(row.signal));
+  const selected = [
+    ...nowBuy.slice(0, Math.min(nowBuy.length, nowBuyDisplayLimit)),
+    ...nearBuy.slice(0, Math.max(0, limit - Math.min(nowBuy.length, nowBuyDisplayLimit))),
+  ];
+  if (selected.length < limit) {
+    const selectedCodes = new Set(selected.map((row) => row.code));
+    selected.push(...[...nowBuy, ...nearBuy, ...other].filter((row) => !selectedCodes.has(row.code)).slice(0, limit - selected.length));
+  }
+  return selected.slice(0, limit);
+}
+
 function multibaggerProfile(item) {
   let score = 0;
   const reasons = [];
@@ -322,6 +352,8 @@ function writeReport(rows, total) {
     "",
     `抽出候補: ${total}件`,
     `表示候補: ${rows.length}件`,
+    `表示内 今買い候補: ${rows.filter((row) => row.signal === "今買い候補").length}件`,
+    `表示内 買い場近い: ${rows.filter((row) => row.signal === "買い場近い").length}件`,
     `通常候補前: ${rows.filter((row) => row.normalCandidate === "通常候補前").length}件`,
     `通常候補登録済み: ${rows.filter((row) => row.normalCandidate === "通常候補登録済み").length}件`,
     "",
@@ -334,6 +366,7 @@ function writeReport(rows, total) {
     "## 運用ルール",
     "",
     "- 自動取得財務の銘柄もランキングに出します。",
+    "- 表示順位は 今買い候補 > 買い場近い を優先し、2倍期待は同じ売買タイミング内の加点として扱います。",
     "- 原資料チェック済みと自動取得はラベルで分けます。",
     "- 財務注意つきは除外せず、負債と利益継続性の注意を付けて表示します。",
   ];
