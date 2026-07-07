@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-07T09:54:20.659Z",
+  "generatedAt": "2026-07-07T10:42:12.304Z",
   "totalFiles": 35,
-  "totalRows": 282563,
-  "totalBytes": 37067311,
+  "totalRows": 282527,
+  "totalBytes": 37057035,
   "problems": [],
   "files": [
     {
@@ -40,8 +40,8 @@
     },
     {
       "name": "backtest-results.csv",
-      "bytes": 9750,
-      "rows": 50,
+      "bytes": 8260,
+      "rows": 41,
       "columns": 15,
       "headers": [
         "code",
@@ -476,8 +476,8 @@
     },
     {
       "name": "price-updates.csv",
-      "bytes": 1052,
-      "rows": 50,
+      "bytes": 867,
+      "rows": 41,
       "columns": 3,
       "headers": [
         "code",
@@ -549,8 +549,8 @@
     },
     {
       "name": "stock-master-expanded-preview.csv",
-      "bytes": 23859,
-      "rows": 64,
+      "bytes": 19247,
+      "rows": 55,
       "columns": 27,
       "headers": [
         "code",
@@ -699,8 +699,8 @@
     },
     {
       "name": "stock-master-universe-promotion-draft.csv",
-      "bytes": 5717,
-      "rows": 15,
+      "bytes": 2254,
+      "rows": 6,
       "columns": 14,
       "headers": [
         "code",
@@ -800,7 +800,7 @@
     },
     {
       "name": "universe-buy-candidate-review.csv",
-      "bytes": 50134,
+      "bytes": 50932,
       "rows": 120,
       "columns": 21,
       "headers": [
@@ -832,7 +832,7 @@
     },
     {
       "name": "universe-buy-candidates.csv",
-      "bytes": 102893,
+      "bytes": 101569,
       "rows": 120,
       "columns": 38,
       "headers": [

@@ -36,11 +36,12 @@ const candidates = metrics
   .map(toCandidate)
   .filter(Boolean)
   .sort((a, b) =>
-    signalPriority(b) - signalPriority(a)
+    timingPriority(b) - timingPriority(a)
+    || signalPriority(b) - signalPriority(a)
     || financialPriority(b) - financialPriority(a)
+    || buyLineDistance(a) - buyLineDistance(b)
     || b.rankingScore - a.rankingScore
     || b.autoBuyScore - a.autoBuyScore
-    || a.buyRatio - b.buyRatio
     || b.upside - a.upside
   );
 
@@ -249,18 +250,38 @@ function financialPriority(row) {
 }
 
 function selectDisplayCandidates(rows, limit) {
-  const nowBuy = rows.filter((row) => row.signal === "今買い候補");
-  const nearBuy = rows.filter((row) => row.signal === "買い場近い");
+  const buyLineZone = rows.filter((row) => timingPriority(row) >= 5);
+  const buyLineZoneCodes = new Set(buyLineZone.map((row) => row.code));
+  const nearBuy = rows.filter((row) => row.signal === "買い場近い" && !buyLineZoneCodes.has(row.code));
+  const nowBuy = rows.filter((row) => row.signal === "今買い候補" && !buyLineZoneCodes.has(row.code));
   const other = rows.filter((row) => !["今買い候補", "買い場近い"].includes(row.signal));
   const selected = [
+    ...buyLineZone.slice(0, Math.min(buyLineZone.length, 60)),
+    ...nearBuy.slice(0, 30),
     ...nowBuy.slice(0, Math.min(nowBuy.length, nowBuyDisplayLimit)),
-    ...nearBuy.slice(0, Math.max(0, limit - Math.min(nowBuy.length, nowBuyDisplayLimit))),
   ];
   if (selected.length < limit) {
     const selectedCodes = new Set(selected.map((row) => row.code));
     selected.push(...[...nowBuy, ...nearBuy, ...other].filter((row) => !selectedCodes.has(row.code)).slice(0, limit - selected.length));
   }
   return selected.slice(0, limit);
+}
+
+function timingPriority(row) {
+  const ratio = Number(row.buyRatio || 0);
+  if (ratio >= 1 && ratio <= 1.08) return 6;
+  if (ratio >= 0.95 && ratio < 1) return 5;
+  if (ratio >= 0.9 && ratio < 0.95) return 4;
+  if (ratio > 1.08 && ratio <= 1.12) return 4;
+  if (ratio >= 0.8 && ratio < 0.9) return 3;
+  if (ratio > 1.12 && ratio <= 1.2) return 2;
+  if (ratio > 0 && ratio < 0.8) return 1;
+  return 0;
+}
+
+function buyLineDistance(row) {
+  const ratio = Number(row.buyRatio || 999);
+  return Math.abs(ratio - 1);
 }
 
 function multibaggerProfile(item) {

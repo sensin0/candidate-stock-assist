@@ -1244,12 +1244,14 @@ function todayStockReason(stock) {
 }
 
 function todayResearchItem(item, sourceType, label, bonus) {
+  const timingBonus = sourceType === "autoBuyCandidates" ? autoBuyTimingPriority(item) : 0;
   const backtestScore =
     (Number(item.trades ?? item.backtestTrades ?? 0) >= 1 ? 6 : -8)
     + Math.max(-14, Math.min(18, Number(item.averageReturn ?? item.backtestAverageReturn ?? 0) * 1.3))
     + Math.max(-12, Math.min(14, (Number(item.winRate ?? item.backtestWinRate ?? 0) - 50) * 0.35))
     + Math.max(-12, Math.min(6, Number(item.maxDrawdown ?? item.backtestMaxDrawdown ?? 0) * 0.5 + 7));
-  const score = (item.qualityRank ?? item.timingRank ?? item.score ?? 0)
+  const score = (item.rankingScore ?? item.qualityRank ?? item.timingRank ?? item.score ?? 0)
+    + timingBonus
     + (item.timingAction === "押し目買い候補" ? 26 : 0)
     + (item.timingAction === "初回買い候補" ? 22 : 0)
     + (item.timingAction === "買わない" ? -80 : 0)
@@ -1274,6 +1276,8 @@ function todayResearchItem(item, sourceType, label, bonus) {
 function researchPriority(item, sourceType) {
   if (sourceType === "autoBuyCandidates") {
     if (item.reviewStatus === "今回は見送り") return 24;
+    if (autoBuyTimingPriority(item) >= 120) return 112;
+    if (autoBuyTimingPriority(item) >= 106) return 106;
     if (item.reviewStatus === "通常候補へ昇格OK") return 98;
     if (item.reviewStatus === "追加確認" && String(item.status || "").includes("自動今買い")) return 90;
     if (String(item.status || "").includes("自動今買い")) return 96;
@@ -1475,7 +1479,10 @@ function filteredResearchItems(items) {
 
 function filteredAutoBuyCandidateItems(items) {
   return filteredResearchItems(items)
-    .sort((a, b) => reviewPriority(b.reviewStatus) - reviewPriority(a.reviewStatus)
+    .sort((a, b) => autoBuyTimingPriority(b) - autoBuyTimingPriority(a)
+      || reviewPriority(b.reviewStatus) - reviewPriority(a.reviewStatus)
+      || buyLineDistance(a) - buyLineDistance(b)
+      || (b.rankingScore ?? b.qualityRank ?? b.autoBuyScore ?? 0) - (a.rankingScore ?? a.qualityRank ?? a.autoBuyScore ?? 0)
       || (b.qualityRank ?? b.autoBuyScore ?? 0) - (a.qualityRank ?? a.autoBuyScore ?? 0));
 }
 
@@ -1484,6 +1491,24 @@ function reviewPriority(status) {
   if (status === "追加確認") return 2;
   if (status === "今回は見送り") return 1;
   return 0;
+}
+
+function autoBuyTimingPriority(item) {
+  const ratio = Number(item.buyRatio || 0);
+  if (ratio >= 1 && ratio <= 1.08) return 124;
+  if (ratio >= 0.95 && ratio < 1) return 120;
+  if (ratio >= 0.9 && ratio < 0.95) return 108;
+  if (ratio > 1.08 && ratio <= 1.12) return 106;
+  if (String(item.status || "").includes("買い場近い")) return 100;
+  if (String(item.status || "").includes("自動今買い")) return 96;
+  if (ratio >= 0.8 && ratio < 0.9) return 88;
+  if (ratio > 1.12 && ratio <= 1.2) return 82;
+  if (ratio > 0 && ratio < 0.8) return 72;
+  return 40;
+}
+
+function buyLineDistance(item) {
+  return Math.abs(Number(item.buyRatio || 999) - 1);
 }
 
 function renderTodayRankingRow(entry, index) {
