@@ -1092,7 +1092,7 @@ function rankingLimitFor(type) {
   return 10;
 }
 
-function selectTopRankingItem(type = document.getElementById("rankingSelect")?.value || "today") {
+function selectTopRankingItem(type = document.getElementById("rankingSelect")?.value || "autoBuyCandidates") {
   const first = rankingFor(type).slice(0, rankingLimitFor(type))[0];
   if (!first) {
     selectedResearch = null;
@@ -1147,7 +1147,7 @@ function todayRankingItems() {
     item: stock,
   }));
   const researchItems = [
-    ...filteredResearchItems(window.AUTO_RESEARCH_DATA?.autoBuyCandidates ?? [])
+    ...filteredAutoBuyCandidateItems(window.AUTO_RESEARCH_DATA?.autoBuyCandidates ?? [])
       .slice(0, 40)
       .map((item) => todayResearchItem(item, "autoBuyCandidates", "自動買い候補", 38)),
     ...filteredResearchItems(window.AUTO_RESEARCH_DATA?.timingBuys ?? [])

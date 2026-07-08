@@ -1,5 +1,5 @@
 ﻿{
-  "generatedAt": "2026-07-07T10:42:09.160385+00:00",
+  "generatedAt": "2026-07-08T11:44:24.649564+00:00",
   "database": "data/candidate-stock-assist.sqlite",
   "databaseBytes": 44494848,
   "tables": 35,
@@ -11,14 +11,14 @@
       "csv": "auto-financial-followup.csv",
       "rows": 19,
       "columns": 22,
-      "bytes": 11310
+      "bytes": 11261
     },
     {
       "table": "backtest_results",
       "csv": "backtest-results.csv",
       "rows": 41,
       "columns": 15,
-      "bytes": 8260
+      "bytes": 8261
     },
     {
       "table": "disclosures",

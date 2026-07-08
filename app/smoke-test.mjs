@@ -77,6 +77,7 @@ const generatedFinancialScreening = fs.existsSync(new URL("./generated-financial
   ? fs.readFileSync(new URL("./generated-financial-screening.js", import.meta.url), "utf8")
   : "";
 const code = fs.readFileSync(new URL("./app.js", import.meta.url), "utf8");
+const html = fs.readFileSync(new URL("./index.html", import.meta.url), "utf8");
 
 vm.runInContext(
   `${generatedData}
@@ -212,7 +213,10 @@ vm.runInContext(
 
 const result = sandbox.__result;
 const failures = [];
+const rankingSelectHtml = html.match(/<select id="rankingSelect"[\s\S]*?<\/select>/)?.[0] ?? "";
+const rankingOptions = [...rankingSelectHtml.matchAll(/<option value="([^"]+)"/g)].map((match) => match[1]);
 
+if (rankingOptions[0] !== "autoBuyCandidates") failures.push("ランキング初期表示が自動買い候補ではありません");
 if (result.buyNow + result.risk < 1) failures.push("買い候補または見送り判断が1件以上必要です");
 if (result.risk < 1) failures.push("リスク確認が1件以上必要です");
 if (result.watched < 1) failures.push("監視リストが1件以上必要です");

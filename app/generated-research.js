@@ -1,5 +1,5 @@
 window.AUTO_RESEARCH_DATA = {
-  "generatedAt": "2026-07-07T10:42:10.474Z",
+  "generatedAt": "2026-07-08T11:44:25.983Z",
   "source": "data/universe-price-backtest.csv + data/multibagger-candidates.csv",
   "store": "sqlite:data/candidate-stock-assist.sqlite",
   "universe": {

@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-07T10:42:12.304Z",
+  "generatedAt": "2026-07-08T11:44:28.091Z",
   "totalFiles": 35,
   "totalRows": 282527,
-  "totalBytes": 37057035,
+  "totalBytes": 37056987,
   "problems": [],
   "files": [
     {
       "name": "auto-financial-followup.csv",
-      "bytes": 11310,
+      "bytes": 11261,
       "rows": 19,
       "columns": 22,
       "headers": [
@@ -40,7 +40,7 @@
     },
     {
       "name": "backtest-results.csv",
-      "bytes": 8260,
+      "bytes": 8261,
       "rows": 41,
       "columns": 15,
       "headers": [

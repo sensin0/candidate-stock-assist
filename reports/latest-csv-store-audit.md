@@ -1,6 +1,6 @@
 # CSVストア監査
 
-生成日時: 2026-07-07T10:42:12.304Z
+生成日時: 2026-07-08T11:44:28.091Z
 
 CSVファイル: 35件
 総行数: 282,527行
@@ -29,7 +29,7 @@ CSVファイル: 35件
 
 ## 全CSV
 
-- auto-financial-followup.csv: 19行 / 22列 / 11.31KB
+- auto-financial-followup.csv: 19行 / 22列 / 11.26KB
 - backtest-results.csv: 41行 / 15列 / 8.26KB
 - disclosures.csv: 5行 / 4列 / 664B
 - edinet-facts.csv: 20行 / 14列 / 2.42KB

@@ -1,2 +1,2 @@
 rank,priority,code,name,price,priceAsOf,priceAge,buyLine,targetPrice,sellGuidePrice,buyRatio,upside,reason,nextAction
-1,56,9402,中部日本放送,1220,2026-06-26,11,850,4467.6,1464,1.44,266.2,株価が11日前 / ネット現金厚め,最新株価を確認して price-updates.csv に追加
+1,57,9402,中部日本放送,1220,2026-06-26,12,850,4467.6,1464,1.44,266.2,株価が12日前 / ネット現金厚め,最新株価を確認して price-updates.csv に追加
