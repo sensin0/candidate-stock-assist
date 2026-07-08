@@ -1,10 +1,10 @@
 # CSVストア監査
 
-生成日時: 2026-07-08T11:44:28.091Z
+生成日時: 2026-07-08T12:03:06.034Z
 
 CSVファイル: 35件
-総行数: 282,527行
-総サイズ: 37.06MB
+総行数: 279,799行
+総サイズ: 36.59MB
 問題: 0件
 
 ## 判定
@@ -22,9 +22,9 @@ CSVファイル: 35件
 - monthly-price-history.csv: 131,189行 / 3.76MB
 - universe-financial-facts.csv: 3,728行 / 784.27KB
 - universe-check-status.csv: 3,728行 / 755.07KB
-- universe-price-backtest.csv: 3,728行 / 639.19KB
 - universe-metrics.csv: 3,730行 / 286.1KB
 - listed-universe.csv: 3,728行 / 281.38KB
+- universe-price-backtest.csv: 1,000行 / 172.35KB
 - universe-buy-candidates.csv: 120行 / 101.57KB
 
 ## 全CSV
@@ -47,7 +47,7 @@ CSVファイル: 35件
 - price-backtest-results.csv: 60行 / 18列 / 8.24KB
 - price-refresh-queue.csv: 1行 / 14列 / 291B
 - price-updates.csv: 41行 / 3列 / 867B
-- promotion-candidates.csv: 150行 / 18列 / 56.41KB
+- promotion-candidates.csv: 150行 / 18列 / 53.11KB
 - promotion-readiness.csv: 50行 / 19列 / 20.86KB
 - stock-master-expanded-preview.csv: 55行 / 27列 / 19.25KB
 - stock-master-hidden-gems-draft.csv: 6行 / 14列 / 2.15KB
@@ -62,5 +62,5 @@ CSVファイル: 35件
 - universe-check-status.csv: 3,728行 / 12列 / 755.07KB
 - universe-financial-facts.csv: 3,728行 / 21列 / 784.27KB
 - universe-metrics.csv: 3,730行 / 14列 / 286.1KB
-- universe-price-backtest.csv: 3,728行 / 19列 / 639.19KB
+- universe-price-backtest.csv: 1,000行 / 19列 / 172.35KB
 - watchlist.csv: 3行 / 3列 / 233B

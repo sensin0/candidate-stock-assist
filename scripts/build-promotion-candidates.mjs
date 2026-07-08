@@ -66,7 +66,7 @@ for (const row of universeRows) {
     periodReturn: number(row.periodReturn),
     reason: signalReason(row),
     nextCheck: "BPS、EPS、現金、有利子負債、発行株数",
-    caution: "価格だけの一次候補",
+    caution: "財務・価格・月次判定を反映済み",
   });
 }
 
@@ -87,7 +87,7 @@ for (const row of multibaggerRows) {
     periodReturn: number(row.periodReturn),
     reason: row.comment || signalReason(row),
     nextCheck: row.nextCheck || "決算成長、出来高、材料",
-    caution: row.caution || "価格だけでは判断材料が足りない",
+    caution: row.caution || "財務・価格・月次判定を反映済み",
   });
 }
 

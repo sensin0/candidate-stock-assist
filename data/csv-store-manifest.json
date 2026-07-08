@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-08T11:44:28.091Z",
+  "generatedAt": "2026-07-08T12:03:06.034Z",
   "totalFiles": 35,
-  "totalRows": 282527,
-  "totalBytes": 37056987,
+  "totalRows": 279799,
+  "totalBytes": 36586843,
   "problems": [],
   "files": [
     {
@@ -490,7 +490,7 @@
     },
     {
       "name": "promotion-candidates.csv",
-      "bytes": 56414,
+      "bytes": 53110,
       "rows": 150,
       "columns": 18,
       "headers": [
@@ -961,8 +961,8 @@
     },
     {
       "name": "universe-price-backtest.csv",
-      "bytes": 639194,
-      "rows": 3728,
+      "bytes": 172354,
+      "rows": 1000,
       "columns": 19,
       "headers": [
         "rankSeed",

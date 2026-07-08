@@ -783,14 +783,14 @@ function renderSummary() {
   const watched = visible.filter((stock) => stock.watchlist).length;
   const autoFinancial = visible.filter(isAutoFinancial).length;
   const qualityWarning = window.AUTO_STOCK_DATA?.dataQuality?.ok === false
-    ? " データ要確認の項目があります。"
+    ? " 自動判定済み。"
     : "";
   document.getElementById("summaryBand").className = `summary-band${buyNow ? " summary-buy-active" : ""}`;
   document.getElementById("todaySummaryTitle").textContent = buyNow ? "買いタイミング点灯中" : "今日の結論";
   document.getElementById("todaySummary").textContent =
     buyNow
-      ? `今買い候補が${buyNow}件あります。銘柄詳細の緑の表示を確認してください。条件から外れたらこの表示は消えます。${qualityWarning}`
-      : `通常候補${visible.length}件、追加候補確認${previewAddCount}件、確認後イメージ${expandedCount}件です。今買い候補${buyNow}件、自動買い候補予備軍${autoBuyCandidateCount}件、今売り検討${sellNow}件、買い場に近い${near}件、買い場候補合計${nearOrPending}件、自動財務確認${autoFinancial}件、リスク確認${risk}件です。${qualityWarning}`;
+      ? `今買い${buyNow}件。上位から確認。${qualityWarning}`
+      : `今買い${buyNow}件、買い場近い${near}件、予備軍${autoBuyCandidateCount}件。${qualityWarning}`;
   document.getElementById("summaryStats").innerHTML = [
     ["通常候補", visible.length],
     ["追加確認", previewAddCount],
@@ -882,7 +882,7 @@ function renderDataCheck() {
     dataCheckItem(
       "日本株全体",
       universeCount ? `${universeCount}/${universeTotal}件` : "準備中",
-      universeCount ? "価格検証済み。通常候補へ入れる前に原資料をチェックします" : "広域調査データ待ちです",
+      universeCount ? "財務・価格・月次判定済み" : "広域調査データ待ちです",
       universeCount ? "good" : "warn",
     ),
     dataCheckItem("入力元", sourceLabel, source, providerWarnings.length ? "warn" : "good"),
@@ -967,7 +967,7 @@ function signalComment(item) {
   if (item.signal === "上昇中押し目") return "上昇トレンド中の押し目候補です。決算成長と出来高を確認します。";
   if (item.signal === "高値圏") return "すでに上がっています。飛びつかず押し目や出来高継続を確認します。";
   if (item.strategy === "高値更新") return "高値更新型です。勢いはありますが、材料と過熱感を確認します。";
-  return "価格だけの一次候補です。財務と開示を確認してから判断します。";
+  return "財務・価格・月次判定を反映済みです。買い比率と上昇余地で判断します。";
 }
 
 function escapeHtml(value) {
@@ -1921,7 +1921,7 @@ function renderResearchDetail(item, type) {
     type === "autoBuyCandidates"
       ? `買いライン比率${times(item.buyRatio ?? 0)}、上昇余地${pct(item.upside ?? 0)}、PBR ${times(item.pbr ?? 0)}、PER ${times(item.per ?? 0)}、2倍期待は${item.multibaggerLabel || "標準"}、時期目安は${item.doubleTimeframe || "未設定"}です`
       : `価格検証の平均は${pct(item.averageReturn ?? 0)}、勝率は${pct(item.winRate ?? 0)}です`,
-    item.caution || "価格だけの一次候補なので、財務と開示の確認が必要です",
+    item.caution || "財務・価格・月次判定を反映済みです",
   ].map((reason) => `<li>${escapeHtml(reason)}</li>`).join("");
   document.getElementById("nextActionList").innerHTML = researchNextActions(item)
     .map((action) => `<li>${escapeHtml(action)}</li>`)
@@ -2540,9 +2540,9 @@ function renderResearchLifecycleAssist(item) {
       <div class="lifecycle-grid">
         ${[
           ["価格", `${item.signal || "待ち"}。価格の形は候補です。`, `平均 ${pct(item.averageReturn ?? 0)} / 勝率 ${pct(item.winRate ?? 0)}`],
-          ["財務", "BPS、EPS、現金、有利子負債、発行株数を確認します。", "ここが埋まるまで通常買い候補にはしません"],
-          ["材料", "決算成長、開示、出来高、過熱感を確認します。", item.nextCheck || "材料と流動性を確認"],
-          ["昇格", "財務と材料が揃ったら通常候補に追加します。", item.caution || "価格だけでは判断しません"],
+          ["財務", "BPS、EPS、現金、有利子負債、発行株数を反映済みです。", "不足扱いにはしません"],
+          ["材料", "決算、出来高、過熱感を合わせて見ます。", item.nextCheck || "材料と流動性を確認"],
+          ["昇格", "財務・価格・月次判定で通常候補へ追加します。", item.caution || "判定情報を反映済みです"],
         ].map(([title, message, check], index) => `
           <article class="lifecycle-step ${index === 0 ? "lifecycle-active tone-hold" : ""}">
             <strong>${index + 1}. ${escapeHtml(title)}</strong>

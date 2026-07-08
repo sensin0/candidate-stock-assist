@@ -1,9 +1,9 @@
 ﻿{
-  "generatedAt": "2026-07-08T11:44:24.649564+00:00",
+  "generatedAt": "2026-07-08T12:03:02.034782+00:00",
   "database": "data/candidate-stock-assist.sqlite",
-  "databaseBytes": 44494848,
+  "databaseBytes": 43909120,
   "tables": 35,
-  "rows": 282527,
+  "rows": 279799,
   "integrity": "ok",
   "imported": [
     {
@@ -137,7 +137,7 @@
       "csv": "promotion-candidates.csv",
       "rows": 150,
       "columns": 18,
-      "bytes": 56414
+      "bytes": 53110
     },
     {
       "table": "promotion_readiness",
@@ -240,9 +240,9 @@
     {
       "table": "universe_price_backtest",
       "csv": "universe-price-backtest.csv",
-      "rows": 3728,
+      "rows": 1000,
       "columns": 19,
-      "bytes": 639194
+      "bytes": 172354
     },
     {
       "table": "watchlist",

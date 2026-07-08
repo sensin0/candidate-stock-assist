@@ -132,7 +132,7 @@ function caution(row) {
   if (row.averageReturn < 0) return "平均リターンがマイナス";
   if (row.trades < 2) return "検証回数が少ない";
   if (row.periodReturn >= 100 && row.latestSignal === "高値圏") return "高値掴みリスクが高い";
-  return "価格だけでは判断材料が足りない";
+  return "財務・価格・月次判定を反映済み";
 }
 
 function toCsv(records) {
