@@ -257,8 +257,8 @@ function selectDisplayCandidates(rows, limit) {
   const other = rows.filter((row) => !["今買い候補", "買い場近い"].includes(row.signal));
   const selected = [
     ...buyLineZone.slice(0, Math.min(buyLineZone.length, 60)),
-    ...nearBuy.slice(0, 30),
     ...nowBuy.slice(0, Math.min(nowBuy.length, nowBuyDisplayLimit)),
+    ...nearBuy.slice(0, 30),
   ];
   if (selected.length < limit) {
     const selectedCodes = new Set(selected.map((row) => row.code));

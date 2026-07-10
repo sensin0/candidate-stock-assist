@@ -1149,7 +1149,7 @@ function todayRankingItems() {
   const researchItems = [
     ...filteredAutoBuyCandidateItems(window.AUTO_RESEARCH_DATA?.autoBuyCandidates ?? [])
       .slice(0, 40)
-      .map((item) => todayResearchItem(item, "autoBuyCandidates", "自動買い候補", 38)),
+      .map((item) => todayResearchItem(item, "autoBuyCandidates", autoBuySignalLabel(item), 38)),
     ...filteredResearchItems(window.AUTO_RESEARCH_DATA?.timingBuys ?? [])
       .slice(0, 80)
       .map((item) => todayResearchItem(item, "researchTiming", "上昇タイミング", 12)),
@@ -1276,8 +1276,8 @@ function todayResearchItem(item, sourceType, label, bonus) {
 function researchPriority(item, sourceType) {
   if (sourceType === "autoBuyCandidates") {
     if (item.reviewStatus === "今回は見送り") return 24;
-    if (autoBuyTimingPriority(item) >= 120) return 112;
-    if (autoBuyTimingPriority(item) >= 106) return 106;
+    if (autoBuySignalRank(item) >= 3) return 116;
+    if (autoBuySignalRank(item) >= 2) return 108;
     if (item.reviewStatus === "通常候補へ昇格OK") return 98;
     if (item.reviewStatus === "追加確認" && String(item.status || "").includes("自動今買い")) return 90;
     if (String(item.status || "").includes("自動今買い")) return 96;
@@ -1479,7 +1479,8 @@ function filteredResearchItems(items) {
 
 function filteredAutoBuyCandidateItems(items) {
   return filteredResearchItems(items)
-    .sort((a, b) => autoBuyTimingPriority(b) - autoBuyTimingPriority(a)
+    .sort((a, b) => autoBuySignalRank(b) - autoBuySignalRank(a)
+      || autoBuyTimingPriority(b) - autoBuyTimingPriority(a)
       || reviewPriority(b.reviewStatus) - reviewPriority(a.reviewStatus)
       || buyLineDistance(a) - buyLineDistance(b)
       || (b.rankingScore ?? b.qualityRank ?? b.autoBuyScore ?? 0) - (a.rankingScore ?? a.qualityRank ?? a.autoBuyScore ?? 0)
@@ -1505,6 +1506,20 @@ function autoBuyTimingPriority(item) {
   if (ratio > 1.12 && ratio <= 1.2) return 82;
   if (ratio > 0 && ratio < 0.8) return 72;
   return 40;
+}
+
+function autoBuySignalRank(item) {
+  const signal = String(item.signal || "");
+  const status = String(item.status || "");
+  if (signal === "今買い候補" || status.includes("自動今買い")) return 3;
+  if (signal === "買い場近い" || status.includes("買い場近い")) return 2;
+  return 1;
+}
+
+function autoBuySignalLabel(item) {
+  if (autoBuySignalRank(item) >= 3) return "今買い候補";
+  if (autoBuySignalRank(item) >= 2) return "買い場近い";
+  return "買い候補";
 }
 
 function buyLineDistance(item) {
@@ -1700,7 +1715,7 @@ function renderResearchRankingRow(item, index, type) {
   const label = type === "researchMultibagger"
     ? "2倍監視"
     : type === "autoBuyCandidates"
-      ? "自動買い候補"
+      ? autoBuySignalLabel(item)
       : type === "researchTiming"
         ? "上昇タイミング"
         : "広域候補";
@@ -1708,7 +1723,9 @@ function renderResearchRankingRow(item, index, type) {
   const caution = item.caution ? `<p class="freshness-line">${escapeHtml(item.caution)}</p>` : "";
   const review = type === "autoBuyCandidates" && item.reviewStatus ? `<p class="freshness-line">昇格判定: ${escapeHtml(item.reviewStatus)}${item.reviewReasons ? ` / ${escapeHtml(item.reviewReasons)}` : ""}</p>` : "";
   const isActive = selectedResearch?.type === type && selectedResearch?.code === item.code;
-  const labelClass = type === "autoBuyCandidates" ? "label-research" : "label-near";
+  const labelClass = type === "autoBuyCandidates"
+    ? autoBuySignalRank(item) >= 3 ? "label-buy" : "label-near"
+    : "label-near";
   return `
     <article class="ranking-row research-ranking-row ${isActive ? "active" : ""}" data-research-type="${type}" data-research-code="${escapeHtml(item.code)}">
       <div class="ranking-top">
