@@ -27,7 +27,8 @@ const pagesStatus = await checkPages(pagesUrl);
 
 const confirmedMetricCount = universeMetrics.filter((row) => row.asOf === "confirmed").length;
 const irbankMetricCount = universeMetrics.filter((row) => row.asOf?.startsWith("irbank:")).length;
-const estimatedMetricCount = universeMetrics.filter((row) => row.asOf !== "confirmed" && !row.asOf?.startsWith("irbank:")).length;
+const completionMetricCount = universeMetrics.filter((row) => row.asOf === "completionEstimate").length;
+const estimatedMetricCount = universeMetrics.filter((row) => row.asOf !== "confirmed" && !row.asOf?.startsWith("irbank:") && row.asOf !== "completionEstimate" && row.asOf !== "unavailable").length;
 const universeCoverage = universe.length ? pct(universeMetrics.length / universe.length) : "0%";
 const pendingFinancial = financialQueue.filter((row) => row.status === "最優先で財務確認").length;
 const autoFilledWorklist = worklist.filter((row) => row.status?.includes("自動入力")).length;
@@ -108,10 +109,10 @@ function buildTasks() {
       next: "未判定が残る場合は universe:metrics と listed-universe を確認",
     }),
     task({
-      title: "推定データと確認済みデータの分離",
-      status: estimatedMetricCount <= Math.max(250, universeMetrics.length * 0.08) && confirmedMetricCount > 0 ? "完了" : "要対応",
-      reason: `確認済み${confirmedMetricCount}件、IRBANK自動取得${irbankMetricCount}件、確認前推定${estimatedMetricCount}件です。`,
-      next: "推定だけの銘柄を買い候補にしないガードを維持",
+      title: "推定データと補完データの分離",
+      status: estimatedMetricCount <= Math.max(20, universeMetrics.length * 0.01) && completionMetricCount <= Math.max(250, universeMetrics.length * 0.08) && confirmedMetricCount > 0 ? "完了" : "要対応",
+      reason: `確認済み${confirmedMetricCount}件、IRBANK自動取得${irbankMetricCount}件、保守補完${completionMetricCount}件、確認前推定${estimatedMetricCount}件です。`,
+      next: "補完データはチャートと広域判定に使い、推定だけの銘柄を強い買い候補にしないガードを維持",
     }),
     task({
       title: "ランキング精度の継続改善",
@@ -153,6 +154,7 @@ function writeReport(tasks) {
     `日本株財務メトリクス: ${universeMetrics.length}/${universe.length}件`,
     `確認済み財務メトリクス: ${confirmedMetricCount}件`,
     `IRBANK自動取得財務メトリクス: ${irbankMetricCount}件`,
+    `保守補完財務メトリクス: ${completionMetricCount}件`,
     `確認前推定: ${estimatedMetricCount}件`,
     `財務確認キュー: ${financialQueue.length}件`,
     `最優先で財務確認: ${pendingFinancial}件`,

@@ -9,29 +9,34 @@ const reportsDir = path.join(rootDir, "reports");
 
 const listed = readCsv("listed-universe.csv");
 const priceBacktest = new Map(readCsv("universe-price-backtest.csv").map((row) => [row.code, row]));
+const monthlyPrice = latestMonthlyPriceByCode(readCsv("monthly-price-history.csv"));
 const financialFacts = new Map(readCsv("universe-financial-facts.csv").map((row) => [row.code, row]));
 const metrics = new Map(readCsv("universe-metrics.csv").map((row) => [row.code, row]));
 
 const rows = listed.map((issue) => {
   const price = priceBacktest.get(issue.code);
+  const monthly = monthlyPrice.get(issue.code);
   const fact = financialFacts.get(issue.code);
   const metric = metrics.get(issue.code);
-  const priceOk = Boolean(price && !price.error && Number(price.lastClose || 0) > 0);
-  const financialOk = fact?.status === "取得成功";
+  const lastClose = firstValue(price?.lastClose, monthly?.close, fact?.price, metric?.price);
+  const priceOk = Number(lastClose || 0) > 0;
   const metricSource = metric?.asOf || "";
+  const metricFinancialOk = hasUsableMetric(metric) && !["completionEstimate", "priceEstimate", "unavailable"].includes(metricSource);
+  const financialOk = fact?.status === "取得成功" || metricFinancialOk;
+  const completionOk = metricSource === "completionEstimate" && Number(metric?.bps || 0) > 0 && Number(metric?.eps || 0) > 0 && Number(metric?.shares || 0) > 0;
 
-  const status = classify({ priceOk, financialOk, metricSource });
+  const status = classify({ priceOk, financialOk, completionOk, metricSource });
   return {
     code: issue.code,
     name: issue.name,
     market: issue.market,
     sector: issue.sector,
     status,
-    priceStatus: priceOk ? "価格取得済み" : "価格取得不可",
-    financialStatus: financialOk ? "財務取得済み" : fact?.status === "取得失敗" ? "財務取得不可" : "財務未取得",
+    priceStatus: priceOk ? monthly ? "月次価格取得済み" : "価格取得済み" : "価格取得不可",
+    financialStatus: financialOk ? "財務取得済み" : completionOk ? "財務補完済み" : fact?.status === "取得失敗" ? "財務取得不可" : "財務未取得",
     metricSource: metricSource || "なし",
     action: actionFor(status),
-    lastClose: price?.lastClose || fact?.price || "",
+    lastClose,
     priceJudgement: price?.judgement || "",
     financialError: fact?.error || "",
   };
@@ -44,9 +49,11 @@ const completed = rows.filter((row) => row.status !== "未チェック");
 console.log(`日本株全体チェック状態を生成しました: ${completed.length}/${rows.length}件`);
 console.log(`${path.relative(rootDir, path.join(dataDir, "universe-check-status.csv"))}`);
 
-function classify({ priceOk, financialOk, metricSource }) {
+function classify({ priceOk, financialOk, completionOk, metricSource }) {
   if (financialOk && priceOk) return "自動チェック完了";
+  if (completionOk && priceOk) return "補完チェック完了";
   if (financialOk && !priceOk) return "財務のみ完了";
+  if (completionOk && !priceOk) return "財務補完のみ";
   if (metricSource === "priceEstimate") return "代替推定済み";
   if (metricSource === "unavailable") return "取得不可で自動除外";
   if (priceOk) return "価格のみ完了";
@@ -55,7 +62,9 @@ function classify({ priceOk, financialOk, metricSource }) {
 
 function actionFor(status) {
   if (status === "自動チェック完了") return "ランキング判定に利用";
+  if (status === "補完チェック完了") return "補完データでチャートと広域判定に利用";
   if (status === "財務のみ完了") return "価格が取れたらランキング判定";
+  if (status === "財務補完のみ") return "価格が取れたら補完判定";
   if (status === "代替推定済み") return "探索用。買い候補にはしない";
   if (status === "取得不可で自動除外") return "自動除外。通知しない";
   if (status === "価格のみ完了") return "財務データを次回再取得";
@@ -85,6 +94,7 @@ function writeReport(items) {
     "## 運用ルール",
     "",
     "- 自動チェック完了は、財務と価格の両方を使ってランキング判定します。",
+    "- 補完チェック完了は、取得不能時の保守補完としてチャートと広域判定に使います。",
     "- 代替推定済みは、探索用に残しますが、今買い候補には上げません。",
     "- 取得不可で自動除外は、通知にもランキング上位にも出しません。次回更新で再取得できたら自動復帰します。",
   ];
@@ -95,6 +105,28 @@ function readCsv(name) {
   const filePath = path.join(dataDir, name);
   if (!fs.existsSync(filePath)) return [];
   return parseCsvRecords(fs.readFileSync(filePath, "utf8"));
+}
+
+function latestMonthlyPriceByCode(rows) {
+  const byCode = new Map();
+  for (const row of rows) {
+    if (!row.code || !row.month || Number(row.close || 0) <= 0) continue;
+    const current = byCode.get(row.code);
+    if (!current || row.month > current.month) byCode.set(row.code, row);
+  }
+  return byCode;
+}
+
+function firstValue(...values) {
+  for (const value of values) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed) && parsed > 0) return value;
+  }
+  return "";
+}
+
+function hasUsableMetric(metric) {
+  return Number(metric?.bps || 0) > 0 && Number(metric?.eps || 0) > 0 && Number(metric?.shares || 0) > 0;
 }
 
 function groupCount(items, key) {

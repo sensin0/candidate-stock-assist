@@ -67,7 +67,7 @@ function toCandidate(row) {
   const shares = Math.max(0, number(row.shares) - number(row.treasuryShares));
   if (!price || !bps || !eps || !shares) return null;
   if (metricSource === "unavailable" || metricSource === "priceEstimate") return null;
-  if (statusRow?.status && !["自動チェック完了", "財務のみ完了"].includes(statusRow.status)) return null;
+  if (statusRow?.status && !["自動チェック完了", "財務のみ完了", "補完チェック完了", "財務補完のみ"].includes(statusRow.status)) return null;
   if (monthlyRow?.dataStatus && monthlyRow.dataStatus !== "判定可能") return null;
 
   const marketCap = (price * shares) / 1_000_000;
@@ -128,6 +128,7 @@ function toCandidate(row) {
     specialSector,
     signal,
     alreadyNormal,
+    metricSource,
   });
   const rankingScore = autoBuyScore + multibagger.score;
 
@@ -235,6 +236,7 @@ function score(item) {
   if (item.periodReturn > 180) value -= 12;
   if (item.specialSector) value -= 14;
   if (item.alreadyNormal) value += 4;
+  if (item.metricSource === "completionEstimate") value -= 24;
   return value;
 }
 

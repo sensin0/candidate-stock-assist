@@ -11,6 +11,7 @@ const hiddenDraftPath = path.join(rootDir, "data", "stock-master-hidden-gems-dra
 const listedPath = path.join(rootDir, "data", "listed-universe.csv");
 const universeBacktestPath = path.join(rootDir, "data", "universe-price-backtest.csv");
 const universeFinancialFactsPath = path.join(rootDir, "data", "universe-financial-facts.csv");
+const completionOverridesPath = path.join(rootDir, "data", "universe-completion-overrides.csv");
 const outputPath = path.join(rootDir, "data", "universe-metrics.csv");
 const outputReportPath = path.join(rootDir, "reports", "latest-universe-financial-coverage.md");
 const estimateLimit = Number(process.env.UNIVERSE_METRICS_ESTIMATE_LIMIT || 3728);
@@ -42,6 +43,7 @@ for (const row of readCsv(hiddenDraftPath)) addRow(metricFromDraft(row, "hiddenD
 for (const row of readCsv(universeFinancialFactsPath).filter((item) => item.status === "取得成功")) {
   addRow(metricFromUniverseFinancialFact(row));
 }
+for (const row of readCsv(completionOverridesPath)) addRow(metricFromCompletion(row));
 
 const backtestRows = readCsv(universeBacktestPath)
   .filter((row) => !row.error && Number(row.lastClose) > 0)
@@ -56,9 +58,10 @@ fs.writeFileSync(outputPath, toCsv(rows), "utf8");
 writeReport(rows);
 const listedCodesForLog = new Set(listed.map((row) => row.code));
 const listedRowsForLog = rows.filter((row) => listedCodesForLog.has(row.code));
-const estimatedRowsForLog = listedRowsForLog.filter((row) => row.asOf !== "confirmed" && !row.asOf?.startsWith("irbank:") && row.asOf !== "unavailable");
+const completedRowsForLog = listedRowsForLog.filter((row) => row.asOf === "completionEstimate");
+const estimatedRowsForLog = listedRowsForLog.filter((row) => row.asOf !== "confirmed" && !row.asOf?.startsWith("irbank:") && row.asOf !== "completionEstimate" && row.asOf !== "unavailable");
 console.log(`universe-metrics を生成しました: 日本株母集団 ${listedRowsForLog.length}/${listed.length}件`);
-console.log(`確認済み: ${listedRowsForLog.filter((row) => row.asOf === "confirmed").length}件 / IRBANK自動取得: ${listedRowsForLog.filter((row) => row.asOf?.startsWith("irbank:")).length}件 / 推定: ${estimatedRowsForLog.length}件 / 自動除外: ${listedRowsForLog.filter((row) => row.asOf === "unavailable").length}件`);
+console.log(`確認済み: ${listedRowsForLog.filter((row) => row.asOf === "confirmed").length}件 / IRBANK自動取得: ${listedRowsForLog.filter((row) => row.asOf?.startsWith("irbank:")).length}件 / 保守補完: ${completedRowsForLog.length}件 / 推定: ${estimatedRowsForLog.length}件 / 自動除外: ${listedRowsForLog.filter((row) => row.asOf === "unavailable").length}件`);
 
 function addRow(row) {
   if (!row?.code) return;
@@ -74,6 +77,7 @@ function metricPriority(asOf) {
   if (asOf === "confirmed") return 50;
   if (String(asOf || "").startsWith("irbank:")) return 40;
   if (asOf === "promotionDraft" || asOf === "hiddenDraft") return 30;
+  if (asOf === "completionEstimate") return 25;
   if (asOf === "priceEstimate") return 10;
   if (asOf === "unavailable") return 0;
   return 20;
@@ -114,6 +118,25 @@ function metricFromUniverseFinancialFact(row) {
     shares: number(row.shares),
     treasuryShares: number(row.treasuryShares),
     asOf: `irbank:${row.period || "latest"}`,
+  };
+}
+
+function metricFromCompletion(row) {
+  return {
+    code: row.code,
+    price: number(row.price),
+    bps: number(row.bps),
+    eps: number(row.eps),
+    cash: number(row.cash),
+    securities: number(row.securities),
+    investmentSecurities: number(row.investmentSecurities),
+    interestDebt: number(row.interestDebt),
+    netAssets: number(row.netAssets),
+    rentalBook: number(row.rentalBook),
+    rentalMarket: number(row.rentalMarket),
+    shares: number(row.shares),
+    treasuryShares: number(row.treasuryShares),
+    asOf: "completionEstimate",
   };
 }
 
@@ -167,8 +190,9 @@ function writeReport(items) {
   const outsideUniverse = items.filter((row) => !listedCodes.has(row.code));
   const confirmed = listedItems.filter((row) => row.asOf === "confirmed");
   const fetched = listedItems.filter((row) => row.asOf?.startsWith("irbank:"));
+  const completed = listedItems.filter((row) => row.asOf === "completionEstimate");
   const unavailable = listedItems.filter((row) => row.asOf === "unavailable");
-  const estimated = listedItems.filter((row) => row.asOf !== "confirmed" && !row.asOf?.startsWith("irbank:") && row.asOf !== "unavailable");
+  const estimated = listedItems.filter((row) => row.asOf !== "confirmed" && !row.asOf?.startsWith("irbank:") && row.asOf !== "completionEstimate" && row.asOf !== "unavailable");
   const lines = [
     "# 日本株 財務データ範囲",
     "",
@@ -178,6 +202,7 @@ function writeReport(items) {
     `母集団外の通常候補など: ${outsideUniverse.length}件`,
     `確認済み: ${confirmed.length}件`,
     `IRBANK自動取得: ${fetched.length}件`,
+    `保守補完: ${completed.length}件`,
     `確認前推定: ${estimated.length}件`,
     `取得不可で自動除外: ${unavailable.length}件`,
     "",

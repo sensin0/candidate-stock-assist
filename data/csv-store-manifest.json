@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-10T11:08:47.556Z",
-  "totalFiles": 35,
-  "totalRows": 279783,
-  "totalBytes": 36580217,
+  "generatedAt": "2026-07-10T12:07:17.533Z",
+  "totalFiles": 36,
+  "totalRows": 279952,
+  "totalBytes": 37007684,
   "problems": [],
   "files": [
     {
       "name": "auto-financial-followup.csv",
-      "bytes": 11239,
+      "bytes": 11267,
       "rows": 19,
       "columns": 22,
       "headers": [
@@ -314,7 +314,7 @@
     },
     {
       "name": "monthly-signal-backtest.csv",
-      "bytes": 29996223,
+      "bytes": 30369795,
       "rows": 131186,
       "columns": 21,
       "headers": [
@@ -342,13 +342,13 @@
       ],
       "duplicateCodes": 3716,
       "warnings": [
-        "サイズが大きい 29996223 bytes"
+        "サイズが大きい 30369795 bytes"
       ],
       "problems": []
     },
     {
       "name": "monthly-signal-summary.csv",
-      "bytes": 4922,
+      "bytes": 4921,
       "rows": 41,
       "columns": 16,
       "headers": [
@@ -800,7 +800,7 @@
     },
     {
       "name": "universe-buy-candidate-review.csv",
-      "bytes": 49776,
+      "bytes": 49733,
       "rows": 120,
       "columns": 21,
       "headers": [
@@ -832,7 +832,7 @@
     },
     {
       "name": "universe-buy-candidates.csv",
-      "bytes": 100286,
+      "bytes": 100702,
       "rows": 120,
       "columns": 38,
       "headers": [
@@ -881,7 +881,7 @@
     },
     {
       "name": "universe-check-status.csv",
-      "bytes": 755074,
+      "bytes": 758448,
       "rows": 3728,
       "columns": 12,
       "headers": [
@@ -897,6 +897,39 @@
         "lastClose",
         "priceJudgement",
         "financialError"
+      ],
+      "duplicateCodes": 0,
+      "warnings": [],
+      "problems": []
+    },
+    {
+      "name": "universe-completion-overrides.csv",
+      "bytes": 48949,
+      "rows": 169,
+      "columns": 22,
+      "headers": [
+        "code",
+        "name",
+        "market",
+        "sector",
+        "price",
+        "bps",
+        "eps",
+        "cash",
+        "securities",
+        "investmentSecurities",
+        "interestDebt",
+        "netAssets",
+        "rentalBook",
+        "rentalMarket",
+        "shares",
+        "treasuryShares",
+        "asOf",
+        "confidence",
+        "source",
+        "monthlyHistoryCount",
+        "priceScore",
+        "reason"
       ],
       "duplicateCodes": 0,
       "warnings": [],
@@ -936,7 +969,7 @@
     },
     {
       "name": "universe-metrics.csv",
-      "bytes": 286103,
+      "bytes": 287275,
       "rows": 3730,
       "columns": 14,
       "headers": [

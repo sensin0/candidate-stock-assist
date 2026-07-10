@@ -11,6 +11,7 @@ process.env.FINANCIAL_ENRICH_CONCURRENCY ??= "6";
 const steps = [
   ["日本株価格バックテスト", "scripts/research-universe-price-backtest.mjs"],
   ["日本株全体財務データ取得", "scripts/refresh-universe-financial-facts.mjs"],
+  ["日本株データ完全化", "scripts/complete-universe-data.mjs"],
   ["日本株財務メトリクス範囲更新", "scripts/build-universe-metrics.mjs"],
   ["日本株全体チェック状態生成", "scripts/build-universe-check-status.mjs"],
   ["全体自動買い候補予備軍生成", "scripts/build-universe-buy-candidates.mjs"],
