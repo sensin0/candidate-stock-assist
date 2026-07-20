@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { pythonExecutable } from "./python-runtime.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -192,7 +193,7 @@ const checks = [
   ["universe buy candidate review syntax", process.execPath, ["--check", "scripts/review-universe-buy-candidates.mjs"]],
   ["universe data completion syntax", process.execPath, ["--check", "scripts/complete-universe-data.mjs"]],
   ["backtest timing", process.execPath, ["scripts/backtest-timing.mjs"]],
-  ["monthly signal backtest syntax", "python", ["-m", "py_compile", "scripts/monthly_signal_backtest.py"]],
+  ["monthly signal backtest syntax", pythonExecutable(), ["-m", "py_compile", "scripts/monthly_signal_backtest.py"]],
   ["promotion candidates syntax", process.execPath, ["--check", "scripts/build-promotion-candidates.mjs"]],
   ["promotion readiness syntax", process.execPath, ["--check", "scripts/build-promotion-readiness.mjs"]],
   ["hidden gems syntax", process.execPath, ["--check", "scripts/build-hidden-gems.mjs"]],
@@ -219,11 +220,29 @@ const checks = [
 ];
 
 for (const [label, command, args] of checks) {
-  const result = spawnSync(command, args, { cwd: rootDir, stdio: "inherit", shell: false });
-  if (result.status !== 0) {
+  const result = runWithRetry(label, command, args);
+  if (result !== 0) {
     console.error(`${label} に失敗しました`);
-    process.exit(result.status ?? 1);
+    process.exit(result ?? 1);
   }
 }
 
 console.log("GitHub Pages公開準備OK");
+
+function runWithRetry(label, command, args, attempts = 3) {
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const result = spawnSync(command, args, { cwd: rootDir, stdio: "inherit", shell: false });
+    if (result.status === 0) return 0;
+    if (attempt < attempts) {
+      console.warn(`${label} を再試行します (${attempt + 1}/${attempts})`);
+      sleep(750 * attempt);
+    } else {
+      return result.status ?? 1;
+    }
+  }
+  return 1;
+}
+
+function sleep(ms) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}

@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-10T12:07:17.533Z",
+  "generatedAt": "2026-07-20T06:59:06.995Z",
   "totalFiles": 36,
-  "totalRows": 279952,
-  "totalBytes": 37007684,
+  "totalRows": 279951,
+  "totalBytes": 37007630,
   "problems": [],
   "files": [
     {
       "name": "auto-financial-followup.csv",
-      "bytes": 11267,
+      "bytes": 11371,
       "rows": 19,
       "columns": 22,
       "headers": [
@@ -40,7 +40,7 @@
     },
     {
       "name": "backtest-results.csv",
-      "bytes": 7580,
+      "bytes": 7595,
       "rows": 37,
       "columns": 15,
       "headers": [
@@ -451,8 +451,8 @@
     },
     {
       "name": "price-refresh-queue.csv",
-      "bytes": 291,
-      "rows": 1,
+      "bytes": 118,
+      "rows": 0,
       "columns": 14,
       "headers": [
         "rank",

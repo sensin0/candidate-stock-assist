@@ -25,7 +25,7 @@ const sqliteInputs = [
   universeBuyCandidatesCsv,
   universeBuyCandidateReviewCsv,
 ];
-const useSqlite = sqliteFreshFor(sqliteInputs);
+let useSqlite = sqliteFreshFor(sqliteInputs);
 const universeRows = readTable("universe_price_backtest", universeCsv);
 const listedUniverseByCode = new Map(readTable("listed_universe", listedUniverseCsv).map((row) => [row.code, row]));
 const metricsByCode = new Map(readTable("universe_metrics", universeMetricsCsv).map((row) => [row.code, row]));
@@ -68,6 +68,10 @@ const multibaggerWatch = multibaggerRows
 
 const autoBuyCandidates = universeBuyCandidateRows.slice(0, 120).map((row) => {
   const review = universeBuyCandidateReviewByCode.get(row.code) ?? {};
+  const metrics = metricsByCode.get(row.code) ?? {};
+  const price = number(row.price || metrics.price);
+  const pbr = number(row.pbr);
+  const per = number(row.per);
   return {
     code: row.code,
     name: row.name,
@@ -80,14 +84,26 @@ const autoBuyCandidates = universeBuyCandidateRows.slice(0, 120).map((row) => {
     reviewCautions: review.cautions || "",
     reviewNextAction: review.nextAction || "",
     autoBuyScore: number(row.autoBuyScore),
-    price: number(row.price),
+    price,
+    bps: number(metrics.bps) || (pbr > 0 ? round(price / pbr) : 0),
+    eps: number(metrics.eps) || (per > 0 ? round(price / per) : 0),
+    cash: number(metrics.cash),
+    securities: number(metrics.securities),
+    investmentSecurities: number(metrics.investmentSecurities),
+    interestDebt: number(metrics.interestDebt),
+    netAssets: number(metrics.netAssets),
+    rentalBook: number(metrics.rentalBook),
+    rentalMarket: number(metrics.rentalMarket),
+    shares: number(metrics.shares),
+    treasuryShares: number(metrics.treasuryShares),
+    history: monthlyHistoryByCode.get(row.code) ?? estimatedHistory(price),
     buyLine: number(row.buyLine),
     targetPrice: number(row.targetPrice),
     sellGuidePrice: number(row.sellGuidePrice),
     buyRatio: number(row.buyRatio),
     upside: number(row.upside),
-    pbr: number(row.pbr),
-    per: number(row.per),
+    pbr,
+    per,
     netCashRatio: number(row.netCashRatio),
     winRate: number(row.winRate),
     averageReturn: number(row.averageReturn),
@@ -146,13 +162,31 @@ function readCsv(filePath) {
 }
 
 function readTable(tableName, csvPath) {
-  if (useSqlite) return tableRows(tableName);
+  if (useSqlite) {
+    try {
+      return tableRows(tableName);
+    } catch (error) {
+      useSqlite = false;
+      console.warn(`SQLite読み込み失敗。CSVへ切り替えます: ${error.message}`);
+    }
+  }
   return readCsv(csvPath);
 }
 
 function number(value) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function round(value, digits = 2) {
+  if (!Number.isFinite(value)) return 0;
+  const factor = 10 ** digits;
+  return Math.round(value * factor) / factor;
+}
+
+function estimatedHistory(price) {
+  if (!Number.isFinite(price) || price <= 0) return [];
+  return [0.92, 0.96, 0.99, 1].map((rate) => Math.round(price * rate));
 }
 
 function reviewPriority(status) {

@@ -1,9 +1,9 @@
 ﻿{
-  "generatedAt": "2026-07-10T12:07:14.414823+00:00",
+  "generatedAt": "2026-07-20T06:58:59.217918+00:00",
   "database": "data/candidate-stock-assist.sqlite",
   "databaseBytes": 44384256,
   "tables": 36,
-  "rows": 279952,
+  "rows": 279951,
   "integrity": "ok",
   "imported": [
     {
@@ -11,14 +11,14 @@
       "csv": "auto-financial-followup.csv",
       "rows": 19,
       "columns": 22,
-      "bytes": 11267
+      "bytes": 11371
     },
     {
       "table": "backtest_results",
       "csv": "backtest-results.csv",
       "rows": 37,
       "columns": 15,
-      "bytes": 7580
+      "bytes": 7595
     },
     {
       "table": "disclosures",
@@ -121,9 +121,9 @@
     {
       "table": "price_refresh_queue",
       "csv": "price-refresh-queue.csv",
-      "rows": 1,
+      "rows": 0,
       "columns": 14,
-      "bytes": 291
+      "bytes": 118
     },
     {
       "table": "price_updates",

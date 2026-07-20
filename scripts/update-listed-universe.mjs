@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { pythonExecutable } from "./python-runtime.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outputPath = path.join(rootDir, "data", "listed-universe.csv");
@@ -48,7 +49,7 @@ if (!response.ok) {
 }
 fs.writeFileSync(downloadPath, Buffer.from(await response.arrayBuffer()));
 
-const result = spawnSync("python", ["-c", pythonConverter, downloadPath, outputPath], {
+const result = spawnSync(pythonExecutable(), ["-c", pythonConverter, downloadPath, outputPath], {
   cwd: rootDir,
   encoding: "utf8",
 });

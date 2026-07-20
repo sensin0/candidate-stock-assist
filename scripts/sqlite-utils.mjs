@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { pythonExecutable } from "./python-runtime.mjs";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const defaultDbPath = path.join(rootDir, "data", "candidate-stock-assist.sqlite");
@@ -32,7 +33,7 @@ rows = conn.execute(payload["sql"], payload.get("params", [])).fetchall()
 print(json.dumps([dict(row) for row in rows], ensure_ascii=False))
 conn.close()
 `;
-  const result = spawnSync("python", ["-c", runner], {
+  const result = spawnSync(pythonExecutable(), ["-c", runner], {
     input: JSON.stringify({ dbPath, sql, params }),
     encoding: "utf8",
     shell: false,
@@ -40,7 +41,7 @@ conn.close()
     maxBuffer: 1024 * 1024 * 128,
   });
   if (result.status !== 0) {
-    throw new Error(`SQLite query failed: ${result.stderr || result.stdout}`);
+    throw new Error(`SQLite query failed: ${result.error?.message || result.stderr || result.stdout}`);
   }
   return JSON.parse(result.stdout || "[]");
 }

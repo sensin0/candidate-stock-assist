@@ -1,53 +1,54 @@
 # 株価自動更新
 
-生成日時: 2026-07-10T12:07:05.348Z
+生成日時: 2026-07-20T06:58:44.344Z
 対象: 37件
-成功: 36件
-失敗: 1件
+成功: 0件
+失敗: 37件
 price-updates.csv 登録: 37件
 
 ## 更新できた銘柄
 
-- 1. 8841 テーオーシー: 2026-07-10 / 947円
-- 2. 6505 東洋電機製造: 2026-07-10 / 1,964円
-- 3. 3123 サイボー: 2026-07-10 / 641円
-- 4. 3765 ガンホー: 2026-07-10 / 2,363円
-- 5. 8802 三菱地所: 2026-07-10 / 4,179円
-- 6. 2484 出前館: 2026-07-10 / 127円
-- 7. 1897 金下建設: 2026-07-10 / 3,090円
-- 8. 9672 東京都競馬: 2026-07-10 / 4,840円
-- 9. 8830 住友不動産: 2026-07-10 / 3,762円
-- 10. 8801 三井不動産: 2026-07-10 / 1,511円
-- 11. 9830 トラスコ中山: 2026-07-10 / 2,319円
-- 12. 3471 三井不動産ロジスティクスパーク投資法人: 2026-07-10 / 108,900円
-- 13. 8018 三共生興: 2026-07-10 / 813円
-- 14. 6513 オリジン: 2026-07-10 / 1,072円
-- 15. 1443 技研HD: 2026-07-10 / 250円
-- 16. 9409 テレビ朝日HD: 2026-07-10 / 3,190円
-- 17. 9324 安田倉庫: 2026-07-10 / 2,453円
-- 18. 8818 京阪神ビルディング: 2026-07-10 / 1,162円
-- 19. 3892 岡山製紙: 2026-07-10 / 1,662円
-- 20. 6276 SiriusVision CO.,LTD.: 2026-07-10 / 320円
-- 21. 7435 NADEX CO.,LTD.: 2026-07-10 / 1,289円
-- 22. 7567 SAKAE ELECTRONICS CORPORATION: 2026-07-10 / 535円
-- 23. 1514 Sumiseki Holdings,Inc.: 2026-07-10 / 577円
-- 24. 7885 TAKANO Co.,Ltd.: 2026-07-10 / 1,164円
-- 25. 7901 MATSUMOTO INC.: 2026-07-10 / 788円
-- 26. 6870 Fenwal Controls of Japan,Ltd.: 2026-07-10 / 2,575円
-- 27. 5939 OTANI KOGYO CO.,LTD.: 2026-07-10 / 4,990円
-- 28. 2303 Dawn Corporation: 2026-07-10 / 1,249円
-- 29. 2332 Quest Co.,Ltd.: 2026-07-10 / 1,736円
-- 30. 3908 コラボス: 2026-07-10 / 339円
-- 31. 6643 戸上電機製作所: 2026-07-10 / 5,430円
-- 32. 7781 平山ホールディングス: 2026-07-10 / 803円
-- 33. 1814 大末建設: 2026-07-10 / 3,525円
-- 34. 4341 西菱電機: 2026-07-10 / 895円
-- 35. 3352 バッファロー: 2026-07-10 / 1,630円
-- 36. 3435 サンコーテクノ: 2026-07-10 / 1,414円
+- 該当なし
 
 ## 取得できなかった銘柄
 
-- 1. 9402 中部日本放送: .T: 404 Not Found / .N: 404 Not Found / quote-page: HTMLから株価を取得できません
+- 1. 8841 テーオーシー: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 2. 6505 東洋電機製造: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 3. 3123 サイボー: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 4. 3765 ガンホー: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 5. 8802 三菱地所: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 6. 2484 出前館: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 7. 1897 金下建設: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 8. 9672 東京都競馬: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 9. 8830 住友不動産: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 10. 8801 三井不動産: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 11. 9830 トラスコ中山: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 12. 3471 三井不動産ロジスティクスパーク投資法人: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 13. 8018 三共生興: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 14. 6513 オリジン: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 15. 1443 技研HD: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 16. 9409 テレビ朝日HD: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 17. 9402 中部日本放送: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 18. 9324 安田倉庫: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 19. 8818 京阪神ビルディング: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 20. 3892 岡山製紙: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 21. 6276 SiriusVision CO.,LTD.: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 22. 7435 NADEX CO.,LTD.: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 23. 7567 SAKAE ELECTRONICS CORPORATION: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 24. 1514 Sumiseki Holdings,Inc.: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 25. 7885 TAKANO Co.,Ltd.: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 26. 7901 MATSUMOTO INC.: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 27. 6870 Fenwal Controls of Japan,Ltd.: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 28. 5939 OTANI KOGYO CO.,LTD.: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 29. 2303 Dawn Corporation: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 30. 2332 Quest Co.,Ltd.: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 31. 3908 コラボス: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 32. 6643 戸上電機製作所: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 33. 7781 平山ホールディングス: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 34. 1814 大末建設: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 35. 4341 西菱電機: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 36. 3352 バッファロー: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 37. 3435 サンコーテクノ: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
 
 ## 運用
 - 毎朝の判定前に最新終値を取得します。

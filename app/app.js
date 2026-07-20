@@ -2969,8 +2969,10 @@ function renderResearchLynch(item, type) {
 
 function stockFromResearchItem(item) {
   const price = Number(item.price || 0);
-  const bps = Number(item.bps || 0);
-  const eps = Number(item.eps || 0);
+  const pbr = Number(item.pbr || 0);
+  const per = Number(item.per || 0);
+  const bps = Number(item.bps || 0) || (price > 0 && pbr > 0 ? price / pbr : 0);
+  const eps = Number(item.eps || 0) || (price > 0 && per > 0 ? price / per : 0);
   if (!price || !bps || !eps) return null;
   const history = Array.isArray(item.history)
     ? item.history.map((value) => Number(value)).filter((value) => Number.isFinite(value) && value > 0)
@@ -2982,6 +2984,15 @@ function stockFromResearchItem(item) {
     price,
     bps,
     eps,
+    cash: Number(item.cash || 0),
+    securities: Number(item.securities || 0),
+    investmentSecurities: Number(item.investmentSecurities || 0),
+    interestDebt: Number(item.interestDebt || 0),
+    netAssets: Number(item.netAssets || 0),
+    rentalBook: Number(item.rentalBook || 0),
+    rentalMarket: Number(item.rentalMarket || 0),
+    shares: Number(item.shares || 0),
+    treasuryShares: Number(item.treasuryShares || 0),
     history: normalizedHistory,
     priceAsOf: window.AUTO_RESEARCH_DATA?.generatedAt,
     perLow: 10,
