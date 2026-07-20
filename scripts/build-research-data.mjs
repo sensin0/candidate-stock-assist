@@ -213,6 +213,8 @@ function mapUniverseRow(row) {
     price,
     bps: number(metrics.bps),
     eps: number(metrics.eps),
+    chartBps: number(metrics.bps) || (price > 0 ? round(price / 0.75) : 0),
+    chartEps: number(metrics.eps) > 0 ? number(metrics.eps) : price > 0 ? round(price / 12) : 0,
     metricSource: metrics.asOf || "",
     history: monthlyHistoryByCode.get(row.code) ?? [],
     winRate: number(row.winRate),

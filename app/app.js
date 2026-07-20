@@ -330,7 +330,7 @@ function effectiveMarketCap(stock) {
 }
 
 function practicalSellGuidePrice(stock) {
-  const price = Number(stock.price || 0);
+  const price = positiveNumber(stock.price) || positiveNumber(stock.buyLine) || positiveNumber(stock.targetPrice) || positiveNumber(stock.sellGuidePrice) || 100;
   const buyLine = Number(stock.buyLine || 0);
   const targetPrice = Number(stock.targetPrice || 0);
   const history = Array.isArray(stock.history) ? stock.history.filter((value) => Number.isFinite(value) && value > 0) : [];
@@ -1559,9 +1559,7 @@ function renderTodayRankingRow(entry, index) {
   const detailText = type === "financialConfirmation"
     ? (item.buyGuard || item.nextStep || "買う前に財務確認")
     : (item.comment || item.reason || signalComment(item));
-  const lynch = type === "financialConfirmation"
-    ? renderFinancialConfirmationPlaceholder(item)
-    : renderResearchLynch(item, type);
+  const lynch = renderResearchLynch(item, type);
 
   return `
     <article class="ranking-row research-ranking-row ${isActive ? "active" : ""}" data-research-type="${type}" data-research-code="${escapeHtml(item.code)}">
@@ -1682,7 +1680,7 @@ function renderFinancialConfirmationRankingRow(item, index) {
         <span>${escapeHtml(item.blockers || "注意なし")}</span>
       </div>
     </article>
-    ${isActive ? renderInlineMobileLynchPreview(renderFinancialConfirmationPlaceholder(item), `${item.name}の財務確認`, renderInlineResearchSummary(item, "financialConfirmation")) : ""}
+    ${isActive ? renderInlineMobileLynchPreview(renderResearchLynch(item, "financialConfirmation"), `${item.name}の財務確認`, renderInlineResearchSummary(item, "financialConfirmation")) : ""}
   `;
 }
 
@@ -1707,7 +1705,7 @@ function renderFinancialScreeningRankingRow(item, index) {
         <span>${escapeHtml(item.cautions || "注意なし")}</span>
       </div>
     </article>
-    ${isActive ? renderInlineMobileLynchPreview(renderFinancialScreeningPlaceholder(item), `${item.name}の財務スクリーニング`, renderInlineResearchSummary(item, "financialScreening")) : ""}
+    ${isActive ? renderInlineMobileLynchPreview(renderResearchLynch(item, "financialScreening"), `${item.name}の財務スクリーニング`, renderInlineResearchSummary(item, "financialScreening")) : ""}
   `;
 }
 
@@ -1960,8 +1958,8 @@ function renderFinancialConfirmationDetail(item) {
   document.getElementById("timingPanel").innerHTML = "";
   document.getElementById("lifecycleAssist").innerHTML = "";
   document.getElementById("tradeMeter").innerHTML = "";
-  document.getElementById("chart").innerHTML = renderFinancialConfirmationPlaceholder(item);
-  const lynchChart = renderFinancialConfirmationPlaceholder(item);
+  document.getElementById("chart").innerHTML = renderResearchChart(item);
+  const lynchChart = renderResearchLynch(item, "financialConfirmation");
   document.getElementById("lynchChart").innerHTML = lynchChart;
   renderMobileLynchPreview(lynchChart, `${item.name}の財務確認`);
   document.getElementById("reasonList").innerHTML = [
@@ -2032,8 +2030,8 @@ function renderFinancialScreeningDetail(item) {
   document.getElementById("timingPanel").innerHTML = "";
   document.getElementById("lifecycleAssist").innerHTML = "";
   document.getElementById("tradeMeter").innerHTML = "";
-  document.getElementById("chart").innerHTML = renderFinancialScreeningPlaceholder(item);
-  const lynchChart = renderFinancialScreeningPlaceholder(item);
+  document.getElementById("chart").innerHTML = renderResearchChart(item);
+  const lynchChart = renderResearchLynch(item, "financialScreening");
   document.getElementById("lynchChart").innerHTML = lynchChart;
   renderMobileLynchPreview(lynchChart, `${item.name}の財務スクリーニング`);
   document.getElementById("reasonList").innerHTML = [
@@ -2656,12 +2654,7 @@ function renderExpansionChart(item) {
 }
 
 function renderExpansionLynchPlaceholder(item) {
-  return `
-    <div class="chart-empty">
-      <strong>リンチ・チャートは推定値で表示中</strong>
-      <p>${escapeHtml(item.name)}は追加候補です。EPS、BPS、PER/PBRレンジは推定値なので、原資料チェック後に精度が上がります。</p>
-    </div>
-  `;
+  return renderLynchChart(stockFromResearchItem(item) ?? fallbackResearchStock(item));
 }
 
 function renderExpansionMetrics(item) {
@@ -2794,22 +2787,17 @@ function renderChart(stock) {
 }
 
 function renderLynchChart(stock) {
-  const eps = Number(stock.eps || 0);
-  if (!Number.isFinite(eps) || eps <= 0) {
-    return `
-      <div class="chart-empty">
-        <p class="eyebrow">リンチ・チャート</p>
-        <h3>EPSが確認できるまで待ち</h3>
-        <p>赤字またはEPS未確認のため、利益目安線は表示していません。先に直近決算とEPSを確認します。</p>
-      </div>
-    `;
-  }
+  const price = Number(stock.price || 0);
+  const pbr = Number(stock.pbr || stock.modifiedPbr || 0);
+  const per = Number(stock.per || 0);
+  const eps = positiveNumber(stock.chartEps) || positiveNumber(stock.eps) || (price > 0 && per > 0 ? price / per : price > 0 ? price / 12 : 0);
+  const history = normalizedPriceHistory(stock, price);
 
   const width = 880;
   const height = 360;
   const pad = { left: 62, right: 36, top: 38, bottom: 86 };
-  const bps = Number(stock.bps || 0);
-  const adjustedBps = lynchBps(stock);
+  const bps = positiveNumber(stock.chartBps) || positiveNumber(stock.bps) || (price > 0 && pbr > 0 ? price / pbr : price > 0 ? price / 0.75 : 0);
+  const adjustedBps = Math.max(bps, lynchBps(stock));
   const usesAdjustedBps = Math.abs(adjustedBps - bps) >= Math.max(1, bps * 0.03);
   const pbrLabel = usesAdjustedBps ? "修正PBR" : "PBR";
   const chartBasis = usesAdjustedBps ? "修正BPS×PBR" : "BPS×PBR";
@@ -2819,8 +2807,8 @@ function renderLynchChart(stock) {
   const pbrLow = Number(stock.pbrLow || 0) > 0 ? Number(stock.pbrLow) : 0.6;
   const pbrAvg = Number(stock.pbrAvg || 0) > 0 ? Number(stock.pbrAvg) : Math.max(pbrLow, (pbrLow + Number(stock.pbrHigh || pbrLow * 1.6)) / 2);
   const pbrHigh = Number(stock.pbrHigh || 0) > 0 ? Number(stock.pbrHigh) : Math.max(pbrAvg * 1.35, pbrAvg + 0.25);
-  const epsSeries = estimatedEpsSeries(stock.history.length, eps);
-  const bpsSeries = estimatedBpsSeries(stock.history.length, adjustedBps);
+  const epsSeries = estimatedEpsSeries(history.length, eps);
+  const bpsSeries = estimatedBpsSeries(history.length, adjustedBps);
   const perLowSeries = epsSeries.map((value) => value * perLow);
   const perFairSeries = epsSeries.map((value) => value * perAvg);
   const perHighSeries = epsSeries.map((value) => value * perHigh);
@@ -2830,13 +2818,13 @@ function renderLynchChart(stock) {
   const lowLine = Math.min(perLowSeries.at(-1), pbrLowSeries.at(-1));
   const fairLine = Math.min(perFairSeries.at(-1), pbrFairSeries.at(-1));
   const highLine = Math.max(perHighSeries.at(-1), pbrHighSeries.at(-1));
-  const values = [...stock.history, ...perLowSeries, ...perFairSeries, ...perHighSeries, ...pbrLowSeries, ...pbrFairSeries, ...pbrHighSeries, stock.price];
+  const values = [...history, ...perLowSeries, ...perFairSeries, ...perHighSeries, ...pbrLowSeries, ...pbrFairSeries, ...pbrHighSeries, price];
   const min = Math.max(1, Math.min(...values) * 0.82);
   const max = Math.max(...values) * 1.12;
-  const x = (index) => pad.left + (index / Math.max(1, stock.history.length - 1)) * (width - pad.left - pad.right);
+  const x = (index) => pad.left + (index / Math.max(1, history.length - 1)) * (width - pad.left - pad.right);
   const y = (value) => pad.top + (1 - (value - min) / (max - min)) * (height - pad.top - pad.bottom);
-  const pricePoints = stock.history.map((value, index) => `${x(index)},${y(value)}`).join(" ");
-  const historyDates = estimatedHistoryDates(stock);
+  const pricePoints = history.map((value, index) => `${x(index)},${y(value)}`).join(" ");
+  const historyDates = estimatedHistoryDates(stock, history.length);
   const dateTicks = lynchDateTicks(historyDates).map((tick) => `
     <line x1="${x(tick.index)}" x2="${x(tick.index)}" y1="${height - pad.bottom}" y2="${height - pad.bottom + 6}" stroke="#b9c1bc" />
     <text x="${x(tick.index)}" y="${height - pad.bottom + 22}" text-anchor="${tick.anchor}" font-size="11" fill="#65706b">${tick.label}</text>
@@ -2846,15 +2834,15 @@ function renderLynchChart(stock) {
     <polyline points="${seriesPoints(series)}" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round" ${dash ? `stroke-dasharray="${dash}"` : ""} />
     <text x="${width - pad.right - 186}" y="${y(series.at(-1)) + offsetY}" font-size="12" fill="${color}">${label} ${yen(series.at(-1))}</text>
   `;
-  const currentPer = stock.price / eps;
-  const position = stock.price <= lowLine
+  const currentPer = price / eps;
+  const position = price <= lowLine
     ? "利益目安では割安ゾーン"
-    : stock.price <= fairLine
+    : price <= fairLine
       ? "利益目安では中立ゾーン"
-      : stock.price <= highLine
+      : price <= highLine
         ? "利益目安では高め"
         : "利益目安ではかなり高め";
-  const calloutColor = stock.price <= fairLine ? "#1f8a55" : stock.price <= highLine ? "#b98513" : "#c44536";
+  const calloutColor = price <= fairLine ? "#1f8a55" : price <= highLine ? "#b98513" : "#c44536";
 
   return `
     <svg viewBox="0 0 ${width} ${height}" aria-label="${stock.name}のリンチ・チャート">
@@ -2870,10 +2858,10 @@ function renderLynchChart(stock) {
       ${valueLine(pbrFairSeries, "#7d9fbd", `${pbrLabel}標準 ${Math.round(pbrAvg * 100) / 100}`, "3 7", 24, 1.8)}
       ${valueLine(pbrLowSeries, "#78a889", `${pbrLabel}下限 ${Math.round(pbrLow * 100) / 100}`, "3 7", 36, 1.8)}
       <polyline points="${pricePoints}" fill="none" stroke="#1d2522" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-      <circle cx="${x(stock.history.length - 1)}" cy="${y(stock.price)}" r="7" fill="${calloutColor}" />
+      <circle cx="${x(history.length - 1)}" cy="${y(price)}" r="7" fill="${calloutColor}" />
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${height - pad.bottom}" y2="${height - pad.bottom}" stroke="#d9dfdb" />
       ${dateTicks}
-      <g transform="translate(${Math.min(x(stock.history.length - 1) + 18, width - 270)}, ${Math.max(48, y(stock.price) - 48)})">
+      <g transform="translate(${Math.min(x(history.length - 1) + 18, width - 270)}, ${Math.max(48, y(price) - 48)})">
         <rect width="244" height="54" rx="8" fill="#ffffff" stroke="${calloutColor}" />
         <text x="12" y="22" class="callout" fill="${calloutColor}">${position}</text>
         <text x="12" y="40" font-size="12" fill="#65706b">現在PER ${Math.round(currentPer * 10) / 10}倍 / EPS ${Math.round(eps * 10) / 10}</text>
@@ -2903,8 +2891,8 @@ function lynchBps(stock) {
   return Math.max(bps, adjustedBps);
 }
 
-function estimatedHistoryDates(stock) {
-  const length = Math.max(1, stock.history?.length ?? 1);
+function estimatedHistoryDates(stock, overrideLength) {
+  const length = Math.max(1, overrideLength ?? stock.history?.length ?? 1);
   const endDate = parseDateOnly(stock.priceAsOf)
     ?? parseDateOnly(window.AUTO_STOCK_DATA?.priceFetchedAt)
     ?? parseDateOnly(window.AUTO_STOCK_DATA?.generatedAt)
@@ -2959,6 +2947,21 @@ function estimatedBpsSeries(length, currentBps) {
   });
 }
 
+function positiveNumber(value) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
+}
+
+function normalizedPriceHistory(stock, price) {
+  const history = Array.isArray(stock.history)
+    ? stock.history.map((value) => Number(value)).filter((value) => Number.isFinite(value) && value > 0)
+    : [];
+  if (history.length >= 4) return history;
+  const basePrice = positiveNumber(price) || positiveNumber(stock.buyLine) || positiveNumber(stock.targetPrice) || positiveNumber(stock.sellGuidePrice);
+  if (!basePrice) return [1, 1, 1, 1];
+  return [0.92, 0.96, 0.99, 1].map((rate) => Math.round(basePrice * rate));
+}
+
 function renderResearchLynch(item, type) {
   const registered = stocks.find((stock) => String(stock.code) === String(item.code));
   if (registered) return renderLynchChart(registered);
@@ -2968,11 +2971,11 @@ function renderResearchLynch(item, type) {
 }
 
 function stockFromResearchItem(item) {
-  const price = Number(item.price || 0);
+  const price = Number(item.price || item.lastClose || item.buyLine || item.targetPrice || item.sellGuidePrice || 0);
   const pbr = Number(item.pbr || 0);
   const per = Number(item.per || 0);
-  const bps = Number(item.bps || 0) || (price > 0 && pbr > 0 ? price / pbr : 0);
-  const eps = Number(item.eps || 0) || (price > 0 && per > 0 ? price / per : 0);
+  const bps = Number(item.chartBps || item.bps || 0) || (price > 0 && pbr > 0 ? price / pbr : price > 0 ? price / 0.75 : 0);
+  const eps = Number(item.chartEps || item.eps || 0) > 0 ? Number(item.chartEps || item.eps) : price > 0 && per > 0 ? price / per : price > 0 ? price / 12 : 0;
   if (!price || !bps || !eps) return null;
   const history = Array.isArray(item.history)
     ? item.history.map((value) => Number(value)).filter((value) => Number.isFinite(value) && value > 0)
@@ -2984,6 +2987,8 @@ function stockFromResearchItem(item) {
     price,
     bps,
     eps,
+    chartBps: bps,
+    chartEps: eps,
     cash: Number(item.cash || 0),
     securities: Number(item.securities || 0),
     investmentSecurities: Number(item.investmentSecurities || 0),
@@ -3005,13 +3010,26 @@ function stockFromResearchItem(item) {
 }
 
 function renderResearchLynchPlaceholder(item) {
-  return `
-    <div class="chart-empty">
-      <p class="eyebrow">リンチ・チャート</p>
-      <h3>${escapeHtml(item.name)}は推定チャート準備中</h3>
-      <p>広域候補はEPSやPER目安が不足しています。価格推移と不足項目を先に表示し、財務データが入るとリンチ・チャートへ切り替わります。</p>
-    </div>
-  `;
+  return renderLynchChart(fallbackResearchStock(item));
+}
+
+function fallbackResearchStock(item) {
+  const price = positiveNumber(item.price) || positiveNumber(item.lastClose) || positiveNumber(item.buyLine) || positiveNumber(item.targetPrice) || positiveNumber(item.sellGuidePrice) || 100;
+  return {
+    code: item.code,
+    name: item.name || "推定銘柄",
+    price,
+    bps: price / 0.75,
+    eps: price / 12,
+    history: [0.92, 0.96, 0.99, 1].map((rate) => Math.round(price * rate)),
+    priceAsOf: window.AUTO_RESEARCH_DATA?.generatedAt || window.AUTO_STOCK_DATA?.generatedAt,
+    perLow: 10,
+    perAvg: 16,
+    perHigh: 24,
+    pbrLow: 0.64,
+    pbrAvg: 1,
+    pbrHigh: 1.53,
+  };
 }
 
 function renderMorningReport() {

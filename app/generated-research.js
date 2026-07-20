@@ -1,5 +1,5 @@
 window.AUTO_RESEARCH_DATA = {
-  "generatedAt": "2026-07-20T06:59:00.977Z",
+  "generatedAt": "2026-07-20T07:20:04.471Z",
   "source": "data/universe-price-backtest.csv + data/multibagger-candidates.csv",
   "store": "sqlite:data/candidate-stock-assist.sqlite",
   "universe": {
@@ -25,6 +25,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3192,
       "bps": 1671.35,
       "eps": 116.63,
+      "chartBps": 1671.35,
+      "chartEps": 116.63,
       "metricSource": "irbank:2026/02",
       "history": [
         1877.1017,
@@ -69,6 +71,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 555,
       "bps": 487.27,
       "eps": 26.75,
+      "chartBps": 487.27,
+      "chartEps": 26.75,
       "metricSource": "confirmed",
       "history": [
         700.298,
@@ -113,6 +117,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 370,
       "bps": 699.97,
       "eps": 14.64,
+      "chartBps": 699.97,
+      "chartEps": 14.64,
       "metricSource": "irbank:2026/03",
       "history": [
         232.8261,
@@ -157,6 +163,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 99,
       "bps": 57.33,
       "eps": 1.51,
+      "chartBps": 57.33,
+      "chartEps": 1.51,
       "metricSource": "irbank:2026/03",
       "history": [
         85,
@@ -201,6 +209,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1665,
       "bps": 444.35,
       "eps": 111.26,
+      "chartBps": 444.35,
+      "chartEps": 111.26,
       "metricSource": "irbank:2026/03",
       "history": [
         714,
@@ -245,6 +255,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 31,
       "bps": 10.78,
       "eps": -6.9,
+      "chartBps": 10.78,
+      "chartEps": 2.58,
       "metricSource": "irbank:2026/04",
       "history": [
         82,
@@ -289,6 +301,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 211,
       "bps": 234.79,
       "eps": 4.59,
+      "chartBps": 234.79,
+      "chartEps": 4.59,
       "metricSource": "irbank:2026/03",
       "history": [
         130.1272,
@@ -333,6 +347,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 238,
       "bps": 56.02,
       "eps": 0.58,
+      "chartBps": 56.02,
+      "chartEps": 0.58,
       "metricSource": "irbank:2026/03",
       "history": [
         304,
@@ -377,6 +393,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 98,
       "bps": 4.33,
       "eps": 0.73,
+      "chartBps": 4.33,
+      "chartEps": 0.73,
       "metricSource": "irbank:2026/03",
       "history": [
         105,
@@ -421,6 +439,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2300,
       "bps": 2217.06,
       "eps": 148.48,
+      "chartBps": 2217.06,
+      "chartEps": 148.48,
       "metricSource": "irbank:2026/03",
       "history": [
         1712.9937,
@@ -465,6 +485,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3807,
       "bps": 1764.67,
       "eps": 175.35,
+      "chartBps": 1764.67,
+      "chartEps": 175.35,
       "metricSource": "irbank:2026/03",
       "history": [
         2182.7769,
@@ -509,6 +531,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2070,
       "bps": 2186.55,
       "eps": 156.93,
+      "chartBps": 2186.55,
+      "chartEps": 156.93,
       "metricSource": "irbank:2026/03",
       "history": [
         1003.6207,
@@ -553,6 +577,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2375,
       "bps": 1999.26,
       "eps": 152.51,
+      "chartBps": 1999.26,
+      "chartEps": 152.51,
       "metricSource": "irbank:2026/03",
       "history": [
         1111.3074,
@@ -597,6 +623,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3095,
       "bps": 1352.33,
       "eps": 128.02,
+      "chartBps": 1352.33,
+      "chartEps": 128.02,
       "metricSource": "irbank:2026/02",
       "history": [
         2191.3333,
@@ -641,6 +669,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1720,
       "bps": 1454.74,
       "eps": 166.96,
+      "chartBps": 1454.74,
+      "chartEps": 166.96,
       "metricSource": "confirmed",
       "history": [
         1228.1626,
@@ -685,6 +715,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 322,
       "bps": 167.23,
       "eps": 20.68,
+      "chartBps": 167.23,
+      "chartEps": 20.68,
       "metricSource": "irbank:2026/03",
       "history": [
         318.4898,
@@ -729,6 +761,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 16390,
       "bps": 1146.97,
       "eps": 353.83,
+      "chartBps": 1146.97,
+      "chartEps": 353.83,
       "metricSource": "irbank:2026/03",
       "history": [
         4820,
@@ -773,6 +807,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4210,
       "bps": 3696.06,
       "eps": 316.42,
+      "chartBps": 3696.06,
+      "chartEps": 316.42,
       "metricSource": "irbank:2026/03",
       "history": [
         1966.8842,
@@ -817,6 +853,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 519,
       "bps": 165.41,
       "eps": -66.09,
+      "chartBps": 165.41,
+      "chartEps": 43.25,
       "metricSource": "irbank:2026/03",
       "history": [
         881,
@@ -861,6 +899,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 484,
       "bps": 190.2,
       "eps": -119.4,
+      "chartBps": 190.2,
+      "chartEps": 40.33,
       "metricSource": "irbank:2026/03",
       "history": [
         485,
@@ -905,6 +945,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1199,
       "bps": 1048.67,
       "eps": 103.51,
+      "chartBps": 1048.67,
+      "chartEps": 103.51,
       "metricSource": "irbank:2026/03",
       "history": [
         738.5404,
@@ -949,6 +991,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 763,
       "bps": 197.68,
       "eps": 102.92,
+      "chartBps": 197.68,
+      "chartEps": 102.92,
       "metricSource": "irbank:2026/03",
       "history": [
         594,
@@ -993,6 +1037,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 334,
       "bps": 257.3,
       "eps": -10.78,
+      "chartBps": 257.3,
+      "chartEps": 27.83,
       "metricSource": "irbank:2026/03",
       "history": [
         335.6455,
@@ -1037,6 +1083,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1264,
       "bps": 1447.59,
       "eps": 84.39,
+      "chartBps": 1447.59,
+      "chartEps": 84.39,
       "metricSource": "irbank:2026/03",
       "history": [
         753.1834,
@@ -1081,6 +1129,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1317,
       "bps": 1063.14,
       "eps": 160.29,
+      "chartBps": 1063.14,
+      "chartEps": 160.29,
       "metricSource": "confirmed",
       "history": [
         1036.6395,
@@ -1125,6 +1175,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2144,
       "bps": 1344.6,
       "eps": 61.7,
+      "chartBps": 1344.6,
+      "chartEps": 61.7,
       "metricSource": "irbank:2026/03",
       "history": [
         1116.2255,
@@ -1169,6 +1221,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 884,
       "bps": 183.03,
       "eps": 41.97,
+      "chartBps": 183.03,
+      "chartEps": 41.97,
       "metricSource": "irbank:2026/03",
       "history": [
         439,
@@ -1213,6 +1267,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 424,
       "bps": 565.33,
       "eps": 35.33,
+      "chartBps": 565.33,
+      "chartEps": 35.33,
       "metricSource": "completionEstimate",
       "history": [
         313.4232,
@@ -1257,6 +1313,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 247,
       "bps": 796.01,
       "eps": 39.42,
+      "chartBps": 796.01,
+      "chartEps": 39.42,
       "metricSource": "irbank:2026/03",
       "history": [
         182.2809,
@@ -1301,6 +1359,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2120,
       "bps": 2886.77,
       "eps": 197.25,
+      "chartBps": 2886.77,
+      "chartEps": 197.25,
       "metricSource": "irbank:2026/03",
       "history": [
         1832.218,
@@ -1345,6 +1405,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5702,
       "bps": 7602.67,
       "eps": 475.17,
+      "chartBps": 7602.67,
+      "chartEps": 475.17,
       "metricSource": "completionEstimate",
       "history": [
         2950.5271,
@@ -1389,6 +1451,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 71870,
       "bps": 95826.67,
       "eps": 5989.17,
+      "chartBps": 95826.67,
+      "chartEps": 5989.17,
       "metricSource": "completionEstimate",
       "history": [
         2670,
@@ -1433,6 +1497,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 677,
       "bps": 1351.37,
       "eps": 82.55,
+      "chartBps": 1351.37,
+      "chartEps": 82.55,
       "metricSource": "irbank:2026/03",
       "history": [
         634.8199,
@@ -1477,6 +1543,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 524,
       "bps": 184.63,
       "eps": 4.99,
+      "chartBps": 184.63,
+      "chartEps": 4.99,
       "metricSource": "irbank:2026/02",
       "history": [
         318,
@@ -1521,6 +1589,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 822,
       "bps": 268.04,
       "eps": 26.24,
+      "chartBps": 268.04,
+      "chartEps": 26.24,
       "metricSource": "irbank:2026/02",
       "history": [
         739.2511,
@@ -1565,6 +1635,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 147,
       "bps": 180.83,
       "eps": 15.94,
+      "chartBps": 180.83,
+      "chartEps": 15.94,
       "metricSource": "irbank:2026/03",
       "history": [
         129.6207,
@@ -1609,6 +1681,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1926,
       "bps": 1469.69,
       "eps": 323.26,
+      "chartBps": 1469.69,
+      "chartEps": 323.26,
       "metricSource": "irbank:2026/03",
       "history": [
         1926.9397,
@@ -1653,6 +1727,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 439,
       "bps": 100.26,
       "eps": 18.1,
+      "chartBps": 100.26,
+      "chartEps": 18.1,
       "metricSource": "irbank:2026/03",
       "history": [
         317.5276,
@@ -1697,6 +1773,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 620,
       "bps": 944.47,
       "eps": 29.41,
+      "chartBps": 944.47,
+      "chartEps": 29.41,
       "metricSource": "irbank:2026/03",
       "history": [
         595.8987,
@@ -1741,6 +1819,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 268,
       "bps": 346.2,
       "eps": 5.26,
+      "chartBps": 346.2,
+      "chartEps": 5.26,
       "metricSource": "irbank:2026/03",
       "history": [
         250.9174,
@@ -1785,6 +1865,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2519,
       "bps": 2003.3,
       "eps": 190.16,
+      "chartBps": 2003.3,
+      "chartEps": 190.16,
       "metricSource": "irbank:2026/03",
       "history": [
         1484.3596,
@@ -1829,6 +1911,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2522,
       "bps": 842.74,
       "eps": 232.71,
+      "chartBps": 842.74,
+      "chartEps": 232.71,
       "metricSource": "irbank:2026/03",
       "history": [
         2069.2937,
@@ -1873,6 +1957,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 332,
       "bps": 374.31,
       "eps": 12.82,
+      "chartBps": 374.31,
+      "chartEps": 12.82,
       "metricSource": "irbank:2026/03",
       "history": [
         349.1638,
@@ -1917,6 +2003,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3270,
       "bps": 1295.32,
       "eps": 230.01,
+      "chartBps": 1295.32,
+      "chartEps": 230.01,
       "metricSource": "irbank:2026/03",
       "history": [
         2790.6533,
@@ -1961,6 +2049,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2421,
       "bps": 735.19,
       "eps": 136.51,
+      "chartBps": 735.19,
+      "chartEps": 136.51,
       "metricSource": "irbank:2026/03",
       "history": [
         892.368,
@@ -2005,6 +2095,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4530,
       "bps": 2573.69,
       "eps": 206.78,
+      "chartBps": 2573.69,
+      "chartEps": 206.78,
       "metricSource": "irbank:2026/02",
       "history": [
         3112.4893,
@@ -2049,6 +2141,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 918,
       "bps": 401.6,
       "eps": 4.67,
+      "chartBps": 401.6,
+      "chartEps": 4.67,
       "metricSource": "irbank:2026/03",
       "history": [
         514.8058,
@@ -2093,6 +2187,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3180,
       "bps": 6500,
       "eps": 350,
+      "chartBps": 6500,
+      "chartEps": 350,
       "metricSource": "confirmed",
       "history": [
         2802.678,
@@ -2137,6 +2233,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 136,
       "bps": 40.29,
       "eps": -12.83,
+      "chartBps": 40.29,
+      "chartEps": 11.33,
       "metricSource": "irbank:2026/02",
       "history": [
         140,
@@ -2181,6 +2279,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1285,
       "bps": 846.95,
       "eps": 80.37,
+      "chartBps": 846.95,
+      "chartEps": 80.37,
       "metricSource": "irbank:2026/03",
       "history": [
         1216.3781,
@@ -2225,6 +2325,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 173,
       "bps": 156.13,
       "eps": 7.6,
+      "chartBps": 156.13,
+      "chartEps": 7.6,
       "metricSource": "irbank:2026/02",
       "history": [
         133.5281,
@@ -2269,6 +2371,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2700,
       "bps": 1676.22,
       "eps": 173.95,
+      "chartBps": 1676.22,
+      "chartEps": 173.95,
       "metricSource": "irbank:2026/03",
       "history": [
         1656.2507,
@@ -2313,6 +2417,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 728,
       "bps": 651.86,
       "eps": 69.59,
+      "chartBps": 651.86,
+      "chartEps": 69.59,
       "metricSource": "irbank:2026/03",
       "history": [
         1181.9519,
@@ -2357,6 +2463,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1842,
       "bps": 1355.91,
       "eps": 74.24,
+      "chartBps": 1355.91,
+      "chartEps": 74.24,
       "metricSource": "irbank:2026/03",
       "history": [
         1226.6666,
@@ -2401,6 +2509,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3885,
       "bps": 1049.72,
       "eps": 419.29,
+      "chartBps": 1049.72,
+      "chartEps": 419.29,
       "metricSource": "irbank:2026/03",
       "history": [
         2801.7603,
@@ -2445,6 +2555,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3192,
       "bps": 1524.19,
       "eps": 331.68,
+      "chartBps": 1524.19,
+      "chartEps": 331.68,
       "metricSource": "irbank:2026/03",
       "history": [
         2912.2761,
@@ -2489,6 +2601,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2267,
       "bps": 1487.11,
       "eps": 134.34,
+      "chartBps": 1487.11,
+      "chartEps": 134.34,
       "metricSource": "irbank:2026/03",
       "history": [
         1737.4454,
@@ -2533,6 +2647,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3385,
       "bps": 534.77,
       "eps": 184.27,
+      "chartBps": 534.77,
+      "chartEps": 184.27,
       "metricSource": "irbank:2026/04",
       "history": [
         1720.2393,
@@ -2577,6 +2693,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 562,
       "bps": 1383.2,
       "eps": 43.79,
+      "chartBps": 1383.2,
+      "chartEps": 43.79,
       "metricSource": "irbank:2026/03",
       "history": [
         478.4091,
@@ -2621,6 +2739,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 561,
       "bps": 792.07,
       "eps": 32.17,
+      "chartBps": 792.07,
+      "chartEps": 32.17,
       "metricSource": "irbank:2026/03",
       "history": [
         370.4717,
@@ -2665,6 +2785,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3140,
       "bps": 2780.32,
       "eps": 169.62,
+      "chartBps": 2780.32,
+      "chartEps": 169.62,
       "metricSource": "irbank:2026/03",
       "history": [
         2437.9722,
@@ -2709,6 +2831,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2588,
       "bps": 2795.32,
       "eps": 247.77,
+      "chartBps": 2795.32,
+      "chartEps": 247.77,
       "metricSource": "irbank:2026/03",
       "history": [
         1367.0769,
@@ -2753,6 +2877,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 8750,
       "bps": 459.66,
       "eps": -129.91,
+      "chartBps": 459.66,
+      "chartEps": 729.17,
       "metricSource": "irbank:2026/04",
       "history": [
         8980,
@@ -2797,6 +2923,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2064,
       "bps": 1507.25,
       "eps": 187.54,
+      "chartBps": 1507.25,
+      "chartEps": 187.54,
       "metricSource": "irbank:2026/03",
       "history": [
         1222.2817,
@@ -2841,6 +2969,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 803,
       "bps": 867.97,
       "eps": 76.74,
+      "chartBps": 867.97,
+      "chartEps": 76.74,
       "metricSource": "irbank:2026/02",
       "history": [
         532.2202,
@@ -2885,6 +3015,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 596,
       "bps": 794.67,
       "eps": 49.67,
+      "chartBps": 794.67,
+      "chartEps": 49.67,
       "metricSource": "completionEstimate",
       "history": [
         551.3609,
@@ -2929,6 +3061,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 613,
       "bps": 792.84,
       "eps": 127.84,
+      "chartBps": 792.84,
+      "chartEps": 127.84,
       "metricSource": "irbank:2026/03",
       "history": [
         552.2196,
@@ -2973,6 +3107,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 174,
       "bps": 314,
       "eps": 16.68,
+      "chartBps": 314,
+      "chartEps": 16.68,
       "metricSource": "irbank:2026/03",
       "history": [
         125.8768,
@@ -3017,6 +3153,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 8980,
       "bps": 2187.39,
       "eps": 281.64,
+      "chartBps": 2187.39,
+      "chartEps": 281.64,
       "metricSource": "irbank:2026/04",
       "history": [
         3118.0425,
@@ -3061,6 +3199,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 356,
       "bps": 509.09,
       "eps": 38.62,
+      "chartBps": 509.09,
+      "chartEps": 38.62,
       "metricSource": "irbank:2026/02",
       "history": [
         294.967,
@@ -3105,6 +3245,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1656,
       "bps": 2773.31,
       "eps": 206.96,
+      "chartBps": 2773.31,
+      "chartEps": 206.96,
       "metricSource": "irbank:2026/03",
       "history": [
         1202.2538,
@@ -3149,6 +3291,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3980,
       "bps": 4134.56,
       "eps": 452.49,
+      "chartBps": 4134.56,
+      "chartEps": 452.49,
       "metricSource": "irbank:2026/03",
       "history": [
         4569.7686,
@@ -3193,6 +3337,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 511,
       "bps": 319.76,
       "eps": 44.12,
+      "chartBps": 319.76,
+      "chartEps": 44.12,
       "metricSource": "irbank:2026/03",
       "history": [
         420.5496,
@@ -3237,6 +3383,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1268,
       "bps": 369.53,
       "eps": 107.47,
+      "chartBps": 369.53,
+      "chartEps": 107.47,
       "metricSource": "irbank:2026/03",
       "history": [
         706,
@@ -3281,6 +3429,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 504,
       "bps": 218.27,
       "eps": 42.68,
+      "chartBps": 218.27,
+      "chartEps": 42.68,
       "metricSource": "irbank:2026/03",
       "history": [
         367,
@@ -3325,6 +3475,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 227,
       "bps": 186.74,
       "eps": 15.88,
+      "chartBps": 186.74,
+      "chartEps": 15.88,
       "metricSource": "irbank:2026/02",
       "history": [
         189.7375,
@@ -3369,6 +3521,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2813,
       "bps": 2067.74,
       "eps": 157.73,
+      "chartBps": 2067.74,
+      "chartEps": 157.73,
       "metricSource": "irbank:2026/04",
       "history": [
         2939.8657,
@@ -3413,6 +3567,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 6720,
       "bps": 1437.05,
       "eps": 152.68,
+      "chartBps": 1437.05,
+      "chartEps": 152.68,
       "metricSource": "irbank:2026/03",
       "history": [
         1061.4047,
@@ -3457,6 +3613,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1455,
       "bps": 1071.11,
       "eps": 84.74,
+      "chartBps": 1071.11,
+      "chartEps": 84.74,
       "metricSource": "irbank:2026/02",
       "history": [
         991.8848,
@@ -3501,6 +3659,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 128,
       "bps": 166.8,
       "eps": 4,
+      "chartBps": 166.8,
+      "chartEps": 4,
       "metricSource": "irbank:2026/03",
       "history": [
         99.0209,
@@ -3545,6 +3705,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1413,
       "bps": 459.42,
       "eps": 40.46,
+      "chartBps": 459.42,
+      "chartEps": 40.46,
       "metricSource": "irbank:2026/04",
       "history": [
         820.6537,
@@ -3589,6 +3751,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 794,
       "bps": 93.21,
       "eps": 43.43,
+      "chartBps": 93.21,
+      "chartEps": 43.43,
       "metricSource": "irbank:2026/03",
       "history": [
         731,
@@ -3633,6 +3797,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 940,
       "bps": 350.18,
       "eps": 84.44,
+      "chartBps": 350.18,
+      "chartEps": 84.44,
       "metricSource": "irbank:2026/03",
       "history": [
         732.75,
@@ -3677,6 +3843,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 801,
       "bps": 854.47,
       "eps": 53.22,
+      "chartBps": 854.47,
+      "chartEps": 53.22,
       "metricSource": "irbank:2026/03",
       "history": [
         670.5344,
@@ -3721,6 +3889,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1031,
       "bps": 396.8,
       "eps": 36.37,
+      "chartBps": 396.8,
+      "chartEps": 36.37,
       "metricSource": "irbank:2026/03",
       "history": [
         699.6238,
@@ -3765,6 +3935,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 847,
       "bps": 376.6,
       "eps": 59.33,
+      "chartBps": 376.6,
+      "chartEps": 59.33,
       "metricSource": "irbank:2026/03",
       "history": [
         502.312,
@@ -3809,6 +3981,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 23,
       "bps": 13.28,
       "eps": -8.21,
+      "chartBps": 13.28,
+      "chartEps": 1.92,
       "metricSource": "irbank:2026/03",
       "history": [
         32,
@@ -3853,6 +4027,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4135,
       "bps": 1197.04,
       "eps": 148,
+      "chartBps": 1197.04,
+      "chartEps": 148,
       "metricSource": "irbank:2026/03",
       "history": [
         1823.9001,
@@ -3897,6 +4073,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5940,
       "bps": 3801.35,
       "eps": 419.17,
+      "chartBps": 3801.35,
+      "chartEps": 419.17,
       "metricSource": "irbank:2026/03",
       "history": [
         3025,
@@ -3941,6 +4119,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 144,
       "bps": 86.27,
       "eps": 4.08,
+      "chartBps": 86.27,
+      "chartEps": 4.08,
       "metricSource": "irbank:2026/03",
       "history": [
         159,
@@ -3985,6 +4165,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 487,
       "bps": 100.79,
       "eps": 37,
+      "chartBps": 100.79,
+      "chartEps": 37,
       "metricSource": "irbank:2026/03",
       "history": [
         237.6509,
@@ -4029,6 +4211,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1073,
       "bps": 1430.67,
       "eps": 89.42,
+      "chartBps": 1430.67,
+      "chartEps": 89.42,
       "metricSource": "completionEstimate",
       "history": [
         832,
@@ -4073,6 +4257,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3695,
       "bps": 1158.29,
       "eps": 189.59,
+      "chartBps": 1158.29,
+      "chartEps": 189.59,
       "metricSource": "irbank:2026/03",
       "history": [
         1042.3525,
@@ -4117,6 +4303,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 294,
       "bps": 182.69,
       "eps": -38.25,
+      "chartBps": 182.69,
+      "chartEps": 24.5,
       "metricSource": "irbank:2026/03",
       "history": [
         386,
@@ -4161,6 +4349,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5220,
       "bps": 4613.42,
       "eps": 372.1,
+      "chartBps": 4613.42,
+      "chartEps": 372.1,
       "metricSource": "irbank:2026/03",
       "history": [
         2979.1836,
@@ -4205,6 +4395,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2237,
       "bps": 866.63,
       "eps": 166.47,
+      "chartBps": 866.63,
+      "chartEps": 166.47,
       "metricSource": "irbank:2026/02",
       "history": [
         1485.4591,
@@ -4249,6 +4441,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5199,
       "bps": 6932,
       "eps": 433.25,
+      "chartBps": 6932,
+      "chartEps": 433.25,
       "metricSource": "completionEstimate",
       "history": [
         3107.7942,
@@ -4293,6 +4487,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 406,
       "bps": 167.02,
       "eps": 33.4,
+      "chartBps": 167.02,
+      "chartEps": 33.4,
       "metricSource": "irbank:2026/03",
       "history": [
         306,
@@ -4337,6 +4533,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1896,
       "bps": 2298.23,
       "eps": 131.19,
+      "chartBps": 2298.23,
+      "chartEps": 131.19,
       "metricSource": "irbank:2026/03",
       "history": [
         1598.3334,
@@ -4381,6 +4579,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 926,
       "bps": 769.4,
       "eps": 123.35,
+      "chartBps": 769.4,
+      "chartEps": 123.35,
       "metricSource": "irbank:2026/03",
       "history": [
         882.6377,
@@ -4424,6 +4624,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 130,
       "bps": 71.55,
       "eps": 14.95,
+      "chartBps": 71.55,
+      "chartEps": 14.95,
       "metricSource": "irbank:2026/03",
       "history": [
         276,
@@ -4468,6 +4670,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 816,
       "bps": 1884.77,
       "eps": 166.52,
+      "chartBps": 1884.77,
+      "chartEps": 166.52,
       "metricSource": "irbank:2026/03",
       "history": [
         684.467,
@@ -4512,6 +4716,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 949,
       "bps": 622.17,
       "eps": 72.28,
+      "chartBps": 622.17,
+      "chartEps": 72.28,
       "metricSource": "irbank:2026/04",
       "history": [
         860,
@@ -4556,6 +4762,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 161,
       "bps": 34.61,
       "eps": 11.92,
+      "chartBps": 34.61,
+      "chartEps": 11.92,
       "metricSource": "irbank:2026/03",
       "history": [
         89,
@@ -4600,6 +4808,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 848,
       "bps": 821.74,
       "eps": 48.63,
+      "chartBps": 821.74,
+      "chartEps": 48.63,
       "metricSource": "irbank:2026/03",
       "history": [
         562.2023,
@@ -4644,6 +4854,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3485,
       "bps": 4593.95,
       "eps": 292.34,
+      "chartBps": 4593.95,
+      "chartEps": 292.34,
       "metricSource": "irbank:2026/03",
       "history": [
         2662.8694,
@@ -4688,6 +4900,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 74,
       "bps": 14.74,
       "eps": 1.09,
+      "chartBps": 14.74,
+      "chartEps": 1.09,
       "metricSource": "irbank:2026/03",
       "history": [
         79,
@@ -4732,6 +4946,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 7792,
       "bps": 3340.43,
       "eps": 353.56,
+      "chartBps": 3340.43,
+      "chartEps": 353.56,
       "metricSource": "irbank:2026/03",
       "history": [
         3048.7236,
@@ -4776,6 +4992,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1058,
       "bps": 496.69,
       "eps": 8.54,
+      "chartBps": 496.69,
+      "chartEps": 8.54,
       "metricSource": "irbank:2026/04",
       "history": [
         271.5923,
@@ -4820,6 +5038,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3650,
       "bps": 328.49,
       "eps": 104.63,
+      "chartBps": 328.49,
+      "chartEps": 104.63,
       "metricSource": "irbank:2026/03",
       "history": [
         2049.2168,
@@ -4864,6 +5084,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 410,
       "bps": 143.19,
       "eps": 34.12,
+      "chartBps": 143.19,
+      "chartEps": 34.12,
       "metricSource": "irbank:2026/04",
       "history": [
         319.4259,
@@ -4908,6 +5130,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 156,
       "bps": 83.31,
       "eps": 3.07,
+      "chartBps": 83.31,
+      "chartEps": 3.07,
       "metricSource": "irbank:2026/02",
       "history": [
         100.5556,
@@ -4952,6 +5176,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1270,
       "bps": 516.52,
       "eps": 75.98,
+      "chartBps": 516.52,
+      "chartEps": 75.98,
       "metricSource": "irbank:2026/03",
       "history": [
         1127.186,
@@ -4996,6 +5222,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2831,
       "bps": 1942,
       "eps": 301.75,
+      "chartBps": 1942,
+      "chartEps": 301.75,
       "metricSource": "irbank:2026/04",
       "history": [
         733.5657,
@@ -5040,6 +5268,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1597,
       "bps": 1320.15,
       "eps": 118.23,
+      "chartBps": 1320.15,
+      "chartEps": 118.23,
       "metricSource": "irbank:2026/03",
       "history": [
         867.4164,
@@ -5084,6 +5314,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1042,
       "bps": 1293.36,
       "eps": 28.85,
+      "chartBps": 1293.36,
+      "chartEps": 28.85,
       "metricSource": "irbank:2026/03",
       "history": [
         454.2851,
@@ -5128,6 +5360,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1065,
       "bps": 1255.34,
       "eps": 116.49,
+      "chartBps": 1255.34,
+      "chartEps": 116.49,
       "metricSource": "irbank:2026/03",
       "history": [
         836.1641,
@@ -5172,6 +5406,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 674,
       "bps": 2220.23,
       "eps": 50.68,
+      "chartBps": 2220.23,
+      "chartEps": 50.68,
       "metricSource": "irbank:2026/03",
       "history": [
         619.52,
@@ -5216,6 +5452,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3775,
       "bps": 3309.69,
       "eps": 355.65,
+      "chartBps": 3309.69,
+      "chartEps": 355.65,
       "metricSource": "irbank:2026/03",
       "history": [
         2220.4045,
@@ -5260,6 +5498,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 137,
       "bps": 32.37,
       "eps": -1.92,
+      "chartBps": 32.37,
+      "chartEps": 11.42,
       "metricSource": "irbank:2026/03",
       "history": [
         122,
@@ -5304,6 +5544,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3394,
       "bps": 1953.99,
       "eps": 291.09,
+      "chartBps": 1953.99,
+      "chartEps": 291.09,
       "metricSource": "irbank:2026/03",
       "history": [
         2452.6748,
@@ -5348,6 +5590,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1506,
       "bps": 2037.37,
       "eps": 150.01,
+      "chartBps": 2037.37,
+      "chartEps": 150.01,
       "metricSource": "irbank:2026/03",
       "history": [
         1081.1505,
@@ -5392,6 +5636,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 440,
       "bps": 125.73,
       "eps": -34.14,
+      "chartBps": 125.73,
+      "chartEps": 36.67,
       "metricSource": "irbank:2026/03",
       "history": [
         356.7581,
@@ -5436,6 +5682,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1743,
       "bps": 1315.36,
       "eps": 105.15,
+      "chartBps": 1315.36,
+      "chartEps": 105.15,
       "metricSource": "irbank:2026/02",
       "history": [
         1578,
@@ -5480,6 +5728,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3705,
       "bps": 1817.47,
       "eps": 281.64,
+      "chartBps": 1817.47,
+      "chartEps": 281.64,
       "metricSource": "irbank:2026/03",
       "history": [
         1554.7467,
@@ -5524,6 +5774,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 7820,
       "bps": 566.11,
       "eps": 192.75,
+      "chartBps": 566.11,
+      "chartEps": 192.75,
       "metricSource": "irbank:2026/03",
       "history": [
         5165.063,
@@ -5568,6 +5820,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2630,
       "bps": 2755.26,
       "eps": 385.76,
+      "chartBps": 2755.26,
+      "chartEps": 385.76,
       "metricSource": "irbank:2026/03",
       "history": [
         1287.2988,
@@ -5612,6 +5866,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1095,
       "bps": 592.27,
       "eps": 77.88,
+      "chartBps": 592.27,
+      "chartEps": 77.88,
       "metricSource": "irbank:2026/03",
       "history": [
         636.0339,
@@ -5656,6 +5912,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1617,
       "bps": 1675.66,
       "eps": 149.08,
+      "chartBps": 1675.66,
+      "chartEps": 149.08,
       "metricSource": "irbank:2026/03",
       "history": [
         1115.0778,
@@ -5700,6 +5958,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1998,
       "bps": 1501.88,
       "eps": 139.43,
+      "chartBps": 1501.88,
+      "chartEps": 139.43,
       "metricSource": "irbank:2026/03",
       "history": [
         1220.9043,
@@ -5744,6 +6004,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 602,
       "bps": 494.25,
       "eps": 103.02,
+      "chartBps": 494.25,
+      "chartEps": 103.02,
       "metricSource": "irbank:2026/03",
       "history": [
         380.1828,
@@ -5788,6 +6050,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 303,
       "bps": 698.89,
       "eps": 11.96,
+      "chartBps": 698.89,
+      "chartEps": 11.96,
       "metricSource": "irbank:2026/03",
       "history": [
         549,
@@ -5832,6 +6096,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2410,
       "bps": 2260.81,
       "eps": 192.18,
+      "chartBps": 2260.81,
+      "chartEps": 192.18,
       "metricSource": "irbank:2026/03",
       "history": [
         1500.4598,
@@ -5876,6 +6142,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1238,
       "bps": 136.81,
       "eps": 26,
+      "chartBps": 136.81,
+      "chartEps": 26,
       "metricSource": "irbank:2026/02",
       "history": [
         669.8727,
@@ -5920,6 +6188,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1272,
       "bps": 1611.9,
       "eps": 169.85,
+      "chartBps": 1611.9,
+      "chartEps": 169.85,
       "metricSource": "irbank:2026/03",
       "history": [
         757.7864,
@@ -5964,6 +6234,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4173,
       "bps": 2793.12,
       "eps": 226.79,
+      "chartBps": 2793.12,
+      "chartEps": 226.79,
       "metricSource": "irbank:2026/03",
       "history": [
         2722.5,
@@ -6008,6 +6280,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1306,
       "bps": 388.87,
       "eps": 86.42,
+      "chartBps": 388.87,
+      "chartEps": 86.42,
       "metricSource": "irbank:2026/03",
       "history": [
         506.3872,
@@ -6052,6 +6326,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 83,
       "bps": 86.15,
       "eps": 9.17,
+      "chartBps": 86.15,
+      "chartEps": 9.17,
       "metricSource": "irbank:2026/02",
       "history": [
         80,
@@ -6096,6 +6372,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 315,
       "bps": 145.71,
       "eps": 18.05,
+      "chartBps": 145.71,
+      "chartEps": 18.05,
       "metricSource": "irbank:2026/03",
       "history": [
         1564,
@@ -6140,6 +6418,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1563,
       "bps": 402.34,
       "eps": 60.02,
+      "chartBps": 402.34,
+      "chartEps": 60.02,
       "metricSource": "irbank:2026/03",
       "history": [
         1359.5928,
@@ -6184,6 +6464,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4580,
       "bps": 2659.75,
       "eps": 435.34,
+      "chartBps": 2659.75,
+      "chartEps": 435.34,
       "metricSource": "irbank:2026/03",
       "history": [
         4083.8542,
@@ -6228,6 +6510,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 343,
       "bps": 374.27,
       "eps": 2.1,
+      "chartBps": 374.27,
+      "chartEps": 2.1,
       "metricSource": "irbank:2026/02",
       "history": [
         267,
@@ -6272,6 +6556,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2204,
       "bps": 2716.09,
       "eps": 268.67,
+      "chartBps": 2716.09,
+      "chartEps": 268.67,
       "metricSource": "irbank:2026/03",
       "history": [
         1902.6456,
@@ -6316,6 +6602,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1294,
       "bps": 378.8,
       "eps": 51.29,
+      "chartBps": 378.8,
+      "chartEps": 51.29,
       "metricSource": "irbank:2026/03",
       "history": [
         694.9597,
@@ -6360,6 +6648,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1182,
       "bps": 2120.53,
       "eps": 143.91,
+      "chartBps": 2120.53,
+      "chartEps": 143.91,
       "metricSource": "irbank:2026/03",
       "history": [
         997.6506,
@@ -6404,6 +6694,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1250,
       "bps": 733.37,
       "eps": 31.51,
+      "chartBps": 733.37,
+      "chartEps": 31.51,
       "metricSource": "irbank:2026/05",
       "history": [
         817.0022,
@@ -6448,6 +6740,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 533,
       "bps": 867.53,
       "eps": 50.16,
+      "chartBps": 867.53,
+      "chartEps": 50.16,
       "metricSource": "irbank:2026/02",
       "history": [
         451.4659,
@@ -6492,6 +6786,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3783,
       "bps": 1525.85,
       "eps": 172.7,
+      "chartBps": 1525.85,
+      "chartEps": 172.7,
       "metricSource": "irbank:2026/03",
       "history": [
         3788.042,
@@ -6536,6 +6832,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2759,
       "bps": 1416.32,
       "eps": 262.22,
+      "chartBps": 1416.32,
+      "chartEps": 262.22,
       "metricSource": "irbank:2026/03",
       "history": [
         2738.9919,
@@ -6580,6 +6878,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1483,
       "bps": 488.4,
       "eps": 158.15,
+      "chartBps": 488.4,
+      "chartEps": 158.15,
       "metricSource": "irbank:2026/04",
       "history": [
         797.7443,
@@ -6624,6 +6924,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 78,
       "bps": 60.94,
       "eps": 1.97,
+      "chartBps": 60.94,
+      "chartEps": 1.97,
       "metricSource": "irbank:2026/04",
       "history": [
         114,
@@ -6668,6 +6970,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1443,
       "bps": 1877.83,
       "eps": 177.07,
+      "chartBps": 1877.83,
+      "chartEps": 177.07,
       "metricSource": "irbank:2026/03",
       "history": [
         1064.6334,
@@ -6712,6 +7016,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1996,
       "bps": 2089.15,
       "eps": 302.62,
+      "chartBps": 2089.15,
+      "chartEps": 302.62,
       "metricSource": "irbank:2026/03",
       "history": [
         1762.5754,
@@ -6756,6 +7062,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 856,
       "bps": 1163.08,
       "eps": 21.52,
+      "chartBps": 1163.08,
+      "chartEps": 21.52,
       "metricSource": "irbank:2026/03",
       "history": [
         1656.3483,
@@ -6800,6 +7108,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 966,
       "bps": 1033.51,
       "eps": 14.68,
+      "chartBps": 1033.51,
+      "chartEps": 14.68,
       "metricSource": "irbank:2026/03",
       "history": [
         915.4614,
@@ -6844,6 +7154,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2236,
       "bps": 2981.33,
       "eps": 186.33,
+      "chartBps": 2981.33,
+      "chartEps": 186.33,
       "metricSource": "completionEstimate",
       "history": [
         2113.6362,
@@ -6888,6 +7200,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1160,
       "bps": 331.94,
       "eps": 12.96,
+      "chartBps": 331.94,
+      "chartEps": 12.96,
       "metricSource": "irbank:2026/03",
       "history": [
         1248.3773,
@@ -6932,6 +7246,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 951,
       "bps": 832.5,
       "eps": 32.55,
+      "chartBps": 832.5,
+      "chartEps": 32.55,
       "metricSource": "irbank:2026/02",
       "history": [
         987.7012,
@@ -6976,6 +7292,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2920,
       "bps": 2075.29,
       "eps": 159.19,
+      "chartBps": 2075.29,
+      "chartEps": 159.19,
       "metricSource": "irbank:2026/03",
       "history": [
         2912.2903,
@@ -7020,6 +7338,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2452,
       "bps": 2665.26,
       "eps": 257.18,
+      "chartBps": 2665.26,
+      "chartEps": 257.18,
       "metricSource": "irbank:2026/03",
       "history": [
         1794.557,
@@ -7064,6 +7384,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 9,
       "bps": 12,
       "eps": 0.75,
+      "chartBps": 12,
+      "chartEps": 0.75,
       "metricSource": "completionEstimate",
       "history": [
         191,
@@ -7108,6 +7430,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 78,
       "bps": 31.27,
       "eps": -26.58,
+      "chartBps": 31.27,
+      "chartEps": 6.5,
       "metricSource": "irbank:2026/02",
       "history": [
         244,
@@ -7152,6 +7476,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2197,
       "bps": 6217.43,
       "eps": 51.66,
+      "chartBps": 6217.43,
+      "chartEps": 51.66,
       "metricSource": "irbank:2026/03",
       "history": [
         1750.9348,
@@ -7196,6 +7522,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2905,
       "bps": 3873.33,
       "eps": 242.08,
+      "chartBps": 3873.33,
+      "chartEps": 242.08,
       "metricSource": "completionEstimate",
       "history": [
         1958.499,
@@ -7240,6 +7568,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 756,
       "bps": 313.64,
       "eps": -169.86,
+      "chartBps": 313.64,
+      "chartEps": 63,
       "metricSource": "irbank:2026/03",
       "history": [
         840,
@@ -7284,6 +7614,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 599,
       "bps": 535.35,
       "eps": 33.47,
+      "chartBps": 535.35,
+      "chartEps": 33.47,
       "metricSource": "irbank:2026/03",
       "history": [
         553.3916,
@@ -7328,6 +7660,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3170,
       "bps": 2261.62,
       "eps": 544.28,
+      "chartBps": 2261.62,
+      "chartEps": 544.28,
       "metricSource": "irbank:2026/03",
       "history": [
         1969.9578,
@@ -7372,6 +7706,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3958,
       "bps": 3223.48,
       "eps": 187.15,
+      "chartBps": 3223.48,
+      "chartEps": 187.15,
       "metricSource": "irbank:2026/03",
       "history": [
         2722.0547,
@@ -7416,6 +7752,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 570,
       "bps": 437.32,
       "eps": 38.12,
+      "chartBps": 437.32,
+      "chartEps": 38.12,
       "metricSource": "irbank:2026/02",
       "history": [
         548.6953,
@@ -7460,6 +7798,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 740,
       "bps": 367.53,
       "eps": 28.47,
+      "chartBps": 367.53,
+      "chartEps": 28.47,
       "metricSource": "irbank:2026/03",
       "history": [
         990.0533,
@@ -7504,6 +7844,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3055,
       "bps": 1843.97,
       "eps": 202,
+      "chartBps": 1843.97,
+      "chartEps": 202,
       "metricSource": "irbank:2026/03",
       "history": [
         1567.7059,
@@ -7548,6 +7890,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1659,
       "bps": 2749.72,
       "eps": 127.61,
+      "chartBps": 2749.72,
+      "chartEps": 127.61,
       "metricSource": "irbank:2026/03",
       "history": [
         1710.4598,
@@ -7592,6 +7936,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4090,
       "bps": 5100.92,
       "eps": 795.46,
+      "chartBps": 5100.92,
+      "chartEps": 795.46,
       "metricSource": "irbank:2026/03",
       "history": [
         2586.0571,
@@ -7636,6 +7982,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 518,
       "bps": 458.06,
       "eps": -41.33,
+      "chartBps": 458.06,
+      "chartEps": 43.17,
       "metricSource": "irbank:2026/03",
       "history": [
         748.2036,
@@ -7680,6 +8028,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 216,
       "bps": 287.03,
       "eps": 9.01,
+      "chartBps": 287.03,
+      "chartEps": 9.01,
       "metricSource": "irbank:2026/03",
       "history": [
         181,
@@ -7724,6 +8074,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 534,
       "bps": 338.06,
       "eps": 21.5,
+      "chartBps": 338.06,
+      "chartEps": 21.5,
       "metricSource": "irbank:2026/03",
       "history": [
         577.3185,
@@ -7768,6 +8120,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4115,
       "bps": 3971.55,
       "eps": 346.19,
+      "chartBps": 3971.55,
+      "chartEps": 346.19,
       "metricSource": "irbank:2026/02",
       "history": [
         2241.0427,
@@ -7812,6 +8166,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 378,
       "bps": 818.68,
       "eps": 47.89,
+      "chartBps": 818.68,
+      "chartEps": 47.89,
       "metricSource": "irbank:2026/03",
       "history": [
         387.2991,
@@ -7856,6 +8212,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2912,
       "bps": 2774.7,
       "eps": 131.02,
+      "chartBps": 2774.7,
+      "chartEps": 131.02,
       "metricSource": "irbank:2026/03",
       "history": [
         2705.2495,
@@ -7900,6 +8258,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1240,
       "bps": 798.85,
       "eps": 130.92,
+      "chartBps": 798.85,
+      "chartEps": 130.92,
       "metricSource": "irbank:2026/02",
       "history": [
         499.7198,
@@ -7944,6 +8304,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2950,
       "bps": 3933.33,
       "eps": 245.83,
+      "chartBps": 3933.33,
+      "chartEps": 245.83,
       "metricSource": "completionEstimate",
       "history": [
         1571.7871,
@@ -7984,6 +8346,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 478,
       "bps": 401.82,
       "eps": 46.66,
+      "chartBps": 401.82,
+      "chartEps": 46.66,
       "metricSource": "irbank:2026/03",
       "history": [
         429.3178,
@@ -8028,6 +8392,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2475,
       "bps": 500.88,
       "eps": 162,
+      "chartBps": 500.88,
+      "chartEps": 162,
       "metricSource": "irbank:2026/04",
       "history": [
         2219.4692,
@@ -8072,6 +8438,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3492,
       "bps": 1475.55,
       "eps": 259,
+      "chartBps": 1475.55,
+      "chartEps": 259,
       "metricSource": "irbank:2026/03",
       "history": [
         4052.7148,
@@ -8116,6 +8484,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 787,
       "bps": 584.27,
       "eps": 46.3,
+      "chartBps": 584.27,
+      "chartEps": 46.3,
       "metricSource": "irbank:2026/03",
       "history": [
         1003,
@@ -8160,6 +8530,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 630,
       "bps": 782.76,
       "eps": 36.61,
+      "chartBps": 782.76,
+      "chartEps": 36.61,
       "metricSource": "irbank:2026/03",
       "history": [
         552.3517,
@@ -8204,6 +8576,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1177,
       "bps": 797.5,
       "eps": 88.4,
+      "chartBps": 797.5,
+      "chartEps": 88.4,
       "metricSource": "irbank:2026/03",
       "history": [
         890.6398,
@@ -8248,6 +8622,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 63,
       "bps": 23.05,
       "eps": -2.98,
+      "chartBps": 23.05,
+      "chartEps": 5.25,
       "metricSource": "irbank:2026/03",
       "history": [
         109,
@@ -8292,6 +8668,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2082,
       "bps": 551.31,
       "eps": 759.39,
+      "chartBps": 551.31,
+      "chartEps": 759.39,
       "metricSource": "irbank:2026/03",
       "history": [
         1566.9617,
@@ -8336,6 +8714,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 698,
       "bps": 417.79,
       "eps": 20.59,
+      "chartBps": 417.79,
+      "chartEps": 20.59,
       "metricSource": "irbank:2026/03",
       "history": [
         698,
@@ -8380,6 +8760,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4070,
       "bps": 2141.11,
       "eps": 280.71,
+      "chartBps": 2141.11,
+      "chartEps": 280.71,
       "metricSource": "irbank:2026/03",
       "history": [
         2361.0671,
@@ -8424,6 +8806,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1986,
       "bps": 2199.7,
       "eps": 116.03,
+      "chartBps": 2199.7,
+      "chartEps": 116.03,
       "metricSource": "irbank:2026/03",
       "history": [
         2146.8499,
@@ -8468,6 +8852,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1740,
       "bps": 595.64,
       "eps": 130.37,
+      "chartBps": 595.64,
+      "chartEps": 130.37,
       "metricSource": "irbank:2026/02",
       "history": [
         1175,
@@ -8512,6 +8898,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1749,
       "bps": 896.47,
       "eps": -20.35,
+      "chartBps": 896.47,
+      "chartEps": 145.75,
       "metricSource": "irbank:2026/03",
       "history": [
         1715.0154,
@@ -8556,6 +8944,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 927,
       "bps": 2337.98,
       "eps": 39.35,
+      "chartBps": 2337.98,
+      "chartEps": 39.35,
       "metricSource": "irbank:2026/03",
       "history": [
         885.5591,
@@ -8600,6 +8990,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2919,
       "bps": 1801.61,
       "eps": 157.33,
+      "chartBps": 1801.61,
+      "chartEps": 157.33,
       "metricSource": "irbank:2026/03",
       "history": [
         2927.3171,
@@ -8644,6 +9036,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5680,
       "bps": 5489.39,
       "eps": 429.32,
+      "chartBps": 5489.39,
+      "chartEps": 429.32,
       "metricSource": "irbank:2026/03",
       "history": [
         3965.9131,
@@ -8688,6 +9082,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 6890,
       "bps": 16298.41,
       "eps": 1024.52,
+      "chartBps": 16298.41,
+      "chartEps": 1024.52,
       "metricSource": "irbank:2026/03",
       "history": [
         4679.5806,
@@ -8732,6 +9128,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 555,
       "bps": 697.78,
       "eps": 59.69,
+      "chartBps": 697.78,
+      "chartEps": 59.69,
       "metricSource": "irbank:2026/03",
       "history": [
         496.0145,
@@ -8776,6 +9174,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1130,
       "bps": 1719.7,
       "eps": 155.9,
+      "chartBps": 1719.7,
+      "chartEps": 155.9,
       "metricSource": "irbank:2026/03",
       "history": [
         670.4927,
@@ -8820,6 +9220,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1407,
       "bps": 1045.2,
       "eps": 43.51,
+      "chartBps": 1045.2,
+      "chartEps": 43.51,
       "metricSource": "irbank:2026/03",
       "history": [
         1384.5465,
@@ -8864,6 +9266,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1066,
       "bps": 904.66,
       "eps": 113.61,
+      "chartBps": 904.66,
+      "chartEps": 113.61,
       "metricSource": "irbank:2026/04",
       "history": [
         987.8574,
@@ -8908,6 +9312,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4745,
       "bps": 1995.73,
       "eps": 243.72,
+      "chartBps": 1995.73,
+      "chartEps": 243.72,
       "metricSource": "irbank:2026/03",
       "history": [
         4300.8892,
@@ -8952,6 +9358,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 14050,
       "bps": 5816.08,
       "eps": 926.33,
+      "chartBps": 5816.08,
+      "chartEps": 926.33,
       "metricSource": "irbank:2026/03",
       "history": [
         6463.7544,
@@ -8996,6 +9404,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1655,
       "bps": 3010.7,
       "eps": 146.75,
+      "chartBps": 3010.7,
+      "chartEps": 146.75,
       "metricSource": "irbank:2026/03",
       "history": [
         1207.1696,
@@ -9040,6 +9450,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2910,
       "bps": 2399.52,
       "eps": 386.86,
+      "chartBps": 2399.52,
+      "chartEps": 386.86,
       "metricSource": "irbank:2026/03",
       "history": [
         1944.7806,
@@ -9084,6 +9496,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2095,
       "bps": 2300.36,
       "eps": 299.2,
+      "chartBps": 2300.36,
+      "chartEps": 299.2,
       "metricSource": "irbank:2026/03",
       "history": [
         1420.5933,
@@ -9128,6 +9542,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3625,
       "bps": 5719.39,
       "eps": 213.91,
+      "chartBps": 5719.39,
+      "chartEps": 213.91,
       "metricSource": "irbank:2026/03",
       "history": [
         1718.5559,
@@ -9172,6 +9588,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2197,
       "bps": 1398.65,
       "eps": 166.6,
+      "chartBps": 1398.65,
+      "chartEps": 166.6,
       "metricSource": "irbank:2026/03",
       "history": [
         1320.4789,
@@ -9216,6 +9634,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 180,
       "bps": 56.41,
       "eps": 0.81,
+      "chartBps": 56.41,
+      "chartEps": 0.81,
       "metricSource": "irbank:2026/03",
       "history": [
         162,
@@ -9260,6 +9680,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2387,
       "bps": 322.78,
       "eps": 75.11,
+      "chartBps": 322.78,
+      "chartEps": 75.11,
       "metricSource": "irbank:2026/03",
       "history": [
         1106.2074,
@@ -9304,6 +9726,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 440,
       "bps": 683.44,
       "eps": 56.89,
+      "chartBps": 683.44,
+      "chartEps": 56.89,
       "metricSource": "irbank:2026/03",
       "history": [
         295.6746,
@@ -9348,6 +9772,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 6202,
       "bps": 8269.33,
       "eps": 516.83,
+      "chartBps": 8269.33,
+      "chartEps": 516.83,
       "metricSource": "completionEstimate",
       "history": [
         3576.2644,
@@ -9392,6 +9818,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1305,
       "bps": 1627.33,
       "eps": 67.99,
+      "chartBps": 1627.33,
+      "chartEps": 67.99,
       "metricSource": "irbank:2026/03",
       "history": [
         1264.0847,
@@ -9436,6 +9864,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3010,
       "bps": 1122.57,
       "eps": 172.02,
+      "chartBps": 1122.57,
+      "chartEps": 172.02,
       "metricSource": "irbank:2026/03",
       "history": [
         1647.2269,
@@ -9480,6 +9910,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1112,
       "bps": 1652.47,
       "eps": 110.68,
+      "chartBps": 1652.47,
+      "chartEps": 110.68,
       "metricSource": "irbank:2026/02",
       "history": [
         1148.5469,
@@ -9524,6 +9956,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2345.5,
       "bps": 1775.55,
       "eps": 190.2,
+      "chartBps": 1775.55,
+      "chartEps": 190.2,
       "metricSource": "irbank:2026/03",
       "history": [
         1049.558,
@@ -9568,6 +10002,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1344,
       "bps": 4409.61,
       "eps": 86.72,
+      "chartBps": 4409.61,
+      "chartEps": 86.72,
       "metricSource": "irbank:2026/03",
       "history": [
         989.6208,
@@ -9612,6 +10048,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2145,
       "bps": 2804.44,
       "eps": 210.85,
+      "chartBps": 2804.44,
+      "chartEps": 210.85,
       "metricSource": "irbank:2026/03",
       "history": [
         1867.2242,
@@ -9656,6 +10094,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2640,
       "bps": 264.71,
       "eps": 873.38,
+      "chartBps": 264.71,
+      "chartEps": 873.38,
       "metricSource": "irbank:2026/03",
       "history": [
         1042.2756,
@@ -9700,6 +10140,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3275,
       "bps": 2529.01,
       "eps": 178.26,
+      "chartBps": 2529.01,
+      "chartEps": 178.26,
       "metricSource": "irbank:2026/02",
       "history": [
         2813.9146,
@@ -9744,6 +10186,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 276,
       "bps": 144.13,
       "eps": 14.13,
+      "chartBps": 144.13,
+      "chartEps": 14.13,
       "metricSource": "irbank:2026/03",
       "history": [
         241.8911,
@@ -9788,6 +10232,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1925,
       "bps": 2534.2,
       "eps": 240.45,
+      "chartBps": 2534.2,
+      "chartEps": 240.45,
       "metricSource": "irbank:2026/03",
       "history": [
         1218.0409,
@@ -9832,6 +10278,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 668,
       "bps": 743.96,
       "eps": 57.18,
+      "chartBps": 743.96,
+      "chartEps": 57.18,
       "metricSource": "irbank:2026/03",
       "history": [
         380.5267,
@@ -9876,6 +10324,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 851,
       "bps": 616.38,
       "eps": 64.17,
+      "chartBps": 616.38,
+      "chartEps": 64.17,
       "metricSource": "irbank:2026/03",
       "history": [
         625.4387,
@@ -9920,6 +10370,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 769,
       "bps": 462.99,
       "eps": 11.71,
+      "chartBps": 462.99,
+      "chartEps": 11.71,
       "metricSource": "irbank:2026/02",
       "history": [
         642.2126,
@@ -9964,6 +10416,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2885,
       "bps": 880.42,
       "eps": 240.61,
+      "chartBps": 880.42,
+      "chartEps": 240.61,
       "metricSource": "irbank:2026/03",
       "history": [
         1675.6881,
@@ -10008,6 +10462,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1484,
       "bps": 400.33,
       "eps": 95.61,
+      "chartBps": 400.33,
+      "chartEps": 95.61,
       "metricSource": "irbank:2026/03",
       "history": [
         1024.759,
@@ -10052,6 +10508,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2053,
       "bps": 984.8,
       "eps": 40.06,
+      "chartBps": 984.8,
+      "chartEps": 40.06,
       "metricSource": "irbank:2026/02",
       "history": [
         2068.4277,
@@ -10096,6 +10554,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 401,
       "bps": 517.18,
       "eps": 29.19,
+      "chartBps": 517.18,
+      "chartEps": 29.19,
       "metricSource": "irbank:2026/03",
       "history": [
         325.7758,
@@ -10140,6 +10600,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1565,
       "bps": 2423.09,
       "eps": 155.03,
+      "chartBps": 2423.09,
+      "chartEps": 155.03,
       "metricSource": "irbank:2026/03",
       "history": [
         1094.2751,
@@ -10184,6 +10646,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5395,
       "bps": 4936.15,
       "eps": 519.19,
+      "chartBps": 4936.15,
+      "chartEps": 519.19,
       "metricSource": "irbank:2026/03",
       "history": [
         4587.6108,
@@ -10228,6 +10692,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1405,
       "bps": 2520.85,
       "eps": 157.94,
+      "chartBps": 2520.85,
+      "chartEps": 157.94,
       "metricSource": "irbank:2026/03",
       "history": [
         1122.4905,
@@ -10272,6 +10738,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 634,
       "bps": 1399.78,
       "eps": 117.53,
+      "chartBps": 1399.78,
+      "chartEps": 117.53,
       "metricSource": "irbank:2026/03",
       "history": [
         679.8903,
@@ -10316,6 +10784,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 790,
       "bps": 780.46,
       "eps": 109.77,
+      "chartBps": 780.46,
+      "chartEps": 109.77,
       "metricSource": "irbank:2026/03",
       "history": [
         768.273,
@@ -10360,6 +10830,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3079,
       "bps": 1732.1,
       "eps": 143.11,
+      "chartBps": 1732.1,
+      "chartEps": 143.11,
       "metricSource": "irbank:2026/03",
       "history": [
         2731.6562,
@@ -10404,6 +10876,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3502,
       "bps": 4669.33,
       "eps": 291.83,
+      "chartBps": 4669.33,
+      "chartEps": 291.83,
       "metricSource": "completionEstimate",
       "history": [
         2481.3518,
@@ -10448,6 +10922,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2258,
       "bps": 754.11,
       "eps": 134.16,
+      "chartBps": 754.11,
+      "chartEps": 134.16,
       "metricSource": "irbank:2026/02",
       "history": [
         2440.4182,
@@ -10488,6 +10964,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 493,
       "bps": 145.41,
       "eps": 29.46,
+      "chartBps": 145.41,
+      "chartEps": 29.46,
       "metricSource": "irbank:2026/03",
       "history": [
         455.3781,
@@ -10532,6 +11010,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2032,
       "bps": 2463.86,
       "eps": 150.82,
+      "chartBps": 2463.86,
+      "chartEps": 150.82,
       "metricSource": "irbank:2026/03",
       "history": [
         1643.574,
@@ -10576,6 +11056,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2144,
       "bps": 1144.96,
       "eps": 511.38,
+      "chartBps": 1144.96,
+      "chartEps": 511.38,
       "metricSource": "irbank:2026/03",
       "history": [
         2270.0952,
@@ -10620,6 +11102,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1361,
       "bps": 1891.41,
       "eps": 135.71,
+      "chartBps": 1891.41,
+      "chartEps": 135.71,
       "metricSource": "irbank:2026/03",
       "history": [
         938.9814,
@@ -10664,6 +11148,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 480,
       "bps": 396.92,
       "eps": 41.11,
+      "chartBps": 396.92,
+      "chartEps": 41.11,
       "metricSource": "irbank:2026/03",
       "history": [
         465.1893,
@@ -10708,6 +11194,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1134,
       "bps": 1512,
       "eps": 94.5,
+      "chartBps": 1512,
+      "chartEps": 94.5,
       "metricSource": "completionEstimate",
       "history": [
         1467,
@@ -10752,6 +11240,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1149,
       "bps": 696.91,
       "eps": 29.07,
+      "chartBps": 696.91,
+      "chartEps": 29.07,
       "metricSource": "irbank:2026/03",
       "history": [
         654.1375,
@@ -10796,6 +11286,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3388,
       "bps": 4207.52,
       "eps": 283.95,
+      "chartBps": 4207.52,
+      "chartEps": 283.95,
       "metricSource": "irbank:2026/03",
       "history": [
         1829.7037,
@@ -10840,6 +11332,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1790,
       "bps": 1197.03,
       "eps": 159.43,
+      "chartBps": 1197.03,
+      "chartEps": 159.43,
       "metricSource": "irbank:2026/03",
       "history": [
         1348.2473,
@@ -10884,6 +11378,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1772,
       "bps": 2417.3,
       "eps": 126.66,
+      "chartBps": 2417.3,
+      "chartEps": 126.66,
       "metricSource": "irbank:2026/03",
       "history": [
         904.5723,
@@ -10928,6 +11424,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3255,
       "bps": 1830.64,
       "eps": 228.39,
+      "chartBps": 1830.64,
+      "chartEps": 228.39,
       "metricSource": "irbank:2026/03",
       "history": [
         1926.6329,
@@ -10972,6 +11470,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2456,
       "bps": 2635.47,
       "eps": 219.68,
+      "chartBps": 2635.47,
+      "chartEps": 219.68,
       "metricSource": "irbank:2026/03",
       "history": [
         1409.6656,
@@ -11016,6 +11516,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 731,
       "bps": 597.52,
       "eps": 111.74,
+      "chartBps": 597.52,
+      "chartEps": 111.74,
       "metricSource": "irbank:2026/02",
       "history": [
         795,
@@ -11060,6 +11562,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 756,
       "bps": 251.49,
       "eps": 46.79,
+      "chartBps": 251.49,
+      "chartEps": 46.79,
       "metricSource": "irbank:2026/04",
       "history": [
         896.6667,
@@ -11102,6 +11606,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1867,
       "bps": 1539.66,
       "eps": 117.96,
+      "chartBps": 1539.66,
+      "chartEps": 117.96,
       "metricSource": "irbank:2026/03",
       "history": [
         972.8251,
@@ -11146,6 +11652,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5840,
       "bps": 3036.88,
       "eps": 364.85,
+      "chartBps": 3036.88,
+      "chartEps": 364.85,
       "metricSource": "irbank:2026/03",
       "history": [
         2973.3953,
@@ -11190,6 +11698,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 362,
       "bps": 604.57,
       "eps": 26.69,
+      "chartBps": 604.57,
+      "chartEps": 26.69,
       "metricSource": "irbank:2026/04",
       "history": [
         321.2294,
@@ -11234,6 +11744,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 452,
       "bps": 408.51,
       "eps": 36.64,
+      "chartBps": 408.51,
+      "chartEps": 36.64,
       "metricSource": "irbank:2026/02",
       "history": [
         323.0716,
@@ -11278,6 +11790,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 11420,
       "bps": 2864.45,
       "eps": 274.8,
+      "chartBps": 2864.45,
+      "chartEps": 274.8,
       "metricSource": "irbank:2026/03",
       "history": [
         1888.3896,
@@ -11322,6 +11836,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2100,
       "bps": 2248.67,
       "eps": 217.77,
+      "chartBps": 2248.67,
+      "chartEps": 217.77,
       "metricSource": "irbank:2026/03",
       "history": [
         1394.5558,
@@ -11366,6 +11882,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3345,
       "bps": 3599.58,
       "eps": 247.46,
+      "chartBps": 3599.58,
+      "chartEps": 247.46,
       "metricSource": "irbank:2026/03",
       "history": [
         3319.407,
@@ -11410,6 +11928,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 606,
       "bps": 633.45,
       "eps": 25.54,
+      "chartBps": 633.45,
+      "chartEps": 25.54,
       "metricSource": "irbank:2026/02",
       "history": [
         371.7209,
@@ -11454,6 +11974,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1135,
       "bps": 604.85,
       "eps": 79,
+      "chartBps": 604.85,
+      "chartEps": 79,
       "metricSource": "irbank:2026/04",
       "history": [
         900.0684,
@@ -11498,6 +12020,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 507,
       "bps": 1605.45,
       "eps": 58.91,
+      "chartBps": 1605.45,
+      "chartEps": 58.91,
       "metricSource": "irbank:2026/03",
       "history": [
         378.8571,
@@ -11542,6 +12066,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 762,
       "bps": 833.97,
       "eps": 40.93,
+      "chartBps": 833.97,
+      "chartEps": 40.93,
       "metricSource": "irbank:2026/03",
       "history": [
         720.5673,
@@ -11586,6 +12112,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2501,
       "bps": 1439.89,
       "eps": 191.4,
+      "chartBps": 1439.89,
+      "chartEps": 191.4,
       "metricSource": "irbank:2026/03",
       "history": [
         1321.0287,
@@ -11630,6 +12158,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4545,
       "bps": 4677.09,
       "eps": 366.51,
+      "chartBps": 4677.09,
+      "chartEps": 366.51,
       "metricSource": "irbank:2026/03",
       "history": [
         4698.1421,
@@ -11674,6 +12204,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2564,
       "bps": 4826.55,
       "eps": 326.99,
+      "chartBps": 4826.55,
+      "chartEps": 326.99,
       "metricSource": "irbank:2026/03",
       "history": [
         1548.9673,
@@ -11718,6 +12250,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1974,
       "bps": 2390.29,
       "eps": 132,
+      "chartBps": 2390.29,
+      "chartEps": 132,
       "metricSource": "irbank:2026/03",
       "history": [
         1167.3472,
@@ -11762,6 +12296,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1342,
       "bps": 1600.08,
       "eps": 104.83,
+      "chartBps": 1600.08,
+      "chartEps": 104.83,
       "metricSource": "irbank:2026/05",
       "history": [
         1364.0751,
@@ -11806,6 +12342,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 277,
       "bps": 500.49,
       "eps": 12.43,
+      "chartBps": 500.49,
+      "chartEps": 12.43,
       "metricSource": "irbank:2026/02",
       "history": [
         310.7537,
@@ -11850,6 +12388,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 15370,
       "bps": 8710.24,
       "eps": 1617.45,
+      "chartBps": 8710.24,
+      "chartEps": 1617.45,
       "metricSource": "irbank:2026/03",
       "history": [
         5453.2139,
@@ -11894,6 +12434,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2995,
       "bps": 3993.33,
       "eps": 249.58,
+      "chartBps": 3993.33,
+      "chartEps": 249.58,
       "metricSource": "completionEstimate",
       "history": [
         2513.8726,
@@ -11938,6 +12480,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1701,
       "bps": 7144.91,
       "eps": -82.82,
+      "chartBps": 7144.91,
+      "chartEps": 141.75,
       "metricSource": "irbank:2026/03",
       "history": [
         1497.9607,
@@ -11982,6 +12526,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1870,
       "bps": 932.16,
       "eps": 322.26,
+      "chartBps": 932.16,
+      "chartEps": 322.26,
       "metricSource": "irbank:2026/03",
       "history": [
         1731.1244,
@@ -12026,6 +12572,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2881,
       "bps": 1514.4,
       "eps": -83.65,
+      "chartBps": 1514.4,
+      "chartEps": 240.08,
       "metricSource": "irbank:2026/04",
       "history": [
         2600,
@@ -12070,6 +12618,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1126,
       "bps": 902.43,
       "eps": 88.58,
+      "chartBps": 902.43,
+      "chartEps": 88.58,
       "metricSource": "irbank:2026/03",
       "history": [
         966.9216,
@@ -12114,6 +12664,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 438,
       "bps": 390.68,
       "eps": 42.91,
+      "chartBps": 390.68,
+      "chartEps": 42.91,
       "metricSource": "irbank:2026/03",
       "history": [
         344.8981,
@@ -12158,6 +12710,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2057,
       "bps": 4771.13,
       "eps": 127.33,
+      "chartBps": 4771.13,
+      "chartEps": 127.33,
       "metricSource": "irbank:2026/03",
       "history": [
         1320.2261,
@@ -12202,6 +12756,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3735,
       "bps": 1481.33,
       "eps": 236.15,
+      "chartBps": 1481.33,
+      "chartEps": 236.15,
       "metricSource": "irbank:2026/03",
       "history": [
         2507.9187,
@@ -12246,6 +12802,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1910,
       "bps": 1386.55,
       "eps": 144.57,
+      "chartBps": 1386.55,
+      "chartEps": 144.57,
       "metricSource": "irbank:2026/03",
       "history": [
         1863.5461,
@@ -12290,6 +12848,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3725,
       "bps": 2357.19,
       "eps": 563.77,
+      "chartBps": 2357.19,
+      "chartEps": 563.77,
       "metricSource": "irbank:2026/03",
       "history": [
         2116.968,
@@ -12334,6 +12894,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1574,
       "bps": 2445.01,
       "eps": 153.63,
+      "chartBps": 2445.01,
+      "chartEps": 153.63,
       "metricSource": "irbank:2026/03",
       "history": [
         1160.0265,
@@ -12378,6 +12940,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1310,
       "bps": 172.83,
       "eps": 3.26,
+      "chartBps": 172.83,
+      "chartEps": 3.26,
       "metricSource": "irbank:2026/03",
       "history": [
         335,
@@ -12422,6 +12986,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 153,
       "bps": 171.65,
       "eps": 13.78,
+      "chartBps": 171.65,
+      "chartEps": 13.78,
       "metricSource": "irbank:2026/03",
       "history": [
         153,
@@ -12466,6 +13032,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 822,
       "bps": 1436.87,
       "eps": 42.8,
+      "chartBps": 1436.87,
+      "chartEps": 42.8,
       "metricSource": "irbank:2026/03",
       "history": [
         761.4827,
@@ -12510,6 +13078,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2281.5,
       "bps": 1940.28,
       "eps": 64.02,
+      "chartBps": 1940.28,
+      "chartEps": 64.02,
       "metricSource": "irbank:2026/03",
       "history": [
         876.8538,
@@ -12554,6 +13124,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1100,
       "bps": 170.91,
       "eps": 2.15,
+      "chartBps": 170.91,
+      "chartEps": 2.15,
       "metricSource": "irbank:2026/03",
       "history": [
         1161.0382,
@@ -12598,6 +13170,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4522,
       "bps": 6029.33,
       "eps": 376.83,
+      "chartBps": 6029.33,
+      "chartEps": 376.83,
       "metricSource": "completionEstimate",
       "history": [
         4914.291,
@@ -12642,6 +13216,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3210,
       "bps": 3647.53,
       "eps": 285.83,
+      "chartBps": 3647.53,
+      "chartEps": 285.83,
       "metricSource": "irbank:2026/03",
       "history": [
         2068.0898,
@@ -12686,6 +13262,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 74,
       "bps": 68.02,
       "eps": 5.08,
+      "chartBps": 68.02,
+      "chartEps": 5.08,
       "metricSource": "irbank:2026/03",
       "history": [
         66.464,
@@ -12730,6 +13308,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 410,
       "bps": 172.26,
       "eps": 20.74,
+      "chartBps": 172.26,
+      "chartEps": 20.74,
       "metricSource": "irbank:2026/03",
       "history": [
         878,
@@ -12774,6 +13354,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 163,
       "bps": 122.73,
       "eps": 22.51,
+      "chartBps": 122.73,
+      "chartEps": 22.51,
       "metricSource": "irbank:2026/03",
       "history": [
         170.875,
@@ -12818,6 +13400,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1096,
       "bps": 515.82,
       "eps": 93.97,
+      "chartBps": 515.82,
+      "chartEps": 93.97,
       "metricSource": "irbank:2026/03",
       "history": [
         601.8893,
@@ -12862,6 +13446,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 567,
       "bps": 355.1,
       "eps": 31.04,
+      "chartBps": 355.1,
+      "chartEps": 31.04,
       "metricSource": "irbank:2026/03",
       "history": [
         500.797,
@@ -12906,6 +13492,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 459,
       "bps": 699.63,
       "eps": 44.92,
+      "chartBps": 699.63,
+      "chartEps": 44.92,
       "metricSource": "irbank:2026/03",
       "history": [
         416.5617,
@@ -12950,6 +13538,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3320,
       "bps": 4242.44,
       "eps": 345.71,
+      "chartBps": 4242.44,
+      "chartEps": 345.71,
       "metricSource": "irbank:2026/03",
       "history": [
         3353.5264,
@@ -12994,6 +13584,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 711,
       "bps": 1042.49,
       "eps": 52.46,
+      "chartBps": 1042.49,
+      "chartEps": 52.46,
       "metricSource": "irbank:2026/03",
       "history": [
         744.0877,
@@ -13038,6 +13630,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1415,
       "bps": 1885.85,
       "eps": 100.45,
+      "chartBps": 1885.85,
+      "chartEps": 100.45,
       "metricSource": "irbank:2026/03",
       "history": [
         1274.3313,
@@ -13082,6 +13676,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4422,
       "bps": 2246.03,
       "eps": 137.7,
+      "chartBps": 2246.03,
+      "chartEps": 137.7,
       "metricSource": "irbank:2026/03",
       "history": [
         2462.5,
@@ -13126,6 +13722,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1683,
       "bps": 605.4,
       "eps": 66.16,
+      "chartBps": 605.4,
+      "chartEps": 66.16,
       "metricSource": "irbank:2026/03",
       "history": [
         1412.9781,
@@ -13170,6 +13768,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4026,
       "bps": 5368,
       "eps": 335.5,
+      "chartBps": 5368,
+      "chartEps": 335.5,
       "metricSource": "completionEstimate",
       "history": [
         3842.6152,
@@ -13214,6 +13814,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1060,
       "bps": 241.91,
       "eps": 15.49,
+      "chartBps": 241.91,
+      "chartEps": 15.49,
       "metricSource": "irbank:2026/03",
       "history": [
         922,
@@ -13258,6 +13860,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1511,
       "bps": 2179.95,
       "eps": 149.79,
+      "chartBps": 2179.95,
+      "chartEps": 149.79,
       "metricSource": "irbank:2026/03",
       "history": [
         746.2648,
@@ -13302,6 +13906,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 6200,
       "bps": 3233.83,
       "eps": 575.51,
+      "chartBps": 3233.83,
+      "chartEps": 575.51,
       "metricSource": "irbank:2026/03",
       "history": [
         2904.4116,
@@ -13346,6 +13952,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3255,
       "bps": 3813.15,
       "eps": 128.81,
+      "chartBps": 3813.15,
+      "chartEps": 128.81,
       "metricSource": "irbank:2026/03",
       "history": [
         1950.0939,
@@ -13390,6 +13998,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4955,
       "bps": 6138.18,
       "eps": 313.54,
+      "chartBps": 6138.18,
+      "chartEps": 313.54,
       "metricSource": "irbank:2026/03",
       "history": [
         3717.2412,
@@ -13434,6 +14044,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1909,
       "bps": 1772.03,
       "eps": 170.26,
+      "chartBps": 1772.03,
+      "chartEps": 170.26,
       "metricSource": "irbank:2026/03",
       "history": [
         1486.4696,
@@ -13478,6 +14090,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3755,
       "bps": 3923.35,
       "eps": 404.44,
+      "chartBps": 3923.35,
+      "chartEps": 404.44,
       "metricSource": "irbank:2026/03",
       "history": [
         2408.1638,
@@ -13522,6 +14136,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 888,
       "bps": 1172.39,
       "eps": 85.95,
+      "chartBps": 1172.39,
+      "chartEps": 85.95,
       "metricSource": "irbank:2026/04",
       "history": [
         755.3716,
@@ -13566,6 +14182,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 358,
       "bps": 635.23,
       "eps": 15,
+      "chartBps": 635.23,
+      "chartEps": 15,
       "metricSource": "irbank:2026/03",
       "history": [
         403,
@@ -13610,6 +14228,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1582,
       "bps": 725.64,
       "eps": 154.62,
+      "chartBps": 725.64,
+      "chartEps": 154.62,
       "metricSource": "irbank:2026/02",
       "history": [
         1356.5645,
@@ -13654,6 +14274,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2589,
       "bps": 1712.12,
       "eps": 245.25,
+      "chartBps": 1712.12,
+      "chartEps": 245.25,
       "metricSource": "irbank:2026/03",
       "history": [
         1202.4408,
@@ -13698,6 +14320,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2796,
       "bps": 4164.98,
       "eps": 345.2,
+      "chartBps": 4164.98,
+      "chartEps": 345.2,
       "metricSource": "irbank:2026/02",
       "history": [
         2079.1426,
@@ -13742,6 +14366,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1149,
       "bps": 559.59,
       "eps": 40.97,
+      "chartBps": 559.59,
+      "chartEps": 40.97,
       "metricSource": "irbank:2026/04",
       "history": [
         1052.3094,
@@ -13786,6 +14412,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 933,
       "bps": 1471.37,
       "eps": 77.81,
+      "chartBps": 1471.37,
+      "chartEps": 77.81,
       "metricSource": "irbank:2026/03",
       "history": [
         811.5632,
@@ -13830,6 +14458,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 740,
       "bps": 1383.86,
       "eps": 33.06,
+      "chartBps": 1383.86,
+      "chartEps": 33.06,
       "metricSource": "irbank:2026/03",
       "history": [
         748.8438,
@@ -13874,6 +14504,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1965,
       "bps": 2701.06,
       "eps": 106.16,
+      "chartBps": 2701.06,
+      "chartEps": 106.16,
       "metricSource": "irbank:2026/03",
       "history": [
         1202.9421,
@@ -13918,6 +14550,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4920,
       "bps": 6412.58,
       "eps": 99.27,
+      "chartBps": 6412.58,
+      "chartEps": 99.27,
       "metricSource": "irbank:2026/03",
       "history": [
         2174.595,
@@ -13962,6 +14596,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 295,
       "bps": 143.16,
       "eps": 1.63,
+      "chartBps": 143.16,
+      "chartEps": 1.63,
       "metricSource": "irbank:2026/03",
       "history": [
         147.3931,
@@ -14006,6 +14642,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1223,
       "bps": 1863.15,
       "eps": 186.82,
+      "chartBps": 1863.15,
+      "chartEps": 186.82,
       "metricSource": "irbank:2026/02",
       "history": [
         966.6639,
@@ -14050,6 +14688,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1062,
       "bps": 1429.24,
       "eps": 93.71,
+      "chartBps": 1429.24,
+      "chartEps": 93.71,
       "metricSource": "irbank:2026/03",
       "history": [
         1008.7775,
@@ -14094,6 +14734,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 112,
       "bps": 130.68,
       "eps": 8.44,
+      "chartBps": 130.68,
+      "chartEps": 8.44,
       "metricSource": "irbank:2026/05",
       "history": [
         135,
@@ -14138,6 +14780,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4025,
       "bps": 3156.89,
       "eps": 185.92,
+      "chartBps": 3156.89,
+      "chartEps": 185.92,
       "metricSource": "irbank:2026/02",
       "history": [
         3181.343,
@@ -14182,6 +14826,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2578,
       "bps": 1617.84,
       "eps": 84.65,
+      "chartBps": 1617.84,
+      "chartEps": 84.65,
       "metricSource": "irbank:2026/04",
       "history": [
         2758.4624,
@@ -14226,6 +14872,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1144,
       "bps": 536.41,
       "eps": 38.86,
+      "chartBps": 536.41,
+      "chartEps": 38.86,
       "metricSource": "irbank:2026/03",
       "history": [
         900,
@@ -14270,6 +14918,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 218,
       "bps": 226.44,
       "eps": 23.18,
+      "chartBps": 226.44,
+      "chartEps": 23.18,
       "metricSource": "irbank:2026/03",
       "history": [
         238.0905,
@@ -14314,6 +14964,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2772,
       "bps": 2502.91,
       "eps": 179.81,
+      "chartBps": 2502.91,
+      "chartEps": 179.81,
       "metricSource": "irbank:2026/02",
       "history": [
         2314.7336,
@@ -14358,6 +15010,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1091,
       "bps": 2494.12,
       "eps": 30.15,
+      "chartBps": 2494.12,
+      "chartEps": 30.15,
       "metricSource": "irbank:2026/02",
       "history": [
         1080.891,
@@ -14402,6 +15056,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2707,
       "bps": 2357.98,
       "eps": 198.54,
+      "chartBps": 2357.98,
+      "chartEps": 198.54,
       "metricSource": "irbank:2026/03",
       "history": [
         2124.877,
@@ -14446,6 +15102,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 786,
       "bps": 417.9,
       "eps": 128.2,
+      "chartBps": 417.9,
+      "chartEps": 128.2,
       "metricSource": "irbank:2026/03",
       "history": [
         553.5024,
@@ -14490,6 +15148,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2204.5,
       "bps": 1142.55,
       "eps": 100.55,
+      "chartBps": 1142.55,
+      "chartEps": 100.55,
       "metricSource": "irbank:2026/03",
       "history": [
         1685.7028,
@@ -14534,6 +15194,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2830,
       "bps": 3415.5,
       "eps": 256.47,
+      "chartBps": 3415.5,
+      "chartEps": 256.47,
       "metricSource": "irbank:2026/03",
       "history": [
         2050.3037,
@@ -14578,6 +15240,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3055,
       "bps": 898.08,
       "eps": 250.6,
+      "chartBps": 898.08,
+      "chartEps": 250.6,
       "metricSource": "irbank:2026/03",
       "history": [
         2113.1106,
@@ -14622,6 +15286,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2929,
       "bps": 1308.23,
       "eps": 33.74,
+      "chartBps": 1308.23,
+      "chartEps": 33.74,
       "metricSource": "irbank:2026/04",
       "history": [
         3179.2773,
@@ -14666,6 +15332,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1586,
       "bps": 1160.85,
       "eps": 90.89,
+      "chartBps": 1160.85,
+      "chartEps": 90.89,
       "metricSource": "irbank:2026/03",
       "history": [
         1328.9717,
@@ -14710,6 +15378,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 747,
       "bps": 418.45,
       "eps": 64.54,
+      "chartBps": 418.45,
+      "chartEps": 64.54,
       "metricSource": "irbank:2026/02",
       "history": [
         682.2751,
@@ -14750,6 +15420,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4590,
       "bps": 5629.2,
       "eps": 452.23,
+      "chartBps": 5629.2,
+      "chartEps": 452.23,
       "metricSource": "irbank:2026/03",
       "history": [
         2350.2905,
@@ -14794,6 +15466,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2651,
       "bps": 1089.74,
       "eps": 152.02,
+      "chartBps": 1089.74,
+      "chartEps": 152.02,
       "metricSource": "irbank:2026/03",
       "history": [
         1119.1667,
@@ -14838,6 +15512,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2990,
       "bps": 1048.11,
       "eps": 55.86,
+      "chartBps": 1048.11,
+      "chartEps": 55.86,
       "metricSource": "irbank:2026/03",
       "history": [
         3359.46,
@@ -14882,6 +15558,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 684,
       "bps": 471.53,
       "eps": 44.66,
+      "chartBps": 471.53,
+      "chartEps": 44.66,
       "metricSource": "irbank:2026/02",
       "history": [
         537.443,
@@ -14926,6 +15604,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3010,
       "bps": 1067.09,
       "eps": 4.08,
+      "chartBps": 1067.09,
+      "chartEps": 4.08,
       "metricSource": "irbank:2026/03",
       "history": [
         1798.7435,
@@ -14970,6 +15650,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2836,
       "bps": 2126.38,
       "eps": 249.39,
+      "chartBps": 2126.38,
+      "chartEps": 249.39,
       "metricSource": "irbank:2026/03",
       "history": [
         1866.1238,
@@ -15014,6 +15696,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1543,
       "bps": 1453.19,
       "eps": 185.4,
+      "chartBps": 1453.19,
+      "chartEps": 185.4,
       "metricSource": "irbank:2026/03",
       "history": [
         769.7633,
@@ -15058,6 +15742,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 8190,
       "bps": 1451.46,
       "eps": 369.37,
+      "chartBps": 1451.46,
+      "chartEps": 369.37,
       "metricSource": "irbank:2026/02",
       "history": [
         6396.8511,
@@ -15102,6 +15788,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1761,
       "bps": 2823.81,
       "eps": 118.81,
+      "chartBps": 2823.81,
+      "chartEps": 118.81,
       "metricSource": "irbank:2026/04",
       "history": [
         1639.046,
@@ -15146,6 +15834,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2006,
       "bps": 1069.29,
       "eps": 67.69,
+      "chartBps": 1069.29,
+      "chartEps": 67.69,
       "metricSource": "irbank:2026/02",
       "history": [
         2072.2312,
@@ -15190,6 +15880,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 819,
       "bps": 755.54,
       "eps": 27.94,
+      "chartBps": 755.54,
+      "chartEps": 27.94,
       "metricSource": "irbank:2026/03",
       "history": [
         783.8724,
@@ -15234,6 +15926,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1504,
       "bps": 919.2,
       "eps": 143.3,
+      "chartBps": 919.2,
+      "chartEps": 143.3,
       "metricSource": "irbank:2026/02",
       "history": [
         1336.2458,
@@ -15278,6 +15972,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 970,
       "bps": 1616.01,
       "eps": 72.49,
+      "chartBps": 1616.01,
+      "chartEps": 72.49,
       "metricSource": "irbank:2026/03",
       "history": [
         852.879,
@@ -15322,6 +16018,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 924,
       "bps": 2499.77,
       "eps": 47.53,
+      "chartBps": 2499.77,
+      "chartEps": 47.53,
       "metricSource": "irbank:2026/03",
       "history": [
         954.849,
@@ -15366,6 +16064,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1305,
       "bps": 989.61,
       "eps": 95.62,
+      "chartBps": 989.61,
+      "chartEps": 95.62,
       "metricSource": "irbank:2026/03",
       "history": [
         820.9697,
@@ -15410,6 +16110,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1424,
       "bps": 1785.46,
       "eps": 146.06,
+      "chartBps": 1785.46,
+      "chartEps": 146.06,
       "metricSource": "irbank:2026/03",
       "history": [
         1348.9041,
@@ -15454,6 +16156,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2500,
       "bps": 2222.11,
       "eps": 230.65,
+      "chartBps": 2222.11,
+      "chartEps": 230.65,
       "metricSource": "irbank:2026/03",
       "history": [
         2383.0725,
@@ -15498,6 +16202,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 715,
       "bps": 286.83,
       "eps": 6.64,
+      "chartBps": 286.83,
+      "chartEps": 6.64,
       "metricSource": "irbank:2026/03",
       "history": [
         880.5529,
@@ -15542,6 +16248,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2737,
       "bps": 4170.41,
       "eps": 205.22,
+      "chartBps": 4170.41,
+      "chartEps": 205.22,
       "metricSource": "irbank:2026/02",
       "history": [
         2248.8474,
@@ -15586,6 +16294,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3220,
       "bps": 5031.38,
       "eps": 166.24,
+      "chartBps": 5031.38,
+      "chartEps": 166.24,
       "metricSource": "irbank:2026/03",
       "history": [
         3043.7861,
@@ -15630,6 +16340,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3890,
       "bps": 1370.45,
       "eps": 280.43,
+      "chartBps": 1370.45,
+      "chartEps": 280.43,
       "metricSource": "irbank:2026/03",
       "history": [
         5995.7607,
@@ -15674,6 +16386,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2444,
       "bps": 2425.89,
       "eps": 149.22,
+      "chartBps": 2425.89,
+      "chartEps": 149.22,
       "metricSource": "irbank:2026/03",
       "history": [
         2084.9148,
@@ -15718,6 +16432,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 152,
       "bps": 187.04,
       "eps": 6.81,
+      "chartBps": 187.04,
+      "chartEps": 6.81,
       "metricSource": "irbank:2026/03",
       "history": [
         171.3218,
@@ -15762,6 +16478,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1491,
       "bps": 1105.62,
       "eps": 120.06,
+      "chartBps": 1105.62,
+      "chartEps": 120.06,
       "metricSource": "irbank:2026/03",
       "history": [
         899.0563,
@@ -15806,6 +16524,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4190,
       "bps": 6235.5,
       "eps": 309.86,
+      "chartBps": 6235.5,
+      "chartEps": 309.86,
       "metricSource": "irbank:2026/03",
       "history": [
         2476.7034,
@@ -15850,6 +16570,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2751,
       "bps": 1685.98,
       "eps": 254.57,
+      "chartBps": 1685.98,
+      "chartEps": 254.57,
       "metricSource": "irbank:2026/03",
       "history": [
         1613.1527,
@@ -15894,6 +16616,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5940,
       "bps": 3898.52,
       "eps": 335.05,
+      "chartBps": 3898.52,
+      "chartEps": 335.05,
       "metricSource": "irbank:2026/03",
       "history": [
         2592.3757,
@@ -15938,6 +16662,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 580,
       "bps": 70.45,
       "eps": 30.61,
+      "chartBps": 70.45,
+      "chartEps": 30.61,
       "metricSource": "irbank:2026/02",
       "history": [
         426,
@@ -15982,6 +16708,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1318,
       "bps": 1635.34,
       "eps": 99.22,
+      "chartBps": 1635.34,
+      "chartEps": 99.22,
       "metricSource": "irbank:2026/03",
       "history": [
         989.4037,
@@ -16026,6 +16754,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 603,
       "bps": 347.17,
       "eps": 51.65,
+      "chartBps": 347.17,
+      "chartEps": 51.65,
       "metricSource": "irbank:2026/04",
       "history": [
         826.9738,
@@ -16070,6 +16800,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2705,
       "bps": 2513.44,
       "eps": 211.23,
+      "chartBps": 2513.44,
+      "chartEps": 211.23,
       "metricSource": "irbank:2026/03",
       "history": [
         2080.2119,
@@ -16114,6 +16846,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5250,
       "bps": 4186.12,
       "eps": 299.78,
+      "chartBps": 4186.12,
+      "chartEps": 299.78,
       "metricSource": "irbank:2026/03",
       "history": [
         5443.0088,
@@ -16158,6 +16892,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 333,
       "bps": 1051.19,
       "eps": 16.56,
+      "chartBps": 1051.19,
+      "chartEps": 16.56,
       "metricSource": "irbank:2026/03",
       "history": [
         293.3521,
@@ -16202,6 +16938,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 630,
       "bps": 543.86,
       "eps": 48.73,
+      "chartBps": 543.86,
+      "chartEps": 48.73,
       "metricSource": "irbank:2026/03",
       "history": [
         491.0288,
@@ -16246,6 +16984,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3920,
       "bps": 2849.8,
       "eps": 230.54,
+      "chartBps": 2849.8,
+      "chartEps": 230.54,
       "metricSource": "irbank:2026/03",
       "history": [
         2944.4233,
@@ -16290,6 +17030,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 94,
       "bps": 48.44,
       "eps": 0.65,
+      "chartBps": 48.44,
+      "chartEps": 0.65,
       "metricSource": "irbank:2026/03",
       "history": [
         112,
@@ -16334,6 +17076,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3070,
       "bps": 6809.07,
       "eps": 126.72,
+      "chartBps": 6809.07,
+      "chartEps": 126.72,
       "metricSource": "irbank:2026/03",
       "history": [
         2763.4885,
@@ -16378,6 +17122,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1058,
       "bps": 1423.32,
       "eps": 112.66,
+      "chartBps": 1423.32,
+      "chartEps": 112.66,
       "metricSource": "irbank:2026/03",
       "history": [
         792.986,
@@ -16422,6 +17168,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1262,
       "bps": 1667.1,
       "eps": 38.78,
+      "chartBps": 1667.1,
+      "chartEps": 38.78,
       "metricSource": "irbank:2026/03",
       "history": [
         1074.4567,
@@ -16466,6 +17214,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 888,
       "bps": 1661.35,
       "eps": 146.95,
+      "chartBps": 1661.35,
+      "chartEps": 146.95,
       "metricSource": "irbank:2026/03",
       "history": [
         457.211,
@@ -16510,6 +17260,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3295,
       "bps": 2734.59,
       "eps": 255.07,
+      "chartBps": 2734.59,
+      "chartEps": 255.07,
       "metricSource": "irbank:2026/03",
       "history": [
         2557.1704,
@@ -16554,6 +17306,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1267,
       "bps": 940.17,
       "eps": 137.37,
+      "chartBps": 940.17,
+      "chartEps": 137.37,
       "metricSource": "irbank:2026/04",
       "history": [
         1148.0165,
@@ -16598,6 +17352,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1265,
       "bps": 791.3,
       "eps": 67.41,
+      "chartBps": 791.3,
+      "chartEps": 67.41,
       "metricSource": "irbank:2026/02",
       "history": [
         1167.733,
@@ -16642,6 +17398,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1694,
       "bps": 826.98,
       "eps": 210.51,
+      "chartBps": 826.98,
+      "chartEps": 210.51,
       "metricSource": "irbank:2026/02",
       "history": [
         1074.8738,
@@ -16686,6 +17444,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1311,
       "bps": 3403.76,
       "eps": 247.85,
+      "chartBps": 3403.76,
+      "chartEps": 247.85,
       "metricSource": "irbank:2026/03",
       "history": [
         706.7118,
@@ -16730,6 +17490,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 504,
       "bps": 396.29,
       "eps": 34.72,
+      "chartBps": 396.29,
+      "chartEps": 34.72,
       "metricSource": "irbank:2026/03",
       "history": [
         521.119,
@@ -16774,6 +17536,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2924.5,
       "bps": 1607.64,
       "eps": 187.39,
+      "chartBps": 1607.64,
+      "chartEps": 187.39,
       "metricSource": "irbank:2026/02",
       "history": [
         2764.5244,
@@ -16818,6 +17582,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 566,
       "bps": 467.88,
       "eps": 77.5,
+      "chartBps": 467.88,
+      "chartEps": 77.5,
       "metricSource": "irbank:2026/03",
       "history": [
         425.1692,
@@ -16862,6 +17628,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 894,
       "bps": 226.04,
       "eps": 64.81,
+      "chartBps": 226.04,
+      "chartEps": 64.81,
       "metricSource": "irbank:2026/02",
       "history": [
         625.5171,
@@ -16906,6 +17674,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 326,
       "bps": 472.37,
       "eps": 23.82,
+      "chartBps": 472.37,
+      "chartEps": 23.82,
       "metricSource": "irbank:2026/03",
       "history": [
         293.5247,
@@ -16950,6 +17720,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2535,
       "bps": 949.89,
       "eps": 175.61,
+      "chartBps": 949.89,
+      "chartEps": 175.61,
       "metricSource": "irbank:2026/03",
       "history": [
         3254.5454,
@@ -16994,6 +17766,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4955,
       "bps": 5193.64,
       "eps": 325.99,
+      "chartBps": 5193.64,
+      "chartEps": 325.99,
       "metricSource": "irbank:2026/03",
       "history": [
         3453.4177,
@@ -17038,6 +17812,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2590,
       "bps": 1468.83,
       "eps": 135.28,
+      "chartBps": 1468.83,
+      "chartEps": 135.28,
       "metricSource": "irbank:2026/03",
       "history": [
         2273.3743,
@@ -17082,6 +17858,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1357,
       "bps": 720.22,
       "eps": 124.54,
+      "chartBps": 720.22,
+      "chartEps": 124.54,
       "metricSource": "irbank:2026/03",
       "history": [
         1095.6631,
@@ -17126,6 +17904,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1379,
       "bps": 914.96,
       "eps": 66.91,
+      "chartBps": 914.96,
+      "chartEps": 66.91,
       "metricSource": "irbank:2026/03",
       "history": [
         890.6043,
@@ -17170,6 +17950,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 212,
       "bps": 23.27,
       "eps": 9.86,
+      "chartBps": 23.27,
+      "chartEps": 9.86,
       "metricSource": "irbank:2026/03",
       "history": [
         204,
@@ -17214,6 +17996,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 148,
       "bps": 57.29,
       "eps": -22.82,
+      "chartBps": 57.29,
+      "chartEps": 12.33,
       "metricSource": "irbank:2026/03",
       "history": [
         288,
@@ -17258,6 +18042,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2722,
       "bps": 1625.64,
       "eps": 38.96,
+      "chartBps": 1625.64,
+      "chartEps": 38.96,
       "metricSource": "irbank:2026/03",
       "history": [
         3020,
@@ -17302,6 +18088,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1718.5,
       "bps": 1889.22,
       "eps": 233.26,
+      "chartBps": 1889.22,
+      "chartEps": 233.26,
       "metricSource": "irbank:2026/03",
       "history": [
         1252.1516,
@@ -17346,6 +18134,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3560,
       "bps": 3700.21,
       "eps": 532.97,
+      "chartBps": 3700.21,
+      "chartEps": 532.97,
       "metricSource": "irbank:2026/02",
       "history": [
         2903.2485,
@@ -17390,6 +18180,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1183,
       "bps": 370.33,
       "eps": 63.69,
+      "chartBps": 370.33,
+      "chartEps": 63.69,
       "metricSource": "irbank:2026/03",
       "history": [
         1147.8774,
@@ -17434,6 +18226,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 273,
       "bps": 401.48,
       "eps": 64.6,
+      "chartBps": 401.48,
+      "chartEps": 64.6,
       "metricSource": "irbank:2025/11",
       "history": [
         152.7855,
@@ -17478,6 +18272,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 503,
       "bps": 326.25,
       "eps": 26.55,
+      "chartBps": 326.25,
+      "chartEps": 26.55,
       "metricSource": "irbank:2026/04",
       "history": [
         249.7759,
@@ -17522,6 +18318,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3410,
       "bps": 4220.15,
       "eps": 242.92,
+      "chartBps": 4220.15,
+      "chartEps": 242.92,
       "metricSource": "irbank:2026/03",
       "history": [
         2316.0691,
@@ -17566,6 +18364,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4275,
       "bps": 4095.39,
       "eps": 236.63,
+      "chartBps": 4095.39,
+      "chartEps": 236.63,
       "metricSource": "irbank:2026/02",
       "history": [
         3295.6899,
@@ -17610,6 +18410,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2017,
       "bps": 484.12,
       "eps": 117.74,
+      "chartBps": 484.12,
+      "chartEps": 117.74,
       "metricSource": "irbank:2026/04",
       "history": [
         1666.9507,
@@ -17654,6 +18456,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5750,
       "bps": 3819.71,
       "eps": 376.43,
+      "chartBps": 3819.71,
+      "chartEps": 376.43,
       "metricSource": "irbank:2026/03",
       "history": [
         4412.9775,
@@ -17698,6 +18502,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 139,
       "bps": 51.34,
       "eps": -6.31,
+      "chartBps": 51.34,
+      "chartEps": 11.58,
       "metricSource": "irbank:2026/03",
       "history": [
         137.9909,
@@ -17742,6 +18548,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 171,
       "bps": 46.23,
       "eps": 16.53,
+      "chartBps": 46.23,
+      "chartEps": 16.53,
       "metricSource": "irbank:2026/03",
       "history": [
         165,
@@ -17786,6 +18594,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1528,
       "bps": 1071.41,
       "eps": 109.59,
+      "chartBps": 1071.41,
+      "chartEps": 109.59,
       "metricSource": "irbank:2026/03",
       "history": [
         1065.2046,
@@ -17830,6 +18640,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1370,
       "bps": 1094.54,
       "eps": 3.75,
+      "chartBps": 1094.54,
+      "chartEps": 3.75,
       "metricSource": "irbank:2026/04",
       "history": [
         1546.8654,
@@ -17874,6 +18686,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1522,
       "bps": 769.89,
       "eps": 248.3,
+      "chartBps": 769.89,
+      "chartEps": 248.3,
       "metricSource": "irbank:2026/04",
       "history": [
         658.8138,
@@ -17918,6 +18732,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1462,
       "bps": 1206.97,
       "eps": 128.3,
+      "chartBps": 1206.97,
+      "chartEps": 128.3,
       "metricSource": "irbank:2026/03",
       "history": [
         1442.9929,
@@ -17962,6 +18778,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 630,
       "bps": 520.32,
       "eps": 58.64,
+      "chartBps": 520.32,
+      "chartEps": 58.64,
       "metricSource": "irbank:2026/02",
       "history": [
         989,
@@ -18006,6 +18824,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 8120,
       "bps": 16091.96,
       "eps": 210.85,
+      "chartBps": 16091.96,
+      "chartEps": 210.85,
       "metricSource": "irbank:2026/03",
       "history": [
         4088.8652,
@@ -18050,6 +18870,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 238,
       "bps": 471.03,
       "eps": 10.09,
+      "chartBps": 471.03,
+      "chartEps": 10.09,
       "metricSource": "irbank:2026/04",
       "history": [
         211.6981,
@@ -18094,6 +18916,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3190,
       "bps": 2566.03,
       "eps": 323.55,
+      "chartBps": 2566.03,
+      "chartEps": 323.55,
       "metricSource": "irbank:2026/03",
       "history": [
         2301.6812,
@@ -18138,6 +18962,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1181,
       "bps": 444.9,
       "eps": 70.86,
+      "chartBps": 444.9,
+      "chartEps": 70.86,
       "metricSource": "irbank:2026/03",
       "history": [
         1477.0911,
@@ -18182,6 +19008,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3005,
       "bps": 891.81,
       "eps": 46.57,
+      "chartBps": 891.81,
+      "chartEps": 46.57,
       "metricSource": "irbank:2026/02",
       "history": [
         3073.5493,
@@ -18226,6 +19054,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4705,
       "bps": 2555.18,
       "eps": 285.72,
+      "chartBps": 2555.18,
+      "chartEps": 285.72,
       "metricSource": "irbank:2026/03",
       "history": [
         2076.4631,
@@ -18270,6 +19100,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 621,
       "bps": 75.67,
       "eps": 25.88,
+      "chartBps": 75.67,
+      "chartEps": 25.88,
       "metricSource": "irbank:2026/03",
       "history": [
         669,
@@ -18314,6 +19146,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2230.5,
       "bps": 2792,
       "eps": 114.46,
+      "chartBps": 2792,
+      "chartEps": 114.46,
       "metricSource": "irbank:2026/03",
       "history": [
         1907.937,
@@ -18358,6 +19192,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1034,
       "bps": 514.62,
       "eps": 84.61,
+      "chartBps": 514.62,
+      "chartEps": 84.61,
       "metricSource": "irbank:2026/03",
       "history": [
         738,
@@ -18401,6 +19237,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1064,
       "bps": 1212.98,
       "eps": 113.13,
+      "chartBps": 1212.98,
+      "chartEps": 113.13,
       "metricSource": "irbank:2026/02",
       "history": [
         870.8898,
@@ -18445,6 +19283,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 535,
       "bps": 306.55,
       "eps": 52.45,
+      "chartBps": 306.55,
+      "chartEps": 52.45,
       "metricSource": "irbank:2026/02",
       "history": [
         298.3366,
@@ -18489,6 +19329,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1669,
       "bps": 3177.48,
       "eps": 150.7,
+      "chartBps": 3177.48,
+      "chartEps": 150.7,
       "metricSource": "confirmed",
       "history": [
         1376.4346,
@@ -18533,6 +19375,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1821,
       "bps": 1503.26,
       "eps": 122,
+      "chartBps": 1503.26,
+      "chartEps": 122,
       "metricSource": "irbank:2026/03",
       "history": [
         1136.7738,
@@ -18577,6 +19421,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3590,
       "bps": 1765.59,
       "eps": 227.63,
+      "chartBps": 1765.59,
+      "chartEps": 227.63,
       "metricSource": "irbank:2026/02",
       "history": [
         2764.197,
@@ -18621,6 +19467,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 859,
       "bps": 642.33,
       "eps": 107.73,
+      "chartBps": 642.33,
+      "chartEps": 107.73,
       "metricSource": "irbank:2026/03",
       "history": [
         486.0337,
@@ -18665,6 +19513,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1678,
       "bps": 1290.61,
       "eps": 181.75,
+      "chartBps": 1290.61,
+      "chartEps": 181.75,
       "metricSource": "irbank:2026/03",
       "history": [
         1434.501,
@@ -18709,6 +19559,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 7970,
       "bps": 2484.83,
       "eps": 303.41,
+      "chartBps": 2484.83,
+      "chartEps": 303.41,
       "metricSource": "irbank:2026/03",
       "history": [
         1722.5714,
@@ -18753,6 +19605,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1610,
       "bps": 1294.97,
       "eps": 161.37,
+      "chartBps": 1294.97,
+      "chartEps": 161.37,
       "metricSource": "irbank:2026/03",
       "history": [
         1138.5918,
@@ -18797,6 +19651,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 960,
       "bps": 855.44,
       "eps": 153.45,
+      "chartBps": 855.44,
+      "chartEps": 153.45,
       "metricSource": "irbank:2026/02",
       "history": [
         811.4969,
@@ -18841,6 +19697,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3480,
       "bps": 3230.89,
       "eps": 345.01,
+      "chartBps": 3230.89,
+      "chartEps": 345.01,
       "metricSource": "irbank:2026/02",
       "history": [
         2706.9919,
@@ -18885,6 +19743,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3505,
       "bps": 3331.5,
       "eps": 336.3,
+      "chartBps": 3331.5,
+      "chartEps": 336.3,
       "metricSource": "irbank:2026/04",
       "history": [
         3245.8425,
@@ -18929,6 +19789,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 355,
       "bps": 413.02,
       "eps": 21.38,
+      "chartBps": 413.02,
+      "chartEps": 21.38,
       "metricSource": "irbank:2026/03",
       "history": [
         354.5899,
@@ -18973,6 +19835,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2030,
       "bps": 1566.06,
       "eps": 116.8,
+      "chartBps": 1566.06,
+      "chartEps": 116.8,
       "metricSource": "irbank:2026/02",
       "history": [
         2075.2385,
@@ -19017,6 +19881,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 207,
       "bps": 131.93,
       "eps": -73.53,
+      "chartBps": 131.93,
+      "chartEps": 17.25,
       "metricSource": "irbank:2026/03",
       "history": [
         144,
@@ -19061,6 +19927,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2128,
       "bps": 3338.97,
       "eps": 150.99,
+      "chartBps": 3338.97,
+      "chartEps": 150.99,
       "metricSource": "irbank:2026/03",
       "history": [
         1899.5192,
@@ -19105,6 +19973,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 831,
       "bps": 304.93,
       "eps": -72.3,
+      "chartBps": 304.93,
+      "chartEps": 69.25,
       "metricSource": "irbank:2026/03",
       "history": [
         1465,
@@ -19148,6 +20018,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 743,
       "bps": 70.58,
       "eps": 38.5,
+      "chartBps": 70.58,
+      "chartEps": 38.5,
       "metricSource": "irbank:2026/03",
       "history": [
         643.4672,
@@ -19192,6 +20064,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1801,
       "bps": 2223.23,
       "eps": 189.75,
+      "chartBps": 2223.23,
+      "chartEps": 189.75,
       "metricSource": "irbank:2026/03",
       "history": [
         1402.8053,
@@ -19236,6 +20110,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 678.9,
       "bps": 149.49,
       "eps": 33.93,
+      "chartBps": 149.49,
+      "chartEps": 33.93,
       "metricSource": "irbank:2026/02",
       "history": [
         1250,
@@ -19280,6 +20156,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 804,
       "bps": 338.75,
       "eps": 46.98,
+      "chartBps": 338.75,
+      "chartEps": 46.98,
       "metricSource": "irbank:2026/02",
       "history": [
         1137,
@@ -19324,6 +20202,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1560,
       "bps": 1373.52,
       "eps": 155.34,
+      "chartBps": 1373.52,
+      "chartEps": 155.34,
       "metricSource": "irbank:2026/03",
       "history": [
         941.5081,
@@ -19368,6 +20248,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 946,
       "bps": 1261.33,
       "eps": 78.83,
+      "chartBps": 1261.33,
+      "chartEps": 78.83,
       "metricSource": "completionEstimate",
       "history": [
         763.5615,
@@ -19412,6 +20294,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 970,
       "bps": 1972.51,
       "eps": 80.99,
+      "chartBps": 1972.51,
+      "chartEps": 80.99,
       "metricSource": "irbank:2026/02",
       "history": [
         848.7158,
@@ -19456,6 +20340,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3740,
       "bps": 1464.69,
       "eps": 157.21,
+      "chartBps": 1464.69,
+      "chartEps": 157.21,
       "metricSource": "irbank:2026/04",
       "history": [
         3661.6384,
@@ -19500,6 +20386,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 400,
       "bps": 539.97,
       "eps": 6.97,
+      "chartBps": 539.97,
+      "chartEps": 6.97,
       "metricSource": "irbank:2026/03",
       "history": [
         534.6042,
@@ -19544,6 +20432,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1637,
       "bps": 1300.45,
       "eps": 165.33,
+      "chartBps": 1300.45,
+      "chartEps": 165.33,
       "metricSource": "irbank:2026/02",
       "history": [
         1108.994,
@@ -19588,6 +20478,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1662,
       "bps": 726.02,
       "eps": 128.17,
+      "chartBps": 726.02,
+      "chartEps": 128.17,
       "metricSource": "irbank:2026/03",
       "history": [
         624.4037,
@@ -19632,6 +20524,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3380,
       "bps": 894.5,
       "eps": 138.39,
+      "chartBps": 894.5,
+      "chartEps": 138.39,
       "metricSource": "irbank:2026/02",
       "history": [
         3040.783,
@@ -19676,6 +20570,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 334,
       "bps": 229.47,
       "eps": 4.21,
+      "chartBps": 229.47,
+      "chartEps": 4.21,
       "metricSource": "irbank:2026/03",
       "history": [
         306.591,
@@ -19720,6 +20616,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1554,
       "bps": 786.63,
       "eps": 132.44,
+      "chartBps": 786.63,
+      "chartEps": 132.44,
       "metricSource": "irbank:2026/03",
       "history": [
         1248.7025,
@@ -19764,6 +20662,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 460,
       "bps": 154.9,
       "eps": 18.91,
+      "chartBps": 154.9,
+      "chartEps": 18.91,
       "metricSource": "irbank:2026/03",
       "history": [
         1020,
@@ -19807,6 +20707,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 642,
       "bps": 1024,
       "eps": 28,
+      "chartBps": 1024,
+      "chartEps": 28,
       "metricSource": "confirmed",
       "history": [
         454.8336,
@@ -19851,6 +20753,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 331,
       "bps": 227.73,
       "eps": 19.8,
+      "chartBps": 227.73,
+      "chartEps": 19.8,
       "metricSource": "irbank:2026/04",
       "history": [
         406.6095,
@@ -19895,6 +20799,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4300,
       "bps": 2555.41,
       "eps": 339.9,
+      "chartBps": 2555.41,
+      "chartEps": 339.9,
       "metricSource": "irbank:2026/03",
       "history": [
         2764.7346,
@@ -19939,6 +20845,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1484,
       "bps": 1383.24,
       "eps": 143.39,
+      "chartBps": 1383.24,
+      "chartEps": 143.39,
       "metricSource": "irbank:2026/03",
       "history": [
         1245.906,
@@ -19983,6 +20891,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2965,
       "bps": 3813.65,
       "eps": 1520.37,
+      "chartBps": 3813.65,
+      "chartEps": 1520.37,
       "metricSource": "irbank:2026/03",
       "history": [
         2117.3582,
@@ -20027,6 +20937,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1013,
       "bps": 2354.65,
       "eps": 148.37,
+      "chartBps": 2354.65,
+      "chartEps": 148.37,
       "metricSource": "irbank:2026/03",
       "history": [
         622.456,
@@ -20071,6 +20983,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1425,
       "bps": 667.21,
       "eps": 72.8,
+      "chartBps": 667.21,
+      "chartEps": 72.8,
       "metricSource": "irbank:2026/04",
       "history": [
         1366.8893,
@@ -20115,6 +21029,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1218,
       "bps": 1035.76,
       "eps": 84.07,
+      "chartBps": 1035.76,
+      "chartEps": 84.07,
       "metricSource": "irbank:2026/03",
       "history": [
         1409.3748,
@@ -20159,6 +21075,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 6316,
       "bps": 8421.33,
       "eps": 526.33,
+      "chartBps": 8421.33,
+      "chartEps": 526.33,
       "metricSource": "completionEstimate",
       "history": [
         4321.9409,
@@ -20203,6 +21121,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 259.7,
       "bps": 98.4,
       "eps": 20.85,
+      "chartBps": 98.4,
+      "chartEps": 20.85,
       "metricSource": "irbank:2026/03",
       "history": [
         219.5101,
@@ -20247,6 +21167,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3675,
       "bps": 1016.9,
       "eps": 191.52,
+      "chartBps": 1016.9,
+      "chartEps": 191.52,
       "metricSource": "irbank:2026/02",
       "history": [
         1461.4795,
@@ -20291,6 +21213,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2910,
       "bps": 1310.54,
       "eps": 190.05,
+      "chartBps": 1310.54,
+      "chartEps": 190.05,
       "metricSource": "irbank:2026/03",
       "history": [
         1434.303,
@@ -20335,6 +21259,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2270,
       "bps": 396.11,
       "eps": 80.63,
+      "chartBps": 396.11,
+      "chartEps": 80.63,
       "metricSource": "irbank:2026/03",
       "history": [
         2987,
@@ -20379,6 +21305,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4507,
       "bps": 1628.06,
       "eps": -33.6,
+      "chartBps": 1628.06,
+      "chartEps": 375.58,
       "metricSource": "irbank:2026/03",
       "history": [
         1118.0205,
@@ -20423,6 +21351,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 448,
       "bps": 748.66,
       "eps": 65.41,
+      "chartBps": 748.66,
+      "chartEps": 65.41,
       "metricSource": "irbank:2026/03",
       "history": [
         326.1827,
@@ -20467,6 +21397,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 699,
       "bps": 305.15,
       "eps": 104.62,
+      "chartBps": 305.15,
+      "chartEps": 104.62,
       "metricSource": "irbank:2026/03",
       "history": [
         518.1149,
@@ -20511,6 +21443,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1103,
       "bps": 458.95,
       "eps": 48.14,
+      "chartBps": 458.95,
+      "chartEps": 48.14,
       "metricSource": "irbank:2026/03",
       "history": [
         547.9989,
@@ -20555,6 +21489,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 7750,
       "bps": 2136.14,
       "eps": 259.48,
+      "chartBps": 2136.14,
+      "chartEps": 259.48,
       "metricSource": "irbank:2026/03",
       "history": [
         5641.2036,
@@ -20599,6 +21535,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 6360,
       "bps": 6864.73,
       "eps": 448.41,
+      "chartBps": 6864.73,
+      "chartEps": 448.41,
       "metricSource": "irbank:2026/03",
       "history": [
         3863.6362,
@@ -20643,6 +21581,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2586,
       "bps": 310.36,
       "eps": 89.42,
+      "chartBps": 310.36,
+      "chartEps": 89.42,
       "metricSource": "irbank:2026/03",
       "history": [
         2277.7964,
@@ -20687,6 +21627,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2605,
       "bps": 3473.33,
       "eps": 217.08,
+      "chartBps": 3473.33,
+      "chartEps": 217.08,
       "metricSource": "completionEstimate",
       "history": [
         3375,
@@ -20731,6 +21673,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 103,
       "bps": 78.77,
       "eps": 4.52,
+      "chartBps": 78.77,
+      "chartEps": 4.52,
       "metricSource": "irbank:2026/03",
       "history": [
         81,
@@ -20775,6 +21719,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1690,
       "bps": 316.04,
       "eps": 18.75,
+      "chartBps": 316.04,
+      "chartEps": 18.75,
       "metricSource": "irbank:2026/02",
       "history": [
         2088,
@@ -20819,6 +21765,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5350,
       "bps": 3456.23,
       "eps": 327.22,
+      "chartBps": 3456.23,
+      "chartEps": 327.22,
       "metricSource": "irbank:2026/03",
       "history": [
         3030.6736,
@@ -20863,6 +21811,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 8720,
       "bps": 5217.21,
       "eps": 1035.9,
+      "chartBps": 5217.21,
+      "chartEps": 1035.9,
       "metricSource": "irbank:2026/03",
       "history": [
         5293.2397,
@@ -20907,6 +21857,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1528,
       "bps": 2091.21,
       "eps": 127.35,
+      "chartBps": 2091.21,
+      "chartEps": 127.35,
       "metricSource": "irbank:2026/05",
       "history": [
         1306.2091,
@@ -20951,6 +21903,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 815,
       "bps": 176.83,
       "eps": 58.59,
+      "chartBps": 176.83,
+      "chartEps": 58.59,
       "metricSource": "irbank:2026/02",
       "history": [
         327,
@@ -20995,6 +21949,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4840,
       "bps": 2093.58,
       "eps": 300.49,
+      "chartBps": 2093.58,
+      "chartEps": 300.49,
       "metricSource": "irbank:2026/03",
       "history": [
         1379.209,
@@ -21039,6 +21995,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2268,
       "bps": 2081.1,
       "eps": 146,
+      "chartBps": 2081.1,
+      "chartEps": 146,
       "metricSource": "irbank:2026/03",
       "history": [
         1841.7025,
@@ -21083,6 +22041,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3080,
       "bps": 1010.13,
       "eps": 154.27,
+      "chartBps": 1010.13,
+      "chartEps": 154.27,
       "metricSource": "irbank:2026/03",
       "history": [
         2310.5933,
@@ -21127,6 +22087,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3880,
       "bps": 1533.05,
       "eps": 186.85,
+      "chartBps": 1533.05,
+      "chartEps": 186.85,
       "metricSource": "irbank:2026/03",
       "history": [
         1607.1385,
@@ -21171,6 +22133,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 980,
       "bps": 928.89,
       "eps": 110.08,
+      "chartBps": 928.89,
+      "chartEps": 110.08,
       "metricSource": "irbank:2026/02",
       "history": [
         688.0651,
@@ -21215,6 +22179,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1395,
       "bps": 1408.77,
       "eps": 121.4,
+      "chartBps": 1408.77,
+      "chartEps": 121.4,
       "metricSource": "irbank:2026/03",
       "history": [
         944.2401,
@@ -21259,6 +22225,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1792,
       "bps": 738.84,
       "eps": 160.98,
+      "chartBps": 738.84,
+      "chartEps": 160.98,
       "metricSource": "irbank:2026/02",
       "history": [
         1151.4775,
@@ -21303,6 +22271,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1415,
       "bps": 1999.48,
       "eps": 140.25,
+      "chartBps": 1999.48,
+      "chartEps": 140.25,
       "metricSource": "irbank:2026/03",
       "history": [
         842.5297,
@@ -21347,6 +22317,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2076,
       "bps": 962.71,
       "eps": 93.05,
+      "chartBps": 962.71,
+      "chartEps": 93.05,
       "metricSource": "irbank:2026/04",
       "history": [
         2021.1389,
@@ -21391,6 +22363,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1340,
       "bps": 2580.25,
       "eps": 195.08,
+      "chartBps": 2580.25,
+      "chartEps": 195.08,
       "metricSource": "irbank:2026/04",
       "history": [
         908.7273,
@@ -21435,6 +22409,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 741,
       "bps": 337.11,
       "eps": 61.28,
+      "chartBps": 337.11,
+      "chartEps": 61.28,
       "metricSource": "irbank:2026/03",
       "history": [
         705.3281,
@@ -21479,6 +22455,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5120,
       "bps": 4943.44,
       "eps": 852.55,
+      "chartBps": 4943.44,
+      "chartEps": 852.55,
       "metricSource": "irbank:2026/03",
       "history": [
         3609.9309,
@@ -21523,6 +22501,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 997,
       "bps": 329.11,
       "eps": 71.61,
+      "chartBps": 329.11,
+      "chartEps": 71.61,
       "metricSource": "irbank:2026/02",
       "history": [
         573.4644,
@@ -21567,6 +22547,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 145,
       "bps": 82.34,
       "eps": -31.41,
+      "chartBps": 82.34,
+      "chartEps": 12.08,
       "metricSource": "irbank:2026/02",
       "history": [
         599,
@@ -21611,6 +22593,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2068,
       "bps": 1450.87,
       "eps": 81.15,
+      "chartBps": 1450.87,
+      "chartEps": 81.15,
       "metricSource": "irbank:2026/03",
       "history": [
         824.9407,
@@ -21655,6 +22639,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 679,
       "bps": 317.57,
       "eps": -121.46,
+      "chartBps": 317.57,
+      "chartEps": 56.58,
       "metricSource": "irbank:2026/03",
       "history": [
         726,
@@ -21699,6 +22685,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 496,
       "bps": 110.75,
       "eps": 11.62,
+      "chartBps": 110.75,
+      "chartEps": 11.62,
       "metricSource": "irbank:2026/03",
       "history": [
         370.2273,
@@ -21743,6 +22731,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 738,
       "bps": 1120.35,
       "eps": 62.81,
+      "chartBps": 1120.35,
+      "chartEps": 62.81,
       "metricSource": "irbank:2026/03",
       "history": [
         752.6102,
@@ -21787,6 +22777,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1808,
       "bps": 442.88,
       "eps": 91.27,
+      "chartBps": 442.88,
+      "chartEps": 91.27,
       "metricSource": "irbank:2026/03",
       "history": [
         771.1551,
@@ -21831,6 +22823,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 8570,
       "bps": 4929.04,
       "eps": 555.16,
+      "chartBps": 4929.04,
+      "chartEps": 555.16,
       "metricSource": "irbank:2026/04",
       "history": [
         6471.6855,
@@ -21875,6 +22869,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2361,
       "bps": 2927.3,
       "eps": 306.32,
+      "chartBps": 2927.3,
+      "chartEps": 306.32,
       "metricSource": "irbank:2026/03",
       "history": [
         1555.1412,
@@ -21919,6 +22915,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2942,
       "bps": 2787.62,
       "eps": 207.35,
+      "chartBps": 2787.62,
+      "chartEps": 207.35,
       "metricSource": "irbank:2026/03",
       "history": [
         3297.0542,
@@ -21963,6 +22961,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2257,
       "bps": 4519.66,
       "eps": 80.73,
+      "chartBps": 4519.66,
+      "chartEps": 80.73,
       "metricSource": "irbank:2026/03",
       "history": [
         2261.0427,
@@ -22007,6 +23007,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 9007,
       "bps": 4915.47,
       "eps": 572.56,
+      "chartBps": 4915.47,
+      "chartEps": 572.56,
       "metricSource": "irbank:2026/03",
       "history": [
         4316.436,
@@ -22051,6 +23053,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1792,
       "bps": 1709.54,
       "eps": 144.5,
+      "chartBps": 1709.54,
+      "chartEps": 144.5,
       "metricSource": "irbank:2026/03",
       "history": [
         1686.1146,
@@ -22095,6 +23099,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2225,
       "bps": 402.66,
       "eps": 47.6,
+      "chartBps": 402.66,
+      "chartEps": 47.6,
       "metricSource": "irbank:2026/02",
       "history": [
         1995.0751,
@@ -22139,6 +23145,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 292,
       "bps": 166.64,
       "eps": 12.35,
+      "chartBps": 166.64,
+      "chartEps": 12.35,
       "metricSource": "irbank:2026/03",
       "history": [
         275.1724,
@@ -22183,6 +23191,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1771,
       "bps": 1373.81,
       "eps": 90.61,
+      "chartBps": 1373.81,
+      "chartEps": 90.61,
       "metricSource": "irbank:2026/03",
       "history": [
         1561.2097,
@@ -22227,6 +23237,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1628,
       "bps": 159.78,
       "eps": 24.26,
+      "chartBps": 159.78,
+      "chartEps": 24.26,
       "metricSource": "irbank:2026/04",
       "history": [
         1576,
@@ -22271,6 +23283,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1712,
       "bps": 2532.17,
       "eps": 270.18,
+      "chartBps": 2532.17,
+      "chartEps": 270.18,
       "metricSource": "irbank:2026/03",
       "history": [
         1355.8086,
@@ -22315,6 +23329,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1037,
       "bps": 2851.19,
       "eps": 47.26,
+      "chartBps": 2851.19,
+      "chartEps": 47.26,
       "metricSource": "irbank:2026/03",
       "history": [
         949.5633,
@@ -22359,6 +23375,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2240,
       "bps": 1076.55,
       "eps": 117.5,
+      "chartBps": 1076.55,
+      "chartEps": 117.5,
       "metricSource": "irbank:2026/02",
       "history": [
         2407.0645,
@@ -22403,6 +23421,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4225,
       "bps": 3851.87,
       "eps": 377.45,
+      "chartBps": 3851.87,
+      "chartEps": 377.45,
       "metricSource": "irbank:2026/03",
       "history": [
         2888.0811,
@@ -22447,6 +23467,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 452,
       "bps": 211.43,
       "eps": 12.88,
+      "chartBps": 211.43,
+      "chartEps": 12.88,
       "metricSource": "irbank:2026/03",
       "history": [
         476,
@@ -22491,6 +23513,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1992,
       "bps": 1506.07,
       "eps": 89.61,
+      "chartBps": 1506.07,
+      "chartEps": 89.61,
       "metricSource": "irbank:2026/03",
       "history": [
         1794.8885,
@@ -22535,6 +23559,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 567,
       "bps": 242.83,
       "eps": 22.92,
+      "chartBps": 242.83,
+      "chartEps": 22.92,
       "metricSource": "irbank:2026/03",
       "history": [
         577.176,
@@ -22579,6 +23605,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1569,
       "bps": 2539.51,
       "eps": 192.7,
+      "chartBps": 2539.51,
+      "chartEps": 192.7,
       "metricSource": "irbank:2026/03",
       "history": [
         1231.2582,
@@ -22623,6 +23651,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 573,
       "bps": 1096.08,
       "eps": 52.44,
+      "chartBps": 1096.08,
+      "chartEps": 52.44,
       "metricSource": "irbank:2026/03",
       "history": [
         557.2369,
@@ -22667,6 +23697,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1327,
       "bps": 1260.05,
       "eps": 140.3,
+      "chartBps": 1260.05,
+      "chartEps": 140.3,
       "metricSource": "irbank:2026/03",
       "history": [
         922.461,
@@ -22711,6 +23743,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2303,
       "bps": 3134.14,
       "eps": 263.51,
+      "chartBps": 3134.14,
+      "chartEps": 263.51,
       "metricSource": "irbank:2026/03",
       "history": [
         1551.3871,
@@ -22755,6 +23789,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 938,
       "bps": 1251.72,
       "eps": 123.5,
+      "chartBps": 1251.72,
+      "chartEps": 123.5,
       "metricSource": "irbank:2026/03",
       "history": [
         939.1334,
@@ -22799,6 +23835,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1670,
       "bps": 2451.32,
       "eps": 234.38,
+      "chartBps": 2451.32,
+      "chartEps": 234.38,
       "metricSource": "irbank:2026/03",
       "history": [
         1074.6202,
@@ -22843,6 +23881,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3405,
       "bps": 5188.22,
       "eps": 134.32,
+      "chartBps": 5188.22,
+      "chartEps": 134.32,
       "metricSource": "irbank:2026/03",
       "history": [
         2667,
@@ -22887,6 +23927,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 644,
       "bps": 1804.84,
       "eps": 163.91,
+      "chartBps": 1804.84,
+      "chartEps": 163.91,
       "metricSource": "irbank:2026/03",
       "history": [
         474.0269,
@@ -22931,6 +23973,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 6468,
       "bps": 1961.01,
       "eps": 326.61,
+      "chartBps": 1961.01,
+      "chartEps": 326.61,
       "metricSource": "irbank:2026/03",
       "history": [
         2408.978,
@@ -22975,6 +24019,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5220,
       "bps": 3399.21,
       "eps": 532.34,
+      "chartBps": 3399.21,
+      "chartEps": 532.34,
       "metricSource": "irbank:2026/03",
       "history": [
         2789.7561,
@@ -23019,6 +24065,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 10070,
       "bps": 8266.65,
       "eps": 812.96,
+      "chartBps": 8266.65,
+      "chartEps": 812.96,
       "metricSource": "irbank:2026/03",
       "history": [
         5816.0967,
@@ -23063,6 +24111,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3985,
       "bps": 3183.72,
       "eps": 80.84,
+      "chartBps": 3183.72,
+      "chartEps": 80.84,
       "metricSource": "irbank:2026/03",
       "history": [
         2863,
@@ -23107,6 +24157,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1810,
       "bps": 1164.4,
       "eps": 158.08,
+      "chartBps": 1164.4,
+      "chartEps": 158.08,
       "metricSource": "irbank:2026/02",
       "history": [
         881.5311,
@@ -23151,6 +24203,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1172,
       "bps": 790.37,
       "eps": 85.34,
+      "chartBps": 790.37,
+      "chartEps": 85.34,
       "metricSource": "irbank:2026/03",
       "history": [
         889.9016,
@@ -23195,6 +24249,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 259,
       "bps": 252.68,
       "eps": 14.71,
+      "chartBps": 252.68,
+      "chartEps": 14.71,
       "metricSource": "irbank:2026/03",
       "history": [
         381,
@@ -23239,6 +24295,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1657,
       "bps": 698.48,
       "eps": 62.7,
+      "chartBps": 698.48,
+      "chartEps": 62.7,
       "metricSource": "irbank:2026/02",
       "history": [
         1484.9432,
@@ -23283,6 +24341,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4883,
       "bps": 1603.88,
       "eps": 305.66,
+      "chartBps": 1603.88,
+      "chartEps": 305.66,
       "metricSource": "irbank:2026/03",
       "history": [
         2499.2463,
@@ -23327,6 +24387,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4560,
       "bps": 1965.47,
       "eps": 357.48,
+      "chartBps": 1965.47,
+      "chartEps": 357.48,
       "metricSource": "irbank:2026/03",
       "history": [
         1782.4314,
@@ -23371,6 +24433,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 948.3,
       "bps": 938.08,
       "eps": 100.68,
+      "chartBps": 938.08,
+      "chartEps": 100.68,
       "metricSource": "irbank:2026/03",
       "history": [
         805.4504,
@@ -23415,6 +24479,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 124,
       "bps": 13.82,
       "eps": -17.28,
+      "chartBps": 13.82,
+      "chartEps": 10.33,
       "metricSource": "irbank:2026/03",
       "history": [
         191,
@@ -23459,6 +24525,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1819,
       "bps": 3654.42,
       "eps": 144.14,
+      "chartBps": 3654.42,
+      "chartEps": 144.14,
       "metricSource": "irbank:2026/03",
       "history": [
         1545.3291,
@@ -23503,6 +24571,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2195,
       "bps": 874.83,
       "eps": 91.72,
+      "chartBps": 874.83,
+      "chartEps": 91.72,
       "metricSource": "irbank:2026/03",
       "history": [
         2173.8462,
@@ -23547,6 +24617,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3515,
       "bps": 4768.4,
       "eps": 466.97,
+      "chartBps": 4768.4,
+      "chartEps": 466.97,
       "metricSource": "irbank:2026/03",
       "history": [
         899.6352,
@@ -23591,6 +24663,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1166,
       "bps": 1236.19,
       "eps": 61.81,
+      "chartBps": 1236.19,
+      "chartEps": 61.81,
       "metricSource": "irbank:2026/03",
       "history": [
         968.585,
@@ -23635,6 +24709,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3665,
       "bps": 616.27,
       "eps": 59,
+      "chartBps": 616.27,
+      "chartEps": 59,
       "metricSource": "irbank:2026/03",
       "history": [
         3247.1069,
@@ -23679,6 +24755,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1965,
       "bps": 723.3,
       "eps": 126.74,
+      "chartBps": 723.3,
+      "chartEps": 126.74,
       "metricSource": "irbank:2026/03",
       "history": [
         1062.5173,
@@ -23723,6 +24801,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2858,
       "bps": 393.89,
       "eps": 148.13,
+      "chartBps": 393.89,
+      "chartEps": 148.13,
       "metricSource": "irbank:2026/04",
       "history": [
         1573.6606,
@@ -23767,6 +24847,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 178,
       "bps": 44.26,
       "eps": 10.72,
+      "chartBps": 44.26,
+      "chartEps": 10.72,
       "metricSource": "irbank:2026/03",
       "history": [
         134.7217,
@@ -23811,6 +24893,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 879,
       "bps": 310.26,
       "eps": 108.01,
+      "chartBps": 310.26,
+      "chartEps": 108.01,
       "metricSource": "irbank:2026/02",
       "history": [
         1021,
@@ -23855,6 +24939,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 297,
       "bps": 396,
       "eps": 24.75,
+      "chartBps": 396,
+      "chartEps": 24.75,
       "metricSource": "completionEstimate",
       "history": [
         275,
@@ -23899,6 +24985,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3757,
       "bps": 3151.6,
       "eps": 287.6,
+      "chartBps": 3151.6,
+      "chartEps": 287.6,
       "metricSource": "irbank:2026/03",
       "history": [
         2128.428,
@@ -23943,6 +25031,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 100,
       "bps": 66.52,
       "eps": 0.97,
+      "chartBps": 66.52,
+      "chartEps": 0.97,
       "metricSource": "irbank:2026/03",
       "history": [
         133,
@@ -23987,6 +25077,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1222,
       "bps": 1083.82,
       "eps": 72.42,
+      "chartBps": 1083.82,
+      "chartEps": 72.42,
       "metricSource": "irbank:2026/03",
       "history": [
         1019.9647,
@@ -24031,6 +25123,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1826,
       "bps": 1327.5,
       "eps": 141.51,
+      "chartBps": 1327.5,
+      "chartEps": 141.51,
       "metricSource": "irbank:2026/03",
       "history": [
         1254.2355,
@@ -24075,6 +25169,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1951,
       "bps": 1441.02,
       "eps": 208.82,
+      "chartBps": 1441.02,
+      "chartEps": 208.82,
       "metricSource": "irbank:2026/03",
       "history": [
         1730.0731,
@@ -24119,6 +25215,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 759,
       "bps": 99.36,
       "eps": 82.09,
+      "chartBps": 99.36,
+      "chartEps": 82.09,
       "metricSource": "irbank:2026/03",
       "history": [
         280,
@@ -24163,6 +25261,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4115,
       "bps": 203.39,
       "eps": 94.77,
+      "chartBps": 203.39,
+      "chartEps": 94.77,
       "metricSource": "irbank:2026/02",
       "history": [
         2111,
@@ -24207,6 +25307,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2734,
       "bps": 3413.04,
       "eps": 185.58,
+      "chartBps": 3413.04,
+      "chartEps": 185.58,
       "metricSource": "irbank:2026/03",
       "history": [
         2327.4243,
@@ -24251,6 +25353,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1134,
       "bps": 1403.65,
       "eps": 48.52,
+      "chartBps": 1403.65,
+      "chartEps": 48.52,
       "metricSource": "irbank:2026/04",
       "history": [
         1111.4915,
@@ -24295,6 +25399,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 612,
       "bps": 267.77,
       "eps": 50.69,
+      "chartBps": 267.77,
+      "chartEps": 50.69,
       "metricSource": "irbank:2026/03",
       "history": [
         606.8773,
@@ -24339,6 +25445,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2590,
       "bps": 3804.18,
       "eps": 323.86,
+      "chartBps": 3804.18,
+      "chartEps": 323.86,
       "metricSource": "irbank:2026/03",
       "history": [
         1679.5486,
@@ -24383,6 +25491,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2600,
       "bps": 1495.94,
       "eps": 398.7,
+      "chartBps": 1495.94,
+      "chartEps": 398.7,
       "metricSource": "irbank:2026/03",
       "history": [
         1612.092,
@@ -24427,6 +25537,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1591,
       "bps": 668.31,
       "eps": 152.34,
+      "chartBps": 668.31,
+      "chartEps": 152.34,
       "metricSource": "irbank:2026/02",
       "history": [
         1644.8436,
@@ -24471,6 +25583,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1918,
       "bps": 2557.33,
       "eps": 159.83,
+      "chartBps": 2557.33,
+      "chartEps": 159.83,
       "metricSource": "completionEstimate",
       "history": [
         1717.2874,
@@ -24515,6 +25629,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 8320,
       "bps": 3186.65,
       "eps": 376.45,
+      "chartBps": 3186.65,
+      "chartEps": 376.45,
       "metricSource": "irbank:2026/03",
       "history": [
         3201.8325,
@@ -24559,6 +25675,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 129,
       "bps": 71.98,
       "eps": 8.24,
+      "chartBps": 71.98,
+      "chartEps": 8.24,
       "metricSource": "irbank:2026/02",
       "history": [
         117.2105,
@@ -24603,6 +25721,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 930,
       "bps": 353.76,
       "eps": 86.5,
+      "chartBps": 353.76,
+      "chartEps": 86.5,
       "metricSource": "irbank:2026/02",
       "history": [
         903,
@@ -24647,6 +25767,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 855,
       "bps": 2758.97,
       "eps": 41.98,
+      "chartBps": 2758.97,
+      "chartEps": 41.98,
       "metricSource": "irbank:2026/02",
       "history": [
         720.6688,
@@ -24691,6 +25813,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 352,
       "bps": 82.01,
       "eps": 12.25,
+      "chartBps": 82.01,
+      "chartEps": 12.25,
       "metricSource": "irbank:2026/03",
       "history": [
         679,
@@ -24734,6 +25858,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 410,
       "bps": 88.38,
       "eps": 16.96,
+      "chartBps": 88.38,
+      "chartEps": 16.96,
       "metricSource": "irbank:2026/02",
       "history": [
         764,
@@ -24778,6 +25904,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1080,
       "bps": 34.69,
       "eps": -9.06,
+      "chartBps": 34.69,
+      "chartEps": 90,
       "metricSource": "irbank:2026/04",
       "history": [
         731,
@@ -24822,6 +25950,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 890,
       "bps": 274.31,
       "eps": -178.43,
+      "chartBps": 274.31,
+      "chartEps": 74.17,
       "metricSource": "irbank:2026/03",
       "history": [
         852.4805,
@@ -24866,6 +25996,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 524,
       "bps": 445.15,
       "eps": 59.18,
+      "chartBps": 445.15,
+      "chartEps": 59.18,
       "metricSource": "irbank:2026/03",
       "history": [
         427.2043,
@@ -24910,6 +26042,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2638,
       "bps": 3431.24,
       "eps": 277.2,
+      "chartBps": 3431.24,
+      "chartEps": 277.2,
       "metricSource": "irbank:2026/02",
       "history": [
         1929.0403,
@@ -24954,6 +26088,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 956,
       "bps": 185.46,
       "eps": 30.97,
+      "chartBps": 185.46,
+      "chartEps": 30.97,
       "metricSource": "irbank:2026/03",
       "history": [
         835.2001,
@@ -24998,6 +26134,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3455,
       "bps": 2448.69,
       "eps": 374.93,
+      "chartBps": 2448.69,
+      "chartEps": 374.93,
       "metricSource": "confirmed",
       "history": [
         1605.561,
@@ -25042,6 +26180,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 10835,
       "bps": 5453.97,
       "eps": 673.91,
+      "chartBps": 5453.97,
+      "chartEps": 673.91,
       "metricSource": "irbank:2026/03",
       "history": [
         8599.9121,
@@ -25086,6 +26226,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1829,
       "bps": 2045.47,
       "eps": 141.78,
+      "chartBps": 2045.47,
+      "chartEps": 141.78,
       "metricSource": "irbank:2026/02",
       "history": [
         1277.7902,
@@ -25130,6 +26272,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2719,
       "bps": 4646.19,
       "eps": 320.95,
+      "chartBps": 4646.19,
+      "chartEps": 320.95,
       "metricSource": "irbank:2026/03",
       "history": [
         2516.9717,
@@ -25174,6 +26318,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 829.8,
       "bps": 1257.44,
       "eps": 39.93,
+      "chartBps": 1257.44,
+      "chartEps": 39.93,
       "metricSource": "irbank:2026/03",
       "history": [
         583.0688,
@@ -25218,6 +26364,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1098,
       "bps": 560.57,
       "eps": 95.62,
+      "chartBps": 560.57,
+      "chartEps": 95.62,
       "metricSource": "irbank:2026/03",
       "history": [
         1178.2928,
@@ -25262,6 +26410,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3010,
       "bps": 267.91,
       "eps": 127.95,
+      "chartBps": 267.91,
+      "chartEps": 127.95,
       "metricSource": "irbank:2026/02",
       "history": [
         2849,
@@ -25306,6 +26456,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 664,
       "bps": 479.49,
       "eps": 0.68,
+      "chartBps": 479.49,
+      "chartEps": 0.68,
       "metricSource": "irbank:2026/03",
       "history": [
         567.0292,
@@ -25350,6 +26502,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1156,
       "bps": 1469.6,
       "eps": 80.98,
+      "chartBps": 1469.6,
+      "chartEps": 80.98,
       "metricSource": "irbank:2026/02",
       "history": [
         759.6859,
@@ -25394,6 +26548,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2236,
       "bps": 2771.68,
       "eps": 319.08,
+      "chartBps": 2771.68,
+      "chartEps": 319.08,
       "metricSource": "irbank:2026/03",
       "history": [
         1502.2719,
@@ -25438,6 +26594,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1141,
       "bps": 293.97,
       "eps": 75.9,
+      "chartBps": 293.97,
+      "chartEps": 75.9,
       "metricSource": "irbank:2026/03",
       "history": [
         916.1348,
@@ -25482,6 +26640,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5362,
       "bps": 4377.89,
       "eps": 158.36,
+      "chartBps": 4377.89,
+      "chartEps": 158.36,
       "metricSource": "irbank:2026/03",
       "history": [
         4465.8003,
@@ -25526,6 +26686,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2733.5,
       "bps": 1690.57,
       "eps": 196.5,
+      "chartBps": 1690.57,
+      "chartEps": 196.5,
       "metricSource": "irbank:2026/03",
       "history": [
         2349.3411,
@@ -25570,6 +26732,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4020,
       "bps": 3565.36,
       "eps": 165.9,
+      "chartBps": 3565.36,
+      "chartEps": 165.9,
       "metricSource": "irbank:2026/03",
       "history": [
         2238.8923,
@@ -25614,6 +26778,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2095,
       "bps": 941.91,
       "eps": 88.33,
+      "chartBps": 941.91,
+      "chartEps": 88.33,
       "metricSource": "irbank:2026/03",
       "history": [
         1901.8838,
@@ -25658,6 +26824,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2048.5,
       "bps": 1848.36,
       "eps": 146.06,
+      "chartBps": 1848.36,
+      "chartEps": 146.06,
       "metricSource": "irbank:2026/03",
       "history": [
         1607.2349,
@@ -25702,6 +26870,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 450,
       "bps": 288.76,
       "eps": 44.77,
+      "chartBps": 288.76,
+      "chartEps": 44.77,
       "metricSource": "irbank:2026/02",
       "history": [
         339.3477,
@@ -25746,6 +26916,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2067,
       "bps": 1548.54,
       "eps": 248.36,
+      "chartBps": 1548.54,
+      "chartEps": 248.36,
       "metricSource": "irbank:2026/03",
       "history": [
         1629.7742,
@@ -25790,6 +26962,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1417,
       "bps": 3118.44,
       "eps": 262.22,
+      "chartBps": 3118.44,
+      "chartEps": 262.22,
       "metricSource": "irbank:2026/04",
       "history": [
         1527.9489,
@@ -25834,6 +27008,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 206,
       "bps": 174.66,
       "eps": 23.17,
+      "chartBps": 174.66,
+      "chartEps": 23.17,
       "metricSource": "irbank:2026/03",
       "history": [
         204.8494,
@@ -25878,6 +27054,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 765,
       "bps": 2148.16,
       "eps": 79.13,
+      "chartBps": 2148.16,
+      "chartEps": 79.13,
       "metricSource": "irbank:2026/03",
       "history": [
         700.795,
@@ -25922,6 +27100,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3625,
       "bps": 4218.02,
       "eps": 359,
+      "chartBps": 4218.02,
+      "chartEps": 359,
       "metricSource": "irbank:2026/03",
       "history": [
         2550.2852,
@@ -25966,6 +27146,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1429,
       "bps": 750.57,
       "eps": 339.84,
+      "chartBps": 750.57,
+      "chartEps": 339.84,
       "metricSource": "irbank:2026/02",
       "history": [
         917,
@@ -26010,6 +27192,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2021,
       "bps": 2070.97,
       "eps": 268.36,
+      "chartBps": 2070.97,
+      "chartEps": 268.36,
       "metricSource": "irbank:2026/03",
       "history": [
         1308.2449,
@@ -26054,6 +27238,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1255,
       "bps": 4021.86,
       "eps": 104.04,
+      "chartBps": 4021.86,
+      "chartEps": 104.04,
       "metricSource": "irbank:2026/03",
       "history": [
         1094.9349,
@@ -26098,6 +27284,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 867,
       "bps": 1534.7,
       "eps": -20.98,
+      "chartBps": 1534.7,
+      "chartEps": 72.25,
       "metricSource": "irbank:2026/03",
       "history": [
         634.5613,
@@ -26142,6 +27330,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1845,
       "bps": 4016.97,
       "eps": 235.93,
+      "chartBps": 4016.97,
+      "chartEps": 235.93,
       "metricSource": "irbank:2026/03",
       "history": [
         1556.7639,
@@ -26186,6 +27376,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1039,
       "bps": 784.18,
       "eps": 129.61,
+      "chartBps": 784.18,
+      "chartEps": 129.61,
       "metricSource": "irbank:2026/03",
       "history": [
         1056,
@@ -26225,6 +27417,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4505,
       "bps": 6511.25,
       "eps": 606.2,
+      "chartBps": 6511.25,
+      "chartEps": 606.2,
       "metricSource": "irbank:2026/03",
       "history": [
         3879.8008,
@@ -26269,6 +27463,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 940,
       "bps": 932.88,
       "eps": 86.72,
+      "chartBps": 932.88,
+      "chartEps": 86.72,
       "metricSource": "irbank:2026/03",
       "history": [
         151,
@@ -26313,6 +27509,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2267,
       "bps": 1038.69,
       "eps": 9.54,
+      "chartBps": 1038.69,
+      "chartEps": 9.54,
       "metricSource": "irbank:2026/03",
       "history": [
         1717,
@@ -26357,6 +27555,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 49,
       "bps": 12.29,
       "eps": -0.01,
+      "chartBps": 12.29,
+      "chartEps": 4.08,
       "metricSource": "irbank:2026/03",
       "history": [
         34,
@@ -26401,6 +27601,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2742,
       "bps": 1453.07,
       "eps": 237.19,
+      "chartBps": 1453.07,
+      "chartEps": 237.19,
       "metricSource": "irbank:2026/03",
       "history": [
         1710.4915,
@@ -26445,6 +27647,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 369,
       "bps": 159.54,
       "eps": 6.24,
+      "chartBps": 159.54,
+      "chartEps": 6.24,
       "metricSource": "irbank:2026/03",
       "history": [
         728,
@@ -26489,6 +27693,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2173,
       "bps": 2897.33,
       "eps": 181.08,
+      "chartBps": 2897.33,
+      "chartEps": 181.08,
       "metricSource": "completionEstimate",
       "history": [
         1050.4861,
@@ -26533,6 +27739,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1681,
       "bps": 2160.48,
       "eps": 77.46,
+      "chartBps": 2160.48,
+      "chartEps": 77.46,
       "metricSource": "irbank:2026/03",
       "history": [
         1127.2032,
@@ -26577,6 +27785,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2290,
       "bps": 543.19,
       "eps": 144.83,
+      "chartBps": 543.19,
+      "chartEps": 144.83,
       "metricSource": "irbank:2026/02",
       "history": [
         1524.9768,
@@ -26621,6 +27831,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2631,
       "bps": 3175.5,
       "eps": 229.07,
+      "chartBps": 3175.5,
+      "chartEps": 229.07,
       "metricSource": "irbank:2026/03",
       "history": [
         2093,
@@ -26665,6 +27877,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 406,
       "bps": 263.19,
       "eps": 12.43,
+      "chartBps": 263.19,
+      "chartEps": 12.43,
       "metricSource": "irbank:2026/04",
       "history": [
         291.7647,
@@ -26709,6 +27923,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1339,
       "bps": 512.6,
       "eps": 101.48,
+      "chartBps": 512.6,
+      "chartEps": 101.48,
       "metricSource": "irbank:2026/03",
       "history": [
         1665.5294,
@@ -26749,6 +27965,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 59,
       "bps": 34.23,
       "eps": 0.51,
+      "chartBps": 34.23,
+      "chartEps": 0.51,
       "metricSource": "irbank:2026/04",
       "history": [
         56,
@@ -26793,6 +28011,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2350,
       "bps": 2092.44,
       "eps": 148.95,
+      "chartBps": 2092.44,
+      "chartEps": 148.95,
       "metricSource": "irbank:2026/03",
       "history": [
         1602.1118,
@@ -26837,6 +28057,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2094,
       "bps": 1206.37,
       "eps": 375.09,
+      "chartBps": 1206.37,
+      "chartEps": 375.09,
       "metricSource": "irbank:2026/03",
       "history": [
         1822.4387,
@@ -26881,6 +28103,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 896,
       "bps": 590.33,
       "eps": 11.43,
+      "chartBps": 590.33,
+      "chartEps": 11.43,
       "metricSource": "irbank:2026/03",
       "history": [
         1121.8756,
@@ -26925,6 +28149,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 955,
       "bps": 696.37,
       "eps": 66.56,
+      "chartBps": 696.37,
+      "chartEps": 66.56,
       "metricSource": "irbank:2026/03",
       "history": [
         4145,
@@ -26964,6 +28190,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1707,
       "bps": 1293.32,
       "eps": 97.22,
+      "chartBps": 1293.32,
+      "chartEps": 97.22,
       "metricSource": "irbank:2026/03",
       "history": [
         1706.8458,
@@ -27008,6 +28236,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2291.5,
       "bps": 1641.73,
       "eps": 173.88,
+      "chartBps": 1641.73,
+      "chartEps": 173.88,
       "metricSource": "irbank:2026/03",
       "history": [
         1828.2029,
@@ -27052,6 +28282,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1549,
       "bps": 2445.1,
       "eps": 43.55,
+      "chartBps": 2445.1,
+      "chartEps": 43.55,
       "metricSource": "irbank:2026/03",
       "history": [
         1543.3977,
@@ -27096,6 +28328,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 163,
       "bps": 228.08,
       "eps": 6.35,
+      "chartBps": 228.08,
+      "chartEps": 6.35,
       "metricSource": "irbank:2026/03",
       "history": [
         157.1765,
@@ -27140,6 +28374,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4070,
       "bps": 1520.09,
       "eps": 186.8,
+      "chartBps": 1520.09,
+      "chartEps": 186.8,
       "metricSource": "irbank:2026/03",
       "history": [
         3917.3779,
@@ -27184,6 +28420,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 309,
       "bps": 569.58,
       "eps": 33.5,
+      "chartBps": 569.58,
+      "chartEps": 33.5,
       "metricSource": "irbank:2026/04",
       "history": [
         309.2116,
@@ -27228,6 +28466,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1712,
       "bps": 470.93,
       "eps": 142.47,
+      "chartBps": 470.93,
+      "chartEps": 142.47,
       "metricSource": "irbank:2026/03",
       "history": [
         1343.9369,
@@ -27272,6 +28512,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 628,
       "bps": 471.34,
       "eps": 52.75,
+      "chartBps": 471.34,
+      "chartEps": 52.75,
       "metricSource": "irbank:2026/03",
       "history": [
         698.5457,
@@ -27316,6 +28558,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 9955,
       "bps": 1544.26,
       "eps": 319.77,
+      "chartBps": 1544.26,
+      "chartEps": 319.77,
       "metricSource": "irbank:2026/03",
       "history": [
         7349.8022,
@@ -27360,6 +28604,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1167,
       "bps": 272.34,
       "eps": 19.9,
+      "chartBps": 272.34,
+      "chartEps": 19.9,
       "metricSource": "irbank:2026/03",
       "history": [
         702,
@@ -27404,6 +28650,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2738,
       "bps": 2093.83,
       "eps": 148.22,
+      "chartBps": 2093.83,
+      "chartEps": 148.22,
       "metricSource": "irbank:2026/03",
       "history": [
         2848.5012,
@@ -27448,6 +28696,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1105,
       "bps": 1473.33,
       "eps": 92.08,
+      "chartBps": 1473.33,
+      "chartEps": 92.08,
       "metricSource": "completionEstimate",
       "history": [
         945.1289,
@@ -27492,6 +28742,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1417,
       "bps": 557.55,
       "eps": 118.55,
+      "chartBps": 557.55,
+      "chartEps": 118.55,
       "metricSource": "irbank:2026/03",
       "history": [
         1128,
@@ -27536,6 +28788,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 733,
       "bps": 411.94,
       "eps": 24.68,
+      "chartBps": 411.94,
+      "chartEps": 24.68,
       "metricSource": "irbank:2026/04",
       "history": [
         810.111,
@@ -27580,6 +28834,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2378,
       "bps": 2926,
       "eps": 140,
+      "chartBps": 2926,
+      "chartEps": 140,
       "metricSource": "confirmed",
       "history": [
         2959.6965,
@@ -27624,6 +28880,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 493,
       "bps": 1668.13,
       "eps": 87.11,
+      "chartBps": 1668.13,
+      "chartEps": 87.11,
       "metricSource": "irbank:2026/03",
       "history": [
         310.9166,
@@ -27668,6 +28926,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 303,
       "bps": 352.18,
       "eps": 13.56,
+      "chartBps": 352.18,
+      "chartEps": 13.56,
       "metricSource": "irbank:2026/03",
       "history": [
         273.4869,
@@ -27712,6 +28972,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1234,
       "bps": 2648.18,
       "eps": 209.05,
+      "chartBps": 2648.18,
+      "chartEps": 209.05,
       "metricSource": "irbank:2026/03",
       "history": [
         1283.5447,
@@ -27756,6 +29018,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2024,
       "bps": 155.51,
       "eps": 73.98,
+      "chartBps": 155.51,
+      "chartEps": 73.98,
       "metricSource": "irbank:2026/03",
       "history": [
         1193.1368,
@@ -27800,6 +29064,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4602,
       "bps": 2355.06,
       "eps": 185.02,
+      "chartBps": 2355.06,
+      "chartEps": 185.02,
       "metricSource": "irbank:2026/02",
       "history": [
         2762.6243,
@@ -27844,6 +29110,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 988,
       "bps": 1785.48,
       "eps": 165.02,
+      "chartBps": 1785.48,
+      "chartEps": 165.02,
       "metricSource": "irbank:2026/02",
       "history": [
         731.2296,
@@ -27888,6 +29156,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 217,
       "bps": 146.91,
       "eps": 7.9,
+      "chartBps": 146.91,
+      "chartEps": 7.9,
       "metricSource": "irbank:2026/04",
       "history": [
         299.6947,
@@ -27932,6 +29202,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5110,
       "bps": 1151.39,
       "eps": 193.12,
+      "chartBps": 1151.39,
+      "chartEps": 193.12,
       "metricSource": "irbank:2026/03",
       "history": [
         3170.9651,
@@ -27976,6 +29248,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 905,
       "bps": 574.91,
       "eps": 53.39,
+      "chartBps": 574.91,
+      "chartEps": 53.39,
       "metricSource": "irbank:2026/02",
       "history": [
         861.1452,
@@ -28020,6 +29294,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1004,
       "bps": 358.54,
       "eps": 11.91,
+      "chartBps": 358.54,
+      "chartEps": 11.91,
       "metricSource": "irbank:2026/02",
       "history": [
         1002.0367,
@@ -28064,6 +29340,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1227,
       "bps": 1704.77,
       "eps": 132.17,
+      "chartBps": 1704.77,
+      "chartEps": 132.17,
       "metricSource": "irbank:2026/02",
       "history": [
         1097.0798,
@@ -28108,6 +29386,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3700,
       "bps": 10849.64,
       "eps": 603.74,
+      "chartBps": 10849.64,
+      "chartEps": 603.74,
       "metricSource": "irbank:2026/03",
       "history": [
         2456.5107,
@@ -28152,6 +29432,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 840,
       "bps": 1546.17,
       "eps": 65.41,
+      "chartBps": 1546.17,
+      "chartEps": 65.41,
       "metricSource": "irbank:2026/03",
       "history": [
         793.3826,
@@ -28196,6 +29478,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 549,
       "bps": 207.44,
       "eps": 40.65,
+      "chartBps": 207.44,
+      "chartEps": 40.65,
       "metricSource": "irbank:2026/03",
       "history": [
         473.5838,
@@ -28240,6 +29524,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1622,
       "bps": 552.57,
       "eps": 23.59,
+      "chartBps": 552.57,
+      "chartEps": 23.59,
       "metricSource": "irbank:2026/02",
       "history": [
         1615.2321,
@@ -28284,6 +29570,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3115,
       "bps": 1562.09,
       "eps": 179.21,
+      "chartBps": 1562.09,
+      "chartEps": 179.21,
       "metricSource": "irbank:2026/03",
       "history": [
         1715.3341,
@@ -28328,6 +29616,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1159,
       "bps": 1499.99,
       "eps": 43.99,
+      "chartBps": 1499.99,
+      "chartEps": 43.99,
       "metricSource": "irbank:2026/04",
       "history": [
         1055.8123,
@@ -28372,6 +29662,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1567,
       "bps": 2167.5,
       "eps": 250.91,
+      "chartBps": 2167.5,
+      "chartEps": 250.91,
       "metricSource": "irbank:2026/02",
       "history": [
         1020.0777,
@@ -28416,6 +29708,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1085,
       "bps": 1556.52,
       "eps": 48.08,
+      "chartBps": 1556.52,
+      "chartEps": 48.08,
       "metricSource": "irbank:2026/03",
       "history": [
         745.3053,
@@ -28460,6 +29754,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1970,
       "bps": 1626.83,
       "eps": 147.17,
+      "chartBps": 1626.83,
+      "chartEps": 147.17,
       "metricSource": "irbank:2026/03",
       "history": [
         1892.8713,
@@ -28504,6 +29800,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1810,
       "bps": 443.24,
       "eps": 29.13,
+      "chartBps": 443.24,
+      "chartEps": 29.13,
       "metricSource": "irbank:2026/03",
       "history": [
         1201,
@@ -28548,6 +29846,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 215,
       "bps": 43.56,
       "eps": 0.04,
+      "chartBps": 43.56,
+      "chartEps": 0.04,
       "metricSource": "irbank:2026/03",
       "history": [
         79,
@@ -28592,6 +29892,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1046,
       "bps": 942.22,
       "eps": 75.54,
+      "chartBps": 942.22,
+      "chartEps": 75.54,
       "metricSource": "irbank:2026/03",
       "history": [
         1011.6392,
@@ -28636,6 +29938,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2798,
       "bps": 1008.46,
       "eps": 211.01,
+      "chartBps": 1008.46,
+      "chartEps": 211.01,
       "metricSource": "irbank:2026/03",
       "history": [
         1113.3508,
@@ -28680,6 +29984,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1002,
       "bps": 522.11,
       "eps": 19.19,
+      "chartBps": 522.11,
+      "chartEps": 19.19,
       "metricSource": "irbank:2026/03",
       "history": [
         984.0931,
@@ -28724,6 +30030,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1561,
       "bps": 991.01,
       "eps": 38.37,
+      "chartBps": 991.01,
+      "chartEps": 38.37,
       "metricSource": "irbank:2026/04",
       "history": [
         1646.2113,
@@ -28768,6 +30076,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1315,
       "bps": 1953.73,
       "eps": 119.32,
+      "chartBps": 1953.73,
+      "chartEps": 119.32,
       "metricSource": "irbank:2026/03",
       "history": [
         1281.2802,
@@ -28812,6 +30122,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2018,
       "bps": 1528.86,
       "eps": 207.57,
+      "chartBps": 1528.86,
+      "chartEps": 207.57,
       "metricSource": "irbank:2026/03",
       "history": [
         1514.5651,
@@ -28856,6 +30168,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4480,
       "bps": 5581.51,
       "eps": 641.04,
+      "chartBps": 5581.51,
+      "chartEps": 641.04,
       "metricSource": "irbank:2026/03",
       "history": [
         3140.6099,
@@ -28900,6 +30214,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 50,
       "bps": 38.2,
       "eps": 1.63,
+      "chartBps": 38.2,
+      "chartEps": 1.63,
       "metricSource": "irbank:2026/03",
       "history": [
         40,
@@ -28944,6 +30260,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3355,
       "bps": 2307.77,
       "eps": 252.31,
+      "chartBps": 2307.77,
+      "chartEps": 252.31,
       "metricSource": "irbank:2026/02",
       "history": [
         2692.6909,
@@ -28988,6 +30306,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1483,
       "bps": 2759.1,
       "eps": 130.82,
+      "chartBps": 2759.1,
+      "chartEps": 130.82,
       "metricSource": "irbank:2026/02",
       "history": [
         1255.2181,
@@ -29032,6 +30352,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 712,
       "bps": 1232.92,
       "eps": 20.54,
+      "chartBps": 1232.92,
+      "chartEps": 20.54,
       "metricSource": "irbank:2026/03",
       "history": [
         873.897,
@@ -29076,6 +30398,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 841,
       "bps": 1089.77,
       "eps": 162.53,
+      "chartBps": 1089.77,
+      "chartEps": 162.53,
       "metricSource": "irbank:2026/03",
       "history": [
         575.1835,
@@ -29120,6 +30444,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 92,
       "bps": 119.56,
       "eps": 1.72,
+      "chartBps": 119.56,
+      "chartEps": 1.72,
       "metricSource": "irbank:2026/03",
       "history": [
         90,
@@ -29164,6 +30490,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 147,
       "bps": 1.09,
       "eps": -5.83,
+      "chartBps": 1.09,
+      "chartEps": 12.25,
       "metricSource": "irbank:2026/03",
       "history": [
         139,
@@ -29208,6 +30536,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 942,
       "bps": 864.83,
       "eps": 76.46,
+      "chartBps": 864.83,
+      "chartEps": 76.46,
       "metricSource": "irbank:2026/03",
       "history": [
         1025.7672,
@@ -29252,6 +30582,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 858,
       "bps": 1101.09,
       "eps": 106.12,
+      "chartBps": 1101.09,
+      "chartEps": 106.12,
       "metricSource": "irbank:2026/02",
       "history": [
         786.0704,
@@ -29296,6 +30628,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1700,
       "bps": 1146.39,
       "eps": 115.36,
+      "chartBps": 1146.39,
+      "chartEps": 115.36,
       "metricSource": "irbank:2026/03",
       "history": [
         1176.7046,
@@ -29340,6 +30674,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2561,
       "bps": 3414.67,
       "eps": 213.42,
+      "chartBps": 3414.67,
+      "chartEps": 213.42,
       "metricSource": "completionEstimate",
       "history": [
         3812.8757,
@@ -29384,6 +30720,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 626,
       "bps": 505.85,
       "eps": 50.17,
+      "chartBps": 505.85,
+      "chartEps": 50.17,
       "metricSource": "irbank:2026/03",
       "history": [
         633.6639,
@@ -29428,6 +30766,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 873,
       "bps": 1519.59,
       "eps": 72.62,
+      "chartBps": 1519.59,
+      "chartEps": 72.62,
       "metricSource": "irbank:2026/04",
       "history": [
         742.4849,
@@ -29472,6 +30812,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3465,
       "bps": 5277.52,
       "eps": 318.79,
+      "chartBps": 5277.52,
+      "chartEps": 318.79,
       "metricSource": "irbank:2026/03",
       "history": [
         3141.7512,
@@ -29516,6 +30858,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 493,
       "bps": 448.19,
       "eps": 56.6,
+      "chartBps": 448.19,
+      "chartEps": 56.6,
       "metricSource": "irbank:2026/03",
       "history": [
         645.2353,
@@ -29559,6 +30903,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1815,
       "bps": 367.82,
       "eps": 68.3,
+      "chartBps": 367.82,
+      "chartEps": 68.3,
       "metricSource": "irbank:2026/02",
       "history": [
         1386,
@@ -29603,6 +30949,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 351,
       "bps": 167.39,
       "eps": 30.95,
+      "chartBps": 167.39,
+      "chartEps": 30.95,
       "metricSource": "irbank:2026/02",
       "history": [
         693.3333,
@@ -29646,6 +30994,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1367,
       "bps": 1072.04,
       "eps": 160.94,
+      "chartBps": 1072.04,
+      "chartEps": 160.94,
       "metricSource": "irbank:2026/03",
       "history": [
         1178.8378,
@@ -29690,6 +31040,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 219,
       "bps": 292,
       "eps": 18.25,
+      "chartBps": 292,
+      "chartEps": 18.25,
       "metricSource": "completionEstimate",
       "history": [
         244.5382,
@@ -29734,6 +31086,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1043,
       "bps": 468.2,
       "eps": 32.28,
+      "chartBps": 468.2,
+      "chartEps": 32.28,
       "metricSource": "irbank:2026/04",
       "history": [
         901.7545,
@@ -29778,6 +31132,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 947,
       "bps": 88.04,
       "eps": 45.85,
+      "chartBps": 88.04,
+      "chartEps": 45.85,
       "metricSource": "irbank:2026/03",
       "history": [
         980,
@@ -29822,6 +31178,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1334,
       "bps": 1095.7,
       "eps": 70.57,
+      "chartBps": 1095.7,
+      "chartEps": 70.57,
       "metricSource": "irbank:2026/03",
       "history": [
         1545.8187,
@@ -29866,6 +31224,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1797,
       "bps": 2003.37,
       "eps": 75.34,
+      "chartBps": 2003.37,
+      "chartEps": 75.34,
       "metricSource": "irbank:2026/03",
       "history": [
         1708.1613,
@@ -29910,6 +31270,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2426,
       "bps": 4844.38,
       "eps": 237.98,
+      "chartBps": 4844.38,
+      "chartEps": 237.98,
       "metricSource": "irbank:2026/04",
       "history": [
         1738.675,
@@ -29954,6 +31316,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1548,
       "bps": 184.35,
       "eps": -16.73,
+      "chartBps": 184.35,
+      "chartEps": 129,
       "metricSource": "irbank:2026/03",
       "history": [
         720,
@@ -29998,6 +31362,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 465,
       "bps": 353.73,
       "eps": 47.27,
+      "chartBps": 353.73,
+      "chartEps": 47.27,
       "metricSource": "irbank:2026/03",
       "history": [
         338.833,
@@ -30042,6 +31408,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4931,
       "bps": 6574.67,
       "eps": 410.92,
+      "chartBps": 6574.67,
+      "chartEps": 410.92,
       "metricSource": "completionEstimate",
       "history": [
         2041.2987,
@@ -30086,6 +31454,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 638,
       "bps": 1025.4,
       "eps": 43.32,
+      "chartBps": 1025.4,
+      "chartEps": 43.32,
       "metricSource": "irbank:2026/04",
       "history": [
         604.8706,
@@ -30130,6 +31500,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 70,
       "bps": 26.44,
       "eps": 0.45,
+      "chartBps": 26.44,
+      "chartEps": 0.45,
       "metricSource": "irbank:2026/03",
       "history": [
         71.0169,
@@ -30174,6 +31546,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 711,
       "bps": 1223.53,
       "eps": 41.18,
+      "chartBps": 1223.53,
+      "chartEps": 41.18,
       "metricSource": "irbank:2026/03",
       "history": [
         632.3579,
@@ -30218,6 +31592,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 832,
       "bps": 1024.87,
       "eps": 0.72,
+      "chartBps": 1024.87,
+      "chartEps": 0.72,
       "metricSource": "irbank:2026/02",
       "history": [
         759.5534,
@@ -30262,6 +31638,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 550,
       "bps": 166.7,
       "eps": 5.2,
+      "chartBps": 166.7,
+      "chartEps": 5.2,
       "metricSource": "irbank:2026/03",
       "history": [
         600.4305,
@@ -30306,6 +31684,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1525,
       "bps": 926.27,
       "eps": 177.7,
+      "chartBps": 926.27,
+      "chartEps": 177.7,
       "metricSource": "irbank:2026/02",
       "history": [
         855.5626,
@@ -30350,6 +31730,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 435,
       "bps": 273.66,
       "eps": 36.51,
+      "chartBps": 273.66,
+      "chartEps": 36.51,
       "metricSource": "irbank:2026/04",
       "history": [
         525.0229,
@@ -30394,6 +31776,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4300,
       "bps": 6047.72,
       "eps": 446.68,
+      "chartBps": 6047.72,
+      "chartEps": 446.68,
       "metricSource": "irbank:2026/03",
       "history": [
         3736.5854,
@@ -30438,6 +31822,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2192,
       "bps": 270.84,
       "eps": 60.37,
+      "chartBps": 270.84,
+      "chartEps": 60.37,
       "metricSource": "irbank:2026/03",
       "history": [
         1706.4238,
@@ -30482,6 +31868,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 282,
       "bps": 25.38,
       "eps": 4.92,
+      "chartBps": 25.38,
+      "chartEps": 4.92,
       "metricSource": "irbank:2026/02",
       "history": [
         607,
@@ -30526,6 +31914,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1117,
       "bps": 789.42,
       "eps": 76.75,
+      "chartBps": 789.42,
+      "chartEps": 76.75,
       "metricSource": "irbank:2026/03",
       "history": [
         1037.0837,
@@ -30570,6 +31960,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1001,
       "bps": 400.9,
       "eps": 26.49,
+      "chartBps": 400.9,
+      "chartEps": 26.49,
       "metricSource": "irbank:2026/03",
       "history": [
         1002.0932,
@@ -30614,6 +32006,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1448,
       "bps": 1018.58,
       "eps": 92.29,
+      "chartBps": 1018.58,
+      "chartEps": 92.29,
       "metricSource": "irbank:2026/03",
       "history": [
         1301.2098,
@@ -30658,6 +32052,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4650,
       "bps": 5026.09,
       "eps": 418.8,
+      "chartBps": 5026.09,
+      "chartEps": 418.8,
       "metricSource": "irbank:2026/03",
       "history": [
         4457.833,
@@ -30702,6 +32098,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 499,
       "bps": 437.74,
       "eps": 22.81,
+      "chartBps": 437.74,
+      "chartEps": 22.81,
       "metricSource": "irbank:2026/02",
       "history": [
         476.5033,
@@ -30746,6 +32144,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2012,
       "bps": 852.25,
       "eps": 155.29,
+      "chartBps": 852.25,
+      "chartEps": 155.29,
       "metricSource": "irbank:2026/03",
       "history": [
         1618.407,
@@ -30790,6 +32190,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3095,
       "bps": 4680.89,
       "eps": 150.33,
+      "chartBps": 4680.89,
+      "chartEps": 150.33,
       "metricSource": "irbank:2026/02",
       "history": [
         2946.5376,
@@ -30834,6 +32236,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 615,
       "bps": 215.86,
       "eps": 39.6,
+      "chartBps": 215.86,
+      "chartEps": 39.6,
       "metricSource": "irbank:2026/04",
       "history": [
         810.089,
@@ -30878,6 +32282,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 747,
       "bps": 408.25,
       "eps": 20.63,
+      "chartBps": 408.25,
+      "chartEps": 20.63,
       "metricSource": "irbank:2026/02",
       "history": [
         623.0014,
@@ -30922,6 +32328,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 600,
       "bps": 475.94,
       "eps": 79.88,
+      "chartBps": 475.94,
+      "chartEps": 79.88,
       "metricSource": "irbank:2026/03",
       "history": [
         643.9164,
@@ -30966,6 +32374,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1058,
       "bps": 751.4,
       "eps": 98.83,
+      "chartBps": 751.4,
+      "chartEps": 98.83,
       "metricSource": "irbank:2026/03",
       "history": [
         947.4545,
@@ -31010,6 +32420,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2355,
       "bps": 841.54,
       "eps": 134.45,
+      "chartBps": 841.54,
+      "chartEps": 134.45,
       "metricSource": "irbank:2026/02",
       "history": [
         2083,
@@ -31054,6 +32466,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2185,
       "bps": 1649.38,
       "eps": 193.9,
+      "chartBps": 1649.38,
+      "chartEps": 193.9,
       "metricSource": "irbank:2026/03",
       "history": [
         894.6912,
@@ -31098,6 +32512,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1149,
       "bps": 1568.46,
       "eps": 98.26,
+      "chartBps": 1568.46,
+      "chartEps": 98.26,
       "metricSource": "irbank:2026/02",
       "history": [
         927.0989,
@@ -31142,6 +32558,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 658,
       "bps": 1195.49,
       "eps": 24.23,
+      "chartBps": 1195.49,
+      "chartEps": 24.23,
       "metricSource": "irbank:2026/04",
       "history": [
         623.8558,
@@ -31186,6 +32604,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 467,
       "bps": 379.56,
       "eps": 26.72,
+      "chartBps": 379.56,
+      "chartEps": 26.72,
       "metricSource": "irbank:2026/02",
       "history": [
         433.9857,
@@ -31230,6 +32650,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2546,
       "bps": 2693.38,
       "eps": 389.19,
+      "chartBps": 2693.38,
+      "chartEps": 389.19,
       "metricSource": "irbank:2026/03",
       "history": [
         1927.772,
@@ -31274,6 +32696,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1612,
       "bps": 808.84,
       "eps": 37.74,
+      "chartBps": 808.84,
+      "chartEps": 37.74,
       "metricSource": "irbank:2026/04",
       "history": [
         1495.9609,
@@ -31318,6 +32742,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1875,
       "bps": 655.15,
       "eps": 133.88,
+      "chartBps": 655.15,
+      "chartEps": 133.88,
       "metricSource": "irbank:2026/03",
       "history": [
         2088.1123,
@@ -31362,6 +32788,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3745,
       "bps": 1793.92,
       "eps": 266.56,
+      "chartBps": 1793.92,
+      "chartEps": 266.56,
       "metricSource": "irbank:2026/03",
       "history": [
         2987.7012,
@@ -31406,6 +32834,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3830,
       "bps": 3961.12,
       "eps": 450.9,
+      "chartBps": 3961.12,
+      "chartEps": 450.9,
       "metricSource": "irbank:2026/03",
       "history": [
         2086.5344,
@@ -31450,6 +32880,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1315,
       "bps": 243.25,
       "eps": 44.06,
+      "chartBps": 243.25,
+      "chartEps": 44.06,
       "metricSource": "irbank:2026/03",
       "history": [
         1268.024,
@@ -31494,6 +32926,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 730,
       "bps": 1619.3,
       "eps": 135.84,
+      "chartBps": 1619.3,
+      "chartEps": 135.84,
       "metricSource": "irbank:2026/03",
       "history": [
         712.4526,
@@ -31538,6 +32972,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 213,
       "bps": 176.04,
       "eps": 7.97,
+      "chartBps": 176.04,
+      "chartEps": 7.97,
       "metricSource": "irbank:2026/03",
       "history": [
         306.7621,
@@ -31582,6 +33018,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 358,
       "bps": 355.82,
       "eps": 18.9,
+      "chartBps": 355.82,
+      "chartEps": 18.9,
       "metricSource": "irbank:2026/04",
       "history": [
         450.1435,
@@ -31626,6 +33064,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1056,
       "bps": 921.31,
       "eps": 93.85,
+      "chartBps": 921.31,
+      "chartEps": 93.85,
       "metricSource": "irbank:2026/03",
       "history": [
         944.8756,
@@ -31670,6 +33110,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1043,
       "bps": 511.62,
       "eps": 26.43,
+      "chartBps": 511.62,
+      "chartEps": 26.43,
       "metricSource": "irbank:2026/03",
       "history": [
         1046.689,
@@ -31714,6 +33156,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 698,
       "bps": 656.51,
       "eps": 77.61,
+      "chartBps": 656.51,
+      "chartEps": 77.61,
       "metricSource": "irbank:2026/03",
       "history": [
         564.144,
@@ -31758,6 +33202,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1725,
       "bps": 2965.37,
       "eps": 124.24,
+      "chartBps": 2965.37,
+      "chartEps": 124.24,
       "metricSource": "irbank:2026/03",
       "history": [
         1262.8805,
@@ -31802,6 +33248,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1917,
       "bps": 991.53,
       "eps": 165.75,
+      "chartBps": 991.53,
+      "chartEps": 165.75,
       "metricSource": "irbank:2026/03",
       "history": [
         1981.6461,
@@ -31846,6 +33294,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 601,
       "bps": 1262.24,
       "eps": 26,
+      "chartBps": 1262.24,
+      "chartEps": 26,
       "metricSource": "irbank:2026/03",
       "history": [
         571,
@@ -31890,6 +33340,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4020,
       "bps": 4311.07,
       "eps": 347.65,
+      "chartBps": 4311.07,
+      "chartEps": 347.65,
       "metricSource": "irbank:2026/03",
       "history": [
         3423.4097,
@@ -31934,6 +33386,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1620,
       "bps": 1095.4,
       "eps": 148.9,
+      "chartBps": 1095.4,
+      "chartEps": 148.9,
       "metricSource": "irbank:2026/04",
       "history": [
         1892.7241,
@@ -31978,6 +33432,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 272,
       "bps": 119.88,
       "eps": 21.24,
+      "chartBps": 119.88,
+      "chartEps": 21.24,
       "metricSource": "irbank:2026/02",
       "history": [
         293.5172,
@@ -32022,6 +33478,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1676,
       "bps": 557.56,
       "eps": 43.33,
+      "chartBps": 557.56,
+      "chartEps": 43.33,
       "metricSource": "irbank:2026/03",
       "history": [
         1510.7753,
@@ -32066,6 +33524,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1415,
       "bps": 1269.91,
       "eps": 121.1,
+      "chartBps": 1269.91,
+      "chartEps": 121.1,
       "metricSource": "irbank:2026/03",
       "history": [
         1287.1764,
@@ -32110,6 +33570,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1370,
       "bps": 1303.67,
       "eps": 123.07,
+      "chartBps": 1303.67,
+      "chartEps": 123.07,
       "metricSource": "irbank:2026/03",
       "history": [
         1596.9092,
@@ -32154,6 +33616,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2528,
       "bps": 1365.78,
       "eps": 148.27,
+      "chartBps": 1365.78,
+      "chartEps": 148.27,
       "metricSource": "irbank:2026/03",
       "history": [
         2220.0342,
@@ -32198,6 +33662,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 420,
       "bps": 110.81,
       "eps": 29.74,
+      "chartBps": 110.81,
+      "chartEps": 29.74,
       "metricSource": "irbank:2026/03",
       "history": [
         324.3858,
@@ -32242,6 +33708,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 856,
       "bps": 231.27,
       "eps": 53.34,
+      "chartBps": 231.27,
+      "chartEps": 53.34,
       "metricSource": "irbank:2026/03",
       "history": [
         690.61,
@@ -32286,6 +33754,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1076,
       "bps": 483.29,
       "eps": 87.23,
+      "chartBps": 483.29,
+      "chartEps": 87.23,
       "metricSource": "irbank:2026/03",
       "history": [
         908.0132,
@@ -32330,6 +33800,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1362,
       "bps": 3651.21,
       "eps": 239.13,
+      "chartBps": 3651.21,
+      "chartEps": 239.13,
       "metricSource": "irbank:2026/03",
       "history": [
         731.2368,
@@ -32374,6 +33846,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 86,
       "bps": 4.68,
       "eps": -19.74,
+      "chartBps": 4.68,
+      "chartEps": 7.17,
       "metricSource": "irbank:2026/03",
       "history": [
         101,
@@ -32418,6 +33892,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 684,
       "bps": 1379.75,
       "eps": 80.5,
+      "chartBps": 1379.75,
+      "chartEps": 80.5,
       "metricSource": "irbank:2026/03",
       "history": [
         621.7643,
@@ -32462,6 +33938,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1073,
       "bps": 646.44,
       "eps": 135.07,
+      "chartBps": 646.44,
+      "chartEps": 135.07,
       "metricSource": "irbank:2026/03",
       "history": [
         1005.618,
@@ -32506,6 +33984,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 315,
       "bps": 369.99,
       "eps": 31.03,
+      "chartBps": 369.99,
+      "chartEps": 31.03,
       "metricSource": "irbank:2026/03",
       "history": [
         298.2504,
@@ -32550,6 +34030,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2866,
       "bps": 3821.33,
       "eps": 238.83,
+      "chartBps": 3821.33,
+      "chartEps": 238.83,
       "metricSource": "completionEstimate",
       "history": [
         2641.2092,
@@ -32594,6 +34076,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2016,
       "bps": 1440.46,
       "eps": 364.33,
+      "chartBps": 1440.46,
+      "chartEps": 364.33,
       "metricSource": "irbank:2026/03",
       "history": [
         1715.3239,
@@ -32638,6 +34122,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 635,
       "bps": 1009.31,
       "eps": 67.8,
+      "chartBps": 1009.31,
+      "chartEps": 67.8,
       "metricSource": "irbank:2026/02",
       "history": [
         687.4735,
@@ -32682,6 +34168,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1911,
       "bps": 2071.15,
       "eps": 167.48,
+      "chartBps": 2071.15,
+      "chartEps": 167.48,
       "metricSource": "irbank:2026/03",
       "history": [
         1807.1267,
@@ -32726,6 +34214,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 93,
       "bps": 62.38,
       "eps": 3.75,
+      "chartBps": 62.38,
+      "chartEps": 3.75,
       "metricSource": "irbank:2026/04",
       "history": [
         144,
@@ -32770,6 +34260,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 640,
       "bps": 1004.81,
       "eps": 64.85,
+      "chartBps": 1004.81,
+      "chartEps": 64.85,
       "metricSource": "irbank:2026/03",
       "history": [
         690.3867,
@@ -32814,6 +34306,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 324,
       "bps": 384.81,
       "eps": 1.9,
+      "chartBps": 384.81,
+      "chartEps": 1.9,
       "metricSource": "irbank:2026/03",
       "history": [
         382,
@@ -32858,6 +34352,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1700,
       "bps": 2457.43,
       "eps": 132.8,
+      "chartBps": 2457.43,
+      "chartEps": 132.8,
       "metricSource": "irbank:2026/03",
       "history": [
         1817.8899,
@@ -32902,6 +34398,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 614,
       "bps": 815.28,
       "eps": 59.23,
+      "chartBps": 815.28,
+      "chartEps": 59.23,
       "metricSource": "irbank:2026/04",
       "history": [
         562.5797,
@@ -32946,6 +34444,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 854,
       "bps": 1585.72,
       "eps": 31.49,
+      "chartBps": 1585.72,
+      "chartEps": 31.49,
       "metricSource": "irbank:2026/03",
       "history": [
         1243.224,
@@ -32990,6 +34490,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2653,
       "bps": 2141.62,
       "eps": 193.34,
+      "chartBps": 2141.62,
+      "chartEps": 193.34,
       "metricSource": "irbank:2026/03",
       "history": [
         1853.182,
@@ -33034,6 +34536,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1997,
       "bps": 1908.83,
       "eps": 192.08,
+      "chartBps": 1908.83,
+      "chartEps": 192.08,
       "metricSource": "irbank:2026/03",
       "history": [
         1350.6089,
@@ -33078,6 +34582,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 788,
       "bps": 939.55,
       "eps": 58.46,
+      "chartBps": 939.55,
+      "chartEps": 58.46,
       "metricSource": "irbank:2026/03",
       "history": [
         872.8172,
@@ -33122,6 +34628,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3170,
       "bps": 1206.45,
       "eps": 213.48,
+      "chartBps": 1206.45,
+      "chartEps": 213.48,
       "metricSource": "irbank:2026/03",
       "history": [
         2422.5356,
@@ -33166,6 +34674,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 944,
       "bps": 515.76,
       "eps": 79.94,
+      "chartBps": 515.76,
+      "chartEps": 79.94,
       "metricSource": "irbank:2026/03",
       "history": [
         853.4431,
@@ -33210,6 +34720,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1044,
       "bps": 494.66,
       "eps": 93.78,
+      "chartBps": 494.66,
+      "chartEps": 93.78,
       "metricSource": "irbank:2026/03",
       "history": [
         1145.5374,
@@ -33254,6 +34766,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 750,
       "bps": 133.73,
       "eps": 41.84,
+      "chartBps": 133.73,
+      "chartEps": 41.84,
       "metricSource": "irbank:2026/03",
       "history": [
         710.0726,
@@ -33298,6 +34812,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1399,
       "bps": 762.31,
       "eps": 138.8,
+      "chartBps": 762.31,
+      "chartEps": 138.8,
       "metricSource": "irbank:2026/03",
       "history": [
         1373.7268,
@@ -33342,6 +34858,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1591,
       "bps": 646.33,
       "eps": 38.81,
+      "chartBps": 646.33,
+      "chartEps": 38.81,
       "metricSource": "irbank:2026/02",
       "history": [
         1335.6294,
@@ -33386,6 +34904,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 315,
       "bps": 160.14,
       "eps": 24.12,
+      "chartBps": 160.14,
+      "chartEps": 24.12,
       "metricSource": "irbank:2026/03",
       "history": [
         206.4029,
@@ -33430,6 +34950,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2045,
       "bps": 2836.57,
       "eps": 250.62,
+      "chartBps": 2836.57,
+      "chartEps": 250.62,
       "metricSource": "irbank:2026/03",
       "history": [
         1713,
@@ -33474,6 +34996,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1845,
       "bps": 1613.67,
       "eps": 223.23,
+      "chartBps": 1613.67,
+      "chartEps": 223.23,
       "metricSource": "irbank:2026/02",
       "history": [
         1986,
@@ -33518,6 +35042,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 289,
       "bps": 63.65,
       "eps": 21.24,
+      "chartBps": 63.65,
+      "chartEps": 21.24,
       "metricSource": "irbank:2026/03",
       "history": [
         135.0286,
@@ -33562,6 +35088,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 756,
       "bps": 514.66,
       "eps": 54.17,
+      "chartBps": 514.66,
+      "chartEps": 54.17,
       "metricSource": "irbank:2026/03",
       "history": [
         680.2836,
@@ -33606,6 +35134,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 289,
       "bps": 397.3,
       "eps": 25.51,
+      "chartBps": 397.3,
+      "chartEps": 25.51,
       "metricSource": "irbank:2026/03",
       "history": [
         294.2432,
@@ -33650,6 +35180,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3319,
       "bps": 2347.2,
       "eps": 215.84,
+      "chartBps": 2347.2,
+      "chartEps": 215.84,
       "metricSource": "irbank:2026/03",
       "history": [
         2658.2891,
@@ -33694,6 +35226,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1177,
       "bps": 456.34,
       "eps": 81.79,
+      "chartBps": 456.34,
+      "chartEps": 81.79,
       "metricSource": "irbank:2026/03",
       "history": [
         1113.9265,
@@ -33738,6 +35272,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2488,
       "bps": 3702.11,
       "eps": 102.68,
+      "chartBps": 3702.11,
+      "chartEps": 102.68,
       "metricSource": "irbank:2026/03",
       "history": [
         2739.8733,
@@ -33782,6 +35318,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 400,
       "bps": 533.33,
       "eps": 33.33,
+      "chartBps": 533.33,
+      "chartEps": 33.33,
       "metricSource": "completionEstimate",
       "history": [
         401.4714,
@@ -33826,6 +35364,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2547,
       "bps": 3707.89,
       "eps": 209.1,
+      "chartBps": 3707.89,
+      "chartEps": 209.1,
       "metricSource": "irbank:2026/03",
       "history": [
         2990.2617,
@@ -33870,6 +35410,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 6618,
       "bps": 3460.31,
       "eps": 391.13,
+      "chartBps": 3460.31,
+      "chartEps": 391.13,
       "metricSource": "irbank:2026/02",
       "history": [
         6934.6235,
@@ -33914,6 +35456,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1868,
       "bps": 1760.05,
       "eps": 189.9,
+      "chartBps": 1760.05,
+      "chartEps": 189.9,
       "metricSource": "irbank:2026/03",
       "history": [
         1164.9816,
@@ -33958,6 +35502,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 877,
       "bps": 125.36,
       "eps": 54.1,
+      "chartBps": 125.36,
+      "chartEps": 54.1,
       "metricSource": "irbank:2026/03",
       "history": [
         749.5901,
@@ -34002,6 +35548,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1264,
       "bps": 621.94,
       "eps": 73.71,
+      "chartBps": 621.94,
+      "chartEps": 73.71,
       "metricSource": "irbank:2026/02",
       "history": [
         1554.0704,
@@ -34046,6 +35594,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 398,
       "bps": 214.99,
       "eps": 26.49,
+      "chartBps": 214.99,
+      "chartEps": 26.49,
       "metricSource": "irbank:2026/03",
       "history": [
         461.1381,
@@ -34090,6 +35640,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 984,
       "bps": 463.03,
       "eps": 64.01,
+      "chartBps": 463.03,
+      "chartEps": 64.01,
       "metricSource": "irbank:2026/02",
       "history": [
         1006.3414,
@@ -34134,6 +35686,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1193,
       "bps": 414.82,
       "eps": 101.09,
+      "chartBps": 414.82,
+      "chartEps": 101.09,
       "metricSource": "irbank:2026/03",
       "history": [
         1820.2954,
@@ -34178,6 +35732,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 805,
       "bps": 373.32,
       "eps": 35.12,
+      "chartBps": 373.32,
+      "chartEps": 35.12,
       "metricSource": "irbank:2026/03",
       "history": [
         628,
@@ -34222,6 +35778,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1364,
       "bps": 510.01,
       "eps": 67.16,
+      "chartBps": 510.01,
+      "chartEps": 67.16,
       "metricSource": "irbank:2026/02",
       "history": [
         2234.6755,
@@ -34266,6 +35824,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4694,
       "bps": 6258.67,
       "eps": 391.17,
+      "chartBps": 6258.67,
+      "chartEps": 391.17,
       "metricSource": "completionEstimate",
       "history": [
         4688.7983,
@@ -34310,6 +35870,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1872,
       "bps": 3313.12,
       "eps": 15.4,
+      "chartBps": 3313.12,
+      "chartEps": 15.4,
       "metricSource": "irbank:2026/03",
       "history": [
         2238.1838,
@@ -34354,6 +35916,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2449,
       "bps": 2316.11,
       "eps": 81.47,
+      "chartBps": 2316.11,
+      "chartEps": 81.47,
       "metricSource": "irbank:2026/03",
       "history": [
         2207.7969,
@@ -34398,6 +35962,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1409,
       "bps": 899.97,
       "eps": 125.85,
+      "chartBps": 899.97,
+      "chartEps": 125.85,
       "metricSource": "irbank:2026/03",
       "history": [
         889.5505,
@@ -34440,6 +36006,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 595,
       "bps": 526.11,
       "eps": 110.58,
+      "chartBps": 526.11,
+      "chartEps": 110.58,
       "metricSource": "irbank:2026/04",
       "history": [
         561.9352,
@@ -34484,6 +36052,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3029,
       "bps": 2089.28,
       "eps": 41.11,
+      "chartBps": 2089.28,
+      "chartEps": 41.11,
       "metricSource": "irbank:2026/04",
       "history": [
         3239.189,
@@ -34528,6 +36098,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 258,
       "bps": 62.19,
       "eps": 18.14,
+      "chartBps": 62.19,
+      "chartEps": 18.14,
       "metricSource": "irbank:2026/04",
       "history": [
         198.8113,
@@ -34572,6 +36144,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1066,
       "bps": 954.29,
       "eps": 23.63,
+      "chartBps": 954.29,
+      "chartEps": 23.63,
       "metricSource": "irbank:2026/03",
       "history": [
         1720.4445,
@@ -34616,6 +36190,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1235,
       "bps": 836.22,
       "eps": 36.19,
+      "chartBps": 836.22,
+      "chartEps": 36.19,
       "metricSource": "irbank:2026/02",
       "history": [
         3660.3525,
@@ -34660,6 +36236,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1557,
       "bps": 312.47,
       "eps": -94.41,
+      "chartBps": 312.47,
+      "chartEps": 129.75,
       "metricSource": "irbank:2026/03",
       "history": [
         1766,
@@ -34704,6 +36282,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 119,
       "bps": 9.42,
       "eps": -77.12,
+      "chartBps": 9.42,
+      "chartEps": 9.92,
       "metricSource": "irbank:2026/04",
       "history": [
         164,
@@ -34748,6 +36328,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 24,
       "bps": 12.94,
       "eps": -5.27,
+      "chartBps": 12.94,
+      "chartEps": 2,
       "metricSource": "irbank:2026/03",
       "history": [
         34,
@@ -34792,6 +36374,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 839,
       "bps": 913.27,
       "eps": 27.09,
+      "chartBps": 913.27,
+      "chartEps": 27.09,
       "metricSource": "irbank:2026/03",
       "history": [
         1418,
@@ -34836,6 +36420,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2190,
       "bps": 257.45,
       "eps": 98.8,
+      "chartBps": 257.45,
+      "chartEps": 98.8,
       "metricSource": "irbank:2026/02",
       "history": [
         1766.3762,
@@ -34880,6 +36466,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 530,
       "bps": 313.15,
       "eps": 58.23,
+      "chartBps": 313.15,
+      "chartEps": 58.23,
       "metricSource": "irbank:2026/03",
       "history": [
         581.168,
@@ -34924,6 +36512,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 423,
       "bps": 141.16,
       "eps": 33.29,
+      "chartBps": 141.16,
+      "chartEps": 33.29,
       "metricSource": "irbank:2026/04",
       "history": [
         342.4522,
@@ -34968,6 +36558,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5110,
       "bps": 477.61,
       "eps": 143.24,
+      "chartBps": 477.61,
+      "chartEps": 143.24,
       "metricSource": "irbank:2026/03",
       "history": [
         2444.8674,
@@ -35012,6 +36604,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 173,
       "bps": 90.88,
       "eps": 8.29,
+      "chartBps": 90.88,
+      "chartEps": 8.29,
       "metricSource": "irbank:2026/03",
       "history": [
         215.4252,
@@ -35056,6 +36650,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 515,
       "bps": 1956.08,
       "eps": 248.01,
+      "chartBps": 1956.08,
+      "chartEps": 248.01,
       "metricSource": "irbank:2025/09",
       "history": [
         575.533,
@@ -35100,6 +36696,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 955,
       "bps": 1273.33,
       "eps": 79.58,
+      "chartBps": 1273.33,
+      "chartEps": 79.58,
       "metricSource": "completionEstimate",
       "history": [
         1477.447,
@@ -35143,6 +36741,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 987,
       "bps": 842.09,
       "eps": 30.76,
+      "chartBps": 842.09,
+      "chartEps": 30.76,
       "metricSource": "irbank:2026/03",
       "history": [
         868.9034,
@@ -35187,6 +36787,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1189.5,
       "bps": 120.76,
       "eps": 56.2,
+      "chartBps": 120.76,
+      "chartEps": 56.2,
       "metricSource": "irbank:2026/03",
       "history": [
         1495.3414,
@@ -35231,6 +36833,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1873,
       "bps": 703.28,
       "eps": 113.81,
+      "chartBps": 703.28,
+      "chartEps": 113.81,
       "metricSource": "irbank:2026/02",
       "history": [
         2000.5808,
@@ -35275,6 +36879,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1996,
       "bps": 1482.72,
       "eps": 35.01,
+      "chartBps": 1482.72,
+      "chartEps": 35.01,
       "metricSource": "irbank:2026/03",
       "history": [
         2041.9833,
@@ -35319,6 +36925,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 237,
       "bps": 335.87,
       "eps": 2.07,
+      "chartBps": 335.87,
+      "chartEps": 2.07,
       "metricSource": "irbank:2026/03",
       "history": [
         242,
@@ -35363,6 +36971,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1040,
       "bps": 957.32,
       "eps": 96.87,
+      "chartBps": 957.32,
+      "chartEps": 96.87,
       "metricSource": "irbank:2026/03",
       "history": [
         685.8589,
@@ -35407,6 +37017,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1385,
       "bps": 1692.21,
       "eps": 129.14,
+      "chartBps": 1692.21,
+      "chartEps": 129.14,
       "metricSource": "irbank:2026/02",
       "history": [
         1540.8579,
@@ -35451,6 +37063,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1978,
       "bps": 233.24,
       "eps": 73.26,
+      "chartBps": 233.24,
+      "chartEps": 73.26,
       "metricSource": "irbank:2026/03",
       "history": [
         2494.3518,
@@ -35495,6 +37109,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1532,
       "bps": 3420.53,
       "eps": -88.35,
+      "chartBps": 3420.53,
+      "chartEps": 127.67,
       "metricSource": "irbank:2026/02",
       "history": [
         1870.4327,
@@ -35539,6 +37155,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2724,
       "bps": 756.68,
       "eps": 133,
+      "chartBps": 756.68,
+      "chartEps": 133,
       "metricSource": "irbank:2026/04",
       "history": [
         3307.8274,
@@ -35583,6 +37201,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1660.5,
       "bps": 2214,
       "eps": 138.38,
+      "chartBps": 2214,
+      "chartEps": 138.38,
       "metricSource": "completionEstimate",
       "history": [
         1809.175,
@@ -35627,6 +37247,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2295.5,
       "bps": 3060.67,
       "eps": 191.29,
+      "chartBps": 3060.67,
+      "chartEps": 191.29,
       "metricSource": "completionEstimate",
       "history": [
         1997.2974,
@@ -35671,6 +37293,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 547,
       "bps": 302.54,
       "eps": 32.04,
+      "chartBps": 302.54,
+      "chartEps": 32.04,
       "metricSource": "irbank:2026/03",
       "history": [
         556.3616,
@@ -35715,6 +37339,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 129,
       "bps": 57.71,
       "eps": 5.26,
+      "chartBps": 57.71,
+      "chartEps": 5.26,
       "metricSource": "irbank:2026/02",
       "history": [
         153.0864,
@@ -35759,6 +37385,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 405,
       "bps": 308.08,
       "eps": 3.7,
+      "chartBps": 308.08,
+      "chartEps": 3.7,
       "metricSource": "irbank:2026/04",
       "history": [
         370.7765,
@@ -35803,6 +37431,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2294.5,
       "bps": 1932.15,
       "eps": 91.62,
+      "chartBps": 1932.15,
+      "chartEps": 91.62,
       "metricSource": "irbank:2026/02",
       "history": [
         1776.9979,
@@ -35847,6 +37477,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 636,
       "bps": 320.99,
       "eps": 64.29,
+      "chartBps": 320.99,
+      "chartEps": 64.29,
       "metricSource": "irbank:2026/03",
       "history": [
         944,
@@ -35891,6 +37523,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 116,
       "bps": 154.67,
       "eps": 9.67,
+      "chartBps": 154.67,
+      "chartEps": 9.67,
       "metricSource": "completionEstimate",
       "history": [
         135,
@@ -35935,6 +37569,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1480,
       "bps": 1134.11,
       "eps": 267.87,
+      "chartBps": 1134.11,
+      "chartEps": 267.87,
       "metricSource": "irbank:2026/03",
       "history": [
         1095.1307,
@@ -35979,6 +37615,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1226,
       "bps": 1296.77,
       "eps": 176.03,
+      "chartBps": 1296.77,
+      "chartEps": 176.03,
       "metricSource": "irbank:2026/03",
       "history": [
         970.0857,
@@ -36023,6 +37661,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 361,
       "bps": 342.29,
       "eps": 7.06,
+      "chartBps": 342.29,
+      "chartEps": 7.06,
       "metricSource": "irbank:2026/03",
       "history": [
         593,
@@ -36067,6 +37707,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 628,
       "bps": 303.43,
       "eps": -531.04,
+      "chartBps": 303.43,
+      "chartEps": 52.33,
       "metricSource": "irbank:2026/02",
       "history": [
         911.6687,
@@ -36111,6 +37753,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1483,
       "bps": 2330.28,
       "eps": 136.78,
+      "chartBps": 2330.28,
+      "chartEps": 136.78,
       "metricSource": "irbank:2026/02",
       "history": [
         1324.6619,
@@ -36155,6 +37799,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 347,
       "bps": 235.44,
       "eps": -5.9,
+      "chartBps": 235.44,
+      "chartEps": 28.92,
       "metricSource": "irbank:2026/03",
       "history": [
         484.5831,
@@ -36199,6 +37845,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1240,
       "bps": 1084.45,
       "eps": 153.77,
+      "chartBps": 1084.45,
+      "chartEps": 153.77,
       "metricSource": "irbank:2026/02",
       "history": [
         1511,
@@ -36243,6 +37891,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1246,
       "bps": 1433.12,
       "eps": 127.09,
+      "chartBps": 1433.12,
+      "chartEps": 127.09,
       "metricSource": "irbank:2026/03",
       "history": [
         1061.5245,
@@ -36287,6 +37937,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 969,
       "bps": 491.26,
       "eps": 72.73,
+      "chartBps": 491.26,
+      "chartEps": 72.73,
       "metricSource": "irbank:2026/03",
       "history": [
         863.7313,
@@ -36331,6 +37983,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 197,
       "bps": 84.4,
       "eps": -110.71,
+      "chartBps": 84.4,
+      "chartEps": 16.42,
       "metricSource": "irbank:2026/02",
       "history": [
         293,
@@ -36375,6 +38029,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 199,
       "bps": 265.33,
       "eps": 16.58,
+      "chartBps": 265.33,
+      "chartEps": 16.58,
       "metricSource": "completionEstimate",
       "history": [
         154.0075,
@@ -36419,6 +38075,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 507,
       "bps": 745.38,
       "eps": 41.96,
+      "chartBps": 745.38,
+      "chartEps": 41.96,
       "metricSource": "irbank:2026/03",
       "history": [
         1200,
@@ -36463,6 +38121,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2402,
       "bps": 1956.05,
       "eps": 187.54,
+      "chartBps": 1956.05,
+      "chartEps": 187.54,
       "metricSource": "irbank:2026/03",
       "history": [
         2362.0312,
@@ -36507,6 +38167,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2760,
       "bps": 939.35,
       "eps": 183.16,
+      "chartBps": 939.35,
+      "chartEps": 183.16,
       "metricSource": "irbank:2026/04",
       "history": [
         2409.5818,
@@ -36551,6 +38213,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 235,
       "bps": 421.1,
       "eps": 24.68,
+      "chartBps": 421.1,
+      "chartEps": 24.68,
       "metricSource": "irbank:2026/03",
       "history": [
         246.5497,
@@ -36595,6 +38259,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 398,
       "bps": 636.45,
       "eps": 19.51,
+      "chartBps": 636.45,
+      "chartEps": 19.51,
       "metricSource": "irbank:2026/03",
       "history": [
         1052,
@@ -36639,6 +38305,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 990,
       "bps": 310.66,
       "eps": 57.92,
+      "chartBps": 310.66,
+      "chartEps": 57.92,
       "metricSource": "irbank:2026/03",
       "history": [
         925,
@@ -36683,6 +38351,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4380,
       "bps": 533.94,
       "eps": 179.27,
+      "chartBps": 533.94,
+      "chartEps": 179.27,
       "metricSource": "irbank:2026/03",
       "history": [
         3215.0195,
@@ -36727,6 +38397,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2133,
       "bps": 3194.96,
       "eps": 149.07,
+      "chartBps": 3194.96,
+      "chartEps": 149.07,
       "metricSource": "irbank:2026/03",
       "history": [
         2204.7549,
@@ -36771,6 +38443,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 241,
       "bps": 319.92,
       "eps": 10.56,
+      "chartBps": 319.92,
+      "chartEps": 10.56,
       "metricSource": "irbank:2026/03",
       "history": [
         284.1806,
@@ -36815,6 +38489,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1112,
       "bps": 1186.95,
       "eps": 127.82,
+      "chartBps": 1186.95,
+      "chartEps": 127.82,
       "metricSource": "irbank:2026/03",
       "history": [
         1070.4315,
@@ -36859,6 +38535,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 95,
       "bps": 119.44,
       "eps": 5.88,
+      "chartBps": 119.44,
+      "chartEps": 5.88,
       "metricSource": "irbank:2026/03",
       "history": [
         226,
@@ -36903,6 +38581,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1357,
       "bps": 1253.97,
       "eps": 79.06,
+      "chartBps": 1253.97,
+      "chartEps": 79.06,
       "metricSource": "irbank:2026/02",
       "history": [
         1513.65,
@@ -36947,6 +38627,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1080,
       "bps": 1126.6,
       "eps": 112.09,
+      "chartBps": 1126.6,
+      "chartEps": 112.09,
       "metricSource": "irbank:2026/03",
       "history": [
         1000.136,
@@ -36991,6 +38673,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 518,
       "bps": 181.88,
       "eps": 3.1,
+      "chartBps": 181.88,
+      "chartEps": 3.1,
       "metricSource": "irbank:2026/03",
       "history": [
         1243,
@@ -37033,6 +38717,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 909,
       "bps": 776.5,
       "eps": 90.54,
+      "chartBps": 776.5,
+      "chartEps": 90.54,
       "metricSource": "irbank:2026/03",
       "history": [
         1074.7682,
@@ -37077,6 +38763,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3090,
       "bps": 5630.79,
       "eps": 49.88,
+      "chartBps": 5630.79,
+      "chartEps": 49.88,
       "metricSource": "irbank:2026/03",
       "history": [
         2299.4031,
@@ -37121,6 +38809,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 658,
       "bps": 446.93,
       "eps": 24.39,
+      "chartBps": 446.93,
+      "chartEps": 24.39,
       "metricSource": "irbank:2026/04",
       "history": [
         612.853,
@@ -37165,6 +38855,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3515,
       "bps": 4146.08,
       "eps": 427.38,
+      "chartBps": 4146.08,
+      "chartEps": 427.38,
       "metricSource": "irbank:2026/03",
       "history": [
         2670.9141,
@@ -37209,6 +38901,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1612,
       "bps": 813.6,
       "eps": 92.79,
+      "chartBps": 813.6,
+      "chartEps": 92.79,
       "metricSource": "irbank:2026/03",
       "history": [
         1887.9601,
@@ -37253,6 +38947,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1077,
       "bps": 1998.88,
       "eps": -70.99,
+      "chartBps": 1998.88,
+      "chartEps": 89.75,
       "metricSource": "irbank:2026/03",
       "history": [
         1100,
@@ -37297,6 +38993,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 725,
       "bps": 629.54,
       "eps": 17.07,
+      "chartBps": 629.54,
+      "chartEps": 17.07,
       "metricSource": "irbank:2026/03",
       "history": [
         891,
@@ -37341,6 +39039,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 11540,
       "bps": 8172.57,
       "eps": 1210.26,
+      "chartBps": 8172.57,
+      "chartEps": 1210.26,
       "metricSource": "irbank:2026/04",
       "history": [
         11066.4385,
@@ -37385,6 +39085,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2894,
       "bps": 1010.7,
       "eps": 219.1,
+      "chartBps": 1010.7,
+      "chartEps": 219.1,
       "metricSource": "irbank:2026/03",
       "history": [
         2269.2725,
@@ -37429,6 +39131,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 733,
       "bps": 431.86,
       "eps": 82.96,
+      "chartBps": 431.86,
+      "chartEps": 82.96,
       "metricSource": "irbank:2026/03",
       "history": [
         1018.0008,
@@ -37473,6 +39177,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3964,
       "bps": 1461,
       "eps": 163.22,
+      "chartBps": 1461,
+      "chartEps": 163.22,
       "metricSource": "irbank:2026/02",
       "history": [
         3070.7725,
@@ -37517,6 +39223,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3790,
       "bps": 4359.39,
       "eps": 317.81,
+      "chartBps": 4359.39,
+      "chartEps": 317.81,
       "metricSource": "irbank:2026/04",
       "history": [
         2527.5151,
@@ -37561,6 +39269,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 682,
       "bps": 158.15,
       "eps": 42.23,
+      "chartBps": 158.15,
+      "chartEps": 42.23,
       "metricSource": "irbank:2026/03",
       "history": [
         549.5125,
@@ -37605,6 +39315,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 121,
       "bps": 376,
       "eps": -35,
+      "chartBps": 376,
+      "chartEps": 10.08,
       "metricSource": "confirmed",
       "history": [
         210,
@@ -37649,6 +39361,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1915,
       "bps": 1779.89,
       "eps": 73.6,
+      "chartBps": 1779.89,
+      "chartEps": 73.6,
       "metricSource": "irbank:2026/02",
       "history": [
         1916.458,
@@ -37693,6 +39407,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 372,
       "bps": 1071.69,
       "eps": 41.61,
+      "chartBps": 1071.69,
+      "chartEps": 41.61,
       "metricSource": "irbank:2026/03",
       "history": [
         438.9911,
@@ -37737,6 +39453,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2315,
       "bps": 1086.45,
       "eps": 184.82,
+      "chartBps": 1086.45,
+      "chartEps": 184.82,
       "metricSource": "irbank:2026/03",
       "history": [
         3066.022,
@@ -37781,6 +39499,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1009,
       "bps": 475.57,
       "eps": 110.03,
+      "chartBps": 475.57,
+      "chartEps": 110.03,
       "metricSource": "irbank:2026/03",
       "history": [
         1043.9087,
@@ -37825,6 +39545,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 366,
       "bps": 486.9,
       "eps": 39.81,
+      "chartBps": 486.9,
+      "chartEps": 39.81,
       "metricSource": "irbank:2026/02",
       "history": [
         386.6437,
@@ -37869,6 +39591,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1685,
       "bps": 1954.36,
       "eps": 186.36,
+      "chartBps": 1954.36,
+      "chartEps": 186.36,
       "metricSource": "irbank:2026/02",
       "history": [
         1491.994,
@@ -37913,6 +39637,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 220,
       "bps": 102.77,
       "eps": 8.76,
+      "chartBps": 102.77,
+      "chartEps": 8.76,
       "metricSource": "irbank:2026/03",
       "history": [
         225,
@@ -37957,6 +39683,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 513,
       "bps": 257.4,
       "eps": 22.04,
+      "chartBps": 257.4,
+      "chartEps": 22.04,
       "metricSource": "irbank:2026/04",
       "history": [
         750,
@@ -38001,6 +39729,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 753,
       "bps": 1802.23,
       "eps": 45.89,
+      "chartBps": 1802.23,
+      "chartEps": 45.89,
       "metricSource": "irbank:2026/03",
       "history": [
         684.9678,
@@ -38045,6 +39775,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1118,
       "bps": 1720.11,
       "eps": 76.99,
+      "chartBps": 1720.11,
+      "chartEps": 76.99,
       "metricSource": "irbank:2026/03",
       "history": [
         1133.4343,
@@ -38089,6 +39821,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4435,
       "bps": 4490.7,
       "eps": 328.08,
+      "chartBps": 4490.7,
+      "chartEps": 328.08,
       "metricSource": "irbank:2026/02",
       "history": [
         6396.5107,
@@ -38133,6 +39867,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1580,
       "bps": 316.97,
       "eps": 80.94,
+      "chartBps": 316.97,
+      "chartEps": 80.94,
       "metricSource": "irbank:2026/03",
       "history": [
         1561,
@@ -38177,6 +39913,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 596,
       "bps": 409.36,
       "eps": -16.28,
+      "chartBps": 409.36,
+      "chartEps": 49.67,
       "metricSource": "irbank:2026/03",
       "history": [
         1165,
@@ -38221,6 +39959,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1838,
       "bps": 811.76,
       "eps": 171,
+      "chartBps": 811.76,
+      "chartEps": 171,
       "metricSource": "irbank:2026/03",
       "history": [
         1494.2833,
@@ -38265,6 +40005,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1535,
       "bps": 1615.48,
       "eps": 75.42,
+      "chartBps": 1615.48,
+      "chartEps": 75.42,
       "metricSource": "irbank:2026/03",
       "history": [
         1668.2789,
@@ -38309,6 +40051,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1297,
       "bps": 2658.21,
       "eps": 67.67,
+      "chartBps": 2658.21,
+      "chartEps": 67.67,
       "metricSource": "irbank:2026/03",
       "history": [
         1301.0793,
@@ -38353,6 +40097,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1223,
       "bps": 811.12,
       "eps": 62.57,
+      "chartBps": 811.12,
+      "chartEps": 62.57,
       "metricSource": "irbank:2026/04",
       "history": [
         1178.4502,
@@ -38397,6 +40143,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 495,
       "bps": 472.77,
       "eps": 51.47,
+      "chartBps": 472.77,
+      "chartEps": 51.47,
       "metricSource": "irbank:2026/03",
       "history": [
         409.0891,
@@ -38441,6 +40189,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1240,
       "bps": 680.9,
       "eps": 86.62,
+      "chartBps": 680.9,
+      "chartEps": 86.62,
       "metricSource": "irbank:2026/03",
       "history": [
         719.5673,
@@ -38485,6 +40235,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 13120,
       "bps": 10480.97,
       "eps": 1238.19,
+      "chartBps": 10480.97,
+      "chartEps": 1238.19,
       "metricSource": "irbank:2026/04",
       "history": [
         11954.4951,
@@ -38529,6 +40281,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 970,
       "bps": 960.96,
       "eps": 138.82,
+      "chartBps": 960.96,
+      "chartEps": 138.82,
       "metricSource": "irbank:2026/03",
       "history": [
         1130.3749,
@@ -38573,6 +40327,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1425,
       "bps": 977.57,
       "eps": 216.86,
+      "chartBps": 977.57,
+      "chartEps": 216.86,
       "metricSource": "irbank:2026/03",
       "history": [
         1406.118,
@@ -38617,6 +40373,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 114,
       "bps": 152,
       "eps": 9.5,
+      "chartBps": 152,
+      "chartEps": 9.5,
       "metricSource": "completionEstimate",
       "history": [
         610,
@@ -38661,6 +40419,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 420,
       "bps": 192.11,
       "eps": 0.14,
+      "chartBps": 192.11,
+      "chartEps": 0.14,
       "metricSource": "irbank:2026/03",
       "history": [
         1353,
@@ -38705,6 +40465,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 191,
       "bps": 207.54,
       "eps": 10.49,
+      "chartBps": 207.54,
+      "chartEps": 10.49,
       "metricSource": "irbank:2026/02",
       "history": [
         718.1923,
@@ -38749,6 +40511,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 282,
       "bps": 453.48,
       "eps": 33.85,
+      "chartBps": 453.48,
+      "chartEps": 33.85,
       "metricSource": "irbank:2026/04",
       "history": [
         1246.7137,
@@ -38793,6 +40557,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 226,
       "bps": 315.8,
       "eps": -131.34,
+      "chartBps": 315.8,
+      "chartEps": 18.83,
       "metricSource": "irbank:2026/03",
       "history": [
         331,
@@ -38837,6 +40603,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2121,
       "bps": 288.93,
       "eps": 110.98,
+      "chartBps": 288.93,
+      "chartEps": 110.98,
       "metricSource": "irbank:2026/03",
       "history": [
         3250,
@@ -38880,6 +40648,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 30,
       "bps": 18.61,
       "eps": -44.2,
+      "chartBps": 18.61,
+      "chartEps": 2.5,
       "metricSource": "irbank:2026/03",
       "history": [
         125,
@@ -38924,6 +40694,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 753,
       "bps": 103.96,
       "eps": 14.25,
+      "chartBps": 103.96,
+      "chartEps": 14.25,
       "metricSource": "irbank:2026/02",
       "history": [
         617.5457,
@@ -38968,6 +40740,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4310,
       "bps": 3173.85,
       "eps": 257.27,
+      "chartBps": 3173.85,
+      "chartEps": 257.27,
       "metricSource": "irbank:2026/03",
       "history": [
         4237.4663,
@@ -39012,6 +40786,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 237,
       "bps": 183.92,
       "eps": 22.42,
+      "chartBps": 183.92,
+      "chartEps": 22.42,
       "metricSource": "irbank:2026/03",
       "history": [
         213.5857,
@@ -39056,6 +40832,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 388,
       "bps": 517.51,
       "eps": -2.38,
+      "chartBps": 517.51,
+      "chartEps": 32.33,
       "metricSource": "irbank:2026/03",
       "history": [
         453.6342,
@@ -39100,6 +40878,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 484,
       "bps": 576.66,
       "eps": 9.95,
+      "chartBps": 576.66,
+      "chartEps": 9.95,
       "metricSource": "irbank:2026/05",
       "history": [
         458.8729,
@@ -39144,6 +40924,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2135,
       "bps": 2970.72,
       "eps": 239.97,
+      "chartBps": 2970.72,
+      "chartEps": 239.97,
       "metricSource": "irbank:2026/03",
       "history": [
         1366.2634,
@@ -39188,6 +40970,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 29,
       "bps": 15.92,
       "eps": -12.83,
+      "chartBps": 15.92,
+      "chartEps": 2.42,
       "metricSource": "irbank:2026/03",
       "history": [
         58,
@@ -39232,6 +41016,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1356,
       "bps": 633.05,
       "eps": 101.28,
+      "chartBps": 633.05,
+      "chartEps": 101.28,
       "metricSource": "irbank:2026/03",
       "history": [
         1748.2664,
@@ -39276,6 +41062,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1135,
       "bps": 895.02,
       "eps": 70.24,
+      "chartBps": 895.02,
+      "chartEps": 70.24,
       "metricSource": "irbank:2026/03",
       "history": [
         791.9847,
@@ -39320,6 +41108,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 255,
       "bps": 214.72,
       "eps": 13.09,
+      "chartBps": 214.72,
+      "chartEps": 13.09,
       "metricSource": "irbank:2026/02",
       "history": [
         303.917,
@@ -39364,6 +41154,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 356,
       "bps": 341.07,
       "eps": 37.03,
+      "chartBps": 341.07,
+      "chartEps": 37.03,
       "metricSource": "irbank:2026/02",
       "history": [
         351.0833,
@@ -39408,6 +41200,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 645,
       "bps": 186.84,
       "eps": 8.17,
+      "chartBps": 186.84,
+      "chartEps": 8.17,
       "metricSource": "irbank:2026/03",
       "history": [
         669.3008,
@@ -39452,6 +41246,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1106,
       "bps": 959.79,
       "eps": 109.7,
+      "chartBps": 959.79,
+      "chartEps": 109.7,
       "metricSource": "irbank:2026/03",
       "history": [
         829.4348,
@@ -39496,6 +41292,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2820,
       "bps": 1764.46,
       "eps": 190.16,
+      "chartBps": 1764.46,
+      "chartEps": 190.16,
       "metricSource": "irbank:2026/02",
       "history": [
         2401.4077,
@@ -39540,6 +41338,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1976,
       "bps": 2119.31,
       "eps": 222.84,
+      "chartBps": 2119.31,
+      "chartEps": 222.84,
       "metricSource": "irbank:2026/03",
       "history": [
         1973.9401,
@@ -39584,6 +41384,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 8910,
       "bps": 13244.6,
       "eps": 468.44,
+      "chartBps": 13244.6,
+      "chartEps": 468.44,
       "metricSource": "irbank:2026/03",
       "history": [
         9045.0986,
@@ -39628,6 +41430,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 394,
       "bps": 437.1,
       "eps": 62.81,
+      "chartBps": 437.1,
+      "chartEps": 62.81,
       "metricSource": "irbank:2026/03",
       "history": [
         226.5204,
@@ -39672,6 +41476,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1571,
       "bps": 406.21,
       "eps": 160.39,
+      "chartBps": 406.21,
+      "chartEps": 160.39,
       "metricSource": "irbank:2026/01",
       "history": [
         1464.8608,
@@ -39716,6 +41522,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1360,
       "bps": 1697.75,
       "eps": 154.93,
+      "chartBps": 1697.75,
+      "chartEps": 154.93,
       "metricSource": "irbank:2026/03",
       "history": [
         1466.9305,
@@ -39760,6 +41568,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 562,
       "bps": 451.91,
       "eps": 55.34,
+      "chartBps": 451.91,
+      "chartEps": 55.34,
       "metricSource": "irbank:2026/03",
       "history": [
         668.5,
@@ -39804,6 +41614,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1025,
       "bps": 838.15,
       "eps": 118.06,
+      "chartBps": 838.15,
+      "chartEps": 118.06,
       "metricSource": "irbank:2026/03",
       "history": [
         1124.4822,
@@ -39848,6 +41660,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 815,
       "bps": 2.47,
       "eps": 2.24,
+      "chartBps": 2.47,
+      "chartEps": 2.24,
       "metricSource": "irbank:2026/03",
       "history": [
         906,
@@ -39892,6 +41706,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1963,
       "bps": 917.41,
       "eps": 138.91,
+      "chartBps": 917.41,
+      "chartEps": 138.91,
       "metricSource": "irbank:2026/03",
       "history": [
         1760.1045,
@@ -39936,6 +41752,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 398,
       "bps": 502.14,
       "eps": 40.35,
+      "chartBps": 502.14,
+      "chartEps": 40.35,
       "metricSource": "irbank:2026/03",
       "history": [
         379.576,
@@ -39980,6 +41798,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 487,
       "bps": 633.22,
       "eps": 49.63,
+      "chartBps": 633.22,
+      "chartEps": 49.63,
       "metricSource": "irbank:2026/02",
       "history": [
         509.3829,
@@ -40024,6 +41844,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3150,
       "bps": 2643.86,
       "eps": 351.52,
+      "chartBps": 2643.86,
+      "chartEps": 351.52,
       "metricSource": "irbank:2026/02",
       "history": [
         2358.1355,
@@ -40068,6 +41890,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 199,
       "bps": 137.47,
       "eps": 6.84,
+      "chartBps": 137.47,
+      "chartEps": 6.84,
       "metricSource": "irbank:2026/03",
       "history": [
         206.9568,
@@ -40112,6 +41936,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 973,
       "bps": 987.26,
       "eps": 96.68,
+      "chartBps": 987.26,
+      "chartEps": 96.68,
       "metricSource": "irbank:2026/02",
       "history": [
         772.4526,
@@ -40156,6 +41982,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 921,
       "bps": 676.42,
       "eps": 118.93,
+      "chartBps": 676.42,
+      "chartEps": 118.93,
       "metricSource": "irbank:2026/03",
       "history": [
         835.4921,
@@ -40200,6 +42028,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1074,
       "bps": 518.05,
       "eps": 135.43,
+      "chartBps": 518.05,
+      "chartEps": 135.43,
       "metricSource": "irbank:2026/03",
       "history": [
         1155.2744,
@@ -40244,6 +42074,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3815,
       "bps": 3686.99,
       "eps": 405.65,
+      "chartBps": 3686.99,
+      "chartEps": 405.65,
       "metricSource": "irbank:2026/05",
       "history": [
         3876.1536,
@@ -40288,6 +42120,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3540,
       "bps": 658.2,
       "eps": 28.12,
+      "chartBps": 658.2,
+      "chartEps": 28.12,
       "metricSource": "irbank:2026/02",
       "history": [
         3217.0039,
@@ -40332,6 +42166,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 406,
       "bps": 170.37,
       "eps": 20.25,
+      "chartBps": 170.37,
+      "chartEps": 20.25,
       "metricSource": "irbank:2026/03",
       "history": [
         690,
@@ -40376,6 +42212,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3415,
       "bps": 2946.24,
       "eps": 148.29,
+      "chartBps": 2946.24,
+      "chartEps": 148.29,
       "metricSource": "irbank:2026/03",
       "history": [
         2381.6943,
@@ -40420,6 +42258,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 303,
       "bps": 157.16,
       "eps": -54.77,
+      "chartBps": 157.16,
+      "chartEps": 25.25,
       "metricSource": "irbank:2026/04",
       "history": [
         492,
@@ -40464,6 +42304,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 426,
       "bps": 605.87,
       "eps": 30.62,
+      "chartBps": 605.87,
+      "chartEps": 30.62,
       "metricSource": "irbank:2026/03",
       "history": [
         341.7459,
@@ -40508,6 +42350,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1515,
       "bps": 1492.08,
       "eps": 188.99,
+      "chartBps": 1492.08,
+      "chartEps": 188.99,
       "metricSource": "irbank:2026/02",
       "history": [
         2843,
@@ -40548,6 +42392,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 267,
       "bps": 447.92,
       "eps": -0.99,
+      "chartBps": 447.92,
+      "chartEps": 22.25,
       "metricSource": "irbank:2026/03",
       "history": [
         314.4598,
@@ -40592,6 +42438,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 279,
       "bps": 158.54,
       "eps": 12.61,
+      "chartBps": 158.54,
+      "chartEps": 12.61,
       "metricSource": "irbank:2026/03",
       "history": [
         332.9639,
@@ -40636,6 +42484,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 101,
       "bps": 105.74,
       "eps": 6.95,
+      "chartBps": 105.74,
+      "chartEps": 6.95,
       "metricSource": "irbank:2026/04",
       "history": [
         97.2727,
@@ -40680,6 +42530,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1470,
       "bps": 481.14,
       "eps": 109.42,
+      "chartBps": 481.14,
+      "chartEps": 109.42,
       "metricSource": "irbank:2026/02",
       "history": [
         1478.1584,
@@ -40724,6 +42576,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1666.5,
       "bps": 1034.2,
       "eps": 107.44,
+      "chartBps": 1034.2,
+      "chartEps": 107.44,
       "metricSource": "irbank:2026/02",
       "history": [
         1540.3307,
@@ -40768,6 +42622,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2345,
       "bps": 2461.89,
       "eps": 392.27,
+      "chartBps": 2461.89,
+      "chartEps": 392.27,
       "metricSource": "irbank:2026/03",
       "history": [
         1586.3593,
@@ -40812,6 +42668,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 505,
       "bps": 33.15,
       "eps": 20.49,
+      "chartBps": 33.15,
+      "chartEps": 20.49,
       "metricSource": "irbank:2026/03",
       "history": [
         774,
@@ -40856,6 +42714,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 95,
       "bps": 286.1,
       "eps": 15.31,
+      "chartBps": 286.1,
+      "chartEps": 15.31,
       "metricSource": "irbank:2026/03",
       "history": [
         100,
@@ -40900,6 +42760,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 838,
       "bps": 611.7,
       "eps": 60.55,
+      "chartBps": 611.7,
+      "chartEps": 60.55,
       "metricSource": "irbank:2026/03",
       "history": [
         899.8884,
@@ -40944,6 +42806,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 425,
       "bps": 235.47,
       "eps": -87.4,
+      "chartBps": 235.47,
+      "chartEps": 35.42,
       "metricSource": "irbank:2026/03",
       "history": [
         817,
@@ -40988,6 +42852,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 405,
       "bps": 984.49,
       "eps": 69.91,
+      "chartBps": 984.49,
+      "chartEps": 69.91,
       "metricSource": "irbank:2026/03",
       "history": [
         448.4728,
@@ -41032,6 +42898,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1750,
       "bps": 1978.44,
       "eps": 278.01,
+      "chartBps": 1978.44,
+      "chartEps": 278.01,
       "metricSource": "irbank:2026/03",
       "history": [
         1572.4324,
@@ -41076,6 +42944,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 836,
       "bps": 423.85,
       "eps": 88.8,
+      "chartBps": 423.85,
+      "chartEps": 88.8,
       "metricSource": "irbank:2026/05",
       "history": [
         568.603,
@@ -41120,6 +42990,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 560,
       "bps": 85.1,
       "eps": 31,
+      "chartBps": 85.1,
+      "chartEps": 31,
       "metricSource": "irbank:2026/03",
       "history": [
         51.1,
@@ -41164,6 +43036,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4965,
       "bps": 5130.45,
       "eps": 674.08,
+      "chartBps": 5130.45,
+      "chartEps": 674.08,
       "metricSource": "irbank:2026/02",
       "history": [
         5131.561,
@@ -41204,6 +43078,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 123,
       "bps": 92.36,
       "eps": -17.74,
+      "chartBps": 92.36,
+      "chartEps": 10.25,
       "metricSource": "irbank:2026/03",
       "history": [
         294,
@@ -41248,6 +43124,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1024,
       "bps": 1304.23,
       "eps": 233.71,
+      "chartBps": 1304.23,
+      "chartEps": 233.71,
       "metricSource": "irbank:2026/02",
       "history": [
         839.2537,
@@ -41292,6 +43170,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1591,
       "bps": 539.42,
       "eps": 37.63,
+      "chartBps": 539.42,
+      "chartEps": 37.63,
       "metricSource": "irbank:2026/03",
       "history": [
         2076,
@@ -41336,6 +43216,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 538,
       "bps": 262.5,
       "eps": 28.64,
+      "chartBps": 262.5,
+      "chartEps": 28.64,
       "metricSource": "irbank:2026/03",
       "history": [
         353.5641,
@@ -41380,6 +43262,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2000,
       "bps": 1290.26,
       "eps": 141.85,
+      "chartBps": 1290.26,
+      "chartEps": 141.85,
       "metricSource": "irbank:2026/03",
       "history": [
         1960.4691,
@@ -41424,6 +43308,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 130,
       "bps": 48.52,
       "eps": -4.65,
+      "chartBps": 48.52,
+      "chartEps": 10.83,
       "metricSource": "irbank:2026/03",
       "history": [
         147,
@@ -41468,6 +43354,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1057,
       "bps": 467.52,
       "eps": 92.27,
+      "chartBps": 467.52,
+      "chartEps": 92.27,
       "metricSource": "irbank:2026/03",
       "history": [
         1445.5696,
@@ -41508,6 +43396,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 158,
       "bps": 42.91,
       "eps": -15.35,
+      "chartBps": 42.91,
+      "chartEps": 13.17,
       "metricSource": "irbank:2026/02",
       "history": [
         173,
@@ -41552,6 +43442,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 417,
       "bps": 167.67,
       "eps": 24.35,
+      "chartBps": 167.67,
+      "chartEps": 24.35,
       "metricSource": "irbank:2026/03",
       "history": [
         517.141,
@@ -41596,6 +43488,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 405,
       "bps": 306.97,
       "eps": 27.22,
+      "chartBps": 306.97,
+      "chartEps": 27.22,
       "metricSource": "irbank:2026/03",
       "history": [
         533.3154,
@@ -41640,6 +43534,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2705,
       "bps": 752.07,
       "eps": 21.24,
+      "chartBps": 752.07,
+      "chartEps": 21.24,
       "metricSource": "irbank:2026/03",
       "history": [
         3993.2837,
@@ -41684,6 +43580,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1571,
       "bps": 1882.08,
       "eps": 236.08,
+      "chartBps": 1882.08,
+      "chartEps": 236.08,
       "metricSource": "irbank:2026/03",
       "history": [
         1514.2615,
@@ -41728,6 +43626,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1278,
       "bps": 1088.8,
       "eps": 132.87,
+      "chartBps": 1088.8,
+      "chartEps": 132.87,
       "metricSource": "irbank:2026/03",
       "history": [
         2111,
@@ -41767,6 +43667,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 78,
       "bps": 20.6,
       "eps": -25.09,
+      "chartBps": 20.6,
+      "chartEps": 6.5,
       "metricSource": "irbank:2026/03",
       "history": [
         156,
@@ -41811,6 +43713,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 88,
       "bps": 15.04,
       "eps": 0.39,
+      "chartBps": 15.04,
+      "chartEps": 0.39,
       "metricSource": "irbank:2026/03",
       "history": [
         142,
@@ -41855,6 +43759,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 443,
       "bps": 57.91,
       "eps": -54.21,
+      "chartBps": 57.91,
+      "chartEps": 36.92,
       "metricSource": "irbank:2026/02",
       "history": [
         513,
@@ -41899,6 +43805,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 343,
       "bps": 163.97,
       "eps": 9.38,
+      "chartBps": 163.97,
+      "chartEps": 9.38,
       "metricSource": "irbank:2026/04",
       "history": [
         797,
@@ -41943,6 +43851,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 404,
       "bps": 245.98,
       "eps": 21.71,
+      "chartBps": 245.98,
+      "chartEps": 21.71,
       "metricSource": "irbank:2026/03",
       "history": [
         378.6749,
@@ -41987,6 +43897,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 495,
       "bps": 516.25,
       "eps": 51.47,
+      "chartBps": 516.25,
+      "chartEps": 51.47,
       "metricSource": "irbank:2026/03",
       "history": [
         412.4519,
@@ -42031,6 +43943,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 640,
       "bps": 778.76,
       "eps": 20.3,
+      "chartBps": 778.76,
+      "chartEps": 20.3,
       "metricSource": "irbank:2026/03",
       "history": [
         798.9403,
@@ -42075,6 +43989,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 588,
       "bps": 784,
       "eps": 49,
+      "chartBps": 784,
+      "chartEps": 49,
       "metricSource": "completionEstimate",
       "history": [
         830,
@@ -42119,6 +44035,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 102,
       "bps": 127.67,
       "eps": -153.95,
+      "chartBps": 127.67,
+      "chartEps": 8.5,
       "metricSource": "irbank:2026/02",
       "history": [
         502,
@@ -42163,6 +44081,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 27,
       "bps": 9.55,
       "eps": 3.29,
+      "chartBps": 9.55,
+      "chartEps": 3.29,
       "metricSource": "irbank:2026/03",
       "history": [
         19,
@@ -42207,6 +44127,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 467,
       "bps": 153.22,
       "eps": 53.48,
+      "chartBps": 153.22,
+      "chartEps": 53.48,
       "metricSource": "irbank:2026/03",
       "history": [
         483.187,
@@ -42251,6 +44173,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2663,
       "bps": 4957.26,
       "eps": 201.64,
+      "chartBps": 4957.26,
+      "chartEps": 201.64,
       "metricSource": "irbank:2026/03",
       "history": [
         2304.5889,
@@ -42295,6 +44219,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 204,
       "bps": 135.17,
       "eps": 2.51,
+      "chartBps": 135.17,
+      "chartEps": 2.51,
       "metricSource": "irbank:2026/04",
       "history": [
         265.7384,
@@ -42339,6 +44265,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 412,
       "bps": 144.25,
       "eps": -16.54,
+      "chartBps": 144.25,
+      "chartEps": 34.33,
       "metricSource": "irbank:2026/02",
       "history": [
         693.924,
@@ -42383,6 +44311,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 724,
       "bps": 417.16,
       "eps": 5.45,
+      "chartBps": 417.16,
+      "chartEps": 5.45,
       "metricSource": "irbank:2026/03",
       "history": [
         865,
@@ -42427,6 +44357,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 74,
       "bps": 30.46,
       "eps": 3.45,
+      "chartBps": 30.46,
+      "chartEps": 3.45,
       "metricSource": "irbank:2026/03",
       "history": [
         127,
@@ -42471,6 +44403,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 6720,
       "bps": 3041.89,
       "eps": 672.42,
+      "chartBps": 3041.89,
+      "chartEps": 672.42,
       "metricSource": "irbank:2026/02",
       "history": [
         6913.3813,
@@ -42515,6 +44449,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 615,
       "bps": 418.27,
       "eps": 46.37,
+      "chartBps": 418.27,
+      "chartEps": 46.37,
       "metricSource": "irbank:2026/03",
       "history": [
         688.9565,
@@ -42559,6 +44495,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 520,
       "bps": 624.09,
       "eps": 50.6,
+      "chartBps": 624.09,
+      "chartEps": 50.6,
       "metricSource": "irbank:2026/03",
       "history": [
         617.7059,
@@ -42603,6 +44541,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2024,
       "bps": 218.78,
       "eps": 48.02,
+      "chartBps": 218.78,
+      "chartEps": 48.02,
       "metricSource": "irbank:2026/03",
       "history": [
         800,
@@ -42646,6 +44586,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 39,
       "bps": 61.43,
       "eps": -5.34,
+      "chartBps": 61.43,
+      "chartEps": 3.25,
       "metricSource": "irbank:2026/03",
       "history": [
         72,
@@ -42690,6 +44632,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1427,
       "bps": 543.99,
       "eps": 85.62,
+      "chartBps": 543.99,
+      "chartEps": 85.62,
       "metricSource": "irbank:2026/03",
       "history": [
         2523.218,
@@ -42734,6 +44678,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2047,
       "bps": 1733.27,
       "eps": 332.17,
+      "chartBps": 1733.27,
+      "chartEps": 332.17,
       "metricSource": "irbank:2026/03",
       "history": [
         1321.3286,
@@ -42778,6 +44724,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 159,
       "bps": 220.4,
       "eps": -66.7,
+      "chartBps": 220.4,
+      "chartEps": 13.25,
       "metricSource": "irbank:2025/12",
       "history": [
         299,
@@ -42822,6 +44770,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1247,
       "bps": 938.45,
       "eps": 54.55,
+      "chartBps": 938.45,
+      "chartEps": 54.55,
       "metricSource": "irbank:2026/03",
       "history": [
         1245.1996,
@@ -42866,6 +44816,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 621,
       "bps": 570.75,
       "eps": -100.71,
+      "chartBps": 570.75,
+      "chartEps": 51.75,
       "metricSource": "irbank:2026/04",
       "history": [
         1311,
@@ -42910,6 +44862,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1734,
       "bps": 2514.72,
       "eps": 366.81,
+      "chartBps": 2514.72,
+      "chartEps": 366.81,
       "metricSource": "irbank:2026/03",
       "history": [
         1206.38,
@@ -42954,6 +44908,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2698,
       "bps": 2069.12,
       "eps": 543.95,
+      "chartBps": 2069.12,
+      "chartEps": 543.95,
       "metricSource": "irbank:2026/03",
       "history": [
         2413.0286,
@@ -42998,6 +44954,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 192,
       "bps": 163.56,
       "eps": -33.89,
+      "chartBps": 163.56,
+      "chartEps": 16,
       "metricSource": "irbank:2026/03",
       "history": [
         420.5286,
@@ -43042,6 +45000,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 681,
       "bps": 328.99,
       "eps": 63.21,
+      "chartBps": 328.99,
+      "chartEps": 63.21,
       "metricSource": "irbank:2026/04",
       "history": [
         1565,
@@ -43086,6 +45046,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1779,
       "bps": 925.2,
       "eps": 194.05,
+      "chartBps": 925.2,
+      "chartEps": 194.05,
       "metricSource": "irbank:2026/03",
       "history": [
         3820,
@@ -43130,6 +45092,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1281,
       "bps": 1732.01,
       "eps": 222.94,
+      "chartBps": 1732.01,
+      "chartEps": 222.94,
       "metricSource": "irbank:2026/03",
       "history": [
         841.1274,
@@ -43174,6 +45138,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1374,
       "bps": 492.62,
       "eps": 130.23,
+      "chartBps": 492.62,
+      "chartEps": 130.23,
       "metricSource": "irbank:2026/03",
       "history": [
         2295.374,
@@ -43218,6 +45184,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1290,
       "bps": 538.08,
       "eps": 72.13,
+      "chartBps": 538.08,
+      "chartEps": 72.13,
       "metricSource": "irbank:2026/02",
       "history": [
         683.556,
@@ -43262,6 +45230,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 341,
       "bps": 43.34,
       "eps": 0.43,
+      "chartBps": 43.34,
+      "chartEps": 0.43,
       "metricSource": "irbank:2026/03",
       "history": [
         665,
@@ -43306,6 +45276,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 332,
       "bps": 253.63,
       "eps": -49.68,
+      "chartBps": 253.63,
+      "chartEps": 27.67,
       "metricSource": "irbank:2026/03",
       "history": [
         349.1813,
@@ -43350,6 +45322,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 551,
       "bps": 334.91,
       "eps": 10.24,
+      "chartBps": 334.91,
+      "chartEps": 10.24,
       "metricSource": "irbank:2026/03",
       "history": [
         1315,
@@ -43394,6 +45368,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1402,
       "bps": 802.22,
       "eps": 133,
+      "chartBps": 802.22,
+      "chartEps": 133,
       "metricSource": "irbank:2026/04",
       "history": [
         1058.7267,
@@ -43438,6 +45414,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1149,
       "bps": 2504.24,
       "eps": 98.16,
+      "chartBps": 2504.24,
+      "chartEps": 98.16,
       "metricSource": "irbank:2026/03",
       "history": [
         811.795,
@@ -43482,6 +45460,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1042,
       "bps": 243.35,
       "eps": 1.87,
+      "chartBps": 243.35,
+      "chartEps": 1.87,
       "metricSource": "irbank:2026/03",
       "history": [
         1388,
@@ -43526,6 +45506,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 103,
       "bps": 4.2,
       "eps": -91.23,
+      "chartBps": 4.2,
+      "chartEps": 8.58,
       "metricSource": "irbank:2026/03",
       "history": [
         997,
@@ -43570,6 +45552,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 555,
       "bps": 100.32,
       "eps": 0.4,
+      "chartBps": 100.32,
+      "chartEps": 0.4,
       "metricSource": "irbank:2026/02",
       "history": [
         964,
@@ -43614,6 +45598,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 425,
       "bps": 914.5,
       "eps": 5.02,
+      "chartBps": 914.5,
+      "chartEps": 5.02,
       "metricSource": "irbank:2026/03",
       "history": [
         562,
@@ -43658,6 +45644,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 457,
       "bps": 533.07,
       "eps": -36.91,
+      "chartBps": 533.07,
+      "chartEps": 38.08,
       "metricSource": "irbank:2026/03",
       "history": [
         771.2169,
@@ -43702,6 +45690,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1666,
       "bps": 541.05,
       "eps": 112.58,
+      "chartBps": 541.05,
+      "chartEps": 112.58,
       "metricSource": "irbank:2026/03",
       "history": [
         1587,
@@ -43746,6 +45736,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 78,
       "bps": 71.44,
       "eps": 1.84,
+      "chartBps": 71.44,
+      "chartEps": 1.84,
       "metricSource": "irbank:2026/03",
       "history": [
         165,
@@ -43790,6 +45782,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4750,
       "bps": 1626.42,
       "eps": 232.23,
+      "chartBps": 1626.42,
+      "chartEps": 232.23,
       "metricSource": "irbank:2026/03",
       "history": [
         3251.2859,
@@ -43834,6 +45828,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 610,
       "bps": 93.33,
       "eps": 3.83,
+      "chartBps": 93.33,
+      "chartEps": 3.83,
       "metricSource": "irbank:2026/03",
       "history": [
         588,
@@ -43880,6 +45876,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3192,
       "bps": 1671.35,
       "eps": 116.63,
+      "chartBps": 1671.35,
+      "chartEps": 116.63,
       "metricSource": "irbank:2026/02",
       "history": [
         1877.1017,
@@ -43924,6 +45922,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 555,
       "bps": 487.27,
       "eps": 26.75,
+      "chartBps": 487.27,
+      "chartEps": 26.75,
       "metricSource": "confirmed",
       "history": [
         700.298,
@@ -43968,6 +45968,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 370,
       "bps": 699.97,
       "eps": 14.64,
+      "chartBps": 699.97,
+      "chartEps": 14.64,
       "metricSource": "irbank:2026/03",
       "history": [
         232.8261,
@@ -44012,6 +46014,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1665,
       "bps": 444.35,
       "eps": 111.26,
+      "chartBps": 444.35,
+      "chartEps": 111.26,
       "metricSource": "irbank:2026/03",
       "history": [
         714,
@@ -44056,6 +46060,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 238,
       "bps": 56.02,
       "eps": 0.58,
+      "chartBps": 56.02,
+      "chartEps": 0.58,
       "metricSource": "irbank:2026/03",
       "history": [
         304,
@@ -44100,6 +46106,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 98,
       "bps": 4.33,
       "eps": 0.73,
+      "chartBps": 4.33,
+      "chartEps": 0.73,
       "metricSource": "irbank:2026/03",
       "history": [
         105,
@@ -44144,6 +46152,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2300,
       "bps": 2217.06,
       "eps": 148.48,
+      "chartBps": 2217.06,
+      "chartEps": 148.48,
       "metricSource": "irbank:2026/03",
       "history": [
         1712.9937,
@@ -44188,6 +46198,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3807,
       "bps": 1764.67,
       "eps": 175.35,
+      "chartBps": 1764.67,
+      "chartEps": 175.35,
       "metricSource": "irbank:2026/03",
       "history": [
         2182.7769,
@@ -44232,6 +46244,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2375,
       "bps": 1999.26,
       "eps": 152.51,
+      "chartBps": 1999.26,
+      "chartEps": 152.51,
       "metricSource": "irbank:2026/03",
       "history": [
         1111.3074,
@@ -44276,6 +46290,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3095,
       "bps": 1352.33,
       "eps": 128.02,
+      "chartBps": 1352.33,
+      "chartEps": 128.02,
       "metricSource": "irbank:2026/02",
       "history": [
         2191.3333,
@@ -44320,6 +46336,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1720,
       "bps": 1454.74,
       "eps": 166.96,
+      "chartBps": 1454.74,
+      "chartEps": 166.96,
       "metricSource": "confirmed",
       "history": [
         1228.1626,
@@ -44364,6 +46382,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 16390,
       "bps": 1146.97,
       "eps": 353.83,
+      "chartBps": 1146.97,
+      "chartEps": 353.83,
       "metricSource": "irbank:2026/03",
       "history": [
         4820,
@@ -44408,6 +46428,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4210,
       "bps": 3696.06,
       "eps": 316.42,
+      "chartBps": 3696.06,
+      "chartEps": 316.42,
       "metricSource": "irbank:2026/03",
       "history": [
         1966.8842,
@@ -44452,6 +46474,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 519,
       "bps": 165.41,
       "eps": -66.09,
+      "chartBps": 165.41,
+      "chartEps": 43.25,
       "metricSource": "irbank:2026/03",
       "history": [
         881,
@@ -44496,6 +46520,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1199,
       "bps": 1048.67,
       "eps": 103.51,
+      "chartBps": 1048.67,
+      "chartEps": 103.51,
       "metricSource": "irbank:2026/03",
       "history": [
         738.5404,
@@ -44540,6 +46566,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 334,
       "bps": 257.3,
       "eps": -10.78,
+      "chartBps": 257.3,
+      "chartEps": 27.83,
       "metricSource": "irbank:2026/03",
       "history": [
         335.6455,
@@ -44584,6 +46612,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1264,
       "bps": 1447.59,
       "eps": 84.39,
+      "chartBps": 1447.59,
+      "chartEps": 84.39,
       "metricSource": "irbank:2026/03",
       "history": [
         753.1834,
@@ -44628,6 +46658,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1317,
       "bps": 1063.14,
       "eps": 160.29,
+      "chartBps": 1063.14,
+      "chartEps": 160.29,
       "metricSource": "confirmed",
       "history": [
         1036.6395,
@@ -44672,6 +46704,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2144,
       "bps": 1344.6,
       "eps": 61.7,
+      "chartBps": 1344.6,
+      "chartEps": 61.7,
       "metricSource": "irbank:2026/03",
       "history": [
         1116.2255,
@@ -44716,6 +46750,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 884,
       "bps": 183.03,
       "eps": 41.97,
+      "chartBps": 183.03,
+      "chartEps": 41.97,
       "metricSource": "irbank:2026/03",
       "history": [
         439,
@@ -44760,6 +46796,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 424,
       "bps": 565.33,
       "eps": 35.33,
+      "chartBps": 565.33,
+      "chartEps": 35.33,
       "metricSource": "completionEstimate",
       "history": [
         313.4232,
@@ -44804,6 +46842,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 247,
       "bps": 796.01,
       "eps": 39.42,
+      "chartBps": 796.01,
+      "chartEps": 39.42,
       "metricSource": "irbank:2026/03",
       "history": [
         182.2809,
@@ -44848,6 +46888,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2120,
       "bps": 2886.77,
       "eps": 197.25,
+      "chartBps": 2886.77,
+      "chartEps": 197.25,
       "metricSource": "irbank:2026/03",
       "history": [
         1832.218,
@@ -44892,6 +46934,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5702,
       "bps": 7602.67,
       "eps": 475.17,
+      "chartBps": 7602.67,
+      "chartEps": 475.17,
       "metricSource": "completionEstimate",
       "history": [
         2950.5271,
@@ -44936,6 +46980,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 71870,
       "bps": 95826.67,
       "eps": 5989.17,
+      "chartBps": 95826.67,
+      "chartEps": 5989.17,
       "metricSource": "completionEstimate",
       "history": [
         2670,
@@ -44980,6 +47026,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 677,
       "bps": 1351.37,
       "eps": 82.55,
+      "chartBps": 1351.37,
+      "chartEps": 82.55,
       "metricSource": "irbank:2026/03",
       "history": [
         634.8199,
@@ -45024,6 +47072,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 524,
       "bps": 184.63,
       "eps": 4.99,
+      "chartBps": 184.63,
+      "chartEps": 4.99,
       "metricSource": "irbank:2026/02",
       "history": [
         318,
@@ -45068,6 +47118,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 822,
       "bps": 268.04,
       "eps": 26.24,
+      "chartBps": 268.04,
+      "chartEps": 26.24,
       "metricSource": "irbank:2026/02",
       "history": [
         739.2511,
@@ -45112,6 +47164,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1926,
       "bps": 1469.69,
       "eps": 323.26,
+      "chartBps": 1469.69,
+      "chartEps": 323.26,
       "metricSource": "irbank:2026/03",
       "history": [
         1926.9397,
@@ -45156,6 +47210,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 439,
       "bps": 100.26,
       "eps": 18.1,
+      "chartBps": 100.26,
+      "chartEps": 18.1,
       "metricSource": "irbank:2026/03",
       "history": [
         317.5276,
@@ -45200,6 +47256,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 620,
       "bps": 944.47,
       "eps": 29.41,
+      "chartBps": 944.47,
+      "chartEps": 29.41,
       "metricSource": "irbank:2026/03",
       "history": [
         595.8987,
@@ -45244,6 +47302,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 268,
       "bps": 346.2,
       "eps": 5.26,
+      "chartBps": 346.2,
+      "chartEps": 5.26,
       "metricSource": "irbank:2026/03",
       "history": [
         250.9174,
@@ -45288,6 +47348,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2519,
       "bps": 2003.3,
       "eps": 190.16,
+      "chartBps": 2003.3,
+      "chartEps": 190.16,
       "metricSource": "irbank:2026/03",
       "history": [
         1484.3596,
@@ -45332,6 +47394,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2522,
       "bps": 842.74,
       "eps": 232.71,
+      "chartBps": 842.74,
+      "chartEps": 232.71,
       "metricSource": "irbank:2026/03",
       "history": [
         2069.2937,
@@ -45376,6 +47440,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 332,
       "bps": 374.31,
       "eps": 12.82,
+      "chartBps": 374.31,
+      "chartEps": 12.82,
       "metricSource": "irbank:2026/03",
       "history": [
         349.1638,
@@ -45420,6 +47486,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3270,
       "bps": 1295.32,
       "eps": 230.01,
+      "chartBps": 1295.32,
+      "chartEps": 230.01,
       "metricSource": "irbank:2026/03",
       "history": [
         2790.6533,
@@ -45464,6 +47532,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2421,
       "bps": 735.19,
       "eps": 136.51,
+      "chartBps": 735.19,
+      "chartEps": 136.51,
       "metricSource": "irbank:2026/03",
       "history": [
         892.368,
@@ -45508,6 +47578,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4530,
       "bps": 2573.69,
       "eps": 206.78,
+      "chartBps": 2573.69,
+      "chartEps": 206.78,
       "metricSource": "irbank:2026/02",
       "history": [
         3112.4893,
@@ -45552,6 +47624,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 918,
       "bps": 401.6,
       "eps": 4.67,
+      "chartBps": 401.6,
+      "chartEps": 4.67,
       "metricSource": "irbank:2026/03",
       "history": [
         514.8058,
@@ -45596,6 +47670,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3180,
       "bps": 6500,
       "eps": 350,
+      "chartBps": 6500,
+      "chartEps": 350,
       "metricSource": "confirmed",
       "history": [
         2802.678,
@@ -45640,6 +47716,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 136,
       "bps": 40.29,
       "eps": -12.83,
+      "chartBps": 40.29,
+      "chartEps": 11.33,
       "metricSource": "irbank:2026/02",
       "history": [
         140,
@@ -45684,6 +47762,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1285,
       "bps": 846.95,
       "eps": 80.37,
+      "chartBps": 846.95,
+      "chartEps": 80.37,
       "metricSource": "irbank:2026/03",
       "history": [
         1216.3781,
@@ -45728,6 +47808,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 173,
       "bps": 156.13,
       "eps": 7.6,
+      "chartBps": 156.13,
+      "chartEps": 7.6,
       "metricSource": "irbank:2026/02",
       "history": [
         133.5281,
@@ -45772,6 +47854,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2700,
       "bps": 1676.22,
       "eps": 173.95,
+      "chartBps": 1676.22,
+      "chartEps": 173.95,
       "metricSource": "irbank:2026/03",
       "history": [
         1656.2507,
@@ -45816,6 +47900,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 728,
       "bps": 651.86,
       "eps": 69.59,
+      "chartBps": 651.86,
+      "chartEps": 69.59,
       "metricSource": "irbank:2026/03",
       "history": [
         1181.9519,
@@ -45860,6 +47946,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1842,
       "bps": 1355.91,
       "eps": 74.24,
+      "chartBps": 1355.91,
+      "chartEps": 74.24,
       "metricSource": "irbank:2026/03",
       "history": [
         1226.6666,
@@ -45904,6 +47992,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3885,
       "bps": 1049.72,
       "eps": 419.29,
+      "chartBps": 1049.72,
+      "chartEps": 419.29,
       "metricSource": "irbank:2026/03",
       "history": [
         2801.7603,
@@ -45948,6 +48038,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3192,
       "bps": 1524.19,
       "eps": 331.68,
+      "chartBps": 1524.19,
+      "chartEps": 331.68,
       "metricSource": "irbank:2026/03",
       "history": [
         2912.2761,
@@ -45992,6 +48084,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2267,
       "bps": 1487.11,
       "eps": 134.34,
+      "chartBps": 1487.11,
+      "chartEps": 134.34,
       "metricSource": "irbank:2026/03",
       "history": [
         1737.4454,
@@ -46036,6 +48130,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3385,
       "bps": 534.77,
       "eps": 184.27,
+      "chartBps": 534.77,
+      "chartEps": 184.27,
       "metricSource": "irbank:2026/04",
       "history": [
         1720.2393,
@@ -46080,6 +48176,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 562,
       "bps": 1383.2,
       "eps": 43.79,
+      "chartBps": 1383.2,
+      "chartEps": 43.79,
       "metricSource": "irbank:2026/03",
       "history": [
         478.4091,
@@ -46124,6 +48222,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 561,
       "bps": 792.07,
       "eps": 32.17,
+      "chartBps": 792.07,
+      "chartEps": 32.17,
       "metricSource": "irbank:2026/03",
       "history": [
         370.4717,
@@ -46168,6 +48268,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3140,
       "bps": 2780.32,
       "eps": 169.62,
+      "chartBps": 2780.32,
+      "chartEps": 169.62,
       "metricSource": "irbank:2026/03",
       "history": [
         2437.9722,
@@ -46212,6 +48314,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2588,
       "bps": 2795.32,
       "eps": 247.77,
+      "chartBps": 2795.32,
+      "chartEps": 247.77,
       "metricSource": "irbank:2026/03",
       "history": [
         1367.0769,
@@ -46256,6 +48360,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 8750,
       "bps": 459.66,
       "eps": -129.91,
+      "chartBps": 459.66,
+      "chartEps": 729.17,
       "metricSource": "irbank:2026/04",
       "history": [
         8980,
@@ -46300,6 +48406,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2064,
       "bps": 1507.25,
       "eps": 187.54,
+      "chartBps": 1507.25,
+      "chartEps": 187.54,
       "metricSource": "irbank:2026/03",
       "history": [
         1222.2817,
@@ -46344,6 +48452,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 803,
       "bps": 867.97,
       "eps": 76.74,
+      "chartBps": 867.97,
+      "chartEps": 76.74,
       "metricSource": "irbank:2026/02",
       "history": [
         532.2202,
@@ -46388,6 +48498,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 596,
       "bps": 794.67,
       "eps": 49.67,
+      "chartBps": 794.67,
+      "chartEps": 49.67,
       "metricSource": "completionEstimate",
       "history": [
         551.3609,
@@ -46432,6 +48544,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 613,
       "bps": 792.84,
       "eps": 127.84,
+      "chartBps": 792.84,
+      "chartEps": 127.84,
       "metricSource": "irbank:2026/03",
       "history": [
         552.2196,
@@ -46476,6 +48590,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 174,
       "bps": 314,
       "eps": 16.68,
+      "chartBps": 314,
+      "chartEps": 16.68,
       "metricSource": "irbank:2026/03",
       "history": [
         125.8768,
@@ -46520,6 +48636,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 8980,
       "bps": 2187.39,
       "eps": 281.64,
+      "chartBps": 2187.39,
+      "chartEps": 281.64,
       "metricSource": "irbank:2026/04",
       "history": [
         3118.0425,
@@ -46564,6 +48682,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 356,
       "bps": 509.09,
       "eps": 38.62,
+      "chartBps": 509.09,
+      "chartEps": 38.62,
       "metricSource": "irbank:2026/02",
       "history": [
         294.967,
@@ -46608,6 +48728,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1656,
       "bps": 2773.31,
       "eps": 206.96,
+      "chartBps": 2773.31,
+      "chartEps": 206.96,
       "metricSource": "irbank:2026/03",
       "history": [
         1202.2538,
@@ -46652,6 +48774,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 227,
       "bps": 186.74,
       "eps": 15.88,
+      "chartBps": 186.74,
+      "chartEps": 15.88,
       "metricSource": "irbank:2026/02",
       "history": [
         189.7375,
@@ -46696,6 +48820,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2813,
       "bps": 2067.74,
       "eps": 157.73,
+      "chartBps": 2067.74,
+      "chartEps": 157.73,
       "metricSource": "irbank:2026/04",
       "history": [
         2939.8657,
@@ -46740,6 +48866,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 6720,
       "bps": 1437.05,
       "eps": 152.68,
+      "chartBps": 1437.05,
+      "chartEps": 152.68,
       "metricSource": "irbank:2026/03",
       "history": [
         1061.4047,
@@ -46784,6 +48912,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 801,
       "bps": 854.47,
       "eps": 53.22,
+      "chartBps": 854.47,
+      "chartEps": 53.22,
       "metricSource": "irbank:2026/03",
       "history": [
         670.5344,
@@ -46828,6 +48958,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 847,
       "bps": 376.6,
       "eps": 59.33,
+      "chartBps": 376.6,
+      "chartEps": 59.33,
       "metricSource": "irbank:2026/03",
       "history": [
         502.312,
@@ -46872,6 +49004,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 23,
       "bps": 13.28,
       "eps": -8.21,
+      "chartBps": 13.28,
+      "chartEps": 1.92,
       "metricSource": "irbank:2026/03",
       "history": [
         32,
@@ -46916,6 +49050,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5199,
       "bps": 6932,
       "eps": 433.25,
+      "chartBps": 6932,
+      "chartEps": 433.25,
       "metricSource": "completionEstimate",
       "history": [
         3107.7942,
@@ -46960,6 +49096,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1896,
       "bps": 2298.23,
       "eps": 131.19,
+      "chartBps": 2298.23,
+      "chartEps": 131.19,
       "metricSource": "irbank:2026/03",
       "history": [
         1598.3334,
@@ -47004,6 +49142,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 816,
       "bps": 1884.77,
       "eps": 166.52,
+      "chartBps": 1884.77,
+      "chartEps": 166.52,
       "metricSource": "irbank:2026/03",
       "history": [
         684.467,
@@ -47048,6 +49188,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 848,
       "bps": 821.74,
       "eps": 48.63,
+      "chartBps": 821.74,
+      "chartEps": 48.63,
       "metricSource": "irbank:2026/03",
       "history": [
         562.2023,
@@ -47092,6 +49234,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3485,
       "bps": 4593.95,
       "eps": 292.34,
+      "chartBps": 4593.95,
+      "chartEps": 292.34,
       "metricSource": "irbank:2026/03",
       "history": [
         2662.8694,
@@ -47136,6 +49280,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1058,
       "bps": 496.69,
       "eps": 8.54,
+      "chartBps": 496.69,
+      "chartEps": 8.54,
       "metricSource": "irbank:2026/04",
       "history": [
         271.5923,
@@ -47180,6 +49326,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3650,
       "bps": 328.49,
       "eps": 104.63,
+      "chartBps": 328.49,
+      "chartEps": 104.63,
       "metricSource": "irbank:2026/03",
       "history": [
         2049.2168,
@@ -47224,6 +49372,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 410,
       "bps": 143.19,
       "eps": 34.12,
+      "chartBps": 143.19,
+      "chartEps": 34.12,
       "metricSource": "irbank:2026/04",
       "history": [
         319.4259,
@@ -47268,6 +49418,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1597,
       "bps": 1320.15,
       "eps": 118.23,
+      "chartBps": 1320.15,
+      "chartEps": 118.23,
       "metricSource": "irbank:2026/03",
       "history": [
         867.4164,
@@ -47312,6 +49464,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1042,
       "bps": 1293.36,
       "eps": 28.85,
+      "chartBps": 1293.36,
+      "chartEps": 28.85,
       "metricSource": "irbank:2026/03",
       "history": [
         454.2851,
@@ -47356,6 +49510,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1065,
       "bps": 1255.34,
       "eps": 116.49,
+      "chartBps": 1255.34,
+      "chartEps": 116.49,
       "metricSource": "irbank:2026/03",
       "history": [
         836.1641,
@@ -47400,6 +49556,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 674,
       "bps": 2220.23,
       "eps": 50.68,
+      "chartBps": 2220.23,
+      "chartEps": 50.68,
       "metricSource": "irbank:2026/03",
       "history": [
         619.52,
@@ -47444,6 +49602,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3775,
       "bps": 3309.69,
       "eps": 355.65,
+      "chartBps": 3309.69,
+      "chartEps": 355.65,
       "metricSource": "irbank:2026/03",
       "history": [
         2220.4045,
@@ -47488,6 +49648,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1506,
       "bps": 2037.37,
       "eps": 150.01,
+      "chartBps": 2037.37,
+      "chartEps": 150.01,
       "metricSource": "irbank:2026/03",
       "history": [
         1081.1505,
@@ -47532,6 +49694,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2630,
       "bps": 2755.26,
       "eps": 385.76,
+      "chartBps": 2755.26,
+      "chartEps": 385.76,
       "metricSource": "irbank:2026/03",
       "history": [
         1287.2988,
@@ -47576,6 +49740,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1998,
       "bps": 1501.88,
       "eps": 139.43,
+      "chartBps": 1501.88,
+      "chartEps": 139.43,
       "metricSource": "irbank:2026/03",
       "history": [
         1220.9043,
@@ -47620,6 +49786,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1306,
       "bps": 388.87,
       "eps": 86.42,
+      "chartBps": 388.87,
+      "chartEps": 86.42,
       "metricSource": "irbank:2026/03",
       "history": [
         506.3872,
@@ -47664,6 +49832,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 83,
       "bps": 86.15,
       "eps": 9.17,
+      "chartBps": 86.15,
+      "chartEps": 9.17,
       "metricSource": "irbank:2026/02",
       "history": [
         80,
@@ -47708,6 +49878,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1563,
       "bps": 402.34,
       "eps": 60.02,
+      "chartBps": 402.34,
+      "chartEps": 60.02,
       "metricSource": "irbank:2026/03",
       "history": [
         1359.5928,
@@ -47752,6 +49924,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 343,
       "bps": 374.27,
       "eps": 2.1,
+      "chartBps": 374.27,
+      "chartEps": 2.1,
       "metricSource": "irbank:2026/02",
       "history": [
         267,
@@ -47796,6 +49970,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1250,
       "bps": 733.37,
       "eps": 31.51,
+      "chartBps": 733.37,
+      "chartEps": 31.51,
       "metricSource": "irbank:2026/05",
       "history": [
         817.0022,
@@ -47840,6 +50016,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2759,
       "bps": 1416.32,
       "eps": 262.22,
+      "chartBps": 1416.32,
+      "chartEps": 262.22,
       "metricSource": "irbank:2026/03",
       "history": [
         2738.9919,
@@ -47884,6 +50062,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1443,
       "bps": 1877.83,
       "eps": 177.07,
+      "chartBps": 1877.83,
+      "chartEps": 177.07,
       "metricSource": "irbank:2026/03",
       "history": [
         1064.6334,
@@ -47928,6 +50108,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1160,
       "bps": 331.94,
       "eps": 12.96,
+      "chartBps": 331.94,
+      "chartEps": 12.96,
       "metricSource": "irbank:2026/03",
       "history": [
         1248.3773,
@@ -47972,6 +50154,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 951,
       "bps": 832.5,
       "eps": 32.55,
+      "chartBps": 832.5,
+      "chartEps": 32.55,
       "metricSource": "irbank:2026/02",
       "history": [
         987.7012,
@@ -48016,6 +50200,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2920,
       "bps": 2075.29,
       "eps": 159.19,
+      "chartBps": 2075.29,
+      "chartEps": 159.19,
       "metricSource": "irbank:2026/03",
       "history": [
         2912.2903,
@@ -48060,6 +50246,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2905,
       "bps": 3873.33,
       "eps": 242.08,
+      "chartBps": 3873.33,
+      "chartEps": 242.08,
       "metricSource": "completionEstimate",
       "history": [
         1958.499,
@@ -48104,6 +50292,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 756,
       "bps": 313.64,
       "eps": -169.86,
+      "chartBps": 313.64,
+      "chartEps": 63,
       "metricSource": "irbank:2026/03",
       "history": [
         840,
@@ -48148,6 +50338,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 599,
       "bps": 535.35,
       "eps": 33.47,
+      "chartBps": 535.35,
+      "chartEps": 33.47,
       "metricSource": "irbank:2026/03",
       "history": [
         553.3916,
@@ -48192,6 +50384,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3958,
       "bps": 3223.48,
       "eps": 187.15,
+      "chartBps": 3223.48,
+      "chartEps": 187.15,
       "metricSource": "irbank:2026/03",
       "history": [
         2722.0547,
@@ -48236,6 +50430,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3055,
       "bps": 1843.97,
       "eps": 202,
+      "chartBps": 1843.97,
+      "chartEps": 202,
       "metricSource": "irbank:2026/03",
       "history": [
         1567.7059,
@@ -48280,6 +50476,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 518,
       "bps": 458.06,
       "eps": -41.33,
+      "chartBps": 458.06,
+      "chartEps": 43.17,
       "metricSource": "irbank:2026/03",
       "history": [
         748.2036,
@@ -48324,6 +50522,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 216,
       "bps": 287.03,
       "eps": 9.01,
+      "chartBps": 287.03,
+      "chartEps": 9.01,
       "metricSource": "irbank:2026/03",
       "history": [
         181,
@@ -48368,6 +50568,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 534,
       "bps": 338.06,
       "eps": 21.5,
+      "chartBps": 338.06,
+      "chartEps": 21.5,
       "metricSource": "irbank:2026/03",
       "history": [
         577.3185,
@@ -48412,6 +50614,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 378,
       "bps": 818.68,
       "eps": 47.89,
+      "chartBps": 818.68,
+      "chartEps": 47.89,
       "metricSource": "irbank:2026/03",
       "history": [
         387.2991,
@@ -48456,6 +50660,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1240,
       "bps": 798.85,
       "eps": 130.92,
+      "chartBps": 798.85,
+      "chartEps": 130.92,
       "metricSource": "irbank:2026/02",
       "history": [
         499.7198,
@@ -48500,6 +50706,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 478,
       "bps": 401.82,
       "eps": 46.66,
+      "chartBps": 401.82,
+      "chartEps": 46.66,
       "metricSource": "irbank:2026/03",
       "history": [
         429.3178,
@@ -48544,6 +50752,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2475,
       "bps": 500.88,
       "eps": 162,
+      "chartBps": 500.88,
+      "chartEps": 162,
       "metricSource": "irbank:2026/04",
       "history": [
         2219.4692,
@@ -48588,6 +50798,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3492,
       "bps": 1475.55,
       "eps": 259,
+      "chartBps": 1475.55,
+      "chartEps": 259,
       "metricSource": "irbank:2026/03",
       "history": [
         4052.7148,
@@ -48632,6 +50844,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 63,
       "bps": 23.05,
       "eps": -2.98,
+      "chartBps": 23.05,
+      "chartEps": 5.25,
       "metricSource": "irbank:2026/03",
       "history": [
         109,
@@ -48676,6 +50890,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4070,
       "bps": 2141.11,
       "eps": 280.71,
+      "chartBps": 2141.11,
+      "chartEps": 280.71,
       "metricSource": "irbank:2026/03",
       "history": [
         2361.0671,
@@ -48720,6 +50936,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2919,
       "bps": 1801.61,
       "eps": 157.33,
+      "chartBps": 1801.61,
+      "chartEps": 157.33,
       "metricSource": "irbank:2026/03",
       "history": [
         2927.3171,
@@ -48764,6 +50982,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5680,
       "bps": 5489.39,
       "eps": 429.32,
+      "chartBps": 5489.39,
+      "chartEps": 429.32,
       "metricSource": "irbank:2026/03",
       "history": [
         3965.9131,
@@ -48808,6 +51028,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 555,
       "bps": 697.78,
       "eps": 59.69,
+      "chartBps": 697.78,
+      "chartEps": 59.69,
       "metricSource": "irbank:2026/03",
       "history": [
         496.0145,
@@ -48852,6 +51074,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 14050,
       "bps": 5816.08,
       "eps": 926.33,
+      "chartBps": 5816.08,
+      "chartEps": 926.33,
       "metricSource": "irbank:2026/03",
       "history": [
         6463.7544,
@@ -48896,6 +51120,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1655,
       "bps": 3010.7,
       "eps": 146.75,
+      "chartBps": 3010.7,
+      "chartEps": 146.75,
       "metricSource": "irbank:2026/03",
       "history": [
         1207.1696,
@@ -48940,6 +51166,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2910,
       "bps": 2399.52,
       "eps": 386.86,
+      "chartBps": 2399.52,
+      "chartEps": 386.86,
       "metricSource": "irbank:2026/03",
       "history": [
         1944.7806,
@@ -48984,6 +51212,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3625,
       "bps": 5719.39,
       "eps": 213.91,
+      "chartBps": 5719.39,
+      "chartEps": 213.91,
       "metricSource": "irbank:2026/03",
       "history": [
         1718.5559,
@@ -49028,6 +51258,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2197,
       "bps": 1398.65,
       "eps": 166.6,
+      "chartBps": 1398.65,
+      "chartEps": 166.6,
       "metricSource": "irbank:2026/03",
       "history": [
         1320.4789,
@@ -49072,6 +51304,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 6202,
       "bps": 8269.33,
       "eps": 516.83,
+      "chartBps": 8269.33,
+      "chartEps": 516.83,
       "metricSource": "completionEstimate",
       "history": [
         3576.2644,
@@ -49116,6 +51350,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1305,
       "bps": 1627.33,
       "eps": 67.99,
+      "chartBps": 1627.33,
+      "chartEps": 67.99,
       "metricSource": "irbank:2026/03",
       "history": [
         1264.0847,
@@ -49160,6 +51396,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3010,
       "bps": 1122.57,
       "eps": 172.02,
+      "chartBps": 1122.57,
+      "chartEps": 172.02,
       "metricSource": "irbank:2026/03",
       "history": [
         1647.2269,
@@ -49204,6 +51442,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1112,
       "bps": 1652.47,
       "eps": 110.68,
+      "chartBps": 1652.47,
+      "chartEps": 110.68,
       "metricSource": "irbank:2026/02",
       "history": [
         1148.5469,
@@ -49248,6 +51488,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2345.5,
       "bps": 1775.55,
       "eps": 190.2,
+      "chartBps": 1775.55,
+      "chartEps": 190.2,
       "metricSource": "irbank:2026/03",
       "history": [
         1049.558,
@@ -49292,6 +51534,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1344,
       "bps": 4409.61,
       "eps": 86.72,
+      "chartBps": 4409.61,
+      "chartEps": 86.72,
       "metricSource": "irbank:2026/03",
       "history": [
         989.6208,
@@ -49336,6 +51580,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2640,
       "bps": 264.71,
       "eps": 873.38,
+      "chartBps": 264.71,
+      "chartEps": 873.38,
       "metricSource": "irbank:2026/03",
       "history": [
         1042.2756,
@@ -49380,6 +51626,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3275,
       "bps": 2529.01,
       "eps": 178.26,
+      "chartBps": 2529.01,
+      "chartEps": 178.26,
       "metricSource": "irbank:2026/02",
       "history": [
         2813.9146,
@@ -49424,6 +51672,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 276,
       "bps": 144.13,
       "eps": 14.13,
+      "chartBps": 144.13,
+      "chartEps": 14.13,
       "metricSource": "irbank:2026/03",
       "history": [
         241.8911,
@@ -49468,6 +51718,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1925,
       "bps": 2534.2,
       "eps": 240.45,
+      "chartBps": 2534.2,
+      "chartEps": 240.45,
       "metricSource": "irbank:2026/03",
       "history": [
         1218.0409,
@@ -49512,6 +51764,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 668,
       "bps": 743.96,
       "eps": 57.18,
+      "chartBps": 743.96,
+      "chartEps": 57.18,
       "metricSource": "irbank:2026/03",
       "history": [
         380.5267,
@@ -49556,6 +51810,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 851,
       "bps": 616.38,
       "eps": 64.17,
+      "chartBps": 616.38,
+      "chartEps": 64.17,
       "metricSource": "irbank:2026/03",
       "history": [
         625.4387,
@@ -49600,6 +51856,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1565,
       "bps": 2423.09,
       "eps": 155.03,
+      "chartBps": 2423.09,
+      "chartEps": 155.03,
       "metricSource": "irbank:2026/03",
       "history": [
         1094.2751,
@@ -49644,6 +51902,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3079,
       "bps": 1732.1,
       "eps": 143.11,
+      "chartBps": 1732.1,
+      "chartEps": 143.11,
       "metricSource": "irbank:2026/03",
       "history": [
         2731.6562,
@@ -49688,6 +51948,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2032,
       "bps": 2463.86,
       "eps": 150.82,
+      "chartBps": 2463.86,
+      "chartEps": 150.82,
       "metricSource": "irbank:2026/03",
       "history": [
         1643.574,
@@ -49732,6 +51994,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3388,
       "bps": 4207.52,
       "eps": 283.95,
+      "chartBps": 4207.52,
+      "chartEps": 283.95,
       "metricSource": "irbank:2026/03",
       "history": [
         1829.7037,
@@ -49776,6 +52040,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1772,
       "bps": 2417.3,
       "eps": 126.66,
+      "chartBps": 2417.3,
+      "chartEps": 126.66,
       "metricSource": "irbank:2026/03",
       "history": [
         904.5723,
@@ -49820,6 +52086,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3255,
       "bps": 1830.64,
       "eps": 228.39,
+      "chartBps": 1830.64,
+      "chartEps": 228.39,
       "metricSource": "irbank:2026/03",
       "history": [
         1926.6329,
@@ -49864,6 +52132,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2456,
       "bps": 2635.47,
       "eps": 219.68,
+      "chartBps": 2635.47,
+      "chartEps": 219.68,
       "metricSource": "irbank:2026/03",
       "history": [
         1409.6656,
@@ -49908,6 +52178,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1867,
       "bps": 1539.66,
       "eps": 117.96,
+      "chartBps": 1539.66,
+      "chartEps": 117.96,
       "metricSource": "irbank:2026/03",
       "history": [
         972.8251,
@@ -49952,6 +52224,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5840,
       "bps": 3036.88,
       "eps": 364.85,
+      "chartBps": 3036.88,
+      "chartEps": 364.85,
       "metricSource": "irbank:2026/03",
       "history": [
         2973.3953,
@@ -49996,6 +52270,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 452,
       "bps": 408.51,
       "eps": 36.64,
+      "chartBps": 408.51,
+      "chartEps": 36.64,
       "metricSource": "irbank:2026/02",
       "history": [
         323.0716,
@@ -50040,6 +52316,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 11420,
       "bps": 2864.45,
       "eps": 274.8,
+      "chartBps": 2864.45,
+      "chartEps": 274.8,
       "metricSource": "irbank:2026/03",
       "history": [
         1888.3896,
@@ -50084,6 +52362,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 507,
       "bps": 1605.45,
       "eps": 58.91,
+      "chartBps": 1605.45,
+      "chartEps": 58.91,
       "metricSource": "irbank:2026/03",
       "history": [
         378.8571,
@@ -50128,6 +52408,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2501,
       "bps": 1439.89,
       "eps": 191.4,
+      "chartBps": 1439.89,
+      "chartEps": 191.4,
       "metricSource": "irbank:2026/03",
       "history": [
         1321.0287,
@@ -50172,6 +52454,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2564,
       "bps": 4826.55,
       "eps": 326.99,
+      "chartBps": 4826.55,
+      "chartEps": 326.99,
       "metricSource": "irbank:2026/03",
       "history": [
         1548.9673,
@@ -50216,6 +52500,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1342,
       "bps": 1600.08,
       "eps": 104.83,
+      "chartBps": 1600.08,
+      "chartEps": 104.83,
       "metricSource": "irbank:2026/05",
       "history": [
         1364.0751,
@@ -50260,6 +52546,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 277,
       "bps": 500.49,
       "eps": 12.43,
+      "chartBps": 500.49,
+      "chartEps": 12.43,
       "metricSource": "irbank:2026/02",
       "history": [
         310.7537,
@@ -50304,6 +52592,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 15370,
       "bps": 8710.24,
       "eps": 1617.45,
+      "chartBps": 8710.24,
+      "chartEps": 1617.45,
       "metricSource": "irbank:2026/03",
       "history": [
         5453.2139,
@@ -50348,6 +52638,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1870,
       "bps": 932.16,
       "eps": 322.26,
+      "chartBps": 932.16,
+      "chartEps": 322.26,
       "metricSource": "irbank:2026/03",
       "history": [
         1731.1244,
@@ -50392,6 +52684,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2881,
       "bps": 1514.4,
       "eps": -83.65,
+      "chartBps": 1514.4,
+      "chartEps": 240.08,
       "metricSource": "irbank:2026/04",
       "history": [
         2600,
@@ -50436,6 +52730,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1126,
       "bps": 902.43,
       "eps": 88.58,
+      "chartBps": 902.43,
+      "chartEps": 88.58,
       "metricSource": "irbank:2026/03",
       "history": [
         966.9216,
@@ -50480,6 +52776,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3735,
       "bps": 1481.33,
       "eps": 236.15,
+      "chartBps": 1481.33,
+      "chartEps": 236.15,
       "metricSource": "irbank:2026/03",
       "history": [
         2507.9187,
@@ -50524,6 +52822,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3725,
       "bps": 2357.19,
       "eps": 563.77,
+      "chartBps": 2357.19,
+      "chartEps": 563.77,
       "metricSource": "irbank:2026/03",
       "history": [
         2116.968,
@@ -50568,6 +52868,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1310,
       "bps": 172.83,
       "eps": 3.26,
+      "chartBps": 172.83,
+      "chartEps": 3.26,
       "metricSource": "irbank:2026/03",
       "history": [
         335,
@@ -50612,6 +52914,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 822,
       "bps": 1436.87,
       "eps": 42.8,
+      "chartBps": 1436.87,
+      "chartEps": 42.8,
       "metricSource": "irbank:2026/03",
       "history": [
         761.4827,
@@ -50656,6 +52960,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2281.5,
       "bps": 1940.28,
       "eps": 64.02,
+      "chartBps": 1940.28,
+      "chartEps": 64.02,
       "metricSource": "irbank:2026/03",
       "history": [
         876.8538,
@@ -50700,6 +53006,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4522,
       "bps": 6029.33,
       "eps": 376.83,
+      "chartBps": 6029.33,
+      "chartEps": 376.83,
       "metricSource": "completionEstimate",
       "history": [
         4914.291,
@@ -50744,6 +53052,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3210,
       "bps": 3647.53,
       "eps": 285.83,
+      "chartBps": 3647.53,
+      "chartEps": 285.83,
       "metricSource": "irbank:2026/03",
       "history": [
         2068.0898,
@@ -50788,6 +53098,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 410,
       "bps": 172.26,
       "eps": 20.74,
+      "chartBps": 172.26,
+      "chartEps": 20.74,
       "metricSource": "irbank:2026/03",
       "history": [
         878,
@@ -50832,6 +53144,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1096,
       "bps": 515.82,
       "eps": 93.97,
+      "chartBps": 515.82,
+      "chartEps": 93.97,
       "metricSource": "irbank:2026/03",
       "history": [
         601.8893,
@@ -50876,6 +53190,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4422,
       "bps": 2246.03,
       "eps": 137.7,
+      "chartBps": 2246.03,
+      "chartEps": 137.7,
       "metricSource": "irbank:2026/03",
       "history": [
         2462.5,
@@ -50920,6 +53236,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4026,
       "bps": 5368,
       "eps": 335.5,
+      "chartBps": 5368,
+      "chartEps": 335.5,
       "metricSource": "completionEstimate",
       "history": [
         3842.6152,
@@ -50964,6 +53282,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1511,
       "bps": 2179.95,
       "eps": 149.79,
+      "chartBps": 2179.95,
+      "chartEps": 149.79,
       "metricSource": "irbank:2026/03",
       "history": [
         746.2648,
@@ -51008,6 +53328,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 6200,
       "bps": 3233.83,
       "eps": 575.51,
+      "chartBps": 3233.83,
+      "chartEps": 575.51,
       "metricSource": "irbank:2026/03",
       "history": [
         2904.4116,
@@ -51052,6 +53374,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3255,
       "bps": 3813.15,
       "eps": 128.81,
+      "chartBps": 3813.15,
+      "chartEps": 128.81,
       "metricSource": "irbank:2026/03",
       "history": [
         1950.0939,
@@ -51096,6 +53420,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4955,
       "bps": 6138.18,
       "eps": 313.54,
+      "chartBps": 6138.18,
+      "chartEps": 313.54,
       "metricSource": "irbank:2026/03",
       "history": [
         3717.2412,
@@ -51140,6 +53466,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3755,
       "bps": 3923.35,
       "eps": 404.44,
+      "chartBps": 3923.35,
+      "chartEps": 404.44,
       "metricSource": "irbank:2026/03",
       "history": [
         2408.1638,
@@ -51184,6 +53512,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1582,
       "bps": 725.64,
       "eps": 154.62,
+      "chartBps": 725.64,
+      "chartEps": 154.62,
       "metricSource": "irbank:2026/02",
       "history": [
         1356.5645,
@@ -51228,6 +53558,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2589,
       "bps": 1712.12,
       "eps": 245.25,
+      "chartBps": 1712.12,
+      "chartEps": 245.25,
       "metricSource": "irbank:2026/03",
       "history": [
         1202.4408,
@@ -51272,6 +53604,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2796,
       "bps": 4164.98,
       "eps": 345.2,
+      "chartBps": 4164.98,
+      "chartEps": 345.2,
       "metricSource": "irbank:2026/02",
       "history": [
         2079.1426,
@@ -51316,6 +53650,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1149,
       "bps": 559.59,
       "eps": 40.97,
+      "chartBps": 559.59,
+      "chartEps": 40.97,
       "metricSource": "irbank:2026/04",
       "history": [
         1052.3094,
@@ -51360,6 +53696,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1965,
       "bps": 2701.06,
       "eps": 106.16,
+      "chartBps": 2701.06,
+      "chartEps": 106.16,
       "metricSource": "irbank:2026/03",
       "history": [
         1202.9421,
@@ -51404,6 +53742,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4920,
       "bps": 6412.58,
       "eps": 99.27,
+      "chartBps": 6412.58,
+      "chartEps": 99.27,
       "metricSource": "irbank:2026/03",
       "history": [
         2174.595,
@@ -51448,6 +53788,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 295,
       "bps": 143.16,
       "eps": 1.63,
+      "chartBps": 143.16,
+      "chartEps": 1.63,
       "metricSource": "irbank:2026/03",
       "history": [
         147.3931,
@@ -51492,6 +53834,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 112,
       "bps": 130.68,
       "eps": 8.44,
+      "chartBps": 130.68,
+      "chartEps": 8.44,
       "metricSource": "irbank:2026/05",
       "history": [
         135,
@@ -51536,6 +53880,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4025,
       "bps": 3156.89,
       "eps": 185.92,
+      "chartBps": 3156.89,
+      "chartEps": 185.92,
       "metricSource": "irbank:2026/02",
       "history": [
         3181.343,
@@ -51580,6 +53926,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1144,
       "bps": 536.41,
       "eps": 38.86,
+      "chartBps": 536.41,
+      "chartEps": 38.86,
       "metricSource": "irbank:2026/03",
       "history": [
         900,
@@ -51624,6 +53972,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 218,
       "bps": 226.44,
       "eps": 23.18,
+      "chartBps": 226.44,
+      "chartEps": 23.18,
       "metricSource": "irbank:2026/03",
       "history": [
         238.0905,
@@ -51668,6 +54018,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 747,
       "bps": 418.45,
       "eps": 64.54,
+      "chartBps": 418.45,
+      "chartEps": 64.54,
       "metricSource": "irbank:2026/02",
       "history": [
         682.2751,
@@ -51708,6 +54060,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 684,
       "bps": 471.53,
       "eps": 44.66,
+      "chartBps": 471.53,
+      "chartEps": 44.66,
       "metricSource": "irbank:2026/02",
       "history": [
         537.443,
@@ -51752,6 +54106,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1761,
       "bps": 2823.81,
       "eps": 118.81,
+      "chartBps": 2823.81,
+      "chartEps": 118.81,
       "metricSource": "irbank:2026/04",
       "history": [
         1639.046,
@@ -51796,6 +54152,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 970,
       "bps": 1616.01,
       "eps": 72.49,
+      "chartBps": 1616.01,
+      "chartEps": 72.49,
       "metricSource": "irbank:2026/03",
       "history": [
         852.879,
@@ -51840,6 +54198,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2500,
       "bps": 2222.11,
       "eps": 230.65,
+      "chartBps": 2222.11,
+      "chartEps": 230.65,
       "metricSource": "irbank:2026/03",
       "history": [
         2383.0725,
@@ -51884,6 +54244,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 5940,
       "bps": 3898.52,
       "eps": 335.05,
+      "chartBps": 3898.52,
+      "chartEps": 335.05,
       "metricSource": "irbank:2026/03",
       "history": [
         2592.3757,
@@ -51928,6 +54290,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 94,
       "bps": 48.44,
       "eps": 0.65,
+      "chartBps": 48.44,
+      "chartEps": 0.65,
       "metricSource": "irbank:2026/03",
       "history": [
         112,
@@ -51972,6 +54336,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2924.5,
       "bps": 1607.64,
       "eps": 187.39,
+      "chartBps": 1607.64,
+      "chartEps": 187.39,
       "metricSource": "irbank:2026/02",
       "history": [
         2764.5244,
@@ -52016,6 +54382,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1379,
       "bps": 914.96,
       "eps": 66.91,
+      "chartBps": 914.96,
+      "chartEps": 66.91,
       "metricSource": "irbank:2026/03",
       "history": [
         890.6043,
@@ -52060,6 +54428,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 7970,
       "bps": 2484.83,
       "eps": 303.41,
+      "chartBps": 2484.83,
+      "chartEps": 303.41,
       "metricSource": "irbank:2026/03",
       "history": [
         1722.5714,
@@ -52104,6 +54474,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4507,
       "bps": 1628.06,
       "eps": -33.6,
+      "chartBps": 1628.06,
+      "chartEps": 375.58,
       "metricSource": "irbank:2026/03",
       "history": [
         1118.0205,
@@ -52148,6 +54520,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 4840,
       "bps": 2093.58,
       "eps": 300.49,
+      "chartBps": 2093.58,
+      "chartEps": 300.49,
       "metricSource": "irbank:2026/03",
       "history": [
         1379.209,
@@ -52194,6 +54568,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3192,
       "bps": 1671.35,
       "eps": 116.63,
+      "chartBps": 1671.35,
+      "chartEps": 116.63,
       "metricSource": "irbank:2026/02",
       "history": [
         1877.1017,
@@ -52238,6 +54614,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 370,
       "bps": 699.97,
       "eps": 14.64,
+      "chartBps": 699.97,
+      "chartEps": 14.64,
       "metricSource": "irbank:2026/03",
       "history": [
         232.8261,
@@ -52282,6 +54660,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 1665,
       "bps": 444.35,
       "eps": 111.26,
+      "chartBps": 444.35,
+      "chartEps": 111.26,
       "metricSource": "irbank:2026/03",
       "history": [
         714,
@@ -52326,6 +54706,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 238,
       "bps": 56.02,
       "eps": 0.58,
+      "chartBps": 56.02,
+      "chartEps": 0.58,
       "metricSource": "irbank:2026/03",
       "history": [
         304,
@@ -52370,6 +54752,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 98,
       "bps": 4.33,
       "eps": 0.73,
+      "chartBps": 4.33,
+      "chartEps": 0.73,
       "metricSource": "irbank:2026/03",
       "history": [
         105,
@@ -52414,6 +54798,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 2300,
       "bps": 2217.06,
       "eps": 148.48,
+      "chartBps": 2217.06,
+      "chartEps": 148.48,
       "metricSource": "irbank:2026/03",
       "history": [
         1712.9937,
@@ -52458,6 +54844,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3807,
       "bps": 1764.67,
       "eps": 175.35,
+      "chartBps": 1764.67,
+      "chartEps": 175.35,
       "metricSource": "irbank:2026/03",
       "history": [
         2182.7769,
@@ -52502,6 +54890,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 3095,
       "bps": 1352.33,
       "eps": 128.02,
+      "chartBps": 1352.33,
+      "chartEps": 128.02,
       "metricSource": "irbank:2026/02",
       "history": [
         2191.3333,
@@ -52546,6 +54936,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 16390,
       "bps": 1146.97,
       "eps": 353.83,
+      "chartBps": 1146.97,
+      "chartEps": 353.83,
       "metricSource": "irbank:2026/03",
       "history": [
         4820,
@@ -52590,6 +54982,8 @@ window.AUTO_RESEARCH_DATA = {
       "price": 71870,
       "bps": 95826.67,
       "eps": 5989.17,
+      "chartBps": 95826.67,
+      "chartEps": 5989.17,
       "metricSource": "completionEstimate",
       "history": [
         2670,

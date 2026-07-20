@@ -1,5 +1,5 @@
 window.AUTO_FINANCIAL_FOLLOWUP = {
-  "generatedAt": "2026-07-20T06:58:21.472Z",
+  "generatedAt": "2026-07-20T07:19:29.505Z",
   "total": 19,
   "priorityCount": 1,
   "buyLineWaitCount": 17,
