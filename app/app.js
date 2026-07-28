@@ -1262,8 +1262,9 @@ function todayStockReason(stock) {
 
 function todayResearchItem(item, sourceType, label, bonus) {
   const timingBonus = sourceType === "autoBuyCandidates" ? autoBuyTimingPriority(item) : 0;
+  const trustBonus = sourceType === "autoBuyCandidates" ? autoBuyTrustScore(item) : 0;
   const backtestScore =
-    (Number(item.trades ?? item.backtestTrades ?? 0) >= 1 ? 6 : -8)
+    (Number(item.trades ?? item.backtestTrades ?? 0) >= 3 ? 10 : -8)
     + Math.max(-14, Math.min(18, Number(item.averageReturn ?? item.backtestAverageReturn ?? 0) * 1.3))
     + Math.max(-12, Math.min(14, (Number(item.winRate ?? item.backtestWinRate ?? 0) - 50) * 0.35))
     + Math.max(-12, Math.min(6, Number(item.maxDrawdown ?? item.backtestMaxDrawdown ?? 0) * 0.5 + 7));
@@ -1273,8 +1274,7 @@ function todayResearchItem(item, sourceType, label, bonus) {
     + (item.timingAction === "初回買い候補" ? 22 : 0)
     + (item.timingAction === "買わない" ? -80 : 0)
     + (item.signal === "高値圏" ? -18 : 0)
-    + (item.reviewStatus === "通常候補へ昇格OK" ? 22 : 0)
-    + (item.reviewStatus === "追加確認" ? -8 : 0)
+    + trustBonus
     + (item.reviewStatus === "今回は見送り" ? -90 : 0)
     + backtestScore
     + bonus;
@@ -1293,12 +1293,14 @@ function todayResearchItem(item, sourceType, label, bonus) {
 function researchPriority(item, sourceType) {
   if (sourceType === "autoBuyCandidates") {
     if (item.reviewStatus === "今回は見送り") return 24;
-    if (autoBuySignalRank(item) >= 3) return 116;
-    if (autoBuySignalRank(item) >= 2) return 108;
-    if (item.reviewStatus === "通常候補へ昇格OK") return 98;
-    if (item.reviewStatus === "追加確認" && String(item.status || "").includes("自動今買い")) return 90;
-    if (String(item.status || "").includes("自動今買い")) return 96;
-    if (String(item.status || "").includes("買い場近い")) return 88;
+    const signalRank = autoBuySignalRank(item);
+    const trustRank = autoBuyTrustRank(item);
+    if (signalRank >= 3 && trustRank >= 3) return 128;
+    if (signalRank >= 3 && trustRank >= 2) return 122;
+    if (signalRank >= 2 && trustRank >= 3) return 112;
+    if (signalRank >= 2 && trustRank >= 2) return 106;
+    if (signalRank >= 3) return 96;
+    if (signalRank >= 2) return 88;
     return 82;
   }
   if (sourceType === "researchTiming") {
@@ -1497,6 +1499,7 @@ function filteredResearchItems(items) {
 function filteredAutoBuyCandidateItems(items) {
   return filteredResearchItems(items)
     .sort((a, b) => autoBuySignalRank(b) - autoBuySignalRank(a)
+      || autoBuyTrustRank(b) - autoBuyTrustRank(a)
       || autoBuyTimingPriority(b) - autoBuyTimingPriority(a)
       || reviewPriority(b.reviewStatus) - reviewPriority(a.reviewStatus)
       || buyLineDistance(a) - buyLineDistance(b)
@@ -1534,9 +1537,61 @@ function autoBuySignalRank(item) {
 }
 
 function autoBuySignalLabel(item) {
-  if (autoBuySignalRank(item) >= 3) return "今買い候補";
-  if (autoBuySignalRank(item) >= 2) return "買い場近い";
+  const trust = autoBuyTrustLabel(item);
+  if (autoBuySignalRank(item) >= 3) return trust ? `今買い・${trust}` : "今買い候補";
+  if (autoBuySignalRank(item) >= 2) return trust ? `買い場近い・${trust}` : "買い場近い";
   return "買い候補";
+}
+
+function autoBuyTrustRank(item) {
+  if (item.reviewStatus === "今回は見送り") return 0;
+  if (hasAutoBuyFinancialCaution(item)) return 1;
+  if (hasAutoBuyLowPriceValidation(item)) return 2;
+  if (item.reviewStatus === "通常候補へ昇格OK") return 3;
+  if (item.reviewStatus === "追加確認") return 2;
+  return 2;
+}
+
+function autoBuyTrustLabel(item) {
+  if (item.reviewStatus === "今回は見送り") return "見送り";
+  if (hasAutoBuyFinancialCaution(item)) return "財務注意";
+  if (hasAutoBuyLowPriceValidation(item)) return "検証少";
+  if (item.reviewStatus === "通常候補へ昇格OK") return "信頼度高";
+  if (item.reviewStatus === "追加確認") return "確認中";
+  return "";
+}
+
+function autoBuyTrustScore(item) {
+  if (item.reviewStatus === "今回は見送り") return -90;
+  let score = 0;
+  if (item.reviewStatus === "通常候補へ昇格OK") score += 35;
+  if (item.reviewStatus === "追加確認") score -= 8;
+  if (hasAutoBuyLowPriceValidation(item)) score -= 8;
+  if (hasAutoBuyFinancialCaution(item)) score -= 32;
+  if (hasGoodAutoBuyBacktest(item)) score += 20;
+  if (hasBadAutoBuyBacktest(item)) score -= 50;
+  return score;
+}
+
+function hasAutoBuyLowPriceValidation(item) {
+  return Number(item.trades ?? item.backtestTrades ?? 0) < 3;
+}
+
+function hasAutoBuyFinancialCaution(item) {
+  const text = `${item.status || ""} ${item.reviewStatus || ""} ${item.reviewCautions || ""} ${item.caution || ""}`;
+  return /財務注意|財務構造が特殊|ネット有利子負債が重い|PBRが昇格基準外|PERが昇格基準外|上昇余地が不足/.test(text);
+}
+
+function hasGoodAutoBuyBacktest(item) {
+  return Number(item.trades ?? 0) >= 3
+    && Number(item.winRate ?? 0) >= 60
+    && Number(item.averageReturn ?? 0) >= 0
+    && Number(item.maxDrawdown ?? 0) > -12;
+}
+
+function hasBadAutoBuyBacktest(item) {
+  return Number(item.trades ?? 0) >= 3
+    && (Number(item.winRate ?? 0) < 45 || Number(item.averageReturn ?? 0) < -3 || Number(item.maxDrawdown ?? 0) <= -18);
 }
 
 function buyLineDistance(item) {
@@ -2307,6 +2362,9 @@ function renderResearchMetrics(item) {
 }
 
 function researchActionLabel(item) {
+  const trustLabel = autoBuyTrustLabel(item);
+  if (trustLabel && autoBuySignalRank(item) >= 3) return `今買い・${trustLabel}`;
+  if (trustLabel && autoBuySignalRank(item) >= 2) return `買い場近い・${trustLabel}`;
   if (item.reviewStatus === "通常候補へ昇格OK") return "通常候補へ昇格OK";
   if (item.reviewStatus === "今回は見送り") return "今回は見送り";
   if (item.reviewStatus === "追加確認") return "追加確認";
@@ -3143,7 +3201,8 @@ function researchPriorityReason(entry) {
     return `${item.status || "財務確認"}。確認完了まで買わない`;
   }
   if (entry.sourceType === "autoBuyCandidates") {
-    return `${item.status || "自動買い候補"}。自動取得財務でランキング反映`;
+    const validation = hasAutoBuyLowPriceValidation(item) ? `検証${item.trades ?? 0}回` : `勝率${pct(item.winRate ?? 0)}`;
+    return `${autoBuySignalLabel(item)}。${validation}。自動取得財務でランキング反映`;
   }
   if (entry.sourceType === "researchTiming") {
     return `${item.timingAction || "上昇タイミング"}。勝率${pct(item.winRate ?? 0)}、平均${pct(item.averageReturn ?? 0)}です`;
