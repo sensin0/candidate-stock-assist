@@ -621,6 +621,38 @@ select {
   font-size: 12px;
 }
 
+.ranking-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ranking-badge {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 999px;
+  padding: 5px 8px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ranking-badge-ok {
+  color: var(--green);
+  background: var(--green-soft);
+}
+
+.ranking-badge-warn {
+  color: var(--yellow);
+  background: var(--yellow-soft);
+}
+
+.ranking-badge-danger {
+  color: var(--red);
+  background: var(--red-soft);
+}
+
 .detail-header {
   display: flex;
   justify-content: space-between;

@@ -1631,6 +1631,45 @@ function priceValidationLabel(level) {
   return level || "-";
 }
 
+function autoBuyRankingBadges(item) {
+  const badges = [];
+  const trust = autoBuyTrustLabel(item);
+  if (trust) badges.push({ label: `信頼度 ${trust}`, level: autoBuyTrustRank(item) <= 1 ? "danger" : autoBuyTrustRank(item) === 2 ? "warn" : "ok" });
+  if (item.priceValidationLevel) {
+    const weak = hasBadAutoBuyBacktest(item) || hasAutoBuyLowPriceValidation(item);
+    badges.push({ label: `検証 ${priceValidationLabel(item.priceValidationLevel)}`, level: weak ? "warn" : "ok" });
+  }
+  if (item.momentumRiskLevel) {
+    const risk = autoBuyMomentumRiskRank(item);
+    badges.push({ label: `過熱 ${momentumRiskLabel(item)}`, level: risk >= 3 ? "danger" : risk >= 2 ? "warn" : "ok" });
+  }
+  const rejectReason = autoBuyRejectReason(item);
+  if (rejectReason) badges.push({ label: rejectReason, level: "danger" });
+  return badges.map((badge) => `<span class="ranking-badge ranking-badge-${badge.level}">${escapeHtml(badge.label)}</span>`).join("");
+}
+
+function autoBuyRejectReason(item) {
+  if (item.reviewStatus === "今回は見送り" || item.trustLevel === "avoid") {
+    if (item.priceValidationReasons) return `買わない: ${item.priceValidationReasons}`;
+    if (item.financialRiskReasons) return `買わない: ${item.financialRiskReasons}`;
+    if (item.reviewCautions) return `買わない: ${item.reviewCautions}`;
+    return "買わない: 検証弱い";
+  }
+  if (item.trustLevel === "financialCaution" && item.financialRiskReasons) return `財務注意: ${item.financialRiskReasons}`;
+  if (hasBadAutoBuyBacktest(item) && item.priceValidationReasons) return `検証弱い: ${item.priceValidationReasons}`;
+  return "";
+}
+
+function autoBuyDisplayWinRate(item) {
+  if (Number(item.auxiliaryTrades ?? 0) > 0) return Number(item.auxiliaryWinRate ?? 0);
+  return Number(item.winRate ?? 0);
+}
+
+function autoBuyDisplayAverageReturn(item) {
+  if (Number(item.auxiliaryTrades ?? 0) > 0) return Number(item.auxiliaryAverageReturn ?? 0);
+  return Number(item.averageReturn ?? 0);
+}
+
 function hasAutoBuyLowPriceValidation(item) {
   if (item.priceValidationLevel) return item.priceValidationLevel === "thin";
   return Number(item.trades ?? item.backtestTrades ?? 0) < 3;
@@ -1689,11 +1728,18 @@ function renderTodayRankingRow(entry, index) {
   const item = entry.item;
   const type = entry.sourceType;
   const isActive = selectedResearch?.type === type && selectedResearch?.code === item.code;
-  const labelClass = type === "financialConfirmation" ? "label-risk" : type === "hiddenGems" ? "label-research" : "label-near";
+  const labelClass = type === "financialConfirmation"
+    ? "label-risk"
+    : type === "hiddenGems"
+      ? "label-research"
+      : type === "autoBuyCandidates" && autoBuySignalRank(item) >= 3
+        ? "label-buy"
+        : "label-near";
   const detailText = type === "financialConfirmation"
     ? (item.buyGuard || item.nextStep || "買う前に財務確認")
     : (item.comment || item.reason || signalComment(item));
   const lynch = renderResearchLynch(item, type);
+  const rankingBadges = type === "autoBuyCandidates" ? autoBuyRankingBadges(item) : "";
 
   return `
     <article class="ranking-row research-ranking-row ${isActive ? "active" : ""}" data-research-type="${type}" data-research-code="${escapeHtml(item.code)}">
@@ -1705,12 +1751,13 @@ function renderTodayRankingRow(entry, index) {
         <span class="assist-label ${labelClass}">${escapeHtml(entry.label)}</span>
       </div>
       <p class="reason">${escapeHtml(detailText)}</p>
+      ${rankingBadges ? `<div class="ranking-badges">${rankingBadges}</div>` : ""}
       <div class="ranking-meta">
         <span>総合 ${Math.round(entry.sortScore * 10) / 10}</span>
         <span>${escapeHtml(item.market || item.source || "広域調査")}</span>
         <span>${escapeHtml(item.signal || item.status || "確認")}</span>
-        <span>平均 ${pct(item.averageReturn ?? 0)}</span>
-        <span>勝率 ${pct(item.winRate ?? 0)}</span>
+        <span>平均 ${pct(type === "autoBuyCandidates" ? autoBuyDisplayAverageReturn(item) : item.averageReturn ?? 0)}</span>
+        <span>勝率 ${pct(type === "autoBuyCandidates" ? autoBuyDisplayWinRate(item) : item.winRate ?? 0)}</span>
         <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
       </div>
     </article>
@@ -1854,6 +1901,7 @@ function renderResearchRankingRow(item, index, type) {
   const comment = item.comment || signalComment(item);
   const caution = item.caution ? `<p class="freshness-line">${escapeHtml(item.caution)}</p>` : "";
   const review = type === "autoBuyCandidates" && item.reviewStatus ? `<p class="freshness-line">昇格判定: ${escapeHtml(item.reviewStatus)}${item.reviewReasons ? ` / ${escapeHtml(item.reviewReasons)}` : ""}</p>` : "";
+  const rankingBadges = type === "autoBuyCandidates" ? autoBuyRankingBadges(item) : "";
   const isActive = selectedResearch?.type === type && selectedResearch?.code === item.code;
   const labelClass = type === "autoBuyCandidates"
     ? autoBuySignalRank(item) >= 3 ? "label-buy" : "label-near"
@@ -1868,6 +1916,7 @@ function renderResearchRankingRow(item, index, type) {
         <span class="assist-label ${labelClass}">${label}</span>
       </div>
       <p class="reason">${escapeHtml(comment)}</p>
+      ${rankingBadges ? `<div class="ranking-badges">${rankingBadges}</div>` : ""}
       ${review}
       ${caution}
       <div class="ranking-meta">
@@ -3268,12 +3317,16 @@ function researchPriorityReason(entry) {
     return `${item.status || "財務確認"}。確認完了まで買わない`;
   }
   if (entry.sourceType === "autoBuyCandidates") {
-    const validation = hasAutoBuyLowPriceValidation(item) ? `検証${item.trades ?? 0}回` : `勝率${pct(item.winRate ?? 0)}`;
+    const validation = Number(item.auxiliaryTrades ?? 0) > 0
+      ? `補助勝率${pct(autoBuyDisplayWinRate(item))}`
+      : hasAutoBuyLowPriceValidation(item)
+        ? `検証${item.trades ?? 0}回`
+        : `勝率${pct(autoBuyDisplayWinRate(item))}`;
     const warnings = [
       hasBadAutoBuyBacktest(item) ? priceValidationLabel(item.priceValidationLevel) : "",
       autoBuyMomentumRiskRank(item) >= 2 ? `過熱${momentumRiskLabel(item)}` : "",
     ].filter(Boolean).join(" / ");
-    return `${autoBuySignalLabel(item)}。${validation}${warnings ? `。注意: ${warnings}` : ""}。自動取得財務でランキング反映`;
+    return `${validation}${warnings ? `。注意: ${warnings}` : ""}。自動取得財務でランキング反映`;
   }
   if (entry.sourceType === "researchTiming") {
     return `${item.timingAction || "上昇タイミング"}。勝率${pct(item.winRate ?? 0)}、平均${pct(item.averageReturn ?? 0)}です`;
