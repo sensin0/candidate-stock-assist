@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-28T01:42:28.973Z",
+  "generatedAt": "2026-07-28T01:50:11.314Z",
   "totalFiles": 37,
-  "totalRows": 280086,
-  "totalBytes": 37052581,
+  "totalRows": 280034,
+  "totalBytes": 37048250,
   "problems": [],
   "files": [
     {
@@ -492,9 +492,9 @@
     },
     {
       "name": "price-validation-queue.csv",
-      "bytes": 21380,
-      "rows": 114,
-      "columns": 15,
+      "bytes": 12522,
+      "rows": 62,
+      "columns": 19,
       "headers": [
         "code",
         "name",
@@ -504,6 +504,10 @@
         "priceValidationLevel",
         "financialRiskLevel",
         "trades",
+        "auxiliaryTrades",
+        "auxiliaryWinRate",
+        "auxiliaryAverageReturn",
+        "auxiliaryMaxDrawdown",
         "historyMonths",
         "buyRatio",
         "pbr",
@@ -828,9 +832,9 @@
     },
     {
       "name": "universe-buy-candidate-review.csv",
-      "bytes": 57398,
+      "bytes": 61925,
       "rows": 120,
-      "columns": 27,
+      "columns": 31,
       "headers": [
         "code",
         "name",
@@ -855,6 +859,10 @@
         "financialRiskReasons",
         "priceValidationLevel",
         "priceValidationReasons",
+        "auxiliaryTrades",
+        "auxiliaryWinRate",
+        "auxiliaryAverageReturn",
+        "auxiliaryMaxDrawdown",
         "trustLevel",
         "reasons",
         "cautions",

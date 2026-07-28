@@ -15,7 +15,7 @@ const reviewRows = readCsv(reviewPath);
 const historyByCode = groupByCode(readCsv(historyPath));
 
 const rows = reviewRows
-  .filter((row) => row.priceValidationLevel === "thin")
+  .filter((row) => ["thin", "auxiliaryWeak"].includes(row.priceValidationLevel))
   .map((row) => toQueueRow(row, historyByCode.get(row.code) ?? []))
   .sort((a, b) => priority(b) - priority(a))
   .slice(0, 120);
@@ -31,7 +31,7 @@ console.log(`価格検証キュー: ${rows.length}件`);
 function toQueueRow(row, historyRows) {
   const historyMonths = historyRows.length;
   const trades = number(row.trades);
-  const issue = validationIssue({ historyMonths, trades });
+  const issue = validationIssue({ historyMonths, trades, priceValidationLevel: row.priceValidationLevel });
   return {
     code: row.code,
     name: row.name,
@@ -41,6 +41,10 @@ function toQueueRow(row, historyRows) {
     priceValidationLevel: row.priceValidationLevel,
     financialRiskLevel: row.financialRiskLevel,
     trades,
+    auxiliaryTrades: number(row.auxiliaryTrades),
+    auxiliaryWinRate: row.auxiliaryWinRate,
+    auxiliaryAverageReturn: row.auxiliaryAverageReturn,
+    auxiliaryMaxDrawdown: row.auxiliaryMaxDrawdown,
     historyMonths,
     buyRatio: row.buyRatio,
     pbr: row.pbr,
@@ -51,7 +55,8 @@ function toQueueRow(row, historyRows) {
   };
 }
 
-function validationIssue({ historyMonths, trades }) {
+function validationIssue({ historyMonths, trades, priceValidationLevel }) {
+  if (priceValidationLevel === "auxiliaryWeak") return "補助検証弱い";
   if (historyMonths < 18) return "価格履歴不足";
   if (trades === 0) return "売買ルール未約定";
   return "取引回数少";
@@ -59,6 +64,7 @@ function validationIssue({ historyMonths, trades }) {
 
 function nextAction(issue) {
   if (issue === "価格履歴不足") return "日足または追加履歴を取得して再検証";
+  if (issue === "補助検証弱い") return "ランキングを下げ、買い表示を抑制";
   if (issue === "売買ルール未約定") return "買いライン近辺の補助ルールで再検証";
   return "日足検証で取引回数を増やして信頼度を再判定";
 }
@@ -89,6 +95,7 @@ function writeReport(rows) {
     `価格履歴不足: ${issueCounts["価格履歴不足"] || 0}件`,
     `売買ルール未約定: ${issueCounts["売買ルール未約定"] || 0}件`,
     `取引回数少: ${issueCounts["取引回数少"] || 0}件`,
+    `補助検証弱い: ${issueCounts["補助検証弱い"] || 0}件`,
     "",
     "## 優先確認",
     "",
@@ -115,6 +122,10 @@ function writeCsv(filePath, rows) {
     "priceValidationLevel",
     "financialRiskLevel",
     "trades",
+    "auxiliaryTrades",
+    "auxiliaryWinRate",
+    "auxiliaryAverageReturn",
+    "auxiliaryMaxDrawdown",
     "historyMonths",
     "buyRatio",
     "pbr",

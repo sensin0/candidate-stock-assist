@@ -40,6 +40,7 @@ const allowedMarkdown = new Set([
   "reports/latest-monthly-signal-backtest.md",
   "reports/latest-price-refresh.md",
   "reports/latest-price-refresh-queue.md",
+  "reports/latest-price-validation-queue.md",
   "reports/latest-short-history-refresh.md",
   "reports/latest-price-backtest.md",
   "reports/latest-promotion-candidates.md",

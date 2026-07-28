@@ -1597,8 +1597,10 @@ function riskLevelLabel(level) {
 
 function priceValidationLabel(level) {
   if (level === "good") return "良好";
+  if (level === "auxiliaryGood") return "補助検証良好";
   if (level === "neutral") return "中立";
   if (level === "thin") return "検証少";
+  if (level === "auxiliaryWeak") return "補助検証弱い";
   if (level === "weak") return "弱い";
   return level || "-";
 }
@@ -1615,7 +1617,7 @@ function hasAutoBuyFinancialCaution(item) {
 }
 
 function hasGoodAutoBuyBacktest(item) {
-  if (item.priceValidationLevel) return item.priceValidationLevel === "good";
+  if (item.priceValidationLevel) return ["good", "auxiliaryGood"].includes(item.priceValidationLevel);
   return Number(item.trades ?? 0) >= 3
     && Number(item.winRate ?? 0) >= 60
     && Number(item.averageReturn ?? 0) >= 0
@@ -1623,7 +1625,7 @@ function hasGoodAutoBuyBacktest(item) {
 }
 
 function hasBadAutoBuyBacktest(item) {
-  if (item.priceValidationLevel) return item.priceValidationLevel === "weak";
+  if (item.priceValidationLevel) return ["weak", "auxiliaryWeak"].includes(item.priceValidationLevel);
   return Number(item.trades ?? 0) >= 3
     && (Number(item.winRate ?? 0) < 45 || Number(item.averageReturn ?? 0) < -3 || Number(item.maxDrawdown ?? 0) <= -18);
 }
@@ -2369,6 +2371,7 @@ function renderResearchMetrics(item) {
     ["信頼度", autoBuyTrustLabel(item) || item.trustLevel || "-"],
     ["財務リスク", item.financialRiskLevel ? `${riskLevelLabel(item.financialRiskLevel)} ${item.financialRiskReasons || ""}` : "-"],
     ["価格検証", item.priceValidationLevel ? `${priceValidationLabel(item.priceValidationLevel)} ${item.priceValidationReasons || ""}` : "-"],
+    ["補助検証", item.auxiliaryTrades ? `${item.auxiliaryTrades}回 / 勝率${pct(item.auxiliaryWinRate ?? 0)} / 平均${pct(item.auxiliaryAverageReturn ?? 0)}` : "-"],
     ["昇格理由", item.reviewReasons || "-"],
     ["確認注意", item.reviewCautions || item.caution || "財務と開示を確認"],
     ["買いライン", item.buyLine ? yen(item.buyLine) : "推定中"],

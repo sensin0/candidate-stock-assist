@@ -10,6 +10,7 @@ const reportsDir = path.join(rootDir, "reports");
 const candidatesPath = path.join(dataDir, "universe-buy-candidates.csv");
 const metricsPath = path.join(dataDir, "universe-metrics.csv");
 const masterPath = path.join(dataDir, "stock-master.csv");
+const monthlyHistoryPath = path.join(dataDir, "monthly-price-history.csv");
 const reviewPath = path.join(dataDir, "universe-buy-candidate-review.csv");
 const draftPath = path.join(dataDir, "stock-master-universe-promotion-draft.csv");
 const reportPath = path.join(reportsDir, "latest-universe-buy-candidate-review.md");
@@ -35,8 +36,9 @@ const stockInputHeaders = [
 const candidates = readCsv(candidatesPath);
 const metricsByCode = new Map(readCsv(metricsPath).map((row) => [row.code, row]));
 const existingCodes = new Set(readCsv(masterPath).map((row) => row.code));
+const historyByCode = groupByCode(readCsv(monthlyHistoryPath));
 
-const reviewed = candidates.map((row) => reviewCandidate(row, metricsByCode.get(row.code)));
+const reviewed = candidates.map((row) => reviewCandidate(row, metricsByCode.get(row.code), historyByCode.get(row.code) ?? []));
 const approved = reviewed
   .filter((row) => row.reviewStatus === "通常候補へ昇格OK")
   .filter((row) => !existingCodes.has(row.code))
@@ -50,7 +52,7 @@ console.log(`全体自動買い候補の昇格判定を生成しました: ${app
 console.log(path.relative(rootDir, reviewPath));
 console.log(path.relative(rootDir, draftPath));
 
-function reviewCandidate(row, metric = {}) {
+function reviewCandidate(row, metric = {}, historyRows = []) {
   const reasons = [];
   const blockers = [];
   const confirmations = [];
@@ -70,7 +72,8 @@ function reviewCandidate(row, metric = {}) {
   const isNowBuy = signal === "今買い候補";
   const hasPriceValidation = trades >= 3;
   const financialRisk = financialRiskLevel({ isSpecialSector, netCashRatio, pbr, per, upside });
-  const priceValidation = priceValidationLevel({ trades, winRate, averageReturn, maxDrawdown });
+  const auxiliary = auxiliaryBuyLineValidation(historyRows, { buyLine: number(row.buyLine) });
+  const priceValidation = priceValidationLevel({ trades, winRate, averageReturn, maxDrawdown, auxiliary });
 
   if (isExisting) confirmations.push("通常候補登録済みのため既存候補側で最終確認");
   if (isSpecialSector) confirmations.push(`${sector}は財務構造が特殊なため原資料確認を優先`);
@@ -126,6 +129,10 @@ function reviewCandidate(row, metric = {}) {
     financialRiskReasons: financialRisk.reasons.join(" / ") || "財務ガード通過",
     priceValidationLevel: priceValidation.level,
     priceValidationReasons: priceValidation.reasons.join(" / ") || "価格検証ガード通過",
+    auxiliaryTrades: auxiliary.trades,
+    auxiliaryWinRate: round(auxiliary.winRate),
+    auxiliaryAverageReturn: round(auxiliary.averageReturn),
+    auxiliaryMaxDrawdown: round(auxiliary.maxDrawdown),
     trustLevel: trustLevel({ reviewStatus, financialRisk, priceValidation }),
     reasons: reasons.join(" / ") || "条件内だが決め手は弱め",
     cautions: [...blockers, ...confirmations].join(" / ") || "大きな自動除外理由なし",
@@ -169,9 +176,17 @@ function financialRiskLevel({ isSpecialSector, netCashRatio, pbr, per, upside })
   return { level, reasons };
 }
 
-function priceValidationLevel({ trades, winRate, averageReturn, maxDrawdown }) {
+function priceValidationLevel({ trades, winRate, averageReturn, maxDrawdown, auxiliary }) {
   const reasons = [];
   if (trades < 3) {
+    if (auxiliary.trades >= 3 && auxiliary.winRate >= 55 && auxiliary.averageReturn >= 0 && auxiliary.maxDrawdown > -15) {
+      reasons.push(`補助検証良好 ${auxiliary.trades}回/勝率${round(auxiliary.winRate)}%/平均${round(auxiliary.averageReturn)}%`);
+      return { level: "auxiliaryGood", reasons };
+    }
+    if (auxiliary.trades >= 3 && (auxiliary.winRate < 45 || auxiliary.averageReturn < -3 || auxiliary.maxDrawdown <= -18)) {
+      reasons.push(`補助検証弱い ${auxiliary.trades}回/勝率${round(auxiliary.winRate)}%/平均${round(auxiliary.averageReturn)}%`);
+      return { level: "auxiliaryWeak", reasons };
+    }
     reasons.push(`検証取引少 ${trades}回`);
     return { level: "thin", reasons };
   }
@@ -190,11 +205,57 @@ function priceValidationLevel({ trades, winRate, averageReturn, maxDrawdown }) {
 }
 
 function trustLevel({ reviewStatus, financialRisk, priceValidation }) {
-  if (reviewStatus === "今回は見送り" || priceValidation.level === "weak" || financialRisk.level === "high") return "avoid";
+  if (reviewStatus === "今回は見送り" || ["weak", "auxiliaryWeak"].includes(priceValidation.level) || financialRisk.level === "high") return "avoid";
   if (financialRisk.level === "medium") return "financialCaution";
   if (priceValidation.level === "thin") return "thinValidation";
-  if (reviewStatus === "通常候補へ昇格OK" && priceValidation.level === "good" && financialRisk.level === "low") return "high";
+  if (reviewStatus === "通常候補へ昇格OK" && ["good", "auxiliaryGood"].includes(priceValidation.level) && financialRisk.level === "low") return "high";
   return "watch";
+}
+
+function auxiliaryBuyLineValidation(historyRows, { buyLine }) {
+  const history = historyRows
+    .map((row) => ({ month: row.month, close: number(row.close) }))
+    .filter((row) => row.close > 0)
+    .sort((a, b) => String(a.month).localeCompare(String(b.month)));
+  if (!buyLine || history.length < 18) return emptyAuxiliaryResult();
+
+  const trades = [];
+  let position = null;
+  let peak = 0;
+  for (let index = 1; index < history.length; index += 1) {
+    const close = history[index].close;
+    if (!position) {
+      if (close <= buyLine * 1.08) {
+        position = { entryPrice: close, entryIndex: index, worstPrice: close };
+        peak = close;
+      }
+      continue;
+    }
+
+    peak = Math.max(peak, close);
+    position.worstPrice = Math.min(position.worstPrice, close);
+    const returnPct = ((close / position.entryPrice) - 1) * 100;
+    const drawdownPct = ((position.worstPrice / position.entryPrice) - 1) * 100;
+    const trailPct = ((close / peak) - 1) * 100;
+    const holdMonths = index - position.entryIndex;
+    if (returnPct >= 15 || returnPct <= -10 || trailPct <= -12 || holdMonths >= 6 || index === history.length - 1) {
+      trades.push({ returnPct, drawdownPct });
+      position = null;
+      peak = 0;
+    }
+  }
+
+  if (!trades.length) return emptyAuxiliaryResult();
+  return {
+    trades: trades.length,
+    winRate: (trades.filter((trade) => trade.returnPct > 0).length / trades.length) * 100,
+    averageReturn: average(trades.map((trade) => trade.returnPct)),
+    maxDrawdown: Math.min(...trades.map((trade) => trade.drawdownPct)),
+  };
+}
+
+function emptyAuxiliaryResult() {
+  return { trades: 0, winRate: 0, averageReturn: 0, maxDrawdown: 0 };
 }
 
 function toStockInputCsv(rows) {
@@ -318,9 +379,22 @@ function readCsv(filePath) {
   return parseCsvRecords(fs.readFileSync(filePath, "utf8"));
 }
 
+function groupByCode(rows) {
+  const grouped = new Map();
+  for (const row of rows) {
+    if (!grouped.has(row.code)) grouped.set(row.code, []);
+    grouped.get(row.code).push(row);
+  }
+  return grouped;
+}
+
 function number(value) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function average(values) {
+  return values.reduce((sum, value) => sum + value, 0) / Math.max(1, values.length);
 }
 
 function round(value) {
@@ -358,6 +432,10 @@ function toCsv(rows) {
     "financialRiskReasons",
     "priceValidationLevel",
     "priceValidationReasons",
+    "auxiliaryTrades",
+    "auxiliaryWinRate",
+    "auxiliaryAverageReturn",
+    "auxiliaryMaxDrawdown",
     "trustLevel",
     "reasons",
     "cautions",
