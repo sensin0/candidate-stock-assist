@@ -1,10 +1,10 @@
 # CSVストア監査
 
-生成日時: 2026-07-28T01:20:49.957Z
+生成日時: 2026-07-28T01:42:28.973Z
 
-CSVファイル: 36件
-総行数: 279,972行
-総サイズ: 37.02MB
+CSVファイル: 37件
+総行数: 280,086行
+総サイズ: 37.05MB
 問題: 0件
 
 ## 判定
@@ -47,6 +47,7 @@ CSVファイル: 36件
 - price-backtest-results.csv: 60行 / 18列 / 8.24KB
 - price-refresh-queue.csv: 2行 / 14列 / 519B
 - price-updates.csv: 36行 / 3列 / 762B
+- price-validation-queue.csv: 114行 / 15列 / 21.38KB
 - promotion-candidates.csv: 150行 / 18列 / 62.63KB
 - promotion-readiness.csv: 50行 / 19列 / 20.86KB
 - stock-master-expanded-preview.csv: 71行 / 27列 / 26.36KB
@@ -57,7 +58,7 @@ CSVファイル: 36件
 - stock-master-universe-promotion-draft.csv: 20行 / 14列 / 6.64KB
 - stock-master.csv: 35行 / 27列 / 9.23KB
 - stock-master.generated.csv: 3行 / 27列 / 810B
-- universe-buy-candidate-review.csv: 120行 / 22列 / 49.55KB
+- universe-buy-candidate-review.csv: 120行 / 27列 / 57.4KB
 - universe-buy-candidates.csv: 120行 / 38列 / 100.7KB
 - universe-check-status.csv: 3,728行 / 12列 / 758.45KB
 - universe-completion-overrides.csv: 169行 / 22列 / 48.95KB

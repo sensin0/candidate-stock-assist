@@ -1545,6 +1545,11 @@ function autoBuySignalLabel(item) {
 
 function autoBuyTrustRank(item) {
   if (item.reviewStatus === "今回は見送り") return 0;
+  if (item.trustLevel === "avoid") return 0;
+  if (item.trustLevel === "financialCaution") return 1;
+  if (item.trustLevel === "thinValidation") return 2;
+  if (item.trustLevel === "high") return 3;
+  if (item.trustLevel === "watch") return 2;
   if (hasAutoBuyFinancialCaution(item)) return 1;
   if (hasAutoBuyLowPriceValidation(item)) return 2;
   if (item.reviewStatus === "通常候補へ昇格OK") return 3;
@@ -1554,6 +1559,11 @@ function autoBuyTrustRank(item) {
 
 function autoBuyTrustLabel(item) {
   if (item.reviewStatus === "今回は見送り") return "見送り";
+  if (item.trustLevel === "avoid") return "見送り";
+  if (item.trustLevel === "financialCaution") return "財務注意";
+  if (item.trustLevel === "thinValidation") return "検証少";
+  if (item.trustLevel === "high") return "信頼度高";
+  if (item.trustLevel === "watch") return "確認中";
   if (hasAutoBuyFinancialCaution(item)) return "財務注意";
   if (hasAutoBuyLowPriceValidation(item)) return "検証少";
   if (item.reviewStatus === "通常候補へ昇格OK") return "信頼度高";
@@ -1563,26 +1573,49 @@ function autoBuyTrustLabel(item) {
 
 function autoBuyTrustScore(item) {
   if (item.reviewStatus === "今回は見送り") return -90;
+  if (item.trustLevel === "avoid") return -90;
   let score = 0;
-  if (item.reviewStatus === "通常候補へ昇格OK") score += 35;
-  if (item.reviewStatus === "追加確認") score -= 8;
-  if (hasAutoBuyLowPriceValidation(item)) score -= 8;
-  if (hasAutoBuyFinancialCaution(item)) score -= 32;
+  if (item.trustLevel === "high") score += 45;
+  else if (item.trustLevel === "thinValidation") score += 18;
+  else if (item.trustLevel === "financialCaution") score -= 30;
+  else if (item.trustLevel === "watch") score += 4;
+  else if (item.reviewStatus === "通常候補へ昇格OK") score += 35;
+  else if (item.reviewStatus === "追加確認") score -= 8;
+  if (!item.trustLevel && hasAutoBuyLowPriceValidation(item)) score -= 8;
+  if (!item.trustLevel && hasAutoBuyFinancialCaution(item)) score -= 32;
   if (hasGoodAutoBuyBacktest(item)) score += 20;
   if (hasBadAutoBuyBacktest(item)) score -= 50;
   return score;
 }
 
+function riskLevelLabel(level) {
+  if (level === "low") return "低";
+  if (level === "medium") return "中";
+  if (level === "high") return "高";
+  return level || "-";
+}
+
+function priceValidationLabel(level) {
+  if (level === "good") return "良好";
+  if (level === "neutral") return "中立";
+  if (level === "thin") return "検証少";
+  if (level === "weak") return "弱い";
+  return level || "-";
+}
+
 function hasAutoBuyLowPriceValidation(item) {
+  if (item.priceValidationLevel) return item.priceValidationLevel === "thin";
   return Number(item.trades ?? item.backtestTrades ?? 0) < 3;
 }
 
 function hasAutoBuyFinancialCaution(item) {
+  if (item.financialRiskLevel) return item.financialRiskLevel === "medium" || item.financialRiskLevel === "high";
   const text = `${item.status || ""} ${item.reviewStatus || ""} ${item.reviewCautions || ""} ${item.caution || ""}`;
   return /財務注意|財務構造が特殊|ネット有利子負債が重い|PBRが昇格基準外|PERが昇格基準外|上昇余地が不足/.test(text);
 }
 
 function hasGoodAutoBuyBacktest(item) {
+  if (item.priceValidationLevel) return item.priceValidationLevel === "good";
   return Number(item.trades ?? 0) >= 3
     && Number(item.winRate ?? 0) >= 60
     && Number(item.averageReturn ?? 0) >= 0
@@ -1590,6 +1623,7 @@ function hasGoodAutoBuyBacktest(item) {
 }
 
 function hasBadAutoBuyBacktest(item) {
+  if (item.priceValidationLevel) return item.priceValidationLevel === "weak";
   return Number(item.trades ?? 0) >= 3
     && (Number(item.winRate ?? 0) < 45 || Number(item.averageReturn ?? 0) < -3 || Number(item.maxDrawdown ?? 0) <= -18);
 }
@@ -2332,6 +2366,9 @@ function renderResearchMetrics(item) {
     ["検証戦略", item.strategy || "価格検証"],
     ["通常候補扱い", item.normalCandidate || "通常候補前"],
     ["昇格判定", item.reviewStatus || "未判定"],
+    ["信頼度", autoBuyTrustLabel(item) || item.trustLevel || "-"],
+    ["財務リスク", item.financialRiskLevel ? `${riskLevelLabel(item.financialRiskLevel)} ${item.financialRiskReasons || ""}` : "-"],
+    ["価格検証", item.priceValidationLevel ? `${priceValidationLabel(item.priceValidationLevel)} ${item.priceValidationReasons || ""}` : "-"],
     ["昇格理由", item.reviewReasons || "-"],
     ["確認注意", item.reviewCautions || item.caution || "財務と開示を確認"],
     ["買いライン", item.buyLine ? yen(item.buyLine) : "推定中"],

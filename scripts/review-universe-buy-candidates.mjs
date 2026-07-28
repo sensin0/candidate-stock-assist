@@ -69,13 +69,15 @@ function reviewCandidate(row, metric = {}) {
   const signal = row.signal || "";
   const isNowBuy = signal === "今買い候補";
   const hasPriceValidation = trades >= 3;
+  const financialRisk = financialRiskLevel({ isSpecialSector, netCashRatio, pbr, per, upside });
+  const priceValidation = priceValidationLevel({ trades, winRate, averageReturn, maxDrawdown });
 
   if (isExisting) confirmations.push("通常候補登録済みのため既存候補側で最終確認");
   if (isSpecialSector) confirmations.push(`${sector}は財務構造が特殊なため原資料確認を優先`);
   if (netCashRatio < -75) confirmations.push(`ネット有利子負債が重い ${netCashRatio}%`);
   if (maxDrawdown <= -8) confirmations.push(`過去検証の最大下落が大きい ${maxDrawdown}%`);
   if (buyRatio > 1.02) confirmations.push(`買いラインを少し上回る ${buyRatio}倍`);
-  if (!hasPriceValidation) confirmations.push(`価格検証サンプル少 ${trades}回。財務と現在価格を優先`);
+  if (!hasPriceValidation) confirmations.push(`価格検証取引少 ${trades}回。財務と現在価格を優先`);
 
   if (pbr <= 0 || pbr > 0.8) blockers.push(`PBRが昇格基準外 ${pbr}倍`);
   if (per <= 0 || per > 12) blockers.push(`PERが昇格基準外 ${per}倍`);
@@ -120,6 +122,11 @@ function reviewCandidate(row, metric = {}) {
     trades: row.trades,
     signal: row.signal,
     metricSource: row.metricSource,
+    financialRiskLevel: financialRisk.level,
+    financialRiskReasons: financialRisk.reasons.join(" / ") || "財務ガード通過",
+    priceValidationLevel: priceValidation.level,
+    priceValidationReasons: priceValidation.reasons.join(" / ") || "価格検証ガード通過",
+    trustLevel: trustLevel({ reviewStatus, financialRisk, priceValidation }),
     reasons: reasons.join(" / ") || "条件内だが決め手は弱め",
     cautions: [...blockers, ...confirmations].join(" / ") || "大きな自動除外理由なし",
     nextAction,
@@ -130,6 +137,64 @@ function reviewCandidate(row, metric = {}) {
     bps: number(metric.bps),
     eps: number(metric.eps),
   };
+}
+
+function financialRiskLevel({ isSpecialSector, netCashRatio, pbr, per, upside }) {
+  const reasons = [];
+  let points = 0;
+  if (isSpecialSector) {
+    points += 2;
+    reasons.push("特殊業種");
+  }
+  if (netCashRatio < -150) {
+    points += 3;
+    reasons.push(`ネット有利子負債がかなり重い ${netCashRatio}%`);
+  } else if (netCashRatio < -75) {
+    points += 2;
+    reasons.push(`ネット有利子負債が重い ${netCashRatio}%`);
+  }
+  if (pbr <= 0 || pbr > 0.8) {
+    points += 3;
+    reasons.push(`PBR基準外 ${pbr}倍`);
+  }
+  if (per <= 0 || per > 12) {
+    points += 2;
+    reasons.push(`PER基準外 ${per}倍`);
+  }
+  if (upside < 70) {
+    points += 2;
+    reasons.push(`上昇余地不足 ${upside}%`);
+  }
+  const level = points >= 5 ? "high" : points >= 2 ? "medium" : "low";
+  return { level, reasons };
+}
+
+function priceValidationLevel({ trades, winRate, averageReturn, maxDrawdown }) {
+  const reasons = [];
+  if (trades < 3) {
+    reasons.push(`検証取引少 ${trades}回`);
+    return { level: "thin", reasons };
+  }
+  if (winRate < 45 || averageReturn < -3 || maxDrawdown <= -18) {
+    if (winRate < 45) reasons.push(`勝率低い ${winRate}%`);
+    if (averageReturn < -3) reasons.push(`平均利益マイナス ${averageReturn}%`);
+    if (maxDrawdown <= -18) reasons.push(`最大下落大 ${maxDrawdown}%`);
+    return { level: "weak", reasons };
+  }
+  if (winRate >= 60 && averageReturn >= 0 && maxDrawdown > -12) {
+    reasons.push(`許容 勝率${winRate}%/平均${averageReturn}%`);
+    return { level: "good", reasons };
+  }
+  reasons.push(`中立 勝率${winRate}%/平均${averageReturn}%`);
+  return { level: "neutral", reasons };
+}
+
+function trustLevel({ reviewStatus, financialRisk, priceValidation }) {
+  if (reviewStatus === "今回は見送り" || priceValidation.level === "weak" || financialRisk.level === "high") return "avoid";
+  if (financialRisk.level === "medium") return "financialCaution";
+  if (priceValidation.level === "thin") return "thinValidation";
+  if (reviewStatus === "通常候補へ昇格OK" && priceValidation.level === "good" && financialRisk.level === "low") return "high";
+  return "watch";
 }
 
 function toStockInputCsv(rows) {
@@ -167,6 +232,9 @@ function writeReport(rows, approvedRows) {
   const nowBuyPendingCount = nowBuyRows.filter((row) => row.reviewStatus === "追加確認").length;
   const nowBuyRejectedCount = nowBuyRows.filter((row) => row.reviewStatus === "今回は見送り").length;
   const lowPriceValidationCount = rows.filter((row) => number(row.trades) < 3).length;
+  const trustCounts = countBy(rows, "trustLevel");
+  const financialRiskCounts = countBy(rows, "financialRiskLevel");
+  const priceValidationCounts = countBy(rows, "priceValidationLevel");
   const lines = [
     "# 全体自動買い候補 昇格判定",
     "",
@@ -188,6 +256,24 @@ function writeReport(rows, approvedRows) {
     `今買いから追加確認: ${nowBuyPendingCount}件`,
     `今買いから見送り: ${nowBuyRejectedCount}件`,
     `価格検証サンプル少: ${lowPriceValidationCount}件`,
+    "",
+    "## 信頼度の内訳",
+    "",
+    `高信頼: ${trustCounts.high || 0}件`,
+    `検証少: ${trustCounts.thinValidation || 0}件`,
+    `財務注意: ${trustCounts.financialCaution || 0}件`,
+    `監視: ${trustCounts.watch || 0}件`,
+    `見送り: ${trustCounts.avoid || 0}件`,
+    "",
+    "## 財務・価格ガード",
+    "",
+    `財務低リスク: ${financialRiskCounts.low || 0}件`,
+    `財務中リスク: ${financialRiskCounts.medium || 0}件`,
+    `財務高リスク: ${financialRiskCounts.high || 0}件`,
+    `価格検証良好: ${priceValidationCounts.good || 0}件`,
+    `価格検証中立: ${priceValidationCounts.neutral || 0}件`,
+    `価格検証少: ${priceValidationCounts.thin || 0}件`,
+    `価格検証弱い: ${priceValidationCounts.weak || 0}件`,
     "",
     "## 昇格OK",
     "",
@@ -217,6 +303,14 @@ function sectionRows(rows) {
   return rows.slice(0, 30).map((row, index) =>
     `- ${index + 1}. ${row.code} ${row.name}: ${row.reasons} / 注意: ${row.cautions} / 次: ${row.nextAction}`
   );
+}
+
+function countBy(rows, key) {
+  return rows.reduce((counts, row) => {
+    const value = row[key] || "unknown";
+    counts[value] = (counts[value] || 0) + 1;
+    return counts;
+  }, {});
 }
 
 function readCsv(filePath) {
@@ -260,6 +354,11 @@ function toCsv(rows) {
     "trades",
     "signal",
     "metricSource",
+    "financialRiskLevel",
+    "financialRiskReasons",
+    "priceValidationLevel",
+    "priceValidationReasons",
+    "trustLevel",
     "reasons",
     "cautions",
     "nextAction",

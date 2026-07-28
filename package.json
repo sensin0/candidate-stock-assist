@@ -29,6 +29,7 @@
     "backtest": "node scripts/backtest-timing.mjs",
     "backtest:monthly": "python scripts/monthly_signal_backtest.py",
     "price:queue": "node scripts/build-price-refresh-queue.mjs",
+    "price:validation-queue": "node scripts/build-price-validation-queue.mjs",
     "history:refresh": "node scripts/refresh-short-history.mjs",
     "backtest:research": "node scripts/research-price-backtest.mjs",
     "backtest:universe": "node scripts/research-universe-price-backtest.mjs",

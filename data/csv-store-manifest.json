@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-28T01:20:49.957Z",
-  "totalFiles": 36,
-  "totalRows": 279972,
-  "totalBytes": 37023351,
+  "generatedAt": "2026-07-28T01:42:28.973Z",
+  "totalFiles": 37,
+  "totalRows": 280086,
+  "totalBytes": 37052581,
   "problems": [],
   "files": [
     {
@@ -491,6 +491,32 @@
       "problems": []
     },
     {
+      "name": "price-validation-queue.csv",
+      "bytes": 21380,
+      "rows": 114,
+      "columns": 15,
+      "headers": [
+        "code",
+        "name",
+        "signal",
+        "reviewStatus",
+        "trustLevel",
+        "priceValidationLevel",
+        "financialRiskLevel",
+        "trades",
+        "historyMonths",
+        "buyRatio",
+        "pbr",
+        "per",
+        "upside",
+        "issue",
+        "nextAction"
+      ],
+      "duplicateCodes": 0,
+      "warnings": [],
+      "problems": []
+    },
+    {
       "name": "promotion-candidates.csv",
       "bytes": 62631,
       "rows": 150,
@@ -802,9 +828,9 @@
     },
     {
       "name": "universe-buy-candidate-review.csv",
-      "bytes": 49548,
+      "bytes": 57398,
       "rows": 120,
-      "columns": 22,
+      "columns": 27,
       "headers": [
         "code",
         "name",
@@ -825,6 +851,11 @@
         "trades",
         "signal",
         "metricSource",
+        "financialRiskLevel",
+        "financialRiskReasons",
+        "priceValidationLevel",
+        "priceValidationReasons",
+        "trustLevel",
         "reasons",
         "cautions",
         "nextAction"

@@ -13,6 +13,7 @@ const steps = [
   ["通常候補追加プレビュー生成", "node", ["scripts/build-stock-master-expanded-preview.mjs"]],
   ["データ更新", "node", ["scripts/update-data.mjs"]],
   ["株価更新キュー生成", "node", ["scripts/build-price-refresh-queue.mjs"]],
+  ["価格検証キュー生成", "node", ["scripts/build-price-validation-queue.mjs"]],
   ["SQLiteストア生成", pythonExecutable(), ["scripts/build_sqlite_store.py"]],
   ["画面用調査データ生成", "node", ["scripts/build-research-data.mjs"]],
   ["CSVストア監査", "node", ["scripts/audit-csv-store.mjs"]],
