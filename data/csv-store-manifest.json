@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-20T07:20:07.297Z",
+  "generatedAt": "2026-07-28T01:20:49.957Z",
   "totalFiles": 36,
-  "totalRows": 279951,
-  "totalBytes": 37007630,
+  "totalRows": 279972,
+  "totalBytes": 37023351,
   "problems": [],
   "files": [
     {
       "name": "auto-financial-followup.csv",
-      "bytes": 11371,
+      "bytes": 11302,
       "rows": 19,
       "columns": 22,
       "headers": [
@@ -40,8 +40,8 @@
     },
     {
       "name": "backtest-results.csv",
-      "bytes": 7595,
-      "rows": 37,
+      "bytes": 10501,
+      "rows": 55,
       "columns": 15,
       "headers": [
         "code",
@@ -249,9 +249,9 @@
     },
     {
       "name": "hidden-gems.csv",
-      "bytes": 79139,
-      "rows": 200,
-      "columns": 24,
+      "bytes": 68784,
+      "rows": 168,
+      "columns": 26,
       "headers": [
         "hiddenScore",
         "score",
@@ -264,6 +264,8 @@
         "judgement",
         "signal",
         "strategy",
+        "lastDate",
+        "lastClose",
         "priceScore",
         "winRate",
         "averageReturn",
@@ -451,8 +453,8 @@
     },
     {
       "name": "price-refresh-queue.csv",
-      "bytes": 118,
-      "rows": 0,
+      "bytes": 519,
+      "rows": 2,
       "columns": 14,
       "headers": [
         "rank",
@@ -476,8 +478,8 @@
     },
     {
       "name": "price-updates.csv",
-      "bytes": 783,
-      "rows": 37,
+      "bytes": 762,
+      "rows": 36,
       "columns": 3,
       "headers": [
         "code",
@@ -490,7 +492,7 @@
     },
     {
       "name": "promotion-candidates.csv",
-      "bytes": 53110,
+      "bytes": 62631,
       "rows": 150,
       "columns": 18,
       "headers": [
@@ -549,8 +551,8 @@
     },
     {
       "name": "stock-master-expanded-preview.csv",
-      "bytes": 17291,
-      "rows": 51,
+      "bytes": 26358,
+      "rows": 71,
       "columns": 27,
       "headers": [
         "code",
@@ -587,8 +589,8 @@
     },
     {
       "name": "stock-master-hidden-gems-draft.csv",
-      "bytes": 2152,
-      "rows": 6,
+      "bytes": 778,
+      "rows": 2,
       "columns": 14,
       "headers": [
         "code",
@@ -699,8 +701,8 @@
     },
     {
       "name": "stock-master-universe-promotion-draft.csv",
-      "bytes": 810,
-      "rows": 2,
+      "bytes": 6640,
+      "rows": 20,
       "columns": 14,
       "headers": [
         "code",
@@ -800,9 +802,9 @@
     },
     {
       "name": "universe-buy-candidate-review.csv",
-      "bytes": 49733,
+      "bytes": 49548,
       "rows": 120,
-      "columns": 21,
+      "columns": 22,
       "headers": [
         "code",
         "name",
@@ -820,6 +822,7 @@
         "winRate",
         "averageReturn",
         "maxDrawdown",
+        "trades",
         "signal",
         "metricSource",
         "reasons",

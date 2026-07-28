@@ -1,1 +1,3 @@
 rank,priority,code,name,price,priceAsOf,priceAge,buyLine,targetPrice,sellGuidePrice,buyRatio,upside,reason,nextAction
+1,81,6505,東洋電機製造,2462,2026-07-17,11,1010,2675.4,2407.86,2.44,8.67,株価が11日前 / 売り判断に影響 / バックテスト良好 / ネット現金厚め,最新株価を確認して price-updates.csv に追加
+2,56,9402,中部日本放送,1290,2026-07-17,11,850,4467.6,1548,1.52,246.33,株価が11日前 / ネット現金厚め,最新株価を確認して price-updates.csv に追加

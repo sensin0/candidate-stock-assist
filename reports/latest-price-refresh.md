@@ -1,10 +1,10 @@
 # 株価自動更新
 
-生成日時: 2026-07-20T07:19:48.800Z
-対象: 37件
+生成日時: 2026-07-28T01:20:28.590Z
+対象: 55件
 成功: 0件
-失敗: 37件
-price-updates.csv 登録: 37件
+失敗: 55件
+price-updates.csv 登録: 36件
 
 ## 更新できた銘柄
 
@@ -47,8 +47,11 @@ price-updates.csv 登録: 37件
 - 33. 7781 平山ホールディングス: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
 - 34. 1814 大末建設: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
 - 35. 4341 西菱電機: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
-- 36. 3352 バッファロー: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
-- 37. 3435 サンコーテクノ: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 36. 2876 デルソーレ: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 37. 7551 ウェッズ: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 38. 8230 はせがわ: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 39. 7244 市光工業: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
+- 40. 8075 神鋼商事: .T: fetch failed / .N: fetch failed / quote-page: fetch failed
 
 ## 運用
 - 毎朝の判定前に最新終値を取得します。

@@ -1,25 +1,25 @@
 window.AUTO_STOCK_DATA = {
-  "generatedAt": "2026-07-20T07:19:49.379Z",
+  "generatedAt": "2026-07-28T01:20:30.275Z",
   "source": "data/stock-master.csv",
   "priceSource": "data/price-updates.csv",
   "disclosureSource": "data/disclosures.csv",
   "edinetSource": "data/edinet-facts.csv",
   "watchlistSource": "data/watchlist.csv",
-  "fetchedAt": "2026-07-20T07:19:49.305Z",
-  "priceFetchedAt": "2026-07-20T07:19:49.316Z",
-  "disclosureFetchedAt": "2026-07-20T07:19:49.319Z",
-  "edinetFetchedAt": "2026-07-20T07:19:49.321Z",
+  "fetchedAt": "2026-07-28T01:20:30.190Z",
+  "priceFetchedAt": "2026-07-28T01:20:30.202Z",
+  "disclosureFetchedAt": "2026-07-28T01:20:30.204Z",
+  "edinetFetchedAt": "2026-07-28T01:20:30.207Z",
   "nextSources": [
     "price-api",
     "edinet-api",
     "tdnet"
   ],
-  "priceUpdates": 37,
+  "priceUpdates": 36,
   "disclosureUpdates": 5,
   "edinetUpdates": 20,
   "watchlistUpdates": 3,
-  "backtestUpdates": 37,
-  "autoPromotionUpdates": 2,
+  "backtestUpdates": 55,
+  "autoPromotionUpdates": 20,
   "providerStatuses": [
     {
       "label": "銘柄マスタ",
@@ -57,7 +57,7 @@ window.AUTO_STOCK_DATA = {
       "code": "8841",
       "name": "テーオーシー",
       "sector": "不動産",
-      "price": 888,
+      "price": 905,
       "shares": 88217703,
       "treasuryShares": 0,
       "cash": 8500,
@@ -89,7 +89,7 @@ window.AUTO_STOCK_DATA = {
         760,
         800,
         836,
-        888
+        905
       ],
       "edinet": {
         "documentType": "annual",
@@ -97,7 +97,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/8841"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "disclosures": [
         {
           "code": "8841",
@@ -220,7 +220,7 @@ window.AUTO_STOCK_DATA = {
       "code": "3123",
       "name": "サイボー",
       "sector": "繊維・不動産",
-      "price": 630,
+      "price": 636,
       "shares": 12891200,
       "treasuryShares": 0,
       "cash": 2550,
@@ -252,7 +252,7 @@ window.AUTO_STOCK_DATA = {
         630,
         620,
         625,
-        630
+        636
       ],
       "edinet": {
         "documentType": "annual",
@@ -260,7 +260,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/3123"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "3123",
@@ -268,7 +268,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (308円以下)",
-        "sellTiming": "第一利確目安 (756円付近)",
+        "sellTiming": "第一利確目安 (763円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -284,7 +284,7 @@ window.AUTO_STOCK_DATA = {
       "code": "3765",
       "name": "ガンホー",
       "sector": "情報通信",
-      "price": 2347,
+      "price": 2310,
       "shares": 54337100,
       "treasuryShares": 0,
       "cash": 130500,
@@ -316,7 +316,7 @@ window.AUTO_STOCK_DATA = {
         2660,
         2640,
         2625,
-        2347
+        2310
       ],
       "edinet": {
         "documentType": "annual",
@@ -324,7 +324,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/3765"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "disclosures": [
         {
           "code": "3765",
@@ -362,7 +362,7 @@ window.AUTO_STOCK_DATA = {
       "code": "8802",
       "name": "三菱地所",
       "sector": "不動産",
-      "price": 4112,
+      "price": 4060,
       "shares": 1220000000,
       "treasuryShares": 0,
       "cash": 435000,
@@ -394,7 +394,7 @@ window.AUTO_STOCK_DATA = {
         3810,
         3880,
         3940,
-        4112
+        4060
       ],
       "edinet": {
         "documentType": "annual",
@@ -402,7 +402,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/8802"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "disclosures": [
         {
           "code": "8802",
@@ -429,9 +429,9 @@ window.AUTO_STOCK_DATA = {
         "sampleCount": 9,
         "trades": 1,
         "winRate": 100,
-        "averageReturn": 40.8,
+        "averageReturn": 39,
         "maxDrawdown": 0,
-        "bestScore": 92,
+        "bestScore": 89.8,
         "financialScreeningStatus": "",
         "financialScreeningCautions": ""
       }
@@ -440,7 +440,7 @@ window.AUTO_STOCK_DATA = {
       "code": "2484",
       "name": "出前館",
       "sector": "サービス",
-      "price": 124,
+      "price": 135,
       "shares": 111550000,
       "treasuryShares": 0,
       "cash": 28538,
@@ -471,8 +471,7 @@ window.AUTO_STOCK_DATA = {
         148,
         142,
         138,
-        135,
-        124
+        135
       ],
       "edinet": {
         "documentType": "annual",
@@ -480,7 +479,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/2484"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "2484",
@@ -490,12 +489,12 @@ window.AUTO_STOCK_DATA = {
         "buyTiming": "買いライン+5%以内 (138円以下)",
         "sellTiming": "第一利確の85%付近 (187円目安)",
         "confidence": "参考",
-        "sampleCount": 9,
+        "sampleCount": 8,
         "trades": 1,
         "winRate": 0,
-        "averageReturn": -10.1,
-        "maxDrawdown": -10.1,
-        "bestScore": -17.3,
+        "averageReturn": -2.2,
+        "maxDrawdown": -2.2,
+        "bestScore": -1.3,
         "financialScreeningStatus": "反映済み",
         "financialScreeningCautions": "EPSが赤字または未確認 / 価格検証は売買回数0回なので参考扱い"
       }
@@ -504,7 +503,7 @@ window.AUTO_STOCK_DATA = {
       "code": "1897",
       "name": "金下建設",
       "sector": "建設",
-      "price": 3065,
+      "price": 3100,
       "shares": 3800000,
       "treasuryShares": 220000,
       "cash": 16800,
@@ -536,7 +535,7 @@ window.AUTO_STOCK_DATA = {
         2940,
         2890,
         2850,
-        3065
+        3100
       ],
       "edinet": {
         "documentType": "annual",
@@ -544,7 +543,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/1897"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": {
         "status": "重点監視",
         "note": "買いラインを下回ったら有報の資産欄を再確認"
@@ -560,9 +559,9 @@ window.AUTO_STOCK_DATA = {
         "sampleCount": 9,
         "trades": 1,
         "winRate": 0,
-        "averageReturn": -1.1,
+        "averageReturn": 0,
         "maxDrawdown": -8.1,
-        "bestScore": -4.8,
+        "bestScore": -3.5,
         "financialScreeningStatus": "",
         "financialScreeningCautions": ""
       }
@@ -571,7 +570,7 @@ window.AUTO_STOCK_DATA = {
       "code": "9672",
       "name": "東京都競馬",
       "sector": "不動産・レジャー",
-      "price": 4850,
+      "price": 4855,
       "shares": 28764000,
       "treasuryShares": 900000,
       "cash": 23000,
@@ -603,7 +602,7 @@ window.AUTO_STOCK_DATA = {
         5600,
         5780,
         5850,
-        4850
+        4855
       ],
       "edinet": {
         "documentType": "annual",
@@ -611,7 +610,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/9672"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "disclosures": [
         {
           "code": "9672",
@@ -652,7 +651,7 @@ window.AUTO_STOCK_DATA = {
       "code": "8830",
       "name": "住友不動産",
       "sector": "不動産",
-      "price": 3764,
+      "price": 3695,
       "shares": 475000000,
       "treasuryShares": 0,
       "cash": 250000,
@@ -684,7 +683,7 @@ window.AUTO_STOCK_DATA = {
         5700,
         5980,
         6200,
-        3764
+        3695
       ],
       "edinet": {
         "documentType": "annual",
@@ -692,7 +691,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/8830"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "8830",
@@ -716,7 +715,7 @@ window.AUTO_STOCK_DATA = {
       "code": "8801",
       "name": "三井不動産",
       "sector": "不動産",
-      "price": 1537,
+      "price": 1550,
       "shares": 2700000000,
       "treasuryShares": 0,
       "cash": 260000,
@@ -748,7 +747,7 @@ window.AUTO_STOCK_DATA = {
         1530,
         1590,
         1640,
-        1537
+        1550
       ],
       "edinet": {
         "documentType": "annual",
@@ -756,7 +755,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/8801"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "8801",
@@ -764,7 +763,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "財務で見送り",
         "buyTiming": "買いライン到達 (944円以下)",
-        "sellTiming": "第一利確目安 (1,844円付近)",
+        "sellTiming": "第一利確目安 (1,860円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -780,7 +779,7 @@ window.AUTO_STOCK_DATA = {
       "code": "9830",
       "name": "トラスコ中山",
       "sector": "卸売",
-      "price": 2323,
+      "price": 2357,
       "shares": 66000000,
       "treasuryShares": 1200000,
       "cash": 45000,
@@ -812,7 +811,7 @@ window.AUTO_STOCK_DATA = {
         2420,
         2480,
         2500,
-        2323
+        2357
       ],
       "edinet": {
         "documentType": "annual",
@@ -820,7 +819,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/9830"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "9830",
@@ -828,7 +827,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (1,560円以下)",
-        "sellTiming": "第一利確目安 (2,788円付近)",
+        "sellTiming": "第一利確目安 (2,815円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -844,7 +843,7 @@ window.AUTO_STOCK_DATA = {
       "code": "3471",
       "name": "三井不動産ロジスティクスパーク投資法人",
       "sector": "REIT",
-      "price": 110400,
+      "price": 110700,
       "shares": 1100000,
       "treasuryShares": 0,
       "cash": 18000,
@@ -876,7 +875,7 @@ window.AUTO_STOCK_DATA = {
         448000,
         452000,
         455000,
-        110400
+        110700
       ],
       "edinet": {
         "documentType": "annual",
@@ -884,7 +883,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/3471"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "3471",
@@ -908,7 +907,7 @@ window.AUTO_STOCK_DATA = {
       "code": "8018",
       "name": "三共生興",
       "sector": "卸売",
-      "price": 800,
+      "price": 817,
       "shares": 37877715,
       "treasuryShares": 0,
       "cash": 21000,
@@ -940,7 +939,7 @@ window.AUTO_STOCK_DATA = {
         800,
         793,
         786,
-        800
+        817
       ],
       "edinet": {
         "documentType": "annual",
@@ -948,7 +947,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/8018"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "8018",
@@ -956,7 +955,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (531円以下)",
-        "sellTiming": "第一利確目安 (960円付近)",
+        "sellTiming": "第一利確目安 (980円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -972,7 +971,7 @@ window.AUTO_STOCK_DATA = {
       "code": "6513",
       "name": "オリジン",
       "sector": "電機",
-      "price": 1071,
+      "price": 1064,
       "shares": 6699000,
       "treasuryShares": 300000,
       "cash": 11000,
@@ -1004,7 +1003,7 @@ window.AUTO_STOCK_DATA = {
         1230,
         1260,
         1280,
-        1071
+        1064
       ],
       "edinet": {
         "documentType": "annual",
@@ -1012,7 +1011,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/6513"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "6513",
@@ -1025,9 +1024,9 @@ window.AUTO_STOCK_DATA = {
         "sampleCount": 9,
         "trades": 1,
         "winRate": 100,
-        "averageReturn": 3,
+        "averageReturn": 2.3,
         "maxDrawdown": 0,
-        "bestScore": 46.6,
+        "bestScore": 45.8,
         "financialScreeningStatus": "見送り寄り",
         "financialScreeningCautions": "PER 67.26倍で高い / 価格検証は売買回数0回なので参考扱い"
       }
@@ -1036,7 +1035,7 @@ window.AUTO_STOCK_DATA = {
       "code": "1443",
       "name": "技研HD",
       "sector": "建設",
-      "price": 249,
+      "price": 260,
       "shares": 16000000,
       "treasuryShares": 0,
       "cash": 4800,
@@ -1068,7 +1067,7 @@ window.AUTO_STOCK_DATA = {
         208,
         212,
         210,
-        249
+        260
       ],
       "edinet": {
         "documentType": "annual",
@@ -1076,7 +1075,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/1443"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "1443",
@@ -1084,14 +1083,14 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (203円以下)",
-        "sellTiming": "第一利確目安 (299円付近)",
+        "sellTiming": "第一利確目安 (312円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 1,
         "winRate": 100,
-        "averageReturn": 29.7,
+        "averageReturn": 35.4,
         "maxDrawdown": -2.1,
-        "bestScore": 77,
+        "bestScore": 83.8,
         "financialScreeningStatus": "慎重確認",
         "financialScreeningCautions": "ネット有利子負債が重い -42.92% / 価格検証は売買回数0回なので参考扱い"
       }
@@ -1100,7 +1099,7 @@ window.AUTO_STOCK_DATA = {
       "code": "9409",
       "name": "テレビ朝日HD",
       "sector": "情報通信",
-      "price": 3145,
+      "price": 3095,
       "shares": 101060770,
       "treasuryShares": 0,
       "cash": 62000,
@@ -1132,7 +1131,7 @@ window.AUTO_STOCK_DATA = {
         3065,
         3070,
         3105,
-        3145
+        3095
       ],
       "edinet": {
         "documentType": "annual",
@@ -1140,7 +1139,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/9409"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "9409",
@@ -1148,7 +1147,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (2,487円以下)",
-        "sellTiming": "第一利確目安 (3,774円付近)",
+        "sellTiming": "第一利確目安 (3,714円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -1225,7 +1224,7 @@ window.AUTO_STOCK_DATA = {
       "code": "9324",
       "name": "安田倉庫",
       "sector": "倉庫",
-      "price": 2574,
+      "price": 2525,
       "shares": 30200000,
       "treasuryShares": 800000,
       "cash": 18000,
@@ -1257,7 +1256,7 @@ window.AUTO_STOCK_DATA = {
         1390,
         1430,
         1450,
-        2574
+        2525
       ],
       "edinet": {
         "documentType": "annual",
@@ -1265,7 +1264,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/9324"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "9324",
@@ -1289,7 +1288,7 @@ window.AUTO_STOCK_DATA = {
       "code": "8818",
       "name": "京阪神ビルディング",
       "sector": "不動産",
-      "price": 1070,
+      "price": 1106,
       "shares": 50600000,
       "treasuryShares": 1200000,
       "cash": 24000,
@@ -1321,7 +1320,7 @@ window.AUTO_STOCK_DATA = {
         1680,
         1740,
         1780,
-        1070
+        1106
       ],
       "edinet": {
         "documentType": "annual",
@@ -1329,7 +1328,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/8818"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "8818",
@@ -1353,7 +1352,7 @@ window.AUTO_STOCK_DATA = {
       "code": "3892",
       "name": "岡山製紙",
       "sector": "紙・パルプ",
-      "price": 1630,
+      "price": 1633,
       "shares": 4073775,
       "treasuryShares": 0,
       "cash": 7200,
@@ -1385,7 +1384,7 @@ window.AUTO_STOCK_DATA = {
         1631,
         1625,
         1620,
-        1630
+        1633
       ],
       "edinet": {
         "documentType": "annual",
@@ -1393,7 +1392,7 @@ window.AUTO_STOCK_DATA = {
         "submittedAt": "2026-06-19",
         "sourceUrl": "https://example.com/edinet/3892"
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "3892",
@@ -1401,14 +1400,14 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "下げ止まり反転で買い",
         "timingLabel": "検証弱く見送り",
         "buyTiming": "買いライン+10%以内で反転確認 (1,658円以下)",
-        "sellTiming": "第一利確目安 (1,956円付近)",
+        "sellTiming": "第一利確目安 (1,960円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 1,
         "winRate": 0,
-        "averageReturn": -0.5,
+        "averageReturn": -0.3,
         "maxDrawdown": -1.1,
-        "bestScore": 1.5,
+        "bestScore": 1.8,
         "financialScreeningStatus": "",
         "financialScreeningCautions": ""
       }
@@ -1417,7 +1416,7 @@ window.AUTO_STOCK_DATA = {
       "code": "6276",
       "name": "SiriusVision CO.,LTD.",
       "sector": "Electric Appliances",
-      "price": 309,
+      "price": 304,
       "shares": 4008220,
       "treasuryShares": 0,
       "cash": 1086.94,
@@ -1449,7 +1448,7 @@ window.AUTO_STOCK_DATA = {
         289,
         303,
         300,
-        309
+        304
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -1466,22 +1465,22 @@ window.AUTO_STOCK_DATA = {
         "eps": 111.58,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "6276",
         "bestStrategyId": "value-line",
         "bestStrategyLabel": "買いライン到達で買い",
-        "timingLabel": "待つ",
+        "timingLabel": "買い場待ち",
         "buyTiming": "買いライン到達 (285円以下)",
-        "sellTiming": "第一利確目安 (371円付近)",
+        "sellTiming": "第一利確目安 (365円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 1,
         "winRate": 100,
-        "averageReturn": 12,
+        "averageReturn": 10.1,
         "maxDrawdown": 0,
-        "bestScore": 57.3,
+        "bestScore": 55.2,
         "financialScreeningStatus": "",
         "financialScreeningCautions": ""
       }
@@ -1490,7 +1489,7 @@ window.AUTO_STOCK_DATA = {
       "code": "7435",
       "name": "NADEX CO.,LTD.",
       "sector": "Wholesale Trade",
-      "price": 1215,
+      "price": 1219,
       "shares": 8120875,
       "treasuryShares": 0,
       "cash": 4759.89,
@@ -1522,7 +1521,7 @@ window.AUTO_STOCK_DATA = {
         1251,
         1288,
         1240,
-        1215
+        1219
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -1539,7 +1538,7 @@ window.AUTO_STOCK_DATA = {
         "eps": 81.12,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "7435",
@@ -1563,7 +1562,7 @@ window.AUTO_STOCK_DATA = {
       "code": "7567",
       "name": "SAKAE ELECTRONICS CORPORATION",
       "sector": "Wholesale Trade",
-      "price": 515,
+      "price": 524,
       "shares": 5078689,
       "treasuryShares": 0,
       "cash": 1090.79,
@@ -1595,7 +1594,7 @@ window.AUTO_STOCK_DATA = {
         546,
         548,
         547,
-        515
+        524
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -1612,7 +1611,7 @@ window.AUTO_STOCK_DATA = {
         "eps": 25.6,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "7567",
@@ -1620,7 +1619,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (256円以下)",
-        "sellTiming": "第一利確目安 (618円付近)",
+        "sellTiming": "第一利確目安 (629円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -1636,7 +1635,7 @@ window.AUTO_STOCK_DATA = {
       "code": "1514",
       "name": "Sumiseki Holdings,Inc.",
       "sector": "Mining",
-      "price": 560,
+      "price": 600,
       "shares": 59823096,
       "treasuryShares": 0,
       "cash": 16924,
@@ -1668,7 +1667,7 @@ window.AUTO_STOCK_DATA = {
         524,
         550,
         532,
-        560
+        600
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -1685,7 +1684,7 @@ window.AUTO_STOCK_DATA = {
         "eps": 26.75,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "1514",
@@ -1693,7 +1692,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (268円以下)",
-        "sellTiming": "第一利確目安 (672円付近)",
+        "sellTiming": "第一利確目安 (720円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -1709,7 +1708,7 @@ window.AUTO_STOCK_DATA = {
       "code": "7885",
       "name": "TAKANO Co.,Ltd.",
       "sector": "Other Products",
-      "price": 1104,
+      "price": 1083,
       "shares": 15221218,
       "treasuryShares": 0,
       "cash": 8275.25,
@@ -1741,7 +1740,7 @@ window.AUTO_STOCK_DATA = {
         1058,
         1025,
         1013,
-        1104
+        1083
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -1758,7 +1757,7 @@ window.AUTO_STOCK_DATA = {
         "eps": 47.96,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "7885",
@@ -1766,7 +1765,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (480円以下)",
-        "sellTiming": "第一利確目安 (1,325円付近)",
+        "sellTiming": "第一利確目安 (1,300円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -1782,7 +1781,7 @@ window.AUTO_STOCK_DATA = {
       "code": "7901",
       "name": "MATSUMOTO INC.",
       "sector": "Other Products",
-      "price": 780,
+      "price": 801,
       "shares": 1131574,
       "treasuryShares": 0,
       "cash": 676.67,
@@ -1814,7 +1813,7 @@ window.AUTO_STOCK_DATA = {
         788,
         782,
         770,
-        780
+        801
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -1831,7 +1830,7 @@ window.AUTO_STOCK_DATA = {
         "eps": 136.92,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "7901",
@@ -1839,7 +1838,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (660円以下)",
-        "sellTiming": "第一利確目安 (936円付近)",
+        "sellTiming": "第一利確目安 (961円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -1855,7 +1854,7 @@ window.AUTO_STOCK_DATA = {
       "code": "6870",
       "name": "Fenwal Controls of Japan,Ltd.",
       "sector": "Electric Appliances",
-      "price": 2485,
+      "price": 2700,
       "shares": 5437304,
       "treasuryShares": 0,
       "cash": 4282.9,
@@ -1887,7 +1886,7 @@ window.AUTO_STOCK_DATA = {
         2463,
         2525,
         2493,
-        2485
+        2700
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -1904,7 +1903,7 @@ window.AUTO_STOCK_DATA = {
         "eps": 156.93,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "6870",
@@ -1912,7 +1911,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (1,569円以下)",
-        "sellTiming": "第一利確目安 (2,982円付近)",
+        "sellTiming": "第一利確目安 (3,240円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -1928,7 +1927,7 @@ window.AUTO_STOCK_DATA = {
       "code": "5939",
       "name": "OTANI KOGYO CO.,LTD.",
       "sector": "Metal Products",
-      "price": 4805,
+      "price": 4910,
       "shares": 778967,
       "treasuryShares": 0,
       "cash": 1222.59,
@@ -1960,7 +1959,7 @@ window.AUTO_STOCK_DATA = {
         4975,
         5040,
         5000,
-        4805
+        4910
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -1977,7 +1976,7 @@ window.AUTO_STOCK_DATA = {
         "eps": 333.74,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "5939",
@@ -1985,7 +1984,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (3,337円以下)",
-        "sellTiming": "第一利確目安 (5,766円付近)",
+        "sellTiming": "第一利確目安 (5,892円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -2001,7 +2000,7 @@ window.AUTO_STOCK_DATA = {
       "code": "2303",
       "name": "Dawn Corporation",
       "sector": "Information & Communication",
-      "price": 1224,
+      "price": 1266,
       "shares": 2587091,
       "treasuryShares": 0,
       "cash": 733.57,
@@ -2033,7 +2032,7 @@ window.AUTO_STOCK_DATA = {
         1205,
         1254,
         1237,
-        1224
+        1266
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -2050,7 +2049,7 @@ window.AUTO_STOCK_DATA = {
         "eps": 160.29,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "2303",
@@ -2058,7 +2057,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (797円以下)",
-        "sellTiming": "第一利確目安 (1,469円付近)",
+        "sellTiming": "第一利確目安 (1,519円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -2074,7 +2073,7 @@ window.AUTO_STOCK_DATA = {
       "code": "2332",
       "name": "Quest Co.,Ltd.",
       "sector": "Information & Communication",
-      "price": 1682,
+      "price": 1706,
       "shares": 5127026,
       "treasuryShares": 0,
       "cash": 3057.48,
@@ -2106,7 +2105,7 @@ window.AUTO_STOCK_DATA = {
         1760,
         1851,
         1719,
-        1682
+        1706
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -2123,7 +2122,7 @@ window.AUTO_STOCK_DATA = {
         "eps": 166.96,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "2332",
@@ -2131,7 +2130,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (1,091円以下)",
-        "sellTiming": "第一利確目安 (2,018円付近)",
+        "sellTiming": "第一利確目安 (2,047円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -2147,7 +2146,7 @@ window.AUTO_STOCK_DATA = {
       "code": "3908",
       "name": "コラボス",
       "sector": "情報・通信業",
-      "price": 346,
+      "price": 348,
       "shares": 4669262,
       "treasuryShares": 0,
       "cash": 1286.03,
@@ -2179,7 +2178,7 @@ window.AUTO_STOCK_DATA = {
         319,
         319,
         319,
-        346
+        348
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -2196,7 +2195,7 @@ window.AUTO_STOCK_DATA = {
         "eps": 10.74,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "3908",
@@ -2204,7 +2203,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (107円以下)",
-        "sellTiming": "第一利確目安 (415円付近)",
+        "sellTiming": "第一利確目安 (418円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -2220,7 +2219,7 @@ window.AUTO_STOCK_DATA = {
       "code": "6643",
       "name": "戸上電機製作所",
       "sector": "電気機器",
-      "price": 5180,
+      "price": 5420,
       "shares": 4691273,
       "treasuryShares": 0,
       "cash": 6941.74,
@@ -2252,7 +2251,7 @@ window.AUTO_STOCK_DATA = {
         5120,
         5080,
         5150,
-        5180
+        5420
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -2269,7 +2268,7 @@ window.AUTO_STOCK_DATA = {
         "eps": 528.41,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "6643",
@@ -2277,7 +2276,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (3,906円以下)",
-        "sellTiming": "第一利確目安 (6,216円付近)",
+        "sellTiming": "第一利確目安 (6,504円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -2293,7 +2292,7 @@ window.AUTO_STOCK_DATA = {
       "code": "7781",
       "name": "平山ホールディングス",
       "sector": "精密機器",
-      "price": 781,
+      "price": 796,
       "shares": 6871605,
       "treasuryShares": 0,
       "cash": 6053.26,
@@ -2325,7 +2324,7 @@ window.AUTO_STOCK_DATA = {
         772,
         780,
         779,
-        781
+        796
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -2342,7 +2341,7 @@ window.AUTO_STOCK_DATA = {
         "eps": 115.22,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "7781",
@@ -2366,7 +2365,7 @@ window.AUTO_STOCK_DATA = {
       "code": "1814",
       "name": "大末建設",
       "sector": "建設業",
-      "price": 3490,
+      "price": 3615,
       "shares": 10295709,
       "treasuryShares": 0,
       "cash": 10776,
@@ -2398,7 +2397,7 @@ window.AUTO_STOCK_DATA = {
         3155,
         3180,
         3200,
-        3490
+        3615
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -2415,7 +2414,7 @@ window.AUTO_STOCK_DATA = {
         "eps": 374.93,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "1814",
@@ -2423,7 +2422,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (1,837円以下)",
-        "sellTiming": "第一利確目安 (4,188円付近)",
+        "sellTiming": "第一利確目安 (4,338円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -2439,7 +2438,7 @@ window.AUTO_STOCK_DATA = {
       "code": "4341",
       "name": "西菱電機",
       "sector": "サービス業",
-      "price": 860,
+      "price": 883,
       "shares": 3384186,
       "treasuryShares": 0,
       "cash": 1120,
@@ -2471,7 +2470,7 @@ window.AUTO_STOCK_DATA = {
         869,
         870,
         871,
-        860
+        883
       ],
       "edinet": {
         "documentType": "auto-financial",
@@ -2488,7 +2487,7 @@ window.AUTO_STOCK_DATA = {
         "eps": 62.06,
         "sourceUrl": ""
       },
-      "priceAsOf": "2026-07-17",
+      "priceAsOf": "2026-07-23",
       "watchlist": null,
       "backtest": {
         "code": "4341",
@@ -2496,7 +2495,7 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "買いライン到達で買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン到達 (621円以下)",
-        "sellTiming": "第一利確目安 (1,032円付近)",
+        "sellTiming": "第一利確目安 (1,060円付近)",
         "confidence": "参考",
         "sampleCount": 9,
         "trades": 0,
@@ -2509,11 +2508,731 @@ window.AUTO_STOCK_DATA = {
       }
     },
     {
+      "code": "2876",
+      "name": "デルソーレ",
+      "sector": "食料品",
+      "price": 446,
+      "priceAsOf": "2026-07-28",
+      "shares": 8905007,
+      "treasuryShares": 0,
+      "cash": 1715.92,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 90,
+      "netAssets": 6230.21,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 699.63,
+      "eps": 44.92,
+      "pbrLow": 0.58,
+      "pbrAvg": 0.87,
+      "pbrHigh": 1.15,
+      "perLow": 0,
+      "perAvg": 9.93,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.64倍 / 低PER 9.93倍 / ネット現金厚め 40.94% / 買いライン圏 1倍 / 上昇余地大 141.72% / 価格検証許容 勝率66.7%/平均1.1%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        401,
+        415,
+        424,
+        437,
+        446
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "2876",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (426円以下)",
+        "sellTiming": "第一利確の85%付近 (455円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "7551",
+      "name": "ウェッズ",
+      "sector": "輸送用機器",
+      "price": 672,
+      "priceAsOf": "2026-07-28",
+      "shares": 17588932,
+      "treasuryShares": 0,
+      "cash": 8516.1,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 1188.24,
+      "netAssets": 19550.45,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 1111.52,
+      "eps": 67.34,
+      "pbrLow": 0.54,
+      "pbrAvg": 0.81,
+      "pbrHigh": 1.08,
+      "perLow": 0,
+      "perAvg": 9.98,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.6倍 / 低PER 9.98倍 / ネット現金厚め 62% / 買いライン圏 1倍 / 上昇余地大 153.07%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        605,
+        625,
+        638,
+        659,
+        672
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "7551",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (630円以下)",
+        "sellTiming": "第一利確の85%付近 (685円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "8230",
+      "name": "はせがわ",
+      "sector": "小売業",
+      "price": 307,
+      "priceAsOf": "2026-07-28",
+      "shares": 18190356,
+      "treasuryShares": 0,
+      "cash": 2405,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 4305,
+      "netAssets": 12784,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 702.79,
+      "eps": 30.79,
+      "pbrLow": 0.45,
+      "pbrAvg": 0.75,
+      "pbrHigh": 1.05,
+      "perLow": 0,
+      "perAvg": 9.97,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.44倍 / 低PER 9.97倍 / 買いライン圏 1倍 / 上昇余地大 250.25%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        276,
+        286,
+        292,
+        301,
+        307
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "8230",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "買い候補",
+        "buyTiming": "買いライン到達 (316円以下)",
+        "sellTiming": "第一利確目安 (395円付近)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.3,
+        "maxDrawdown": 0,
+        "bestScore": 51.8,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "7244",
+      "name": "市光工業",
+      "sector": "電気機器",
+      "price": 517,
+      "priceAsOf": "2026-07-28",
+      "shares": 96599952,
+      "treasuryShares": 0,
+      "cash": 12431,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 0,
+      "netAssets": 80120,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 829.4,
+      "eps": 51.95,
+      "pbrLow": 0.56,
+      "pbrAvg": 0.84,
+      "pbrHigh": 1.12,
+      "perLow": 0,
+      "perAvg": 9.95,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.62倍 / 低PER 9.95倍 / ネット現金厚め 24.89% / 買いライン圏 1倍 / 上昇余地大 145.45%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        465,
+        481,
+        491,
+        507,
+        517
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "7244",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (488円以下)",
+        "sellTiming": "第一利確の85%付近 (527円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "8075",
+      "name": "神鋼商事",
+      "sector": "卸売業",
+      "price": 2388,
+      "priceAsOf": "2026-07-28",
+      "shares": 26957576,
+      "treasuryShares": 0,
+      "cash": 17427,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 53396,
+      "netAssets": 100982,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 3745.96,
+      "eps": 340.62,
+      "pbrLow": 0.58,
+      "pbrAvg": 0.87,
+      "pbrHigh": 1.15,
+      "perLow": 0,
+      "perAvg": 7.01,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.64倍 / 低PER 7.01倍 / 買いライン圏 1倍 / 上昇余地大 242.33%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        2149,
+        2221,
+        2269,
+        2340,
+        2388
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "8075",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (2,281円以下)",
+        "sellTiming": "第一利確の85%付近 (2,436円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "9876",
+      "name": "コックス",
+      "sector": "小売業",
+      "price": 230,
+      "priceAsOf": "2026-07-28",
+      "shares": 27670166,
+      "treasuryShares": 0,
+      "cash": 5918.22,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 0,
+      "netAssets": 10542.61,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 381.01,
+      "eps": 39.1,
+      "pbrLow": 0.54,
+      "pbrAvg": 0.81,
+      "pbrHigh": 1.08,
+      "perLow": 0,
+      "perAvg": 5.88,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.6倍 / 低PER 5.88倍 / ネット現金厚め 92.99% / 買いライン圏 0.94倍 / 上昇余地大 308%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        207,
+        214,
+        219,
+        225,
+        230
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-02-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "9876",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (216円以下)",
+        "sellTiming": "第一利確の85%付近 (235円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "9625",
+      "name": "セレスポ",
+      "sector": "サービス業",
+      "price": 1073,
+      "priceAsOf": "2026-07-28",
+      "shares": 5481781,
+      "treasuryShares": 0,
+      "cash": 4499.5,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 550,
+      "netAssets": 9777.03,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 1783.55,
+      "eps": 124.05,
+      "pbrLow": 0.54,
+      "pbrAvg": 0.81,
+      "pbrHigh": 1.08,
+      "perLow": 0,
+      "perAvg": 8.65,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.6倍 / 低PER 8.65倍 / ネット現金厚め 67.15% / 買いライン圏 0.94倍 / 上昇余地大 177.47%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        966,
+        998,
+        1019,
+        1052,
+        1073
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "9625",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (1,011円以下)",
+        "sellTiming": "第一利確の85%付近 (1,094円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "5408",
+      "name": "中山製鋼所",
+      "sector": "鉄鋼",
+      "price": 604,
+      "priceAsOf": "2026-07-28",
+      "shares": 54215323,
+      "treasuryShares": 0,
+      "cash": 23225,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 8515,
+      "netAssets": 109149,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 2013.25,
+      "eps": 64.56,
+      "pbrLow": 0.45,
+      "pbrAvg": 0.75,
+      "pbrHigh": 1.05,
+      "perLow": 0,
+      "perAvg": 9.36,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.3倍 / 低PER 9.36倍 / ネット現金厚め 44.92% / 買いライン圏 0.94倍 / 上昇余地大 409.98%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        544,
+        562,
+        574,
+        592,
+        604
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "5408",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "買い候補",
+        "buyTiming": "買いライン到達 (906円以下)",
+        "sellTiming": "第一利確目安 (1,132円付近)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "5958",
+      "name": "三洋工業",
+      "sector": "金属製品",
+      "price": 4370,
+      "priceAsOf": "2026-07-28",
+      "shares": 2803964,
+      "treasuryShares": 0,
+      "cash": 7303,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 665,
+      "netAssets": 20904,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 7455.16,
+      "eps": 463.63,
+      "pbrLow": 0.53,
+      "pbrAvg": 0.8,
+      "pbrHigh": 1.06,
+      "perLow": 0,
+      "perAvg": 9.43,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.59倍 / 低PER 9.43倍 / ネット現金厚め 54.17% / 買いライン圏 0.94倍 / 上昇余地大 161.02%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        3933,
+        4064,
+        4152,
+        4283,
+        4370
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "5958",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (4,149円以下)",
+        "sellTiming": "第一利確の85%付近 (4,457円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "6307",
+      "name": "サンセイ",
+      "sector": "機械",
+      "price": 413,
+      "priceAsOf": "2026-07-28",
+      "shares": 7771796,
+      "treasuryShares": 0,
+      "cash": 989.07,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 444.82,
+      "netAssets": 5329.82,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 685.79,
+      "eps": 51.47,
+      "pbrLow": 0.54,
+      "pbrAvg": 0.81,
+      "pbrHigh": 1.08,
+      "perLow": 0,
+      "perAvg": 8.02,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.6倍 / 低PER 8.02倍 / ネット現金厚め 16.96% / 買いライン圏 0.94倍 / 上昇余地大 199.1%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        372,
+        384,
+        392,
+        405,
+        413
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "6307",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (389円以下)",
+        "sellTiming": "第一利確の85%付近 (421円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.6,
+        "maxDrawdown": 0,
+        "bestScore": 52.1,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "6229",
+      "name": "オーケーエム",
+      "sector": "機械",
+      "price": 1467,
+      "priceAsOf": "2026-07-28",
+      "shares": 4403150,
+      "treasuryShares": 0,
+      "cash": 3286.31,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 539.31,
+      "netAssets": 10792.43,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 2451.07,
+      "eps": 165.83,
+      "pbrLow": 0.54,
+      "pbrAvg": 0.81,
+      "pbrHigh": 1.08,
+      "perLow": 0,
+      "perAvg": 8.85,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.6倍 / 低PER 8.85倍 / ネット現金厚め 42.53% / 買いライン圏 0.94倍 / 上昇余地大 171.3%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        1320,
+        1364,
+        1394,
+        1438,
+        1467
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "6229",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (1,390円以下)",
+        "sellTiming": "第一利確の85%付近 (1,496円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.6,
+        "maxDrawdown": 0,
+        "bestScore": 52.1,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "2907",
+      "name": "あじかん",
+      "sector": "食料品",
+      "price": 1445,
+      "priceAsOf": "2026-07-28",
+      "shares": 7485450,
+      "treasuryShares": 0,
+      "cash": 2326,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 3157,
+      "netAssets": 18302,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 2445.01,
+      "eps": 153.63,
+      "pbrLow": 0.53,
+      "pbrAvg": 0.8,
+      "pbrHigh": 1.06,
+      "perLow": 0,
+      "perAvg": 9.41,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.59倍 / 低PER 9.41倍 / 買いライン圏 0.94倍 / 上昇余地大 158.88%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        1301,
+        1344,
+        1373,
+        1416,
+        1445
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "2907",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (1,361円以下)",
+        "sellTiming": "第一利確の85%付近 (1,474円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
       "code": "3352",
       "name": "バッファロー",
       "sector": "小売業",
-      "price": 1663,
-      "priceAsOf": "2026-07-17",
+      "price": 1786,
+      "priceAsOf": "2026-07-23",
       "shares": 2343406,
       "treasuryShares": 0,
       "cash": 3729.99,
@@ -2535,19 +3254,19 @@ window.AUTO_STOCK_DATA = {
       "qualitativeDone": true,
       "held": false,
       "risk": "",
-      "catalyst": "全体自動判定から昇格OK。低PBR 0.6倍 / 低PER 8.01倍 / ネット現金厚め 76.75% / 上昇余地大 199.58% / 価格検証良好 勝率100%/平均10%。自動ランキング反映済み。原資料確認で精度向上",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.6倍 / 低PER 8.01倍 / ネット現金厚め 76.75% / 買いライン圏 0.93倍 / 上昇余地大 199.58%。自動ランキング反映済み。原資料確認で精度向上",
       "history": [
         1492,
         1542,
         1575,
         1625,
         1658,
-        1663
+        1786
       ],
       "edinet": {
         "documentType": "irbank-auto",
         "periodEnd": "2026-03-01",
-        "submittedAt": "2026-07-20",
+        "submittedAt": "2026-07-28",
         "sourceUrl": ""
       },
       "watchlist": null,
@@ -2557,70 +3276,69 @@ window.AUTO_STOCK_DATA = {
         "bestStrategyLabel": "5%以内で早めに買い",
         "timingLabel": "待つ",
         "buyTiming": "買いライン+5%以内 (1,572円以下)",
-        "sellTiming": "第一利確の85%付近 (1,696円目安)",
+        "sellTiming": "第一利確の85%付近 (1,822円目安)",
         "confidence": "参考",
         "sampleCount": 6,
         "trades": 1,
         "winRate": 100,
-        "averageReturn": 7.8,
+        "averageReturn": 15.8,
         "maxDrawdown": 0,
-        "bestScore": 52.4,
+        "bestScore": 62,
         "financialScreeningStatus": "",
         "financialScreeningCautions": ""
       }
     },
     {
-      "code": "3435",
-      "name": "サンコーテクノ",
-      "sector": "金属製品",
-      "price": 1399,
-      "priceAsOf": "2026-07-17",
-      "shares": 8067584,
+      "code": "7299",
+      "name": "フジオーゼックス",
+      "sector": "輸送用機器",
+      "price": 1614,
+      "priceAsOf": "2026-07-28",
+      "shares": 10006809,
       "treasuryShares": 0,
-      "cash": 4702.22,
+      "cash": 6507.44,
       "securities": 0,
       "investmentSecurities": 0,
-      "interestDebt": 3952.52,
-      "netAssets": 20337.17,
+      "interestDebt": 255.88,
+      "netAssets": 32566.76,
       "rentalBook": 0,
       "rentalMarket": 0,
-      "bps": 2520.85,
-      "eps": 157.94,
-      "pbrLow": 0.51,
-      "pbrAvg": 0.78,
+      "bps": 3254.46,
+      "eps": 172.89,
+      "pbrLow": 0.45,
+      "pbrAvg": 0.75,
       "pbrHigh": 1.05,
       "perLow": 0,
-      "perAvg": 9.04,
+      "perAvg": 9.34,
       "perHigh": 0,
       "dataConfidence": "自動財務確認",
       "qualitativeDone": true,
       "held": false,
       "risk": "",
-      "catalyst": "全体自動判定から昇格OK。低PBR 0.57倍 / 低PER 9.04倍 / 買いライン以下 0.9倍 / 上昇余地大 170.09% / 価格検証良好 勝率100%/平均9%。自動ランキング反映済み。原資料確認で精度向上",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.5倍 / 低PER 9.34倍 / ネット現金厚め 38.71% / 買いライン圏 0.93倍 / 上昇余地大 208.51%。自動ランキング反映済み。原資料確認で精度向上",
       "history": [
-        1285,
-        1328,
-        1357,
-        1399,
-        1428,
-        1399
+        1453,
+        1501,
+        1533,
+        1582,
+        1614
       ],
       "edinet": {
         "documentType": "irbank-auto",
         "periodEnd": "2026-03-01",
-        "submittedAt": "2026-07-20",
+        "submittedAt": "2026-07-28",
         "sourceUrl": ""
       },
       "watchlist": null,
       "backtest": {
-        "code": "3435",
+        "code": "7299",
         "bestStrategyId": "early-value",
         "bestStrategyLabel": "5%以内で早めに買い",
         "timingLabel": "待つ",
-        "buyTiming": "買いライン+5%以内 (1,350円以下)",
-        "sellTiming": "第一利確の85%付近 (1,427円目安)",
+        "buyTiming": "買いライン+5%以内 (1,538円以下)",
+        "sellTiming": "第一利確の85%付近 (1,646円目安)",
         "confidence": "参考",
-        "sampleCount": 6,
+        "sampleCount": 5,
         "trades": 1,
         "winRate": 100,
         "averageReturn": 7.5,
@@ -2629,16 +3347,379 @@ window.AUTO_STOCK_DATA = {
         "financialScreeningStatus": "",
         "financialScreeningCautions": ""
       }
+    },
+    {
+      "code": "8291",
+      "name": "日産東京販売ホールディングス",
+      "sector": "小売業",
+      "price": 546,
+      "priceAsOf": "2026-07-28",
+      "shares": 59462751,
+      "treasuryShares": 0,
+      "cash": 15654,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 12605,
+      "netAssets": 58594,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 985.39,
+      "eps": 58.86,
+      "pbrLow": 0.5,
+      "pbrAvg": 0.78,
+      "pbrHigh": 1.05,
+      "perLow": 0,
+      "perAvg": 9.28,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.55倍 / 低PER 9.28倍 / 買いライン圏 0.93倍 / 上昇余地大 176.13%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        491,
+        508,
+        519,
+        535,
+        546
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "8291",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (517円以下)",
+        "sellTiming": "第一利確の85%付近 (557円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "3903",
+      "name": "ｇｕｍｉ",
+      "sector": "情報・通信業",
+      "price": 230,
+      "priceAsOf": "2026-07-28",
+      "shares": 57570162,
+      "treasuryShares": 0,
+      "cash": 3393.91,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 4816.1,
+      "netAssets": 22134,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 384.47,
+      "eps": 28.46,
+      "pbrLow": 0.54,
+      "pbrAvg": 0.81,
+      "pbrHigh": 1.08,
+      "perLow": 0,
+      "perAvg": 8.08,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.6倍 / 低PER 8.08倍 / 買いライン圏 0.93倍 / 上昇余地大 196.97%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        207,
+        214,
+        219,
+        225,
+        230
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-04-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "3903",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (218円以下)",
+        "sellTiming": "第一利確の85%付近 (235円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "8138",
+      "name": "三京化成",
+      "sector": "卸売業",
+      "price": 4000,
+      "priceAsOf": "2026-07-28",
+      "shares": 900122,
+      "treasuryShares": 0,
+      "cash": 2460.14,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 0,
+      "netAssets": 9193.91,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 10214.07,
+      "eps": 434.39,
+      "pbrLow": 0.45,
+      "pbrAvg": 0.75,
+      "pbrHigh": 1.05,
+      "perLow": 0,
+      "perAvg": 9.21,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.39倍 / 低PER 9.21倍 / ネット現金厚め 68.33% / 買いライン圏 0.92倍 / 上昇余地大 290.69%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        3600,
+        3720,
+        3800,
+        3920,
+        4000
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "8138",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "買い候補",
+        "buyTiming": "買いライン到達 (4,596円以下)",
+        "sellTiming": "第一利確目安 (5,745円付近)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "6286",
+      "name": "靜甲",
+      "sector": "機械",
+      "price": 1421,
+      "priceAsOf": "2026-07-28",
+      "shares": 6458266,
+      "treasuryShares": 0,
+      "cash": 7184.36,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 2570.27,
+      "netAssets": 17453.4,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 2702.49,
+      "eps": 154.84,
+      "pbrLow": 0.48,
+      "pbrAvg": 0.77,
+      "pbrHigh": 1.05,
+      "perLow": 0,
+      "perAvg": 9.18,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.53倍 / 低PER 9.18倍 / ネット現金厚め 50.28% / 買いライン圏 0.92倍 / 上昇余地大 190.98%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        1279,
+        1322,
+        1350,
+        1393,
+        1421
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "6286",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (1,362円以下)",
+        "sellTiming": "第一利確の85%付近 (1,449円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "5997",
+      "name": "協立エアテック",
+      "sector": "金属製品",
+      "price": 873,
+      "priceAsOf": "2026-07-28",
+      "shares": 4795134,
+      "treasuryShares": 0,
+      "cash": 3920.58,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 1950,
+      "netAssets": 9862.44,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 2056.76,
+      "eps": 95.34,
+      "pbrLow": 0.45,
+      "pbrAvg": 0.75,
+      "pbrHigh": 1.05,
+      "perLow": 0,
+      "perAvg": 9.16,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.42倍 / 低PER 9.16倍 / ネット現金厚め 47.07% / 買いライン圏 0.92倍 / 上昇余地大 260.46%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        786,
+        812,
+        829,
+        856,
+        873
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "5997",
+        "bestStrategyId": "value-line",
+        "bestStrategyLabel": "買いライン到達で買い",
+        "timingLabel": "買い候補",
+        "buyTiming": "買いライン到達 (926円以下)",
+        "sellTiming": "第一利確目安 (1,157円付近)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.5,
+        "maxDrawdown": 0,
+        "bestScore": 52,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
+    },
+    {
+      "code": "4360",
+      "name": "マナック・ケミカル・パートナーズ",
+      "sector": "化学",
+      "price": 811,
+      "priceAsOf": "2026-07-28",
+      "shares": 8174854,
+      "treasuryShares": 0,
+      "cash": 4008,
+      "securities": 0,
+      "investmentSecurities": 0,
+      "interestDebt": 816,
+      "netAssets": 11301,
+      "rentalBook": 0,
+      "rentalMarket": 0,
+      "bps": 1382.41,
+      "eps": 95.86,
+      "pbrLow": 0.53,
+      "pbrAvg": 0.8,
+      "pbrHigh": 1.06,
+      "perLow": 0,
+      "perAvg": 8.46,
+      "perHigh": 0,
+      "dataConfidence": "自動財務確認",
+      "qualitativeDone": true,
+      "held": false,
+      "risk": "",
+      "catalyst": "全体自動判定から昇格OK。低PBR 0.59倍 / 低PER 8.46倍 / ネット現金厚め 48.15% / 買いライン圏 0.92倍 / 上昇余地大 183.68%。自動ランキング反映済み。原資料確認で精度向上",
+      "history": [
+        730,
+        754,
+        770,
+        795,
+        811
+      ],
+      "edinet": {
+        "documentType": "irbank-auto",
+        "periodEnd": "2026-03-01",
+        "submittedAt": "2026-07-28",
+        "sourceUrl": ""
+      },
+      "watchlist": null,
+      "backtest": {
+        "code": "4360",
+        "bestStrategyId": "early-value",
+        "bestStrategyLabel": "5%以内で早めに買い",
+        "timingLabel": "待つ",
+        "buyTiming": "買いライン+5%以内 (769円以下)",
+        "sellTiming": "第一利確の85%付近 (827円目安)",
+        "confidence": "参考",
+        "sampleCount": 5,
+        "trades": 1,
+        "winRate": 100,
+        "averageReturn": 7.6,
+        "maxDrawdown": 0,
+        "bestScore": 52.1,
+        "financialScreeningStatus": "",
+        "financialScreeningCautions": ""
+      }
     }
   ],
   "dataQuality": {
-    "ok": true,
+    "ok": false,
     "providerWarnings": [],
     "validationWarnings": [],
     "externalReferenceWarnings": [],
     "missingBacktest": [],
     "missingPrice": [],
-    "stalePrice": [],
+    "stalePrice": [
+      "6505 東洋電機製造: 株価が11日前",
+      "9402 中部日本放送: 株価が11日前"
+    ],
     "missingEdinet": [],
     "manualInputs": [
       "6505 東洋電機製造",
@@ -2653,16 +3734,21 @@ window.AUTO_STOCK_DATA = {
       "8818 京阪神ビルディング"
     ],
     "stale": [],
-    "nextFixes": [],
+    "nextFixes": [
+      "最新株価を確認: 6505 東洋電機製造: 株価が11日前",
+      "最新株価を確認: 9402 中部日本放送: 株価が11日前"
+    ],
     "readiness": {
-      "score": 100,
+      "score": 99,
       "label": "本番運用OK",
-      "blockers": []
+      "blockers": [
+        "最新株価を更新: 53/55"
+      ]
     },
     "coverage": {
-      "price": "37/37",
-      "freshPrice": "37/37",
-      "edinet": "37/37"
+      "price": "55/55",
+      "freshPrice": "53/55",
+      "edinet": "55/55"
     }
   }
 };

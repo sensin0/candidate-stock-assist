@@ -1,10 +1,10 @@
 # CSVストア監査
 
-生成日時: 2026-07-20T07:20:07.297Z
+生成日時: 2026-07-28T01:20:49.957Z
 
 CSVファイル: 36件
-総行数: 279,951行
-総サイズ: 37.01MB
+総行数: 279,972行
+総サイズ: 37.02MB
 問題: 0件
 
 ## 判定
@@ -29,15 +29,15 @@ CSVファイル: 36件
 
 ## 全CSV
 
-- auto-financial-followup.csv: 19行 / 22列 / 11.37KB
-- backtest-results.csv: 37行 / 15列 / 7.6KB
+- auto-financial-followup.csv: 19行 / 22列 / 11.3KB
+- backtest-results.csv: 55行 / 15列 / 10.5KB
 - disclosures.csv: 5行 / 4列 / 664B
 - edinet-facts.csv: 20行 / 14列 / 2.42KB
 - financial-confirmation-queue.csv: 58行 / 14列 / 23.97KB
 - financial-confirmation-worklist.csv: 58行 / 37列 / 28.89KB
 - financial-confirmed-input.csv: 0行 / 27列 / 240B
 - financial-worklist-screened.csv: 58行 / 21列 / 19.28KB
-- hidden-gems.csv: 200行 / 24列 / 79.14KB
+- hidden-gems.csv: 168行 / 26列 / 68.78KB
 - listed-universe.csv: 3,728行 / 4列 / 281.38KB
 - monthly-price-history.csv: 131,189行 / 4列 / 3.76MB
 - monthly-signal-backtest.csv: 131,186行 / 21列 / 30.37MB / 注意: サイズが大きい 30369795 bytes
@@ -45,19 +45,19 @@ CSVファイル: 36件
 - multibagger-candidates.csv: 217行 / 17列 / 76.13KB
 - multibagger-thresholds.csv: 55行 / 8列 / 3.28KB
 - price-backtest-results.csv: 60行 / 18列 / 8.24KB
-- price-refresh-queue.csv: 0行 / 14列 / 118B
-- price-updates.csv: 37行 / 3列 / 783B
-- promotion-candidates.csv: 150行 / 18列 / 53.11KB
+- price-refresh-queue.csv: 2行 / 14列 / 519B
+- price-updates.csv: 36行 / 3列 / 762B
+- promotion-candidates.csv: 150行 / 18列 / 62.63KB
 - promotion-readiness.csv: 50行 / 19列 / 20.86KB
-- stock-master-expanded-preview.csv: 51行 / 27列 / 17.29KB
-- stock-master-hidden-gems-draft.csv: 6行 / 14列 / 2.15KB
+- stock-master-expanded-preview.csv: 71行 / 27列 / 26.36KB
+- stock-master-hidden-gems-draft.csv: 2行 / 14列 / 778B
 - stock-master-input-draft.csv: 50行 / 14列 / 17.48KB
 - stock-master-input.csv: 3行 / 13列 / 459B
 - stock-master-promoted.csv: 35行 / 27列 / 9.18KB
-- stock-master-universe-promotion-draft.csv: 2行 / 14列 / 810B
+- stock-master-universe-promotion-draft.csv: 20行 / 14列 / 6.64KB
 - stock-master.csv: 35行 / 27列 / 9.23KB
 - stock-master.generated.csv: 3行 / 27列 / 810B
-- universe-buy-candidate-review.csv: 120行 / 21列 / 49.73KB
+- universe-buy-candidate-review.csv: 120行 / 22列 / 49.55KB
 - universe-buy-candidates.csv: 120行 / 38列 / 100.7KB
 - universe-check-status.csv: 3,728行 / 12列 / 758.45KB
 - universe-completion-overrides.csv: 169行 / 22列 / 48.95KB

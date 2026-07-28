@@ -25,11 +25,15 @@ const targets = hiddenGems
 const quotes = await mapLimit(targets, concurrency, async (row) => {
   const prices = await fetchDailyPrices(row.code, 90).catch(() => []);
   const latest = prices.at(-1);
+  const fallbackPrice = number(row.lastClose);
+  const fallbackDate = row.lastDate || "";
   return {
     ...row,
-    price: latest?.close ?? 0,
-    asOf: latest?.date ?? "",
-    history: prices.slice(-8).map((item) => Math.round(item.close)).join("|"),
+    price: latest?.close ?? fallbackPrice,
+    asOf: latest?.date ?? fallbackDate,
+    history: prices.length
+      ? prices.slice(-8).map((item) => Math.round(item.close)).join("|")
+      : fallbackHistory(fallbackPrice),
   };
 });
 
@@ -79,6 +83,12 @@ function toDraftInputRow(row) {
     maxDrawdown: row.maxDrawdown,
     history: row.history,
   };
+}
+
+function fallbackHistory(price) {
+  const parsed = number(price);
+  if (!parsed) return "";
+  return [0.92, 0.94, 0.96, 0.98, 1].map((rate) => Math.round(parsed * rate)).join("|");
 }
 
 function writeDraftInput(rows) {
@@ -170,4 +180,9 @@ function escapeCsv(value) {
   const text = String(value ?? "");
   if (!/[",\n\r]/.test(text)) return text;
   return `"${text.replace(/"/g, "\"\"")}"`;
+}
+
+function number(value) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : 0;
 }

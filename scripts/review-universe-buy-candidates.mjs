@@ -65,29 +65,34 @@ function reviewCandidate(row, metric = {}) {
   const winRate = number(row.winRate);
   const averageReturn = number(row.averageReturn);
   const maxDrawdown = number(row.maxDrawdown);
+  const trades = number(row.trades);
+  const signal = row.signal || "";
+  const isNowBuy = signal === "今買い候補";
+  const hasPriceValidation = trades >= 3;
 
   if (isExisting) confirmations.push("通常候補登録済みのため既存候補側で最終確認");
   if (isSpecialSector) confirmations.push(`${sector}は財務構造が特殊なため原資料確認を優先`);
   if (netCashRatio < -75) confirmations.push(`ネット有利子負債が重い ${netCashRatio}%`);
   if (maxDrawdown <= -8) confirmations.push(`過去検証の最大下落が大きい ${maxDrawdown}%`);
-  if (buyRatio > 0.95) confirmations.push(`買いラインへの余裕が小さい ${buyRatio}倍`);
+  if (buyRatio > 1.02) confirmations.push(`買いラインを少し上回る ${buyRatio}倍`);
+  if (!hasPriceValidation) confirmations.push(`価格検証サンプル少 ${trades}回。財務と現在価格を優先`);
 
   if (pbr <= 0 || pbr > 0.8) blockers.push(`PBRが昇格基準外 ${pbr}倍`);
   if (per <= 0 || per > 12) blockers.push(`PERが昇格基準外 ${per}倍`);
   if (upside < 70) blockers.push(`上昇余地が不足 ${upside}%`);
-  if (winRate < 80) blockers.push(`価格検証の勝率が不足 ${winRate}%`);
-  if (averageReturn < 8) blockers.push(`価格検証の平均利益が不足 ${averageReturn}%`);
+  if (hasPriceValidation && winRate < 45) blockers.push(`価格検証の勝率が低い ${winRate}%`);
+  if (hasPriceValidation && averageReturn < -3) blockers.push(`価格検証の平均利益がマイナス ${averageReturn}%`);
 
   if (pbr > 0 && pbr <= 0.7) reasons.push(`低PBR ${pbr}倍`);
   if (per > 0 && per <= 10) reasons.push(`低PER ${per}倍`);
   if (netCashRatio >= 15) reasons.push(`ネット現金厚め ${netCashRatio}%`);
-  if (buyRatio <= 0.9) reasons.push(`買いライン以下 ${buyRatio}倍`);
+  if (buyRatio <= 1.02) reasons.push(`買いライン圏 ${buyRatio}倍`);
   if (upside >= 100) reasons.push(`上昇余地大 ${upside}%`);
-  if (winRate >= 80 && averageReturn >= 8) reasons.push(`価格検証良好 勝率${winRate}%/平均${averageReturn}%`);
+  if (hasPriceValidation && winRate >= 60 && averageReturn >= 0) reasons.push(`価格検証許容 勝率${winRate}%/平均${averageReturn}%`);
 
   let reviewStatus = "追加確認";
   if (blockers.length) reviewStatus = "今回は見送り";
-  else if (!isExisting && !isSpecialSector && netCashRatio >= 0 && buyRatio <= 0.95 && maxDrawdown > -8) reviewStatus = "通常候補へ昇格OK";
+  else if (!isExisting && !isSpecialSector && isNowBuy && netCashRatio >= -75 && buyRatio <= 1.02 && maxDrawdown > -12) reviewStatus = "通常候補へ昇格OK";
 
   const nextAction = reviewStatus === "通常候補へ昇格OK"
     ? "自動ランキングへ反映済み。通常候補追加プレビューへも反映"
@@ -112,6 +117,7 @@ function reviewCandidate(row, metric = {}) {
     winRate: row.winRate,
     averageReturn: row.averageReturn,
     maxDrawdown: row.maxDrawdown,
+    trades: row.trades,
     signal: row.signal,
     metricSource: row.metricSource,
     reasons: reasons.join(" / ") || "条件内だが決め手は弱め",
@@ -156,6 +162,11 @@ function writeReport(rows, approvedRows) {
   const approvedCount = rows.filter((row) => row.reviewStatus === "通常候補へ昇格OK").length;
   const pendingCount = rows.filter((row) => row.reviewStatus === "追加確認").length;
   const rejectedCount = rows.filter((row) => row.reviewStatus === "今回は見送り").length;
+  const nowBuyRows = rows.filter((row) => row.signal === "今買い候補");
+  const nowBuyApprovedCount = nowBuyRows.filter((row) => row.reviewStatus === "通常候補へ昇格OK").length;
+  const nowBuyPendingCount = nowBuyRows.filter((row) => row.reviewStatus === "追加確認").length;
+  const nowBuyRejectedCount = nowBuyRows.filter((row) => row.reviewStatus === "今回は見送り").length;
+  const lowPriceValidationCount = rows.filter((row) => number(row.trades) < 3).length;
   const lines = [
     "# 全体自動買い候補 昇格判定",
     "",
@@ -169,6 +180,14 @@ function writeReport(rows, approvedRows) {
     `追加確認: ${pendingCount}件`,
     `今回は見送り: ${rejectedCount}件`,
     `追加プレビュー反映: ${approvedRows.length}件`,
+    "",
+    "## 今買い候補の内訳",
+    "",
+    `今買い候補: ${nowBuyRows.length}件`,
+    `今買いから昇格OK: ${nowBuyApprovedCount}件`,
+    `今買いから追加確認: ${nowBuyPendingCount}件`,
+    `今買いから見送り: ${nowBuyRejectedCount}件`,
+    `価格検証サンプル少: ${lowPriceValidationCount}件`,
     "",
     "## 昇格OK",
     "",
@@ -185,6 +204,8 @@ function writeReport(rows, approvedRows) {
     "## ルール",
     "",
     "- 特殊業種、重いネット有利子負債、下落余地が大きい候補は昇格OKにしません。",
+    "- 価格検証サンプルが少ない場合は0%敗北扱いにせず、財務と現在価格が揃っていればランキングへ反映します。",
+    "- 今買い候補は買いラインちょうどから少し上までを買いライン圏として扱います。",
     "- 昇格OKは通常候補追加プレビューにも入れます。自動ランキングではすでに表示します。",
     "- 見送りはランキング下位へ回し、誤って買い誘導しないため理由を残します。",
   ];
@@ -236,6 +257,7 @@ function toCsv(rows) {
     "winRate",
     "averageReturn",
     "maxDrawdown",
+    "trades",
     "signal",
     "metricSource",
     "reasons",

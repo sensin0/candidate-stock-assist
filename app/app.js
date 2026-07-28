@@ -769,35 +769,52 @@ function isAvoidAssist(label) {
   return ["リスクで見送り", "検証弱く見送り", "財務で見送り"].includes(label);
 }
 
+function activeAutoBuyCandidates() {
+  return (window.AUTO_RESEARCH_DATA?.autoBuyCandidates ?? []).filter((item) => item.reviewStatus !== "今回は見送り");
+}
+
+function activeAutoNowBuyCandidates() {
+  return activeAutoBuyCandidates().filter((item) => autoBuySignalRank(item) >= 3);
+}
+
+function activeAutoNearBuyCandidates() {
+  return activeAutoBuyCandidates().filter((item) => autoBuySignalRank(item) === 2);
+}
+
 function renderSummary() {
   const visible = visibleStocks();
   const expansion = window.AUTO_EXPANSION_PREVIEW;
   const previewAddCount = expansion?.previewAddCount ?? expansion?.items?.length ?? 0;
   const expandedCount = expansion?.expandedCount ?? visible.length + previewAddCount;
   const buyNow = byAssist("今買い候補", visible).length;
-  const autoBuyCandidateCount = window.AUTO_RESEARCH_DATA?.autoBuyCandidates?.length ?? 0;
+  const autoBuyNowCount = activeAutoNowBuyCandidates().length;
+  const autoNearCount = activeAutoNearBuyCandidates().length;
+  const totalBuyNow = buyNow + autoBuyNowCount;
+  const autoBuyCandidateCount = activeAutoBuyCandidates().length;
   const sellNow = byAssist("今売り検討", visible).length + byAssist("一部利益確定検討", visible).length;
   const risk = visible.filter((stock) => isAvoidAssist(stock.assist.label)).length;
   const near = byAssist("買い場に近い", visible).length;
+  const totalNear = near + autoNearCount;
   const nearOrPending = visible.filter((stock) => isNearOrPending(stock.assist.label)).length;
   const watched = visible.filter((stock) => stock.watchlist).length;
   const autoFinancial = visible.filter(isAutoFinancial).length;
   const qualityWarning = window.AUTO_STOCK_DATA?.dataQuality?.ok === false
     ? " 自動判定済み。"
     : "";
-  document.getElementById("summaryBand").className = `summary-band${buyNow ? " summary-buy-active" : ""}`;
-  document.getElementById("todaySummaryTitle").textContent = buyNow ? "買いタイミング点灯中" : "今日の結論";
+  document.getElementById("summaryBand").className = `summary-band${totalBuyNow ? " summary-buy-active" : ""}`;
+  document.getElementById("todaySummaryTitle").textContent = totalBuyNow ? "買いタイミング点灯中" : "今日の結論";
   document.getElementById("todaySummary").textContent =
-    buyNow
-      ? `今買い${buyNow}件。上位から確認。${qualityWarning}`
-      : `今買い${buyNow}件、買い場近い${near}件、予備軍${autoBuyCandidateCount}件。${qualityWarning}`;
+    totalBuyNow
+      ? `今買い${totalBuyNow}件、買い場近い${totalNear}件。上位から確認。${qualityWarning}`
+      : `今買い${totalBuyNow}件、買い場近い${totalNear}件、候補${autoBuyCandidateCount}件。${qualityWarning}`;
   document.getElementById("summaryStats").innerHTML = [
     ["通常候補", visible.length],
     ["追加確認", previewAddCount],
-    ["今買い", buyNow],
-    ["予備軍", autoBuyCandidateCount],
+    ["今買い", totalBuyNow],
+    ["自動今買い", autoBuyNowCount],
+    ["候補", autoBuyCandidateCount],
     ["売り検討", sellNow],
-    ["買い場近い", near],
+    ["買い場近い", totalNear],
     ["買い場候補", nearOrPending],
     ["自動財務", autoFinancial],
     ["監視中", watched],
