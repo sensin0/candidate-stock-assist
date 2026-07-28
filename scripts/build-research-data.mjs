@@ -66,12 +66,13 @@ const multibaggerWatch = multibaggerRows
     timingRank: timingRank(row),
   }));
 
-const autoBuyCandidates = universeBuyCandidateRows.slice(0, 120).map((row) => {
+const autoBuyCandidates = universeBuyCandidateRows.map((row) => {
   const review = universeBuyCandidateReviewByCode.get(row.code) ?? {};
   const metrics = metricsByCode.get(row.code) ?? {};
   const price = number(row.price || metrics.price);
   const pbr = number(row.pbr);
   const per = number(row.per);
+  const momentumRisk = momentumRiskFor(row);
   return {
     code: row.code,
     name: row.name,
@@ -91,6 +92,8 @@ const autoBuyCandidates = universeBuyCandidateRows.slice(0, 120).map((row) => {
     auxiliaryWinRate: number(review.auxiliaryWinRate),
     auxiliaryAverageReturn: number(review.auxiliaryAverageReturn),
     auxiliaryMaxDrawdown: number(review.auxiliaryMaxDrawdown),
+    momentumRiskLevel: momentumRisk.level,
+    momentumRiskReasons: momentumRisk.reasons.join(" / ") || "過熱リスク低め",
     trustLevel: review.trustLevel || "",
     autoBuyScore: number(row.autoBuyScore),
     price,
@@ -140,7 +143,9 @@ const autoBuyCandidates = universeBuyCandidateRows.slice(0, 120).map((row) => {
     qualityRank: number(row.rankingScore || row.autoBuyScore),
     qualityNote: review.reviewStatus ? `${review.reviewStatus}: ${review.reasons || review.cautions}` : row.caution || "自動ランキング反映済み。原資料確認で精度向上",
   };
-}).sort((a, b) => reviewPriority(b.reviewStatus) - reviewPriority(a.reviewStatus) || b.rankingScore - a.rankingScore);
+})
+  .sort(autoBuyCandidateSort)
+  .slice(0, 120);
 
 const payload = {
   generatedAt: new Date().toISOString(),
@@ -180,6 +185,71 @@ function readTable(tableName, csvPath) {
     }
   }
   return readCsv(csvPath);
+}
+
+function momentumRiskFor(row) {
+  const reasons = [];
+  const latestSignal = row.latestSignal || "";
+  const periodReturn = number(row.periodReturn);
+  let points = 0;
+  if (latestSignal === "高値圏") {
+    points += 3;
+    reasons.push("高値圏");
+  }
+  if (periodReturn >= 180) {
+    points += 3;
+    reasons.push(`急騰後 ${round(periodReturn)}%`);
+  } else if (periodReturn >= 100) {
+    points += 2;
+    reasons.push(`上昇大 ${round(periodReturn)}%`);
+  }
+  if (periodReturn <= -60) {
+    points += 2;
+    reasons.push(`大幅下落後 ${round(periodReturn)}%`);
+  }
+  const level = points >= 4 ? "high" : points >= 2 ? "medium" : "low";
+  return { level, reasons };
+}
+
+function autoBuyCandidateSort(a, b) {
+  return reviewPriority(b.reviewStatus) - reviewPriority(a.reviewStatus)
+    || trustPriority(b.trustLevel) - trustPriority(a.trustLevel)
+    || buyTimingPriority(b) - buyTimingPriority(a)
+    || priceValidationPriority(b.priceValidationLevel) - priceValidationPriority(a.priceValidationLevel)
+    || momentumPriority(b.momentumRiskLevel) - momentumPriority(a.momentumRiskLevel)
+    || b.rankingScore - a.rankingScore;
+}
+
+function trustPriority(level) {
+  if (level === "high") return 5;
+  if (level === "watch") return 4;
+  if (level === "financialCaution") return 3;
+  if (level === "thinValidation") return 2;
+  if (level === "avoid") return 1;
+  return 0;
+}
+
+function priceValidationPriority(level) {
+  if (level === "good" || level === "auxiliaryGood") return 4;
+  if (level === "neutral") return 3;
+  if (level === "thin") return 2;
+  if (level === "weak" || level === "auxiliaryWeak") return 1;
+  return 0;
+}
+
+function momentumPriority(level) {
+  if (level === "low") return 3;
+  if (level === "medium") return 2;
+  if (level === "high") return 1;
+  return 0;
+}
+
+function buyTimingPriority(item) {
+  const buyRatio = number(item.buyRatio);
+  if (buyRatio > 0 && buyRatio <= 1) return 4;
+  if (buyRatio > 0 && buyRatio <= 1.08) return 3;
+  if (buyRatio > 0 && buyRatio <= 1.18) return 2;
+  return 1;
 }
 
 function number(value) {

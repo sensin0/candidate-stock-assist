@@ -1263,6 +1263,7 @@ function todayStockReason(stock) {
 function todayResearchItem(item, sourceType, label, bonus) {
   const timingBonus = sourceType === "autoBuyCandidates" ? autoBuyTimingPriority(item) : 0;
   const trustBonus = sourceType === "autoBuyCandidates" ? autoBuyTrustScore(item) : 0;
+  const momentumPenalty = sourceType === "autoBuyCandidates" ? autoBuyMomentumPenalty(item) : 0;
   const backtestScore =
     (Number(item.trades ?? item.backtestTrades ?? 0) >= 3 ? 10 : -8)
     + Math.max(-14, Math.min(18, Number(item.averageReturn ?? item.backtestAverageReturn ?? 0) * 1.3))
@@ -1277,6 +1278,7 @@ function todayResearchItem(item, sourceType, label, bonus) {
     + trustBonus
     + (item.reviewStatus === "今回は見送り" ? -90 : 0)
     + backtestScore
+    + momentumPenalty
     + bonus;
   return {
     kind: "research",
@@ -1295,6 +1297,7 @@ function researchPriority(item, sourceType) {
     if (item.reviewStatus === "今回は見送り") return 24;
     const signalRank = autoBuySignalRank(item);
     const trustRank = autoBuyTrustRank(item);
+    if (autoBuyMomentumRiskRank(item) >= 2 && trustRank < 3) return 72;
     if (signalRank >= 3 && trustRank >= 3) return 128;
     if (signalRank >= 3 && trustRank >= 2) return 122;
     if (signalRank >= 2 && trustRank >= 3) return 112;
@@ -1586,6 +1589,29 @@ function autoBuyTrustScore(item) {
   if (hasGoodAutoBuyBacktest(item)) score += 20;
   if (hasBadAutoBuyBacktest(item)) score -= 50;
   return score;
+}
+
+function autoBuyMomentumRiskRank(item) {
+  if (item.momentumRiskLevel === "high") return 3;
+  if (item.momentumRiskLevel === "medium") return 2;
+  if (item.momentumRiskLevel === "low") return 0;
+  if (item.latestSignal === "高値圏" || Number(item.periodReturn ?? 0) >= 180) return 3;
+  if (Number(item.periodReturn ?? 0) >= 100 || Number(item.periodReturn ?? 0) <= -60) return 2;
+  return 0;
+}
+
+function autoBuyMomentumPenalty(item) {
+  const risk = autoBuyMomentumRiskRank(item);
+  if (risk >= 3) return -45;
+  if (risk >= 2) return -24;
+  return 0;
+}
+
+function momentumRiskLabel(item) {
+  const risk = autoBuyMomentumRiskRank(item);
+  if (risk >= 3) return "高";
+  if (risk >= 2) return "中";
+  return "低";
 }
 
 function riskLevelLabel(level) {
@@ -2372,6 +2398,7 @@ function renderResearchMetrics(item) {
     ["財務リスク", item.financialRiskLevel ? `${riskLevelLabel(item.financialRiskLevel)} ${item.financialRiskReasons || ""}` : "-"],
     ["価格検証", item.priceValidationLevel ? `${priceValidationLabel(item.priceValidationLevel)} ${item.priceValidationReasons || ""}` : "-"],
     ["補助検証", item.auxiliaryTrades ? `${item.auxiliaryTrades}回 / 勝率${pct(item.auxiliaryWinRate ?? 0)} / 平均${pct(item.auxiliaryAverageReturn ?? 0)}` : "-"],
+    ["過熱リスク", item.momentumRiskLevel ? `${momentumRiskLabel(item)} ${item.momentumRiskReasons || ""}` : momentumRiskLabel(item)],
     ["昇格理由", item.reviewReasons || "-"],
     ["確認注意", item.reviewCautions || item.caution || "財務と開示を確認"],
     ["買いライン", item.buyLine ? yen(item.buyLine) : "推定中"],
@@ -3242,7 +3269,11 @@ function researchPriorityReason(entry) {
   }
   if (entry.sourceType === "autoBuyCandidates") {
     const validation = hasAutoBuyLowPriceValidation(item) ? `検証${item.trades ?? 0}回` : `勝率${pct(item.winRate ?? 0)}`;
-    return `${autoBuySignalLabel(item)}。${validation}。自動取得財務でランキング反映`;
+    const warnings = [
+      hasBadAutoBuyBacktest(item) ? priceValidationLabel(item.priceValidationLevel) : "",
+      autoBuyMomentumRiskRank(item) >= 2 ? `過熱${momentumRiskLabel(item)}` : "",
+    ].filter(Boolean).join(" / ");
+    return `${autoBuySignalLabel(item)}。${validation}${warnings ? `。注意: ${warnings}` : ""}。自動取得財務でランキング反映`;
   }
   if (entry.sourceType === "researchTiming") {
     return `${item.timingAction || "上昇タイミング"}。勝率${pct(item.winRate ?? 0)}、平均${pct(item.averageReturn ?? 0)}です`;
