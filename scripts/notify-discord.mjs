@@ -116,6 +116,8 @@ const manualInputCount = dataQuality?.manualInputs?.length ?? 0;
 
 const message = [
   "候補銘柄アシスト 朝レポートを更新しました",
+  `サイト: ${siteUrl}`,
+  `朝レポート: ${reportUrl}`,
   "",
   `対象銘柄数: ${stockCount}件${stockCountWarning}`,
   universe ? `日本株全体: ${universe.success}/${universe.total}件取得 / 上昇タイミング候補 ${universe.buyTiming ?? 0}件` : "日本株全体: 調査データ待ち",

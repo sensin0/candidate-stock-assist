@@ -23,6 +23,8 @@ assert.match(result.stdout, /今買い候補: \d+件/);
 assert.match(result.stdout, /全体自動判定・買い候補予備軍/);
 assert.match(result.stdout, /自動財務確認: \d+件/);
 assert.match(result.stdout, /今日見る優先順位/);
+assert.match(result.stdout, /サイト: https:\/\/example\.com\/candidate-stock-assist\//);
+assert.match(result.stdout, /朝レポート: https:\/\/example\.com\/candidate-stock-assist\/reports\/latest-morning-report\.md/);
 assert.match(result.stdout, /自動財務確認/);
 assert.match(result.stdout, /自動財務確認の買い場接近/);
 assert.match(result.stdout, /自動財務確認の後回し/);
