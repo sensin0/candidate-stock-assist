@@ -1643,9 +1643,22 @@ function autoBuyRankingBadges(item) {
     const risk = autoBuyMomentumRiskRank(item);
     badges.push({ label: `過熱 ${momentumRiskLabel(item)}`, level: risk >= 3 ? "danger" : risk >= 2 ? "warn" : "ok" });
   }
+  badges.push(...autoBuyPerformanceBadges(item));
   const rejectReason = autoBuyRejectReason(item);
   if (rejectReason) badges.push({ label: rejectReason, level: "danger" });
   return badges.map((badge) => `<span class="ranking-badge ranking-badge-${badge.level}">${escapeHtml(badge.label)}</span>`).join("");
+}
+
+function autoBuyPerformanceBadges(item) {
+  const prefix = Number(item.auxiliaryTrades ?? 0) > 0 ? "補助" : "";
+  const winRate = autoBuyDisplayWinRate(item);
+  const averageReturn = autoBuyDisplayAverageReturn(item);
+  const maxDrawdown = autoBuyDisplayMaxDrawdown(item);
+  return [
+    { label: `${prefix}勝率 ${pct(winRate)}`, level: winRate >= 60 ? "ok" : winRate >= 45 ? "warn" : "danger" },
+    { label: `${prefix}平均 ${pct(averageReturn)}`, level: averageReturn >= 8 ? "ok" : averageReturn >= 0 ? "warn" : "danger" },
+    { label: `${prefix}下落 ${pct(maxDrawdown)}`, level: maxDrawdown > -12 ? "ok" : maxDrawdown > -18 ? "warn" : "danger" },
+  ];
 }
 
 function autoBuyRejectReason(item) {
@@ -1668,6 +1681,11 @@ function autoBuyDisplayWinRate(item) {
 function autoBuyDisplayAverageReturn(item) {
   if (Number(item.auxiliaryTrades ?? 0) > 0) return Number(item.auxiliaryAverageReturn ?? 0);
   return Number(item.averageReturn ?? 0);
+}
+
+function autoBuyDisplayMaxDrawdown(item) {
+  if (Number(item.auxiliaryTrades ?? 0) > 0) return Number(item.auxiliaryMaxDrawdown ?? item.maxDrawdown ?? 0);
+  return Number(item.maxDrawdown ?? 0);
 }
 
 function autoBuyValidationNote(item) {
@@ -1768,7 +1786,7 @@ function renderTodayRankingRow(entry, index) {
         <span>${escapeHtml(item.signal || item.status || "確認")}</span>
         <span>平均 ${pct(type === "autoBuyCandidates" ? autoBuyDisplayAverageReturn(item) : item.averageReturn ?? 0)}</span>
         <span>勝率 ${pct(type === "autoBuyCandidates" ? autoBuyDisplayWinRate(item) : item.winRate ?? 0)}</span>
-        <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
+        <span>最大下落 ${pct(type === "autoBuyCandidates" ? autoBuyDisplayMaxDrawdown(item) : item.maxDrawdown ?? 0)}</span>
       </div>
     </article>
     ${isActive ? renderInlineMobileLynchPreview(lynch, `${item.name}の確認`, renderInlineResearchSummary(item, type)) : ""}
@@ -1939,9 +1957,9 @@ function renderResearchRankingRow(item, index, type) {
         <span>品質 ${Math.round((item.autoBuyScore ?? item.qualityRank ?? item.timingRank ?? item.score ?? 0) * 10) / 10}</span>
         ${type === "autoBuyCandidates" ? `<span>買い比率 ${times(item.buyRatio ?? 0)}</span><span>上昇余地 ${pct(item.upside ?? 0)}</span><span>PBR ${times(item.pbr ?? 0)}</span><span>PER ${times(item.per ?? 0)}</span>` : ""}
         <span>${escapeHtml(item.qualityNote || "利益と下落耐性")}</span>
-        <span>平均 ${pct(item.averageReturn ?? 0)}</span>
-        <span>勝率 ${pct(item.winRate ?? 0)}</span>
-        <span>最大下落 ${pct(item.maxDrawdown ?? 0)}</span>
+        <span>平均 ${pct(type === "autoBuyCandidates" ? autoBuyDisplayAverageReturn(item) : item.averageReturn ?? 0)}</span>
+        <span>勝率 ${pct(type === "autoBuyCandidates" ? autoBuyDisplayWinRate(item) : item.winRate ?? 0)}</span>
+        <span>最大下落 ${pct(type === "autoBuyCandidates" ? autoBuyDisplayMaxDrawdown(item) : item.maxDrawdown ?? 0)}</span>
       </div>
     </article>
     ${isActive ? renderInlineMobileLynchPreview(renderResearchLynch(item, type), `${item.name}のリンチ・チャート`, renderInlineResearchSummary(item, type)) : ""}

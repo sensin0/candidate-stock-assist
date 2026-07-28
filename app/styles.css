@@ -628,7 +628,7 @@ select {
 }
 
 .ranking-badge {
-  max-width: 100%;
+  max-width: min(100%, 220px);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
