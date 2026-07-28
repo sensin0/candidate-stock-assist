@@ -1670,6 +1670,16 @@ function autoBuyDisplayAverageReturn(item) {
   return Number(item.averageReturn ?? 0);
 }
 
+function autoBuyValidationNote(item) {
+  if (Number(item.auxiliaryTrades ?? 0) > 0) {
+    return `補助検証は、買いライン到達が少ない銘柄を買いライン+8%以内でも検証した参考値です。${item.auxiliaryTrades}回、補助勝率${pct(item.auxiliaryWinRate ?? 0)}、平均${pct(item.auxiliaryAverageReturn ?? 0)}です`;
+  }
+  if (Number(item.trades ?? 0) > 0) {
+    return `通常検証は、買いライン到達後の売買結果です。${item.trades}回、勝率${pct(item.winRate ?? 0)}、平均${pct(item.averageReturn ?? 0)}です`;
+  }
+  return "価格検証は少なめです。財務、現在価格、月次シグナルを優先して判断します";
+}
+
 function hasAutoBuyLowPriceValidation(item) {
   if (item.priceValidationLevel) return item.priceValidationLevel === "thin";
   return Number(item.trades ?? item.backtestTrades ?? 0) < 3;
@@ -2119,8 +2129,9 @@ function renderResearchDetail(item, type) {
     type === "autoBuyCandidates"
       ? `買いライン比率${times(item.buyRatio ?? 0)}、上昇余地${pct(item.upside ?? 0)}、PBR ${times(item.pbr ?? 0)}、PER ${times(item.per ?? 0)}、2倍期待は${item.multibaggerLabel || "標準"}、時期目安は${item.doubleTimeframe || "未設定"}です`
       : `価格検証の平均は${pct(item.averageReturn ?? 0)}、勝率は${pct(item.winRate ?? 0)}です`,
+    type === "autoBuyCandidates" ? autoBuyValidationNote(item) : "",
     item.caution || "財務・価格・月次判定を反映済みです",
-  ].map((reason) => `<li>${escapeHtml(reason)}</li>`).join("");
+  ].filter(Boolean).map((reason) => `<li>${escapeHtml(reason)}</li>`).join("");
   document.getElementById("nextActionList").innerHTML = researchNextActions(item)
     .map((action) => `<li>${escapeHtml(action)}</li>`)
     .join("");
@@ -2446,7 +2457,7 @@ function renderResearchMetrics(item) {
     ["信頼度", autoBuyTrustLabel(item) || item.trustLevel || "-"],
     ["財務リスク", item.financialRiskLevel ? `${riskLevelLabel(item.financialRiskLevel)} ${item.financialRiskReasons || ""}` : "-"],
     ["価格検証", item.priceValidationLevel ? `${priceValidationLabel(item.priceValidationLevel)} ${item.priceValidationReasons || ""}` : "-"],
-    ["補助検証", item.auxiliaryTrades ? `${item.auxiliaryTrades}回 / 勝率${pct(item.auxiliaryWinRate ?? 0)} / 平均${pct(item.auxiliaryAverageReturn ?? 0)}` : "-"],
+    ["補助検証", item.auxiliaryTrades ? `買いライン+8%以内も確認 / ${item.auxiliaryTrades}回 / 勝率${pct(item.auxiliaryWinRate ?? 0)} / 平均${pct(item.auxiliaryAverageReturn ?? 0)}` : "-"],
     ["過熱リスク", item.momentumRiskLevel ? `${momentumRiskLabel(item)} ${item.momentumRiskReasons || ""}` : momentumRiskLabel(item)],
     ["昇格理由", item.reviewReasons || "-"],
     ["確認注意", item.reviewCautions || item.caution || "財務と開示を確認"],
@@ -2468,8 +2479,10 @@ function renderResearchMetrics(item) {
     ["2倍理由", item.multibaggerReasons || "-"],
     ["品質ランク", `${Math.round((item.rankingScore ?? item.autoBuyScore ?? item.qualityRank ?? item.timingRank ?? item.score ?? 0) * 10) / 10}点`],
     ["負けにくさメモ", item.qualityNote || "利益と下落耐性を確認"],
-    ["勝率", pct(item.winRate ?? 0)],
-    ["平均リターン", pct(item.averageReturn ?? 0)],
+    ["表示勝率", pct(autoBuyDisplayWinRate(item))],
+    ["表示平均", pct(autoBuyDisplayAverageReturn(item))],
+    ["通常勝率", pct(item.winRate ?? 0)],
+    ["通常平均", pct(item.averageReturn ?? 0)],
     ["最大下落", pct(item.maxDrawdown ?? 0)],
     ["検証回数", `${item.trades ?? 0}回`],
     ["注意", item.caution || "財務と開示を確認"],
