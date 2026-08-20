@@ -251,6 +251,9 @@ if (!/\d{4}\/\d{2}/.test(result.lynchChart)) {
 if (!result.inlineLynchPreview.includes("inline-mobile-lynch-preview") || !result.inlineLynchPreview.includes("リンチ・チャート")) {
   failures.push("選択銘柄直下のリンチ・チャートプレビューが生成されていません");
 }
+if (!result.inlineLynchPreview.includes("data-selected-preview")) {
+  failures.push("選択銘柄直下のリンチ・チャートへ移動する目印が生成されていません");
+}
 if (!result.inlineLynchPreview.includes("inline-selected-summary") || !result.inlineLynchPreview.includes("買い")) {
   failures.push("選択銘柄直下の要約情報が生成されていません");
 }

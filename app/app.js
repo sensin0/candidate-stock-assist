@@ -238,6 +238,7 @@ let selectedCode = null;
 let selectedResearch = null;
 let searchQuery = "";
 let assistFilter = "all";
+let pendingSelectionScroll = false;
 
 const csvHeaders = [
   "code",
@@ -1360,7 +1361,7 @@ function renderMobileLynchPreview(content, title) {
 
 function renderInlineMobileLynchPreview(content, title, summary = "") {
   return `
-    <div class="inline-mobile-lynch-preview" aria-live="polite">
+    <div class="inline-mobile-lynch-preview" data-selected-preview tabindex="-1" aria-live="polite">
       <div class="section-heading">
         <div>
           <p class="eyebrow">選択中</p>
@@ -3524,7 +3525,9 @@ function setupEvents() {
         type: researchCard.dataset.researchType,
         code: researchCard.dataset.researchCode,
       };
+      pendingSelectionScroll = true;
       render();
+      scrollToSelectedChart();
       return;
     }
 
@@ -3532,7 +3535,9 @@ function setupEvents() {
     if (!card) return;
     selectedCode = card.dataset.code;
     selectedResearch = null;
+    pendingSelectionScroll = true;
     render();
+    scrollToSelectedChart();
   });
   document.getElementById("rankingSelect").addEventListener("change", () => {
     selectTopRankingItem();
@@ -3579,6 +3584,15 @@ function setupEvents() {
       event.target.value = "";
     }
   });
+}
+
+function scrollToSelectedChart() {
+  if (!pendingSelectionScroll) return;
+  pendingSelectionScroll = false;
+  const target = document.querySelector?.("[data-selected-preview]") || document.getElementById("lynchChart");
+  if (!target) return;
+  target.scrollIntoView?.({ behavior: "smooth", block: "nearest" });
+  target.focus?.({ preventScroll: true });
 }
 
 function setImportStatus(message, isError = false) {

@@ -553,7 +553,30 @@ main {
 }
 
 .inline-mobile-lynch-preview {
-  display: none;
+  display: block;
+  margin: 0 0 14px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfb;
+  scroll-margin-block: 16px;
+  outline: none;
+}
+
+.inline-mobile-lynch-preview .section-heading {
+  margin-bottom: 8px;
+}
+
+.inline-mobile-lynch-preview .section-heading h3 {
+  font-size: 16px;
+}
+
+.inline-mobile-lynch-preview .section-heading .eyebrow {
+  font-size: 10px;
+}
+
+.inline-mobile-lynch-preview .chart {
+  margin-top: 0;
 }
 
 .inline-selected-summary {
