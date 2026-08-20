@@ -3047,8 +3047,11 @@ function renderLynchChart(stock) {
   const seriesPoints = (series) => series.map((value, index) => `${x(index)},${y(value)}`).join(" ");
   const valueLine = (series, color, label, dash = "", offsetY = -7, strokeWidth = 2.4) => `
     <polyline points="${seriesPoints(series)}" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round" ${dash ? `stroke-dasharray="${dash}"` : ""} />
-    <text x="${width - pad.right - 186}" y="${y(series.at(-1)) + offsetY}" font-size="12" fill="${color}">${label} ${yen(series.at(-1))}</text>
+    <text x="${width - pad.right - 260}" y="${y(series.at(-1)) + offsetY}" font-size="12" fill="${color}">${label} ${yen(series.at(-1))}</text>
   `;
+  const pbrLowText = `${pbrLabel}下限 ${Math.round(pbrLow * 100) / 100}x: エントリー目安`;
+  const pbrAvgText = `${pbrLabel}標準 ${Math.round(pbrAvg * 100) / 100}x: 基準`;
+  const pbrHighText = `${pbrLabel}上限 ${Math.round(pbrHigh * 100) / 100}x: 売り上限目安`;
   const currentPbr = adjustedBps > 0 ? price / adjustedBps : pbr;
   const position = price <= lowLine
     ? "資産価値では買い場"
@@ -3066,9 +3069,9 @@ function renderLynchChart(stock) {
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${y((min + max) / 2)}" y2="${y((min + max) / 2)}" stroke="#edf1ed" />
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${y(max * 0.92)}" y2="${y(max * 0.92)}" stroke="#edf1ed" />
       <text x="${pad.left}" y="22" font-size="13" fill="#65706b">資産価値チャート: 株価 / ${chartBasis}</text>
-      ${valueLine(pbrHighSeries, "#c44536", `${pbrLabel}上限 ${Math.round(pbrHigh * 100) / 100}`, "8 6")}
-      ${valueLine(pbrFairSeries, "#246a9f", `${pbrLabel}標準 ${Math.round(pbrAvg * 100) / 100}`)}
-      ${valueLine(pbrLowSeries, "#1f8a55", `${pbrLabel}下限 ${Math.round(pbrLow * 100) / 100}`, "5 5")}
+      ${valueLine(pbrHighSeries, "#c44536", pbrHighText, "8 6")}
+      ${valueLine(pbrFairSeries, "#246a9f", pbrAvgText)}
+      ${valueLine(pbrLowSeries, "#1f8a55", pbrLowText, "5 5")}
       <polyline points="${pricePoints}" fill="none" stroke="#1d2522" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
       <circle cx="${x(history.length - 1)}" cy="${y(price)}" r="7" fill="${calloutColor}" />
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${height - pad.bottom}" y2="${height - pad.bottom}" stroke="#d9dfdb" />
@@ -3082,11 +3085,11 @@ function renderLynchChart(stock) {
         <line x1="0" x2="24" y1="0" y2="0" stroke="#1d2522" stroke-width="4" />
         <text x="32" y="4" font-size="12" fill="#65706b">株価</text>
         <line x1="88" x2="112" y1="0" y2="0" stroke="#246a9f" stroke-width="2.4" />
-        <text x="120" y="4" font-size="12" fill="#65706b">${pbrLabel}標準</text>
+        <text x="120" y="4" font-size="12" fill="#65706b">標準</text>
         <line x1="202" x2="226" y1="0" y2="0" stroke="#1f8a55" stroke-width="2.4" stroke-dasharray="5 5" />
-        <text x="234" y="4" font-size="12" fill="#65706b">${pbrLabel}下限</text>
+        <text x="234" y="4" font-size="12" fill="#65706b">エントリー</text>
         <line x1="326" x2="350" y1="0" y2="0" stroke="#c44536" stroke-width="2.4" stroke-dasharray="8 6" />
-        <text x="358" y="4" font-size="12" fill="#65706b">${pbrLabel}上限</text>
+        <text x="358" y="4" font-size="12" fill="#65706b">売り上限</text>
       </g>
       <text x="${pad.left}" y="${height - 14}" font-size="12" fill="#65706b">${pbrLabel}ラインは現在${usesAdjustedBps ? "修正BPS" : "BPS"}からの推定です。PERは詳細の参考値に分けています。</text>
     </svg>
