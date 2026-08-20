@@ -13,6 +13,11 @@ assert.equal(fs.existsSync(reportPath), true);
 const script = fs.readFileSync(scriptPath, "utf8");
 assert.match(script, /## 今買い候補/);
 assert.match(script, /has_new/);
+assert.match(script, /growthBuyCandidates/);
+assert.match(script, /売上\+20%買い系候補/);
+assert.match(script, /salesGrowthRate/);
+assert.match(script, /revenueGrowthRate/);
+assert.match(script, /買い場接近/);
 assert.match(script, /buy-candidates\.json/);
 
 const report = fs.readFileSync(reportPath, "utf8");

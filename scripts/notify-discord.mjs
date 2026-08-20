@@ -23,6 +23,7 @@ const draftReportPath = path.join(rootDir, "reports", "latest-stock-master-draft
 const expandedPreviewReportPath = path.join(rootDir, "reports", "latest-stock-master-expanded-preview.md");
 const generatedDataPath = path.join(rootDir, "app", "generated-data.js");
 const generatedResearchPath = path.join(rootDir, "app", "generated-research.js");
+const notificationStatePath = path.join(rootDir, ".notification-state", "buy-candidates.json");
 const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
 const dryRun = process.env.DISCORD_DRY_RUN === "1" || process.argv.includes("--dry-run");
 const siteUrl = process.env.PAGES_URL || "https://sensin0.github.io/candidate-stock-assist/";
@@ -76,6 +77,8 @@ const generatedResearch = fs.existsSync(generatedResearchPath) ? fs.readFileSync
 const generatedPayload = parseGeneratedData(generatedData);
 const researchPayload = parseGeneratedData(generatedResearch, "AUTO_RESEARCH_DATA");
 const dataQuality = generatedPayload?.dataQuality ?? null;
+const notificationState = readJson(notificationStatePath);
+const growthBuyCandidates = notificationState?.growthBuyCandidates ?? [];
 
 function countSection(title) {
   const match = report.match(new RegExp(`## ${title}\\n([\\s\\S]*?)(\\n## |$)`));
@@ -124,6 +127,7 @@ const message = [
   `銘柄マスタ: ${dataSource}`,
   `本番準備度: ${readiness.score}% ${readiness.label}`,
   `今買い候補: ${buyCount}件`,
+  `売上+20%買い系候補: ${growthBuyCandidates.length}件`,
   `自動財務確認: ${autoFinancialStocks.length}件（自動取得財務で反映）`,
   `今売り検討: ${sellCount}件`,
   `監視リスト: ${watchCount}件`,
@@ -142,6 +146,9 @@ const message = [
   "",
   "今買い候補",
   ...firstItems("今買い候補").map((item) => `- ${clipItem(item)}`),
+  "",
+  "売上+20%買い系候補",
+  ...candidateLines(growthBuyCandidates, 5),
   "",
   "全体自動判定・買い候補予備軍",
   ...firstReportItems(universeBuyCandidatesReport, "予備軍上位", 3).map((item) => `- ${clipItem(item)}`),
@@ -271,10 +278,27 @@ function parseGeneratedData(text, name = "AUTO_STOCK_DATA") {
   }
 }
 
+function readJson(filePath) {
+  if (!fs.existsSync(filePath)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch {
+    return null;
+  }
+}
+
 function clipItem(item, max = 165) {
   const text = String(item ?? "");
   if (text.length <= max) return text;
   return `${text.slice(0, max - 1)}…`;
+}
+
+function candidateLines(candidates, limit = 3) {
+  if (!Array.isArray(candidates) || candidates.length === 0) return ["- 該当なし"];
+  return candidates.slice(0, limit).map((candidate) => {
+    const growth = Number.isFinite(Number(candidate.salesGrowth)) ? ` / 売上+${Math.round(Number(candidate.salesGrowth) * 10) / 10}%` : "";
+    return `- ${clipItem(`${candidate.code} ${candidate.name}: ${candidate.source ?? "買い系"}${growth} / ${candidate.summary ?? ""}`)}`;
+  });
 }
 
 function providerWarningLines(dataQuality) {
