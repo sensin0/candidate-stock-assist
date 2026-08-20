@@ -1644,10 +1644,30 @@ function autoBuyRankingBadges(item) {
     const risk = autoBuyMomentumRiskRank(item);
     badges.push({ label: `過熱 ${momentumRiskLabel(item)}`, level: risk >= 3 ? "danger" : risk >= 2 ? "warn" : "ok" });
   }
+  badges.push(...autoBuyEarningsBadges(item));
   badges.push(...autoBuyPerformanceBadges(item));
   const rejectReason = autoBuyRejectReason(item);
   if (rejectReason) badges.push({ label: rejectReason, level: "danger" });
   return badges.map((badge) => `<span class="ranking-badge ranking-badge-${badge.level}">${escapeHtml(badge.label)}</span>`).join("");
+}
+
+function autoBuyEarningsBadges(item) {
+  const badges = [];
+  const salesGrowthRate = Number(item.salesGrowthRate ?? 0);
+  const operatingProfitGrowthRate = Number(item.operatingProfitGrowthRate ?? 0);
+  if (Number.isFinite(salesGrowthRate) && salesGrowthRate >= 20) {
+    badges.push({ label: `売上+${Math.round(salesGrowthRate * 10) / 10}%`, level: "ok" });
+  } else if (Number.isFinite(salesGrowthRate) && salesGrowthRate >= 15) {
+    badges.push({ label: `売上+${Math.round(salesGrowthRate * 10) / 10}%`, level: "warn" });
+  }
+  if (item.operatingProfitTurnaround) {
+    badges.push({ label: "営業黒転", level: "ok" });
+  } else if (Number.isFinite(operatingProfitGrowthRate) && operatingProfitGrowthRate >= 20) {
+    badges.push({ label: `営業益+${Math.round(operatingProfitGrowthRate * 10) / 10}%`, level: "ok" });
+  } else if (Number.isFinite(operatingProfitGrowthRate) && operatingProfitGrowthRate < 0) {
+    badges.push({ label: `営業益${Math.round(operatingProfitGrowthRate * 10) / 10}%`, level: "warn" });
+  }
+  return badges;
 }
 
 function autoBuyPerformanceBadges(item) {
@@ -1956,7 +1976,7 @@ function renderResearchRankingRow(item, index, type) {
         <span>${escapeHtml(item.strategy || "価格検証")}</span>
         <span>${escapeHtml(item.timingAction || "監視")}</span>
         <span>品質 ${Math.round((item.autoBuyScore ?? item.qualityRank ?? item.timingRank ?? item.score ?? 0) * 10) / 10}</span>
-        ${type === "autoBuyCandidates" ? `<span>買い比率 ${times(item.buyRatio ?? 0)}</span><span>上昇余地 ${pct(item.upside ?? 0)}</span><span>PBR ${times(item.pbr ?? 0)}</span><span>PER ${times(item.per ?? 0)}</span>` : ""}
+        ${type === "autoBuyCandidates" ? `<span>買い比率 ${times(item.buyRatio ?? 0)}</span><span>上昇余地 ${pct(item.upside ?? 0)}</span><span>PBR ${times(item.pbr ?? 0)}</span><span>PER ${times(item.per ?? 0)}</span>${item.earningsLabel ? `<span>${escapeHtml(item.earningsLabel)}</span>` : ""}` : ""}
         <span>${escapeHtml(item.qualityNote || "利益と下落耐性")}</span>
         <span>平均 ${pct(type === "autoBuyCandidates" ? autoBuyDisplayAverageReturn(item) : item.averageReturn ?? 0)}</span>
         <span>勝率 ${pct(type === "autoBuyCandidates" ? autoBuyDisplayWinRate(item) : item.winRate ?? 0)}</span>
@@ -2146,7 +2166,7 @@ function renderResearchDetail(item, type) {
   document.getElementById("reasonList").innerHTML = [
     comment,
     type === "autoBuyCandidates"
-      ? `買いライン比率${times(item.buyRatio ?? 0)}、上昇余地${pct(item.upside ?? 0)}、PBR ${times(item.pbr ?? 0)}、PER ${times(item.per ?? 0)}、2倍期待は${item.multibaggerLabel || "標準"}、時期目安は${item.doubleTimeframe || "未設定"}です`
+      ? `買いライン比率${times(item.buyRatio ?? 0)}、上昇余地${pct(item.upside ?? 0)}、PBR ${times(item.pbr ?? 0)}、PER ${times(item.per ?? 0)}、${item.earningsLabel || "決算材料は中立"}、2倍期待は${item.multibaggerLabel || "標準"}、時期目安は${item.doubleTimeframe || "未設定"}です`
       : `価格検証の平均は${pct(item.averageReturn ?? 0)}、勝率は${pct(item.winRate ?? 0)}です`,
     type === "autoBuyCandidates" ? autoBuyValidationNote(item) : "",
     item.caution || "財務・価格・月次判定を反映済みです",
@@ -2202,6 +2222,7 @@ function renderAutoBuyCandidateAlert(item) {
         ${item.doubleTag ? `<span>${escapeHtml(item.doubleTag)}</span>` : ""}
         ${item.multibaggerLabel ? `<span>${escapeHtml(item.multibaggerLabel)}</span>` : ""}
         ${item.doubleTimeframe ? `<span>${escapeHtml(item.doubleTimeframe)}</span>` : ""}
+        ${item.earningsLabel ? `<span>${escapeHtml(item.earningsLabel)}</span>` : ""}
         <span>買い比率 ${times(item.buyRatio ?? 0)}</span>
         <span>上昇余地 ${pct(item.upside ?? 0)}</span>
         <span>${escapeHtml(item.reviewStatus || item.normalCandidate || "通常候補前")}</span>

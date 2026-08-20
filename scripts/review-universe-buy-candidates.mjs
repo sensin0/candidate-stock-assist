@@ -68,6 +68,11 @@ function reviewCandidate(row, metric = {}, historyRows = []) {
   const averageReturn = number(row.averageReturn);
   const maxDrawdown = number(row.maxDrawdown);
   const trades = number(row.trades);
+  const salesGrowthRate = number(row.salesGrowthRate);
+  const operatingProfitGrowthRate = number(row.operatingProfitGrowthRate);
+  const operatingProfitTurnaround = row.operatingProfitTurnaround === true || String(row.operatingProfitTurnaround) === "true";
+  const earningsLabel = row.earningsLabel || "";
+  const hasEarningsFacts = Boolean(row.earningsPeriod || row.disclosureTitle || row.earningsReasons || row.earningsCautions);
   const signal = row.signal || "";
   const isNowBuy = signal === "今買い候補";
   const hasPriceValidation = trades >= 3;
@@ -81,12 +86,16 @@ function reviewCandidate(row, metric = {}, historyRows = []) {
   if (maxDrawdown <= -8) confirmations.push(`過去検証の最大下落が大きい ${maxDrawdown}%`);
   if (buyRatio > 1.02) confirmations.push(`買いラインを少し上回る ${buyRatio}倍`);
   if (!hasPriceValidation) confirmations.push(`価格検証取引少 ${trades}回。財務と現在価格を優先`);
+  if (!hasEarningsFacts) confirmations.push("決算短信データ未取得");
+  if (salesGrowthRate >= 30) confirmations.push(`売上急伸 ${salesGrowthRate}% は反動を確認`);
+  if (operatingProfitGrowthRate < 0) confirmations.push(`営業利益が減益 ${operatingProfitGrowthRate}%`);
 
   if (pbr <= 0 || pbr > 0.8) blockers.push(`PBRが昇格基準外 ${pbr}倍`);
   if (per <= 0 || per > 12) blockers.push(`PERが昇格基準外 ${per}倍`);
   if (upside < 70) blockers.push(`上昇余地が不足 ${upside}%`);
   if (hasPriceValidation && winRate < 45) blockers.push(`価格検証の勝率が低い ${winRate}%`);
   if (hasPriceValidation && averageReturn < -3) blockers.push(`価格検証の平均利益がマイナス ${averageReturn}%`);
+  if (salesGrowthRate < -10 && operatingProfitGrowthRate < 0) blockers.push(`直近決算が減収減益 ${salesGrowthRate}%/${operatingProfitGrowthRate}%`);
 
   if (pbr > 0 && pbr <= 0.7) reasons.push(`低PBR ${pbr}倍`);
   if (per > 0 && per <= 10) reasons.push(`低PER ${per}倍`);
@@ -94,6 +103,10 @@ function reviewCandidate(row, metric = {}, historyRows = []) {
   if (buyRatio <= 1.02) reasons.push(`買いライン圏 ${buyRatio}倍`);
   if (upside >= 100) reasons.push(`上昇余地大 ${upside}%`);
   if (hasPriceValidation && winRate >= 60 && averageReturn >= 0) reasons.push(`価格検証許容 勝率${winRate}%/平均${averageReturn}%`);
+  if (salesGrowthRate >= 20) reasons.push(`売上+20%以上 ${salesGrowthRate}%`);
+  else if (salesGrowthRate >= 15) reasons.push(`売上伸長 ${salesGrowthRate}%`);
+  if (operatingProfitTurnaround) reasons.push("営業黒字転換");
+  else if (operatingProfitGrowthRate >= 20) reasons.push(`営業益+20%以上 ${operatingProfitGrowthRate}%`);
 
   let reviewStatus = "追加確認";
   if (blockers.length) reviewStatus = "今回は見送り";
@@ -125,6 +138,15 @@ function reviewCandidate(row, metric = {}, historyRows = []) {
     trades: row.trades,
     signal: row.signal,
     metricSource: row.metricSource,
+    earningsScore: row.earningsScore,
+    earningsLabel,
+    salesGrowthRate: row.salesGrowthRate,
+    operatingProfitGrowthRate: row.operatingProfitGrowthRate,
+    operatingProfitTurnaround: row.operatingProfitTurnaround,
+    earningsPeriod: row.earningsPeriod,
+    earningsReasons: row.earningsReasons,
+    earningsCautions: row.earningsCautions,
+    disclosureTitle: row.disclosureTitle,
     financialRiskLevel: financialRisk.level,
     financialRiskReasons: financialRisk.reasons.join(" / ") || "財務ガード通過",
     priceValidationLevel: priceValidation.level,
@@ -364,7 +386,7 @@ function writeReport(rows, approvedRows) {
 function sectionRows(rows) {
   if (!rows.length) return ["- 該当なし"];
   return rows.slice(0, 30).map((row, index) =>
-    `- ${index + 1}. ${row.code} ${row.name}: ${row.reasons} / 注意: ${row.cautions} / 次: ${row.nextAction}`
+    `- ${index + 1}. ${row.code} ${row.name}: ${row.reasons} / 決算: ${row.earningsLabel || "未取得"} / 注意: ${row.cautions} / 次: ${row.nextAction}`
   );
 }
 
@@ -430,6 +452,15 @@ function toCsv(rows) {
     "trades",
     "signal",
     "metricSource",
+    "earningsScore",
+    "earningsLabel",
+    "salesGrowthRate",
+    "operatingProfitGrowthRate",
+    "operatingProfitTurnaround",
+    "earningsPeriod",
+    "earningsReasons",
+    "earningsCautions",
+    "disclosureTitle",
     "financialRiskLevel",
     "financialRiskReasons",
     "priceValidationLevel",

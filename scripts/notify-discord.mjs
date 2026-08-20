@@ -127,7 +127,7 @@ const message = [
   `銘柄マスタ: ${dataSource}`,
   `本番準備度: ${readiness.score}% ${readiness.label}`,
   `今買い候補: ${buyCount}件`,
-  `売上+20%買い系候補: ${growthBuyCandidates.length}件`,
+  `決算強い買い系候補: ${growthBuyCandidates.length}件`,
   `自動財務確認: ${autoFinancialStocks.length}件（自動取得財務で反映）`,
   `今売り検討: ${sellCount}件`,
   `監視リスト: ${watchCount}件`,
@@ -147,7 +147,7 @@ const message = [
   "今買い候補",
   ...firstItems("今買い候補").map((item) => `- ${clipItem(item)}`),
   "",
-  "売上+20%買い系候補",
+  "決算強い買い系候補",
   ...candidateLines(growthBuyCandidates, 5),
   "",
   "全体自動判定・買い候補予備軍",
@@ -297,7 +297,9 @@ function candidateLines(candidates, limit = 3) {
   if (!Array.isArray(candidates) || candidates.length === 0) return ["- 該当なし"];
   return candidates.slice(0, limit).map((candidate) => {
     const growth = Number.isFinite(Number(candidate.salesGrowth)) ? ` / 売上+${Math.round(Number(candidate.salesGrowth) * 10) / 10}%` : "";
-    return `- ${clipItem(`${candidate.code} ${candidate.name}: ${candidate.source ?? "買い系"}${growth} / ${candidate.summary ?? ""}`)}`;
+    const operatingGrowth = Number.isFinite(Number(candidate.operatingProfitGrowth)) ? ` / 営業益+${Math.round(Number(candidate.operatingProfitGrowth) * 10) / 10}%` : "";
+    const turnaround = candidate.operatingProfitTurnaround ? " / 営業黒転" : "";
+    return `- ${clipItem(`${candidate.code} ${candidate.name}: ${candidate.source ?? "買い系"}${growth}${operatingGrowth}${turnaround} / ${candidate.summary ?? ""}`)}`;
   });
 }
 

@@ -20,6 +20,7 @@ const uniqueCodeFiles = new Set([
   "universe-financial-facts.csv",
   "universe-buy-candidates.csv",
   "universe-buy-candidate-review.csv",
+  "earnings-facts.csv",
   "price-updates.csv",
   "backtest-results.csv",
   "promotion-candidates.csv",
@@ -36,6 +37,7 @@ const requiredHeadersByFile = new Map([
   ["universe-check-status.csv", ["code", "status", "priceStatus", "financialStatus"]],
   ["universe-buy-candidates.csv", ["code", "status", "autoBuyScore", "buyRatio", "upside"]],
   ["universe-buy-candidate-review.csv", ["code", "reviewStatus", "reasons", "cautions"]],
+  ["earnings-facts.csv", ["code", "period", "salesGrowthRate", "operatingProfitGrowthRate", "operatingProfitTurnaround"]],
   ["price-updates.csv", ["code", "price", "asOf"]],
   ["backtest-results.csv", ["code", "timingLabel", "winRate", "averageReturn"]],
 ]);

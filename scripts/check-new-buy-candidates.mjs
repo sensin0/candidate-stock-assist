@@ -24,7 +24,7 @@ const autoFinancialFollowupReport = readText(autoFinancialFollowupReportPath);
 const generatedPayload = parseGeneratedData(readText(generatedDataPath));
 const researchPayload = parseGeneratedData(readText(generatedResearchPath), "AUTO_RESEARCH_DATA");
 const current = extractBuyLikeCandidates({ report, universeBuyCandidatesReport, autoFinancialFollowupReport });
-const growthBuyCandidates = extractGrowthBuyCandidates({
+const growthBuyCandidates = extractEarningsAlertBuyCandidates({
   report,
   universeBuyCandidatesReport,
   autoFinancialFollowupReport,
@@ -56,8 +56,8 @@ const outputs = {
 writeOutputs(outputs);
 
 console.log(`買い系候補: ${current.length}件`);
-console.log(`売上+20%買い系候補: ${growthBuyCandidates.length}件`);
-console.log(`新規売上+20%買い系候補: ${outputs.new_count}件`);
+console.log(`決算強い買い系候補: ${growthBuyCandidates.length}件`);
+console.log(`新規決算強い買い系候補: ${outputs.new_count}件`);
 console.log(outputs.reason);
 
 function extractBuyCandidates(report) {
@@ -96,7 +96,7 @@ function extractBuyLikeCandidates({ report, universeBuyCandidatesReport, autoFin
   return [...candidates.values()].sort((a, b) => buyPriority(b) - buyPriority(a) || a.code.localeCompare(b.code));
 }
 
-function extractGrowthBuyCandidates({ report, universeBuyCandidatesReport, autoFinancialFollowupReport, generatedPayload, researchPayload }) {
+function extractEarningsAlertBuyCandidates({ report, universeBuyCandidatesReport, autoFinancialFollowupReport, generatedPayload, researchPayload }) {
   const candidates = new Map();
   const buySections = [
     [report, "今買い候補"],
@@ -108,12 +108,12 @@ function extractGrowthBuyCandidates({ report, universeBuyCandidatesReport, autoF
 
   for (const [text, title] of buySections) {
     for (const item of firstReportCandidateItems(text, title, 200)) {
-      if (isBuyLikeText(item.summary) && hasSalesGrowthSignal(item.summary)) addCandidate(candidates, item, title);
+      if (isBuyLikeText(item.summary) && hasEarningsAlertSignal(item.summary)) addCandidate(candidates, item, title);
     }
   }
 
   for (const stock of generatedPayload?.stocks ?? []) {
-    if (isBuyLikeText([stock.assist?.label, stock.status, stock.backtest?.timingLabel, stock.action, stock.comment].join(" ")) && hasSalesGrowthSignal(stock)) {
+    if (isBuyLikeText([stock.assist?.label, stock.status, stock.backtest?.timingLabel, stock.action, stock.comment].join(" ")) && hasEarningsAlertSignal(stock)) {
       addCandidate(candidates, generatedCandidate(stock), "通常候補");
     }
   }
@@ -123,12 +123,12 @@ function extractGrowthBuyCandidates({ report, universeBuyCandidatesReport, autoF
     ...(researchPayload?.universeBuyCandidates ?? []),
     ...(researchPayload?.universeAll ?? []),
   ]) {
-    if (isBuyLikeText([item.signal, item.status, item.timingAction, item.action, item.comment].join(" ")) && hasSalesGrowthSignal(item)) {
+    if (isBuyLikeText([item.signal, item.status, item.timingAction, item.action, item.comment].join(" ")) && hasEarningsAlertSignal(item)) {
       addCandidate(candidates, generatedCandidate(item), "全体自動判定");
     }
   }
 
-  return [...candidates.values()].sort((a, b) => buyPriority(b) - buyPriority(a) || growthValue(b) - growthValue(a) || a.code.localeCompare(b.code));
+  return [...candidates.values()].sort((a, b) => buyPriority(b) - buyPriority(a) || earningsAlertValue(b) - earningsAlertValue(a) || a.code.localeCompare(b.code));
 }
 
 function firstReportCandidateItems(text, title, limit = 3) {
@@ -152,6 +152,8 @@ function reportCandidate(body) {
     name: ranked[2].trim(),
     summary,
     salesGrowth: extractSalesGrowthPercent(summary),
+    operatingProfitGrowth: extractOperatingProfitGrowthPercent(summary),
+    operatingProfitTurnaround: /営業(?:利益|益)?.*黒字転換|営業黒転/.test(summary),
   };
 }
 
@@ -166,19 +168,33 @@ function generatedCandidate(item) {
       item.timingAction,
       item.action,
       salesGrowthText(item),
+      operatingProfitText(item),
     ].filter(Boolean).join(" / "),
     salesGrowth: salesGrowthValue(item),
+    operatingProfitGrowth: operatingProfitGrowthValue(item),
+    operatingProfitTurnaround: operatingProfitTurnaroundValue(item),
   };
 }
 
-function hasSalesGrowthSignal(value) {
+function hasEarningsAlertSignal(value) {
   const salesGrowth = salesGrowthValue(value);
   if (Number.isFinite(salesGrowth) && salesGrowth >= 20) return true;
+  const operatingProfitGrowth = operatingProfitGrowthValue(value);
+  if (Number.isFinite(operatingProfitGrowth) && operatingProfitGrowth >= 50) return true;
+  if (operatingProfitTurnaroundValue(value)) return true;
+  const text = flattenText(value);
+  if (/営業(?:利益|益)?.*黒字転換|営業黒転/.test(text)) return true;
+  const operatingProfitGrowthFromText = extractOperatingProfitGrowthPercent(text);
+  if (Number.isFinite(operatingProfitGrowthFromText) && operatingProfitGrowthFromText >= 50) return true;
   return extractSalesGrowthPercent(flattenText(value)) >= 20;
 }
 
 function salesGrowthValue(value) {
   if (!value || typeof value !== "object") return NaN;
+  if (value.earnings) {
+    const nested = salesGrowthValue(value.earnings);
+    if (Number.isFinite(nested)) return nested;
+  }
   for (const key of [
     "salesGrowth",
     "salesGrowthRate",
@@ -195,9 +211,44 @@ function salesGrowthValue(value) {
   return NaN;
 }
 
+function operatingProfitGrowthValue(value) {
+  if (!value || typeof value !== "object") return NaN;
+  if (value.earnings) {
+    const nested = operatingProfitGrowthValue(value.earnings);
+    if (Number.isFinite(nested)) return nested;
+  }
+  for (const key of [
+    "operatingProfitGrowth",
+    "operatingProfitGrowthRate",
+    "operatingIncomeGrowth",
+    "operatingIncomeGrowthRate",
+    "opGrowth",
+    "opGrowthRate",
+  ]) {
+    const number = Number(value[key]);
+    if (Number.isFinite(number)) return number;
+  }
+  return NaN;
+}
+
+function operatingProfitTurnaroundValue(value) {
+  if (!value || typeof value !== "object") return false;
+  if (value.earnings && operatingProfitTurnaroundValue(value.earnings)) return true;
+  return value.operatingProfitTurnaround === true
+    || String(value.operatingProfitTurnaround ?? "") === "true"
+    || value.operatingTurnaround === true
+    || String(value.operatingTurnaround ?? "") === "true";
+}
+
 function salesGrowthText(item) {
   const value = salesGrowthValue(item);
   return Number.isFinite(value) ? `売上高+${round(value)}%` : "";
+}
+
+function operatingProfitText(item) {
+  if (operatingProfitTurnaroundValue(item)) return "営業黒字転換";
+  const value = operatingProfitGrowthValue(item);
+  return Number.isFinite(value) ? `営業利益+${round(value)}%` : "";
 }
 
 function extractSalesGrowthPercent(text) {
@@ -207,6 +258,19 @@ function extractSalesGrowthPercent(text) {
     /(?:売上高|売上|増収|revenue|sales)(?:前年比|前年同期比|YoY|yoy|が|は|:|：|[+＋]){0,4}(-?\d+(?:\.\d+)?)%/i,
     /[+＋](-?\d+(?:\.\d+)?)%以上?(?:の)?(?:売上高|売上|増収|revenue|sales)/i,
     /[+＋](-?\d+(?:\.\d+)?)%(?:の)?(?:売上高|売上|増収|revenue|sales)/i,
+  ];
+  for (const pattern of patterns) {
+    const match = normalized.match(pattern);
+    if (match) return Number(match[1]);
+  }
+  return NaN;
+}
+
+function extractOperatingProfitGrowthPercent(text) {
+  const normalized = normalizeNumberText(text).replace(/\s+/g, "");
+  const patterns = [
+    /(?:営業利益|営業益|operatingprofit|operatingincome)(?:前年比|前年同期比|YoY|yoy|が|は|:|：|[+＋]){0,4}(-?\d+(?:\.\d+)?)%/i,
+    /[+＋](-?\d+(?:\.\d+)?)%(?:の)?(?:営業利益|営業益|operatingprofit|operatingincome)/i,
   ];
   for (const pattern of patterns) {
     const match = normalized.match(pattern);
@@ -235,7 +299,7 @@ function addCandidate(candidates, candidate, source) {
     source,
     summary: candidate.summary || source,
   };
-  if (!current || buyPriority(next) > buyPriority(current) || growthValue(next) > growthValue(current)) {
+  if (!current || buyPriority(next) > buyPriority(current) || earningsAlertValue(next) > earningsAlertValue(current)) {
     candidates.set(key, next);
   }
 }
@@ -255,6 +319,18 @@ function buyPriority(candidate) {
 
 function growthValue(candidate) {
   return Number.isFinite(Number(candidate?.salesGrowth)) ? Number(candidate.salesGrowth) : extractSalesGrowthPercent(candidate?.summary);
+}
+
+function earningsAlertValue(candidate) {
+  let value = 0;
+  const salesGrowth = growthValue(candidate);
+  if (Number.isFinite(salesGrowth)) value += salesGrowth;
+  const operatingProfitGrowth = Number.isFinite(Number(candidate?.operatingProfitGrowth))
+    ? Number(candidate.operatingProfitGrowth)
+    : extractOperatingProfitGrowthPercent(candidate?.summary);
+  if (Number.isFinite(operatingProfitGrowth)) value += Math.min(80, operatingProfitGrowth);
+  if (candidate?.operatingProfitTurnaround || /営業(?:利益|益)?.*黒字転換|営業黒転/.test(String(candidate?.summary ?? ""))) value += 80;
+  return value;
 }
 
 function flattenText(value) {
@@ -288,6 +364,7 @@ function readPreviousState() {
     return {
       exists: true,
       candidates: Array.isArray(parsed.candidates) ? parsed.candidates : [],
+      growthBuyCandidates: Array.isArray(parsed.growthBuyCandidates) ? parsed.growthBuyCandidates : [],
     };
   } catch {
     return { exists: false, candidates: [] };
@@ -296,13 +373,13 @@ function readPreviousState() {
 
 function reasonText({ hasBaseline, current, newCandidates, shouldNotify }) {
   if (shouldNotify) {
-    return `前回から新しい売上+20%買い系候補が${newCandidates.length}件増えました: ${newCandidates.map((candidate) => `${candidate.code} ${candidate.name}`).join(" / ")}`;
+    return `前回から新しい決算強い買い系候補が${newCandidates.length}件増えました: ${newCandidates.map((candidate) => `${candidate.code} ${candidate.name}`).join(" / ")}`;
   }
   if (!hasBaseline) {
-    return `初回の基準を保存しました。買い系候補${current.length}件と売上+20%候補は次回以降の比較対象になります。`;
+    return `初回の基準を保存しました。買い系候補${current.length}件と決算強い候補は次回以降の比較対象になります。`;
   }
   if (!newCandidates.length) {
-    return "新しい売上+20%買い系候補はありません。Discord通知は送らない状態です。";
+    return "新しい決算強い買い系候補はありません。Discord通知は送らない状態です。";
   }
   return "Discord通知は送らない状態です。";
 }

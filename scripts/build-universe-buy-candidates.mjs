@@ -14,10 +14,12 @@ const priceRows = readCsv("universe-price-backtest.csv");
 const statusRows = readCsv("universe-check-status.csv");
 const stockMaster = readCsv("stock-master.csv");
 const monthlySignalRows = readCsv("monthly-signal-backtest.csv");
+const earningsRows = readCsv("earnings-facts.csv");
 
 const listedByCode = new Map(listed.map((row) => [row.code, row]));
 const priceByCode = new Map(priceRows.map((row) => [row.code, row]));
 const statusByCode = new Map(statusRows.map((row) => [row.code, row]));
+const earningsByCode = new Map(earningsRows.map((row) => [row.code, row]));
 const stockMasterCodes = new Set(stockMaster.map((row) => row.code));
 const latestMonth = latestUsableMonth(monthlySignalRows);
 const monthlySignalByCode = new Map(monthlySignalRows.filter((row) => row.month === latestMonth).map((row) => [row.code, row]));
@@ -60,6 +62,7 @@ function toCandidate(row) {
   const priceRow = priceByCode.get(row.code);
   const statusRow = statusByCode.get(row.code);
   const monthlyRow = monthlySignalByCode.get(row.code);
+  const earnings = earningsProfile(earningsByCode.get(row.code));
   const metricSource = row.asOf || "";
   const price = number(monthlyRow?.close || priceRow?.lastClose || row.price);
   const bps = number(row.bps);
@@ -109,6 +112,7 @@ function toCandidate(row) {
     per,
     netCashRatio,
     specialSector,
+    earnings,
   });
   const doublePlan = doubleTargetPlan({ price, multibagger, latestSignal, priceScore, winRate, averageReturn, trades });
   const autoBuyScore = score({
@@ -129,6 +133,7 @@ function toCandidate(row) {
     signal,
     alreadyNormal,
     metricSource,
+    earnings,
   });
   const rankingScore = autoBuyScore + multibagger.score;
 
@@ -149,6 +154,16 @@ function toCandidate(row) {
     doubleTargetPrice: doublePlan.targetPrice,
     doubleTimeframe: doublePlan.timeframe,
     doubleComment: doublePlan.comment,
+    earningsScore: round(earnings.score),
+    earningsLabel: earnings.label,
+    salesGrowthRate: earnings.salesGrowthRate,
+    operatingProfitGrowthRate: earnings.operatingProfitGrowthRate,
+    operatingProfitTurnaround: earnings.operatingProfitTurnaround ? "true" : "",
+    earningsPeriod: earnings.period,
+    earningsSource: earnings.sourceUrl,
+    earningsReasons: earnings.reasons.join(" / "),
+    earningsCautions: earnings.cautions.join(" / "),
+    disclosureTitle: earnings.documentTitle,
     price: round(price),
     buyLine: round(buyLine),
     targetPrice: round(targetPrice),
@@ -169,8 +184,8 @@ function toCandidate(row) {
     judgement: judgement || monthlyRow?.reason || "月次シグナル",
     metricSource,
     action: alreadyNormal ? "通常候補として自動ランキング反映" : "自動取得財務でランキング反映。原資料チェックで精度を上げる",
-    comment: `${signal}。自動取得財務と月次シグナルで条件内です。${doublePlan.tag}: ${doublePlan.timeframe}。${multibagger.label}: ${multibagger.reasons.join(" / ") || "2倍化条件は標準"}`,
-    caution: cautionText({ safety, multibagger, latestSignal, periodReturn }),
+    comment: `${signal}。自動取得財務と月次シグナルで条件内です。${earnings.label !== "決算未取得" ? `${earnings.label}。` : ""}${doublePlan.tag}: ${doublePlan.timeframe}。${multibagger.label}: ${multibagger.reasons.join(" / ") || "2倍化条件は標準"}`,
+    caution: cautionText({ safety, multibagger, latestSignal, periodReturn, earnings }),
   };
 }
 
@@ -237,7 +252,78 @@ function score(item) {
   if (item.specialSector) value -= 14;
   if (item.alreadyNormal) value += 4;
   if (item.metricSource === "completionEstimate") value -= 24;
+  value += item.earnings?.score ?? 0;
   return value;
+}
+
+function earningsProfile(row = {}) {
+  const salesGrowthRate = number(row.salesGrowthRate);
+  const operatingProfitGrowthRate = number(row.operatingProfitGrowthRate);
+  const operatingProfitTurnaround = row.operatingProfitTurnaround === true || /^(1|true|TRUE|黒字転換)$/.test(String(row.operatingProfitTurnaround ?? ""));
+  let score = 0;
+  const reasons = [];
+  const cautions = [];
+
+  if (salesGrowthRate >= 20 && salesGrowthRate < 30) {
+    score += 14;
+    reasons.push(`売上+${round(salesGrowthRate)}%`);
+  } else if (salesGrowthRate >= 30) {
+    score += 8;
+    reasons.push(`売上+${round(salesGrowthRate)}%`);
+    cautions.push("売上急伸は反動と一過性を確認");
+  } else if (salesGrowthRate >= 15) {
+    score += 9;
+    reasons.push(`売上+${round(salesGrowthRate)}%`);
+  } else if (salesGrowthRate > 0) {
+    score += 4;
+    reasons.push(`増収+${round(salesGrowthRate)}%`);
+  } else if (salesGrowthRate < 0) {
+    score -= 8;
+    cautions.push(`減収${round(salesGrowthRate)}%`);
+  }
+
+  if (operatingProfitTurnaround) {
+    score += 18;
+    reasons.push("営業黒字転換");
+  } else if (operatingProfitGrowthRate >= 50) {
+    score += 12;
+    reasons.push(`営業益+${round(operatingProfitGrowthRate)}%`);
+  } else if (operatingProfitGrowthRate >= 20) {
+    score += 8;
+    reasons.push(`営業益+${round(operatingProfitGrowthRate)}%`);
+  } else if (operatingProfitGrowthRate < 0) {
+    score -= 12;
+    cautions.push(`営業益${round(operatingProfitGrowthRate)}%`);
+  }
+
+  if (!row.code) {
+    return {
+      score: 0,
+      label: "決算未取得",
+      salesGrowthRate: "",
+      operatingProfitGrowthRate: "",
+      operatingProfitTurnaround: false,
+      period: "",
+      sourceUrl: "",
+      documentTitle: "",
+      reasons: [],
+      cautions: ["決算短信データ未取得"],
+    };
+  }
+
+  const label = reasons.length ? `決算強い: ${reasons.join(" / ")}` : cautions.length ? "決算注意" : "決算中立";
+  return {
+    score,
+    label,
+    salesGrowthRate: Number.isFinite(salesGrowthRate) ? round(salesGrowthRate) : "",
+    operatingProfitGrowthRate: Number.isFinite(operatingProfitGrowthRate) ? round(operatingProfitGrowthRate) : "",
+    operatingProfitTurnaround,
+    period: row.period || row.announcedAt || "",
+    sourceUrl: row.sourceUrl || "",
+    documentTitle: row.documentTitle || "",
+    reasons,
+    cautions,
+  };
 }
 
 function signalPriority(row) {
@@ -327,6 +413,13 @@ function multibaggerProfile(item) {
     score += 4;
     reasons.push("低PBR+低PER");
   }
+  if (item.earnings?.score >= 18) {
+    score += 8;
+    reasons.push(item.earnings.reasons.join(" / "));
+  } else if (item.earnings?.score >= 10) {
+    score += 5;
+    reasons.push(item.earnings.reasons.join(" / "));
+  }
   if (item.latestSignal === "高値圏") {
     score -= 18;
     reasons.push("高値圏は追いかけ注意");
@@ -349,12 +442,13 @@ function multibaggerProfile(item) {
   return { score, label, reasons };
 }
 
-function cautionText({ safety, multibagger, latestSignal, periodReturn }) {
+function cautionText({ safety, multibagger, latestSignal, periodReturn, earnings }) {
   const cautions = [];
   if (safety.includes("財務注意")) cautions.push("ネット有利子負債が重め。負債と利益継続性を確認");
   else cautions.push("自動取得財務で判定。原資料チェック推奨");
   if (latestSignal === "高値圏") cautions.push("高値圏のため追いかけ買い注意");
   if (periodReturn > 180) cautions.push("直近で上がりすぎ。押し目待ち優先");
+  if (earnings?.cautions?.length) cautions.push(...earnings.cautions);
   if (multibagger.label === "2倍要素薄め") cautions.push("2倍化条件は弱い。第一利確優先");
   return cautions.join(" / ");
 }
@@ -383,7 +477,7 @@ function writeReport(rows, total) {
     "## 予備軍上位",
     "",
     ...rows.slice(0, 30).map((row) =>
-      `- ${row.rank}. ${row.code} ${row.name}: ${row.status} / ${row.doubleTag} / 2倍目安 ${row.doubleTimeframe} / 2倍価格 ${row.doubleTargetPrice}円 / 総合${row.rankingScore} / 2倍${row.multibaggerScore}(${row.multibaggerLabel}) / 買い比率${row.buyRatio} / 上昇余地${row.upside}% / PBR ${row.pbr} / PER ${row.per} / ネット現金${row.netCashRatio}% / ${row.signal} / 次: ${row.action}`
+      `- ${row.rank}. ${row.code} ${row.name}: ${row.status} / ${row.doubleTag} / ${row.earningsLabel} / 2倍目安 ${row.doubleTimeframe} / 2倍価格 ${row.doubleTargetPrice}円 / 総合${row.rankingScore} / 2倍${row.multibaggerScore}(${row.multibaggerLabel}) / 買い比率${row.buyRatio} / 上昇余地${row.upside}% / PBR ${row.pbr} / PER ${row.per} / ネット現金${row.netCashRatio}% / ${row.signal} / 次: ${row.action}`
     ),
     "",
     "## 運用ルール",
@@ -443,6 +537,16 @@ function toCsv(rows) {
     "doubleTargetPrice",
     "doubleTimeframe",
     "doubleComment",
+    "earningsScore",
+    "earningsLabel",
+    "salesGrowthRate",
+    "operatingProfitGrowthRate",
+    "operatingProfitTurnaround",
+    "earningsPeriod",
+    "earningsSource",
+    "earningsReasons",
+    "earningsCautions",
+    "disclosureTitle",
     "price",
     "buyLine",
     "targetPrice",

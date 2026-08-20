@@ -14,6 +14,7 @@ const universeBuyCandidatesCsv = path.join(dataDir, "universe-buy-candidates.csv
 const universeBuyCandidateReviewCsv = path.join(dataDir, "universe-buy-candidate-review.csv");
 const universeMetricsCsv = path.join(dataDir, "universe-metrics.csv");
 const monthlyPriceHistoryCsv = path.join(dataDir, "monthly-price-history.csv");
+const earningsFactsCsv = path.join(dataDir, "earnings-facts.csv");
 const outputJs = path.join(appDir, "generated-research.js");
 
 const sqliteInputs = [
@@ -24,6 +25,7 @@ const sqliteInputs = [
   multibaggerCsv,
   universeBuyCandidatesCsv,
   universeBuyCandidateReviewCsv,
+  earningsFactsCsv,
 ];
 let useSqlite = sqliteFreshFor(sqliteInputs);
 const universeRows = readTable("universe_price_backtest", universeCsv);
@@ -33,6 +35,7 @@ const monthlyHistoryByCode = groupMonthlyHistory(readTable("monthly_price_histor
 const multibaggerRows = readTable("multibagger_candidates", multibaggerCsv);
 const universeBuyCandidateRows = readTable("universe_buy_candidates", universeBuyCandidatesCsv);
 const universeBuyCandidateReviewByCode = new Map(readTable("universe_buy_candidate_review", universeBuyCandidateReviewCsv).map((row) => [row.code, row]));
+const earningsFactsByCode = new Map(readTable("earnings_facts", earningsFactsCsv).map((row) => [row.code, row]));
 
 const universeSuccess = universeRows.filter((row) => !row.error).length;
 const universeAll = universeRows
@@ -69,6 +72,7 @@ const multibaggerWatch = multibaggerRows
 const autoBuyCandidates = universeBuyCandidateRows.map((row) => {
   const review = universeBuyCandidateReviewByCode.get(row.code) ?? {};
   const metrics = metricsByCode.get(row.code) ?? {};
+  const earnings = earningsFactsByCode.get(row.code) ?? {};
   const price = number(row.price || metrics.price);
   const pbr = number(row.pbr);
   const per = number(row.per);
@@ -134,6 +138,16 @@ const autoBuyCandidates = universeBuyCandidateRows.map((row) => {
     doubleTargetPrice: number(row.doubleTargetPrice),
     doubleTimeframe: row.doubleTimeframe || "",
     doubleComment: row.doubleComment || "",
+    earningsScore: number(row.earningsScore),
+    earningsLabel: row.earningsLabel || earningsLabel(earnings),
+    salesGrowthRate: firstNumber(row.salesGrowthRate, earnings.salesGrowthRate),
+    operatingProfitGrowthRate: firstNumber(row.operatingProfitGrowthRate, earnings.operatingProfitGrowthRate),
+    operatingProfitTurnaround: row.operatingProfitTurnaround === "true" || earnings.operatingProfitTurnaround === true || String(earnings.operatingProfitTurnaround) === "true",
+    earningsPeriod: row.earningsPeriod || earnings.period || "",
+    earningsSource: row.earningsSource || earnings.sourceUrl || "",
+    earningsReasons: row.earningsReasons || "",
+    earningsCautions: row.earningsCautions || "",
+    disclosureTitle: row.disclosureTitle || earnings.documentTitle || "",
     trades: number(row.trades),
     priceScore: number(row.priceScore),
     latestSignal: row.latestSignal || "",
@@ -215,9 +229,41 @@ function autoBuyCandidateSort(a, b) {
   return reviewPriority(b.reviewStatus) - reviewPriority(a.reviewStatus)
     || trustPriority(b.trustLevel) - trustPriority(a.trustLevel)
     || buyTimingPriority(b) - buyTimingPriority(a)
+    || earningsPriority(b) - earningsPriority(a)
     || priceValidationPriority(b.priceValidationLevel) - priceValidationPriority(a.priceValidationLevel)
     || momentumPriority(b.momentumRiskLevel) - momentumPriority(a.momentumRiskLevel)
     || b.rankingScore - a.rankingScore;
+}
+
+function earningsPriority(item) {
+  let value = 0;
+  if (number(item.salesGrowthRate) >= 20) value += 4;
+  else if (number(item.salesGrowthRate) >= 15) value += 2;
+  if (item.operatingProfitTurnaround) value += 4;
+  else if (number(item.operatingProfitGrowthRate) >= 50) value += 3;
+  else if (number(item.operatingProfitGrowthRate) >= 20) value += 2;
+  if (number(item.operatingProfitGrowthRate) < 0) value -= 3;
+  return value;
+}
+
+function earningsLabel(row = {}) {
+  const salesGrowthRate = number(row.salesGrowthRate);
+  const operatingProfitGrowthRate = number(row.operatingProfitGrowthRate);
+  const turnaround = row.operatingProfitTurnaround === true || String(row.operatingProfitTurnaround) === "true";
+  const labels = [];
+  if (salesGrowthRate >= 20) labels.push(`売上+${round(salesGrowthRate)}%`);
+  if (turnaround) labels.push("営業黒字転換");
+  else if (operatingProfitGrowthRate >= 20) labels.push(`営業益+${round(operatingProfitGrowthRate)}%`);
+  if (labels.length) return `決算強い: ${labels.join(" / ")}`;
+  return row.code ? "決算中立" : "";
+}
+
+function firstNumber(...values) {
+  for (const value of values) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed) && String(value ?? "") !== "") return parsed;
+  }
+  return 0;
 }
 
 function trustPriority(level) {

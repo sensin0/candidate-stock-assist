@@ -6,6 +6,7 @@ import { fetchStocksFromCsv } from "./providers/csv-provider.mjs";
 import { applyBacktestResults, fetchBacktestResults } from "./providers/backtest-provider.mjs";
 import { applyDisclosures, fetchDisclosures } from "./providers/disclosure-provider.mjs";
 import { applyEdinetFacts, fetchEdinetFacts } from "./providers/edinet-provider.mjs";
+import { applyEarningsFacts, fetchEarningsFacts } from "./providers/earnings-provider.mjs";
 import { applyPriceUpdates, fetchPriceUpdates } from "./providers/price-provider.mjs";
 import { applyWatchlist, fetchWatchlist } from "./providers/watchlist-provider.mjs";
 
@@ -16,6 +17,7 @@ const inputCsv = path.join(dataDir, "stock-master.csv");
 const inputPriceCsv = path.join(dataDir, "price-updates.csv");
 const inputDisclosureCsv = path.join(dataDir, "disclosures.csv");
 const inputEdinetCsv = path.join(dataDir, "edinet-facts.csv");
+const inputEarningsCsv = path.join(dataDir, "earnings-facts.csv");
 const inputWatchlistCsv = path.join(dataDir, "watchlist.csv");
 const inputBacktestCsv = path.join(dataDir, "backtest-results.csv");
 const autoPromotionDraftCsv = path.join(dataDir, "stock-master-universe-promotion-draft.csv");
@@ -58,6 +60,7 @@ function buildDataQuality(payload) {
     .sort((a, b) => priceRefreshPriority(b) - priceRefreshPriority(a))
     .map((stock) => `${stock.code} ${stock.name}: 株価が${daysSince(stock.priceAsOf)}日前`);
   const missingEdinet = stocks.filter((stock) => !stock.edinet?.periodEnd).map((stock) => `${stock.code} ${stock.name}`);
+  const missingEarnings = stocks.filter((stock) => !stock.earnings?.period).map((stock) => `${stock.code} ${stock.name}`);
   const validationWarnings = validateStocks(stocks);
   const externalReferenceWarnings = validateExternalReferences(payload);
   const stale = stocks
@@ -71,6 +74,7 @@ function buildDataQuality(payload) {
     price: `${stocks.length - missingPrice.length}/${stocks.length}`,
     freshPrice: `${stocks.length - missingPrice.length - stalePrice.length}/${stocks.length}`,
     edinet: `${stocks.length - missingEdinet.length}/${stocks.length}`,
+    earnings: `${stocks.length - missingEarnings.length}/${stocks.length}`,
   };
 
   return {
@@ -87,6 +91,7 @@ function buildDataQuality(payload) {
     missingPrice,
     stalePrice,
     missingEdinet,
+    missingEarnings,
     manualInputs,
     stale,
     nextFixes: buildNextFixes({
@@ -236,19 +241,21 @@ function publicProviderStatus(status) {
   };
 }
 
-function writeGeneratedData(providerResult, priceResult, disclosureResult, edinetResult, watchlistResult, backtestResult) {
+function writeGeneratedData(providerResult, priceResult, disclosureResult, edinetResult, earningsResult, watchlistResult, backtestResult) {
   const autoPromotionRows = readAutoPromotionStocks(providerResult.stocks, autoPromotionDraftCsv, universeMetricsCsv);
   const masterStocks = mergeAutoPromotionRows(providerResult.stocks, autoPromotionRows);
   const edinetUpdated = applyInlineFinancialFacts(applyEdinetFacts(masterStocks, edinetResult.facts));
   const priceUpdated = applyPriceUpdates(edinetUpdated, priceResult.prices);
   const disclosureUpdated = applyDisclosures(priceUpdated, disclosureResult.disclosures);
-  const watchlistUpdated = applyWatchlist(disclosureUpdated, watchlistResult.items);
+  const earningsUpdated = applyEarningsFacts(disclosureUpdated, earningsResult.facts);
+  const watchlistUpdated = applyWatchlist(earningsUpdated, watchlistResult.items);
   const stocks = applyBacktestResults(watchlistUpdated, backtestResult.results);
   const providerStatuses = [
     providerResult.providerStatus,
     priceResult.providerStatus,
     disclosureResult.providerStatus,
     edinetResult.providerStatus,
+    earningsResult.providerStatus,
     watchlistResult.providerStatus,
   ].map(publicProviderStatus);
   const payload = {
@@ -257,6 +264,7 @@ function writeGeneratedData(providerResult, priceResult, disclosureResult, edine
     priceSource: publicSource(priceResult.source),
     disclosureSource: publicSource(disclosureResult.source),
     edinetSource: publicSource(edinetResult.source),
+    earningsSource: publicSource(earningsResult.source),
     watchlistSource: publicSource(watchlistResult.source),
     fetchedAt: providerResult.fetchedAt,
     priceFetchedAt: priceResult.fetchedAt,
@@ -266,6 +274,7 @@ function writeGeneratedData(providerResult, priceResult, disclosureResult, edine
     priceUpdates: priceResult.prices.length,
     disclosureUpdates: disclosureResult.disclosures.length,
     edinetUpdates: edinetResult.facts.length,
+    earningsUpdates: earningsResult.facts.length,
     watchlistUpdates: watchlistResult.items.length,
     backtestUpdates: backtestResult.results.length,
     autoPromotionUpdates: autoPromotionRows.length,
@@ -274,6 +283,7 @@ function writeGeneratedData(providerResult, priceResult, disclosureResult, edine
       priceUpdates: priceResult.prices,
       disclosures: disclosureResult.disclosures,
       edinetFacts: edinetResult.facts,
+      earningsFacts: earningsResult.facts,
       watchlistItems: watchlistResult.items,
     },
     stocks,
@@ -328,6 +338,8 @@ function writeReport(payload) {
     `開示件数: ${payload.disclosureUpdates}`,
     `EDINET入力元: ${payload.edinetSource}`,
     `EDINET更新件数: ${payload.edinetUpdates}`,
+    `決算短信入力元: ${payload.earningsSource}`,
+    `決算短信件数: ${payload.earningsUpdates}`,
     `監視リスト入力元: ${payload.watchlistSource}`,
     `監視リスト件数: ${payload.watchlistUpdates}`,
     `バックテスト件数: ${payload.backtestUpdates}`,
@@ -347,6 +359,7 @@ function writeReport(payload) {
     "",
     `- 株価: ${payload.dataQuality.coverage.price}`,
     `- EDINET相当: ${payload.dataQuality.coverage.edinet}`,
+    `- 決算短信: ${payload.dataQuality.coverage.earnings}`,
     `- バックテスト: ${payload.stocks.length - payload.dataQuality.missingBacktest.length}/${payload.stocks.length}`,
     ...payload.dataQuality.missingPrice.map((item) => `- 株価未取得: ${item}`),
     ...payload.dataQuality.missingEdinet.map((item) => `- EDINET相当未取得: ${item}`),
@@ -429,6 +442,14 @@ const edinetResult = await fetchWithFallback(
   }),
   () => fetchEdinetFacts({ inputEdinetCsv }),
 );
+const earningsResult = await fetchWithFallback(
+  "決算短信",
+  () => fetchEarningsFacts({
+    inputEarningsCsv,
+    earningsCsvUrl: process.env.EARNINGS_FACTS_CSV_URL,
+  }),
+  () => fetchEarningsFacts({ inputEarningsCsv }),
+);
 const watchlistResult = await fetchWithFallback(
   "監視リスト",
   () => fetchWatchlist({
@@ -438,7 +459,7 @@ const watchlistResult = await fetchWithFallback(
   () => fetchWatchlist({ inputWatchlistCsv }),
 );
 const backtestResult = await fetchBacktestResults({ inputBacktestCsv });
-const payload = writeGeneratedData(providerResult, priceResult, disclosureResult, edinetResult, watchlistResult, backtestResult);
+const payload = writeGeneratedData(providerResult, priceResult, disclosureResult, edinetResult, earningsResult, watchlistResult, backtestResult);
 writeReport(payload);
 
 console.log(`generated ${payload.stocks.length} stocks`);
