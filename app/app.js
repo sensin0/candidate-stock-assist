@@ -2741,7 +2741,7 @@ function renderProfitPlan(stock) {
     ["1. 一部売り", yen(plan.firstTarget), "一部を利確して、撤退ラインを上げる"],
     ["2. 基準売り", yen(plan.coreTarget), "残りの主力判断。PBR標準や一部売り後の伸びを目安にする"],
     ["3. 伸ばす時", yen(plan.runnerTarget), plan.runnerReason],
-    ["参考上限", yen(plan.theoretical), "PER/PBR上限から見た参考値。全部保有する前提ではない"],
+    ["参考上限", yen(plan.theoretical), "PBR上限とPER参考値から見た上限。全部保有する前提ではない"],
   ];
   return `
     <div class="profit-plan">
@@ -2749,7 +2749,7 @@ function renderProfitPlan(stock) {
         <strong>売却目安の見る順番</strong>
         <span>撤退引き上げ ${yen(plan.raiseStopTo)}</span>
       </div>
-      <p class="profit-plan-guide">PER/PBRラインは根拠線です。実際の売却は 1 → 2 → 3 の順に判断します。</p>
+      <p class="profit-plan-guide">主判断はPBR/修正PBRです。PERは参考値に分け、実際の売却は 1 → 2 → 3 の順に判断します。</p>
       <div class="profit-plan-grid">
         ${rows.map(([label, value, note]) => `
           <div class="profit-plan-step">
@@ -2806,7 +2806,7 @@ function renderExpansionLifecycleAssist(item) {
         ${[
           ["価格", `株価は${yen(item.price)}です。まず高値掴みでないか見ます。`, "チャート位置と出来高を確認"],
           ["財務", "BPS、EPS、現金、有利子負債、発行株数を原資料でチェックします。", "推定値のままなら買い判断は弱め"],
-          ["価値", "推定BPSとPER/PBRレンジで仮の買いラインと売り目安を表示します。", "リンチ・チャートも推定値で表示"],
+          ["価値", "推定BPSとPBRレンジで仮の買いラインと売り目安を表示します。", "PERは参考値として詳細で確認"],
           ["昇格", "財務と材料が揃ったら通常候補へ入れます。", "朝ランキングの対象に昇格"],
         ].map(([title, message, check], index) => `
           <article class="lifecycle-step ${index === 1 ? "lifecycle-active tone-risk" : ""}">
@@ -3023,24 +3023,17 @@ function renderLynchChart(stock) {
   const usesAdjustedBps = Math.abs(adjustedBps - bps) >= Math.max(1, bps * 0.03);
   const pbrLabel = usesAdjustedBps ? "修正PBR" : "PBR";
   const chartBasis = usesAdjustedBps ? "修正BPS×PBR" : "BPS×PBR";
-  const perLow = Number(stock.perLow || 0) > 0 ? Number(stock.perLow) : Math.max(1, Number(stock.pbrLow || 0) * 20);
-  const perAvg = Number(stock.perAvg || 0) > 0 ? Number(stock.perAvg) : Math.max(perLow, (perLow + Number(stock.perHigh || perLow * 1.6)) / 2);
-  const perHigh = Number(stock.perHigh || 0) > 0 ? Number(stock.perHigh) : Math.max(perAvg * 1.35, perAvg + 4);
   const pbrLow = Number(stock.pbrLow || 0) > 0 ? Number(stock.pbrLow) : 0.6;
   const pbrAvg = Number(stock.pbrAvg || 0) > 0 ? Number(stock.pbrAvg) : Math.max(pbrLow, (pbrLow + Number(stock.pbrHigh || pbrLow * 1.6)) / 2);
   const pbrHigh = Number(stock.pbrHigh || 0) > 0 ? Number(stock.pbrHigh) : Math.max(pbrAvg * 1.35, pbrAvg + 0.25);
-  const epsSeries = estimatedEpsSeries(history.length, eps);
   const bpsSeries = estimatedBpsSeries(history.length, adjustedBps);
-  const perLowSeries = epsSeries.map((value) => value * perLow);
-  const perFairSeries = epsSeries.map((value) => value * perAvg);
-  const perHighSeries = epsSeries.map((value) => value * perHigh);
   const pbrLowSeries = bpsSeries.map((value) => value * pbrLow);
   const pbrFairSeries = bpsSeries.map((value) => value * pbrAvg);
   const pbrHighSeries = bpsSeries.map((value) => value * pbrHigh);
-  const lowLine = Math.min(perLowSeries.at(-1), pbrLowSeries.at(-1));
-  const fairLine = Math.min(perFairSeries.at(-1), pbrFairSeries.at(-1));
-  const highLine = Math.max(perHighSeries.at(-1), pbrHighSeries.at(-1));
-  const values = [...history, ...perLowSeries, ...perFairSeries, ...perHighSeries, ...pbrLowSeries, ...pbrFairSeries, ...pbrHighSeries, price];
+  const lowLine = pbrLowSeries.at(-1);
+  const fairLine = pbrFairSeries.at(-1);
+  const highLine = pbrHighSeries.at(-1);
+  const values = [...history, ...pbrLowSeries, ...pbrFairSeries, ...pbrHighSeries, price];
   const min = Math.max(1, Math.min(...values) * 0.82);
   const max = Math.max(...values) * 1.12;
   const x = (index) => pad.left + (index / Math.max(1, history.length - 1)) * (width - pad.left - pad.right);
@@ -3056,14 +3049,14 @@ function renderLynchChart(stock) {
     <polyline points="${seriesPoints(series)}" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round" ${dash ? `stroke-dasharray="${dash}"` : ""} />
     <text x="${width - pad.right - 186}" y="${y(series.at(-1)) + offsetY}" font-size="12" fill="${color}">${label} ${yen(series.at(-1))}</text>
   `;
-  const currentPer = price / eps;
+  const currentPbr = adjustedBps > 0 ? price / adjustedBps : pbr;
   const position = price <= lowLine
-    ? "利益目安では割安ゾーン"
+    ? "資産価値では買い場"
     : price <= fairLine
-      ? "利益目安では中立ゾーン"
+      ? "資産価値では中立"
       : price <= highLine
-        ? "利益目安では高め"
-        : "利益目安ではかなり高め";
+        ? "資産価値では高め"
+        : "資産価値では高すぎ";
   const calloutColor = price <= fairLine ? "#1f8a55" : price <= highLine ? "#b98513" : "#c44536";
 
   return `
@@ -3072,13 +3065,10 @@ function renderLynchChart(stock) {
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${y(min * 1.08)}" y2="${y(min * 1.08)}" stroke="#edf1ed" />
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${y((min + max) / 2)}" y2="${y((min + max) / 2)}" stroke="#edf1ed" />
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${y(max * 0.92)}" y2="${y(max * 0.92)}" stroke="#edf1ed" />
-      <text x="${pad.left}" y="22" font-size="13" fill="#65706b">簡易リンチ・チャート: 株価 / EPS×PER / ${chartBasis}</text>
-      ${valueLine(perHighSeries, "#c44536", `PER上限 ${Math.round(perHigh * 10) / 10}`, "8 6")}
-      ${valueLine(perFairSeries, "#246a9f", `PER標準 ${Math.round(perAvg * 10) / 10}`)}
-      ${valueLine(perLowSeries, "#1f8a55", `PER下限 ${Math.round(perLow * 10) / 10}`, "5 5")}
-      ${valueLine(pbrHighSeries, "#d58b73", `${pbrLabel}上限 ${Math.round(pbrHigh * 100) / 100}`, "3 7", 12, 1.8)}
-      ${valueLine(pbrFairSeries, "#7d9fbd", `${pbrLabel}標準 ${Math.round(pbrAvg * 100) / 100}`, "3 7", 24, 1.8)}
-      ${valueLine(pbrLowSeries, "#78a889", `${pbrLabel}下限 ${Math.round(pbrLow * 100) / 100}`, "3 7", 36, 1.8)}
+      <text x="${pad.left}" y="22" font-size="13" fill="#65706b">資産価値チャート: 株価 / ${chartBasis}</text>
+      ${valueLine(pbrHighSeries, "#c44536", `${pbrLabel}上限 ${Math.round(pbrHigh * 100) / 100}`, "8 6")}
+      ${valueLine(pbrFairSeries, "#246a9f", `${pbrLabel}標準 ${Math.round(pbrAvg * 100) / 100}`)}
+      ${valueLine(pbrLowSeries, "#1f8a55", `${pbrLabel}下限 ${Math.round(pbrLow * 100) / 100}`, "5 5")}
       <polyline points="${pricePoints}" fill="none" stroke="#1d2522" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
       <circle cx="${x(history.length - 1)}" cy="${y(price)}" r="7" fill="${calloutColor}" />
       <line x1="${pad.left}" x2="${width - pad.right}" y1="${height - pad.bottom}" y2="${height - pad.bottom}" stroke="#d9dfdb" />
@@ -3086,19 +3076,19 @@ function renderLynchChart(stock) {
       <g transform="translate(${Math.min(x(history.length - 1) + 18, width - 270)}, ${Math.max(48, y(price) - 48)})">
         <rect width="244" height="54" rx="8" fill="#ffffff" stroke="${calloutColor}" />
         <text x="12" y="22" class="callout" fill="${calloutColor}">${position}</text>
-        <text x="12" y="40" font-size="12" fill="#65706b">現在PER ${Math.round(currentPer * 10) / 10}倍 / EPS ${Math.round(eps * 10) / 10}</text>
+        <text x="12" y="40" font-size="12" fill="#65706b">現在${pbrLabel} ${Math.round(currentPbr * 100) / 100}倍 / BPS ${Math.round(adjustedBps)}</text>
       </g>
       <g transform="translate(${pad.left}, ${height - 34})">
         <line x1="0" x2="24" y1="0" y2="0" stroke="#1d2522" stroke-width="4" />
         <text x="32" y="4" font-size="12" fill="#65706b">株価</text>
         <line x1="88" x2="112" y1="0" y2="0" stroke="#246a9f" stroke-width="2.4" />
-        <text x="120" y="4" font-size="12" fill="#65706b">PER標準</text>
+        <text x="120" y="4" font-size="12" fill="#65706b">${pbrLabel}標準</text>
         <line x1="202" x2="226" y1="0" y2="0" stroke="#1f8a55" stroke-width="2.4" stroke-dasharray="5 5" />
-        <text x="234" y="4" font-size="12" fill="#65706b">PER下限</text>
+        <text x="234" y="4" font-size="12" fill="#65706b">${pbrLabel}下限</text>
         <line x1="326" x2="350" y1="0" y2="0" stroke="#c44536" stroke-width="2.4" stroke-dasharray="8 6" />
-        <text x="358" y="4" font-size="12" fill="#65706b">PER上限</text>
+        <text x="358" y="4" font-size="12" fill="#65706b">${pbrLabel}上限</text>
       </g>
-      <text x="${pad.left}" y="${height - 14}" font-size="12" fill="#65706b">PER/${pbrLabel}ラインは現在EPS/${usesAdjustedBps ? "修正BPS" : "BPS"}からの推定です。本来は過去EPS/BPSと月次株価で更新します。</text>
+      <text x="${pad.left}" y="${height - 14}" font-size="12" fill="#65706b">${pbrLabel}ラインは現在${usesAdjustedBps ? "修正BPS" : "BPS"}からの推定です。PERは詳細の参考値に分けています。</text>
     </svg>
   `;
 }
